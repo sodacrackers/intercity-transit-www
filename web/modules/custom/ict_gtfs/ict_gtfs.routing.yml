@@ -4,4 +4,4 @@ ict_gtfs.settings_form:
     _title: 'GTFS Import settings'
     _form: 'Drupal\ict_gtfs\Form\SettingsForm'
   requirements:
-    _permission: 'administer ict_gtfs configuration'
+    _permission: 'administer site configuration'
