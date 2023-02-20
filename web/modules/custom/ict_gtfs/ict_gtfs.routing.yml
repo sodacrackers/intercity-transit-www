@@ -1,0 +1,7 @@
+ict_gtfs.settings_form:
+  path: '/admin/config/system/ict-gtfs'
+  defaults:
+    _title: 'GTFS Import settings'
+    _form: 'Drupal\ict_gtfs\Form\SettingsForm'
+  requirements:
+    _permission: 'administer ict_gtfs configuration'

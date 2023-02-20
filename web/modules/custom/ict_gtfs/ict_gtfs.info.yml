@@ -1,0 +1,6 @@
+name: GTFS Import
+type: module
+description: Import data using the GTFS standard.
+package: ICT
+core: 8.x
+core_version_requirement: ^8 || ^9
