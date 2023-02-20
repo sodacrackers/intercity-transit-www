@@ -2,9 +2,10 @@
 
 namespace Drupal\ict_gtfs;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
-use Drupal\example\ExampleInterface;
 use GuzzleHttp\ClientInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Gtfs service.
@@ -19,11 +20,11 @@ class Gtfs {
   protected $httpClient;
 
   /**
-   * The logger.channel.ict_gtfs service.
+   * The logger.
    *
-   * @var \Drupal\example\ExampleInterface
+   * @var \Psr\Log\LoggerInterface
    */
-  protected $loggerChannelIctGtfs;
+  protected $logger;
 
   /**
    * The cache backend.
@@ -33,19 +34,29 @@ class Gtfs {
   protected $cache;
 
   /**
+   * The time service.
+   *
+   * @var \Drupal\example\ExampleInterface
+   */
+  protected $time;
+
+  /**
    * Constructs a Gtfs object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
    *   The HTTP client.
-   * @param \Drupal\example\ExampleInterface $logger_channel_ict_gtfs
-   *   The logger.channel.ict_gtfs service.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   A logger instance.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   The time service.
    */
-  public function __construct(ClientInterface $http_client, ExampleInterface $logger_channel_ict_gtfs, CacheBackendInterface $cache) {
+  public function __construct(ClientInterface $http_client, LoggerInterface $logger, CacheBackendInterface $cache, TimeInterface $time) {
     $this->httpClient = $http_client;
-    $this->loggerChannelIctGtfs = $logger_channel_ict_gtfs;
+    $this->logger = $logger;
     $this->cache = $cache;
+    $this->time = $time;
   }
 
   /**
