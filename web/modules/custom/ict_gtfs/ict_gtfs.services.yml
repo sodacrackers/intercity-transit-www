@@ -1,0 +1,4 @@
+services:
+  ict_gtfs.gtfs:
+    class: Drupal\ict_gtfs\Gtfs
+    arguments: ['@http_client', '@logger.channel.ict_gtfs', '@cache.data']
