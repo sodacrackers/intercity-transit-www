@@ -1,0 +1,21 @@
+{
+  "name": "better-placeholder-polyfill",
+  "version": "1.3.0",
+  "main": [
+    "dist/better-placeholder-polyfill.js"
+  ],
+  "ignore": [
+    ".*",
+    "test",
+    "src",
+    "index.html",
+    "package.json",
+    "bower.json"
+  ],
+  "keywords": [
+    "better-dom"
+  ],
+  "dependencies": {
+    "better-dom": "~2.0.0"
+  }
+}

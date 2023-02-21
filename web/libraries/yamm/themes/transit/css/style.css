@@ -1,0 +1,633 @@
+body {
+  margin-top: 0px;
+}
+
+h2 {
+  color: #002F87;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+h3 {
+  color: #2B7051;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+h4 {
+  color: #002F87 !important;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+.row {
+  margin-left: 0;
+}
+.container > hr.left-navbar-collapse {
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.left-navbar-collapse {
+  overflow-x: visible;
+  border-top: 1px solid transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.left-navbar-collapse:before,
+.left-navbar-collapse:after {
+  display: table;
+  content: " ";
+}
+.left-navbar-collapse:after {
+  clear: both;
+}
+.left-navbar-collapse.in {
+  overflow-y: auto;
+}
+@media (min-width: 768px) {
+  .left-navbar-collapse {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+  }
+  .left-navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .left-navbar-collapse.in {
+    overflow-y: visible;
+  }
+}
+.navbar-collapse {
+  z-index: 100;
+}
+#ctl00_PlaceHolderLeftNavBar_QuickLaunchNavigationManager {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.navbar-inverse #left-navbar-toggle:hover,
+.navbar-inverse #left-navbar-toggle:focus {
+  background-color: #563d7c;
+}
+.navbar-inverse #left-navbar-toggle {
+  border-color: #563d7c;
+}
+.navbar-inverse #left-navbar-toggle.collapsed {
+  background-color: #f7f5fa;
+}
+.navbar-inverse #left-navbar-brand:hover,
+.navbar-inverse #left-navbar-brand:focus {
+  color: #563d7c;
+  background-color: transparent;
+}
+.navbar {
+  z-index: 1;
+  border: none;
+  margin-bottom: 5px;
+  box-shadow: 0 0 0 0;
+}
+.left-navbar {
+  background-color: #f7f5fa;
+}
+/* header top area */
+.navbar-header {
+  background-color: #002F87;
+  background-image: url('/themes/transit/images/header1.png');
+  background-position: center;
+  border-bottom: 3px solid #2B7051;
+  min-height: 63px;
+}
+.google-translate {
+  margin-top: 20px;
+  float: right;
+}
+.onebus {
+  margin-top: 15px;
+  margin-right: 25px;
+  float: right;
+  color: #fff;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 38px;
+}
+.onebus span {
+  font-weight: 100;
+}
+.onebus a {
+  color: #fff;
+  text-decoration: none;
+}
+.onebus a:active {
+  color: #fff;
+  text-decoration: none;
+}
+.onebus a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.onebus:before {
+  content: "";
+  display: block;
+  background: url('/themes/transit/images/onebus-logo.png') no-repeat;
+  width: 38px;
+  height: 38px;
+  float: left;
+  margin: 0 20px 0 0;
+}
+.onebus-icon {
+  margin-top: 15px;
+  background: url('/themes/transit/images/onebus-logo.png') no-repeat;
+  width: 38px;
+  height: 38px;
+  float: left;
+}
+.onebus-icon a {
+  width: 38px;
+  height: 38px;
+}
+.alerts {
+  margin-top: 15px;
+  margin-right: 25px;
+  float: right;
+  color: #fff;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 38px;
+}
+.alerts a {
+  color: #fff;
+  text-decoration: none;
+}
+.alerts a:active {
+  color: #fff;
+  text-decoration: none;
+}
+.alerts a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.alerts:before {
+  content: "";
+  display: block;
+  background: url('/themes/transit/images/alert-icon.png') no-repeat;
+  width: 38px;
+  height: 38px;
+  float: left;
+  margin: 0 10px 0 0;
+}
+@media only screen and (max-width: 440px) {
+  .onebus {
+    float: left;
+  }
+  .alerts {
+    margin-right: 0;
+  }
+}
+.nav .navbar-default {
+  background-color: #fff;
+  border: none;
+}
+.nav .navbar-default .grid {
+  padding: 30px 45px;
+}
+@media only screen and (max-width: 768px) {
+  .nav.navbar-default .grid {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+.nav .navbar .navbar-default {
+  margin-bottom: 0;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #002F87;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #002F87;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #002F87;
+  background-color: #F3F4F9;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #002F87;
+  background-color: #F3F4F9;
+}
+.navbar-default .navbar-nav > li.menu-extra > a {
+  color: #2B7051;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+.navbar-header {
+  width: 100%;
+}
+.navbar {
+  padding-left: 0;
+  padding-right: 0;
+}
+.nav.navbar-nav {
+    margin-left: 100px;
+    margin-top: 31px;
+}
+/* footer area */
+.footer {
+  background-color: #002F87;
+  color: #fff;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 0px;
+}
+
+.footer p {
+  background-color: #002F87;
+  color: #fff;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+.footer .footer--top {
+  border-bottom: 1px solid #4c6dab;
+  background-image: url('/themes/transit/images/footer1.png');
+  min-height: 100px;
+}
+.footer .footer--top .share-footer {
+  margin-top: 35px;
+}
+.footer .footer--top .share-footer li {
+  float: left;
+}
+.footer .footer--top .share-footer .share-footer--text {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  height: 33px;
+  line-height: 33px;
+  margin-right: 20px;
+}
+.footer .footer--top .share-footer .share-footer--icon a {
+  display: inline-block;
+  height: 33px;
+  width: 33px;
+  margin-right: 8px;
+}
+.footer .footer--top .share-footer .share-footer--icon a.vimeo {
+  background-image: url('/themes/transit/images/youtube.png');
+  background-repeat: no-repeat;
+}
+.footer .footer--top .share-footer .share-footer--icon a.twitter {
+  background-image: url('/themes/transit/images/twitter.png');
+  background-repeat: no-repeat;
+}
+.footer .footer--top .share-footer .share-footer--icon a.facebook {
+  background-image: url('/themes/transit/images/facebook.png');
+  background-repeat: no-repeat;
+}
+.footer .footer--top .onebus-away-footer li {
+  float: left;
+}
+.footer .footer--top .onebus-away-footer .onebus-away-footer--heading {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-right: 15px;
+  margin-top: 40px;
+}
+.footer .footer--top .onebus-away-footer .onebus-away-footer--icon a {
+  display: inline-block;
+  margin-top: 20px;
+  height: 59px;
+  width: 74px;
+  background-image: url('/themes/transit/images/onebus-away-footer.png');
+  background-repeat: no-repeat;
+}
+.footer .footer--top .onebus-away-footer .onebus-away-footer--text {
+  margin-top: 41px;
+}
+.footer .footer--top .onebus-away-footer li a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.footer .footer--top .onebus-away-footer li a:hover {
+  color: #7F97C3;
+  text-decoration: none;
+}
+.footer .footer--top .onebus-away-footer li a:visited {
+  text-decoration: none;
+}
+.footer .footer--top .onebus-away-footer li a:active {
+  text-decoration: none;
+}
+/*footer--main Area*/
+.footer .footer--main {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #fff;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 0;
+  
+}
+.footer .footer--main ul {
+  padding-left: 0;
+  list-style: none;
+}
+.footer .footer--main h2.block-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.footer .footer--main li {
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.footer .footer--main li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.footer .footer--main li a:hover {
+  color: #7F97C3;
+  
+}
+.footer .footer--main li a:visited {
+  text-decoration: none;
+}
+.footer .footer--main li a:active {
+  text-decoration: none;
+}
+.footer--main--address--heading {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+/*footer--bottom*/
+.footer--bottom {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 20px;
+  min-height: 103px;
+  border-top: 1px solid #4c6dab;
+}
+.footer--bottom p a {
+  color: #fff !important;
+}
+.footer--bottom p a:hover {
+  color: #7F97C3;
+  text-decoration: none;
+}
+.footer--bottom p a:visited {
+  text-decoration: none;
+}
+.footer--bottom p a:active {
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .footer .footer--top {
+    background-image: none;
+  }
+  .footer .footer--top .onebus-away-footer .onebus-away-footer--text {
+    margin-top: 5px;
+  }
+}
+.dropdown-menu {
+  left: auto;
+  background-color: #F3F4F9;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+.dropdown-menu {
+  left: 0;
+  right: 0;
+}
+.menu--column {
+  padding-right: 30px;
+}
+.menu-vborder {
+  border-left: solid 1px #8fb2a5;
+  padding-left: 30px;
+  padding-right: 0;
+}
+li.menu-extra > a {
+  color: #2B7051;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+/* home page news widget */
+.widget-wrap--title span {
+  font-size: 18px;
+  margin-left: 5px;
+}
+.widget {
+  background-color: #F3F4F9;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+.widget .cbs-pictureOnTopDataContainer {
+  padding-top: 10px;
+}
+
+.widget h3.widget--title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.widget h3.widget--title a {
+  color: #002F87 !important;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+.widget h3.widget--title a:hover {
+  color: #7F97C3 !important;
+}
+.widget .widget--date {
+  color: #2B7051;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+.widget .widget--exerpt {
+  color: #656466;
+  font-family: "myriad-pro", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #bdc1de;
+}
+.widget .dfwp-column {
+  margin-left: 0;
+  padding-top: 5px;
+}
+.region-content-left h2.block-title {
+  color: #7f97c3;
+}
+.submenu {
+  margin-bottom: 15px;
+}
+.submenu--link a {
+  font-family: "myriad-pro", sans-serif;
+  color: #2B7051;
+  font-size: 21px;
+  font-weight: 700;
+}
+.submenu--link {
+  border-bottom: 1px solid #bdc1de;
+  line-height: 35px;
+}
+.submenu--link .bus-service {
+  background: url('/themes/transit/images/icon_bus.png') no-repeat;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+.submenu--link .bike {
+  background: url('/themes/transit/images/icon_bike.png') no-repeat;
+  display: inline;
+  width: 36px;
+  height: 30px;
+  float: right;
+}
+.submenu--link .vanpool {
+  background: url('/themes/transit/images/icon_vanpool.png') no-repeat;
+  display: inline;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+.submenu--link .carpool {
+  background: url('/themes/transit/images/icon_carpool.png') no-repeat;
+  display: inline;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+.submenu--link .village {
+  background: url('/themes/transit/images/icon_village.png') no-repeat;
+  display: inline;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+.submenu--link .community {
+  background: url('/themes/transit/images/icon_community.png') no-repeat;
+  display: inline;
+  width: 30px;
+  height: 30px;
+  float: right;
+}
+.submenu--desc {
+  font-family: "myriad-pro", sans-serif;
+  color: #002F87;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 7px;
+}
+.submenu--desc a {
+  font-family: "myriad-pro", sans-serif;
+  color: #002F87;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 7px;
+}
+.submenu--sidebar--link a {
+  font-family: "myriad-pro", sans-serif;
+  color: #2B7051;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 35px;
+}
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+  position: static;
+}
+.yamm .container {
+  position: relative;
+}
+.yamm .dropdown-menu {
+  left: auto;
+  background-color: #F3F4F9;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+.yamm .yamm-content {
+  padding: 20px 30px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu {
+  left: 0;
+  right: 0;
+}
+.yamm .menu--column {
+  padding-right: 30px;
+}
+.yamm .menu-vborder {
+  border-left: solid 1px #8fb2a5;
+  padding-left: 30px;
+  padding-right: 0;
+}
+.nav.navbar-default {
+  background-color: #fff;
+  border: none;
+}
+.nav.navbar-default .grid {
+  padding: 30px 45px;
+}
+@media only screen and (max-width: 767px) {
+  .navbar-default .navbar-nav > li.menu-extra > a {
+    text-align: left;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .nav .navbar-brand {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .nav.navbar-nav {
+    margin-left: 100px;
+    margin-top: 31px;
+  }
+  .nav.navbar-nav.navbar-right {
+    margin-left: 0;
+    margin-top: 11px;
+  }
+}
