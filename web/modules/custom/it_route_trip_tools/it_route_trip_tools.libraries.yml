@@ -1,0 +1,77 @@
+global:
+  version: VERSION
+  css:
+    theme:
+      assets/css/it-route-trip-tools.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - jquery_ui_datepicker/datepicker
+  js:
+    assets/js/it-route-trip-tools.js: {}
+    assets/js/toggle-direction.js: {}
+    assets/js/geo.js: {}
+    //cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js: {type: external}
+all-routes-map:
+  js:
+    assets/js/all-routes-map.js: {}
+tables:
+  version: VERSION
+  css:
+    theme:
+      //unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css: {tye: external}
+  js:
+    //unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js: {type: external}
+trip-planner:
+  header: TRUE
+  css:
+    theme:
+      assets/css/trip-planner.css: {}
+  js:
+    assets/js/trip-planner.js: {}
+    assets/js/jquery.timepicker.js: {}
+  dependencies:
+    - core/jquery
+trip-planner-front:
+  header: TRUE
+  css:
+    theme:
+      assets/css/trip-planner.css: {}
+  js:
+    assets/js/trip-planner-front-page.js: {}
+    assets/js/jquery.timepicker.js: {}
+  dependencies:
+    - core/jquery
+maps-autocomplete:
+  header: TRUE
+  js:
+    assets/js/maps-autocomplete.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+initmapautocomplete-routes-stops:
+  js:
+    assets/js/initmapautocomplete-routes-stops.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+stops-map-data:
+  js:
+    assets/js/stops-map-data.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+chosen:
+  css:
+    theme:
+      /libraries/chosen/chosen.css: {}
+  js:
+    /libraries/chosen/chosen.jquery.js: {}
+    /libraries/chosen/chosen.proto.js: {}
+    assets/js/chosen-items.js: {}
+admin:
+  css:
+    theme:
+      assets/css/admin-form.css: {}
+  js:
+    assets/js/bootstrap.min.js: {}

@@ -1,0 +1,55 @@
+{{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
+{% if stop_data %}
+{{ attach_library('it_route_trip_tools/stops-map-data') }}
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+    <div id="stops-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default stops-panel">
+	    	<div class="panel-heading" role="tab" id="stops-map-heading">
+      		<h4 class="panel-title">
+        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#stops-map-body" aria-expanded="true" aria-controls="stops-map-body" class="stops-map-toggle">
+      	  		Show Stops Map
+		        </a>
+      		</h4>
+	    	</div>
+	    	<div id="stops-map-body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="stops-map-heading">
+      		<div id="stops-map" class=" panel-body" style="min-height: 600px;">
+						<div id="stops-map-real-map" style="width: 100%; min-height: 600px; margin-bottom: 40px;"></div>
+					</div>
+	    	</div>
+			</div>
+		</div>
+		
+		<div class="stops-tables">
+			{% for route_id,schedule_id_times in stop_data.schedule_times %}
+				{% for schedule_id,schedule_times in schedule_id_times %}
+				<table class="stop-table">
+					<thead>
+						<th scope="col" data-toggle="collapse" href="#collapse-{{ route_id }}-{{ schedule_id }}" aria-expanded="false" aria-controls="collapse-{{ route_id }}-{{ schedule_id }}">{{ route_id }} - {{ schedule_id|capitalize }}
+		                </th>
+					</thead>
+					<tbody class="collapse" id="collapse-{{ route_id }}-{{ schedule_id }}">
+						{% for times in schedule_times %}
+							{% for time in times %}
+							<tr>
+								<td>
+									{{ time.departureTime.date|timeonly }}
+								</td>
+							</tr>
+							{% endfor %}
+						{% endfor %}
+					</tbody>
+				</table>
+				{% endfor %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+	No stop selected
+</div>
+{% endif %}

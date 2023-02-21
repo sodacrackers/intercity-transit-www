@@ -1,0 +1,11 @@
+it_route_trip_tools.it_route_trip_tools_settings:
+  path: '/admin/config/it_route_trip_tools'
+  defaults:
+    _controller: 'Drupal\it_route_trip_tools\Controller\AdminFormPage::BuildPage'
+    _title_controller: 'Drupal\it_route_trip_tools\Controller\AdminFormPage::BuildTitle'
+  requirements:
+    _permission: 'route trip tool'
+route_callbacks:
+    - '\Drupal\it_route_trip_tools\Routing\ItRouteTripToolsRoutes::RoutesPageRouting'
+    - '\Drupal\it_route_trip_tools\Routing\ItRouteTripToolsRoutes::TripPlannerPageRouting'
+    - '\Drupal\it_route_trip_tools\Routing\ItRouteTripToolsRoutes::StopsPageRouting'

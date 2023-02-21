@@ -1,0 +1,51 @@
+{% set url = url('<current>') %}
+<div class="tab-container">
+    <ul class="nav nav-tabs">
+        {% if front_page_routes_form %}
+            <li class="{% if is_front or '\/bus\/trip-planner' not in url|render|render %}active{% endif %}"><a data-toggle="tab" href="#routes">Route Finder</a></li>
+            {% if is_front or '\/bus\/trip-planner' not in url|render|render %}
+                {% set trip_pane_classes = 'tab-pane fade' %}
+            {% else %}
+                {% set trip_pane_classes = 'tab-pane fade in active' %}
+            {% endif %}
+        {% else %}
+            {% set trip_tab_classes = 'active' %}
+            {% set trip_pane_classes = 'tab-pane fade in active' %}
+        {% endif %}
+        {% if front_page_trip_form %}
+            {% if '\/bus\/trip-planner' in url|render|render %}
+                {% set trip_tab_classes = 'active' %}
+                {% set trip_pane_classes = 'tab-pane fade in active' %}
+            {% endif %}
+            <li class="{{ trip_tab_classes }}"><a data-toggle="tab" href="#trips">Trip Planner</a></li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        {% if front_page_routes_form %}
+            <div id="routes" class="tab-pane fade in {% if is_front or '\/bus\/trip-planner' not in url|render|render %}active{% endif %}">
+                {{ front_page_routes_form }}
+                <div id="route-form-container" class="col-xs-12 col-sm-12 col-md-122 col-lg-12">
+                    <div class="btn-group btn-toggle dir-control-buttons pull-right">
+                        <div class="dir-control-button">
+                        {% if we_want_the_previous_toggle %}
+                          <input id="direction" type="checkbox" name="direction" class="sr-only outbound" aria-hidden="false">
+                          <label for="direction">
+                            <div class="direction-switch" data-unchecked="Outbound" data-checked="Inbound"></div>
+                          </label>
+                        {% endif %}
+                        {{ route_data }}
+                        {% if route_data %}
+                            <button id="direction" role="button" class="btn btn-primary">Switch Directions</button>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if front_page_trip_form %}
+            <div id="trips" class="{{ trip_pane_classes }}">
+                {{ front_page_trip_form }}
+            </div>
+        {% endif %}
+    </div>
+</div>

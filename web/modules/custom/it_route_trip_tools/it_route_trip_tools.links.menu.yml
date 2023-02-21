@@ -1,0 +1,5 @@
+it_route_trip_tools.it_route_trip_tools_settings:
+  title: 'IT Route and Trip Tools Settings'
+  description: 'Manage settings for the GTFS API and Trip Tools integration'
+  parent: system.admin_config
+  route_name: it_route_trip_tools.it_route_trip_tools_settings

@@ -1,0 +1,17 @@
+<form{{attributes}} id="{{ form['#id']}}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" method="{{ form['#method'] }}">
+	<div class="row">
+		<div class="route-form-items">
+			<div class="inputs">
+				<div class="routeDropdown">
+			    	{{ form.routes }}
+			  	</div>
+			  	<div class="serviceOptions">
+			    	{{ form.service_option }}
+			  	</div>
+		  	</div>
+		  	<div class="actions">
+			    	{{ form.actions }}
+		  	</div>
+		</div>
+	</div>
+</form>

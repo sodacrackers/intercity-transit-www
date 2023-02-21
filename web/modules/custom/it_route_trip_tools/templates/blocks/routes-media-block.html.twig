@@ -1,0 +1,25 @@
+{% if route_id %}
+	{% if route_table_url %}
+		<h2><a href="{{ route_table_url }}">Printable Schedule and Map</a></h2>
+	{% endif %}
+	{% if separate_tables_and_maps_are_added_back %}
+		<h2>Printable Maps and Schedules</h2>
+		{% if route_table_url or route_map_url%}
+			<ul>
+			{% if route_table_url %}
+				<li><a href="{{ route_table_url }}">Printable Schedule</a></li>
+			{% else %}
+				<li>No printable schedule found</li>
+			{% endif %}
+
+			{% if route_map_url %}
+				<li><a href="{{ route_map_url }}">Printable Map</a></li>
+			{% else %}
+				<li>No printable map found</li>
+			{% endif %}
+			<ul>
+		{% else %}
+			<p>No printable maps or schedules found</p>
+		{% endif %}
+	{% endif %}
+{% endif %}

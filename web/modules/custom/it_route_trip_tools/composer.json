@@ -1,0 +1,6 @@
+{
+  "name": "watech-web/it-route-trip-tools",
+  "description": "Route, Trip Planner and Stops forms and pages for Intercity Transit",
+  "type": "drupal-module",
+  "license": "GPL-2.0"
+}

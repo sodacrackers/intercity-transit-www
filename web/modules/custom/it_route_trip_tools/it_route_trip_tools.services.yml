@@ -1,0 +1,5 @@
+services:
+  it_route_trip_tools.it_twig_extension:
+    class: Drupal\it_route_trip_tools\ItTwigExtensions
+    tags:
+      - { name: twig.extension }

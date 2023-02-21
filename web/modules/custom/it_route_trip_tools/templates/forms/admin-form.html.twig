@@ -1,0 +1,84 @@
+{{ attach_library('it_route_trip_tools/admin') }}
+{{ form.form_build_id }}
+{{ form.form_id }}
+{{ form.form_token }}
+<form{{attributes}} id="{{ form['#id']}}" method="{{ form['#method'] }}">
+	<div class="row">
+		<div class="route-form-items">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		  		<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="heading-1">
+			      		<h4 class="panel-title">
+					        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+					          Page Titles and Paths
+					        </a>
+			      		</h4>
+				    </div>
+				    <div id="collapse-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-1">
+	    				<div class="panel-body">
+					        <div class="inputs col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<h2>Routes Page</h2>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							    	{{ form.it_route_trip_tools_route_page_title }}
+							  	</div>
+							  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							    	{{ form.it_route_trip_tools_route_page_parent }}
+							  	</div>
+							  	<h2>Trip Planner</h2>
+							  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							    	{{ form.it_route_trip_tools_trip_planner_page_title }}
+							  	</div>
+							  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							    	{{ form.it_route_trip_tools_trip_planner_page_parent }}
+							  	</div>
+							  	<h2>Stops Page</h2>
+							  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							    	{{ form.it_route_trip_tools_stops_page_title }}
+							  	</div>
+							  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    		{{ form.it_route_trip_tools_stops_page_parent }}
+							  	</div>
+						  	</div>
+				      	</div>
+				    </div>
+		  		</div>
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="heading-2">
+				  		<h4 class="panel-title">
+						    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+						      API Data
+						    </a>
+					  	</h4>
+					</div>
+					<div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
+				  		<div class="panel-body">
+						    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_route_stops_api_base }}
+						  	</div>
+						  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_route_options_request }}
+						  	</div>
+						  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_route_search_request }}
+						  	</div>
+						  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_route_shapes_request }}
+						  	</div>
+						  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_stops_options_request }}
+						  	</div>
+						  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						    	{{ form.it_route_trip_tools_stops_request }}
+						  	</div>
+				  		</div>
+					</div>
+				</div>
+			  	<div class="actionscol-xs-12 col-sm-12 col-md-12 col-lg-12">
+				  	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				    	{{ form.actions }}
+				  	</div>
+			  	</div>
+		  	</div>
+	  	</div>
+	</div>
+</form>

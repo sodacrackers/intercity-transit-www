@@ -1,0 +1,52 @@
+{{ attach_library('it_route_trip_tools/tables') }}
+	{% for dir, dir_data in route_data.times_alt  %}
+		{% if dir != 'inbound' %}
+			{% set dir_class = 'show-dir' %}
+		{% else %}				
+			{% set dir_class = 'hide-dir hidden' %}
+		{% endif %}
+
+		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables">
+			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
+			    <button id="{{ dir }}-back" role="button" class=" left-table-button btn btn-default" disabled><i class="fas fa-chevron-left"></i><span class="sr-only">{{ dir }} Back</span></button>
+			    <button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default"><i class="fas fa-chevron-right"></i><span class="sr-only">{{ dir }} Forward</span></button>
+		    </div>
+			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive">
+				<table class="table table-hover table-condensed">
+					<thead>
+						<tr>
+							<th>
+								<h2>{{ dir|capitalize }} Stops</h2>
+							</th>
+							{% set counter = 1 %}
+							{% for counter in range(1, dir_data.trip_count) %}
+							    <th>Time</th>
+							    {% set counter = counter + 1 %}
+							{% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+						{% for stop_id, stop_data in dir_data.stops %}
+							{% for timepoint, stop_names in stop_data %}
+								{% if timepoint != 'timepoint' %}
+									{% set timepoint_class = 'non-timepoint'%}
+								{% else %}
+									{% set timepoint_class = 'timepoint' %}
+								{% endif %}
+								{% for stop_name, stop_times in stop_names %}
+									<tr class="{{ timepoint_class }}">
+										<th>
+											{{ stop_name }}
+										</th>
+										{%  for stop_time in stop_times %}
+											<td>{{ stop_time }}</td>
+										{% endfor %}
+									</tr>
+								{% endfor %}
+							{% endfor %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% endfor %}

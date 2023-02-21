@@ -1,0 +1,47 @@
+{% set url = url('<current>') %}
+{% if is_front or routes_path in url|render|render or stops_path in url|render|render %}
+    {# The initMapAutocomplete is touchy. We call this library so it will work with other maps on the page #}
+    {{ attach_library('it_route_trip_tools/maps-autocomplete') }}
+{% endif %}
+{{ attach_library('it_route_trip_tools/trip-planner') }}
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function(){
+            $('#time').timepicker('setTime', new Date());
+        });
+    })(jQuery);
+</script>
+<div class="tab-container">
+    <ul class="nav nav-tabs">
+        <li class="{% if is_front or current_page == 'routes' %}active{% endif %}"><a data-toggle="tab" href="#routes-form-pane">Route Finder</a></li>
+        <li class="{% if current_page == 'trip_planner' %}active{% endif %}"><a data-toggle="tab" href="#trip-form-pane">Trip Planner</a></li>
+        <li class="{% if current_page == 'stops' %}active{% endif %}"><a data-toggle="tab" href="#stops-form-pane">Stops</a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div id="routes-form-pane" class="tab-pane{% if is_front or current_page == 'routes' %} fade in active{% endif %}">
+        <div id="route-form-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        {{ routes_form_block }}
+        </div>
+    </div>
+    <div id="trip-form-pane" class="tab-pane{% if current_page == 'trip_planner' %} fade in active{% endif %}">
+        {{ trip_form_block }}
+    </div>
+    <div id="stops-form-pane" class="tab-pane{% if current_page == 'stops' %} fade in active{% endif %}">
+        {{ stops_form_block }}
+    </div>
+</div>
+<div id="routes-media">
+{{ routes_media_block }}
+</div>
+{% if is_front %}
+<div id="autocomplete-route-map" class="sr-only" style="height: 0; width: 0;"></div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&libraries=places&location=47.044408,-122.901711&radius=2&strictbounds&callback=initMapAutocomplete"></script>
+{% endif %}
+{% if routes_path in url|render|render or stops_path in url|render|render %}
+<div id="autocomplete-map" class="sr-only" style="height: 0; width: 0;"></div>
+{% endif %}
+{% if trip_planner_path in url|render|render %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbound&callback=initMap&libraries=places"></script>    
+{% endif %}
+{{ attach_library('it_route_trip_tools/chosen') }}

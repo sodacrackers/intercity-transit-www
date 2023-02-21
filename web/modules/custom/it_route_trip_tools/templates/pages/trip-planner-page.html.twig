@@ -1,0 +1,331 @@
+
+{%  set trip_data = tripplanner() %}
+    <script type="text/javascript">
+      (function ($) {
+        $(document).ready(function(){
+          $('form #tripplanner-menu .ui-timepicker-select').change( function(){
+            var selected_time = $(this).val()
+            $('#time_input').val(selected_time);
+          });
+          {% if trip_data %}
+            $('#start_add').val('{{ trip_data.start_add }}');
+            $('#start_add_id').val('{{ trip_data.start_add_id }}');
+            $('#dest_add').val('{{ trip_data.dest_add }}');
+            $('#dest_add_id').val('{{ trip_data.dest_add_id }}');
+            $('#ttype').val('{{ trip_data.ttype }}');  
+            $('#opt').val('{{ trip_data.opt }}');
+            $('#date').val('{{ trip_data.date }}');
+            $('#time').val('{{ trip_data.time }}');
+            $('#time_input').val('{{ trip_data.time }}');
+          {% endif %}
+          $('#get-directions').click(function(){
+            var ajax_submit = 1;
+            initMap(ajax_submit);
+          });
+          var start_add_input = document.getElementById('start_add');
+          var start_add_id_input = document.getElementById('start_add_id');
+          var dest_add_input = document.getElementById('dest_add');
+          var dest_add_id_input = document.getElementById('dest_add_id');
+          var startErrorDiv = document.getElementById('start-add-alert');
+          var destErrorDiv = document.getElementById('dest-add-alert');
+
+          start_add_input.addEventListener('change', function() { 
+              if (start_add_id_input.value == '') {        
+                startErrorDiv.classList.remove('hidden');
+                startErrorDiv.innerHTML = 'Please enter a valid start address';
+              }
+          });
+          dest_add_input.addEventListener('change', function() {
+              if (dest_add_id_input.value == '') {
+                destErrorDiv.classList.remove('hidden');
+                destErrorDiv.innerHTML = 'Please enter a valid destination address';
+              }
+          });
+        });
+      })(jQuery);
+
+      var placeSearch, startaddress, destaddress;
+      
+      var stateBounds={
+        wa: ['47.1853106', '-125.36955', '47.7510741', '-120.7401385']
+      };
+
+      function getStateBounds(state) {
+        return new google.maps.LatLngBounds(
+          new google.maps.LatLng(stateBounds[state][0], 
+                                 stateBounds[state][1]), 
+          new google.maps.LatLng(stateBounds[state][2], 
+                                 stateBounds[state][3])
+          ); 
+      }
+      function initMap(ajax_submit) {
+        
+        if (ajax_submit == 1) {
+          ajax_submit = 0;
+          var start_add = document.getElementById('start_add').value;
+          var dest_add = document.getElementById('dest_add').value;
+          var start_add_id = document.getElementById('start_add_id').value;
+          var dest_add_id = document.getElementById('dest_add_id').value;
+          var ttype = document.getElementById('ttype').value;
+          var opt = document.getElementById('opt').value;
+          var date = document.getElementById('date').value;
+          var time = document.getElementById('time').value;
+          var routeopt = document.getElementById('opt').value;
+          var time_input = document.getElementById('time_input').value;
+          var datetime = new Date(Date.parse(date + " " + time));
+          const directionsRenderer = new google.maps.DirectionsRenderer();
+          const directionsService = new google.maps.DirectionsService();
+          const map = new google.maps.Map(document.getElementById('route-map'));
+          if (ttype == 'dep') {
+            transit_options = {
+              departureTime: datetime,
+              modes: ['BUS'],
+              routingPreference: routeopt
+            }
+          }
+          else {
+            transit_options = {
+              arrivalTime: datetime,
+              modes: ['BUS'],
+              routingPreference: routeopt
+            }
+          }
+          directionsRenderer.setMap(map);
+          directionsRenderer.setPanel(document.getElementById('route-results'));
+          
+          directionsService.route({
+            origin: {
+              'placeId': start_add_id
+            },
+            destination: {
+              'placeId': dest_add_id
+            },
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.TRANSIT,
+            provideRouteAlternatives: true,
+            transitOptions: transit_options
+          }, function(response, status) {
+            if (status === 'OK') {
+              var tripErrorDiv = document.getElementById('trip-errors');
+              tripErrorDiv.classList.add('hidden');
+              document.getElementById("route-results").innerHTML = '';
+              directionsRenderer.setDirections(response);
+            } else {
+              var tripErrorDiv = document.getElementById('trip-errors');
+              tripErrorDiv.innerHTML = 'Sorry, no results found for that route.';
+              tripErrorDiv.classList.remove('hidden');
+              //window.alert('Directions request failed due to ' + status);
+            }
+          });
+        }
+        else {
+          {% if trip_data %}
+            var ttype = '{{ trip_data.ttype }}';  
+            var routeopt = '{{ trip_data.opt }}';
+            var date = '{{ trip_data.date }}';
+            var time = '{{ trip_data.time }}';
+            var datetime = new Date(Date.parse(date + " " + time));
+
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            const directionsService = new google.maps.DirectionsService();
+
+            const map = new google.maps.Map(document.getElementById('route-map'));
+
+            directionsRenderer.setMap(map);
+            directionsRenderer.setPanel(document.getElementById('route-results'));
+            
+            if (ttype == 'dep') {
+              transit_options = {
+                departureTime: datetime,
+                modes: ['BUS'],
+                routingPreference: routeopt
+              }
+            }
+            else {
+              transit_options = {
+                arrivalTime: datetime,
+                modes: ['BUS'],
+                routingPreference: routeopt
+              }
+            }
+
+            directionsService.route({
+              origin: {
+                'placeId': '{{ trip_data.start_add_id }}'
+              },
+              destination: {
+                'placeId': '{{ trip_data.dest_add_id }}'
+              },
+              optimizeWaypoints: true,
+              travelMode: google.maps.TravelMode.TRANSIT,
+              provideRouteAlternatives: true,
+              transitOptions: transit_options
+            }, function(response, status) {
+              if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+              } else {
+                var tripErrorDiv = document.getElementById('trip-errors');
+                tripErrorDiv.innerHTML = 'Sorry, no results found for that route.';
+                tripErrorDiv.classList.remove('hidden');
+                //window.alert('Directions request failed due to ' + status);
+              }
+            });
+            {% set trip_data = '' %}
+          {% else %}
+            map = new google.maps.Map(document.getElementById('route-map'), {
+              zoom: 11.5,
+              center: {
+                lat: 47.044408,
+                lng: -122.901711
+              },
+              mapTypeId: 'roadmap',
+            });
+          {% endif %}
+        }
+        startaddress = new google.maps.places.Autocomplete(
+          (document.getElementById('start_add')),
+          {
+            fields: ['place_id'],
+            //types: ['address'],
+          }
+        );
+
+        destaddress = new google.maps.places.Autocomplete(
+          (document.getElementById('dest_add')),{
+            fields: ['place_id'],
+            //types: ['address'],
+          }
+        );
+
+        startaddress.addListener('place_changed', getStartId);
+        destaddress.addListener('place_changed', getDestId);
+
+        function getStartId() {
+          var start_place = startaddress.getPlace();
+          document.getElementById('start_add_id').value = (start_place.place_id);
+          if (document.getElementById('start_add_id').value != '' &&  document.getElementById('dest_add_id').value != '') {
+            document.getElementById('get-directions').classList.remove('disabled');
+          }
+          if (start_place.place_id != '') {
+            var start_add_input = document.getElementById('start_add');
+            var start_add_id_input = document.getElementById('start_add_id');
+            var startErrorDiv = document.getElementById('start-add-alert');
+            startErrorDiv.classList.add('hidden');
+            startErrorDiv.innerHTML = '';
+          } 
+        }
+
+        function getDestId() {
+          // Get the place details from the autocomplete object.
+          var dest_place = destaddress.getPlace();
+          document.getElementById('dest_add_id').value = (dest_place.place_id);
+          if (document.getElementById('start_add_id').value != '' &&  document.getElementById('dest_add_id').value != '') {
+            document.getElementById('get-directions').classList.remove('disabled');
+          }
+          if (dest_place.place_id != '') {
+            var dest_add_input = document.getElementById('dest_add');
+            var dest_add_id_input = document.getElementById('dest_add_id');
+            var destErrorDiv = document.getElementById('dest-add-alert');
+            destErrorDiv.classList.add('hidden');
+            destErrorDiv.innerHTML = '';
+          }
+        }
+        function geolocate() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var geolocation = {
+                lat: 47.0379,
+                lng: -122.9007
+              };
+              var circle = new google.maps.Circle({
+                center: geolocation,
+                radius: position.coords.accuracy
+              });
+              autocomplete.setBounds(circle.getBounds());
+            });
+          }
+        }
+      }
+    </script>
+    <article>
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer>
+      {{ author_picture }}
+      <div{{ author_attributes.addClass('author') }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('content') }}>
+    <div class="row">
+        <div class="row">
+          <div class="col-lg-12 route-errors alert alert-danger hidden" id="trip-errors"></div>
+          {% if we_need_the_original_page_form %}
+            <div class="route-form col-xs-12 col-sm-12 col-md-3 col-lg-3 pull-right">
+            <div id="tripplanner-menu" name="trip-planner-menu">
+              <div class="form-group">
+                <label for="start_add" class="sr-only">Starting Address</label>
+                <input type="text" name="start_add_id" id="start_add_id" class="hidden start-add-control" aria-hidden="true" />
+                <div class="start-add-container">
+                  <input name="start_add" id="start_add" type="text" placeholder="From" class="form-control start-add-control">
+                  <button class="address-clear btn btn-danger" id="start-add-control" type="button">X</button>
+                </div>
+                <div class="alert alert-danger hidden" id="start-add-alert"></div>
+                <button id="locate" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" onclick="showPosition();">Use My Location</button>
+              </div>
+              <div class="form-group">
+                <label for="dest_add" class="sr-only">Destination Address</label>
+                <input type="text" name="dest_add_id" id="dest_add_id" class="hidden dest-add-control" aria-hidden="true" />
+                <div class="dest-add-container">
+                  <input name="dest_add" id="dest_add" type="text" placeholder="To" class="form-control dest-add-control">
+                  <button class="address-clear btn btn-danger" id="dest-add-control" type="button">X</button>
+                </div>
+                <div class="alert alert-danger hidden" id="dest-add-alert"></div>
+              </div>                                        
+              <div class="form-group">
+                <label for="date" class="sr-only">Select a Date</label>
+                <input type="text" name="date" id="date" name="fromdatepicker" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="ttype" class="sr-only">Is this when you would like to arrive or depart?</label>
+                <select class="form-control" id="ttype" name="ttype">
+                  <option value="dep">Depart</option>
+                  <option value="arr">Arrive</option>
+                </select>
+              </div>
+              <div class="form-group time-field">
+                <label for="time" class="sr-only">Select a Time</label>
+                <input type="text" name="selected_time" id="time_input" class="hidden" aria-hidden="true" />
+                <input class="form-control timepicker-content" id="time" name="time">
+              </div>
+              <div class="form-group opt-field">     
+                <label for="opt" class="sr-only">Route Options</label>
+                <select class="form-control padding" id="opt" name="opt">
+                  <option value="FEWER_TRANSFERS">Fewer Transfers</option>
+                  <option value="LESS_WALKING">Less Walking</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <button id="get-directions" value="Get Directions" class="btn btn-block btn-primary disabled">Get Directions</button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+          <!-- Displays the map-->
+          <div class="route-map-wrapper col-xs-12 col-md-7 col-sm-12 col-lg-8">
+            <div id="route-map" style="height: 500px; width: 100%;"></div>
+          </div>
+        </div>
+        <div id="route-results"></div>
+  </div>
+</article>

@@ -1,0 +1,55 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<div id="route-form-table" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div id="route-form" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			{{ routes_form }}
+		</div>
+		{% if route_data %}
+			<div id="route-tables" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="route-tabs" id="route-tabs">
+					<ul class="nav nav-tabs" role="tablist">
+						{% for serv_dir, stops in route_data %}
+							{% set serv_dir_clean = serv_dir|replace({' ':''})|replace({'.':''})|replace({'-':''}) %}
+							<li role="route-control" {% if loop.first %}class="active"{% endif %}>
+								<a href="#{{ serv_dir_clean}}" data-target="#{{ serv_dir_clean}}, #{{ serv_dir_clean}}-map" aria-controls="{{ serv_dir_clean}} {{ serv_dir_clean}}-map" role="tab" data-toggle="tab">{{ serv_dir}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="tab-content">
+					{% for serv_dir, stops in route_data %}
+						{% set serv_dir_clean = serv_dir|replace({' ':''})|replace({'.':''})|replace({'-':''}) %}
+					    <div role="tabpanel" class="route-table-container tab-pane fade{% if loop.first %} in active{% endif %}" id="{{ serv_dir_clean}}">
+							<table class="table table-hover table-striped table-hover">
+								<thead>
+									<tr>
+										<th>
+											Stop ID
+										</th>
+										<th>
+											Stop Name
+										</th>
+									</tr>
+								</thead>
+								{% for stop in stops %}
+									<tr{% if stop.timepoint == 1 %} class="bold"{% endif %} >
+										<td>
+											{{ stop.stopId }}
+										</td>
+										<td>
+											{{ stop.stopName }}
+										</td>
+									</tr>
+								{% endfor %}
+							</table>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+	{% if route_data %}
+		<div id="route-map" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			{{ routes_map }}
+		</div>
+	{% endif %}
+</div>
