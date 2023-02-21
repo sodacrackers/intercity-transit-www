@@ -9,3 +9,4 @@ no_account_authenticated_user_account: null
 force_saml_only: false
 account_request_request_account: false
 force_authentication: false
+account_request_create_account: false

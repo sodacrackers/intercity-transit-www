@@ -4,4 +4,4 @@ status: false
 dependencies: {  }
 formId: node_procurement_bid_or_proposal_form
 captchaType: default
-label: null
+label: node_procurement_bid_or_proposal_form

@@ -4,4 +4,4 @@ status: false
 dependencies: {  }
 formId: node_rider_alerts_form
 captchaType: default
-label: null
+label: node_rider_alerts_form

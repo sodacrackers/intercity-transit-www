@@ -4,4 +4,4 @@ status: false
 dependencies: {  }
 formId: node_travel_training_accomodation_form
 captchaType: default
-label: null
+label: node_travel_training_accomodation_form
