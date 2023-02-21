@@ -4,11 +4,13 @@ namespace Drupal\ict_gtfs;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Url;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 
 /**
- * Gtfs service.
+ * Fetch, cache, and parse data from a GTFS API endpoint.
  */
 class Gtfs {
 
@@ -40,6 +42,32 @@ class Gtfs {
    */
   protected $time;
 
+
+  /**
+   * Allowed types.
+   *
+   * @var string[]
+   */
+  protected $allowedTypes = [
+    'Alert',
+    'TripUpdate',
+    'VehiclePosition',
+  ];
+
+  /**
+   * The maximum age before refreshing the data, in seconds.
+   *
+   * @var int
+   */
+  protected $maxAge = 60;
+
+  /**
+   * The GTFS API server.
+   *
+   * @var string
+   */
+  protected $baseUrl = 'https://its.rideralerts.com/InfoPoint/GTFS-realtime.ashx';
+
   /**
    * Constructs a Gtfs object.
    *
@@ -60,10 +88,86 @@ class Gtfs {
   }
 
   /**
-   * Method description.
+   * Get GTFS data.
+   *
+   * @param string $type
+   *   The type of data to get: one of
+   *   - Alert
+   *   - TripUpdate
+   *   - VehiclePosition.
+   *
+   * @return array
+   *   A nested array with the keys
+   *   - Header
+   *     - GtfsRealtimeVersion
+   *     - incrementality
+   *     - Timestamp
+   *   - Entities
+   *   The Entities array is keyed by item.
    */
-  public function doSomething() {
-    // @DCG place your code here.
+  public function get(string $type): array {
+    $gtfs_data = [
+      'Header' => [
+        'GtfsRealtimeVersion' => 0,
+        'incrementality' => 0,
+        'Timestamp' => 0,
+      ],
+      'Entities' => [],
+    ];
+    $args = ['%type' => $type];
+
+    // Validate the $type parameter.
+    if (!in_array($type, $this->allowedTypes)) {
+      $this->logger->warning('Unsupported GTFS type %type.', $args);
+      return $gtfs_data;
+    }
+
+    // Get the data from the cache or the external API.
+    $cid = "ict_gtfs:$type";
+    $cache = $this->cache->get($cid);
+    if ($cache !== FALSE) {
+      $gtfs_json = $cache->data;
+    }
+    else {
+      // Fetch the data from the API endpoint.
+      $query = ['Type' => $type, 'debug' => 'true'];
+      $url = Url::fromUri($this->baseUrl, ['query' => $query]);
+      try {
+        $response = $this->httpClient->get($url->toString())->getBody();
+      }
+      catch (RequestException $e) {
+        $this->logger->warning('Unable to fetch GTFS type %type from the server.', $args);
+        return $gtfs_data;
+      }
+
+      if (!$response->isReadable()) {
+        $this->logger->warning('Cannot read response from the server for GTFS type %type.', $args);
+        return $gtfs_data;
+      }
+      else {
+        $gtfs_json = (string) $response;
+      }
+
+      $expire = $this->time->getRequestTime() + $this->maxAge;
+      $this->cache->set($cid, $gtfs_json, $expire);
+    }
+
+    // Validate the JSON string.
+    $gtfs_array = json_decode($gtfs_json, TRUE);
+    if (!is_array($gtfs_array)) {
+      $this->logger->warning('JSON for type %type does not represent an array.', $args);
+      $this->logger->warning('gtfs_json = "%json"', ['%json' => substr($gtfs_json, 0, 100)]);
+      return $gtfs_data;
+    }
+
+    // Index the entities by ID. Fall back to numeric key.
+    $gtfs_data['Header'] = $gtfs_array['Header'] ?? [];
+    foreach ($gtfs_array['Entities'] ?? [] as $key => $item) {
+      $item_key = $item['Id'] ?? $key;
+      $gtfs_data['Entities'][$item_key] = $item;
+    }
+
+    return $gtfs_data;
   }
 
 }
