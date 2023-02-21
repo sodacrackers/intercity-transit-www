@@ -42,7 +42,6 @@ class Gtfs {
    */
   protected $time;
 
-
   /**
    * Allowed types.
    *
@@ -116,47 +115,14 @@ class Gtfs {
     ];
     $args = ['%type' => $type];
 
-    // Validate the $type parameter.
-    if (!in_array($type, $this->allowedTypes)) {
-      $this->logger->warning('Unsupported GTFS type %type.', $args);
-      return $gtfs_data;
-    }
-
     // Get the data from the cache or the external API.
-    $cid = "ict_gtfs:$type";
-    $cache = $this->cache->get($cid);
-    if ($cache !== FALSE) {
-      $gtfs_json = $cache->data;
-    }
-    else {
-      // Fetch the data from the API endpoint.
-      $query = ['Type' => $type, 'debug' => 'true'];
-      $url = Url::fromUri($this->baseUrl, ['query' => $query]);
-      try {
-        $response = $this->httpClient->get($url->toString())->getBody();
-      }
-      catch (RequestException $e) {
-        $this->logger->warning('Unable to fetch GTFS type %type from the server.', $args);
-        return $gtfs_data;
-      }
+    $json = $this->getJson($type);
 
-      if (!$response->isReadable()) {
-        $this->logger->warning('Cannot read response from the server for GTFS type %type.', $args);
-        return $gtfs_data;
-      }
-      else {
-        $gtfs_json = (string) $response;
-      }
-
-      $expire = $this->time->getRequestTime() + $this->maxAge;
-      $this->cache->set($cid, $gtfs_json, $expire);
-    }
-
-    // Validate the JSON string.
-    $gtfs_array = json_decode($gtfs_json, TRUE);
+    // Validate the JSON string. Get a nested array, not an object.
+    $gtfs_array = json_decode($json, TRUE);
     if (!is_array($gtfs_array)) {
       $this->logger->warning('JSON for type %type does not represent an array.', $args);
-      $this->logger->warning('gtfs_json = "%json"', ['%json' => substr($gtfs_json, 0, 100)]);
+      $this->logger->debug('json = "%json"', ['%json' => substr($json, 0, 100)]);
       return $gtfs_data;
     }
 
@@ -168,6 +134,57 @@ class Gtfs {
     }
 
     return $gtfs_data;
+  }
+
+  /**
+   * Get GTFS data as JSON from cache or the external server.
+   *
+   * @param string $type
+   *   The type of data to get: one of
+   *   - Alert
+   *   - TripUpdate
+   *   - VehiclePosition.
+   *
+   * @return string
+   *   A JSON string representing the requested data. If anything goes wrong,
+   *   then return an empty string.
+   */
+  protected function getJson(string $type): string {
+    $args = ['%type' => $type];
+
+    // Validate the $type parameter.
+    if (!in_array($type, $this->allowedTypes)) {
+      $this->logger->warning('Unsupported GTFS type %type.', $args);
+      return '';
+    }
+
+    $cid = "ict_gtfs:$type";
+    $cache = $this->cache->get($cid);
+    if ($cache !== FALSE) {
+      return $cache->data;
+    }
+
+    // Fetch the data from the API endpoint.
+    $query = ['Type' => $type, 'debug' => 'true'];
+    $url = Url::fromUri($this->baseUrl, ['query' => $query]);
+    try {
+      $response = $this->httpClient->get($url->toString())->getBody();
+    }
+    catch (RequestException $e) {
+      $this->logger->warning('Unable to fetch GTFS type %type from the server.', $args);
+      return '';
+    }
+
+    if (!$response->isReadable()) {
+      $this->logger->warning('Cannot read response from the server for GTFS type %type.', $args);
+      return '';
+    }
+
+    $json = (string) $response;
+    $expire = $this->time->getRequestTime() + $this->maxAge;
+    $this->cache->set($cid, $json, $expire);
+
+    return $json;
   }
 
 }
