@@ -1,0 +1,136 @@
+diff --git a/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php b/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
+--- a/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
++++ b/modules/contrib/we_megamenu/src/WeMegaMenuBuilder.php
+@@ -437,13 +437,13 @@
+                   }
+                 }
+               }
+             }
+           }
+         }
+-      } 
++      }
+     }
+   }
+ 
+   /**
+    * Order display menu item.
+    *
+@@ -489,13 +489,13 @@
+                       }
+                     }
+                   }
+                 }
+               }
+ 
+-              if (!sizeof($positions)) {
++              if (!count($positions)) {
+                 continue;
+               }
+ 
+               $list_menu_items = WeMegaMenuBuilder::sortMenu($list_menu_items);
+               foreach ($positions as $key_position => $position) {
+                 $pos_params = explode('-', $position);
+@@ -536,20 +536,20 @@
+ 
+   /**
+    * Drag-Drop menu item insert.
+    *
+    * @param string $menu_name
+    *   Public static function menuItemInsert menu_name.
+-   * @param string $theme_name
+-   *   Public static function menuItemInsert theme_name.
+    * @param object $menu_config
+    *   Public static function menuItemInsert menu_config.
+    * @param object $child_item
+    *   Public static function menuItemInsert child_item.
++   * @param string $theme_name
++   *   Public static function menuItemInsert theme_name.
+    */
+-  public static function dragDropMenuItems($menu_name, $theme_name = '', $menu_config, $child_item) {
++  public static function dragDropMenuItems($menu_name, $menu_config, $child_item, $theme_name = '') {
+     $list_menu_items = WeMegaMenuBuilder::getMenuItems($menu_name);
+     if (isset($child_item['col_content']) && isset($child_item['col_cfg']) && isset($menu_config->menu_config)) {
+       $tmp_col_content = $child_item['col_content'];
+       $tmp_col_cfg = $child_item['col_cfg'];
+       $menu_items = $menu_config->menu_config;
+       foreach ($list_menu_items as $uuid => $childs) {
+@@ -679,28 +679,28 @@
+         }
+       }
+     }
+   }
+ 
+   /**
+-   * Reposition menu items based on what changed
++   * Reposition menu items based on what changed.
+    *
+    * @param string $menu_name
+    *   Public static function menuItemInsert menu_name.
+-   * @param string $theme_name
+-   *   Public static function menuItemInsert theme_name.
+    * @param object $menu_config
+    *   Public static function menuItemInsert menu_config.
+    * @param object $child_item
+    *   Public static function menuItemInsert child_item.
++   * @param string $theme_name
++   *   Public static function menuItemInsert theme_name.
+    */
+-  public static function repositionMenuItems($menu_name, $theme_name = '', $menu_config, $child_item) {
++  public static function repositionMenuItems($menu_name, $menu_config, $child_item, $theme_name = '') {
+     $list_menu_items = WeMegaMenuBuilder::getMenuItems($menu_name);
+ 
+     
+-    \Drupal::logger('megamenu')->warning( print_r(json_encode($list_menu_items), true) );
++    \Drupal::logger('megamenu')->warning(print_r(json_encode($list_menu_items), TRUE));
+     foreach ($list_menu_items as $uuid => $childs) {
+     }
+   }
+ 
+   /**
+    * Get trail array.
+@@ -815,13 +815,13 @@
+     $item_config->{'data-alignsub'} = '';
+     $item_config->{'data-target'} = '';
+     $new_item = new \stdClass();
+     $new_item->rows_content = $rows_content;
+     $new_item->submenu_config = $submenu_config;
+     $new_item->item_config = $item_config;
+-    return $new_item;   
++    return $new_item;
+   }
+ 
+   public static function createNewMegamenuCellItem($menu_item, $menu_id) {
+     $new_megamenu_item = new \stdClass();
+     $new_megamenu_item->mlid = $menu_id;
+     $new_megamenu_item->type = 'we-mega-menu-li';
+@@ -865,13 +865,13 @@
+               if($sub_item['type'] == 'we-mega-menu-li') {
+                 $menu_item = $item['subtree'][$pos_item];
+                 $megamenu_mlid = $sub_item['mlid'];
+                 $menu_id = $menu_item['derivativeId'];
+                 if($megamenu_mlid != $menu_id) {
+                   $new_megamenu_item = self::createNewMegamenuCellItem($menu_item, $menu_id);
+-                  
++
+                   if(!isset($menu_config[$derivativeId]['rows_content'][$i][$j]['col_config'])) {
+                     $new_col_config = self::createNewMegamenuColConfig();
+                     $megamenu_config->menu_config->{$derivativeId}->rows_content[$i][$j]->col_config = $new_col_config;
+                     $menu_config[$derivativeId]['rows_content'][$i][$j]['col_config'] = json_decode(json_encode($new_col_config), TRUE);
+                   }
+ 
+@@ -879,13 +879,13 @@
+                   $menu_config[$derivativeId]['rows_content'][$i][$j]['col_content'][$k] = json_decode(json_encode($new_megamenu_item), TRUE);
+                 }
+                 $pos_item ++;
+               }
+             }
+           }
+-        }        
++        }
+       }
+     }
+     else {
+       $megamenu_item = $menu_config[$derivativeId];
+       $pos_item = 0;
+       $ii = -1;
