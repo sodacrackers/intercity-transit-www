@@ -3348,7 +3348,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<br />\r\n<a href=\"https://www.governmentjobs.com/careers/intercitytransit/\" class=\"btn btn-success btn-lg\">Current Job Openings</a>\r\n<br />\r\n<br />"
+            text: "<br />\r\n<a href=\"https://www.governmentjobs.com/careers/intercitytransit/\" class=\"btn btn-success btn-lg\">Current Job Openings</a>\r\n<a href=\"https://www.governmentjobs.com/careers/intercitytransit/jobInterestCards/categories\" class=\"btn btn-success btn-lg\">Sign up for Job Alerts</a>\r\n<br />\r\n<br />"
             make_link: false
             path: ''
             absolute: false
