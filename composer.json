@@ -1,6 +1,6 @@
 {
-    "name": "pantheon-upstreams/drupal-composer-managed",
-    "description": "Install Drupal 9 with Composer on Pantheon.",
+    "name": "intercity-transit/main",
+    "description": "The main public web site for ICT.",
     "type": "project",
     "license": "MIT",
     "repositories": [
