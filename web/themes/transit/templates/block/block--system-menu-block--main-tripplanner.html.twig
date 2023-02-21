@@ -1,0 +1,102 @@
+{#/** This is a backup file for the trip planner dropdown. If you want to add it back, remove -with-trip-planner-dropdown from the filename and rename the other system-menu-block--main file to bypass it.#}
+{#
+/**
+ * @file
+ * Default theme implementation for a menu block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: HTML attributes for the containing element.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: HTML attributes for the title element.
+ * - content_attributes: HTML attributes for the content element.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * Headings should be used on navigation menus that consistently appear on
+ * multiple pages. When this menu block's label is configured to not be
+ * displayed, it is automatically made invisible using the 'visually-hidden' CSS
+ * class, which still keeps it visible for screen-readers and assistive
+ * technology. Headings allow screen-reader and keyboard only users to navigate
+ * to or skip the links.
+ * See http://juicystudio.com/article/screen-readers-display-none.php and
+ * http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
+ *
+ * @ingroup themeable
+ */
+#}
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+<nav role="navigation" aria-labelledby="{{ heading_id }}" class="transit-nav navbar navbar-default yamm ms-dialogHidden">
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+    <ul class="nav navbar-nav navbar-right">
+        <!-- Forms -->
+        <input name="dep" id="dep" type="hidden" class="form-control">
+        <li class="transit-menu-extra plan-trip dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="tab" id="plan-tab" aria-controls="plan-panel" aria-expanded="false">Plan<br>a Trip</a>
+            <ul class="dropdown-menu" id="plan-panel" aria-labelledby="plan-tab" role="menu tabpanel">
+                <li>
+                    <div class="yamm-content">
+                        <form action="/bus/trip-planner" method="GET">
+                            <div id="myform" name="myform">
+                                <div class="form-group">
+                                    <label for="saddr1" class="sr-only">Starting Address</label>
+                                        <input name="saddr" id="saddr1" type="text" placeholder="From" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="daddr1" class="sr-only">Ending Address</label>
+                                    <input name="daddr" id="daddr1" type="text" placeholder="To" class="form-control">
+                                </div>
+                                <div class="form-group opt-field">     
+                                    <label for="opt2" class="sr-only">Route Options</label>
+                                    <select class="form-control padding" id="opt1" name="opt">
+                                        <option value="FEWER_TRANSFERS">Fewer Transfers</option>
+                                        <option value="LESS_WALKING">Less Walking</option>
+                                    </select>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="time1" class="sr-only">Select a Time</label>
+                                    <select class="form-control timepicker-menu" id="time1" name="time"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date1" class="sr-only">Select a Date</label>
+                                    <input type="text" name="date" id="date1" name="fromdatepicker" class="form-control">
+                                </div> 
+                                <div class="form-group">
+                                    <label for="ttype1" class="sr-only">Is this when you would like to arrive or depart?</label>
+                                    <select class="form-control" id="ttype1" name="ttype" onchange="number()">
+                                        <option value="dep">depart</option>
+                                        <option value="arr">arrive</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" id="submit" value="Get Route" class="btn btn-block btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="transit-menu-extra plan-trip dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="tab" id="route-tab" aria-controls="route-panel">Route<br>Finder</a>
+            <ul class="dropdown-menu" id="route-panel" aria-labelledby="route-tab" role="menu tabpanel">
+                <li>
+                    <div class="yamm-content">
+                        {{ drupal_entity('block', 'views_block__route_finder_dropdown_block_1', check_access=false) }}
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

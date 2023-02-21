@@ -1,0 +1,83 @@
+// Import Global Variables and Reusable Elements
+@import "global.less";
+
+#sidr-mobile, #block-sidrtriggerbuttonblock {
+    display: none;
+@media @max991 {
+  display: inline-block;
+  float: right;
+button {
+	&.sidr-trigger {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		font-size: 2.5rem;
+	}
+}
+}
+}
+#block-mainnavigation-6 {
+	@media @max991 {
+}
+}
+
+.sidr {
+	      background: @PrimaryBlue;
+      box-shadow: none;
+    .navbar-default {
+    	background-color: transparent;
+    }
+  	ul {
+		li {
+			padding-bottom: 0;
+			border-top: none;
+			border-bottom: 2px solid #fff;
+			display: initial!important;
+			a {
+				color: #fff;
+				font-weight: 600;
+				line-height: 1.8rem;
+				padding: 15px 10px;
+				.caret {
+					display: none;
+				}
+				&:focus, &:hover {
+					background-color: transparent;
+					border-bottom: 2px solid #fff;
+				}
+			}
+			&.active {
+				a {
+					box-shadow: none!important;
+				}
+			}
+			&.active-trail {
+				a {
+		
+				}
+			}
+		}
+	}
+	.form-type-search {
+		width: 75%;
+		display: inline-block;
+	}
+	.form-actions {
+		display: inline;
+	}
+	input[type="search"] {
+		background-color: #fff;
+		
+	}
+	button {
+		background-color: transparent;
+	}
+}
+.sidr-trigger {
+		background-color: @PrimaryBlue;
+		color: #fff;
+		border: none;
+}
+.sidr-inner {
+
+}

@@ -1,0 +1,73 @@
+{{ attach_library('transit/vanpoolcostestimator') }}  
+
+{% block content %}
+<div class="container">
+  <div class="row">
+
+	<!--input fields-->
+	<div class="col-md-4 col-xs-12 pull-right">
+	  <div class="form-group">
+		<label for="saddr">Starting Address:</label>
+		<input type="text" id="saddr" placeholder="start" class="form-control">
+		<label for="daddr">Ending Address:</label>
+		<input type="text" id="daddr" placeholder="end" class="form-control padding">
+		<label for="passenger_count">Passenger Count:</label>
+		<select id="passenger_count" class="form-control">
+		  <option value="5">3</option>
+		  <option value="5">4</option>
+		  <option value="5">5</option>
+		  <option value="6">6</option>
+		  <option value="7">7</option>
+		  <option value="8" selected="selected">8</option>
+		  <option value="9">9</option>
+		  <option value="10">10</option>
+		  <option value="11">11</option>
+		  <option value="12">12</option>
+		  <option value="13">13</option>
+		  <option value="14">14</option>
+		  <option value="15">15</option>
+		</select>
+		<label for="days_per_week">Days per week:</label>
+		<select id="days_per_week" class="form-control">
+		  <option value="4">4</option>
+		  <option value="5" selected="selected">5</option>
+		  <option value="6">6</option>
+		  <option value="7">7</option>
+		  <option value="9">9 days</option>
+		</select>
+	  </div>
+
+	  <!--output fields-->
+
+	  <div class="row">
+		<h4>
+		<label for="distance" class="col-xs-8 col-sm-7">Round Trip Distance</label>
+				</h4>
+		<div class="col-xs-4  col-sm-5">
+		  <div id="distance"></div>
+		</div>
+	  </div>
+
+	  <div class="row">
+		<h4>         
+		  <label for="cost" class="col-xs-8 col-sm-7">Estimated Cost</label>
+				 </h4>
+		<div class="col-xs-4 col-sm-5">
+		  <div id="cost"></div>
+		</div>
+
+	  </div>
+	</div>
+
+	<!-- Displays the map-->
+	<div class="map-wrapper col-md-8 col-xs-12">
+	  <div id="map" style="height: 500px; width: 100%;"></div>
+	</div>
+  </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7mgkxR1qlyvZh0o51_idPTNcqK6jM5sM&libraries=places&callback=initMap"></script>
+
+<!--https://developers.google.com/maps/documentation/javascript/directions-->
+
+{% endblock %}

@@ -1,0 +1,52 @@
+@import "global.less";
+.search-form-block-control {
+	@media @min992 {
+		&.desktop-show {
+			button {
+				&.search-toggle {
+					display: none;
+				}
+			}
+			#search-form {
+				display: block;
+				div {
+					display: block;
+				}
+			}
+		}
+		&.desktop-hide {
+			//CSS for hiding the form on desktop
+		}
+	}
+	@media @max991 {
+		&.mobile-show {
+			//CSS for showing the form on mobile
+		}
+		&.mobile-hide {
+			position: relative;
+			clear: both;
+			display: block;
+			button {
+				&.search-toggle {
+					display: block;
+				}
+			}
+			position: relative;
+			.collapse {
+				display: none;
+				clear: both;
+				&.in {
+					display: block;
+				}
+			}
+			form {
+				.glyphicon-search {
+					&:before {
+						font-family: 'Font Awesome 5 Pro';
+						content: '\f061'
+					}
+				}
+			}
+		}
+	}	
+}

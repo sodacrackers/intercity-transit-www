@@ -1,0 +1,22 @@
+<?php
+
+function transit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+if (strpos($form_id, 'contact_message_') !== FALSE) {
+    unset($form['actions']['preview']);
+  }
+}
+function transit_preprocess_node(&$vars) {
+    $nid = $vars['node']->id();
+    if ($nid == '422') {
+        $vars['#attached']['library'][] = 'transit/googletripplannerfooter';
+    }
+    if ($nid != '422') {
+        $vars['#attached']['library'][] = 'transit/global-footer';
+    }
+    //return($local_js);
+}
+function transit_preprocess_page(&$vars) {
+    if ($vars['is_front']) {
+        $vars['#attached']['library'][] = 'transit/global-footer';
+    }
+}

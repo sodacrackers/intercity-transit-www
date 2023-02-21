@@ -1,0 +1,63 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      css/yamm.css: {}
+      css/fonts.css: {}
+      css/less-styles.css: {}
+      css/navigation.css: {}
+      css/global.css: {}
+      css/slideshow.css: {}
+      css/megamenu-custom.css: {}
+      css/sidr.css: {}
+      //maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css: {type: external}
+      'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap': {type: external}
+      'https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css': {type: external}
+global-js:
+    header: TRUE
+    js:
+        js/transit.js: {}
+        js/element.js: {}
+        js/better-dom.js: {}
+        js/better-placeholder-polyfill.js: {}
+        js/we-megamenu-frontend-custom.js: {}
+        js/going-digital-pixel.js: {}
+        'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js': {type: external}
+        '//script.crazyegg.com/pages/scripts/0013/6901.js':
+          type: external
+          attributes: {async: async}
+    dependencies:
+        - core/drupal
+        - core/jquery
+        - jquery_ui_datepicker/datepicker
+breakpoints:
+    js:
+        js/breakpoints.js: {}
+search_form_control:
+  css:
+    theme:
+      css/search-form-control.css: {}
+  js:
+    js/search-form-control.js: {}
+timepicker:
+    css:
+        theme:
+            css/jquery.timepicker.css: {}
+    js:
+        js/jquery.timepicker.js: {}
+googletripplanner:
+    header: TRUE
+    js:
+        js/googletripplanner.js: {}
+        //cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js: {type: external}
+    dependencies:
+      - core/jquery
+vanpoolcostestimator:
+    header: TRUE
+    js:
+        js/vanpoolcostestimator.js: {}
+facebook-pixel:
+    header: TRUE
+    js:
+        js/facebook-pixel.js: {}
+

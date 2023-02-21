@@ -1,0 +1,35 @@
+
+{% set randomString = [] %}
+{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+{% set numbers = '0123456789' %}
+
+{% for i in 1..10 %}
+    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
+    {% set randomString = randomString|merge([randomCharacter]) %}
+{% endfor %}
+{% set randomString = randomString|join %}
+
+
+<!-- @TODO: Make ID unique -->
+<div id="views-bootstrap-accordion-{{ randomString }}" {{ attributes.addClass(classes) }}>
+  {% for key, row in rows -%}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a class="accordion-toggle"
+             data-toggle="collapse"
+             data-parent="#views-bootstrap-accordion"
+             href="#collapse-{{key}}-{{ randomString }}">
+            {{row.title}}
+          </a>
+        </h4>
+      </div>
+
+      <div id="collapse-{{key}}-{{ randomString }}" class="panel-collapse collapse">
+        <div class="panel-body">
+          {{row.content}}
+        </div>
+      </div>
+    </div>
+  {%- endfor %}
+</div>

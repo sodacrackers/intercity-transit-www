@@ -1,0 +1,8 @@
+{% if fields.title.content != '603, 605, 609, 612' %}
+    <option value="/bus/routes/{{ fields.title.content|replace(' ', '-')|lower }}">
+        {{ fields.title.content }}
+        {% if fields.title.content != 'To and from Seattle' %} - 
+            {{ fields.field_select_a_route_description.content }}
+        {% endif %}
+    </option>
+{% endif %}

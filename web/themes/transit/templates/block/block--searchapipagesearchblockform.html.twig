@@ -1,0 +1,17 @@
+{{ attach_library('transit/search_form_control') }}
+<section{{ attributes.addClass('block', 'clearfix','search-form-block-control', 'desktop-show', 'mobile-hide') }}>
+	{{ title_prefix }}
+	{% if label %}
+    	<h2{{ title_attributes.addClass('block-title') }}>{{ label }}</h2>
+  	{% endif %}
+  	{{ title_suffix }}
+	{% block content %}
+	  	<button role="button" aria-pressed="false" class="search-toggle" data-toggle="collapse" data-target="#search-form" aria-expanded="false" aria-controls="search-form"><i class="fas fa-search"></i><span class="sr-only">Open Search Form</span></button>
+		<div class="collapse" id="search-form">
+		<div class="card card-body">
+  			{{ content }}
+  			</div>
+		</div>
+	{% endblock %}
+</section>
+
