@@ -235,7 +235,8 @@
             "drupal/core-project-message": true,
             "oomphinc/composer-installers-extender": true,
             "rvtraveller/qs-composer-installer": true,
-            "wikimedia/composer-merge-plugin": true
+            "wikimedia/composer-merge-plugin": true,
+            "drupal/console-extend-plugin": true
         }
     }
 }
