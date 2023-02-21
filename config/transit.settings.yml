@@ -1,0 +1,56 @@
+schema: '8000'
+favicon:
+  mimetype: image/png
+  path: 'public://Bus-favicon.png'
+  url: /sites/default/files/Bus-favicon.png
+  use_default: 0
+features:
+  comment_user_picture: true
+  comment_user_verification: 1
+  favicon: 1
+  node_user_picture: true
+logo:
+  path: 'public://intercity-logo-wht.svg'
+  url: ''
+  use_default: 0
+region_wells:
+  navigation: ''
+  navigation_collapsible: ''
+  header: ''
+  highlighted: ''
+  help: ''
+  content: ''
+  sidebar_first: ''
+  sidebar_second: ''
+  footer: ''
+  header_top: ''
+  header_mid: ''
+  content_left: ''
+  content_right: ''
+  content_bottom: ''
+  content_middle: ''
+  footer_top: ''
+  footer_first: ''
+  footer_second: ''
+  footer_third: ''
+  footer_fourth: ''
+  footer_bottom: ''
+  none: ''
+table_bordered: 1
+table_condensed: 1
+schemas:
+  bootstrap: 8000
+  transit: 8000
+table_responsive: '-1'
+table: ''
+include_deprecated: 1
+suppress_deprecated_warnings: 1
+cdn_provider: jsdelivr
+cdn_theme: bootstrap
+cdn_cache_ttl_versions: '604800'
+cdn_cache_ttl_themes: '604800'
+cdn_cache_ttl_assets: '0'
+cdn_cache_ttl_library: '0'
+reset_http_request_cache: ''
+breadcrumb_home: 1
+breadcrumb_title: 0

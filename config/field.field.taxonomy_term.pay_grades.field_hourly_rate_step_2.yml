@@ -1,0 +1,23 @@
+uuid: 2acf0192-22b7-43aa-abb2-7509a075aa8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_2
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_2
+field_name: field_hourly_rate_step_2
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 2'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 250
+  prefix: $
+  suffix: ''
+field_type: decimal

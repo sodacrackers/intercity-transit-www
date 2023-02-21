@@ -1,0 +1,29 @@
+uuid: 8dc817e7-bc55-4643-87b2-d19d73227d87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_paygrade
+    - node.type.jobs
+    - taxonomy.vocabulary.pay_grades
+id: node.jobs.field_jobs_paygrade
+field_name: field_jobs_paygrade
+entity_type: node
+bundle: jobs
+label: Paygrade
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      pay_grades: pay_grades
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,20 @@
+uuid: b73f2f7c-5c72-4665-bc5b-d8aef7c65924
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_recruitment_job_type
+field_name: field_recruitment_job_type
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

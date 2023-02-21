@@ -1,0 +1,129 @@
+uuid: fd3aa51a-50e9-47a5-8fe1-9be2b1d0d11d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.job_duties.field_jobs_duties_essentia
+    - field.field.paragraph.job_duties.field_jobs_duties_frequency_pay2
+    - field.field.paragraph.job_duties.field_jobs_duties_frequency_payg
+    - field.field.paragraph.job_duties.field_jobs_duties_frequency_taxo
+    - paragraphs.paragraphs_type.job_duties
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_div_container:
+      children:
+        - group_d
+      label: 'Div Container'
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: container
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_d:
+      children:
+        - group_div_col1
+        - group_div_row1_col3
+      label: 'Div Row1'
+      parent_name: group_div_container
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: row
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_div_col1:
+      children:
+        - field_jobs_duties_essential_duti
+      label: 'div Row1 Col1'
+      parent_name: group_d
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: 'col-xs-12 col-md-9 col-lg-9'
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_div_row1_col3:
+      children:
+        - field_jobs_duties_frequency_taxo
+        - field_jobs_duties_frequency_payg
+        - field_jobs_duties_frequency_pay2
+      label: 'Div Row1 Col2'
+      parent_name: group_d
+      region: content
+      weight: 21
+      format_type: html_element
+      format_settings:
+        classes: 'col-xs-12 col-md-12 col-lg-12'
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+id: paragraph.job_duties.default
+targetEntityType: paragraph
+bundle: job_duties
+mode: default
+content:
+  field_jobs_duties_essentia:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_jobs_duties_frequency_pay2:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_jobs_duties_frequency_payg:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_jobs_duties_frequency_taxo:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

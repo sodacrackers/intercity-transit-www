@@ -1,0 +1,8 @@
+uuid: d89e4a15-fe24-49a4-b38a-ebfc6c428fa5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Shift Differentials'
+vid: shift_differentials
+description: ''
+weight: 0

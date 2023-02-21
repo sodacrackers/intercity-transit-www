@@ -1,0 +1,12 @@
+_core:
+  default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+theme: current
+defaults:
+  sender: php_mail
+  formatter: php_mail
+modules:
+  smtp: {  }
+  webform:
+    none:
+      sender: webform_php_mail
+      formatter: webform_php_mail

@@ -1,0 +1,294 @@
+uuid: d86cb62c-9e31-4861-9dee-ca26a6204cdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.pay_grades.feeds_item
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_1
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_10
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_11
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_12
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_13
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_14
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_15
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_2
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_3
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_4
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_5
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_6
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_7
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_8
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_9
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_1
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_10
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_11
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_12
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_13
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_14
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_15
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_2
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_3
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_4
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_5
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_6
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_7
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_8
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_9
+    - field.field.taxonomy_term.pay_grades.field_shift_differential
+    - taxonomy.vocabulary.pay_grades
+  module:
+    - path
+    - text
+    - workbench_moderation
+id: taxonomy_term.pay_grades.default
+targetEntityType: taxonomy_term
+bundle: pay_grades
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_1:
+    type: number
+    weight: 20
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_10:
+    type: number
+    weight: 29
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_11:
+    type: number
+    weight: 30
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_12:
+    type: number
+    weight: 31
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_13:
+    type: number
+    weight: 32
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_14:
+    type: number
+    weight: 33
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_15:
+    type: number
+    weight: 34
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_2:
+    type: number
+    weight: 21
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_3:
+    type: number
+    weight: 22
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_4:
+    type: number
+    weight: 23
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_5:
+    type: number
+    weight: 24
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_6:
+    type: number
+    weight: 25
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_7:
+    type: number
+    weight: 26
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_8:
+    type: number
+    weight: 27
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_annual_rate_step_9:
+    type: number
+    weight: 28
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_1:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_10:
+    type: number
+    weight: 14
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_11:
+    type: number
+    weight: 15
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_12:
+    type: number
+    weight: 16
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_13:
+    type: number
+    weight: 17
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_14:
+    type: number
+    weight: 18
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_15:
+    type: number
+    weight: 19
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_2:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_3:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_4:
+    type: number
+    weight: 8
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_5:
+    type: number
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_6:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_7:
+    type: number
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_8:
+    type: number
+    weight: 12
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_hourly_rate_step_9:
+    type: number
+    weight: 13
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_shift_differential:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  feeds_item: true

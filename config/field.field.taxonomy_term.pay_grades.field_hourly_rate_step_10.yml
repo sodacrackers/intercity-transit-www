@@ -1,0 +1,23 @@
+uuid: 62ef375a-c694-4ed0-bada-9ef51c10892d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_10
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_10
+field_name: field_hourly_rate_step_10
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 10'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

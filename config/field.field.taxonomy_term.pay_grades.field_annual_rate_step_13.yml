@@ -1,0 +1,23 @@
+uuid: c3adfd53-b2f8-4072-a0d9-c428aeb2950b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_13
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_13
+field_name: field_annual_rate_step_13
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 13'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

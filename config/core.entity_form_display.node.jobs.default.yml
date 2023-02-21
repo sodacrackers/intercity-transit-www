@@ -1,0 +1,216 @@
+uuid: 85b207b1-4155-4092-9396-2c99fd642e47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.jobs.field_jobs_abilities
+    - field.field.node.jobs.field_jobs_department_division
+    - field.field.node.jobs.field_jobs_distinguished_chars
+    - field.field.node.jobs.field_jobs_duties_essential_duti
+    - field.field.node.jobs.field_jobs_flsa_status
+    - field.field.node.jobs.field_jobs_knowledge
+    - field.field.node.jobs.field_jobs_licensing_requirement
+    - field.field.node.jobs.field_jobs_note
+    - field.field.node.jobs.field_jobs_paygrade
+    - field.field.node.jobs.field_jobs_skills
+    - field.field.node.jobs.field_jobs_summary
+    - field.field.node.jobs.field_jobs_supervision_exercised
+    - field.field.node.jobs.field_jobs_training_and_experien
+    - field.field.node.jobs.field_physical_requirements
+    - node.type.jobs
+  module:
+    - field_group
+    - paragraphs
+    - path
+    - text
+    - workbench_moderation
+third_party_settings:
+  field_group:
+    group_tab_group:
+      children:
+        - group_general
+        - group_job_duties
+      label: tab_group
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        id: ''
+        direction: vertical
+    group_job_duties:
+      children:
+        - field_jobs_duties_essential_duti
+      label: 'Job Duties'
+      region: content
+      parent_name: group_tab_group
+      weight: 21
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_general:
+      children:
+        - title
+        - field_jobs_department_division
+        - field_jobs_flsa_status
+        - field_jobs_paygrade
+        - field_jobs_supervision_exercised
+        - field_jobs_summary
+        - field_jobs_distinguished_chars
+        - field_jobs_knowledge
+        - field_jobs_abilities
+        - field_jobs_skills
+        - field_jobs_training_and_experien
+        - field_jobs_licensing_requirement
+        - field_physical_requirements
+        - field_jobs_note
+      label: General
+      region: content
+      parent_name: group_tab_group
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: node.jobs.default
+targetEntityType: node
+bundle: jobs
+mode: default
+content:
+  field_jobs_abilities:
+    type: text_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_department_division:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_jobs_distinguished_chars:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_duties_essential_duti:
+    type: entity_reference_paragraphs
+    weight: 8
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_jobs_flsa_status:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_jobs_knowledge:
+    type: text_textarea
+    weight: 8
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_licensing_requirement:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_note:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_paygrade:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_jobs_skills:
+    type: text_textarea
+    weight: 10
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_summary:
+    type: text_textarea
+    weight: 6
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_jobs_supervision_exercised:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_jobs_training_and_experien:
+    type: text_textarea
+    weight: 11
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_physical_requirements:
+    type: text_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
+  url_redirects: true

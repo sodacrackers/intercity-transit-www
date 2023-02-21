@@ -1,0 +1,334 @@
+uuid: 6efcc400-bfa4-4801-bbdd-2c1e6c1e4387
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_tab1_title
+    - field.field.node.tabbed_basic_page.field_tab2_title
+    - field.field.node.tabbed_basic_page.field_tab3_title
+    - field.field.node.tabbed_basic_page.field_tab4_title
+    - field.field.node.tabbed_basic_page.field_tab5_title
+    - field.field.node.tabbed_basic_page.field_tab6_title
+    - field.field.node.tabbed_basic_page.field_tab_1
+    - field.field.node.tabbed_basic_page.field_tab_2
+    - field.field.node.tabbed_basic_page.field_tab_3
+    - field.field.node.tabbed_basic_page.field_tab_4
+    - field.field.node.tabbed_basic_page.field_tab_5
+    - field.field.node.tabbed_basic_page.field_tab_6
+    - field.field.node.tabbed_basic_page.field_tabbed_basic_page_type
+    - field.field.node.tabbed_basic_page.scheduled_update
+    - node.type.tabbed_basic_page
+  module:
+    - field_group
+    - inline_entity_form
+    - path
+    - text
+    - workbench_moderation
+third_party_settings:
+  field_group:
+    group_tabbed_content:
+      children:
+        - group_tab_1
+        - group_tab_2
+        - group_tab_3
+        - group_tab_4
+        - group_tab_5
+        - group_tab_6
+      label: 'Tabbed content'
+      region: content
+      parent_name: ''
+      weight: 7
+      format_type: tabs
+      format_settings:
+        classes: ''
+        id: ''
+        direction: horizontal
+    group_tab_1:
+      children:
+        - field_tab1_title
+        - field_tab_1
+      label: 'Tab 1'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 7
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_tab_2:
+      children:
+        - field_tab2_title
+        - field_tab_2
+      label: 'Tab 2'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 8
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_tab_3:
+      children:
+        - field_tab3_title
+        - field_tab_3
+      label: 'Tab 3'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 9
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_tab_4:
+      children:
+        - field_tab4_title
+        - field_tab_4
+      label: 'Tab 4'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 10
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_body:
+      children:
+        - body
+      label: Body
+      region: content
+      parent_name: ''
+      weight: 6
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        id: ''
+        description: ''
+        required_fields: true
+    group_tab_5:
+      children:
+        - field_tab5_title
+        - field_tab_5
+      label: 'Tab 5'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 11
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_tab_6:
+      children:
+        - field_tab6_title
+        - field_tab_6
+      label: 'Tab 6'
+      region: content
+      parent_name: group_tabbed_content
+      weight: 12
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+id: node.tabbed_basic_page.default
+targetEntityType: node
+bundle: tabbed_basic_page
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 6
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_tab1_title:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab2_title:
+    type: string_textfield
+    weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab3_title:
+    type: string_textfield
+    weight: 17
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab4_title:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab5_title:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab6_title:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_1:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_2:
+    type: text_textarea
+    weight: 15
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_3:
+    type: text_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_4:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_5:
+    type: text_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tab_6:
+    type: text_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tabbed_basic_page_type:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  scheduled_update:
+    type: inline_entity_form_complex
+    weight: 9
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  status: true

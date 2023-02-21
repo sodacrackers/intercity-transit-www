@@ -1,0 +1,22 @@
+uuid: c5960dc0-4ad5-432a-99ff-282a15034dee
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.content_and_documents
+id: search
+label: Search
+path: search
+clean_url: true
+show_all_when_no_keys: false
+index: content_and_documents
+limit: 25
+searched_fields:
+  body: body
+  field_secondary: field_secondary
+  name: name
+  title: title
+style: search_results
+view_mode_configuration: {  }
+show_search_form: true
+parse_mode: direct

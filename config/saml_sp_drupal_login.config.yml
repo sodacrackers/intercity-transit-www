@@ -1,0 +1,11 @@
+idp:
+  portal_intercitytransit_com: portal_intercitytransit_com
+logout: false
+logged_in_redirect: '<front>'
+update_email: false
+update_language: false
+no_account_authenticated_user_role: false
+no_account_authenticated_user_account: null
+force_saml_only: false
+account_request_request_account: false
+force_authentication: false

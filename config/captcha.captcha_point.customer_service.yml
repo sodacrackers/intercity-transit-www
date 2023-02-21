@@ -1,0 +1,7 @@
+uuid: 2f1eb7f3-1d75-4614-b084-2c575066cf73
+langcode: en
+status: true
+dependencies: {  }
+formId: customer_service
+captchaType: recaptcha/reCAPTCHA
+label: customer_service

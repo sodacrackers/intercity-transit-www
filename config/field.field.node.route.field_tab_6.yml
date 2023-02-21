@@ -1,0 +1,21 @@
+uuid: ec209f6f-948e-462a-88af-361eb53103e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_6
+    - node.type.route
+  module:
+    - text
+id: node.route.field_tab_6
+field_name: field_tab_6
+entity_type: node
+bundle: route
+label: 'Tab 6'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

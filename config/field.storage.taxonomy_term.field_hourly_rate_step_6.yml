@@ -1,0 +1,20 @@
+uuid: f28fe24d-9447-48ac-ac1c-3c658de93497
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_hourly_rate_step_6
+field_name: field_hourly_rate_step_6
+entity_type: taxonomy_term
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

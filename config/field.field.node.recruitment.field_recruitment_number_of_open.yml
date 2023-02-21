@@ -1,0 +1,23 @@
+uuid: 41c5033f-7564-4fae-a0c4-55d78a1ac872
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_number_of_open
+    - node.type.recruitment
+id: node.recruitment.field_recruitment_number_of_open
+field_name: field_recruitment_number_of_open
+entity_type: node
+bundle: recruitment
+label: 'Number of Openings'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 999
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,21 @@
+uuid: dae1c584-fd57-4844-8374-3107fafccc7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type
+    - node.type.procurement_bid_or_proposal
+  module:
+    - options
+id: node.procurement_bid_or_proposal.field_type
+field_name: field_type
+entity_type: node
+bundle: procurement_bid_or_proposal
+label: Type
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,30 @@
+uuid: a804ad78-ae60-4857-aaec-4f70fb9b3741
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - it_route_trip_tools
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xs-12 col-sm-12 col-md-4 col-lg-4 pull-left'
+id: routeandtripformsblock
+theme: transit
+region: content
+weight: -45
+provider: null
+plugin: route_trip_tools_form_block
+settings:
+  id: route_trip_tools_form_block
+  label: 'Route and Trip Forms Block'
+  label_display: '0'
+  provider: it_route_trip_tools
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "<front>\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/routes\r\n/plan-your-trip/routes/*\r\n/plan-your-trip/stops\r\n/plan-your-trip/stops/*"

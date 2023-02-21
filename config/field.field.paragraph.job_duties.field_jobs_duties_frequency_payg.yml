@@ -1,0 +1,29 @@
+uuid: 4624edf6-e3fb-4ea2-b46c-007eaf44b7e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_jobs_duties_frequency_payg
+    - paragraphs.paragraphs_type.job_duties
+    - taxonomy.vocabulary.job_duty_frequency
+id: paragraph.job_duties.field_jobs_duties_frequency_payg
+field_name: field_jobs_duties_frequency_payg
+entity_type: paragraph
+bundle: job_duties
+label: Frequency
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      job_duty_frequency: job_duty_frequency
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

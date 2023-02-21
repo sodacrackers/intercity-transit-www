@@ -1,0 +1,19 @@
+uuid: 5e3c930a-9529-4abd-93b9-d0dda32569e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_link
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_link
+field_name: field_joblisting_link
+entity_type: node
+bundle: neogov_joblisting
+label: 'Link to Apply'
+description: 'https://www.prothman.com/Open_Recruitments/ViewJob.aspx?job=3021'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: b0335955-efc6-4931-8146-946cf9b3472a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:89453b63-7fe2-4cd3-8b95-aeca72e7808a'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: clearfix
+id: socialmediaconnecter
+theme: transit
+region: none
+weight: -44
+provider: null
+plugin: 'block_content:89453b63-7fe2-4cd3-8b95-aeca72e7808a'
+settings:
+  id: 'block_content:89453b63-7fe2-4cd3-8b95-aeca72e7808a'
+  label: 'Social Media Connecter'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

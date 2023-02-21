@@ -1,0 +1,44 @@
+uuid: 96283c63-0f67-4752-afe3-902a37d01791
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - menu_block
+    - menu_block_title
+    - system
+  theme:
+    - transit
+third_party_settings:
+  menu_block_title:
+    modify_title: true
+  block_class:
+    classes: null
+id: mainnavigation_2
+theme: transit
+region: sidebar_first
+weight: -45
+provider: null
+plugin: 'menu_block:main'
+settings:
+  id: 'menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: block
+  level: 2
+  depth: 0
+  expand_all_items: false
+  parent: 'main:'
+  suggestion: main
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: "/plan-your-trip/routes\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/stops\r\n/vanpool/current/*"

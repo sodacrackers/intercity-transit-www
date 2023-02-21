@@ -1,0 +1,28 @@
+uuid: 66983b9d-205b-4ba3-95ba-7f9edfd04456
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.publish_draft_on
+    - node.type.page
+    - scheduled_updates.scheduled_update_type.node_embargo
+id: node.page.publish_draft_on
+field_name: publish_draft_on
+entity_type: node
+bundle: page
+label: 'Publish Draft On'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:scheduled_update'
+  handler_settings:
+    target_bundles:
+      node_embargo: node_embargo
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

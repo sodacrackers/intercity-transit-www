@@ -1,0 +1,42 @@
+uuid: 233d60a6-27f6-4a3e-aea8-3ac8cead436c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.directory
+  module:
+    - block_class
+    - system
+    - user
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__directory_block_1
+theme: transit
+region: content
+weight: -29
+provider: null
+plugin: 'views_block:directory-block_1'
+settings:
+  id: 'views_block:directory-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /media-center
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator

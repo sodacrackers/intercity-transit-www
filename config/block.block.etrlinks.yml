@@ -1,0 +1,37 @@
+uuid: db13ed71-9a22-4d79-b8cb-7c9e903fb64f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8e596211-dc85-4828-b7d3-c329fac197fc'
+  module:
+    - block_class
+    - block_content
+    - user
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: etrlinks
+theme: transit
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'block_content:8e596211-dc85-4828-b7d3-c329fac197fc'
+settings:
+  id: 'block_content:8e596211-dc85-4828-b7d3-c329fac197fc'
+  label: 'ETR Links'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      essential_trip_request_manager: essential_trip_request_manager

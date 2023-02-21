@@ -1,0 +1,24 @@
+uuid: 1b2f579b-fe0d-473b-a600-91a2aa87e819
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_date
+    - node.type.rider_alerts
+  module:
+    - datetime
+id: node.rider_alerts.field_start_date
+field_name: field_start_date
+entity_type: node
+bundle: rider_alerts
+label: 'Start Date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

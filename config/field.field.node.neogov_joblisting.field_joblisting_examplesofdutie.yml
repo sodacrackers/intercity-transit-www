@@ -1,0 +1,21 @@
+uuid: 8c06ec05-e882-49c6-b8d3-34b95a4e7271
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_examplesofdutie
+    - node.type.neogov_joblisting
+  module:
+    - text
+id: node.neogov_joblisting.field_joblisting_examplesofdutie
+field_name: field_joblisting_examplesofdutie
+entity_type: node
+bundle: neogov_joblisting
+label: 'Examples of Duties'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

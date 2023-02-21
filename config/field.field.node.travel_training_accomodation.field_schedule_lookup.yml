@@ -1,0 +1,29 @@
+uuid: 4221a22d-585c-41cc-a67d-49f7476d7939
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_schedule_lookup
+    - node.type.travel_training_accomodation
+    - taxonomy.vocabulary.schedule
+id: node.travel_training_accomodation.field_schedule_lookup
+field_name: field_schedule_lookup
+entity_type: node
+bundle: travel_training_accomodation
+label: Schedule
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      schedule: schedule
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

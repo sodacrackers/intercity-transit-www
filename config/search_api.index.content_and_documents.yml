@@ -1,0 +1,172 @@
+uuid: 1d26d925-118c-4933-87e3-d0763f6d62f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_secondary
+    - field.storage.node.field_tags
+    - search_api.server.nodes_and_documents_solr
+    - core.entity_view_mode.node.search_result
+  module:
+    - search_api_solr
+    - node
+    - taxonomy
+    - search_api
+third_party_settings:
+  search_api_solr:
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+      _core:
+        default_config_hash: 914vBglS7nVnl8EUqBejfUPPRT6wnWYcOhMli6oL4jY
+    term_modifiers:
+      slop: 10000000
+      fuzzy: 2
+    advanced:
+      index_prefix: ''
+    multilingual:
+      limit_to_content_language: false
+      include_language_independent: true
+id: content_and_documents
+name: 'Content and Documents'
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_secondary:
+    label: Secondary
+    datasource_id: 'entity:node'
+    property_path: field_secondary
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_secondary
+  name:
+    label: 'Tags » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_tags:entity:name'
+    type: text
+    boost: !!float 21
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+      module:
+        - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          blog_page: search_result
+          calendar_event: search_result
+          directory_item: search_result
+          home_frequent_tasks: search_result
+          interagency_agreement: search_result
+          jobs: search_result
+          landing_page: search_result
+          news: search_result
+          page: search_result
+          procurement_bid_or_proposal: search_result
+          recruitment: search_result
+          route: search_result
+          tabbed_basic_page: search_result
+          travel_training_accomodation: search_result
+          vanpool: search_result
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 21
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected:
+        - rider_alerts
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_type: {  }
+  highlight:
+    weights:
+      postprocess_query: 0
+    prefix: '<strong>'
+    suffix: '</strong>'
+    excerpt: true
+    excerpt_always: false
+    excerpt_length: 256
+    exclude_fields: {  }
+    highlight: always
+    highlight_partial: false
+  language_with_fallback: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: nodes_and_documents_solr

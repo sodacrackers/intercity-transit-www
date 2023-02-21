@@ -1,0 +1,28 @@
+uuid: e6297fe0-8fc3-44f8-bc4f-9e1ae4c0e1a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agencies
+    - node.type.interagency_agreement
+    - taxonomy.vocabulary.agencies
+id: node.interagency_agreement.field_agencies
+field_name: field_agencies
+entity_type: node
+bundle: interagency_agreement
+label: Agencies
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      agencies: agencies
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

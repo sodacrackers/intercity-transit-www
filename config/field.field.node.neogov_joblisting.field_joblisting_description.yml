@@ -1,0 +1,21 @@
+uuid: 36106b43-c253-49f8-b879-c5557fed8cf8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_description
+    - node.type.neogov_joblisting
+  module:
+    - text
+id: node.neogov_joblisting.field_joblisting_description
+field_name: field_joblisting_description
+entity_type: node
+bundle: neogov_joblisting
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

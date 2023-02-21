@@ -1,0 +1,116 @@
+uuid: ca84acb9-1c57-4912-b6ca-7580b3c6b4cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.travel_training_accomodation.body
+    - field.field.node.travel_training_accomodation.field_end_date
+    - field.field.node.travel_training_accomodation.field_route
+    - field.field.node.travel_training_accomodation.field_schedule_lookup
+    - field.field.node.travel_training_accomodation.field_start_date
+    - node.type.travel_training_accomodation
+  module:
+    - datetime
+    - path
+    - text
+    - workbench_moderation
+id: node.travel_training_accomodation.default
+targetEntityType: node
+bundle: travel_training_accomodation
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 121
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_end_date:
+    type: datetime_default
+    weight: 123
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_route:
+    type: entity_reference_autocomplete
+    weight: 124
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_schedule_lookup:
+    type: options_select
+    weight: 125
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_start_date:
+    type: datetime_default
+    weight: 122
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

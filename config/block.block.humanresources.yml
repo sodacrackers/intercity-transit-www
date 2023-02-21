@@ -1,0 +1,54 @@
+uuid: 709206ef-42cf-4a59-a393-967d01a2e820
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.human-resources
+  module:
+    - block_class
+    - menu_block
+    - menu_block_title
+    - system
+    - user
+  theme:
+    - transit
+third_party_settings:
+  menu_block_title:
+    modify_title: false
+  block_class:
+    classes: null
+id: humanresources
+theme: transit
+region: sidebar_first
+weight: -44
+provider: null
+plugin: 'menu_block:human-resources'
+settings:
+  id: 'menu_block:human-resources'
+  label: 'Create Content'
+  label_display: visible
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: block
+  level: 1
+  depth: 0
+  expand_all_items: false
+  parent: 'human-resources:'
+  suggestion: human_resources
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/employment\r\n/employment/*"
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator
+      marketing: marketing
+      human_resources: human_resources

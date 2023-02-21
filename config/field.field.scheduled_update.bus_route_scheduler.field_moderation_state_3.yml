@@ -1,0 +1,21 @@
+uuid: 040197d8-4a5d-42d4-b20a-061fbf23d05e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.scheduled_update.field_moderation_state_3
+    - scheduled_updates.scheduled_update_type.bus_route_scheduler
+id: scheduled_update.bus_route_scheduler.field_moderation_state_3
+field_name: field_moderation_state_3
+entity_type: scheduled_update
+bundle: bus_route_scheduler
+label: 'Moderation state'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:moderation_state'
+  handler_settings: {  }
+field_type: entity_reference

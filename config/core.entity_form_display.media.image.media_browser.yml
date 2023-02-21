@@ -1,0 +1,62 @@
+uuid: 4aa5408a-cd33-49a0-b344-846b181c46bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_section
+    - field.field.media.image.image
+    - image.style.medium
+    - media.type.image
+  module:
+    - image
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: LpTYmf5ylCEAcaqLWWOQBLTk-MsJ0QwXhUV3CnOocI0
+id: media.image.media_browser
+targetEntityType: media
+bundle: image
+mode: media_browser
+content:
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: medium
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_section: true
+  uid: true

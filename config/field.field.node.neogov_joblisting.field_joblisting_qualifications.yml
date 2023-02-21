@@ -1,0 +1,21 @@
+uuid: 11a54797-71cc-4683-8cbe-4638e9f72070
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_qualifications
+    - node.type.neogov_joblisting
+  module:
+    - text
+id: node.neogov_joblisting.field_joblisting_qualifications
+field_name: field_joblisting_qualifications
+entity_type: node
+bundle: neogov_joblisting
+label: Qualifications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

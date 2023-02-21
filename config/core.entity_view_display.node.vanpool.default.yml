@@ -1,0 +1,139 @@
+uuid: d5de1f9a-5c92-47a5-8697-436fdf0e4ab3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.vanpool.field_coordinator
+    - field.field.node.vanpool.field_destination
+    - field.field.node.vanpool.field_google_maps
+    - field.field.node.vanpool.field_notes
+    - field.field.node.vanpool.field_origin
+    - field.field.node.vanpool.field_schedule
+    - field.field.node.vanpool.field_schedule_time
+    - field.field.node.vanpool.field_telephone
+    - field.field.node.vanpool.field_vanpool_number
+    - node.type.vanpool
+  module:
+    - field_group
+    - telephone
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_div_class_container_:
+      children:
+        - group_div_class_col_sm_6_
+        - group_div_right
+      label: 'Div Container'
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: container
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_div_class_col_sm_6_:
+      children:
+        - field_google_maps
+      label: 'Div Left'
+      parent_name: group_div_class_container_
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: col-sm-6
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_div_right:
+      children:
+        - field_origin
+        - field_destination
+        - field_schedule
+        - field_telephone
+        - field_notes
+      label: 'Div Right'
+      parent_name: group_div_class_container_
+      region: content
+      weight: 21
+      format_type: html_element
+      format_settings:
+        classes: col-sm-6
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+id: node.vanpool.default
+targetEntityType: node
+bundle: vanpool
+mode: default
+content:
+  field_destination:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_google_maps:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_notes:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 27
+    region: content
+  field_origin:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_schedule:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 24
+    region: content
+  field_telephone:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_coordinator: true
+  field_schedule_time: true
+  field_vanpool_number: true
+  search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: 8d380aa0-2756-441d-acf7-2d68eda9ec59
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_how_did_you_hear_about_us_
+id: contact_message.vanpool_waitlist.field_how_did_you_hear_about_us_
+field_name: field_how_did_you_hear_about_us_
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: 'How did you hear about us?'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

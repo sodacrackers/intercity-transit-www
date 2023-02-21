@@ -1,0 +1,21 @@
+uuid: 3ac59a88-7b6b-45e7-a7b0-ac9be4a258cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_licensing_requirement
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_licensing_requirement
+field_name: field_jobs_licensing_requirement
+entity_type: node
+bundle: jobs
+label: 'Licensing Requirements'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

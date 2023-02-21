@@ -1,0 +1,17 @@
+uuid: 86de1159-2c63-4c84-8b17-f6d51c221f17
+langcode: en
+status: true
+dependencies: {  }
+id: bus_route_scheduler
+label: 'Bus Route Scheduler'
+update_entity_type: node
+update_types_supported:
+  - embedded
+field_map:
+  field_moderation_state_3: moderation_state
+update_runner:
+  id: latest_revision
+  invalid_update_behavior: DELETE
+  after_run: DELETE
+  create_revisions: BUNDLE_DEFAULT
+  update_user: USER_UPDATE_OWNER

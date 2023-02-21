@@ -1,0 +1,23 @@
+uuid: 88d3ded7-da54-4adc-8768-574ce9fc8c61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_10
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_10
+field_name: field_annual_rate_step_10
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 10'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

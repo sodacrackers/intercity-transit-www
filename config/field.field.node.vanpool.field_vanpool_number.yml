@@ -1,0 +1,23 @@
+uuid: d458eff0-2af8-4b8b-9524-b41430f00d15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vanpool_number
+    - node.type.vanpool
+id: node.vanpool.field_vanpool_number
+field_name: field_vanpool_number
+entity_type: node
+bundle: vanpool
+label: 'Vanpool Number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 9999
+  prefix: ''
+  suffix: ''
+field_type: integer

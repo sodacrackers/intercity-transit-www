@@ -1,0 +1,15 @@
+uuid: f1912a49-2c59-49ee-9573-6acde837f41f
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_entity_generic
+id: zip_file
+label: 'Google Transit Zip File'
+description: ''
+source: generic
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_generic
+field_map: {  }

@@ -1,0 +1,29 @@
+uuid: 0ab11857-9106-4878-a932-4294184b7c3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_shift_differential
+    - taxonomy.vocabulary.pay_grades
+    - taxonomy.vocabulary.shift_differentials
+id: taxonomy_term.pay_grades.field_shift_differential
+field_name: field_shift_differential
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Shift Differential'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      shift_differentials: shift_differentials
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

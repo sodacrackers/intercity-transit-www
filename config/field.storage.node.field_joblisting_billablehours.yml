@@ -1,0 +1,20 @@
+uuid: 3dd5c4c5-c162-4ba7-8c32-8f9f1acf4921
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_joblisting_billablehours
+field_name: field_joblisting_billablehours
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

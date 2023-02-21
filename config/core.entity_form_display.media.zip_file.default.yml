@@ -1,0 +1,63 @@
+uuid: 0140f4e4-bb46-4003-a63c-b09d61409ef2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.zip_file.field_media_generic
+    - field.field.media.zip_file.field_zip_file
+    - media.type.zip_file
+  module:
+    - file
+    - path
+    - workbench_moderation
+id: media.zip_file.default
+targetEntityType: media
+bundle: zip_file
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_zip_file:
+    type: file_generic
+    weight: 11
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_media_generic: true

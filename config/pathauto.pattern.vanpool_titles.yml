@@ -1,0 +1,22 @@
+uuid: effa48b3-6c6e-4e46-ae29-714e1cb048d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: vanpool_titles
+label: 'vanpool titles'
+type: 'canonical_entities:node'
+pattern: '/vanpool/current/[node:title]'
+selection_criteria:
+  62aaff5a-3d54-40bd-9e5c-fd3186a3deac:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 62aaff5a-3d54-40bd-9e5c-fd3186a3deac
+    context_mapping:
+      node: node
+    bundles:
+      vanpool: vanpool
+selection_logic: and
+weight: -1
+relationships: {  }

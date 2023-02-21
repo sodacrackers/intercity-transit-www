@@ -1,0 +1,23 @@
+uuid: d4ffbf74-5ae8-45f1-85e2-31d2cf66ae57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_maximumsalary
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_maximumsalary
+field_name: field_joblisting_maximumsalary
+entity_type: node
+bundle: neogov_joblisting
+label: 'Maximum Salary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 250000
+  prefix: $
+  suffix: ''
+field_type: decimal

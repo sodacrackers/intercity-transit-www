@@ -1,0 +1,21 @@
+uuid: d28056e7-5e42-4887-b6dd-9154c4293150
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_secondary
+    - node.type.page
+  module:
+    - text
+id: node.page.field_secondary
+field_name: field_secondary
+entity_type: node
+bundle: page
+label: Secondary
+description: 'This field will show in the secondary sidebar region. The block is disabled by default and must be enabled on a per page basis (to preserve formatting).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

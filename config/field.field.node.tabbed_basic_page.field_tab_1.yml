@@ -1,0 +1,21 @@
+uuid: 0baf8945-ecad-41e5-aeed-ecbc21621067
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_1
+    - node.type.tabbed_basic_page
+  module:
+    - text
+id: node.tabbed_basic_page.field_tab_1
+field_name: field_tab_1
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tab 1'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

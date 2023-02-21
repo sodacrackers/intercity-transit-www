@@ -1,0 +1,61 @@
+uuid: 265949c9-611e-418d-a21a-6086ecb8f8ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_browser
+    - field.field.media.document.field_description
+    - field.field.media.document.field_document
+    - field.field.media.document.field_document_size
+    - field.field.media.document.field_media_in_library
+    - field.field.media.document.field_mime_type
+    - field.field.media.document.field_publication_type
+    - field.field.media.document.field_publication_year
+    - media.type.document
+  module:
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: 42PnTHEtfrPG3mE5g8OLMl2sJnQcgw0iafADriEv0HA
+id: media.document.media_browser
+targetEntityType: media
+bundle: document
+mode: media_browser
+content:
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_description: true
+  field_document: true
+  field_document_size: true
+  field_mime_type: true
+  field_publication_type: true
+  field_publication_year: true
+  uid: true

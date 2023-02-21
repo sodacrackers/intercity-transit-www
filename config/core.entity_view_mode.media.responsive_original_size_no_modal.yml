@@ -1,0 +1,10 @@
+uuid: a64e56ef-f23c-47c7-b5bb-6a326b94e902
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.responsive_original_size_no_modal
+label: 'Responsive Original Size no Modal'
+targetEntityType: media
+cache: true

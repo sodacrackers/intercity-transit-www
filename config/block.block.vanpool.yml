@@ -1,0 +1,29 @@
+uuid: 4a48e535-4365-4951-827b-91852a19b042
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:157d125c-2d89-44d0-8eb5-fcf0c0454b8d'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12'
+id: vanpool
+theme: transit
+region: footer_first
+weight: 0
+provider: null
+plugin: 'block_content:157d125c-2d89-44d0-8eb5-fcf0c0454b8d'
+settings:
+  id: 'block_content:157d125c-2d89-44d0-8eb5-fcf0c0454b8d'
+  label: Vanpool
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

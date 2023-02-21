@@ -1,0 +1,40 @@
+uuid: e8a81610-05d9-4efc-ae03-84b90788823f
+langcode: en
+status: false
+dependencies:
+  module:
+    - inline_responsive_images
+name: 'Full HTML'
+format: full_html
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type=''1 A I''> <li> <dl> <dt> <dd> <h2 id=''jump-*''> <h3 id> <h4 id> <h5 id> <h6 id><div class> <iframe>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_responsive_image_style:
+    id: filter_responsive_image_style
+    provider: inline_responsive_images
+    status: false
+    weight: 0
+    settings:
+      responsive_style_default_responsive: '0'
+      responsive_style_responsive_grid_image: '0'
+      responsive_style_responsive_narrow_banner: '0'
+  filter_imagestyle:
+    id: filter_imagestyle
+    provider: inline_responsive_images
+    status: false
+    weight: 0
+    settings:
+      image_style_banner_narrow: '0'
+      image_style_banner_narrow_m_: '0'
+      image_style_large: '0'
+      image_style_medium: '0'
+      image_style_medium_220_x_220_cropped: '0'
+      image_style_thumbnail: '0'

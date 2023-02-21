@@ -1,0 +1,37 @@
+uuid: 6f34eb63-43ea-438a-bdbc-eb2e7b6393d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - sidr
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: sidrtriggerbuttonblock
+theme: transit
+region: header_top
+weight: 0
+provider: null
+plugin: sidr_trigger
+settings:
+  id: sidr_trigger
+  label: 'Sidr trigger button block'
+  label_display: '0'
+  provider: sidr
+  trigger_text: ''
+  trigger_icon: '<i class="fa fa-bars"></i>'
+  sidr_name: sidr-mobile
+  sidr_source: '#block-mainnavigation-3-menu'
+  sidr_side: right
+  sidr_renaming: false
+  sidr_speed: ''
+  sidr_timing: ''
+  sidr_method: toggle
+  sidr_displace: false
+  sidr_body: ''
+  sidr_nocopy: true
+  sidr_close_on_blur: true
+visibility: {  }

@@ -1,0 +1,19 @@
+uuid: d27de21b-1bb5-4891-ace9-2dd878a1b5c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_first_name
+    - node.type.directory_item
+id: node.directory_item.field_first_name
+field_name: field_first_name
+entity_type: node
+bundle: directory_item
+label: 'First Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

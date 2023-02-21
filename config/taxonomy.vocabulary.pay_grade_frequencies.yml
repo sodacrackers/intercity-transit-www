@@ -1,0 +1,8 @@
+uuid: 56a7f148-2821-44e7-900a-73f0214a380b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Pay Grade Frequencies'
+vid: pay_grade_frequencies
+description: ''
+weight: 0

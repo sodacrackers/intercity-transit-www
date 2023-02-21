@@ -1,0 +1,42 @@
+uuid: 0b3f223c-affb-451f-8adc-1edbf6b89af0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ab0ab150-fb49-41cc-b30e-94bd47e65e45'
+  module:
+    - block_class
+    - block_content
+    - system
+    - user
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-lg-8 col-xl-8 col-md-8 col-sm-12 col-xs-12 break-lg-control'
+id: driverrecruitmentvideo
+theme: transit
+region: none
+weight: -40
+provider: null
+plugin: 'block_content:ab0ab150-fb49-41cc-b30e-94bd47e65e45'
+settings:
+  id: 'block_content:ab0ab150-fb49-41cc-b30e-94bd47e65e45'
+  label: 'Driver Recruitment Video'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /employment
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator

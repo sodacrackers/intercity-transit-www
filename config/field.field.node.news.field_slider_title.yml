@@ -1,0 +1,19 @@
+uuid: 5d71e9f0-ba71-4801-814f-b3e9f0567720
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_title
+    - node.type.news
+id: node.news.field_slider_title
+field_name: field_slider_title
+entity_type: node
+bundle: news
+label: 'Slider Title'
+description: 'Optional field. Use if you wish the title used by the slider to be different from that of the content.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,8 @@
+uuid: 04128381-6dac-4fbf-96f3-ec192f27c25c
+langcode: en
+status: true
+dependencies: {  }
+name: Schedule
+vid: schedule
+description: ''
+weight: 0

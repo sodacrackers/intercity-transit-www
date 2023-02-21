@@ -1,0 +1,23 @@
+uuid: c0f04b89-1c35-4d65-afe6-5ba9d7004e3f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_live_nid
+    - node.type.news
+id: node.news.field_live_nid
+field_name: field_live_nid
+entity_type: node
+bundle: news
+label: 'Live NID'
+description: 'Only used prior to the NewSite2021 launch. Can be removed once all is good and launched.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

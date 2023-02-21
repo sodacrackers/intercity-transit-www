@@ -1,0 +1,29 @@
+uuid: 28214fb5-294f-448c-8d26-32e837a4de9d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:730f174e-f8b3-4e62-a3a7-c27daf6881e3'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: fbpixel
+theme: transit
+region: footer_bottom
+weight: -31
+provider: null
+plugin: 'block_content:730f174e-f8b3-4e62-a3a7-c27daf6881e3'
+settings:
+  id: 'block_content:730f174e-f8b3-4e62-a3a7-c27daf6881e3'
+  label: fbpixel
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

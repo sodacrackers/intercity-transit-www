@@ -1,0 +1,19 @@
+uuid: 3a11acd4-591b-4858-bea8-f3e881aa8d75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab4_title
+    - node.type.tabbed_basic_page
+id: node.tabbed_basic_page.field_tab4_title
+field_name: field_tab4_title
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tab4 Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

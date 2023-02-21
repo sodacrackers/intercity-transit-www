@@ -1,0 +1,20 @@
+uuid: aa552ce9-9711-4423-9595-6de5af8e1cad
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_annual_rate_step_13
+field_name: field_annual_rate_step_13
+entity_type: taxonomy_term
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

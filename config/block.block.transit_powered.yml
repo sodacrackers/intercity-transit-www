@@ -1,0 +1,26 @@
+uuid: 5ab369e3-ddc0-40bd-9aa0-e40cde864265
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: transit_powered
+theme: transit
+region: none
+weight: -35
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

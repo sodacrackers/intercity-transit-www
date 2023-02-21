@@ -1,0 +1,26 @@
+uuid: c0d7d4ee-99d9-416d-a7f2-ca46577a1b44
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+    default_moderation_state: archived
+name: 'Job Descriptions'
+type: jobs
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,84 @@
+uuid: 169236d4-2311-4e52-aff1-2bfc4d277b3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.directory_item.body
+    - field.field.node.directory_item.field_email
+    - field.field.node.directory_item.field_first_name
+    - field.field.node.directory_item.field_last_name
+    - field.field.node.directory_item.field_picture
+    - field.field.node.directory_item.field_position
+    - field.field.node.directory_item.field_telephone
+    - image.style.medium
+    - node.type.directory_item
+  module:
+    - image
+    - telephone
+    - text
+    - user
+id: node.directory_item.default
+targetEntityType: node
+bundle: directory_item
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_email:
+    type: email_mailto
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_first_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_last_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_position:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_telephone:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  links: true
+  search_api_excerpt: true

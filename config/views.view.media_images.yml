@@ -1,0 +1,1063 @@
+uuid: 7f53855e-efd7-4290-abf5-325ce2fb368b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.colorbox
+    - field.storage.media.field_section
+    - field.storage.media.image
+    - media.type.image
+    - taxonomy.vocabulary.tags
+    - user.role.authenticated
+  content:
+    - 'taxonomy_term:tags:81b5c7ad-2b7e-4cd7-a788-d208d2b217db'
+    - 'taxonomy_term:tags:cb707ae2-e954-4eb9-a2dc-bc2af8943afc'
+  module:
+    - blazy
+    - colorbox
+    - media
+    - taxonomy
+    - user
+id: media_images
+label: 'Media Images'
+module: views
+description: ''
+tag: ''
+base_table: media_field_data
+base_field: mid
+display:
+  default:
+    id: default
+    display_title: Master
+    display_plugin: default
+    position: 0
+    display_options:
+      title: Images
+      fields: {  }
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 0
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      access:
+        type: role
+        options:
+          role:
+            authenticated: authenticated
+      cache:
+        type: tag
+        options: {  }
+      empty: {  }
+      sorts: {  }
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: media_field_data
+          field: status
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
+          entity_type: media
+          entity_field: bundle
+          plugin_id: bundle
+          value:
+            image: image
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_section_target_id:
+          id: field_section_target_id
+          table: media__field_section
+          field: field_section_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 113
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: tags
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      style:
+        type: default
+      row:
+        type: 'entity:media'
+        options:
+          relationship: none
+          view_mode: colorbox
+      query:
+        type: views_query
+        options:
+          query_comment: ''
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_tags: {  }
+      relationships: {  }
+      header: {  }
+      footer: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - user
+        - user.roles
+      tags: {  }
+  block_1:
+    id: block_1
+    display_title: 'Youth Pictures Block'
+    display_plugin: block
+    position: 3
+    display_options:
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      style:
+        type: blazy
+        options:
+          style: grid
+          grid: '1'
+          grid_medium: '1'
+          grid_small: '1'
+      row:
+        type: 'entity:media'
+        options:
+          relationship: none
+          view_mode: colorbox
+      defaults:
+        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+        style: false
+        row: false
+      display_description: ''
+      use_more: true
+      use_more_always: true
+      use_more_text: 'More Photos »'
+      link_display: custom_url
+      link_url: images/113
+      display_extenders: {  }
+      block_description: 'Walk N Roll Pictures'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - user
+        - user.roles
+      tags: {  }
+  block_2:
+    id: block_2
+    display_title: 'UST Pictures Block'
+    display_plugin: block
+    position: 4
+    display_options:
+      title: 'UST Pictures'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 3
+      filters:
+        status:
+          id: status
+          table: media_field_data
+          field: status
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
+          entity_type: media
+          entity_field: bundle
+          plugin_id: bundle
+          value:
+            image: image
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_section_target_id:
+          id: field_section_target_id
+          table: media__field_section
+          field: field_section_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 114
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: tags
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: blazy
+        options:
+          style: grid
+          grid: '1'
+          grid_medium: '1'
+          grid_small: '1'
+      row:
+        type: 'entity:media'
+        options:
+          relationship: none
+          view_mode: colorbox
+      defaults:
+        title: false
+        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+      display_description: ''
+      use_more: true
+      use_more_always: true
+      use_more_text: 'More Photos »'
+      link_display: custom_url
+      link_url: images/114
+      display_extenders: {  }
+      block_description: 'UST Pictures'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - user
+        - user.roles
+      tags: {  }
+  page_1:
+    id: page_1
+    display_title: 'Youth Pictures Page'
+    display_plugin: page
+    position: 5
+    display_options:
+      enabled: false
+      title: 'Walk ''N Roll Pictures'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 20
+      style:
+        type: blazy
+        options:
+          style: grid
+          grid: '4'
+          grid_medium: '2'
+          grid_small: '1'
+      row:
+        type: 'entity:media'
+        options:
+          relationship: none
+          view_mode: colorbox
+      defaults:
+        title: false
+        use_ajax: false
+        pager: false
+        style: false
+        row: false
+      use_ajax: true
+      display_description: ''
+      display_extenders: {  }
+      path: youth/pictures
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - user
+        - user.roles
+      tags: {  }
+  page_2:
+    id: page_2
+    display_title: 'UST Pictures Page'
+    display_plugin: page
+    position: 6
+    display_options:
+      enabled: false
+      title: 'Walk ''N Roll Pictures'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 20
+      filters:
+        status:
+          id: status
+          table: media_field_data
+          field: status
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
+          entity_type: media
+          entity_field: bundle
+          plugin_id: bundle
+          value:
+            image: image
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_section_target_id:
+          id: field_section_target_id
+          table: media__field_section
+          field: field_section_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            - 114
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: tags
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: blazy
+        options:
+          style: grid
+          grid: '4'
+          grid_medium: '2'
+          grid_small: '1'
+      row:
+        type: 'entity:media'
+        options:
+          relationship: none
+          view_mode: colorbox
+      defaults:
+        title: false
+        use_ajax: false
+        pager: false
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+      use_ajax: true
+      display_description: ''
+      display_extenders: {  }
+      path: UST-project/pictures
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - user
+        - user.roles
+      tags: {  }
+  page_3:
+    id: page_3
+    display_title: 'Images per Taxonomy'
+    display_plugin: page
+    position: 2
+    display_options:
+      title: '<none>'
+      fields:
+        field_section:
+          id: field_section
+          table: media__field_section
+          field: field_section
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        image:
+          id: image
+          table: media__image
+          field: image
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: colorbox
+          settings:
+            colorbox_node_style: ''
+            colorbox_node_style_first: ''
+            colorbox_image_style: ''
+            colorbox_gallery: post
+            colorbox_gallery_custom: ''
+            colorbox_caption: auto
+            colorbox_caption_custom: ''
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      arguments:
+        tid:
+          id: tid
+          table: taxonomy_term_field_data
+          field: tid
+          relationship: field_section
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: tid
+          plugin_id: taxonomy
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: true
+          title: '{{ field_section }}'
+          default_argument_type: taxonomy_tid
+          default_argument_options:
+            term_page: '1'
+            node: false
+            limit: false
+            vids: {  }
+            anyall: ','
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: true
+          validate:
+            type: 'entity:taxonomy_term'
+            fail: 'not found'
+          validate_options:
+            bundles:
+              tags: tags
+            access: false
+            operation: view
+            multiple: 0
+          break_phrase: false
+          not: false
+      filters:
+        status:
+          id: status
+          table: media_field_data
+          field: status
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
+          entity_type: media
+          entity_field: bundle
+          plugin_id: bundle
+          value:
+            image: image
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: blazy
+        options:
+          style: grid
+          grid: '4'
+          grid_medium: '2'
+          grid_small: '1'
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        title: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        arguments: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships:
+        field_section:
+          id: field_section
+          table: media__field_section
+          field: field_section
+          relationship: none
+          group_type: group
+          admin_label: 'field_section: Taxonomy term'
+          plugin_id: standard
+          required: false
+      display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: |-
+              <ol class="breadcrumb">
+                        <li>
+                                <a href="/images">Images</a>
+                            </li>
+                        <li class="active">
+              {{ field_section }}
+                            </li>
+                    </ol>
+            format: unrestricted_html
+          tokenize: true
+      display_extenders: {  }
+      path: images/%
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - user.roles
+      tags:
+        - 'config:field.storage.media.field_section'
+        - 'config:field.storage.media.image'
+  page_4:
+    id: page_4
+    display_title: 'Images Page'
+    display_plugin: page
+    position: 1
+    display_options:
+      fields:
+        tid:
+          id: tid
+          table: taxonomy_term_field_data
+          field: tid
+          relationship: field_section
+          group_type: group
+          admin_label: ''
+          entity_type: taxonomy_term
+          entity_field: tid
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_section:
+          id: field_section
+          table: media__field_section
+          field: field_section
+          relationship: none
+          group_type: count
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          set_precision: false
+          precision: 0
+          decimal: .
+          format_plural: 0
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ''
+        field_section_1:
+          id: field_section_1
+          table: media__field_section
+          field: field_section
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_section_1 }} ({{ field_section }})'
+            make_link: true
+            path: 'images/{{ tid }}'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: media_field_data
+          field: status
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
+          entity_type: media
+          entity_field: bundle
+          plugin_id: bundle
+          value:
+            image: image
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
+      defaults:
+        group_by: false
+        style: false
+        row: false
+        relationships: false
+        fields: false
+        arguments: false
+        filters: false
+        filter_groups: false
+      relationships:
+        field_section:
+          id: field_section
+          table: media__field_section
+          field: field_section
+          relationship: none
+          group_type: group
+          admin_label: 'field_section: Taxonomy term'
+          plugin_id: standard
+          required: true
+      group_by: true
+      display_description: ''
+      display_extenders: {  }
+      path: images
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - user.roles
+      tags:
+        - 'config:field.storage.media.field_section'

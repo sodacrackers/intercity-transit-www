@@ -1,0 +1,8 @@
+uuid: 75530162-f945-4a9d-9874-87e8f0c342fe
+langcode: en
+status: true
+dependencies: {  }
+id: day_only
+label: 'Day Only'
+locked: false
+pattern: d

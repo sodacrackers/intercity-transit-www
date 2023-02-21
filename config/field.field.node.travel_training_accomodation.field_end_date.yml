@@ -1,0 +1,24 @@
+uuid: 3c3c8382-da73-478c-84aa-f86bf5058de2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_date
+    - node.type.travel_training_accomodation
+  module:
+    - datetime
+id: node.travel_training_accomodation.field_end_date
+field_name: field_end_date
+entity_type: node
+bundle: travel_training_accomodation
+label: 'End Date'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    default_date_type: relative
+    default_date: '+ 180 days'
+default_value_callback: ''
+settings: {  }
+field_type: datetime

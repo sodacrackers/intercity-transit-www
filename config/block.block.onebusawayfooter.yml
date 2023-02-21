@@ -1,0 +1,29 @@
+uuid: 91ee5690-97e9-4931-88ff-e111b4036a10
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:819030ff-bd13-4ac7-8675-71687e727333'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: onebusawayfooter
+theme: transit
+region: none
+weight: -33
+provider: null
+plugin: 'block_content:819030ff-bd13-4ac7-8675-71687e727333'
+settings:
+  id: 'block_content:819030ff-bd13-4ac7-8675-71687e727333'
+  label: 'onebus away footer'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

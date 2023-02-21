@@ -1,0 +1,24 @@
+uuid: 9d1ff0bc-6dc0-43e0-b3aa-df671971e043
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - media
+    - search
+    - search_api_page
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: -10
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'search content'
+  - 'use advanced search'
+  - 'view media'
+  - 'view search api pages'

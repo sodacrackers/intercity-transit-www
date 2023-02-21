@@ -1,0 +1,41 @@
+uuid: 09814a9e-8211-4e19-afa7-86c28953e059
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embedded
+    - field.field.media.image.field_media_in_library
+    - field.field.media.image.field_section
+    - field.field.media.image.image
+    - image.style.large
+    - media.type.image
+  module:
+    - colorbox
+_core:
+  default_config_hash: Iue5dWz40odYIvQZXHxNgusvUZVuCXr8InfPe5atT6A
+id: media.image.embedded
+targetEntityType: media
+bundle: image
+mode: embedded
+content:
+  image:
+    type: colorbox
+    label: hidden
+    settings:
+      colorbox_node_style: large
+      colorbox_node_style_first: ''
+      colorbox_image_style: ''
+      colorbox_gallery: post
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  field_section: true
+  name: true
+  thumbnail: true
+  uid: true

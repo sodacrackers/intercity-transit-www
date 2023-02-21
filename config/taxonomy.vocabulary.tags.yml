@@ -1,0 +1,8 @@
+uuid: 7890b6f3-05b5-4bd5-b5ed-39bd8da3cb4b
+langcode: en
+status: true
+dependencies: {  }
+name: Tags
+vid: tags
+description: 'additional, generic tags for searching'
+weight: 0

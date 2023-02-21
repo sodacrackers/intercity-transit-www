@@ -1,0 +1,80 @@
+uuid: eb854c3c-f437-46c5-8423-194c4fe01699
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.page.body
+    - node.type.page
+  module:
+    - node
+label: 'Basic Pages Made Before March 1'
+id: basic_pages_made_before_march_1
+description: 'Basic Pages Made Before March 1'
+help: 'Only for basic pages created before March 1, but updated on or after March 1'
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: page
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  body:
+    value: body
+    label: body
+    machine_name: body
+    type: csv
+  live_nid:
+    value: live_nid
+    label: live_nid
+    machine_name: live_nid
+    type: csv
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  nid:
+    value: nid
+    label: nid
+    machine_name: nid
+    type: csv
+mappings:
+  -
+    target: body
+    map:
+      value: body
+      summary: ''
+    settings:
+      language: ''
+      format: rich_text
+  -
+    target: nid
+    map:
+      value: nid
+    settings: {  }
+    unique:
+      value: '1'
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }

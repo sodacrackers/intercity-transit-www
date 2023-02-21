@@ -1,0 +1,104 @@
+uuid: e73bb723-21ea-494d-b6b3-36c04ec3a561
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.field.contact_message.vanpool_waitlist.field_additonal
+    - field.field.contact_message.vanpool_waitlist.field_destination_city
+    - field.field.contact_message.vanpool_waitlist.field_e_mail_address
+    - field.field.contact_message.vanpool_waitlist.field_employer_name
+    - field.field.contact_message.vanpool_waitlist.field_how_did_you_hear_about_us_
+    - field.field.contact_message.vanpool_waitlist.field_origin_city
+    - field.field.contact_message.vanpool_waitlist.field_phone
+    - field.field.contact_message.vanpool_waitlist.field_vanpool_number
+    - field.field.contact_message.vanpool_waitlist.field_work_hours
+  module:
+    - media_entity_instagram
+    - telephone
+id: contact_message.vanpool_waitlist.default
+targetEntityType: contact_message
+bundle: vanpool_waitlist
+mode: default
+content:
+  field_additonal:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_destination_city:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_e_mail_address:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_employer_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_how_did_you_hear_about_us_:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_origin_city:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_phone:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_vanpool_number:
+    type: entity_reference_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_work_hours:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  message:
+    type: instagram_embed
+    label: above
+    settings:
+      hidecaption: false
+      width: 480
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden: {  }

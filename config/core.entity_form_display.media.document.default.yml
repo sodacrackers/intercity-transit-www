@@ -1,0 +1,139 @@
+uuid: 0f4162d0-5e23-4224-9b9b-2500d8509587
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.document.field_description
+    - field.field.media.document.field_document
+    - field.field.media.document.field_document_size
+    - field.field.media.document.field_media_in_library
+    - field.field.media.document.field_mime_type
+    - field.field.media.document.field_publication_type
+    - field.field.media.document.field_publication_year
+    - media.type.document
+  module:
+    - datetime
+    - field_group
+    - file
+    - imce
+    - path
+    - text
+    - workbench_moderation
+third_party_settings:
+  field_group:
+    group_tabgroup:
+      children:
+        - group_basic
+        - group_advanced
+      label: 'Tab Group'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        classes: ''
+        id: ''
+        direction: horizontal
+    group_basic:
+      children:
+        - name
+        - field_document
+        - field_description
+        - field_media_in_library
+        - status
+      label: Basic
+      region: content
+      parent_name: group_tabgroup
+      weight: 12
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: open
+        description: ''
+        required_fields: true
+    group_advanced:
+      children:
+        - field_publication_type
+        - field_publication_year
+        - path
+      label: Advanced
+      region: content
+      parent_name: group_tabgroup
+      weight: 13
+      format_type: tab
+      format_settings:
+        classes: ''
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: false
+_core:
+  default_config_hash: cJuFx19N5_sxWYHHlmO3RQGGsc47AjZ5a1HfNN2fOzc
+id: media.document.default
+targetEntityType: media
+bundle: document
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_document:
+    type: file_generic
+    weight: 3
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings:
+      imce:
+        enabled: true
+  field_media_in_library:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_publication_type:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_publication_year:
+    type: datetime_default
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_document_size: true
+  field_mime_type: true
+  uid: true

@@ -1,0 +1,23 @@
+uuid: 437cc614-c0d3-4ca7-bbe3-ec4282614976
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cancelled
+    - node.type.calendar_event
+id: node.calendar_event.field_cancelled
+field_name: field_cancelled
+entity_type: node
+bundle: calendar_event
+label: 'Cancel this meeting?'
+description: 'Cancelling a meeting while still make it show on the list. Please consider deleting a meeting as well, if appropriate.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

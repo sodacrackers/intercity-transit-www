@@ -1,0 +1,14 @@
+uuid: 2bd3d941-1da7-4409-82c1-5a6843beac3f
+langcode: en
+status: true
+dependencies: {  }
+id: default_responsive
+label: 'default responsive'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: '_original image_'
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: '_original image_'

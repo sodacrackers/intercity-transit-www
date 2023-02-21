@@ -1,0 +1,23 @@
+uuid: e833492c-c412-4d76-8259-1fe3017de34b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.travel_training_accomodation
+  module:
+    - text
+id: node.travel_training_accomodation.body
+field_name: body
+entity_type: node
+bundle: travel_training_accomodation
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -1,0 +1,23 @@
+uuid: bfca8b68-46f5-406e-bd1e-18724e4a1b06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_jobid
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_jobid
+field_name: field_joblisting_jobid
+entity_type: node
+bundle: neogov_joblisting
+label: joblisting_jobid
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

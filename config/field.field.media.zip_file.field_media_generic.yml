@@ -1,0 +1,19 @@
+uuid: ba66d2b5-5096-46ad-80d7-e09f9d936c67
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_generic
+    - media.type.zip_file
+id: media.zip_file.field_media_generic
+field_name: field_media_generic
+entity_type: media
+bundle: zip_file
+label: 'Generic media'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: b441cffb-c1c5-466c-9e01-ae9e8144e41e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_continuous
+    - node.type.recruitment
+id: node.recruitment.field_recruitment_continuous
+field_name: field_recruitment_continuous
+entity_type: node
+bundle: recruitment
+label: Continuous
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

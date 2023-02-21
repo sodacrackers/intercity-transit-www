@@ -1,0 +1,10 @@
+uuid: 3014168d-1c87-4a06-b741-65c7fda8a1d0
+langcode: en
+status: true
+dependencies: {  }
+id: job_duties
+label: 'job duties'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

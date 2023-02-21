@@ -1,0 +1,21 @@
+uuid: cee9e159-6f22-48f8-a6d8-cc969aadd7f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_pubdate
+    - node.type.neogov_joblisting
+  module:
+    - datetime
+id: node.neogov_joblisting.field_joblisting_pubdate
+field_name: field_joblisting_pubdate
+entity_type: node
+bundle: neogov_joblisting
+label: 'Published Date'
+description: 'the date the job opening was published'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

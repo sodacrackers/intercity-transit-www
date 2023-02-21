@@ -1,0 +1,21 @@
+uuid: 95b6cfb9-ff1f-4538-b060-5e15f2959a08
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_4
+    - node.type.route
+  module:
+    - text
+id: node.route.field_tab_4
+field_name: field_tab_4
+entity_type: node
+bundle: route
+label: 'Tab 4'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

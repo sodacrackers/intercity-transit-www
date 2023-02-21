@@ -1,0 +1,71 @@
+uuid: 9fc1e56c-373d-4f31-93d5-130a4b868335
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.document.field_description
+    - field.field.media.document.field_document
+    - field.field.media.document.field_document_size
+    - field.field.media.document.field_media_in_library
+    - field.field.media.document.field_mime_type
+    - field.field.media.document.field_publication_type
+    - field.field.media.document.field_publication_year
+    - media.type.document
+  module:
+    - datetime
+    - file
+    - text
+_core:
+  default_config_hash: RB_e7jnyg4lW5G9VkkpsZn1zR6EwiEPtd5OM3_5FqQk
+id: media.document.default
+targetEntityType: media
+bundle: document
+mode: default
+content:
+  field_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_document:
+    type: file_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_publication_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_publication_year:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_document_size: true
+  field_media_in_library: true
+  field_mime_type: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

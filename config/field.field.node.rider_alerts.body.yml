@@ -1,0 +1,23 @@
+uuid: 8f65762f-e028-4b62-adcc-e90e54f1a669
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.rider_alerts
+  module:
+    - text
+id: node.rider_alerts.body
+field_name: body
+entity_type: node
+bundle: rider_alerts
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

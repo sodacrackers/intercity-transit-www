@@ -1,0 +1,64 @@
+uuid: 9b0efd3d-a33a-493a-a377-6491190bbc37
+langcode: en
+status: true
+dependencies: {  }
+id: transit_thumbnail
+name: transit_thumbnail
+weight: 0
+label: 'Transit thumbnail'
+group: ''
+skin: ''
+breakpoints: 0
+options:
+  options__active_tab: edit-options-settings
+  settings:
+    mobileFirst: false
+    asNavFor: ''
+    accessibility: true
+    adaptiveHeight: true
+    autoplay: true
+    pauseOnHover: true
+    pauseOnDotsHover: true
+    autoplaySpeed: 6000
+    arrows: false
+    prevArrow: Previous
+    nextArrow: Next
+    downArrow: false
+    downArrowTarget: ''
+    downArrowOffset: 0
+    centerMode: false
+    centerPadding: 50px
+    dots: false
+    dotsClass: slick-dots
+    appendDots: $(element)
+    draggable: false
+    fade: true
+    focusOnSelect: true
+    infinite: true
+    initialSlide: 0
+    lazyLoad: ondemand
+    mouseWheel: false
+    randomize: false
+    respondTo: window
+    rtl: false
+    rows: 1
+    slidesPerRow: 4
+    slide: ''
+    slidesToShow: 4
+    slidesToScroll: 1
+    speed: 1500
+    swipe: true
+    swipeToSlide: false
+    edgeFriction: 0.35
+    touchMove: false
+    touchThreshold: 5
+    useCSS: true
+    cssEase: ease
+    cssEaseBezier: ''
+    cssEaseOverride: ''
+    useTransform: true
+    easing: linear
+    variableWidth: false
+    vertical: false
+    verticalSwiping: false
+    waitForAnimate: true

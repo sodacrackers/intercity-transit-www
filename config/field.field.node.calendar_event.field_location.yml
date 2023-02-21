@@ -1,0 +1,21 @@
+uuid: 6d009fc3-a3c8-47de-bff1-373a4441cafb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location
+    - node.type.calendar_event
+id: node.calendar_event.field_location
+field_name: field_location
+entity_type: node
+bundle: calendar_event
+label: Location
+description: 'The location of the event, such as "Intercity Transit, Administration Building"'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Intercity Transit, Administration Building'
+default_value_callback: ''
+settings: {  }
+field_type: string

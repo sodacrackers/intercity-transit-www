@@ -1,0 +1,17 @@
+uuid: 76782fbb-a565-48aa-8d02-395daf724f48
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Home Frequent Tasks'
+type: home_frequent_tasks
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

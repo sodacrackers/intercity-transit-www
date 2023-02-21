@@ -1,0 +1,10 @@
+uuid: 30a3cfc9-b5a8-4341-ab86-a2ca009634ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.responsive_bootstrap
+label: 'Responsive Bootstrap'
+targetEntityType: media
+cache: true

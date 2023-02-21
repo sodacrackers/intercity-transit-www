@@ -1,0 +1,43 @@
+uuid: 8037b24c-39f1-446c-abf1-960787c08ad0
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - block_class
+    - menu_block
+    - user
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: it-well-blue
+id: tools
+theme: transit
+region: sidebar_second
+weight: -23
+provider: null
+plugin: 'menu_block:tools'
+settings:
+  id: 'menu_block:tools'
+  label: Tools
+  label_display: visible
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: block
+  level: 1
+  depth: 0
+  expand_all_items: false
+  parent: 'tools:'
+  suggestion: tools
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      youth_outreach_user: youth_outreach_user

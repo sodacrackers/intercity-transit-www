@@ -1,0 +1,42 @@
+uuid: 55b337b5-b662-49d2-8a02-5c666a97b271
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:f8b02398-4a0b-41cf-b252-33dfc4dd211e'
+  module:
+    - block_class
+    - block_content
+    - user
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: rideralertsheader
+theme: transit
+region: none
+weight: -42
+provider: null
+plugin: 'block_content:f8b02398-4a0b-41cf-b252-33dfc4dd211e'
+settings:
+  id: 'block_content:f8b02398-4a0b-41cf-b252-33dfc4dd211e'
+  label: 'Rider Alerts Header'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
+      vanpool: vanpool
+      procurement_user: procurement_user
+      executive_user: executive_user
+      planning_user: planning_user
+      youth_outreach_user: youth_outreach_user

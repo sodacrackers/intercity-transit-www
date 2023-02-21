@@ -1,0 +1,21 @@
+uuid: 3bcc90a3-aded-4f73-84db-a8e0e1ccbbdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.calendar_event
+id: node.calendar_event.field_address
+field_name: field_address
+entity_type: node
+bundle: calendar_event
+label: Address
+description: 'The address of the event, such as "526 Pattison St SE, Olympia"'
+required: false
+translatable: false
+default_value:
+  -
+    value: '526 Pattison St SE, Olympia'
+default_value_callback: ''
+settings: {  }
+field_type: string

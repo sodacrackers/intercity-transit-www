@@ -1,0 +1,13 @@
+uuid: adba3697-0176-4918-9b9f-488f9c20f770
+langcode: en
+status: true
+dependencies: {  }
+id: route_pdfs
+label: 'Route PDFs'
+description: 'Route table and map PDFs'
+source: file
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_document
+field_map: {  }

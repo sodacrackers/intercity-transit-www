@@ -1,0 +1,21 @@
+uuid: 9e0b6db5-98cd-42ad-b16e-d25f97693674
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_knowledge
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_knowledge
+field_name: field_jobs_knowledge
+entity_type: node
+bundle: jobs
+label: Knowledge
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

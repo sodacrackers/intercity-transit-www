@@ -1,0 +1,35 @@
+uuid: a5cbd7bc-fe52-4511-bc9b-beed4a80a5dc
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:5cf9132d-0f30-4f46-b648-63310bdcaeae'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: subscribetoournewsletter
+theme: transit
+region: sidebar_second
+weight: -38
+provider: null
+plugin: 'block_content:5cf9132d-0f30-4f46-b648-63310bdcaeae'
+settings:
+  id: 'block_content:5cf9132d-0f30-4f46-b648-63310bdcaeae'
+  label: 'Subscribe to our newsletter'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/walknroll\r\n/walknroll/*\r\n/youth/*"

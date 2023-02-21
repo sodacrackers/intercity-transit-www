@@ -1,0 +1,23 @@
+uuid: e51828cf-028d-42e1-a7cc-d19c0e111bbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_14
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_14
+field_name: field_hourly_rate_step_14
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 14'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

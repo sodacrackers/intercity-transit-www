@@ -1,0 +1,19 @@
+uuid: 4322b104-3402-4b55-ba22-fb0f520b6521
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_jobtype
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_jobtype
+field_name: field_joblisting_jobtype
+entity_type: node
+bundle: neogov_joblisting
+label: 'Job Type'
+description: 'Full-Time, Part-Time, etc'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

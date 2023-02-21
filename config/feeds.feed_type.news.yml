@@ -1,0 +1,227 @@
+uuid: d277fa29-f0bf-415e-b44d-f83f2417db7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.body
+    - field.field.node.news.field_external_link
+    - field.field.node.news.field_images
+    - field.field.node.news.field_live_nid
+    - field.field.node.news.field_section
+    - field.field.node.news.field_slider_body_hide
+    - field.field.node.news.field_slider_title
+    - field.field.node.news.scheduled_update
+    - node.type.news
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers: {  }
+label: News
+id: news
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: news
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  body_text:
+    value: body_text
+    label: body_text
+    machine_name: body_text
+    type: csv
+  body_description:
+    value: body_description
+    label: body_description
+    machine_name: body_description
+    type: csv
+  field_external_link:
+    value: field_external_link
+    label: field_external_link
+    machine_name: field_external_link
+    type: csv
+  field_slider_body_hide:
+    value: field_slider_body_hide
+    label: field_slider_body_hide
+    machine_name: field_slider_body_hide
+    type: csv
+  scheduled_update:
+    value: scheduled_update
+    label: scheduled_update
+    machine_name: scheduled_update
+    type: csv
+  section:
+    value: section
+    label: section
+    machine_name: section
+    type: csv
+  field_images_id:
+    value: field_images_id
+    label: field_images_id
+    machine_name: field_images_id
+    type: csv
+  field_images_alt_text:
+    value: field_images_alt_text
+    label: field_images_alt_text
+    machine_name: field_images_alt_text
+    type: csv
+  field_images_title:
+    value: field_images_title
+    label: field_images_title
+    machine_name: field_images_title
+    type: csv
+  field_slider_title:
+    value: field_slider_title
+    label: field_slider_title
+    machine_name: field_slider_title
+    type: csv
+  field_tags:
+    value: field_tags
+    label: field_tags
+    machine_name: field_tags
+    type: csv
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  live_nid:
+    value: live_nid
+    label: live_nid
+    machine_name: live_nid
+    type: csv
+  author:
+    value: author
+    label: author
+    machine_name: author
+    type: csv
+  author_date:
+    value: author_date
+    label: author_date
+    machine_name: author_date
+    type: csv
+  slider_image:
+    value: slider_image
+    label: slider_image
+    machine_name: slider_image
+    type: csv
+  published:
+    value: published
+    label: published
+    machine_name: published
+    type: csv
+  mod_state:
+    value: mod_state
+    label: mod_state
+    machine_name: mod_state
+    type: csv
+mappings:
+  -
+    target: body
+    map:
+      value: body_text
+      summary: body_description
+    settings:
+      language: ''
+      format: unrestricted_html
+  -
+    target: field_external_link
+    map:
+      value: field_external_link
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_slider_body_hide
+    map:
+      value: field_slider_body_hide
+    settings:
+      language: null
+  -
+    target: scheduled_update
+    map:
+      target_id: scheduled_update
+    settings:
+      reference_by: update_timestamp
+      autocreate: false
+  -
+    target: field_section
+    map:
+      target_id: section
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_slider_title
+    map:
+      value: field_slider_title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_live_nid
+    map:
+      value: live_nid
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: created
+    map:
+      value: author_date
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_images
+    map:
+      target_id: slider_image
+      alt: ''
+      title: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+  -
+    target: status
+    map:
+      value: published
+    settings:
+      language: ''
+  -
+    target: moderation_state
+    map:
+      target_id: mod_state
+    settings:
+      reference_by: label

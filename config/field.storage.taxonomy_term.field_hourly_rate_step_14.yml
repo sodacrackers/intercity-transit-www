@@ -1,0 +1,20 @@
+uuid: 213d40d1-f582-4122-83e4-14a271762bc5
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_hourly_rate_step_14
+field_name: field_hourly_rate_step_14
+entity_type: taxonomy_term
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: c20e1abb-d7f5-4d6f-b0dc-3e20e0122592
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_5
+    - node.type.route
+  module:
+    - text
+id: node.route.field_tab_5
+field_name: field_tab_5
+entity_type: node
+bundle: route
+label: 'Tab 5'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

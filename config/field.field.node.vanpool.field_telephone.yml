@@ -1,0 +1,21 @@
+uuid: 1fd70b51-79e6-4fc1-ac3f-ee7cf3409335
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_telephone
+    - node.type.vanpool
+  module:
+    - telephone
+id: node.vanpool.field_telephone
+field_name: field_telephone
+entity_type: node
+bundle: vanpool
+label: Telephone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

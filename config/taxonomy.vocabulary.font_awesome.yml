@@ -1,0 +1,8 @@
+uuid: 54cde0e1-0467-42b0-9e4d-de7803c77b2d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Font Awesome'
+vid: font_awesome
+description: 'a list of Font Awesome Fonts Used on the site'
+weight: 0

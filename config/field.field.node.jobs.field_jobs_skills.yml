@@ -1,0 +1,21 @@
+uuid: db1f5d99-a205-4edc-a73b-4f95533c65a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_skills
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_skills
+field_name: field_jobs_skills
+entity_type: node
+bundle: jobs
+label: Skills
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

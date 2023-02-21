@@ -1,0 +1,20 @@
+uuid: a3766b56-f5ca-4f91-810a-f0b352b8433d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_jobs_duties_frequency_taxo
+field_name: field_jobs_duties_frequency_taxo
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

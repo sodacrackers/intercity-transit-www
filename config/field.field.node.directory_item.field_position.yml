@@ -1,0 +1,29 @@
+uuid: 54cf8d22-4c5b-4878-82a9-28e8542e63db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_position
+    - node.type.directory_item
+    - taxonomy.vocabulary.org_chart
+id: node.directory_item.field_position
+field_name: field_position
+entity_type: node
+bundle: directory_item
+label: Position
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      org_chart: org_chart
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

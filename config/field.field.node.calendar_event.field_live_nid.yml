@@ -1,0 +1,23 @@
+uuid: 9a4b9421-a038-4db4-8992-9d6edfe8381c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_live_nid
+    - node.type.calendar_event
+id: node.calendar_event.field_live_nid
+field_name: field_live_nid
+entity_type: node
+bundle: calendar_event
+label: 'Live NID'
+description: 'Only used prior to the NewSite2021 launch. Can be removed once all is good and launched.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

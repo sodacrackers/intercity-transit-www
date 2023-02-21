@@ -1,0 +1,23 @@
+uuid: 295a3e04-da33-4518-ade4-3b9770a70479
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_live_nid
+    - node.type.page
+id: node.page.field_live_nid
+field_name: field_live_nid
+entity_type: node
+bundle: page
+label: 'Live NID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

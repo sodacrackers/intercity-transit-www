@@ -1,0 +1,24 @@
+uuid: 72222af8-d141-4693-bbef-9cc866d2680a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_release_date
+    - node.type.procurement_bid_or_proposal
+  module:
+    - datetime
+id: node.procurement_bid_or_proposal.field_release_date
+field_name: field_release_date
+entity_type: node
+bundle: procurement_bid_or_proposal
+label: 'Release Date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

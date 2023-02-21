@@ -1,0 +1,11 @@
+uuid: 4047c034-f08f-4ff0-a61b-06c854fb9fec
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+id: webform_delete_action
+label: 'Delete webform'
+type: webform
+plugin: webform_delete_action
+configuration: {  }

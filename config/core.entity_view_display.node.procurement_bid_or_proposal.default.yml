@@ -1,0 +1,88 @@
+uuid: bf8f1cbb-34aa-480d-ab16-e995aeae9566
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.procurement_bid_or_proposal.field_awarded_to
+    - field.field.node.procurement_bid_or_proposal.field_due_date
+    - field.field.node.procurement_bid_or_proposal.field_file
+    - field.field.node.procurement_bid_or_proposal.field_number
+    - field.field.node.procurement_bid_or_proposal.field_project_status
+    - field.field.node.procurement_bid_or_proposal.field_release_date
+    - field.field.node.procurement_bid_or_proposal.field_type
+    - node.type.procurement_bid_or_proposal
+  module:
+    - datetime
+    - file
+    - options
+    - user
+id: node.procurement_bid_or_proposal.default
+targetEntityType: node
+bundle: procurement_bid_or_proposal
+mode: default
+content:
+  field_awarded_to:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_due_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: m_d_y
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_file:
+    type: file_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_number:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_project_status:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_release_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: m_d_y
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_type:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

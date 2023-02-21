@@ -1,0 +1,23 @@
+uuid: 48b147e1-faf5-4dae-b0a1-0962cff0ea1a
+langcode: en
+status: true
+dependencies: {  }
+name: medium_220_x_220_cropped
+label: 'Medium (260 x 220) cropped'
+effects:
+  4d2ae773-be19-4746-9d0f-88bea1642274:
+    uuid: 4d2ae773-be19-4746-9d0f-88bea1642274
+    id: image_scale
+    weight: -10
+    data:
+      width: 400
+      height: 400
+      upscale: false
+  ae1ba8a8-5f5b-40a9-a7cf-fb73db66fc2d:
+    uuid: ae1ba8a8-5f5b-40a9-a7cf-fb73db66fc2d
+    id: image_scale_and_crop
+    weight: -9
+    data:
+      width: 260
+      height: 220
+      anchor: center-center

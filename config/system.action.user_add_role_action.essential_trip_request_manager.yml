@@ -1,0 +1,14 @@
+uuid: 22705bb7-1c1c-4344-95c6-b772776e82a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.essential_trip_request_manager
+  module:
+    - user
+id: user_add_role_action.essential_trip_request_manager
+label: 'Add the Essential Trip Request Manager role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: essential_trip_request_manager

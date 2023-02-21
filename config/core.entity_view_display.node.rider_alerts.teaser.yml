@@ -1,0 +1,47 @@
+uuid: 8e5008bc-7896-42e8-b86a-18086c3bdf42
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rider_alerts.body
+    - field.field.node.rider_alerts.feeds_item
+    - field.field.node.rider_alerts.field_affected_routes_new_
+    - field.field.node.rider_alerts.field_effected_routes
+    - field.field.node.rider_alerts.field_end_date
+    - field.field.node.rider_alerts.field_end_date_until_further_not
+    - field.field.node.rider_alerts.field_image
+    - field.field.node.rider_alerts.field_live_nid
+    - field.field.node.rider_alerts.field_start_date
+    - node.type.rider_alerts
+  module:
+    - text
+    - user
+id: node.rider_alerts.teaser
+targetEntityType: node
+bundle: rider_alerts
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_affected_routes_new_: true
+  field_effected_routes: true
+  field_end_date: true
+  field_end_date_until_further_not: true
+  field_image: true
+  field_live_nid: true
+  field_start_date: true
+  search_api_excerpt: true

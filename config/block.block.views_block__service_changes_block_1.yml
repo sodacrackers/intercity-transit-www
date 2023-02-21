@@ -1,0 +1,34 @@
+uuid: 56706462-5cca-47a2-80cc-d19989b87618
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.service_changes
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: container
+id: views_block__service_changes_block_1
+theme: transit
+region: content_bottom
+weight: -42
+provider: null
+plugin: 'views_block:service_changes-block_1'
+settings:
+  id: 'views_block:service_changes-block_1'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /servicechanges

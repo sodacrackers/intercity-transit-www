@@ -1,0 +1,14 @@
+uuid: 744dd813-5044-4e7c-acbb-54e366e386f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.essential_trip_request_manager
+  module:
+    - user
+id: user_remove_role_action.essential_trip_request_manager
+label: 'Remove the Essential Trip Request Manager role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: essential_trip_request_manager

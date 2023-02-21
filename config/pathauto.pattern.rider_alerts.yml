@@ -1,0 +1,22 @@
+uuid: 38061ff4-20f3-41d2-9068-eab99f6a5807
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: rider_alerts
+label: 'Rider Alerts'
+type: 'canonical_entities:node'
+pattern: '/rider-alerts/[node:title]'
+selection_criteria:
+  a62f6883-228f-4bfb-8446-0f4cf752aa71:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a62f6883-228f-4bfb-8446-0f4cf752aa71
+    context_mapping:
+      node: node
+    bundles:
+      rider_alerts: rider_alerts
+selection_logic: and
+weight: -2
+relationships: {  }

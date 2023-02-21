@@ -1,0 +1,10 @@
+uuid: d831a7bb-fa3c-4152-82e6-934a3df42902
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.350x350
+label: 350x350
+targetEntityType: media
+cache: true

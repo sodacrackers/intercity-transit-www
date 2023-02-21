@@ -1,0 +1,23 @@
+uuid: 8e23db6e-6751-4bde-bbfc-e748102e1754
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_1
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_1
+field_name: field_annual_rate_step_1
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 1'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 40000
+  max: !!float 300000
+  prefix: $
+  suffix: ''
+field_type: decimal

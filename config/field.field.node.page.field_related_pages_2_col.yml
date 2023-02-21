@@ -1,0 +1,21 @@
+uuid: 1ca63b82-2259-4a6b-88f0-3304d970d8bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_pages_2_col
+    - node.type.page
+id: node.page.field_related_pages_2_col
+field_name: field_related_pages_2_col
+entity_type: node
+bundle: page
+label: 'Related Pages (2 Col)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings: {  }
+field_type: entity_reference

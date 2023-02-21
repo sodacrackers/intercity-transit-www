@@ -1,0 +1,22 @@
+uuid: 986e5d4b-d462-4f34-808a-7608418ca09c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: calendar_events
+label: 'Calendar EVents'
+type: 'canonical_entities:node'
+pattern: 'events/[node:title]'
+selection_criteria:
+  53230789-9c2c-4dd3-b683-60e79ac9823a:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 53230789-9c2c-4dd3-b683-60e79ac9823a
+    context_mapping:
+      node: node
+    bundles:
+      calendar_event: calendar_event
+selection_logic: and
+weight: -7
+relationships: {  }

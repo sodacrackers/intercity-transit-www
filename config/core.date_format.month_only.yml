@@ -1,0 +1,8 @@
+uuid: 41027121-1840-4649-ba21-f011f0ce846b
+langcode: en
+status: true
+dependencies: {  }
+id: month_only
+label: 'month only'
+locked: false
+pattern: M

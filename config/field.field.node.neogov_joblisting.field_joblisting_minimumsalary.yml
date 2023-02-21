@@ -1,0 +1,23 @@
+uuid: a6253d32-ddae-4a1c-adbc-79e29158fbda
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_minimumsalary
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_minimumsalary
+field_name: field_joblisting_minimumsalary
+entity_type: node
+bundle: neogov_joblisting
+label: 'Minimum Salary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 250000
+  prefix: $
+  suffix: ''
+field_type: decimal

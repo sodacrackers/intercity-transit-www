@@ -1,0 +1,440 @@
+uuid: 6b7d56f6-d4cd-4790-94fe-b374a8ec12a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_1
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_10
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_11
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_12
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_13
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_14
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_15
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_2
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_3
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_4
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_5
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_6
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_7
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_8
+    - field.field.taxonomy_term.pay_grades.field_annual_rate_step_9
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_1
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_10
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_11
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_12
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_13
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_14
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_15
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_2
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_3
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_4
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_5
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_6
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_7
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_8
+    - field.field.taxonomy_term.pay_grades.field_hourly_rate_step_9
+    - taxonomy.vocabulary.pay_grades
+  module:
+    - taxonomy
+label: 'Wage Rages'
+id: employment_pay_grades
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:taxonomy_term'
+processor_configuration:
+  values:
+    vid: pay_grades
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  a1:
+    value: a1
+    label: a1
+    machine_name: a1
+    type: csv
+  a2:
+    value: a2
+    label: a2
+    machine_name: a2
+    type: csv
+  paygrade:
+    value: paygrade
+    label: paygrade
+    machine_name: paygrade
+    type: csv
+  a3:
+    value: a3
+    label: a3
+    machine_name: a3
+    type: csv
+  a4:
+    value: a4
+    label: a4
+    machine_name: a4
+    type: csv
+  a5:
+    value: a5
+    label: a5
+    machine_name: a5
+    type: csv
+  a6:
+    value: a6
+    label: a6
+    machine_name: a6
+    type: csv
+  a7:
+    value: a7
+    label: a7
+    machine_name: a7
+    type: csv
+  a8:
+    value: a8
+    label: a8
+    machine_name: a8
+    type: csv
+  a9:
+    value: a9
+    label: a9
+    machine_name: a9
+    type: csv
+  a10:
+    value: a10
+    label: a10
+    machine_name: a10
+    type: csv
+  a11:
+    value: a11
+    label: a11
+    machine_name: a11
+    type: csv
+  a12:
+    value: a12
+    label: a12
+    machine_name: a12
+    type: csv
+  a13:
+    value: a13
+    label: a13
+    machine_name: a13
+    type: csv
+  a14:
+    value: a14
+    label: a14
+    machine_name: a14
+    type: csv
+  a15:
+    value: a15
+    label: a15
+    machine_name: a15
+    type: csv
+  h1:
+    value: h1
+    label: h1
+    machine_name: h1
+    type: csv
+  h2:
+    value: h2
+    label: h2
+    machine_name: h2
+    type: csv
+  h3:
+    value: h3
+    label: h3
+    machine_name: h3
+    type: csv
+  h4:
+    value: h4
+    label: h4
+    machine_name: h4
+    type: csv
+  h5:
+    value: h5
+    label: h5
+    machine_name: h5
+    type: csv
+  h6:
+    value: h6
+    label: h6
+    machine_name: h6
+    type: csv
+  h7:
+    value: h7
+    label: h7
+    machine_name: h7
+    type: csv
+  h8:
+    value: h8
+    label: h8
+    machine_name: h8
+    type: csv
+  h9:
+    value: h9
+    label: h9
+    machine_name: h9
+    type: csv
+  h10:
+    value: h10
+    label: h10
+    machine_name: h10
+    type: csv
+  h11:
+    value: h11
+    label: h11
+    machine_name: h11
+    type: csv
+  h12:
+    value: h12
+    label: h12
+    machine_name: h12
+    type: csv
+  h13:
+    value: h13
+    label: h13
+    machine_name: h13
+    type: csv
+  h14:
+    value: h14
+    label: h14
+    machine_name: h14
+    type: csv
+  h15:
+    value: h15
+    label: h15
+    machine_name: h15
+    type: csv
+mappings:
+  -
+    target: field_annual_rate_step_1
+    map:
+      value: a1
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_2
+    map:
+      value: a2
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: name
+    map:
+      value: paygrade
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_annual_rate_step_3
+    map:
+      value: a3
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_4
+    map:
+      value: a4
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_5
+    map:
+      value: a5
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_6
+    map:
+      value: a6
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_7
+    map:
+      value: a7
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_9
+    map:
+      value: a9
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_10
+    map:
+      value: a10
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_11
+    map:
+      value: a11
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_12
+    map:
+      value: a12
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_13
+    map:
+      value: a13
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_14
+    map:
+      value: a14
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_15
+    map:
+      value: a15
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_1
+    map:
+      value: h1
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_2
+    map:
+      value: h2
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_3
+    map:
+      value: h3
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_4
+    map:
+      value: h4
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_5
+    map:
+      value: h5
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_6
+    map:
+      value: h6
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_7
+    map:
+      value: h7
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_8
+    map:
+      value: h8
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_9
+    map:
+      value: h9
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_10
+    map:
+      value: h10
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_11
+    map:
+      value: h11
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_12
+    map:
+      value: h12
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_13
+    map:
+      value: h13
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_14
+    map:
+      value: h14
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_hourly_rate_step_15
+    map:
+      value: h15
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annual_rate_step_8
+    map:
+      value: a8
+    settings:
+      language: null
+    unique: {  }

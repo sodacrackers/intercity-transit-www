@@ -1,0 +1,14 @@
+uuid: fd1c2030-e731-4fa0-9372-4e808e2ed320
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.it_staff_baseline
+  module:
+    - user
+id: user_add_role_action.it_staff_baseline
+label: 'Add the IT Staff Baseline role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: it_staff_baseline

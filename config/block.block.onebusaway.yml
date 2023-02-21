@@ -1,0 +1,29 @@
+uuid: b791014f-bf38-4fa2-80c1-54919577e817
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3b52cc7e-2f35-4851-94f5-99fe1f66ff35'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12'
+id: onebusaway
+theme: transit
+region: footer_first
+weight: 0
+provider: null
+plugin: 'block_content:3b52cc7e-2f35-4851-94f5-99fe1f66ff35'
+settings:
+  id: 'block_content:3b52cc7e-2f35-4851-94f5-99fe1f66ff35'
+  label: Dial-a-lift
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

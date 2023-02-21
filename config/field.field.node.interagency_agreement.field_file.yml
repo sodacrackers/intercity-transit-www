@@ -1,0 +1,27 @@
+uuid: 6b2a3369-48a4-43c1-87c1-d66b192b7600
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.interagency_agreement
+  module:
+    - file
+id: node.interagency_agreement.field_file
+field_name: field_file
+entity_type: node
+bundle: interagency_agreement
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '20 MB'
+  description_field: false
+field_type: file

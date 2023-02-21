@@ -1,0 +1,20 @@
+uuid: ee5abb8c-e778-417a-8c1d-f3640b64e108
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_joblisting_jobid
+field_name: field_joblisting_jobid
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

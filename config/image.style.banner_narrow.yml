@@ -1,0 +1,15 @@
+uuid: d132fa95-1a43-4bfa-a2ce-9d2051b67745
+langcode: en
+status: true
+dependencies: {  }
+name: banner_narrow
+label: 'Banner Narrow (XL)'
+effects:
+  e6dfc2e1-8edd-401e-a85c-197b2dbbd122:
+    uuid: e6dfc2e1-8edd-401e-a85c-197b2dbbd122
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1140
+      height: 502
+      anchor: center-center

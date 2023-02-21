@@ -1,0 +1,44 @@
+uuid: 0f5dd1d7-777a-4371-a880-1ef9d1759a93
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:ae90bffe-f329-49fa-8829-365a20e3c61f'
+  module:
+    - block_class
+    - block_content
+    - node
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: none
+theme: transit
+region: none
+weight: -36
+provider: null
+plugin: 'block_content:ae90bffe-f329-49fa-8829-365a20e3c61f'
+settings:
+  id: 'block_content:ae90bffe-f329-49fa-8829-365a20e3c61f'
+  label: 'Intercity Transit Logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      front_page_carousel: front_page_carousel
+      landing_page: landing_page
+      news: news
+      page: page
+      procurement_bid_or_proposal: procurement_bid_or_proposal
+      rider_alerts: rider_alerts
+      route: route
+      vanpool: vanpool

@@ -1,0 +1,23 @@
+uuid: 01608301-1fb6-4aed-8ebc-588ee63e7107
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_6
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_6
+field_name: field_annual_rate_step_6
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual rate Step 6'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

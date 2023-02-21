@@ -1,0 +1,32 @@
+uuid: 7663d041-2d94-4c80-950f-e3edb6e09ec5
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12'
+id: homepageforms
+theme: transit
+region: content
+weight: -16
+provider: null
+plugin: 'block_content:42a37305-54ab-49e6-b6b5-352734afc5de'
+settings:
+  id: 'block_content:42a37305-54ab-49e6-b6b5-352734afc5de'
+  label: 'Homepage Forms'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

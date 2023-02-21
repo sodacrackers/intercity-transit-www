@@ -1,0 +1,32 @@
+uuid: bc948976-b9a6-49e8-97f4-a0c215a30516
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rich_text
+    - node.type.blog_page
+    - node.type.procurement_bid_or_proposal
+    - node.type.route
+  module:
+    - filter
+    - node
+id: procurement_user
+label: 'Procurement User'
+weight: -4
+is_admin: null
+permissions:
+  - 'create blog_page content'
+  - 'create procurement_bid_or_proposal content'
+  - 'create route content'
+  - 'delete any blog_page content'
+  - 'delete blog_page revisions'
+  - 'delete own blog_page content'
+  - 'edit any blog_page content'
+  - 'edit any procurement_bid_or_proposal content'
+  - 'edit own blog_page content'
+  - 'edit own procurement_bid_or_proposal content'
+  - 'revert blog_page revisions'
+  - 'revert procurement_bid_or_proposal revisions'
+  - 'use text format rich_text'
+  - 'view blog_page revisions'
+  - 'view procurement_bid_or_proposal revisions'

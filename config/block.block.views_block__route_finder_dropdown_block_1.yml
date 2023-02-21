@@ -1,0 +1,28 @@
+uuid: c10e3fa1-ffe9-4cc0-8323-7afd05bbb45a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.route_finder_dropdown
+  module:
+    - block_class
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__route_finder_dropdown_block_1
+theme: transit
+region: none
+weight: -45
+provider: null
+plugin: 'views_block:route_finder_dropdown-block_1'
+settings:
+  id: 'views_block:route_finder_dropdown-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility: {  }

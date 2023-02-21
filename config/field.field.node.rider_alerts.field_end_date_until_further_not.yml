@@ -1,0 +1,23 @@
+uuid: 1dcbc372-c113-4841-ba76-5d6dfc6781f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_date_until_further_not
+    - node.type.rider_alerts
+id: node.rider_alerts.field_end_date_until_further_not
+field_name: field_end_date_until_further_not
+entity_type: node
+bundle: rider_alerts
+label: 'End Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Until Further Notice'
+  off_label: 'Off'
+field_type: boolean

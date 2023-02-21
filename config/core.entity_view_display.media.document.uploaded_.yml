@@ -1,0 +1,92 @@
+uuid: 0c1036c1-9a73-430d-85d9-e73aa005e1aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.uploaded_
+    - field.field.media.document.field_description
+    - field.field.media.document.field_document
+    - field.field.media.document.field_document_size
+    - field.field.media.document.field_media_in_library
+    - field.field.media.document.field_mime_type
+    - field.field.media.document.field_publication_type
+    - field.field.media.document.field_publication_year
+    - image.style.thumbnail
+    - media.type.document
+  module:
+    - file
+    - image
+    - user
+_core:
+  default_config_hash: RB_e7jnyg4lW5G9VkkpsZn1zR6EwiEPtd5OM3_5FqQk
+id: media.document.uploaded_
+targetEntityType: media
+bundle: document
+mode: uploaded_
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_document:
+    type: file_table
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_document_size:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_mime_type:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_description: true
+  field_media_in_library: true
+  field_publication_type: true
+  field_publication_year: true
+  search_api_excerpt: true

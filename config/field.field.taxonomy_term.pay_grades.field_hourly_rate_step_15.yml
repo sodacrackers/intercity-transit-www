@@ -1,0 +1,23 @@
+uuid: 433b295a-e848-4cff-ae18-a30dd20b4360
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_15
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_15
+field_name: field_hourly_rate_step_15
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 15'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 10
+  max: !!float 200
+  prefix: $
+  suffix: ''
+field_type: decimal

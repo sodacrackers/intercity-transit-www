@@ -1,0 +1,21 @@
+uuid: 145c4968-916f-46a6-9cd2-7898eb6cca66
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_text
+    - node.type.news
+  module:
+    - text
+id: node.news.field_slider_text
+field_name: field_slider_text
+entity_type: node
+bundle: news
+label: 'Slider Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

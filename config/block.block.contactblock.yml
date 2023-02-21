@@ -1,0 +1,34 @@
+uuid: cc1d6fb4-2edd-4140-9979-5d5ca1ad9ca6
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.customer_service
+  module:
+    - block_class
+    - contact_block
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: contactblock
+theme: transit
+region: sidebar_second
+weight: -36
+provider: null
+plugin: contact_block
+settings:
+  id: contact_block
+  label: 'Contact Us'
+  label_display: visible
+  provider: contact_block
+  contact_form: customer_service
+  form_display: default
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /customer-service

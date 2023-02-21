@@ -1,0 +1,23 @@
+uuid: 58bd5554-8917-4c09-b3f2-15a19d4c0cdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_11
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_11
+field_name: field_annual_rate_step_11
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 11'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

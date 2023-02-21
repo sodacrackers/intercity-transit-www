@@ -1,0 +1,21 @@
+uuid: 70c18ed2-d869-4374-90a7-fc94d92a4678
+langcode: en
+status: true
+dependencies:
+  module:
+    - workbench_moderation
+third_party_settings:
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+_core:
+  default_config_hash: TfTp3M9nLYxlUTmX43rS55S2pIp0mX9cicMIi-ja4oc
+id: basic
+label: 'Basic block'
+revision: 1
+description: 'A basic block contains a title and a body.'

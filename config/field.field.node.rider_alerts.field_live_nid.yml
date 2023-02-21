@@ -1,0 +1,23 @@
+uuid: fe484b7d-796a-4a1e-a4ed-eae49fb4a33d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_live_nid
+    - node.type.rider_alerts
+id: node.rider_alerts.field_live_nid
+field_name: field_live_nid
+entity_type: node
+bundle: rider_alerts
+label: 'Live NID'
+description: 'Only used prior to the NewSite2021 launch. Can be removed once all is good and launched.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

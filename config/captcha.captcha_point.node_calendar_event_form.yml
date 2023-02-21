@@ -1,0 +1,7 @@
+uuid: 38274f04-2f9c-40f1-87c4-8b2c3e9de1c1
+langcode: en
+status: false
+dependencies: {  }
+formId: node_calendar_event_form
+captchaType: default
+label: null

@@ -1,0 +1,21 @@
+uuid: aba36b20-2190-4f02-ad31-94e929dc4c42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_advertisefromd
+    - node.type.neogov_joblisting
+  module:
+    - datetime
+id: node.neogov_joblisting.field_joblisting_advertisefromd
+field_name: field_joblisting_advertisefromd
+entity_type: node
+bundle: neogov_joblisting
+label: 'Advertise from Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

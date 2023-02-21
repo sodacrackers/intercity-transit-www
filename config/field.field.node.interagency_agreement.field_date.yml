@@ -1,0 +1,24 @@
+uuid: 0f5adc74-fea5-48dd-b8b1-589dc461f4e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date
+    - node.type.interagency_agreement
+  module:
+    - datetime
+id: node.interagency_agreement.field_date
+field_name: field_date
+entity_type: node
+bundle: interagency_agreement
+label: Date
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

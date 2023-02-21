@@ -1,0 +1,126 @@
+uuid: 2616210d-bd6f-4f92-80a1-71a6cd6ec810
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.procurement_bid_or_proposal.field_awarded_to
+    - field.field.node.procurement_bid_or_proposal.field_due_date
+    - field.field.node.procurement_bid_or_proposal.field_file
+    - field.field.node.procurement_bid_or_proposal.field_number
+    - field.field.node.procurement_bid_or_proposal.field_project_status
+    - field.field.node.procurement_bid_or_proposal.field_release_date
+    - field.field.node.procurement_bid_or_proposal.field_type
+    - node.type.procurement_bid_or_proposal
+  module:
+    - datetime
+    - file
+    - path
+    - workbench_moderation
+id: node.procurement_bid_or_proposal.default
+targetEntityType: node
+bundle: procurement_bid_or_proposal
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_awarded_to:
+    type: string_textfield
+    weight: 38
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_due_date:
+    type: datetime_default
+    weight: 35
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_file:
+    type: file_generic
+    weight: 37
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_number:
+    type: number
+    weight: 32
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_project_status:
+    type: options_buttons
+    weight: 36
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_release_date:
+    type: datetime_default
+    weight: 34
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_type:
+    type: options_select
+    weight: 33
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 121
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

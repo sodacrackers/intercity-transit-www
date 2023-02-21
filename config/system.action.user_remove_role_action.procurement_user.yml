@@ -1,0 +1,14 @@
+uuid: f7717c71-03af-4460-b9c2-574dbc419a16
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.procurement_user
+  module:
+    - user
+id: user_remove_role_action.procurement_user
+label: 'Remove the Procurement User role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: procurement_user

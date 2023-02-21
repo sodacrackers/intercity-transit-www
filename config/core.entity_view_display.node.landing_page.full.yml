@@ -1,0 +1,33 @@
+uuid: 21437ea0-ee7a-4f24-a4b2-335717dc3833
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.landing_page.field_meta_tags
+    - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_thumbnail
+    - node.type.landing_page
+  module:
+    - user
+_core:
+  default_config_hash: tmw6dlEJjNvRyQ1sLc4QK2QlUoKb6Kyrig9vNgBjLCA
+id: node.landing_page.full
+targetEntityType: node
+bundle: landing_page
+mode: full
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+hidden:
+  field_meta_tags: true
+  field_section: true
+  field_thumbnail: true

@@ -1,0 +1,8 @@
+uuid: 3b6476de-da87-4a22-8a46-f91f9580d02a
+langcode: en
+status: true
+dependencies: {  }
+id: human-resources
+label: 'Human Resources'
+description: ''
+locked: false

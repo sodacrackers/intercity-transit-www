@@ -1,0 +1,26 @@
+uuid: b93160e5-c87d-4328-a98f-73b39c0a4120
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+id: nodes_and_documents_solr
+name: 'Nodes and Documents - Solr'
+description: ''
+backend: search_api_solr
+backend_config:
+  retrieve_data: true
+  highlight_data: true
+  site_hash: false
+  server_prefix: ''
+  domain: generic
+  environment: default
+  connector: pantheon
+  connector_config:
+    schema: modules/contrib/search_api_solr/solr-conf/4.x/schema.xml
+    path: ''
+    skip_schema_check: false
+  optimize: false
+  fallback_multiple: true
+  index_single_documents_fallback_count: 10
+  finalize_timeout: 30

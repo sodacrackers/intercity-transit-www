@@ -1,0 +1,27 @@
+uuid: 2e36db58-df8b-425b-9413-cba55ba7817e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8'
+id: sitebranding_2
+theme: transit
+region: header_top
+weight: -41
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

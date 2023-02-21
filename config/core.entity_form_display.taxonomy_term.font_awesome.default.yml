@@ -1,0 +1,54 @@
+uuid: 4209e49b-ca00-4468-9970-1738d96cb222
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.font_awesome.field_font_awesome_class
+    - taxonomy.vocabulary.font_awesome
+  module:
+    - path
+    - text
+    - workbench_moderation
+id: taxonomy_term.font_awesome.default
+targetEntityType: taxonomy_term
+bundle: font_awesome
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_font_awesome_class:
+    type: string_textfield
+    weight: 31
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

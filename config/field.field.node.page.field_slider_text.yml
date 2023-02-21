@@ -1,0 +1,21 @@
+uuid: 58e40a03-46ee-49a2-82ad-98c133348d26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_text
+    - node.type.page
+  module:
+    - text
+id: node.page.field_slider_text
+field_name: field_slider_text
+entity_type: node
+bundle: page
+label: 'Slider Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

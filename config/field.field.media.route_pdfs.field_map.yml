@@ -1,0 +1,27 @@
+uuid: 39c9b702-cdf8-42ea-9cab-330956248368
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_map
+    - media.type.route_pdfs
+  module:
+    - file
+id: media.route_pdfs.field_map
+field_name: field_map
+entity_type: media
+bundle: route_pdfs
+label: Map
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: routes/maps
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+field_type: file

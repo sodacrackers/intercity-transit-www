@@ -1,0 +1,8 @@
+uuid: 85abfd1d-7fe2-43c6-b9c2-f2aad4184ae4
+langcode: en
+status: true
+dependencies: {  }
+name: Department_Divisions
+vid: department_divisions
+description: ''
+weight: 0

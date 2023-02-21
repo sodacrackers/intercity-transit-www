@@ -1,0 +1,29 @@
+uuid: f6b5f721-9807-4fbf-bab6-074fb8dab94c
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.iframe
+    - filter.format.rich_text
+    - node.type.vanpool
+  module:
+    - filter
+    - media
+    - node
+    - system
+id: vanpool
+label: 'Vanpool User'
+weight: -5
+is_admin: null
+permissions:
+  - 'access content'
+  - 'create vanpool content'
+  - 'delete any vanpool content'
+  - 'delete own vanpool content'
+  - 'edit any vanpool content'
+  - 'edit own vanpool content'
+  - 'revert vanpool revisions'
+  - 'use text format iframe'
+  - 'use text format rich_text'
+  - 'view media'
+  - 'view vanpool revisions'

@@ -1,0 +1,19 @@
+uuid: 42dd4a2d-e922-4d6c-9835-6fe39ef63a16
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_tab_6
+field_name: field_tab_6
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

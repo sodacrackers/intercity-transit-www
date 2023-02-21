@@ -1,0 +1,37 @@
+uuid: 723f0d66-4e44-4f98-80b3-f92b1dd24e8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_pages
+    - node.type.news
+    - node.type.page
+    - node.type.procurement_bid_or_proposal
+    - node.type.rider_alerts
+    - node.type.route
+    - node.type.vanpool
+id: node.page.field_related_pages
+field_name: field_related_pages
+entity_type: node
+bundle: page
+label: 'Related Pages'
+description: 'Displays "related pages" in a 4 column grid on large screens, 3 columns on medium screens, and 1 column on small screens.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      page: page
+      route: route
+      news: news
+      procurement_bid_or_proposal: procurement_bid_or_proposal
+      rider_alerts: rider_alerts
+      vanpool: vanpool
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: page
+field_type: entity_reference

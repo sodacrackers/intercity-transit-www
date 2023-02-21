@@ -1,0 +1,19 @@
+uuid: f242a8f6-5273-4f30-831a-51761cd2b218
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_salaryinterval
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_salaryinterval
+field_name: field_joblisting_salaryinterval
+entity_type: node
+bundle: neogov_joblisting
+label: 'Salary Interval'
+description: 'the FLSA status - Hourly or Annually'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

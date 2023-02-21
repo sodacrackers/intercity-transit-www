@@ -1,0 +1,26 @@
+uuid: d72eab78-275c-4e0f-b52e-d2c3bcd95626
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - help
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: transit_help
+theme: transit
+region: help
+weight: -14
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

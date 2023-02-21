@@ -1,0 +1,33 @@
+uuid: fef68f8f-476f-4162-bf4e-5762ea195b6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.interlocal_agreements
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__interlocal_agreements_block_2
+theme: transit
+region: content
+weight: -20
+provider: null
+plugin: 'views_block:interlocal_agreements-block_2'
+settings:
+  id: 'views_block:interlocal_agreements-block_2'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /node/479

@@ -1,0 +1,35 @@
+uuid: a07dee61-58f1-47b2-90e3-fc8722c14763
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ab9d8e7d-2969-4234-a406-7d5c5729401d'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-lg-8 col-sm-12 col-md-8 col-xl-8 col-xs-12'
+id: govdeliverystayconnected
+theme: transit
+region: content
+weight: -34
+provider: null
+plugin: 'block_content:ab9d8e7d-2969-4234-a406-7d5c5729401d'
+settings:
+  id: 'block_content:ab9d8e7d-2969-4234-a406-7d5c5729401d'
+  label: 'Gov Delivery "Stay Connected!"'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

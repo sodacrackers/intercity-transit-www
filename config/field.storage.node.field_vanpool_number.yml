@@ -1,0 +1,20 @@
+uuid: 50a90d30-f594-4ba3-a573-d7dcbbdf3e6d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_vanpool_number
+field_name: field_vanpool_number
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

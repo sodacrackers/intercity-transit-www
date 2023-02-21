@@ -1,0 +1,158 @@
+uuid: bf6384d5-6bdb-4036-a5bd-41b5f56d5f0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.recruitment.field_recruitment_closing_date
+    - field.field.node.recruitment.field_recruitment_continuous
+    - field.field.node.recruitment.field_recruitment_custom_title
+    - field.field.node.recruitment.field_recruitment_job_title
+    - field.field.node.recruitment.field_recruitment_job_type
+    - field.field.node.recruitment.field_recruitment_link
+    - field.field.node.recruitment.field_recruitment_number_of_open
+    - field.field.node.recruitment.field_recruitment_overview
+    - field.field.node.recruitment.field_recruitment_qualifications
+    - field.field.node.recruitment.field_recruitment_responsibiliti
+    - field.field.node.recruitment.field_recruitment_supplemental
+    - node.type.recruitment
+  module:
+    - datetime
+    - path
+    - text
+    - workbench_moderation
+id: node.recruitment.default
+targetEntityType: node
+bundle: recruitment
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recruitment_closing_date:
+    type: datetime_default
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recruitment_continuous:
+    type: boolean_checkbox
+    weight: 13
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_recruitment_custom_title:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_job_title:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recruitment_job_type:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_recruitment_link:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_number_of_open:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_overview:
+    type: text_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_qualifications:
+    type: text_textarea
+    weight: 15
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_responsibiliti:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_recruitment_supplemental:
+    type: text_textarea
+    weight: 26
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  status: true

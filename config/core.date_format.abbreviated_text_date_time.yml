@@ -1,0 +1,8 @@
+uuid: 359019db-8eab-486f-8a5c-14f573a2abd8
+langcode: en
+status: true
+dependencies: {  }
+id: abbreviated_text_date_time
+label: 'abbreviated text date + time'
+locked: false
+pattern: 'D, M j, Y - g:i a'

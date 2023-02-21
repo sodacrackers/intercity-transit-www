@@ -1,0 +1,29 @@
+uuid: 539f7b2b-a184-47f8-b779-227b59b3429f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_flsa_status
+    - node.type.jobs
+    - taxonomy.vocabulary.flsa_status
+id: node.jobs.field_jobs_flsa_status
+field_name: field_jobs_flsa_status
+entity_type: node
+bundle: jobs
+label: 'FLSA Status'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      flsa_status: flsa_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

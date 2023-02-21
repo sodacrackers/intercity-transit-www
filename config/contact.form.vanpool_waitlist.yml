@@ -1,0 +1,12 @@
+uuid: bffd6946-cd3b-46a1-be6e-511cebbb53c8
+langcode: en
+status: true
+dependencies: {  }
+id: vanpool_waitlist
+label: Vanpool
+recipients:
+  - vans@intercitytransit.com
+reply: 'Thank you for your interest in joining this vanpool.'
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

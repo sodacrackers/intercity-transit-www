@@ -1,0 +1,12 @@
+uuid: 25555c79-6c25-4fee-af30-3ae2c5fb112a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hard_coded_block
+id: block_content.hard_coded_block.default
+targetEntityType: block_content
+bundle: hard_coded_block
+mode: default
+content: {  }
+hidden: {  }

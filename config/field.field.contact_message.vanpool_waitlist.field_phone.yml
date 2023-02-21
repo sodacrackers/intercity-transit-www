@@ -1,0 +1,21 @@
+uuid: b495205d-4a4e-4f87-80c3-d3aebf9245b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_phone
+  module:
+    - telephone
+id: contact_message.vanpool_waitlist.field_phone
+field_name: field_phone
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: Phone
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

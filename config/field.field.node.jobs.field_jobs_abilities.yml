@@ -1,0 +1,21 @@
+uuid: 5e90a8da-f927-4864-b77f-80513ee36075
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_abilities
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_abilities
+field_name: field_jobs_abilities
+entity_type: node
+bundle: jobs
+label: Abilities
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

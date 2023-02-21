@@ -1,0 +1,48 @@
+uuid: 9a36e5b5-58c1-48c6-b041-5caccad8eb39
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.recruitment.field_recruitment_closing_date
+    - field.field.node.recruitment.field_recruitment_continuous
+    - field.field.node.recruitment.field_recruitment_custom_title
+    - field.field.node.recruitment.field_recruitment_job_title
+    - field.field.node.recruitment.field_recruitment_job_type
+    - field.field.node.recruitment.field_recruitment_link
+    - field.field.node.recruitment.field_recruitment_number_of_open
+    - field.field.node.recruitment.field_recruitment_overview
+    - field.field.node.recruitment.field_recruitment_qualifications
+    - field.field.node.recruitment.field_recruitment_responsibiliti
+    - field.field.node.recruitment.field_recruitment_supplemental
+    - node.type.recruitment
+  module:
+    - user
+id: node.recruitment.teaser
+targetEntityType: node
+bundle: recruitment
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+hidden:
+  field_recruitment_closing_date: true
+  field_recruitment_continuous: true
+  field_recruitment_custom_title: true
+  field_recruitment_job_title: true
+  field_recruitment_job_type: true
+  field_recruitment_link: true
+  field_recruitment_number_of_open: true
+  field_recruitment_overview: true
+  field_recruitment_qualifications: true
+  field_recruitment_responsibiliti: true
+  field_recruitment_supplemental: true
+  search_api_excerpt: true

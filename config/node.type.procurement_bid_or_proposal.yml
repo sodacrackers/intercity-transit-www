@@ -1,0 +1,17 @@
+uuid: 718e2656-afa6-4102-9976-6dd603976072
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Procurement Item'
+type: procurement_bid_or_proposal
+description: 'Use this to create a bid or proposal that will show under "/connect/business/procurement/currents-bid-and-proposals"'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

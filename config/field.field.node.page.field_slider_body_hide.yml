@@ -1,0 +1,23 @@
+uuid: 20570c08-97f2-4960-a004-58b75430a53f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_body_hide
+    - node.type.page
+id: node.page.field_slider_body_hide
+field_name: field_slider_body_hide
+entity_type: node
+bundle: page
+label: 'Hide Body and slider text'
+description: 'Optional. This will hide the body and slider text from displaying on the front page slider.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

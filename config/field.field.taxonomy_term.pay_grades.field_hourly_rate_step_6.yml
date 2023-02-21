@@ -1,0 +1,23 @@
+uuid: 3e354b40-f95f-44ca-8aa3-23984d349376
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_6
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_6
+field_name: field_hourly_rate_step_6
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 6'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,12 @@
+uuid: d4ea423e-d0e5-4a04-8f0c-9ad337c55305
+langcode: en
+status: true
+dependencies: {  }
+id: customer_service
+label: 'Contact Us'
+recipients:
+  - tellus@intercitytransit.com
+reply: ''
+weight: 0
+message: ''
+redirect: ''

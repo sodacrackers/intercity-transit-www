@@ -1,0 +1,14 @@
+uuid: b1461822-a387-4764-b595-135857ded282
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.human_resources
+  module:
+    - user
+id: user_add_role_action.human_resources
+label: 'Add the Human Resources role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: human_resources

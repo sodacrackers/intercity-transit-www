@@ -1,0 +1,21 @@
+uuid: 48af7755-cfb7-4dc2-898c-ff930cc5409c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_due_date
+    - node.type.procurement_bid_or_proposal
+  module:
+    - datetime
+id: node.procurement_bid_or_proposal.field_due_date
+field_name: field_due_date
+entity_type: node
+bundle: procurement_bid_or_proposal
+label: 'Due Date'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

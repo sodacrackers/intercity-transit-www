@@ -1,0 +1,20 @@
+uuid: 6cd26d19-ddb3-41b8-8e07-2cbe15d5a4fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - scheduled_updates
+id: node.publish_draft_on
+field_name: publish_draft_on
+entity_type: node
+type: entity_reference
+settings:
+  target_type: scheduled_update
+module: core
+locked: false
+cardinality: -1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

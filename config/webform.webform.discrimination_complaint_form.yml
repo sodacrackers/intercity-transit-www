@@ -1,0 +1,389 @@
+uuid: 05fae495-430c-4305-b5e0-d5b85474572e
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 262
+template: false
+archive: false
+id: discrimination_complaint_form
+title: 'Discrimination Complaint Form'
+description: 'Discrimination Complaint Form'
+category: ''
+elements: |-
+  disc_complaint_form_title_desc:
+    '#type': processed_text
+    '#display_on': both
+    '#text': |
+      <p>Intercity Transit is committed to providing you with safe and reliable transportation services and we want your feedback. Please use this form for discrimination complaints only. You may also call as at 360-786-1881, visit our Customer Service office at the Olympia Transit Center, or contact us by email or U.S. postal mail at the address below.</p>
+      
+    '#format': rich_text
+  disc_complaint_form_section1:
+    '#type': webform_section
+    '#title': 'Discrimination Basis'
+    '#title_display': invisible
+    disc_complaint_form_flex1:
+      '#type': webform_flexbox
+      disc_complaint_form_disc_basis:
+        '#type': webform_radios_other
+        '#title': 'I believe that I have been discriminated against on the basis of:'
+        '#options':
+          'Race / Color National Origin': 'Race / Color National Origin'
+          Disability: Disability
+          'Not applicable': 'Not applicable'
+        '#other__option_label': 'Other ... (Please specify)'
+        '#wrapper_type': form_element
+        '#required': true
+      disc_complaint_form_comply_fail:
+        '#type': radios
+        '#title': 'I believe that Intercity Transit has failed to comply with the following program:'
+        '#options':
+          'Disadvantaged Business Enterprise': 'Disadvantaged Business Enterprise'
+          'Equal Employment Opportunity Act': 'Equal Employment Opportunity Act'
+          'Americans with Disabilities Act': 'Americans with Disabilities Act'
+          'Title VI': 'Title VI'
+          'Not applicable': 'Not applicable'
+        '#other__option_label': 'Other ... (Please specify)'
+        '#required': true
+        '#wrapper_type': form_element
+  disc_complaint_form_section2:
+    '#type': webform_section
+    '#title': 'Contact Information'
+    '#title_tag': h3
+    disc_complaint_form_name:
+      '#type': webform_name
+      '#title': Name
+      '#title__access': false
+      '#title__placeholder': Title
+      '#first__placeholder': 'First Name'
+      '#first__required': true
+      '#middle__access': false
+      '#middle__placeholder': 'Middle Name'
+      '#last__placeholder': 'Last Name'
+      '#last__required': true
+      '#suffix__access': false
+      '#suffix__placeholder': Suffix
+      '#degree__access': false
+      '#required': true
+    disc_complaint_form_address:
+      '#type': webform_address
+      '#title': Address
+      '#address__placeholder': 'Address Line'
+      '#address__required': true
+      '#address_2__access': false
+      '#address_2__placeholder': 'Address Line 2'
+      '#city__placeholder': City
+      '#city__required': true
+      '#state_province__placeholder': State
+      '#state_province__required': true
+      '#postal_code__placeholder': Zip
+      '#postal_code__required': true
+      '#country__access': false
+      '#required': true
+    disc_complaint_form_flex2:
+      '#type': webform_flexbox
+      disc_complaint_form_phone:
+        '#type': tel
+        '#title': 'Phone Number'
+        '#required': true
+      disc_complaint_form_email_address:
+        '#type': email
+        '#title': 'Email Address'
+        '#required': true
+    disc_complaint_form_preferred_contact_method:
+      '#type': radios
+      '#title': 'What is the best way for us to contact you if we have questions?'
+      '#options':
+        Phone: Phone
+        Email: Email
+      '#wrapper_type': form_element
+      '#required': true
+    disc_complaint_form_preferred_contact_time:
+      '#type': textfield
+      '#title': 'If you prefer us to contact you by phone, what is the best time of day for us to call?'
+      '#states':
+        visible:
+          ':input[name="disc_complaint_form_preferred_contact_method"]':
+            value: Phone
+  disc_complaint_form_section3:
+    '#type': webform_section
+    '#title': 'Grievance Basis'
+    disc_complaint_form_grievance_desc:
+      '#type': textarea
+      '#title': 'Explain as clearly as possible what happened and why you believe you were discriminated against. Describe all persons who were involved. Include the name and contact information of the person(s) who discriminated against you (if known) as well as names and contact information of any witnesses.'
+      '#required': true
+    disc_complaint_form_service_type:
+      '#type': webform_radios_other
+      '#title': 'Type of service'
+      '#options':
+        Bus: Bus
+        Dial-A-Lift: Dial-A-Lift
+        Vanpool: Vanpool
+        'Village Vans': 'Village Vans'
+      '#other__option_label': 'Other… (Please Specify)'
+      '#wrapper_type': form_element
+      '#required': true
+    disc_complaint_form_travel_direction:
+      '#type': radios
+      '#title': 'Direction of Travel'
+      '#options':
+        Inbound: Inbound
+        Outbound: Outbound
+      '#states':
+        visible:
+          ':input[name="disc_complaint_form_service_type[radios]"]':
+            value: Bus
+        required:
+          ':input[name="disc_complaint_form_service_type[radios]"]':
+            value: Bus
+      '#wrapper_type': form_element
+    disc_complaint_form_flex3:
+      '#type': webform_flexbox
+      disc_complaint_form_date:
+        '#type': date
+        '#title': 'Date of alleged discrimination'
+        '#date_date_format': ''
+        '#required': true
+      disc_complaint_form_time:
+        '#type': webform_time
+        '#title': 'Time of alleged discrimination'
+        '#time_format': 'g:i A'
+        '#required': true
+      disc_complaint_form_vehicle_info:
+        '#type': textfield
+        '#title': 'Vehicle ID/Route Number'
+        '#required': true
+    disc_complaint_form_location:
+      '#type': textfield
+      '#title': 'Location of Incident'
+      '#required': true
+    disc_complaint_form_driver_desc:
+      '#type': textarea
+      '#title': 'If you don''t know the answers to the information above, please provide a description of the driver so we can identify the employee'
+  disc_complaint_form_section4:
+    '#type': webform_section
+    '#title': 'Section 4'
+    '#description': '<h3>Intercity Transit -&nbsp;P.O. Box 659 Olympia, WA 98507-0659</h3>'
+    '#title_display': invisible
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: /complaints
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: true
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    handler_id: email
+    label: Email
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: tellus@intercitytransit.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: '[webform_submission:values:disc_complaint_form_email_address:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:disc_complaint_form_name:value]'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: '[Discrimation Complaint] - [webform_submission:values:disc_complaint_form_disc_basis]'
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: bootstrap
+      parameters: {  }
+      debug: false
+variants: {  }

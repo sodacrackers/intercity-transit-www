@@ -1,0 +1,27 @@
+uuid: 6ee7285c-f21a-4a71-9b44-e7a5dd9b7ae3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_zip_file
+    - media.type.zip_file
+  module:
+    - file
+id: media.zip_file.field_zip_file
+field_name: field_zip_file
+entity_type: media
+bundle: zip_file
+label: 'Google Transit zip file'
+description: 'This is for uploading the google transit zip file required by GTFS.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: GoogleData
+  file_extensions: zip
+  max_filesize: '10 MB'
+  description_field: false
+field_type: file

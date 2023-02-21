@@ -1,0 +1,19 @@
+uuid: 68094dc1-eb4a-4bac-be0f-48f76d7f25f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.pace_car_pledge
+    - field.storage.contact_message.field_address
+id: contact_message.pace_car_pledge.field_address
+field_name: field_address
+entity_type: contact_message
+bundle: pace_car_pledge
+label: Address
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

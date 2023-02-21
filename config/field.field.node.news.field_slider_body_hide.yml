@@ -1,0 +1,23 @@
+uuid: 2190c69e-f2ec-4136-9a81-88bba83ea161
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_body_hide
+    - node.type.news
+id: node.news.field_slider_body_hide
+field_name: field_slider_body_hide
+entity_type: node
+bundle: news
+label: 'Hide Body and slider text'
+description: 'Optional. This will hide the body and slider text from displaying on the front page slider.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

@@ -1,0 +1,14 @@
+uuid: ec5b4e1e-f65f-4213-8235-5b617b6b2531
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.it_staff_baseline
+  module:
+    - user
+id: user_remove_role_action.it_staff_baseline
+label: 'Remove the IT Staff Baseline role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: it_staff_baseline

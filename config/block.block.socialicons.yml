@@ -1,0 +1,29 @@
+uuid: 34d35908-6401-4aa7-8a5b-bb3a758aa4d0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a916aa14-c410-45c6-9089-e1bb91d74d3d'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-xs-12 col-sm-6 clearfix'
+id: socialicons
+theme: transit
+region: footer_top
+weight: -31
+provider: null
+plugin: 'block_content:a916aa14-c410-45c6-9089-e1bb91d74d3d'
+settings:
+  id: 'block_content:a916aa14-c410-45c6-9089-e1bb91d74d3d'
+  label: 'social icons'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 165b1040-3e19-4ee7-9731-a8b73589c90f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.vanpool
+id: node.vanpool.promote
+field_name: promote
+entity_type: node
+bundle: vanpool
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,25 @@
+uuid: f191cf48-af39-4915-bd7c-5482664cda1a
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: transit_local_actions
+theme: transit
+region: content
+weight: -48
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

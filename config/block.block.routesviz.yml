@@ -1,0 +1,43 @@
+uuid: 90a31203-4b32-4329-83ce-76cf868a80cd
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9e369a94-eded-4bf0-8571-74414c351221'
+  module:
+    - block_class
+    - block_content
+    - system
+    - user
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: routesviz
+theme: transit
+region: content
+weight: -24
+provider: null
+plugin: 'block_content:9e369a94-eded-4bf0-8571-74414c351221'
+settings:
+  id: 'block_content:9e369a94-eded-4bf0-8571-74414c351221'
+  label: 'routes viz'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /all-content
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator

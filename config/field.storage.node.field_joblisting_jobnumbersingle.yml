@@ -1,0 +1,20 @@
+uuid: 289198ef-3ca1-4e33-a9b4-78c697d228c3
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_joblisting_jobnumbersingle
+field_name: field_joblisting_jobnumbersingle
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

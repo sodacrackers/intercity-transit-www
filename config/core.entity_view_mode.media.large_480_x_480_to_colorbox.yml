@@ -1,0 +1,10 @@
+uuid: f9e9fb73-01a8-418c-a789-554d71334408
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.large_480_x_480_to_colorbox
+label: 'Large (480 x 480) to colorbox'
+targetEntityType: media
+cache: true

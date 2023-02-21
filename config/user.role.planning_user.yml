@@ -1,0 +1,26 @@
+uuid: deb5e9f8-047b-46c8-8bf4-12c60dccf655
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rich_text
+    - node.type.rider_alerts
+    - node.type.route
+  module:
+    - filter
+    - node
+id: planning_user
+label: 'Planning User'
+weight: -2
+is_admin: null
+permissions:
+  - 'create rider_alerts content'
+  - 'edit any rider_alerts content'
+  - 'edit any route content'
+  - 'edit own rider_alerts content'
+  - 'edit own route content'
+  - 'revert rider_alerts revisions'
+  - 'revert route revisions'
+  - 'use text format rich_text'
+  - 'view rider_alerts revisions'
+  - 'view route revisions'

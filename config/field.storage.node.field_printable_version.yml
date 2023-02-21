@@ -1,0 +1,23 @@
+uuid: b7fbd1e6-782d-486f-ad36-9cb44969b39c
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+id: node.field_printable_version
+field_name: field_printable_version
+entity_type: node
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

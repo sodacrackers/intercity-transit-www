@@ -1,0 +1,23 @@
+uuid: 3594fcab-6c98-438d-832e-c8354909a7b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_route_number
+    - taxonomy.vocabulary.route_numbers
+id: taxonomy_term.route_numbers.field_route_number
+field_name: field_route_number
+entity_type: taxonomy_term
+bundle: route_numbers
+label: 'Route Number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

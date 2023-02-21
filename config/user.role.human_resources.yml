@@ -1,0 +1,64 @@
+uuid: 6a3b59b3-ab1c-485a-b19d-0060292984d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.text_and_bullets
+    - node.type.jobs
+    - node.type.recruitment
+    - taxonomy.vocabulary.department_divisions
+    - taxonomy.vocabulary.flsa_status
+    - taxonomy.vocabulary.job_duty_frequency
+    - taxonomy.vocabulary.job_types
+    - taxonomy.vocabulary.pay_grades
+  module:
+    - field_ui
+    - filter
+    - node
+    - paragraphs_type_permissions
+    - system
+    - taxonomy
+    - workbench_moderation
+id: human_resources
+label: 'Human Resources'
+weight: 1
+is_admin: null
+permissions:
+  - 'administer taxonomy_term display'
+  - 'create jobs content'
+  - 'create paragraph content job_duties'
+  - 'create recruitment content'
+  - 'create terms in department_divisions'
+  - 'create terms in flsa_status'
+  - 'create terms in job_duty_frequency'
+  - 'create terms in job_types'
+  - 'delete any jobs content'
+  - 'delete any recruitment content'
+  - 'delete jobs revisions'
+  - 'delete own jobs content'
+  - 'delete own recruitment content'
+  - 'delete paragraph content job_duties'
+  - 'delete recruitment revisions'
+  - 'delete terms in department_divisions'
+  - 'delete terms in flsa_status'
+  - 'delete terms in job_duty_frequency'
+  - 'delete terms in job_types'
+  - 'delete terms in pay_grades'
+  - 'edit any jobs content'
+  - 'edit any recruitment content'
+  - 'edit own jobs content'
+  - 'edit own recruitment content'
+  - 'edit terms in department_divisions'
+  - 'edit terms in flsa_status'
+  - 'edit terms in job_duty_frequency'
+  - 'edit terms in job_types'
+  - 'edit terms in pay_grades'
+  - 'revert jobs revisions'
+  - 'revert recruitment revisions'
+  - 'update paragraph content job_duties'
+  - 'use draft_draft transition'
+  - 'use draft_needs_review transition'
+  - 'use text format text_and_bullets'
+  - 'view jobs revisions'
+  - 'view recruitment revisions'
+  - 'view the administration theme'

@@ -1,0 +1,8 @@
+uuid: 1cde9bbd-f185-47d4-9484-8bd3448808c5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Accordian Block'
+vid: accordian_block
+description: ''
+weight: 0

@@ -1,0 +1,23 @@
+uuid: a7110d7b-9af3-424b-99f7-bd814d2daf7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.banner_narrow
+  theme:
+    - bootstrap
+id: responsive_narrow_banner
+label: 'Responsive Page Banner'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: banner_narrow
+    breakpoint_id: bootstrap.screen-xs-max
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: banner_narrow
+    breakpoint_id: bootstrap.screen-lg-min
+    multiplier: 1x
+breakpoint_group: bootstrap
+fallback_image_style: '_empty image_'

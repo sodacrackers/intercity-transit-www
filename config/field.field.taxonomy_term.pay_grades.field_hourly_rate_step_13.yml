@@ -1,0 +1,23 @@
+uuid: 313c6475-dc2a-4b45-ab1d-c0d0249d4965
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hourly_rate_step_13
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_hourly_rate_step_13
+field_name: field_hourly_rate_step_13
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Hourly Rate Step 13'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,19 @@
+uuid: 4b99279b-16bf-4b81-a391-d3765c685d6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_division
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_division
+field_name: field_joblisting_division
+entity_type: node
+bundle: neogov_joblisting
+label: Division
+description: 'Marketing and Communications, Information Systems, etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

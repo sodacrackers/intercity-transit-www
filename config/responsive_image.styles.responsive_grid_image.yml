@@ -1,0 +1,44 @@
+uuid: 2459c335-c57e-4d9d-832a-0199b03e5425
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.large
+    - image.style.tile_300_300_
+  theme:
+    - bootstrap
+id: responsive_grid_image
+label: 'responsive grid image'
+image_style_mappings:
+  -
+    image_mapping_type: image_style
+    image_mapping: tile_300_300_
+    breakpoint_id: bootstrap.screen-lg-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: large
+    breakpoint_id: bootstrap.screen-lg-min
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: tile_300_300_
+    breakpoint_id: bootstrap.screen-md-max
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: tile_300_300_
+    breakpoint_id: bootstrap.screen-md-max
+    multiplier: 2x
+  -
+    image_mapping_type: image_style
+    image_mapping: tile_300_300_
+    breakpoint_id: bootstrap.screen-md-min
+    multiplier: 1x
+  -
+    image_mapping_type: image_style
+    image_mapping: tile_300_300_
+    breakpoint_id: bootstrap.screen-xs-max
+    multiplier: 1x
+breakpoint_group: bootstrap
+fallback_image_style: tile_300_300_

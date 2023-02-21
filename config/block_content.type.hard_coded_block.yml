@@ -1,0 +1,8 @@
+uuid: 61005901-30ee-410c-80ea-31c899b6084c
+langcode: en
+status: true
+dependencies: {  }
+id: hard_coded_block
+label: 'Hard Coded Block'
+revision: 1
+description: 'This block type is not editable through the web and requires directly editing the block--*.html.twig files.'

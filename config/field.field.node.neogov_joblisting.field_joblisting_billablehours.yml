@@ -1,0 +1,25 @@
+uuid: 5df26207-f971-4915-a329-ff47c5bc4e80
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_billablehours
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_billablehours
+field_name: field_joblisting_billablehours
+entity_type: node
+bundle: neogov_joblisting
+label: 'Billable Hours'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 2080
+default_value_callback: ''
+settings:
+  min: 0
+  max: 5000
+  prefix: ''
+  suffix: ''
+field_type: integer

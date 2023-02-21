@@ -1,0 +1,27 @@
+uuid: 8fee4c82-6453-49d2-afbd-6a8293b97254
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: published
+name: 'Tabbed basic page'
+type: tabbed_basic_page
+description: 'Use <em>tabbed basic pages</em> for static content with multiple tables or views needed.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

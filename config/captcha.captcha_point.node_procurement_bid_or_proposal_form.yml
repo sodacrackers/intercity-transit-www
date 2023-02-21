@@ -1,0 +1,7 @@
+uuid: d43c2a49-e922-449b-8668-bfb0c0ff2c56
+langcode: en
+status: false
+dependencies: {  }
+formId: node_procurement_bid_or_proposal_form
+captchaType: default
+label: null

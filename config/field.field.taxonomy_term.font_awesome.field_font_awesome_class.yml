@@ -1,0 +1,21 @@
+uuid: 1af54695-352c-4d4a-86a5-9739c34255ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_font_awesome_class
+    - taxonomy.vocabulary.font_awesome
+id: taxonomy_term.font_awesome.field_font_awesome_class
+field_name: field_font_awesome_class
+entity_type: taxonomy_term
+bundle: font_awesome
+label: 'font awesome class'
+description: 'enter the font awesome class here, such as <b>fa fa-bus</b>'
+required: true
+translatable: false
+default_value:
+  -
+    value: fa
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: d32be26f-29ca-4c8b-8fd5-219b3065261d
+langcode: en
+status: false
+dependencies:
+  module:
+    - node
+id: bus_routes
+label: 'Bus Routes'
+type: 'canonical_entities:node'
+pattern: '/bus/routes/[node:title]'
+selection_criteria:
+  3b3e6238-c7c1-4eb4-ac4c-faed4044422f:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 3b3e6238-c7c1-4eb4-ac4c-faed4044422f
+    context_mapping:
+      node: node
+    bundles:
+      route: route
+selection_logic: and
+weight: -8
+relationships: {  }

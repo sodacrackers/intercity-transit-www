@@ -1,0 +1,43 @@
+uuid: 6a7772fe-bf84-444d-b353-dc617f6ff0b7
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.directory_item.body
+    - field.field.node.directory_item.field_email
+    - field.field.node.directory_item.field_first_name
+    - field.field.node.directory_item.field_last_name
+    - field.field.node.directory_item.field_picture
+    - field.field.node.directory_item.field_position
+    - field.field.node.directory_item.field_telephone
+    - node.type.directory_item
+  module:
+    - text
+    - user
+id: node.directory_item.teaser
+targetEntityType: node
+bundle: directory_item
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_email: true
+  field_first_name: true
+  field_last_name: true
+  field_picture: true
+  field_position: true
+  field_telephone: true
+  search_api_excerpt: true

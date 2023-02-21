@@ -1,0 +1,23 @@
+uuid: d841a0eb-10f7-4a30-bd9d-c38def27a2a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_3
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_3
+field_name: field_annual_rate_step_3
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 3'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

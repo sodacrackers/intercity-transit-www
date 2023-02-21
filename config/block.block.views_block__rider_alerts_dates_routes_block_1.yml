@@ -1,0 +1,37 @@
+uuid: f41a837c-2521-4f2b-8219-2b725483dfde
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.rider_alerts_dates_routes
+  module:
+    - block_class
+    - node
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__rider_alerts_dates_routes_block_1
+theme: transit
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:rider_alerts_dates_routes-block_1'
+settings:
+  id: 'views_block:rider_alerts_dates_routes-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      rider_alerts: rider_alerts

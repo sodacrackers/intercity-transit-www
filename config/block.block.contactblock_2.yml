@@ -1,0 +1,34 @@
+uuid: e681a761-826a-4370-a05d-927bc50fb9fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+  module:
+    - block_class
+    - contact_block
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: contactblock_2
+theme: transit
+region: content_right
+weight: -21
+provider: null
+plugin: contact_block
+settings:
+  id: contact_block
+  label: 'Contact Us for More Information'
+  label_display: visible
+  provider: contact_block
+  contact_form: vanpool_waitlist
+  form_display: default
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '/vanpool/current/*'

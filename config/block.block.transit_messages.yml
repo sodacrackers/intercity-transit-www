@@ -1,0 +1,31 @@
+uuid: 00d958e7-c720-403e-836c-1a8e10b4fccf
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: transit_messages
+theme: transit
+region: highlighted
+weight: -29
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: /saml/drupal_login/portal_intercitytransit_com

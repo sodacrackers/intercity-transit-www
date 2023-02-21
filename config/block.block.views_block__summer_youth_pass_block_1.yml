@@ -1,0 +1,34 @@
+uuid: d5a481f6-4d85-4c3a-bc18-32fe5b89763d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.summer_youth_pass
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__summer_youth_pass_block_1
+theme: transit
+region: highlighted
+weight: -27
+provider: null
+plugin: 'views_block:summer_youth_pass-block_1'
+settings:
+  id: 'views_block:summer_youth_pass-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /fares

@@ -1,0 +1,63 @@
+uuid: 493f4c7c-1237-4d11-a3f2-93dfeb898b92
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.neogov_joblisting.feeds_item
+    - field.field.node.neogov_joblisting.field_joblisting_advertisefromd
+    - field.field.node.neogov_joblisting.field_joblisting_advertisetod
+    - field.field.node.neogov_joblisting.field_joblisting_billablehours
+    - field.field.node.neogov_joblisting.field_joblisting_classspec
+    - field.field.node.neogov_joblisting.field_joblisting_continuous
+    - field.field.node.neogov_joblisting.field_joblisting_department
+    - field.field.node.neogov_joblisting.field_joblisting_description
+    - field.field.node.neogov_joblisting.field_joblisting_division
+    - field.field.node.neogov_joblisting.field_joblisting_examplesofdutie
+    - field.field.node.neogov_joblisting.field_joblisting_examtype
+    - field.field.node.neogov_joblisting.field_joblisting_jobid
+    - field.field.node.neogov_joblisting.field_joblisting_jobnumbersingle
+    - field.field.node.neogov_joblisting.field_joblisting_jobtype
+    - field.field.node.neogov_joblisting.field_joblisting_link
+    - field.field.node.neogov_joblisting.field_joblisting_maximumsalary
+    - field.field.node.neogov_joblisting.field_joblisting_minimumsalary
+    - field.field.node.neogov_joblisting.field_joblisting_pubdate
+    - field.field.node.neogov_joblisting.field_joblisting_qualifications
+    - field.field.node.neogov_joblisting.field_joblisting_salaryinterval
+    - field.field.node.neogov_joblisting.field_joblisting_supplementalinf
+    - node.type.neogov_joblisting
+  module:
+    - user
+id: node.neogov_joblisting.teaser
+targetEntityType: node
+bundle: neogov_joblisting
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_joblisting_advertisefromd: true
+  field_joblisting_advertisetod: true
+  field_joblisting_billablehours: true
+  field_joblisting_classspec: true
+  field_joblisting_continuous: true
+  field_joblisting_department: true
+  field_joblisting_description: true
+  field_joblisting_division: true
+  field_joblisting_examplesofdutie: true
+  field_joblisting_examtype: true
+  field_joblisting_jobid: true
+  field_joblisting_jobnumbersingle: true
+  field_joblisting_jobtype: true
+  field_joblisting_link: true
+  field_joblisting_maximumsalary: true
+  field_joblisting_minimumsalary: true
+  field_joblisting_pubdate: true
+  field_joblisting_qualifications: true
+  field_joblisting_salaryinterval: true
+  field_joblisting_supplementalinf: true
+  search_api_excerpt: true

@@ -1,0 +1,22 @@
+uuid: 11feffe3-a5d6-4ceb-9040-b4542fbc2a9c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: interlocal_agreements
+label: 'Interlocal Agreements'
+type: 'canonical_entities:node'
+pattern: '/agency/interlocal-agreements/[node:title]'
+selection_criteria:
+  05f69eb2-331e-43ed-b9a6-94ab2045aff5:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 05f69eb2-331e-43ed-b9a6-94ab2045aff5
+    context_mapping:
+      node: node
+    bundles:
+      interagency_agreement: interagency_agreement
+selection_logic: and
+weight: -5
+relationships: {  }

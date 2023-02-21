@@ -1,0 +1,31 @@
+uuid: 9f7f700e-2766-4bd5-a927-13bff97f7ad1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: XgoDCqYuyF6STQBfeSp4lIIxuhjy9QCITOfzIvvF5pQ
+id: multiple_node_embargo
+label: 'Publish multiple nodes at a certain time'
+update_entity_type: node
+update_types_supported:
+  - independent
+field_map:
+  field_moderation_state_1: moderation_state
+update_runner:
+  id: default_independent
+  invalid_update_behavior: DELETE
+  after_run: DELETE
+  create_revisions: BUNDLE_DEFAULT
+  update_user: USER_UPDATE_OWNER
+  bundles:
+    landing_page: landing_page
+    page: page
+    route: route
+    blog_page: '0'
+    calendar_event: '0'
+    interagency_agreement: '0'
+    news: '0'
+    procurement_bid_or_proposal: '0'
+    rider_alerts: '0'
+    tabbed_basic_page: '0'
+    vanpool: '0'

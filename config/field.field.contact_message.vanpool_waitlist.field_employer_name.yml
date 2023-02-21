@@ -1,0 +1,19 @@
+uuid: 76a3507e-5a76-498c-aa48-5be01caa9711
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_employer_name
+id: contact_message.vanpool_waitlist.field_employer_name
+field_name: field_employer_name
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: 'Employer Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

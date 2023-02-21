@@ -1,0 +1,10 @@
+uuid: 9e1068a1-1b64-4023-8139-62fd864c3941
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.uploaded_
+label: 'Uploaded Document'
+targetEntityType: media
+cache: true

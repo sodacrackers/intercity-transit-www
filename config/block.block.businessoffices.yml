@@ -1,0 +1,29 @@
+uuid: 015dc2ff-d064-4bd0-8913-6b90f35107dc
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:6ee630fc-9194-400e-b2f2-92e169fd8685'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: businessoffices
+theme: transit
+region: none
+weight: -37
+provider: null
+plugin: 'block_content:6ee630fc-9194-400e-b2f2-92e169fd8685'
+settings:
+  id: 'block_content:6ee630fc-9194-400e-b2f2-92e169fd8685'
+  label: 'Business Offices'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

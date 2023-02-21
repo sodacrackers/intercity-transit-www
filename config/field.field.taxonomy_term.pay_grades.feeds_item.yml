@@ -1,0 +1,23 @@
+uuid: e4abef99-0f66-48de-abdf-a5d86cc8a5d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.feeds_item
+    - taxonomy.vocabulary.pay_grades
+  module:
+    - feeds
+id: taxonomy_term.pay_grades.feeds_item
+field_name: feeds_item
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

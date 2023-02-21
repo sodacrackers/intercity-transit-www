@@ -1,0 +1,64 @@
+uuid: 5fe7d6f1-da1a-469a-83cd-c042f18ee678
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.zip_file.field_media_generic
+    - field.field.media.zip_file.field_zip_file
+    - image.style.thumbnail
+    - media.type.zip_file
+  module:
+    - file
+    - image
+    - user
+id: media.zip_file.default
+targetEntityType: media
+bundle: zip_file
+mode: default
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_zip_file:
+    type: file_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_media_generic: true
+  search_api_excerpt: true

@@ -1,0 +1,27 @@
+uuid: 115de453-a0ae-4f35-839b-a3761fce1496
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.calendar_event
+  module:
+    - file
+id: node.calendar_event.field_file
+field_name: field_file
+entity_type: node
+bundle: calendar_event
+label: File
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docs ppt pptx'
+  max_filesize: ''
+  description_field: true
+field_type: file

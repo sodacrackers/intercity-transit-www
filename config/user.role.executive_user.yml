@@ -1,0 +1,41 @@
+uuid: 954cb547-ef3f-4921-9db7-2fb2a3105254
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.rich_text
+    - node.type.calendar_event
+    - node.type.interagency_agreement
+    - node.type.news
+  module:
+    - filter
+    - node
+    - workbench_moderation
+id: executive_user
+label: 'Executive User'
+weight: -3
+is_admin: null
+permissions:
+  - 'create calendar_event content'
+  - 'create interagency_agreement content'
+  - 'create news content'
+  - 'delete any interagency_agreement content'
+  - 'delete interagency_agreement revisions'
+  - 'delete own interagency_agreement content'
+  - 'edit any calendar_event content'
+  - 'edit any interagency_agreement content'
+  - 'edit any news content'
+  - 'edit own calendar_event content'
+  - 'edit own interagency_agreement content'
+  - 'edit own news content'
+  - 'revert calendar_event revisions'
+  - 'revert interagency_agreement revisions'
+  - 'revert news revisions'
+  - 'use draft_published transition'
+  - 'use needs_review_needs_review transition'
+  - 'use needs_review_published transition'
+  - 'use published_published transition'
+  - 'use text format rich_text'
+  - 'view calendar_event revisions'
+  - 'view interagency_agreement revisions'
+  - 'view news revisions'

@@ -1,0 +1,21 @@
+uuid: 05bcf63f-c3f3-4ce1-aa6f-4f5ac2c76398
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_qualifications
+    - node.type.recruitment
+  module:
+    - text
+id: node.recruitment.field_recruitment_qualifications
+field_name: field_recruitment_qualifications
+entity_type: node
+bundle: recruitment
+label: 'Typical Qualifications'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

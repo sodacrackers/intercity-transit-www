@@ -1,0 +1,22 @@
+uuid: 3bf65ba5-8931-4c06-9e57-59e35de33abf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.promote
+field_name: promote
+entity_type: node
+bundle: neogov_joblisting
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

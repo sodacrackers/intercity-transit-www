@@ -1,0 +1,39 @@
+uuid: fad10856-4709-4ec8-bef8-00fdb3c57f14
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.travel_training_accomodation.body
+    - field.field.node.travel_training_accomodation.field_end_date
+    - field.field.node.travel_training_accomodation.field_route
+    - field.field.node.travel_training_accomodation.field_schedule_lookup
+    - field.field.node.travel_training_accomodation.field_start_date
+    - node.type.travel_training_accomodation
+  module:
+    - text
+    - user
+id: node.travel_training_accomodation.teaser
+targetEntityType: node
+bundle: travel_training_accomodation
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_end_date: true
+  field_route: true
+  field_schedule_lookup: true
+  field_start_date: true
+  search_api_excerpt: true

@@ -1,0 +1,70 @@
+uuid: b3bf8d3e-400f-4ad2-9400-557c56f88804
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.pace_car_pledge
+    - field.field.contact_message.pace_car_pledge.field_address
+    - field.field.contact_message.pace_car_pledge.field_city
+    - field.field.contact_message.pace_car_pledge.field_name
+    - field.field.contact_message.pace_car_pledge.field_phone
+    - field.field.contact_message.pace_car_pledge.field_state
+    - field.field.contact_message.pace_car_pledge.field_zip
+  module:
+    - options
+    - telephone
+id: contact_message.pace_car_pledge.default
+targetEntityType: contact_message
+bundle: pace_car_pledge
+mode: default
+content:
+  field_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_phone:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_state:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_zip:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  message: true

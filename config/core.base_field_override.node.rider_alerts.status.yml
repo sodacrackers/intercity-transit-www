@@ -1,0 +1,22 @@
+uuid: 6e335323-93b4-4058-937a-e49964ab1879
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rider_alerts
+id: node.rider_alerts.status
+field_name: status
+entity_type: node
+bundle: rider_alerts
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

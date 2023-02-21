@@ -1,0 +1,29 @@
+uuid: 033b9e04-f7de-4c28-bce2-b646fb6f93e9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:e4e106a4-2838-4591-9b27-9f4e75aa71a9'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: googletranslate
+theme: transit
+region: footer_top
+weight: -29
+provider: null
+plugin: 'block_content:e4e106a4-2838-4591-9b27-9f4e75aa71a9'
+settings:
+  id: 'block_content:e4e106a4-2838-4591-9b27-9f4e75aa71a9'
+  label: 'Google Translate'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

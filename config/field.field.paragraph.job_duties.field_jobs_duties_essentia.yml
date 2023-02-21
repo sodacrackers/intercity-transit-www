@@ -1,0 +1,21 @@
+uuid: f3d807cc-d2cc-431f-a305-aab3b4036699
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_jobs_duties_essentia
+    - paragraphs.paragraphs_type.job_duties
+  module:
+    - text
+id: paragraph.job_duties.field_jobs_duties_essentia
+field_name: field_jobs_duties_essentia
+entity_type: paragraph
+bundle: job_duties
+label: 'Job Duty Description'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,23 @@
+uuid: 65df9e62-6061-4069-8db7-0fed5cbf5902
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_jobs_duties_frequency_taxo
+    - paragraphs.paragraphs_type.job_duties
+id: paragraph.job_duties.field_jobs_duties_frequency_taxo
+field_name: field_jobs_duties_frequency_taxo
+entity_type: paragraph
+bundle: job_duties
+label: Percentage
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: '%'
+field_type: integer

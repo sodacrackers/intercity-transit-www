@@ -1,0 +1,250 @@
+uuid: 04c4ba25-b636-4e7c-835b-a4395418316a
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.iframe
+    - filter.format.rich_text
+    - filter.format.text_and_bullets
+    - node.type.blog_page
+    - node.type.calendar_event
+    - node.type.interagency_agreement
+    - node.type.jobs
+    - node.type.news
+    - node.type.page
+    - node.type.procurement_bid_or_proposal
+    - node.type.recruitment
+    - node.type.rider_alerts
+    - node.type.route
+    - node.type.tabbed_basic_page
+    - node.type.vanpool
+    - taxonomy.vocabulary.department_divisions
+    - taxonomy.vocabulary.flsa_status
+    - taxonomy.vocabulary.font_awesome
+    - taxonomy.vocabulary.job_duty_frequency
+    - taxonomy.vocabulary.job_types
+    - taxonomy.vocabulary.pay_grades
+    - taxonomy.vocabulary.site_sections
+  module:
+    - block
+    - field_ui
+    - filter
+    - google_analytics
+    - image
+    - media
+    - node
+    - paragraphs_type_permissions
+    - path
+    - redirect
+    - responsive_image
+    - scheduled_updates
+    - search
+    - shortcut
+    - system
+    - taxonomy
+    - update
+    - webform
+    - workbench_moderation
+id: marketing
+label: 'Marketing User'
+weight: -6
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access site reports'
+  - 'access user profiles'
+  - 'access webform overview'
+  - 'administer blocks'
+  - 'administer google analytics'
+  - 'administer image styles'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer redirect settings'
+  - 'administer redirects'
+  - 'administer responsive images'
+  - 'administer scheduled update types'
+  - 'administer shortcuts'
+  - 'administer site configuration'
+  - 'administer taxonomy'
+  - 'administer taxonomy_term display'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'administer webform'
+  - 'administer webform submission'
+  - 'create blog_page content'
+  - 'create bus_route_scheduler scheduled updates'
+  - 'create calendar_event content'
+  - 'create interagency_agreement content'
+  - 'create jobs content'
+  - 'create multiple_node_embargo scheduled updates'
+  - 'create news content'
+  - 'create node__moderation_state scheduled updates'
+  - 'create node_embargo scheduled updates'
+  - 'create page content'
+  - 'create paragraph content job_duties'
+  - 'create procurement_bid_or_proposal content'
+  - 'create recruitment content'
+  - 'create rider_alerts content'
+  - 'create route content'
+  - 'create tabbed_basic_page content'
+  - 'create terms in department_divisions'
+  - 'create terms in flsa_status'
+  - 'create terms in job_duty_frequency'
+  - 'create terms in job_types'
+  - 'create url aliases'
+  - 'create vanpool content'
+  - 'create webform'
+  - 'customize shortcut links'
+  - 'delete any blog_page content'
+  - 'delete any bus_route_scheduler scheduled updates'
+  - 'delete any calendar_event content'
+  - 'delete any interagency_agreement content'
+  - 'delete any jobs content'
+  - 'delete any media'
+  - 'delete any multiple_node_embargo scheduled updates'
+  - 'delete any news content'
+  - 'delete any node__moderation_state scheduled updates'
+  - 'delete any node_embargo scheduled updates'
+  - 'delete any page content'
+  - 'delete any procurement_bid_or_proposal content'
+  - 'delete any recruitment content'
+  - 'delete any rider_alerts content'
+  - 'delete any route content'
+  - 'delete any tabbed_basic_page content'
+  - 'delete any vanpool content'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete blog_page revisions'
+  - 'delete calendar_event revisions'
+  - 'delete interagency_agreement revisions'
+  - 'delete jobs revisions'
+  - 'delete media'
+  - 'delete news revisions'
+  - 'delete own blog_page content'
+  - 'delete own bus_route_scheduler scheduled updates'
+  - 'delete own calendar_event content'
+  - 'delete own interagency_agreement content'
+  - 'delete own jobs content'
+  - 'delete own multiple_node_embargo scheduled updates'
+  - 'delete own news content'
+  - 'delete own node__moderation_state scheduled updates'
+  - 'delete own node_embargo scheduled updates'
+  - 'delete own page content'
+  - 'delete own procurement_bid_or_proposal content'
+  - 'delete own recruitment content'
+  - 'delete own rider_alerts content'
+  - 'delete own route content'
+  - 'delete own tabbed_basic_page content'
+  - 'delete own vanpool content'
+  - 'delete own webform'
+  - 'delete own webform submission'
+  - 'delete page revisions'
+  - 'delete paragraph content job_duties'
+  - 'delete procurement_bid_or_proposal revisions'
+  - 'delete recruitment revisions'
+  - 'delete rider_alerts revisions'
+  - 'delete route revisions'
+  - 'delete tabbed_basic_page revisions'
+  - 'delete terms in department_divisions'
+  - 'delete terms in flsa_status'
+  - 'delete terms in font_awesome'
+  - 'delete terms in job_duty_frequency'
+  - 'delete terms in job_types'
+  - 'delete terms in site_sections'
+  - 'delete vanpool revisions'
+  - 'edit any blog_page content'
+  - 'edit any bus_route_scheduler scheduled updates'
+  - 'edit any calendar_event content'
+  - 'edit any interagency_agreement content'
+  - 'edit any jobs content'
+  - 'edit any multiple_node_embargo scheduled updates'
+  - 'edit any news content'
+  - 'edit any node__moderation_state scheduled updates'
+  - 'edit any node_embargo scheduled updates'
+  - 'edit any page content'
+  - 'edit any procurement_bid_or_proposal content'
+  - 'edit any recruitment content'
+  - 'edit any rider_alerts content'
+  - 'edit any route content'
+  - 'edit any tabbed_basic_page content'
+  - 'edit any vanpool content'
+  - 'edit any webform'
+  - 'edit any webform submission'
+  - 'edit own blog_page content'
+  - 'edit own bus_route_scheduler scheduled updates'
+  - 'edit own calendar_event content'
+  - 'edit own interagency_agreement content'
+  - 'edit own jobs content'
+  - 'edit own multiple_node_embargo scheduled updates'
+  - 'edit own news content'
+  - 'edit own node__moderation_state scheduled updates'
+  - 'edit own node_embargo scheduled updates'
+  - 'edit own procurement_bid_or_proposal content'
+  - 'edit own recruitment content'
+  - 'edit own rider_alerts content'
+  - 'edit own route content'
+  - 'edit own tabbed_basic_page content'
+  - 'edit own vanpool content'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit terms in department_divisions'
+  - 'edit terms in flsa_status'
+  - 'edit terms in font_awesome'
+  - 'edit terms in job_duty_frequency'
+  - 'edit terms in job_types'
+  - 'edit terms in pay_grades'
+  - 'edit terms in site_sections'
+  - 'edit webform assets'
+  - 'edit webform twig'
+  - 'revert all revisions'
+  - 'revert blog_page revisions'
+  - 'revert calendar_event revisions'
+  - 'revert interagency_agreement revisions'
+  - 'revert jobs revisions'
+  - 'revert news revisions'
+  - 'revert page revisions'
+  - 'revert procurement_bid_or_proposal revisions'
+  - 'revert recruitment revisions'
+  - 'revert rider_alerts revisions'
+  - 'revert route revisions'
+  - 'revert tabbed_basic_page revisions'
+  - 'revert vanpool revisions'
+  - 'search content'
+  - 'switch shortcut sets'
+  - 'update any media'
+  - 'update media'
+  - 'update paragraph content job_duties'
+  - 'use advanced search'
+  - 'use archived_published transition'
+  - 'use draft_needs_review transition'
+  - 'use draft_published transition'
+  - 'use needs_review_draft transition'
+  - 'use needs_review_published transition'
+  - 'use published_draft transition'
+  - 'use published_published transition'
+  - 'use text format iframe'
+  - 'use text format rich_text'
+  - 'use text format text_and_bullets'
+  - 'view any unpublished content'
+  - 'view any webform submission'
+  - 'view blog_page revisions'
+  - 'view calendar_event revisions'
+  - 'view interagency_agreement revisions'
+  - 'view jobs revisions'
+  - 'view latest version'
+  - 'view media'
+  - 'view moderation states'
+  - 'view news revisions'
+  - 'view own webform submission'
+  - 'view page revisions'
+  - 'view procurement_bid_or_proposal revisions'
+  - 'view recruitment revisions'
+  - 'view rider_alerts revisions'
+  - 'view route revisions'
+  - 'view scheduled update entities'
+  - 'view tabbed_basic_page revisions'
+  - 'view the administration theme'
+  - 'view update notifications'
+  - 'view vanpool revisions'

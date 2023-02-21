@@ -1,0 +1,30 @@
+uuid: 049e001b-b094-444f-a276-3e1c718f32c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.font_awesome.field_font_awesome_class
+    - taxonomy.vocabulary.font_awesome
+  module:
+    - text
+id: taxonomy_term.font_awesome.default
+targetEntityType: taxonomy_term
+bundle: font_awesome
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_font_awesome_class:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

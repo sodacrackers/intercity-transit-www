@@ -1,0 +1,19 @@
+uuid: 08141ae1-cf9c-4029-9829-904d1ee952af
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_jobs_summary
+field_name: field_jobs_summary
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,29 @@
+uuid: ad088e78-0648-4f31-bea1-234ac29fddd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_vanpool_number
+    - node.type.vanpool
+id: contact_message.vanpool_waitlist.field_vanpool_number
+field_name: field_vanpool_number
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: 'Vanpool Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      vanpool: vanpool
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

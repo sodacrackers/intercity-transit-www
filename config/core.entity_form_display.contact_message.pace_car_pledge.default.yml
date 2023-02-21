@@ -1,0 +1,75 @@
+uuid: a4aa24ff-90ff-40b1-b7da-5dc38b4727aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.pace_car_pledge
+    - field.field.contact_message.pace_car_pledge.field_address
+    - field.field.contact_message.pace_car_pledge.field_city
+    - field.field.contact_message.pace_car_pledge.field_name
+    - field.field.contact_message.pace_car_pledge.field_phone
+    - field.field.contact_message.pace_car_pledge.field_state
+    - field.field.contact_message.pace_car_pledge.field_zip
+  module:
+    - telephone
+id: contact_message.pace_car_pledge.default
+targetEntityType: contact_message
+bundle: pace_car_pledge
+mode: default
+content:
+  copy:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_city:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 30
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_default
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_state:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_zip:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  mail:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_name: true
+  message: true
+  preview: true
+  subject: true

@@ -1,0 +1,35 @@
+uuid: 9420a490-53cd-418c-b869-e5ff7ad96be0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:60323168-59e0-48f5-a2e2-e1ebe3703288'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-lg-12 col-xl-12 col-md-12 col-sm-12 col-xs-12'
+id: homepagefrequenttasksheader
+theme: transit
+region: content
+weight: -23
+provider: null
+plugin: 'block_content:60323168-59e0-48f5-a2e2-e1ebe3703288'
+settings:
+  id: 'block_content:60323168-59e0-48f5-a2e2-e1ebe3703288'
+  label: 'Homepage Frequent Tasks Header'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

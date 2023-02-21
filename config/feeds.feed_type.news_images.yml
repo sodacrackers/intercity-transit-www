@@ -1,0 +1,109 @@
+uuid: 2fa123d4-2020-4c87-a825-67001000d5d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news.field_images
+    - field.field.node.news.field_live_nid
+    - field.field.node.news.field_slider_text
+    - field.field.node.news.field_slider_title
+    - node.type.news
+  module:
+    - node
+label: 'News Images'
+id: news_images
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: news
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  field_image_id:
+    value: field_image_id
+    label: field_image_id
+    machine_name: field_image_id
+    type: csv
+  field_image_alt_text:
+    value: field_image_alt_text
+    label: field_image_alt_text
+    machine_name: field_image_alt_text
+    type: csv
+  field_image_title:
+    value: field_image_title
+    label: field_image_title
+    machine_name: field_image_title
+    type: csv
+  live_nid:
+    value: live_nid
+    label: live_nid
+    machine_name: live_nid
+    type: csv
+  field_slider_image:
+    value: field_slider_image
+    label: field_slider_image
+    machine_name: field_slider_image
+    type: csv
+  slider_title:
+    value: slider_text
+    label: slider_text
+    machine_name: slider_title
+    type: csv
+  slider_title_2:
+    value: slider_title
+    label: slider_title
+    machine_name: slider_title_2
+    type: csv
+mappings:
+  -
+    target: field_images
+    map:
+      target_id: field_slider_image
+      alt: ''
+      title: ''
+    settings:
+      language: ''
+      reference_by: filename
+      existing: '2'
+      autocreate: 0
+  -
+    target: field_live_nid
+    map:
+      value: live_nid
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_slider_text
+    map:
+      value: slider_title
+    settings:
+      language: ''
+      format: rich_text
+  -
+    target: field_slider_title
+    map:
+      value: slider_title_2
+    settings:
+      language: null
+    unique: {  }

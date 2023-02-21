@@ -1,0 +1,14 @@
+uuid: 8b7c20a5-4cae-44dd-80f9-d373a5e15eb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.vanpool
+  module:
+    - user
+id: user_remove_role_action.vanpool
+label: 'Remove the Vanpool role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: vanpool

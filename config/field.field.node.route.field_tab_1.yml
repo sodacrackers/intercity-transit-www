@@ -1,0 +1,21 @@
+uuid: dda49a81-7f90-41ad-9e6b-1e3016c2370d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_1
+    - node.type.route
+  module:
+    - text
+id: node.route.field_tab_1
+field_name: field_tab_1
+entity_type: node
+bundle: route
+label: 'Tab 1'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

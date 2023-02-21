@@ -1,0 +1,9 @@
+uuid: fdbfd02a-391c-4ce0-8752-1677c0387d2b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MbTbUeeaumH8DjENUwT0-8uW9UuxyNHbF6jbKCLhYkk
+formId: contact_message_customer_service
+captchaType: recaptcha/reCAPTCHA
+label: contact-message-customer-service-form

@@ -1,0 +1,24 @@
+uuid: 65943328-4c5e-4d20-9785-e144721a2017
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_publication_year
+    - media.type.document
+  module:
+    - datetime
+id: media.document.field_publication_year
+field_name: field_publication_year
+entity_type: media
+bundle: document
+label: 'Publication Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

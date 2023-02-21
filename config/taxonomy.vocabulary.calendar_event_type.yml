@@ -1,0 +1,8 @@
+uuid: 478000df-c253-4f9f-a7cd-cc916bac9d11
+langcode: en
+status: true
+dependencies: {  }
+name: 'Calendar Event Type'
+vid: calendar_event_type
+description: 'This vocabulary will define the types of events that can be filtered out on the calendar.'
+weight: 0

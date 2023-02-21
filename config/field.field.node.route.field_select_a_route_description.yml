@@ -1,0 +1,19 @@
+uuid: 3cb4dccd-7973-4173-b60c-80c440e62c30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_select_a_route_description
+    - node.type.route
+id: node.route.field_select_a_route_description
+field_name: field_select_a_route_description
+entity_type: node
+bundle: route
+label: 'Select a Route Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

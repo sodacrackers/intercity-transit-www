@@ -1,0 +1,23 @@
+uuid: 1e33c535-b929-4e1e-a320-cf1ff3eb5f47
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.pace_car_pledge
+    - field.storage.contact_message.field_zip
+id: contact_message.pace_car_pledge.field_zip
+field_name: field_zip
+entity_type: contact_message
+bundle: pace_car_pledge
+label: Zip
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 10000
+  max: 99999
+  prefix: ''
+  suffix: ''
+field_type: integer

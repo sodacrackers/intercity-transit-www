@@ -1,0 +1,29 @@
+uuid: c21cab75-ee5c-46e9-a221-3b90878087c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
+_core:
+  default_config_hash: F9lS2X3VyFwsFON4Qr-Y-pD4n9Cam3YniCuMkJGdNvM
+name: 'Basic page'
+type: page
+description: 'Use <em>basic pages</em> for your static content, such as an ''About us'' page.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

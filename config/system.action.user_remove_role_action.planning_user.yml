@@ -1,0 +1,14 @@
+uuid: 476c9fdb-7937-4679-8621-1b9bc2171223
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.planning_user
+  module:
+    - user
+id: user_remove_role_action.planning_user
+label: 'Remove the Planning User role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: planning_user

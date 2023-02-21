@@ -1,0 +1,19 @@
+uuid: fd0d79be-4b3d-4359-b6dd-5d0c33694519
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_jobs_duties_essentia
+field_name: field_jobs_duties_essentia
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

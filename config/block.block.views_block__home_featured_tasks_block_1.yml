@@ -1,0 +1,34 @@
+uuid: 0cc8d44e-0024-4f42-80f8-72e081301bdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.home_featured_tasks
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__home_featured_tasks_block_1
+theme: transit
+region: content_middle
+weight: 0
+provider: null
+plugin: 'views_block:home_featured_tasks-block_1'
+settings:
+  id: 'views_block:home_featured_tasks-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

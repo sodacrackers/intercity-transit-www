@@ -1,0 +1,19 @@
+uuid: 32503d52-923f-474e-bea8-4d2bb0967746
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_classspec
+    - node.type.neogov_joblisting
+id: node.neogov_joblisting.field_joblisting_classspec
+field_name: field_joblisting_classspec
+entity_type: node
+bundle: neogov_joblisting
+label: 'Class Spec'
+description: 'This is a repeat of Job Title'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

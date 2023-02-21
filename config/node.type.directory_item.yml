@@ -1,0 +1,17 @@
+uuid: 5885bbd2-73bb-4d31-ac1c-d7864592d13d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Directory item'
+type: directory_item
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

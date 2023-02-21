@@ -1,0 +1,30 @@
+uuid: 167f6777-de2c-4309-9263-bd2a07d62225
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+    - fontawesome
+    - media
+    - paragraphs_type_permissions
+    - search
+    - search_api_page
+    - shortcut
+    - system
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: -9
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access fontawesome additional settings'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'access user contact forms'
+  - 'search content'
+  - 'use advanced search'
+  - 'view media'
+  - 'view paragraph content job_duties'
+  - 'view search api pages'

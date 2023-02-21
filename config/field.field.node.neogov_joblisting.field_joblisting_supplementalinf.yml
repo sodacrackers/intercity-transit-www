@@ -1,0 +1,21 @@
+uuid: 6aa06adc-ab29-4658-9507-ef954ed498f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_joblisting_supplementalinf
+    - node.type.neogov_joblisting
+  module:
+    - text
+id: node.neogov_joblisting.field_joblisting_supplementalinf
+field_name: field_joblisting_supplementalinf
+entity_type: node
+bundle: neogov_joblisting
+label: 'Supplemental Information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

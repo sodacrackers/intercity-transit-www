@@ -1,0 +1,31 @@
+uuid: 9e0dbf60-8cdf-4c0f-89c6-b4d7676fc491
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
+id: transit_main_menu
+theme: transit
+region: navigation_collapsible
+weight: -21
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 3
+  expand_all_items: false
+visibility: {  }

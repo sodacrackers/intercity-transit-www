@@ -1,0 +1,19 @@
+uuid: acec14c8-a164-418e-8d10-e7f9be3ed2d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_awarded_to
+    - node.type.procurement_bid_or_proposal
+id: node.procurement_bid_or_proposal.field_awarded_to
+field_name: field_awarded_to
+entity_type: node
+bundle: procurement_bid_or_proposal
+label: 'Awarded To'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

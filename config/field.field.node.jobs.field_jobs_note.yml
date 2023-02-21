@@ -1,0 +1,24 @@
+uuid: 8bcf8a03-bb70-4375-a234-87d3a71ddeea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_note
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_note
+field_name: field_jobs_note
+entity_type: node
+bundle: jobs
+label: Note
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: "<p>The above job description is intended to represent only the key areas of responsibilities; specific position assignments will vary depending on the business needs of the department.</p>\r\n"
+    format: text_and_bullets
+default_value_callback: ''
+settings: {  }
+field_type: text_long

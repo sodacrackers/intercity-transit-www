@@ -1,0 +1,19 @@
+uuid: 416268b5-80e8-4acf-b804-399de27fe2cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab4_title
+    - node.type.route
+id: node.route.field_tab4_title
+field_name: field_tab4_title
+entity_type: node
+bundle: route
+label: 'Tab4 Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

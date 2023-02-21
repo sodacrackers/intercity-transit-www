@@ -1,0 +1,21 @@
+uuid: 5f5c349f-8f51-433f-bcb8-3955c70e925d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_google_maps
+    - node.type.vanpool
+  module:
+    - text
+id: node.vanpool.field_google_maps
+field_name: field_google_maps
+entity_type: node
+bundle: vanpool
+label: 'Google Maps'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

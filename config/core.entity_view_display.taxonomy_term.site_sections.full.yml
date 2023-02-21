@@ -1,0 +1,22 @@
+uuid: b21c9921-8582-45f5-b11d-d637f6323f97
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.full
+    - taxonomy.vocabulary.site_sections
+  module:
+    - text
+id: taxonomy_term.site_sections.full
+targetEntityType: taxonomy_term
+bundle: site_sections
+mode: full
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

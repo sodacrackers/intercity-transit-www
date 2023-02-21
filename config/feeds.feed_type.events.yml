@@ -1,0 +1,180 @@
+uuid: 9a42552e-4cc2-426b-bac3-c99ecdaf4878
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.base_field_override.node.calendar_event.title
+    - field.field.node.calendar_event.body
+    - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_cancelled
+    - field.field.node.calendar_event.field_event_date
+    - field.field.node.calendar_event.field_event_type
+    - field.field.node.calendar_event.field_file
+    - field.field.node.calendar_event.field_google_maps_url
+    - field.field.node.calendar_event.field_location
+    - node.type.calendar_event
+  module:
+    - node
+label: Events
+id: events
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: calendar_event
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  field_address:
+    value: field_address
+    label: field_address
+    machine_name: field_address
+    type: csv
+  body_text:
+    value: body_text
+    label: body_text
+    machine_name: body_text
+    type: csv
+  body_summary:
+    value: body_summary
+    label: body_summary
+    machine_name: body_summary
+    type: csv
+  field_cancelled:
+    value: field_cancelled
+    label: field_cancelled
+    machine_name: field_cancelled
+    type: csv
+  field_event_date:
+    value: field_event_date
+    label: field_event_date
+    machine_name: field_event_date
+    type: csv
+  field_event_type:
+    value: field_event_type
+    label: field_event_type
+    machine_name: field_event_type
+    type: csv
+  field_file_id:
+    value: field_file_id
+    label: field_file_id
+    machine_name: field_file_id
+    type: csv
+  field_file_description:
+    value: field_file_description
+    label: field_file_description
+    machine_name: field_file_description
+    type: csv
+  field_google_maps_url:
+    value: field_google_maps_url
+    label: field_google_maps_url
+    machine_name: field_google_maps_url
+    type: csv
+  field_location:
+    value: field_location
+    label: field_location
+    machine_name: field_location
+    type: csv
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  live_nid:
+    value: live_nid
+    label: live_nid
+    machine_name: live_nid
+    type: csv
+mappings:
+  -
+    target: field_address
+    map:
+      value: field_address
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: body
+    map:
+      value: body_text
+      summary: body_summary
+    settings:
+      language: ''
+      format: iframe
+  -
+    target: field_cancelled
+    map:
+      value: field_cancelled
+    settings:
+      language: null
+  -
+    target: field_event_date
+    map:
+      value: field_event_date
+    settings:
+      language: ''
+      timezone: __SITE__
+  -
+    target: field_event_type
+    map:
+      target_id: field_event_type
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+  -
+    target: field_file
+    map:
+      target_id: field_file_id
+      description: field_file_description
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+  -
+    target: field_google_maps_url
+    map:
+      value: field_google_maps_url
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_location
+    map:
+      value: field_location
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: nid
+    map:
+      value: live_nid
+    settings: {  }
+    unique:
+      value: '1'

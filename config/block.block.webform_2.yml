@@ -1,0 +1,35 @@
+uuid: aabe68f5-a7d6-4d67-afcb-a9476b0d5608
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.contact_ita
+  module:
+    - block_class
+    - system
+    - webform
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: webform_2
+theme: transit
+region: sidebar_second
+weight: -26
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Contact the Transit Authority'
+  label_display: visible
+  provider: webform
+  webform_id: contact_ita
+  default_data: ''
+  redirect: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /agency/transit-authority

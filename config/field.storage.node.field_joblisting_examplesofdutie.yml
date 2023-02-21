@@ -1,0 +1,19 @@
+uuid: 2663502a-4d40-4073-b274-dfb6c8322d9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_joblisting_examplesofdutie
+field_name: field_joblisting_examplesofdutie
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

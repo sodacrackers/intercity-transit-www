@@ -1,0 +1,148 @@
+uuid: 7caff534-bfa9-461e-a2fb-64d73aea5c00
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rider_alerts.body
+    - field.field.node.rider_alerts.feeds_item
+    - field.field.node.rider_alerts.field_affected_routes_new_
+    - field.field.node.rider_alerts.field_effected_routes
+    - field.field.node.rider_alerts.field_end_date
+    - field.field.node.rider_alerts.field_end_date_until_further_not
+    - field.field.node.rider_alerts.field_image
+    - field.field.node.rider_alerts.field_live_nid
+    - field.field.node.rider_alerts.field_start_date
+    - image.style.thumbnail
+    - node.type.rider_alerts
+  module:
+    - datetime
+    - field_group
+    - image
+    - path
+    - text
+    - workbench_moderation
+third_party_settings:
+  field_group:
+    group_effective_date:
+      children:
+        - field_start_date
+        - field_end_date
+        - field_end_date_until_further_not
+      label: 'Effective Date'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        id: ''
+        description: ''
+        required_fields: true
+id: node.rider_alerts.default
+targetEntityType: node
+bundle: rider_alerts
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 8
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_affected_routes_new_:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_end_date:
+    type: datetime_default
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_end_date_until_further_not:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: false
+    third_party_settings: {  }
+  field_image:
+    type: image_image
+    weight: 9
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_start_date:
+    type: datetime_default
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 11
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true
+  field_effected_routes: true
+  field_live_nid: true

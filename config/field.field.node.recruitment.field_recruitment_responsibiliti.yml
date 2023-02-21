@@ -1,0 +1,21 @@
+uuid: a07dd5a4-4478-4389-b07c-15bbfdb61c43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_responsibiliti
+    - node.type.recruitment
+  module:
+    - text
+id: node.recruitment.field_recruitment_responsibiliti
+field_name: field_recruitment_responsibiliti
+entity_type: node
+bundle: recruitment
+label: 'Examples of Duties'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

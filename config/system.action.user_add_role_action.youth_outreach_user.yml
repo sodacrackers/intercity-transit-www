@@ -1,0 +1,14 @@
+uuid: 1185e652-77a9-4f89-9a05-1859ee82a1b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.youth_outreach_user
+  module:
+    - user
+id: user_add_role_action.youth_outreach_user
+label: 'Add the Youth Outreach User role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: youth_outreach_user

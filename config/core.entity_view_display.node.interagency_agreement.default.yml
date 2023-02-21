@@ -1,0 +1,57 @@
+uuid: 5eefa249-ba77-40a0-8971-49f2989d141e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.interagency_agreement.field_agencies
+    - field.field.node.interagency_agreement.field_date
+    - field.field.node.interagency_agreement.field_file
+    - field.field.node.interagency_agreement.field_tags
+    - node.type.interagency_agreement
+  module:
+    - datetime
+    - file
+    - user
+id: node.interagency_agreement.default
+targetEntityType: node
+bundle: interagency_agreement
+mode: default
+content:
+  field_agencies:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_date:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_file:
+    type: file_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

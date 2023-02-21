@@ -1,0 +1,22 @@
+uuid: 274275f1-7b96-45e7-be84-6783aa214b64
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.recruitment
+id: node.recruitment.status
+field_name: status
+entity_type: node
+bundle: recruitment
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

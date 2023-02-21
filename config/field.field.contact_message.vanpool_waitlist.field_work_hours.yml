@@ -1,0 +1,19 @@
+uuid: fd615e4f-3e72-4c80-a8c2-10ddf0151377
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_work_hours
+id: contact_message.vanpool_waitlist.field_work_hours
+field_name: field_work_hours
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: 'Work Hours'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

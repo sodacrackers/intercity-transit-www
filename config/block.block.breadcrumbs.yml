@@ -1,0 +1,24 @@
+uuid: 21945703-d11c-4a26-a595-54e4082c00dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: breadcrumbs
+theme: transit
+region: header_mid
+weight: -44
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: visible
+  provider: system
+visibility: {  }

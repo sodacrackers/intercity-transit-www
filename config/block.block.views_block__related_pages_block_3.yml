@@ -1,0 +1,34 @@
+uuid: ebad80f3-4724-4661-8809-e829881e94ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.related_pages
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__related_pages_block_3
+theme: transit
+region: content
+weight: -46
+provider: null
+plugin: 'views_block:related_pages-block_3'
+settings:
+  id: 'views_block:related_pages-block_3'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /employment/benefits

@@ -1,0 +1,14 @@
+uuid: 07165514-41f0-406f-8bb9-82b82872b894
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.planning_user
+  module:
+    - user
+id: user_add_role_action.planning_user
+label: 'Add the Planning User role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: planning_user

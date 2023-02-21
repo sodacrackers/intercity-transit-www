@@ -1,0 +1,19 @@
+uuid: d48fc0b3-34d4-44bf-954a-9a46c7283c68
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab2_title
+    - node.type.tabbed_basic_page
+id: node.tabbed_basic_page.field_tab2_title
+field_name: field_tab2_title
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tab2 Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

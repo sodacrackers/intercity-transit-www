@@ -1,0 +1,27 @@
+uuid: 31bf58ed-55cc-4600-85f3-55d52592e9d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api_page.search_api_page.search
+  module:
+    - block_class
+    - search_api_page
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: 'col-lg-4 col-md-4 col-sm-5 col-xs-5'
+id: searchapipagesearchblockform
+theme: transit
+region: header_top
+weight: -40
+provider: null
+plugin: search_api_page_form_block
+settings:
+  id: search_api_page_form_block
+  label: 'Search Api Page search block form'
+  label_display: '0'
+  provider: search_api_page
+  search_api_page: search
+visibility: {  }

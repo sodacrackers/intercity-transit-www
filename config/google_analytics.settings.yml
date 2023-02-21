@@ -1,0 +1,36 @@
+_core:
+  default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
+account: UA-8811108-1
+domain_mode: 0
+cross_domains: ''
+visibility:
+  request_path_mode: 0
+  request_path_pages: "/admin\r\n/admin/*\r\n/batch\r\n/user/*/*\r\n/node/add*\r\n/node/*/*"
+  user_role_mode: 1
+  user_role_roles: {  }
+  user_account_mode: 0
+track:
+  outbound: true
+  mailto: true
+  tel: true
+  files: true
+  files_extensions: '7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip'
+  colorbox: true
+  linkid: false
+  urlfragments: false
+  userid: false
+  messages: {  }
+  site_search: false
+  adsense: false
+  displayfeatures: false
+privacy:
+  anonymizeip: true
+custom:
+  parameters: {  }
+codesnippet:
+  create: {  }
+  before: ''
+  after: "gtag('config', 'DC-9663932');\r\nif (window.location.pathname === '/how-to-ride/myStop') {\r\n  gtag('event', 'conversion', {\r\n  'allow_custom_scripts': true,\r\n  'send_to': 'DC-9663932/inter0/inter0+standard'\r\n  });\r\n\r\n  document.addEventListener(\"DOMContentLoaded\", () => {\r\n    document.querySelector('a[href=\"https://apps.apple.com/us/app/mystop-mobile/id591959423\"]').addEventListener('click', function() {\r\n      gtag('event', 'conversion', {\r\n        'allow_custom_scripts': true,\r\n        'send_to': 'DC-9663932/inter0/inter00+standard'\r\n      });\r\n    });\r\n\r\n    document.querySelector('a[href=\"https://play.google.com/store/apps/details?id=com.AvailTec.MyStop&hl=en_US&gl=US\"]').addEventListener('click', function() {\r\n      gtag('event', 'conversion', {\r\n        'allow_custom_scripts': true,\r\n        'send_to': 'DC-9663932/inter0/inter000+standard'\r\n      });\r\n    });\r\n  });\r\n\r\n}"
+translation_set: false
+cache: false
+debug: false

@@ -1,0 +1,35 @@
+uuid: 7d98d16d-8bae-4fea-8223-b3637c31c5fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.pace_car_pledge
+  module:
+    - block_class
+    - system
+    - webform
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: webform
+theme: transit
+region: sidebar_second
+weight: -28
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Take the Pledge'
+  label_display: visible
+  provider: webform
+  webform_id: pace_car_pledge
+  default_data: ''
+  redirect: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/walknroll/pace-car-pledge\r\n/walknroll/safe-streets-ambassador\r\n/safe-streets-ambassador"

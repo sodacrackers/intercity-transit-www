@@ -1,0 +1,28 @@
+uuid: 5f22d6be-16e1-4192-b2e2-0434081df3e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_type
+    - node.type.calendar_event
+    - taxonomy.vocabulary.calendar_event_type
+id: node.calendar_event.field_event_type
+field_name: field_event_type
+entity_type: node
+bundle: calendar_event
+label: 'Event Type'
+description: 'This allows you to "tag" events. Tagging events allows us to filter the information and display it on other parts of the website.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      calendar_event_type: calendar_event_type
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

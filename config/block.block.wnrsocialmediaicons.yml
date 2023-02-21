@@ -1,0 +1,35 @@
+uuid: 8189607d-4db8-4e1a-845e-789690425308
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2c90788a-190c-4e75-b9f5-2995d328f412'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: wnrsocialmediaicons
+theme: transit
+region: sidebar_second
+weight: -25
+provider: null
+plugin: 'block_content:2c90788a-190c-4e75-b9f5-2995d328f412'
+settings:
+  id: 'block_content:2c90788a-190c-4e75-b9f5-2995d328f412'
+  label: 'WNR Social Media Icons'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/walknroll\r\n/walknroll/earn-a-bike\r\n/walknroll/class-pass\r\n/walknroll/rolling-classrooms\r\n/walknroll/pace-car-pledge\r\n/safe-streets-ambassador\r\n/walknroll/school-events-and-activities\r\n/walknroll/school-bike-challenge\r\n/walknroll/MVP\r\n/walknroll/bike-rides\r\n/walknroll/bike-rodeo\r\n/walknroll/bike-shop\r\n/yard-signs\r\n/walknroll/educational-resources"

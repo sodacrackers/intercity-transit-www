@@ -1,0 +1,18 @@
+route_page_title: Routes
+route_page_title_clean: routes
+route_page_path: /plan-your-trip/routes
+route_page_parent: '196'
+stops_page_title: Stops
+stops_page_title_clean: stops
+stops_page_path: /plan-your-trip/stops
+stops_page_parent: '196'
+trip_planner_page_title: 'Trip Planner'
+trip_planner_page_title_clean: trip-planner
+trip_planner_page_path: /plan-your-trip/trip-planner
+trip_planner_page_parent: '196'
+route_stops_api_base: 'https://gtfs.intercitytransit.com'
+route_options_request: routes.php
+route_search_request: routeData4.php
+route_shapes_request: shapes2.php
+stops_request: stopdata.php
+stops_options_request: stops.php

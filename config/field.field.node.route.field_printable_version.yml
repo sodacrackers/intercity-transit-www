@@ -1,0 +1,27 @@
+uuid: e52d17c8-24a1-4af6-b650-ef1e77dc290e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_printable_version
+    - node.type.route
+  module:
+    - file
+id: node.route.field_printable_version
+field_name: field_printable_version
+entity_type: node
+bundle: route
+label: 'Printable Version'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: ''
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: true
+field_type: file

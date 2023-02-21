@@ -1,0 +1,23 @@
+uuid: 9e304043-f2d4-434a-af20-29c6f9ead1a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number
+    - node.type.procurement_bid_or_proposal
+id: node.procurement_bid_or_proposal.field_number
+field_name: field_number
+entity_type: node
+bundle: procurement_bid_or_proposal
+label: Number
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 9999
+  prefix: ''
+  suffix: ''
+field_type: integer

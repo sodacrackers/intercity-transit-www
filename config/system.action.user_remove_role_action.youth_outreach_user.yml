@@ -1,0 +1,14 @@
+uuid: 8264c736-0ea2-499b-a5db-1a2d692f8fbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.youth_outreach_user
+  module:
+    - user
+id: user_remove_role_action.youth_outreach_user
+label: 'Remove the Youth Outreach User role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: youth_outreach_user

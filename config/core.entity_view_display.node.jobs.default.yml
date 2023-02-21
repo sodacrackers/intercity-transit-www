@@ -1,0 +1,53 @@
+uuid: cb43ef21-4896-471b-9fc6-f69c40efa01c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.jobs.field_jobs_abilities
+    - field.field.node.jobs.field_jobs_department_division
+    - field.field.node.jobs.field_jobs_distinguished_chars
+    - field.field.node.jobs.field_jobs_duties_essential_duti
+    - field.field.node.jobs.field_jobs_flsa_status
+    - field.field.node.jobs.field_jobs_knowledge
+    - field.field.node.jobs.field_jobs_licensing_requirement
+    - field.field.node.jobs.field_jobs_note
+    - field.field.node.jobs.field_jobs_paygrade
+    - field.field.node.jobs.field_jobs_skills
+    - field.field.node.jobs.field_jobs_summary
+    - field.field.node.jobs.field_jobs_supervision_exercised
+    - field.field.node.jobs.field_jobs_training_and_experien
+    - field.field.node.jobs.field_physical_requirements
+    - node.type.jobs
+  module:
+    - user
+id: node.jobs.default
+targetEntityType: node
+bundle: jobs
+mode: default
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  workbench_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_jobs_abilities: true
+  field_jobs_department_division: true
+  field_jobs_distinguished_chars: true
+  field_jobs_duties_essential_duti: true
+  field_jobs_flsa_status: true
+  field_jobs_knowledge: true
+  field_jobs_licensing_requirement: true
+  field_jobs_note: true
+  field_jobs_paygrade: true
+  field_jobs_skills: true
+  field_jobs_summary: true
+  field_jobs_supervision_exercised: true
+  field_jobs_training_and_experien: true
+  field_physical_requirements: true
+  search_api_excerpt: true

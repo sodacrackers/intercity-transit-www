@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: fP57Sd8RjnZMVH3p_R-Yt0tC8j7Z-BuzGMIp6pmrHAI
+smtp_on: false
+smtp_host: email-smtp.us-west-2.amazonaws.com
+smtp_hostbackup: ''
+smtp_port: '587'
+smtp_protocol: tls
+smtp_autotls: true
+smtp_timeout: 30
+smtp_username: AKIAIZVCZM44GSKA2LAQ
+smtp_password: AqdOllLpCx6xon9c3knBSpo5e35kjLfsoF2qTCDOsNtV
+smtp_from: noreply@intercitytransit.com
+smtp_fromname: 'Intercity Transit'
+smtp_client_hostname: ''
+smtp_client_helo: ''
+smtp_allowhtml: '1'
+smtp_test_address: ''
+smtp_debugging: true
+prev_mail_system: php_mail
+smtp_keepalive: false

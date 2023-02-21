@@ -1,0 +1,19 @@
+uuid: e4ba8b04-9a24-49c7-aed9-c34204955251
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.storage.contact_message.field_e_mail_address
+id: contact_message.vanpool_waitlist.field_e_mail_address
+field_name: field_e_mail_address
+entity_type: contact_message
+bundle: vanpool_waitlist
+label: 'E-mail Address'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

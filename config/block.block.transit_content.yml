@@ -1,0 +1,31 @@
+uuid: 59d93853-d05f-43ad-997b-ce16fd4e55fa
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: transit_content
+theme: transit
+region: content
+weight: -41
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: /saml/drupal_login/portal_intercitytransit_com

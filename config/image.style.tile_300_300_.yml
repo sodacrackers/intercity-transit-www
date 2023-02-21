@@ -1,0 +1,15 @@
+uuid: 3c6d76cc-46e1-4e6e-9758-285dd1b1b6e3
+langcode: en
+status: true
+dependencies: {  }
+name: tile_300_300_
+label: 'Tile (300×300)'
+effects:
+  2e7475e5-5e23-4011-87ba-280627577a29:
+    uuid: 2e7475e5-5e23-4011-87ba-280627577a29
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 300
+      height: 300
+      anchor: center-center

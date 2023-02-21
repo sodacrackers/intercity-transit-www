@@ -1,0 +1,19 @@
+uuid: 6576ccd6-e6f6-423d-a208-1fdd9a4601b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab1_title
+    - node.type.route
+id: node.route.field_tab1_title
+field_name: field_tab1_title
+entity_type: node
+bundle: route
+label: 'Tab1 Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

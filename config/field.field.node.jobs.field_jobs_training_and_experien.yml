@@ -1,0 +1,21 @@
+uuid: af00c42f-4da1-4358-8d71-9718662425c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_training_and_experien
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_jobs_training_and_experien
+field_name: field_jobs_training_and_experien
+entity_type: node
+bundle: jobs
+label: 'Training and Experience'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

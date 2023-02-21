@@ -1,0 +1,64 @@
+uuid: 3f441da3-7262-4126-bbe6-360de4fc4279
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_tab1_title
+    - field.field.node.tabbed_basic_page.field_tab2_title
+    - field.field.node.tabbed_basic_page.field_tab3_title
+    - field.field.node.tabbed_basic_page.field_tab4_title
+    - field.field.node.tabbed_basic_page.field_tab5_title
+    - field.field.node.tabbed_basic_page.field_tab6_title
+    - field.field.node.tabbed_basic_page.field_tab_1
+    - field.field.node.tabbed_basic_page.field_tab_2
+    - field.field.node.tabbed_basic_page.field_tab_3
+    - field.field.node.tabbed_basic_page.field_tab_4
+    - field.field.node.tabbed_basic_page.field_tab_5
+    - field.field.node.tabbed_basic_page.field_tab_6
+    - field.field.node.tabbed_basic_page.field_tabbed_basic_page_type
+    - field.field.node.tabbed_basic_page.scheduled_update
+    - node.type.tabbed_basic_page
+  module:
+    - text
+    - user
+id: node.tabbed_basic_page.teaser
+targetEntityType: node
+bundle: tabbed_basic_page
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  workbench_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+hidden:
+  field_tab1_title: true
+  field_tab2_title: true
+  field_tab3_title: true
+  field_tab4_title: true
+  field_tab5_title: true
+  field_tab6_title: true
+  field_tab_1: true
+  field_tab_2: true
+  field_tab_3: true
+  field_tab_4: true
+  field_tab_5: true
+  field_tab_6: true
+  field_tabbed_basic_page_type: true
+  scheduled_update: true
+  search_api_excerpt: true

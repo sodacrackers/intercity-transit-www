@@ -1,0 +1,19 @@
+uuid: ff7c29f5-11c0-41ea-8840-443510e472ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_recruitment_overview
+field_name: field_recruitment_overview
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

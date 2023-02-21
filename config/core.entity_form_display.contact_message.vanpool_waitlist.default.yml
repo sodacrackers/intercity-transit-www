@@ -1,0 +1,111 @@
+uuid: dba0d4bc-f68d-452a-9004-2c995d0f15da
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.vanpool_waitlist
+    - field.field.contact_message.vanpool_waitlist.field_additonal
+    - field.field.contact_message.vanpool_waitlist.field_destination_city
+    - field.field.contact_message.vanpool_waitlist.field_e_mail_address
+    - field.field.contact_message.vanpool_waitlist.field_employer_name
+    - field.field.contact_message.vanpool_waitlist.field_how_did_you_hear_about_us_
+    - field.field.contact_message.vanpool_waitlist.field_origin_city
+    - field.field.contact_message.vanpool_waitlist.field_phone
+    - field.field.contact_message.vanpool_waitlist.field_vanpool_number
+    - field.field.contact_message.vanpool_waitlist.field_work_hours
+  module:
+    - telephone
+id: contact_message.vanpool_waitlist.default
+targetEntityType: contact_message
+bundle: vanpool_waitlist
+mode: default
+content:
+  copy:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_additonal:
+    type: string_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_destination_city:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_employer_name:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_how_did_you_hear_about_us_:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_origin_city:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_default
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_vanpool_number:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_work_hours:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  mail:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  preview:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_e_mail_address: true
+  message: true
+  subject: true

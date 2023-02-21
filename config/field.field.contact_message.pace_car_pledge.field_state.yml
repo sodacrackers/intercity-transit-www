@@ -1,0 +1,23 @@
+uuid: f6d7e27f-884f-46bb-8647-c81e6c217b80
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.pace_car_pledge
+    - field.storage.contact_message.field_state
+  module:
+    - options
+id: contact_message.pace_car_pledge.field_state
+field_name: field_state
+entity_type: contact_message
+bundle: pace_car_pledge
+label: State
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: WA
+default_value_callback: ''
+settings: {  }
+field_type: list_string

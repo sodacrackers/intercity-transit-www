@@ -1,0 +1,26 @@
+uuid: 52306fe9-7714-4ce0-8e60-17cb4f7faa3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - workbench_moderation
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  workbench_moderation:
+    enabled: true
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+    default_moderation_state: draft
+name: 'Bus Route Page'
+type: route
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,20 @@
+uuid: eb39e535-2d3e-43b4-a0e9-7b151d01ffa8
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_annual_rate_step_8
+field_name: field_annual_rate_step_8
+entity_type: taxonomy_term
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

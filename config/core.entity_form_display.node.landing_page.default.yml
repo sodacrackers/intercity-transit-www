@@ -1,0 +1,82 @@
+uuid: 40ba18c0-6aae-475a-92c3-e23eb4b16c3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.landing_page.field_meta_tags
+    - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_thumbnail
+    - node.type.landing_page
+  module:
+    - metatag
+    - path
+    - workbench_moderation
+_core:
+  default_config_hash: VmtwZehGc73SkubyCyaa-lTzILFmC4aCGaG2LtGXCqE
+id: node.landing_page.default
+targetEntityType: node
+bundle: landing_page
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_meta_tags:
+    type: metatag_firehose
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_section:
+    type: entity_reference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 121
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_thumbnail: true
+  promote: true
+  sticky: true

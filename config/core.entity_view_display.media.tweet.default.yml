@@ -1,0 +1,30 @@
+uuid: e5a48833-8185-4d67-a3a4-e3376bae502d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.tweet.embed_code
+    - field.field.media.tweet.field_media_in_library
+    - media.type.tweet
+  module:
+    - media_entity_twitter
+_core:
+  default_config_hash: qjWJrrjeQxKuYZ97XxTcj0Xh3DBG-fNZC4luNLTw4dY
+id: media.tweet.default
+targetEntityType: media
+bundle: tweet
+mode: default
+content:
+  embed_code:
+    type: twitter_embed
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  field_media_in_library: true
+  name: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,49 @@
+uuid: a6e30252-cc37-4d39-84bd-c827a08ecc1f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hard_coded_block:003328f6-1288-4d6c-8c22-cfb83b035fdc'
+  module:
+    - block_class
+    - block_content
+    - node
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: googletripplanner
+theme: transit
+region: content
+weight: -42
+provider: null
+plugin: 'block_content:003328f6-1288-4d6c-8c22-cfb83b035fdc'
+settings:
+  id: 'block_content:003328f6-1288-4d6c-8c22-cfb83b035fdc'
+  label: 'Google Trip Planner'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page
+      news: news
+      page: page
+      procurement_bid_or_proposal: procurement_bid_or_proposal
+      rider_alerts: rider_alerts
+      route: route
+      vanpool: vanpool
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /bus/trip-planner

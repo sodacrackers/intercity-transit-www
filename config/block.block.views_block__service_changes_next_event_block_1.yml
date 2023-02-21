@@ -1,0 +1,34 @@
+uuid: 3bca5be6-4d27-422e-ac33-49ee84f91d23
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.service_changes_next_event
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__service_changes_next_event_block_1
+theme: transit
+region: sidebar_second
+weight: -37
+provider: null
+plugin: 'views_block:service_changes_next_event-block_1'
+settings:
+  id: 'views_block:service_changes_next_event-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: "/servicechanges\r\n"

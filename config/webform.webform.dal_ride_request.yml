@@ -1,0 +1,494 @@
+uuid: 71e1ea31-4c52-44df-afd0-c5d616ad094e
+langcode: en
+status: closed
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: dal_ride_request
+title: 'Request an Advanced Reservation Trip'
+description: ''
+category: ''
+elements: |-
+  processed_text:
+    '#type': processed_text
+    '#display_on': both
+    '#text': '<h2>Contact Information</h2>'
+    '#format': rich_text
+  flexbox_02:
+    '#type': webform_flexbox
+    dal_ride_request_contact_phone:
+      '#type': tel
+      '#title': 'Phone Number'
+      '#required': true
+    dal_ride_request_contact_email:
+      '#type': email
+      '#title': 'Email Address'
+  flexbox_01:
+    '#type': webform_flexbox
+    '#flex': 0
+    dal_ride_request_contact_firstname:
+      '#type': textfield
+      '#title': 'First Name'
+      '#required': true
+    dal_ride_request_contact_lastname:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#required': true
+  flexbox_05:
+    '#type': webform_flexbox
+    dal_ride_request_return_yesno:
+      '#type': radios
+      '#title': 'Do you need a ride one way or round trip?'
+      '#options':
+        'One Way': 'One Way'
+        Round-Trip: Round-Trip
+      '#default_value': 'No'
+  flexbox_03:
+    '#type': container
+    '#flex': 0
+    '#states':
+      visible:
+        ':input[name="dal_ride_request_return_yesno"]':
+          checked: true
+    processed_text_01:
+      '#type': processed_text
+      '#display_on': both
+      '#text': |
+        <h2>Trip Details</h2>
+        
+      '#format': rich_text
+    processed_text_02:
+      '#type': processed_text
+      '#states':
+        visible:
+          ':input[name="dal_ride_request_return_yesno"]':
+            value: Round-Trip
+      '#display_on': both
+      '#text': |
+        <h3>Departure Trip</h3>
+        
+      '#format': rich_text
+    flexbox_11:
+      '#type': webform_flexbox
+    flexbox_06:
+      '#type': webform_flexbox
+      dal_ride_request_pickup_date:
+        '#type': date
+        '#title': Date
+        '#required': true
+        '#default_value': '+2 days'
+        '#date_date_min': '+2 days'
+        '#date_date_max': '+5 days'
+        '#date_date_format': ''
+        '#date_time_format': ''
+      dal_ride_request_time:
+        '#type': webform_time
+        '#title': 'Requested PIck-up Time'
+        '#required': true
+        '#default_value': now
+        '#time_format': 'g:i A'
+        '#min': '06:00:00'
+        '#max': '21:00:00'
+      dal_ride_request_reason_select:
+        '#type': select
+        '#title': 'Trip Justification'
+        '#title_display': before
+        '#options':
+          'Dr. Appointment': 'Dr. Appointment'
+          Pharmacy: Pharmacy
+          'Grocery Store': 'Grocery Store'
+          'Essential Business Service': 'Essential Business Service'
+        '#required': true
+    flexbox_04:
+      '#type': webform_flexbox
+      '#title': test
+      '#format_attributes':
+        class:
+          - success
+      dal_ride_request_origin:
+        '#type': webform_address
+        '#title': 'Pickup Address'
+        '#prepopulate': true
+        '#required': true
+        '#states_clear': false
+        '#default_value':
+          address: ''
+          address_2: ''
+          city: ''
+          state_province: Washington
+          postal_code: ''
+          country: ''
+        '#address__required': true
+        '#city__title': City
+        '#city__required': true
+        '#state_province__title': State
+        '#state_province__required': true
+        '#postal_code__title': 'Zip Code'
+        '#postal_code__required': true
+        '#country__access': false
+      dal_ride_request_destination:
+        '#type': webform_address
+        '#title': 'Dropoff Address'
+        '#required': true
+        '#default_value':
+          address: ''
+          address_2: ''
+          city: ''
+          state_province: Washington
+          postal_code: ''
+          country: ''
+        '#address__required': true
+        '#city__title': City
+        '#city__required': true
+        '#state_province__title': State
+        '#state_province__required': true
+        '#postal_code__title': 'ZIP Code'
+        '#postal_code__required': true
+        '#country__access': false
+    flexbox_07:
+      '#type': webform_section
+      '#title': 'Return Trip'
+      '#title_tag': h3
+      '#states':
+        visible:
+          ':input[name="dal_ride_request_return_yesno"]':
+            value: Round-Trip
+      flexbox_09:
+        '#type': webform_flexbox
+        dal_ride_request_return_pickup_time:
+          '#type': webform_time
+          '#title': 'Requested Pick-up Time'
+          '#states':
+            disabled:
+              ':input[name="dal_ride_request_return_yesno"]':
+                value: 'One Way'
+          '#default_value': '+2 hours'
+          '#time_format': 'g:i A'
+          '#min': '06:00:00'
+          '#max': '21:00:00'
+        dal_ride_request_same_as:
+          '#type': webform_same
+          '#title': 'Pick me up at the same location where you dropped me off'
+          '#title_display': inline
+          '#states':
+            enabled:
+              ':input[name="dal_ride_request_return_yesno"]':
+                value: Round-Trip
+          '#default_value': true
+          '#source': dal_ride_request_destination
+          '#destination': dal_ride_request_return_pickup_address
+          '#destination_state': visible-slide
+        drop_me_off_at_the_same_location_where_you_picked_me_up:
+          '#type': webform_same
+          '#title': 'Drop me off at the same location where you picked me up'
+          '#title_display': inline
+          '#states':
+            enabled:
+              ':input[name="dal_ride_request_return_yesno"]':
+                value: Round-Trip
+          '#default_value': true
+          '#source': dal_ride_request_origin
+          '#destination': dal_ride_request_return_dropoff_address
+          '#destination_state': visible-slide
+      flexbox_08:
+        '#type': webform_flexbox
+      flexbox_10:
+        '#type': webform_flexbox
+        dal_ride_request_return_pickup_address:
+          '#type': webform_address
+          '#title': 'Return Pickup Address'
+          '#prepopulate': true
+          '#states':
+            disabled:
+              ':input[name="dal_ride_request_return_yesno"]':
+                value: 'One Way'
+          '#states_clear': false
+          '#default_value':
+            address: ''
+            address_2: ''
+            city: ''
+            state_province: Washington
+            postal_code: ''
+            country: ''
+          '#city__title': City
+          '#state_province__title': State
+          '#postal_code__title': 'Zip Code'
+          '#country__access': false
+        dal_ride_request_return_dropoff_address:
+          '#type': webform_address
+          '#title': 'Return Dropoff Address'
+          '#states':
+            disabled:
+              ':input[name="dal_ride_request_return_yesno"]':
+                value: 'One Way'
+          '#default_value':
+            address: ''
+            address_2: ''
+            city: ''
+            state_province: Washington
+            postal_code: ''
+            country: ''
+          '#city__title': City
+          '#state_province__title': State
+          '#postal_code__title': 'ZIP Code'
+          '#country__access': false
+    flexbox_12:
+      '#type': webform_flexbox
+      dal_ride_request_additional_items:
+        '#type': checkboxes
+        '#title': 'Do you need to bring any of the following?'
+        '#multiple': 3
+        '#options':
+          'Mobility Device': 'Mobility Device'
+          'Service Animal': 'Service Animal'
+          Bicycle: Bicycle
+      dal_ride_request_confirmation_number:
+        '#type': textfield
+        '#title': 'Confirmation #'
+        '#access_create_roles':
+          - authenticated
+    captcha:
+      '#type': captcha
+      '#captcha_type': recaptcha/reCAPTCHA
+    acknowledgement:
+      '#type': checkbox
+      '#title': 'I understand and acknowledge that completing this form only constitutes a REQUEST for a ride. Once your trip has been scheduled, you will receive a confirmation by phone or email or phone from an Intercity Transit Scheduler. If you have not received confirmation within 24 hours of this request or have questions, please call 360-786-1881.'
+      '#title_display': before
+      '#description_display': before
+      '#required': true
+      '#required_error': 'You must check that you understand a request to for a ride does not automatically mean your ride is scheduled.'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: ''
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: /bus/essential-trip
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: true
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles:
+      - administrator
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  administer:
+    roles:
+      - essential_trip_request_manager
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  email:
+    id: email
+    handler_id: email
+    label: Email
+    notes: ''
+    status: false
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: rrinehart@intercitytransit.com
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: '[webform_submission:values:dal_ride_request_contact_email:raw]'
+      from_options: {  }
+      from_name: '[webform_submission:values:dal_ride_request_contact_lastname], [webform_submission:values:dal_ride_request_contact_firstname]'
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Esssential Trip Request #[webform_submission:serial] for [webform_submission:values:dal_ride_request_contact_lastname], [webform_submission:values:dal_ride_request_contact_firstname]'
+      body: "<table>\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<table>\r\n\t\t\t\t<tbody>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<table class=\"table\">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<th style=\"padding:5px\">Name:</th>\r\n\t\t\t\t\t\t\t\t\t<td style=\"padding:5px\">[webform_submission:values:dal_ride_request_contact_lastname], [webform_submission:values:dal_ride_request_contact_firstname]</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<th style=\"padding:5px\">Phone:</th>\r\n\t\t\t\t\t\t\t\t\t<td style=\"padding:5px\">[webform_submission:values:dal_ride_request_contact_phone]</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<th style=\"padding:5px\">Email:</th>\r\n\t\t\t\t\t\t\t\t\t<td style=\"padding:5px\">[webform_submission:values:dal_ride_request_contact_email]</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</tbody>\r\n\t\t\t</table>\r\n\t\t\t</td>\r\n\t\t\t<td>\r\n\t\t\t<h3>[webform_submission:values:dal_ride_request_return_yesno]</h3>\r\n\r\n\t\t\t<table>\r\n\t\t\t\t<tbody>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td><strong>Date:</strong></td>\r\n\t\t\t\t\t\t<td>[webform_submission:values:dal_ride_request_pickup_date]</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td><strong>Reason:</strong></td>\r\n\t\t\t\t\t\t<td>[webform_submission:values:dal_ride_request_reason_select]</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</tbody>\r\n\t\t\t</table>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<h3>Trip Details</h3>\r\n\r\n<table class=\"table\" style=\"border-bottom:1px solid black\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<th style=\"border-bottom:1px solid black; padding:10px\">Time</th>\r\n\t\t\t<th style=\"border-bottom:1px solid black; padding:10px\">Orgin</th>\r\n\t\t\t<th style=\"border-bottom:1px solid black; padding:10px\">Destination</th>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"border-bottom:1px solid black; padding:10px\"><strong>[webform_submission:values:dal_ride_request_time]</strong></td>\r\n\t\t\t<td style=\"border-bottom:1px solid black; padding:10px\">[webform_submission:values:dal_ride_request_origin]</td>\r\n\t\t\t<td style=\"border-bottom:1px solid black; padding:10px\">[webform_submission:values:dal_ride_request_destination]</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td style=\"padding:10px\"><strong>[webform_submission:values:dal_ride_request_return_pickup_time]</strong></td>\r\n\t\t\t<td style=\"padding:10px\">[webform_submission:values:dal_ride_request_return_pickup_address]</td>\r\n\t\t\t<td style=\"padding:10px\">[webform_submission:values:dal_ride_request_return_dropoff_address]</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n<br />\r\nSubmitted on: [webform_submission:completed]"
+      excluded_elements:
+        dal_ride_request_same_as: dal_ride_request_same_as
+        drop_me_off_at_the_same_location_where_you_picked_me_up: drop_me_off_at_the_same_location_where_you_picked_me_up
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: bootstrap
+      parameters: {  }
+      debug: false
+variants: {  }

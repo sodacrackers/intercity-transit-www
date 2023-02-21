@@ -1,0 +1,13 @@
+uuid: 26498844-a018-4736-866c-c53ba6f0af70
+langcode: en
+status: true
+dependencies: {  }
+id: pace_car_pledge
+label: 'Pace Car Pledge'
+recipients:
+  - kwilson@intercitytransit.com
+  - walknroll@intercitytransit.com
+reply: ''
+weight: 0
+message: 'Thank you for committing to be a Safe Streets Ambassador!'
+redirect: ''

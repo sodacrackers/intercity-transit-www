@@ -1,0 +1,24 @@
+uuid: 2f94c8f8-7bc3-49a8-90f5-ea81dca52034
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_date
+    - node.type.rider_alerts
+  module:
+    - datetime
+id: node.rider_alerts.field_end_date
+field_name: field_end_date
+entity_type: node
+bundle: rider_alerts
+label: 'End Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

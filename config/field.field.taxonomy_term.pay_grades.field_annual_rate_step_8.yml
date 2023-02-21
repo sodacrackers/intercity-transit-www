@@ -1,0 +1,23 @@
+uuid: 8be7e9e8-6b44-46f3-876e-75853c050408
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_annual_rate_step_8
+    - taxonomy.vocabulary.pay_grades
+id: taxonomy_term.pay_grades.field_annual_rate_step_8
+field_name: field_annual_rate_step_8
+entity_type: taxonomy_term
+bundle: pay_grades
+label: 'Annual Rate Step 8'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

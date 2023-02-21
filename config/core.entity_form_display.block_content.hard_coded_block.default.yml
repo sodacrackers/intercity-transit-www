@@ -1,0 +1,22 @@
+uuid: b2b4c682-a223-47b6-8b4d-c249b457ddf7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hard_coded_block
+  module:
+    - workbench_moderation
+id: block_content.hard_coded_block.default
+targetEntityType: block_content
+bundle: hard_coded_block
+mode: default
+content:
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

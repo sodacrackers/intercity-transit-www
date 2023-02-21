@@ -1,0 +1,203 @@
+uuid: 535a931e-1c37-4f46-86d7-813d37640870
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rider_alerts.body
+    - field.field.node.rider_alerts.field_affected_routes_new_
+    - field.field.node.rider_alerts.field_end_date
+    - field.field.node.rider_alerts.field_end_date_until_further_not
+    - field.field.node.rider_alerts.field_image
+    - field.field.node.rider_alerts.field_live_nid
+    - field.field.node.rider_alerts.field_start_date
+    - node.type.rider_alerts
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      356003a6-1a09-4e27-ab3b-cdf5ee679a75:
+        separator: ;
+        limit: null
+        uuid: 356003a6-1a09-4e27-ab3b-cdf5ee679a75
+        plugin: explode
+        source: affected_routes
+        weight: 0
+        label: Explode
+label: 'Rider Alerts'
+id: rider_updates
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: rider_alerts
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: true
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  field_affected_routes:
+    value: field_affected_routes
+    label: field_affected_routes
+    machine_name: field_affected_routes
+    type: csv
+  body_text:
+    value: body_text
+    label: body_text
+    machine_name: body_text
+    type: csv
+  body_description:
+    value: body_description
+    label: body_description
+    machine_name: body_description
+    type: csv
+  field_images_id:
+    value: field_images_id
+    label: field_images_id
+    machine_name: field_images_id
+    type: csv
+  field_image_alt_text:
+    value: field_image_alt_text
+    label: field_image_alt_text
+    machine_name: field_image_alt_text
+    type: csv
+  field_image_title:
+    value: field_image_title
+    label: field_image_title
+    machine_name: field_image_title
+    type: csv
+  field_end_date:
+    value: field_end_date
+    label: field_end_date
+    machine_name: field_end_date
+    type: csv
+  field_end_date_until_further_notice_not:
+    value: field_end_date_until_further_notice_not
+    label: field_end_date_until_further_notice_not
+    machine_name: field_end_date_until_further_notice_not
+    type: csv
+  field_start_date:
+    value: field_start_date
+    label: field_start_date
+    machine_name: field_start_date
+    type: csv
+  live_nid:
+    value: live_nid
+    label: live_nid
+    machine_name: live_nid
+    type: csv
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  affected_routes:
+    value: affected_routes
+    label: affected_routes
+    machine_name: affected_routes
+    type: csv
+  author:
+    value: author
+    label: author
+    machine_name: author
+    type: csv
+  author_date:
+    value: author_date
+    label: author_date
+    machine_name: author_date
+    type: csv
+mappings:
+  -
+    target: field_affected_routes_new_
+    map:
+      target_id: affected_routes
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: '1'
+  -
+    target: body
+    map:
+      value: body_text
+      summary: body_description
+    settings:
+      language: ''
+      format: rich_text
+  -
+    target: field_image
+    map:
+      target_id: field_images_id
+      alt: field_image_alt_text
+      title: field_image_title
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+  -
+    target: field_end_date
+    map:
+      value: field_end_date
+    settings:
+      language: ''
+      timezone: America/Los_Angeles
+  -
+    target: field_end_date_until_further_not
+    map:
+      value: field_end_date_until_further_notice_not
+    settings:
+      language: null
+  -
+    target: field_start_date
+    map:
+      value: field_start_date
+    settings:
+      language: ''
+      timezone: America/Los_Angeles
+  -
+    target: field_live_nid
+    map:
+      value: live_nid
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: uid
+    map:
+      target_id: author
+    settings:
+      language: ''
+      reference_by: uid
+      autocreate: 0
+  -
+    target: created
+    map:
+      value: author_date
+    settings:
+      language: null
+      timezone: UTC

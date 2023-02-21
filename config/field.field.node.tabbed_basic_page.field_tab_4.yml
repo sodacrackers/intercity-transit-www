@@ -1,0 +1,21 @@
+uuid: e5c45def-28e8-4640-b66f-11318a0cd6e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab_4
+    - node.type.tabbed_basic_page
+  module:
+    - text
+id: node.tabbed_basic_page.field_tab_4
+field_name: field_tab_4
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tab 4'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

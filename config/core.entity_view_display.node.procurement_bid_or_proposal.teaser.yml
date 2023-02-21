@@ -1,0 +1,34 @@
+uuid: d6b60f36-eff5-47b5-8e84-bcf4cae97000
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.procurement_bid_or_proposal.field_awarded_to
+    - field.field.node.procurement_bid_or_proposal.field_due_date
+    - field.field.node.procurement_bid_or_proposal.field_file
+    - field.field.node.procurement_bid_or_proposal.field_number
+    - field.field.node.procurement_bid_or_proposal.field_project_status
+    - field.field.node.procurement_bid_or_proposal.field_release_date
+    - field.field.node.procurement_bid_or_proposal.field_type
+    - node.type.procurement_bid_or_proposal
+  module:
+    - user
+id: node.procurement_bid_or_proposal.teaser
+targetEntityType: node
+bundle: procurement_bid_or_proposal
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_awarded_to: true
+  field_due_date: true
+  field_file: true
+  field_number: true
+  field_project_status: true
+  field_release_date: true
+  field_type: true

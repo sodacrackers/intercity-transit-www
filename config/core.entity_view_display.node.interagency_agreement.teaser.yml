@@ -1,0 +1,28 @@
+uuid: e795a160-9038-46e7-8e41-b426eb503919
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.interagency_agreement.field_agencies
+    - field.field.node.interagency_agreement.field_date
+    - field.field.node.interagency_agreement.field_file
+    - field.field.node.interagency_agreement.field_tags
+    - node.type.interagency_agreement
+  module:
+    - user
+id: node.interagency_agreement.teaser
+targetEntityType: node
+bundle: interagency_agreement
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_agencies: true
+  field_date: true
+  field_file: true
+  field_tags: true

@@ -1,0 +1,404 @@
+uuid: 62f79c2f-b1f9-4c03-a558-7cc9a80e240f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.neogov_joblisting.field_joblisting_advertisefromd
+    - field.field.node.neogov_joblisting.field_joblisting_advertisetod
+    - field.field.node.neogov_joblisting.field_joblisting_billablehours
+    - field.field.node.neogov_joblisting.field_joblisting_classspec
+    - field.field.node.neogov_joblisting.field_joblisting_continuous
+    - field.field.node.neogov_joblisting.field_joblisting_department
+    - field.field.node.neogov_joblisting.field_joblisting_description
+    - field.field.node.neogov_joblisting.field_joblisting_division
+    - field.field.node.neogov_joblisting.field_joblisting_examplesofdutie
+    - field.field.node.neogov_joblisting.field_joblisting_examtype
+    - field.field.node.neogov_joblisting.field_joblisting_jobid
+    - field.field.node.neogov_joblisting.field_joblisting_jobnumbersingle
+    - field.field.node.neogov_joblisting.field_joblisting_jobtype
+    - field.field.node.neogov_joblisting.field_joblisting_link
+    - field.field.node.neogov_joblisting.field_joblisting_maximumsalary
+    - field.field.node.neogov_joblisting.field_joblisting_minimumsalary
+    - field.field.node.neogov_joblisting.field_joblisting_pubdate
+    - field.field.node.neogov_joblisting.field_joblisting_qualifications
+    - field.field.node.neogov_joblisting.field_joblisting_salaryinterval
+    - field.field.node.neogov_joblisting.field_joblisting_supplementalinf
+    - node.type.neogov_joblisting
+  module:
+    - feeds_ex
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      aaac97d8-f86f-4f36-921f-7377e2ae80f4:
+        find: '/:0$/'
+        replace: ''
+        limit: null
+        uuid: aaac97d8-f86f-4f36-921f-7377e2ae80f4
+        plugin: find_replace_regex
+        source: joblisting_advertisefromdate
+        weight: 0
+        label: 'Find replace REGEX'
+      091e8219-c1a0-4b9b-ac32-2fe04c1920fb:
+        find: '/:0$/'
+        replace: ''
+        limit: null
+        uuid: 091e8219-c1a0-4b9b-ac32-2fe04c1920fb
+        plugin: find_replace_regex
+        source: joblisting_advertisetodatetime
+        weight: 0
+        label: 'Find replace REGEX'
+      d4b0e920-acb9-4be7-baef-1bd375a85aa6:
+        find: hour
+        replace: Hourly
+        case_sensitive: false
+        word_boundaries: false
+        whole: false
+        uuid: d4b0e920-acb9-4be7-baef-1bd375a85aa6
+        plugin: find_replace
+        source: joblisting_salaryinterval
+        weight: 0
+        label: 'Find replace'
+      d6b25b90-e23d-402d-8f0a-7fc0d48d66fe:
+        find: Year
+        replace: Annually
+        case_sensitive: false
+        word_boundaries: false
+        whole: false
+        uuid: d6b25b90-e23d-402d-8f0a-7fc0d48d66fe
+        plugin: find_replace
+        source: joblisting_salaryinterval
+        weight: 1
+        label: 'Find replace'
+label: 'Neogov Job Listing Feed'
+id: neogov_job_listing_feed
+description: 'maps to the neogov JobListing content type'
+help: ''
+import_period: 900
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: xml
+parser_configuration:
+  context:
+    value: /rss/channel/item
+  source_encoding:
+    - auto
+  display_errors: false
+  line_limit: 100
+  use_tidy: false
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: neogov_joblisting
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _delete
+  skip_hash_check: false
+  authorize: true
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  title:
+    label: Title
+    machine_name: title
+    value: title
+    raw: false
+    inner: false
+    type: xml
+  joblisting_jobid:
+    label: 'joblisting:jobId'
+    machine_name: joblisting_jobid
+    value: 'joblisting:jobId'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_advertisefromdate:
+    label: 'joblisting:advertiseFromDate'
+    machine_name: joblisting_advertisefromdate
+    value: 'joblisting:advertiseFromDate'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_advertisetodatetime:
+    label: 'joblisting:advertiseToDateTime'
+    machine_name: joblisting_advertisetodatetime
+    value: 'joblisting:advertiseToDateTime'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_billablehours:
+    label: 'joblisting:BillableHours'
+    machine_name: joblisting_billablehours
+    value: 'joblisting:BillableHours'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_classspec:
+    label: 'joblisting:classspec'
+    machine_name: joblisting_classspec
+    value: 'joblisting:classspec'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_continuous:
+    label: 'joblisting:continuous'
+    machine_name: joblisting_continuous
+    value: 'joblisting:continuous'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_department:
+    label: 'joblisting:department'
+    machine_name: joblisting_department
+    value: 'joblisting:department'
+    raw: false
+    inner: false
+    type: xml
+  description:
+    label: description
+    machine_name: description
+    value: description
+    raw: false
+    inner: false
+    type: xml
+  joblisting_division:
+    label: 'joblisting:division'
+    machine_name: joblisting_division
+    value: 'joblisting:division'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_examplesofduties:
+    label: 'joblisting:examplesofduties'
+    machine_name: joblisting_examplesofduties
+    value: 'joblisting:examplesofduties'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_examtype:
+    label: 'joblisting:examtype'
+    machine_name: joblisting_examtype
+    value: 'joblisting:examtype'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_jobnumbersingle:
+    label: 'joblisting:jobNumberSingle'
+    machine_name: joblisting_jobnumbersingle
+    value: 'joblisting:jobNumberSingle'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_jobtype:
+    label: 'joblisting:jobType'
+    machine_name: joblisting_jobtype
+    value: 'joblisting:jobType'
+    raw: false
+    inner: false
+    type: xml
+  link:
+    label: link
+    machine_name: link
+    value: link
+    raw: false
+    inner: false
+    type: xml
+  joblisting_maximumsalary:
+    label: 'joblisting:maximumSalary'
+    machine_name: joblisting_maximumsalary
+    value: 'joblisting:maximumSalary'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_minimumsalary:
+    label: 'joblisting:minimumSalary'
+    machine_name: joblisting_minimumsalary
+    value: 'joblisting:minimumSalary'
+    raw: false
+    inner: false
+    type: xml
+  pubdate:
+    label: pubDate
+    machine_name: pubdate
+    value: pubDate
+    raw: false
+    inner: false
+    type: xml
+  joblisting_qualifications:
+    label: 'joblisting:qualifications'
+    machine_name: joblisting_qualifications
+    value: 'joblisting:qualifications'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_salaryinterval:
+    label: 'joblisting:salaryInterval'
+    machine_name: joblisting_salaryinterval
+    value: 'joblisting:salaryInterval'
+    raw: false
+    inner: false
+    type: xml
+  joblisting_supplementalinformation:
+    label: 'joblisting:supplementalinformation'
+    machine_name: joblisting_supplementalinformation
+    value: 'joblisting:supplementalinformation'
+    raw: false
+    inner: false
+    type: xml
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_jobid
+    map:
+      value: joblisting_jobid
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_advertisefromd
+    map:
+      value: joblisting_advertisefromdate
+    settings:
+      language: ''
+      timezone: America/Los_Angeles
+  -
+    target: field_joblisting_advertisetod
+    map:
+      value: joblisting_advertisetodatetime
+    settings:
+      language: ''
+      timezone: America/Los_Angeles
+  -
+    target: field_joblisting_billablehours
+    map:
+      value: joblisting_billablehours
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_classspec
+    map:
+      value: joblisting_classspec
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_continuous
+    map:
+      value: joblisting_continuous
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_department
+    map:
+      value: joblisting_department
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_description
+    map:
+      value: description
+    settings:
+      language: ''
+      format: text_and_bullets
+  -
+    target: field_joblisting_division
+    map:
+      value: joblisting_division
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_examplesofdutie
+    map:
+      value: joblisting_examplesofduties
+    settings:
+      language: ''
+      format: text_and_bullets
+  -
+    target: field_joblisting_examtype
+    map:
+      value: joblisting_examtype
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_jobnumbersingle
+    map:
+      value: joblisting_jobnumbersingle
+    settings:
+      language: null
+    unique:
+      value: '1'
+  -
+    target: field_joblisting_jobtype
+    map:
+      value: joblisting_jobtype
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_link
+    map:
+      value: link
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_maximumsalary
+    map:
+      value: joblisting_maximumsalary
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_minimumsalary
+    map:
+      value: joblisting_minimumsalary
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_pubdate
+    map:
+      value: pubdate
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_joblisting_qualifications
+    map:
+      value: joblisting_qualifications
+    settings:
+      language: ''
+      format: text_and_bullets
+  -
+    target: field_joblisting_salaryinterval
+    map:
+      value: joblisting_salaryinterval
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_joblisting_supplementalinf
+    map:
+      value: joblisting_supplementalinformation
+    settings:
+      language: ''
+      format: text_and_bullets

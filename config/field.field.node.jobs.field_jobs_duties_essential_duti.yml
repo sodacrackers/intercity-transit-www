@@ -1,0 +1,31 @@
+uuid: 462a5bf7-319c-4dd8-84df-cc2111b3df7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_jobs_duties_essential_duti
+    - node.type.jobs
+    - paragraphs.paragraphs_type.job_duties
+  module:
+    - entity_reference_revisions
+id: node.jobs.field_jobs_duties_essential_duti
+field_name: field_jobs_duties_essential_duti
+entity_type: node
+bundle: jobs
+label: 'Essential Duties'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      job_duties: job_duties
+    negate: 0
+    target_bundles_drag_drop:
+      job_duties:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

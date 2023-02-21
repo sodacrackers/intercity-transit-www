@@ -1,0 +1,18 @@
+uuid: 99467eb4-046d-47d6-8988-b7ada7046bd3
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Travel Training Accomodation'
+type: travel_training_accomodation
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

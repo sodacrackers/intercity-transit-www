@@ -1,0 +1,19 @@
+uuid: 449f9dd8-eb3e-47ad-94ab-f6589191e378
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab6_title
+    - node.type.tabbed_basic_page
+id: node.tabbed_basic_page.field_tab6_title
+field_name: field_tab6_title
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tab 6 Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

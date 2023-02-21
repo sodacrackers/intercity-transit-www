@@ -1,0 +1,19 @@
+uuid: 30446c87-c0db-41e7-b0db-d7c151ff8a43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tab5_title
+    - node.type.route
+id: node.route.field_tab5_title
+field_name: field_tab5_title
+entity_type: node
+bundle: route
+label: 'Tab 5 Title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

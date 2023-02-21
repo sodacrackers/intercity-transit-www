@@ -1,0 +1,21 @@
+uuid: 7ad3f33a-9f02-4a49-bb93-2e3c122b1cec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_google_maps_url
+    - node.type.calendar_event
+id: node.calendar_event.field_google_maps_url
+field_name: field_google_maps_url
+entity_type: node
+bundle: calendar_event
+label: 'Google Maps URL'
+description: 'Go to <a href="https://www.google.com/maps/">Google Maps</a>, enter the address of the location of the event, and then press the "share" button to get the "Share Link" URL path.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'https://goo.gl/maps/rw9XF5MPGJv'
+default_value_callback: ''
+settings: {  }
+field_type: string

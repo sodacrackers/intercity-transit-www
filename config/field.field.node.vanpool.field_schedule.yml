@@ -1,0 +1,19 @@
+uuid: 0daf4b9e-5bc2-40fe-9a7f-3bb2c9a406ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_schedule
+    - node.type.vanpool
+id: node.vanpool.field_schedule
+field_name: field_schedule
+entity_type: node
+bundle: vanpool
+label: Schedule
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

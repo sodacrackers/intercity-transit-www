@@ -1,0 +1,22 @@
+uuid: 20b6b384-45a7-46e9-ba01-0dae2335b2b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: job_descriptions
+label: 'Job Descriptions'
+type: 'canonical_entities:node'
+pattern: '/employment/job-descriptions/[node:title]'
+selection_criteria:
+  fe8abb8a-0dad-4c45-b8bc-154cc46737c4:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: fe8abb8a-0dad-4c45-b8bc-154cc46737c4
+    context_mapping:
+      node: node
+    bundles:
+      jobs: jobs
+selection_logic: and
+weight: -4
+relationships: {  }

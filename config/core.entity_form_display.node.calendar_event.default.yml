@@ -1,0 +1,151 @@
+uuid: d198857a-3b96-419c-beb0-08d28e29edba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.calendar_event.body
+    - field.field.node.calendar_event.feeds_item
+    - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_cancelled
+    - field.field.node.calendar_event.field_event_date
+    - field.field.node.calendar_event.field_event_type
+    - field.field.node.calendar_event.field_file
+    - field.field.node.calendar_event.field_google_maps_url
+    - field.field.node.calendar_event.field_live_nid
+    - field.field.node.calendar_event.field_location
+    - node.type.calendar_event
+  module:
+    - datetime
+    - file
+    - path
+    - text
+    - workbench_moderation
+id: node.calendar_event.default
+targetEntityType: node
+bundle: calendar_event
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 7
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    type: string_textfield
+    weight: 28
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cancelled:
+    type: options_buttons
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_event_date:
+    type: datetime_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_event_type:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_file:
+    type: file_generic
+    weight: 9
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_google_maps_url:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_live_nid:
+    type: number
+    weight: 122
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_location:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 121
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  feeds_item: true

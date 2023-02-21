@@ -1,0 +1,525 @@
+uuid: bd72404d-ea31-4846-9d68-1c9f5344f1a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_tab1_title
+    - field.field.node.tabbed_basic_page.field_tab2_title
+    - field.field.node.tabbed_basic_page.field_tab3_title
+    - field.field.node.tabbed_basic_page.field_tab4_title
+    - field.field.node.tabbed_basic_page.field_tab5_title
+    - field.field.node.tabbed_basic_page.field_tab6_title
+    - field.field.node.tabbed_basic_page.field_tab_1
+    - field.field.node.tabbed_basic_page.field_tab_2
+    - field.field.node.tabbed_basic_page.field_tab_3
+    - field.field.node.tabbed_basic_page.field_tab_4
+    - field.field.node.tabbed_basic_page.field_tab_5
+    - field.field.node.tabbed_basic_page.field_tab_6
+    - field.field.node.tabbed_basic_page.field_tabbed_basic_page_type
+    - field.field.node.tabbed_basic_page.scheduled_update
+    - node.type.tabbed_basic_page
+  module:
+    - field_group
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_tab1_title
+        - group_tab2_title
+        - group_tab3_title
+        - group_tab4_
+        - group_tab_5_title
+        - group_tab_6_title
+      label: Tabs
+      parent_name: ''
+      region: content
+      weight: 3
+      format_type: html_element
+      format_settings:
+        classes: 'nav nav-tabs'
+        id: ''
+        element: ul
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab1_title:
+      children:
+        - group_tab1_title_text
+      label: 'Tab1 Title'
+      parent_name: group_tabs
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: active
+        id: ''
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab2_title:
+      children:
+        - group_tab2_title_text
+      label: 'Tab2 Title'
+      parent_name: group_tabs
+      region: content
+      weight: 21
+      format_type: html_element
+      format_settings:
+        label: 'Tab2 Title'
+        classes: ''
+        id: ''
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab3_title:
+      children:
+        - group_tab3_title_text
+      label: 'Tab3 Title'
+      parent_name: group_tabs
+      region: content
+      weight: 22
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab3
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_div_class_container_:
+      children:
+        - body
+      label: 'Div Class="container"'
+      parent_name: ''
+      region: content
+      weight: 2
+      format_type: html_element
+      format_settings:
+        classes: 'container  mrg20T'
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab4_title_text:
+      children:
+        - field_tab4_title
+      label: 'Tab4 Title Text'
+      parent_name: group_tab4_
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        label: 'Tab4 Title Text'
+        classes: ''
+        id: tab4
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel4" aria-controls="panel4" role="tab"'
+        effect: none
+        speed: fast
+    group_tab1_title_text:
+      children:
+        - field_tab1_title
+      label: 'Tab1 Title text'
+      parent_name: group_tab1_title
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab1
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel1" aria-controls="panel1" role="tab"'
+        effect: none
+        speed: fast
+    group_tab4_:
+      children:
+        - group_tab4_title_text
+      label: 'tab4 title'
+      parent_name: group_tabs
+      region: content
+      weight: 23
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab4
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab2_title_text:
+      children:
+        - field_tab2_title
+      label: 'Tab2 Title text'
+      parent_name: group_tab2_title
+      region: content
+      weight: 10
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab2
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel2" aria-controls="panel2" role="tab"'
+        effect: none
+        speed: fast
+    group_tab3_title_text:
+      children:
+        - field_tab3_title
+      label: 'Tab3 Title text'
+      parent_name: group_tab3_title
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        label: 'Tab3 Title text'
+        classes: ''
+        id: Tab3
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel3" aria-controls="panel3" role="tab"'
+        effect: none
+        speed: fast
+    group_tab_content:
+      children:
+        - group_tab_1_
+        - group_tab2_pane
+        - group_tab3_pane
+        - group_tab4_pane
+        - group_tab_5_pane
+        - group_tab_6_pane
+      label: 'Tab Content'
+      parent_name: ''
+      region: content
+      weight: 5
+      format_type: html_element
+      format_settings:
+        classes: tab-content
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab_1_:
+      children:
+        - field_tab_1
+      label: 'Tab 1 pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        label: 'Tab 1 pane'
+        classes: 'tab-pane fade in active table-responsive'
+        id: panel1
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab1" role="tabpanel"'
+        effect: none
+        speed: fast
+    group_tab2_pane:
+      children:
+        - field_tab_2
+      label: 'tab2 pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 21
+      format_type: html_element
+      format_settings:
+        label: 'tab2 pane'
+        classes: 'tab-pane fade table-responsive'
+        id: panel2
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab2" role="tabpanel"'
+        effect: none
+        speed: fast
+    group_tab3_pane:
+      children:
+        - field_tab_3
+      label: 'tab3 pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 22
+      format_type: html_element
+      format_settings:
+        label: 'tab3 pane'
+        classes: 'tab-pane fade table-responsive'
+        id: panel3
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab3" role="tabpanel"'
+        effect: none
+        speed: fast
+    group_tab4_pane:
+      children:
+        - field_tab_4
+      label: 'tab4 pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 23
+      format_type: html_element
+      format_settings:
+        label: 'tab4 pane'
+        classes: 'tab-pane fade table-responsive'
+        id: panel4
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab4" role="tabpanel"'
+        effect: none
+        speed: fast
+    group_tab_5_title:
+      children:
+        - group_tab_5_title_text
+      label: 'Tab 5 Title'
+      parent_name: group_tabs
+      region: content
+      weight: 24
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab5
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab_5_title_text:
+      children:
+        - field_tab5_title
+      label: 'Tab 5 Title Text'
+      parent_name: group_tab_5_title
+      region: content
+      weight: 25
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab5
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel5" aria-controls="panel5" role="tab"'
+        effect: none
+        speed: fast
+    group_tab_6_title:
+      children:
+        - group_tab_6_title_text
+      label: 'Tab 6 title'
+      parent_name: group_tabs
+      region: content
+      weight: 25
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: tab6
+        element: li
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_tab_6_title_text:
+      children:
+        - field_tab6_title
+      label: 'Tab 6 Title Text'
+      parent_name: group_tab_6_title
+      region: content
+      weight: 20
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: ''
+        element: a
+        show_label: false
+        label_element: h3
+        attributes: 'data-toggle="tab" href="#panel6" aria-controls="panel6" role="tab"'
+        effect: none
+        speed: fast
+    group_tab_6_pane:
+      children:
+        - field_tab_6
+      label: 'Tab 6 Pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 25
+      format_type: html_element
+      format_settings:
+        label: 'Tab 6 Pane'
+        classes: 'tab-pane fade table-responsive'
+        id: panel6
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab6" role="tabpanel"'
+        effect: none
+        speed: fast
+    group_tab_5_pane:
+      children:
+        - field_tab_5
+      label: 'Tab 5 Pane'
+      parent_name: group_tab_content
+      region: content
+      weight: 24
+      format_type: html_element
+      format_settings:
+        classes: 'tab-pane fade table-responsive'
+        id: panel5
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: 'aria-labelledby="tab5" role="tabpanel"'
+        effect: none
+        speed: fast
+id: node.tabbed_basic_page.default
+targetEntityType: node
+bundle: tabbed_basic_page
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_tab1_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_tab2_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_tab3_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_tab4_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_tab5_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  field_tab6_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_tab_1:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_tab_2:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_tab_3:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 25
+    region: content
+  field_tab_4:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 27
+    region: content
+  field_tab_5:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_tab_6:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_tabbed_basic_page_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 28
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  workbench_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  scheduled_update: true
+  search_api_excerpt: true

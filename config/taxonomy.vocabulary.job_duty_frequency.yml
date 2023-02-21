@@ -1,0 +1,8 @@
+uuid: 90e58c97-6f32-49c6-9da4-740d7ae693e7
+langcode: en
+status: true
+dependencies: {  }
+name: 'Job Duty Frequency'
+vid: job_duty_frequency
+description: ''
+weight: 0

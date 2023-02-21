@@ -1,0 +1,21 @@
+uuid: 5f779992-396b-4eef-85b2-e472b00f6574
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_overview
+    - node.type.recruitment
+  module:
+    - text
+id: node.recruitment.field_recruitment_overview
+field_name: field_recruitment_overview
+entity_type: node
+bundle: recruitment
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

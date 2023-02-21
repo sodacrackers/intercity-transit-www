@@ -1,0 +1,31 @@
+_core:
+  default_config_hash: gjB7015sYrrNUrP2pj9kWQoYqXGhwCOSXMdR3p34elk
+contact:
+  technical:
+    name: 'Dan Heisel'
+    email: dan.heisel@watech.wa.gov
+  support:
+    name: 'Dan Heisel'
+    email: dan.heisel@watech.wa.gov
+organization:
+  name: 'Intercity Transit'
+  display_name: 'Intercity Transit'
+  url: www.intercitytransit.com
+strict: false
+security:
+  nameIdEncrypted: false
+  authnRequestsSigned: true
+  logoutRequestSigned: true
+  logoutResponseSigned: true
+  wantMessagesSigned: true
+  wantAssertionsSigned: true
+  wantNameIdEncrypted: false
+  signMetaData: true
+  signatureAlgorithm: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'
+  lowercaseUrlencoding: true
+cert_location: private/certs/saml.crt
+key_location: private/certs/saml.pri
+new_cert_location: private/certs/saml.crt
+entity_id: 'https://www.intercitytransit.com/user'
+debug: false
+assertion_urls: "https://www.intercitytransit.com/saml/consume\r\nhttps://saml-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://dev-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://test-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://live-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://intercitytransit.com.com/saml/consume"

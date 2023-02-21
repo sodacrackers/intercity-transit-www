@@ -1,0 +1,27 @@
+uuid: e1f0e9a8-b2be-42c5-8e2d-fc85a0a9d59a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.calendar_event
+  module:
+    - text
+id: node.calendar_event.body
+field_name: body
+entity_type: node
+bundle: calendar_event
+label: Body
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p><iframe frameborder=\"0\" height=\"450\" src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2718.7918751491493!2d-122.85966668403621!3d47.04431463464273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x549174d2413e0813%3A0x66d7775b94fa892f!2sIntercity+Transit!5e0!3m2!1sen!2sus!4v1497366138453\" width=\"100%\"></iframe></p>\r\n"
+    summary: ''
+    format: iframe
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

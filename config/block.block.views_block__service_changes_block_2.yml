@@ -1,0 +1,34 @@
+uuid: 473b7d33-ec8d-4221-bef5-c10af61bdbe9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.service_changes
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__service_changes_block_2
+theme: transit
+region: content_bottom
+weight: -45
+provider: null
+plugin: 'views_block:service_changes-block_2'
+settings:
+  id: 'views_block:service_changes-block_2'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /reducedservice

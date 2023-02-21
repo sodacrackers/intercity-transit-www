@@ -1,0 +1,58 @@
+uuid: 706d3990-5284-4973-b9c3-ac5431e69863
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.page.body
+    - field.field.node.page.feeds_item
+    - field.field.node.page.field_external_link
+    - field.field.node.page.field_font_awesome_icon
+    - field.field.node.page.field_image
+    - field.field.node.page.field_images
+    - field.field.node.page.field_live_nid
+    - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_related_pages
+    - field.field.node.page.field_related_pages_2_col
+    - field.field.node.page.field_secondary
+    - field.field.node.page.field_section
+    - field.field.node.page.field_slider_body_hide
+    - field.field.node.page.field_slider_text
+    - field.field.node.page.field_slider_title
+    - field.field.node.page.field_tags
+    - field.field.node.page.field_test
+    - field.field.node.page.publish_draft_on
+    - field.field.node.page.scheduled_update
+    - node.type.page
+  module:
+    - user
+_core:
+  default_config_hash: wQOp0Gtvf-nibo11pyMBzr9dcDrKIc6BA96c3lyY_bM
+id: node.page.search_index
+targetEntityType: node
+bundle: page
+mode: search_index
+content: {  }
+hidden:
+  body: true
+  feeds_item: true
+  field_external_link: true
+  field_font_awesome_icon: true
+  field_image: true
+  field_images: true
+  field_live_nid: true
+  field_meta_tags: true
+  field_related_pages: true
+  field_related_pages_2_col: true
+  field_secondary: true
+  field_section: true
+  field_slider_body_hide: true
+  field_slider_text: true
+  field_slider_title: true
+  field_tags: true
+  field_test: true
+  links: true
+  publish_draft_on: true
+  scheduled_update: true
+  search_api_excerpt: true
+  workbench_moderation_control: true

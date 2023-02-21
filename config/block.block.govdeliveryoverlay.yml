@@ -1,0 +1,29 @@
+uuid: d0e55ce1-ff3c-448e-88ef-9718005465ad
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:140ae927-9812-45c8-a6da-efdc42a07cd4'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: null
+id: govdeliveryoverlay
+theme: transit
+region: footer_bottom
+weight: 0
+provider: null
+plugin: 'block_content:140ae927-9812-45c8-a6da-efdc42a07cd4'
+settings:
+  id: 'block_content:140ae927-9812-45c8-a6da-efdc42a07cd4'
+  label: 'Gov Delivery Overlay'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

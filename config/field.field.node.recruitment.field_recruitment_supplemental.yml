@@ -1,0 +1,21 @@
+uuid: 24ed8615-bd48-44c3-a1e5-efae92d27195
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recruitment_supplemental
+    - node.type.recruitment
+  module:
+    - text
+id: node.recruitment.field_recruitment_supplemental
+field_name: field_recruitment_supplemental
+entity_type: node
+bundle: recruitment
+label: 'Supplemental Information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,49 @@
+uuid: 9f6014c0-18a4-4e6a-bc24-29ca54eca51b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.calendar_event.body
+    - field.field.node.calendar_event.feeds_item
+    - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_cancelled
+    - field.field.node.calendar_event.field_event_date
+    - field.field.node.calendar_event.field_event_type
+    - field.field.node.calendar_event.field_file
+    - field.field.node.calendar_event.field_google_maps_url
+    - field.field.node.calendar_event.field_live_nid
+    - field.field.node.calendar_event.field_location
+    - node.type.calendar_event
+  module:
+    - text
+    - user
+id: node.calendar_event.teaser
+targetEntityType: node
+bundle: calendar_event
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_address: true
+  field_cancelled: true
+  field_event_date: true
+  field_event_type: true
+  field_file: true
+  field_google_maps_url: true
+  field_live_nid: true
+  field_location: true
+  search_api_excerpt: true

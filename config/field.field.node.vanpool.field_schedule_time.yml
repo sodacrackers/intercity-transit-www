@@ -1,0 +1,21 @@
+uuid: c316537b-4c4c-4897-ae5a-5f0457069254
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_schedule_time
+    - node.type.vanpool
+  module:
+    - time_field
+id: node.vanpool.field_schedule_time
+field_name: field_schedule_time
+entity_type: node
+bundle: vanpool
+label: Schedule
+description: 'this is the new schedule time field.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: time_range

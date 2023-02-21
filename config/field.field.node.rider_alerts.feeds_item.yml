@@ -1,0 +1,23 @@
+uuid: 2717e388-1a3f-4a26-9738-554bc596e3c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.feeds_item
+    - node.type.rider_alerts
+  module:
+    - feeds
+id: node.rider_alerts.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: rider_alerts
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

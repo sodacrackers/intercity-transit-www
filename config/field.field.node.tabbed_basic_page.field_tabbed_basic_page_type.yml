@@ -1,0 +1,29 @@
+uuid: b6056356-bdd6-4b4b-acbe-e1dafbdfad9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tabbed_basic_page_type
+    - node.type.tabbed_basic_page
+    - taxonomy.vocabulary.accordian_block
+id: node.tabbed_basic_page.field_tabbed_basic_page_type
+field_name: field_tabbed_basic_page_type
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Tabbed Basic page type'
+description: 'This is either Service Change or Reduced Service'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      accordian_block: accordian_block
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

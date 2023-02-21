@@ -1,0 +1,18 @@
+uuid: c4df717b-1c31-4427-845b-bb1ec7cc65d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.vanpool
+id: node.vanpool.title
+field_name: title
+entity_type: node
+bundle: vanpool
+label: 'Vanpool Number'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

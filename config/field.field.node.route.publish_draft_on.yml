@@ -1,0 +1,24 @@
+uuid: 3afc71e8-98fd-4d9f-abee-5bfb656f386e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.publish_draft_on
+    - node.type.route
+    - scheduled_updates.scheduled_update_type.bus_route_scheduler
+id: node.route.publish_draft_on
+field_name: publish_draft_on
+entity_type: node
+bundle: route
+label: 'Publish Draft On'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:scheduled_update'
+  handler_settings:
+    target_bundles:
+      - bus_route_scheduler
+field_type: entity_reference
