@@ -33,7 +33,7 @@
         "drupal/better_search": "^1.5",
         "drupal/blazy": "^2",
         "drupal/block_class": "^2.0",
-        "drupal/bootstrap": "^3.20",
+        "drupal/bootstrap": "^3.26",
         "drupal/bootstrap_layouts": "^5.2",
         "drupal/captcha": "1.x-dev",
         "drupal/colorbox": "^1.5",
@@ -142,7 +142,8 @@
         "watech-web/ahoy-d8": "^1.0",
         "watech-web/chosen": "^1.0",
         "watech-web/db_custom_tools": "^2",
-        "wikimedia/composer-merge-plugin": "^2.0"
+        "wikimedia/composer-merge-plugin": "^2.0",
+        "drupal/adaptivetheme": "^5.1"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
