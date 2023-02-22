@@ -87,13 +87,20 @@ class Gtfs {
   }
 
   /**
+   * List the available types of data.
+   *
+   * @return string[]
+   *   The available types.
+   */
+  protected function allowedTypes(): array {
+    return $this->allowedTypes;
+  }
+
+  /**
    * Get GTFS data.
    *
    * @param string $type
-   *   The type of data to get: one of
-   *   - Alert
-   *   - TripUpdate
-   *   - VehiclePosition.
+   *   The type of data to get: see ::allowedTypes().
    *
    * @return array
    *   A nested array with the keys
@@ -140,10 +147,7 @@ class Gtfs {
    * Get GTFS data as JSON from cache or the external server.
    *
    * @param string $type
-   *   The type of data to get: one of
-   *   - Alert
-   *   - TripUpdate
-   *   - VehiclePosition.
+   *   The type of data to get: see ::allowedTypes().
    *
    * @return string
    *   A JSON string representing the requested data. If anything goes wrong,
@@ -153,7 +157,7 @@ class Gtfs {
     $args = ['%type' => $type];
 
     // Validate the $type parameter.
-    if (!in_array($type, $this->allowedTypes)) {
+    if (!in_array($type, $this->allowedTypes())) {
       $this->logger->warning('Unsupported GTFS type %type.', $args);
       return '';
     }
