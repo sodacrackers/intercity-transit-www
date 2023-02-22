@@ -7,6 +7,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Url;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Stream;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -144,6 +145,56 @@ class Gtfs {
   }
 
   /**
+   * Get GTFS data from the external server.
+   *
+   * @param string $type
+   *   The type of data to get: see ::allowedTypes().
+   * @param string $format
+   *   The data format: either 'json' or 'protobuf'.
+   *
+   * @return string
+   *   A string representing the requested data. If anything goes wrong, then
+   *   return an empty string.
+   */
+  protected function fetchData(string $type, string $format): string {
+    $args = ['%type' => $type, '%format' => $format];
+
+    // Validate the $type parameter.
+    if (!in_array($type, $this->allowedTypes())) {
+      $this->logger->warning('Unsupported GTFS type %type.', $args);
+      return '';
+    }
+
+    // Validate the $format parameter.
+    if (!in_array($format, ['json', 'protobuf'])) {
+      $this->logger->warning('Unsupported format %format.', $args);
+      return '';
+    }
+
+    // Fetch the data from the API endpoint.
+    $query = ['Type' => $type];
+    if ($format === 'json') {
+      $query['debug'] = 'true';
+    }
+    $url = Url::fromUri($this->baseUrl, ['query' => $query]);
+    try {
+      $response = $this->httpClient->get($url->toString())->getBody();
+      assert($response instanceof Stream);
+    }
+    catch (RequestException $e) {
+      $this->logger->warning('Unable to fetch GTFS type %type from the server in format %format.', $args);
+      return '';
+    }
+
+    if (!$response->isReadable()) {
+      $this->logger->warning('Cannot read response from the server for GTFS type %type in format %format.', $args);
+      return '';
+    }
+
+    return (string) $response;
+  }
+
+  /**
    * Get GTFS data as JSON from cache or the external server.
    *
    * @param string $type
@@ -169,22 +220,7 @@ class Gtfs {
     }
 
     // Fetch the data from the API endpoint.
-    $query = ['Type' => $type, 'debug' => 'true'];
-    $url = Url::fromUri($this->baseUrl, ['query' => $query]);
-    try {
-      $response = $this->httpClient->get($url->toString())->getBody();
-    }
-    catch (RequestException $e) {
-      $this->logger->warning('Unable to fetch GTFS type %type from the server.', $args);
-      return '';
-    }
-
-    if (!$response->isReadable()) {
-      $this->logger->warning('Cannot read response from the server for GTFS type %type.', $args);
-      return '';
-    }
-
-    $json = (string) $response;
+    $json = $this->fetchData($type, 'json');
     $expire = $this->time->getRequestTime() + $this->maxAge;
     $this->cache->set($cid, $json, $expire);
 
