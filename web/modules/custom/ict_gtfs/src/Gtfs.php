@@ -56,6 +56,15 @@ class Gtfs {
   ];
 
   /**
+   * Get JSON from the FeedMessage object.
+   *
+   * @var bool
+   *   If TRUE, get a FeedMessage object and serialize to JSON.
+   *   If FALSE, use the debug parameter to get JSON from the API.
+   */
+  protected $jsonFromFeedMessage = TRUE;
+
+  /**
    * The maximum age before refreshing the data, in seconds.
    *
    * @var int
@@ -149,21 +158,19 @@ class Gtfs {
    *
    * @return array
    *   A nested array with the keys
-   *   - Header
-   *     - GtfsRealtimeVersion
-   *     - incrementality
-   *     - Timestamp
-   *   - Entities
-   *   The Entities array is keyed by item.
+   *   - header
+   *     - gtfsRealtimeVersion
+   *     - timestamp
+   *   - entity
+   *   The entity array is keyed by item ID.
    */
   public function getArray(string $type): array {
     $gtfs_data = [
-      'Header' => [
-        'GtfsRealtimeVersion' => 0,
-        'incrementality' => 0,
-        'Timestamp' => 0,
+      'header' => [
+        'gtfsRealtimeVersion' => 0,
+        'timestamp' => 0,
       ],
-      'Entities' => [],
+      'entity' => [],
     ];
     $args = ['%type' => $type];
 
@@ -178,11 +185,16 @@ class Gtfs {
       return $gtfs_data;
     }
 
+    // Use the right keys for ordinary data or debug data.
+    [$header_key, $entity_key, $id_key] = $this->jsonFromFeedMessage
+      ? ['header', 'entity', 'id']
+      : ['Header', 'Entities', 'Id'];
+
     // Index the entities by ID. Fall back to numeric key.
-    $gtfs_data['Header'] = $gtfs_array['Header'] ?? [];
-    foreach ($gtfs_array['Entities'] ?? [] as $key => $item) {
-      $item_key = $item['Id'] ?? $key;
-      $gtfs_data['Entities'][$item_key] = $item;
+    $gtfs_data['header'] = $gtfs_array[$header_key] ?? [];
+    foreach ($gtfs_array[$entity_key] ?? [] as $key => $item) {
+      $item_key = $item[$id_key] ?? $key;
+      $gtfs_data['entity'][$item_key] = $item;
     }
 
     return $gtfs_data;
@@ -255,6 +267,12 @@ class Gtfs {
     if (!in_array($type, $this->allowedTypes())) {
       $this->logger->warning('Unsupported GTFS type %type.', $args);
       return '';
+    }
+
+    if ($this->jsonFromFeedMessage) {
+      // Cache the protobuf string, not the JSON.
+      $message = $this->getObject($type);
+      return $message === NULL ? '' : $message->serializeToJsonString();
     }
 
     $cid = "ict_gtfs:$type:json";
