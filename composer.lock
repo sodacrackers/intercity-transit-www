@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "276c513cb6ba5b9a4aa7a43816ff7479",
+    "content-hash": "1df67a1917164b66b8fd79820682688b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -10757,6 +10757,51 @@
             "time": "2020-11-18T14:59:05+00:00"
         },
         {
+            "name": "google/protobuf",
+            "version": "v3.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protocolbuffers/protobuf-php.git",
+                "reference": "5dffdd2c84112e6c91fd84f92e3df96649426881"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/5dffdd2c84112e6c91fd84f92e3df96649426881",
+                "reference": "5dffdd2c84112e6c91fd84f92e3df96649426881",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Need to support JSON deserialization"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Google\\Protobuf\\": "src/Google/Protobuf",
+                    "GPBMetadata\\Google\\Protobuf\\": "src/GPBMetadata/Google/Protobuf"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "proto library for PHP",
+            "homepage": "https://developers.google.com/protocol-buffers/",
+            "keywords": [
+                "proto"
+            ],
+            "support": {
+                "issues": "https://github.com/protocolbuffers/protobuf-php/issues",
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.10.0"
+            },
+            "time": "2019-10-03T20:08:37+00:00"
+        },
+        {
             "name": "google/recaptcha",
             "version": "1.3.0",
             "source": {
@@ -10858,6 +10903,94 @@
                 "source": "https://github.com/grasmash/expander/tree/master"
             },
             "time": "2017-12-21T22:14:55+00:00"
+        },
+        {
+            "name": "grasmash/yaml-expander",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grasmash/yaml-expander.git",
+                "reference": "3f0f6001ae707a24f4d9733958d77d92bf9693b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grasmash/yaml-expander/zipball/3f0f6001ae707a24f4d9733958d77d92bf9693b1",
+                "reference": "3f0f6001ae707a24f4d9733958d77d92bf9693b1",
+                "shasum": ""
+            },
+            "require": {
+                "dflydev/dot-access-data": "^1.1.0",
+                "php": ">=5.4",
+                "symfony/yaml": "^2.8.11|^3|^4"
+            },
+            "require-dev": {
+                "greg-1-anderson/composer-test-scenarios": "^1",
+                "phpunit/phpunit": "^4.8|^5.5.4",
+                "satooshi/php-coveralls": "^1.0.2|dev-master",
+                "squizlabs/php_codesniffer": "^2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Grasmash\\YamlExpander\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Grasmick"
+                }
+            ],
+            "description": "Expands internal property references in a yaml file.",
+            "support": {
+                "issues": "https://github.com/grasmash/yaml-expander/issues",
+                "source": "https://github.com/grasmash/yaml-expander/tree/master"
+            },
+            "time": "2017-12-16T16:06:03+00:00"
+        },
+        {
+            "name": "gtfs/realtime-php",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianknopf/gtfs-realtime-php.git",
+                "reference": "83c8f777ce52b0061fc3a2e200832767a8fa8bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianknopf/gtfs-realtime-php/zipball/83c8f777ce52b0061fc3a2e200832767a8fa8bb9",
+                "reference": "83c8f777ce52b0061fc3a2e200832767a8fa8bb9",
+                "shasum": ""
+            },
+            "require": {
+                "google/protobuf": "3.10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GPBMetadata\\Src\\": "src/GPBMetadata",
+                    "Google\\Transit\\Realtime\\": "src/Google/Transit/Realtime"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The Unlicense"
+            ],
+            "description": "GTFS-Realtime library for PHP",
+            "support": {
+                "issues": "https://github.com/sebastianknopf/gtfs-realtime-php/issues",
+                "source": "https://github.com/sebastianknopf/gtfs-realtime-php/tree/v1.0.0"
+            },
+            "abandoned": true,
+            "time": "2019-10-20T19:17:36+00:00"
         },
         {
             "name": "guzzlehttp/command",
