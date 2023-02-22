@@ -98,7 +98,7 @@ class Gtfs {
   }
 
   /**
-   * Get GTFS data.
+   * Get GTFS data as a PHP array.
    *
    * @param string $type
    *   The type of data to get: see ::allowedTypes().
@@ -112,7 +112,7 @@ class Gtfs {
    *   - Entities
    *   The Entities array is keyed by item.
    */
-  public function get(string $type): array {
+  public function getArray(string $type): array {
     $gtfs_data = [
       'Header' => [
         'GtfsRealtimeVersion' => 0,
