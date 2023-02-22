@@ -5,6 +5,7 @@ namespace Drupal\ict_gtfs;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Url;
+use Google\Transit\Realtime\FeedMessage;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Stream;
@@ -95,6 +96,49 @@ class Gtfs {
    */
   protected function allowedTypes(): array {
     return $this->allowedTypes;
+  }
+
+  /**
+   * Get GTFS data as an object.
+   *
+   * @param string $type
+   *   The type of data to get: see ::allowedTypes().
+   *
+   * @return Google\Transit\Realtime\FeedMessage|null
+   *   A FeedMessage object representing the requested data.
+   *   Return NULL if there is an error or the data is empty.
+   */
+  public function getObject(string $type): ?FeedMessage {
+    $args = ['%type' => $type];
+
+    // Validate the $type parameter.
+    if (!in_array($type, $this->allowedTypes())) {
+      $this->logger->warning('Unsupported GTFS type %type.', $args);
+      return NULL;
+    }
+
+    // Get the data from the cache or the external API.
+    $cid = "ict_gtfs:$type:protobuf";
+    $cache = $this->cache->get($cid);
+    if ($cache !== FALSE) {
+      $data = $cache->data;
+    }
+    else {
+      $data = $this->fetchData($type, 'protobuf');
+      $expire = $this->time->getRequestTime() + $this->maxAge;
+      $this->cache->set($cid, $data, $expire);
+    }
+
+    // Load the data into an object.
+    try {
+      $message = new FeedMessage();
+      $message->mergeFromString($data);
+    }
+    catch (\Exception $e) {
+      return NULL;
+    }
+
+    return $message;
   }
 
   /**
@@ -213,7 +257,7 @@ class Gtfs {
       return '';
     }
 
-    $cid = "ict_gtfs:$type";
+    $cid = "ict_gtfs:$type:json";
     $cache = $this->cache->get($cid);
     if ($cache !== FALSE) {
       return $cache->data;
