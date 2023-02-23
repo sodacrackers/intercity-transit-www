@@ -5,4 +5,4 @@ services:
 
   ict.gtfs:
     class: Drupal\ict_gtfs\Gtfs
-    arguments: ['@http_client', '@logger.channel.ict_gtfs', '@cache.data', '@datetime.time']
+    arguments: ['@config.factory', '@http_client', '@logger.channel.ict_gtfs', '@cache.data', '@datetime.time']

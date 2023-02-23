@@ -4,6 +4,7 @@ namespace Drupal\ict_gtfs;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Url;
 use Google\Transit\Realtime\FeedMessage;
 use GuzzleHttp\ClientInterface;
@@ -49,11 +50,7 @@ class Gtfs {
    *
    * @var string[]
    */
-  protected $allowedTypes = [
-    'Alert',
-    'TripUpdate',
-    'VehiclePosition',
-  ];
+  protected $allowedTypes;
 
   /**
    * Get JSON from the FeedMessage object.
@@ -62,25 +59,27 @@ class Gtfs {
    *   If TRUE, get a FeedMessage object and serialize to JSON.
    *   If FALSE, use the debug parameter to get JSON from the API.
    */
-  protected $jsonFromFeedMessage = TRUE;
+  protected $jsonFromFeedMessage;
 
   /**
    * The maximum age before refreshing the data, in seconds.
    *
    * @var int
    */
-  protected $maxAge = 60;
+  protected $maxAge;
 
   /**
    * The GTFS API server.
    *
    * @var string
    */
-  protected $baseUrl = 'https://its.rideralerts.com/InfoPoint/GTFS-realtime.ashx';
+  protected $baseUrl;
 
   /**
    * Constructs a Gtfs object.
    *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
    * @param \GuzzleHttp\ClientInterface $http_client
    *   The HTTP client.
    * @param \Psr\Log\LoggerInterface $logger
@@ -90,11 +89,17 @@ class Gtfs {
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The time service.
    */
-  public function __construct(ClientInterface $http_client, LoggerInterface $logger, CacheBackendInterface $cache, TimeInterface $time) {
+  public function __construct(ConfigFactoryInterface $config_factory, ClientInterface $http_client, LoggerInterface $logger, CacheBackendInterface $cache, TimeInterface $time) {
     $this->httpClient = $http_client;
     $this->logger = $logger;
     $this->cache = $cache;
     $this->time = $time;
+
+    $settings = $config_factory->get('ict_gtfs.settings');
+    $this->baseUrl = $settings->get('base_url');
+    $this->maxAge = $settings->get('max_age');
+    $this->allowedTypes = $settings->get('allowed_types');
+    $this->jsonFromFeedMessage = $settings->get('json_from_object');
   }
 
   /**
