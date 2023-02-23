@@ -1,6 +1,6 @@
 ict_gtfs.settings_form:
   title: GTFS Import
   description: Configure GTFS Import.
-  parent: system.admin_config_system
+  parent: system.admin_config_services
   route_name: ict_gtfs.settings_form
   weight: 10
