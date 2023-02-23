@@ -18,6 +18,36 @@ use Psr\Log\LoggerInterface;
 class Gtfs {
 
   /**
+   * The GTFS API server.
+   *
+   * @var string
+   */
+  protected $baseUrl;
+
+  /**
+   * Allowed types.
+   *
+   * @var string[]
+   */
+  protected $allowedTypes;
+
+  /**
+   * The maximum age before refreshing the data, in seconds.
+   *
+   * @var int
+   */
+  protected $maxAge;
+
+  /**
+   * Get JSON from the FeedMessage object.
+   *
+   * @var bool
+   *   If TRUE, get a FeedMessage object and serialize to JSON.
+   *   If FALSE, use the debug parameter to get JSON from the API.
+   */
+  protected $jsonFromFeedMessage;
+
+  /**
    * The HTTP client.
    *
    * @var \GuzzleHttp\ClientInterface
@@ -46,36 +76,6 @@ class Gtfs {
   protected $time;
 
   /**
-   * Allowed types.
-   *
-   * @var string[]
-   */
-  protected $allowedTypes;
-
-  /**
-   * Get JSON from the FeedMessage object.
-   *
-   * @var bool
-   *   If TRUE, get a FeedMessage object and serialize to JSON.
-   *   If FALSE, use the debug parameter to get JSON from the API.
-   */
-  protected $jsonFromFeedMessage;
-
-  /**
-   * The maximum age before refreshing the data, in seconds.
-   *
-   * @var int
-   */
-  protected $maxAge;
-
-  /**
-   * The GTFS API server.
-   *
-   * @var string
-   */
-  protected $baseUrl;
-
-  /**
    * Constructs a Gtfs object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -90,16 +90,16 @@ class Gtfs {
    *   The time service.
    */
   public function __construct(ConfigFactoryInterface $config_factory, ClientInterface $http_client, LoggerInterface $logger, CacheBackendInterface $cache, TimeInterface $time) {
-    $this->httpClient = $http_client;
-    $this->logger = $logger;
-    $this->cache = $cache;
-    $this->time = $time;
-
     $settings = $config_factory->get('ict_gtfs.settings');
     $this->baseUrl = $settings->get('base_url');
     $this->maxAge = $settings->get('max_age');
     $this->allowedTypes = $settings->get('allowed_types');
     $this->jsonFromFeedMessage = $settings->get('json_from_object');
+
+    $this->httpClient = $http_client;
+    $this->logger = $logger;
+    $this->cache = $cache;
+    $this->time = $time;
   }
 
   /**
@@ -113,16 +113,6 @@ class Gtfs {
   }
 
   /**
-   * Get the jsonFromFeedMessage setting.
-   *
-   * @return bool
-   *   If TRUE, get a FeedMessage object and serialize to JSON.
-   */
-  public function getJsonFromFeedMessage(): bool {
-    return $this->jsonFromFeedMessage;
-  }
-
-  /**
    * Get the cache maximum age setting.
    *
    * @return int
@@ -130,6 +120,16 @@ class Gtfs {
    */
   public function getMaxAge(): int {
     return $this->maxAge;
+  }
+
+  /**
+   * Get the jsonFromFeedMessage setting.
+   *
+   * @return bool
+   *   If TRUE, get a FeedMessage object and serialize to JSON.
+   */
+  public function getJsonFromFeedMessage(): bool {
+    return $this->jsonFromFeedMessage;
   }
 
   /**
