@@ -1,5 +1,6 @@
 name: GTFS Import
 type: module
 description: Import data using the GTFS standard.
+configure: ict_gtfs.settings_form
 package: ICT
 core_version_requirement: ^9 || ^10
