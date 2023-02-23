@@ -103,15 +103,35 @@ class Gtfs {
    * @return string[]
    *   The available types.
    */
-  protected function allowedTypes(): array {
+  public function getAllowedTypes(): array {
     return $this->allowedTypes;
+  }
+
+  /**
+   * Get the jsonFromFeedMessage setting.
+   *
+   * @return bool
+   *   If TRUE, get a FeedMessage object and serialize to JSON.
+   */
+  public function getJsonFromFeedMessage(): bool {
+    return $this->jsonFromFeedMessage;
+  }
+
+  /**
+   * Get the cache maximum age setting.
+   *
+   * @return int
+   *   The maximum age before refreshing the data, in seconds.
+   */
+  public function getMaxAge(): int {
+    return $this->maxAge;
   }
 
   /**
    * Get GTFS data as an object.
    *
    * @param string $type
-   *   The type of data to get: see ::allowedTypes().
+   *   The type of data to get: see ::getAllowedTypes().
    *
    * @return Google\Transit\Realtime\FeedMessage|null
    *   A FeedMessage object representing the requested data.
@@ -121,7 +141,7 @@ class Gtfs {
     $args = ['%type' => $type];
 
     // Validate the $type parameter.
-    if (!in_array($type, $this->allowedTypes())) {
+    if (!in_array($type, $this->getAllowedTypes())) {
       $this->logger->warning('Unsupported GTFS type %type.', $args);
       return NULL;
     }
@@ -154,7 +174,7 @@ class Gtfs {
    * Get GTFS data as a PHP array.
    *
    * @param string $type
-   *   The type of data to get: see ::allowedTypes().
+   *   The type of data to get: see ::getAllowedTypes().
    *
    * @return array
    *   A nested array with the keys
@@ -204,7 +224,7 @@ class Gtfs {
    * Get GTFS data from the external server.
    *
    * @param string $type
-   *   The type of data to get: see ::allowedTypes().
+   *   The type of data to get: see ::getAllowedTypes().
    * @param string $format
    *   The data format: either 'json' or 'protobuf'.
    *
@@ -216,7 +236,7 @@ class Gtfs {
     $args = ['%type' => $type, '%format' => $format];
 
     // Validate the $type parameter.
-    if (!in_array($type, $this->allowedTypes())) {
+    if (!in_array($type, $this->getAllowedTypes())) {
       $this->logger->warning('Unsupported GTFS type %type.', $args);
       return '';
     }
@@ -254,7 +274,7 @@ class Gtfs {
    * Get GTFS data as JSON from cache or the external server.
    *
    * @param string $type
-   *   The type of data to get: see ::allowedTypes().
+   *   The type of data to get: see ::getAllowedTypes().
    *
    * @return string
    *   A JSON string representing the requested data. If anything goes wrong,
@@ -264,7 +284,7 @@ class Gtfs {
     $args = ['%type' => $type];
 
     // Validate the $type parameter.
-    if (!in_array($type, $this->allowedTypes())) {
+    if (!in_array($type, $this->getAllowedTypes())) {
       $this->logger->warning('Unsupported GTFS type %type.', $args);
       return '';
     }
