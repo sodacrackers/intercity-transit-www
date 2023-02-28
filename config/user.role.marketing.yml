@@ -29,7 +29,6 @@ dependencies:
     - block
     - field_ui
     - filter
-    - google_analytics
     - image
     - media
     - node
@@ -57,7 +56,6 @@ permissions:
   - 'access user profiles'
   - 'access webform overview'
   - 'administer blocks'
-  - 'administer google analytics'
   - 'administer image styles'
   - 'administer menu'
   - 'administer nodes'
