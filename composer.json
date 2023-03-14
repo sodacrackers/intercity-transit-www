@@ -141,7 +141,8 @@
         "watech-web/chosen": "^1.0",
         "watech-web/db_custom_tools": "^2",
         "wikimedia/composer-merge-plugin": "^2.0",
-        "drupal/adaptivetheme": "^5.1"
+        "drupal/adaptivetheme": "^5.1",
+        "drupal/google_tag": "^1.6"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
