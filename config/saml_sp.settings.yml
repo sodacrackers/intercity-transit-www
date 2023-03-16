@@ -29,4 +29,3 @@ new_cert_location: private/certs/saml.crt
 entity_id: 'https://www.intercitytransit.com/user'
 debug: false
 assertion_urls: "https://www.intercitytransit.com/saml/consume\r\nhttps://saml-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://dev-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://test-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://live-intercity-transit.pantheonsite.io/saml/consume\r\nhttps://intercitytransit.com.com/saml/consume"
-valid_until: ''
