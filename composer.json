@@ -131,6 +131,7 @@
         "drupal/workbench_moderation": "^1.5",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "^11 || ^12",
+        "gtfs/realtime-php": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/quicksilver-pushback": "^2",

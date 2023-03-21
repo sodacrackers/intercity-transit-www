@@ -1,0 +1,8 @@
+services:
+  logger.channel.ict_gtfs:
+    parent: logger.channel_base
+    arguments: ['ict_gtfs']
+
+  ict.gtfs:
+    class: Drupal\ict_gtfs\Gtfs
+    arguments: ['@config.factory', '@http_client', '@logger.channel.ict_gtfs', '@cache.data', '@datetime.time']
