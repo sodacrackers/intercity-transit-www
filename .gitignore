@@ -95,3 +95,6 @@
 
 # Ignore .env files as they are personal
 /.env
+
+web/modules/custom/*/js/dist_dev/*
+web/modules/custom/*/node_modules/*

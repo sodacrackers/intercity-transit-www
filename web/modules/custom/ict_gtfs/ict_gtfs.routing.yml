@@ -5,3 +5,11 @@ ict_gtfs.settings_form:
     _form: 'Drupal\ict_gtfs\Form\SettingsForm'
   requirements:
     _permission: 'administer site configuration'
+
+ict_gtfs.json_endpoint:
+  path: '/api/json/real-time-data'
+  defaults:
+    _title: 'JSON Real time data'
+    _controller: 'Drupal\ict_gtfs\Controller\BusData::json'
+  requirements:
+    _access: 'TRUE'
