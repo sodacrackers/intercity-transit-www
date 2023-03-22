@@ -1,0 +1,10 @@
+# Custom module library for general purposes.
+ict_routes_react_app:
+  version: VERSION
+  js:
+    js/dist/main.min.js: {minified: true}
+
+ict_routes_react_dev:
+  version: VERSION
+  js:
+    js/dist_dev/main.min.js: {minified: true}

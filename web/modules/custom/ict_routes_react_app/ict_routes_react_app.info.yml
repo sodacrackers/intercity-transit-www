@@ -1,0 +1,8 @@
+name: ICT Routes React App
+type: module
+description: React app for showing real time data
+package: Custom
+core_version_requirement: ^9 || ^10
+
+dependencies:
+  - ict_gtfs:ict_gtfs
