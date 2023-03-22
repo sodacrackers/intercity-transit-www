@@ -20,3 +20,11 @@ directly accept pull requests.
 
 Instead, to propose a change, please fork [pantheon-systems/drupal-composer-managed](https://github.com/pantheon-systems/drupal-composer-managed)
 and submit a PR to that repository.
+
+## Local Drupal setup
+
+#### Pre-requisites: a working `ddev` installation and a working `terminus` command line tool
+
+Steps:
+ - `ddev start` to bring up the containers
+ - `ddev install` to do all the magic: build project dependencies, download db, build react app and apply updates

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## Description: Install the site from the live database
+## Usage: install
+## Example: ddev install
+
+ddev composer install
+ddev npm --prefix /var/www/html/web/modules/custom/ict_routes_react_app/ run build
+terminus backup:get intercity-transit.live --element=db --to=db.sql.gz
+ddev import-db --src=db.sql.gz
+rm db.sql.gz
+ddev drush deploy
