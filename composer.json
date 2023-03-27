@@ -8,9 +8,9 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-                {
-            "type": "composer", 
-            "url": "https://asset-packagist.org" 
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         },
         {
             "type": "composer",
@@ -143,32 +143,27 @@
         "watech-web/db_custom_tools": "^2",
         "wikimedia/composer-merge-plugin": "^2.0",
         "drupal/adaptivetheme": "^5.1",
-        "drupal/google_tag": "^1.6"
+        "drupal/google_tag": "^1.6",
+        "google/protobuf": "3.22.0 as 3.10.0"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
     },
     "conflict": {
-            "drupal/drupal": "*"
+        "drupal/drupal": "*"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "extra": {
-        "installer-types": [
-            "npm-asset"
-        ],
+        "installer-types": ["npm-asset"],
         "merge-plugin": {
-            "include": [
-                "web/modules/contrib/webform/composer.libraries.json"
-            ]
-        },        
+            "include": ["web/modules/contrib/webform/composer.libraries.json"]
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "./web"
             },
-            "allowed-packages": [
-                "pantheon-systems/drupal-integrations"
-            ],
+            "allowed-packages": ["pantheon-systems/drupal-integrations"],
             "file-mapping": {
                 "[project-root]/.editorconfig": false,
                 "[project-root]/pantheon.upstream.yml": false,
@@ -177,7 +172,10 @@
         },
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library","type:npm-asset"],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:npm-asset"
+            ],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
@@ -188,39 +186,34 @@
             "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
         "patches": {
-            "drupal/core" :{
-                "Grouped date exposed filter notice: https://www.drupal.org/project/drupal/issues/2825860":"https://www.drupal.org/files/issues/2020-06-04/2825860-exposed-filter-notice-38.patch",
-                "https://www.drupal.org/project/drupal/issues/2710427":"https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
-                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055":"https://www.drupal.org/files/issues/2021-04-19/ckeditor-p-tag-added-to-media-3131055-17.patch"
+            "drupal/core": {
+                "Grouped date exposed filter notice: https://www.drupal.org/project/drupal/issues/2825860": "https://www.drupal.org/files/issues/2020-06-04/2825860-exposed-filter-notice-38.patch",
+                "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
+                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2021-04-19/ckeditor-p-tag-added-to-media-3131055-17.patch"
             },
             "drupal/scheduled_updates": {
-                "D9 patches https://www.drupal.org/project/scheduled_updates/issues/3172330":"https://www.drupal.org/files/issues/2021-12-21/3172330-46.patch"
+                "D9 patches https://www.drupal.org/project/scheduled_updates/issues/3172330": "https://www.drupal.org/files/issues/2021-12-21/3172330-46.patch"
             },
             "drupal/we_megamenu": {
                 "Fixing duplicate column issue, https://www.drupal.org/project/we_megamenu/issues/2988381": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch",
                 "3239043: Deprecated error /PHP. 8.0 Drupal 9": "patches/we_megamenu_deprecated.patch"
-            }          
+            },
+            "gtfs/realtime-php": {
+                "#1 Bump google/protobuf from 3.10.0 to 3.15.0": "https://patch-diff.githubusercontent.com/raw/sebastianknopf/gtfs-realtime-php/pull/1.patch"
+            }
         },
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
-        }
+        },
+        "enable-patching": true
     },
     "autoload": {
-        "classmap": [
-            "upstream-configuration/scripts/ComposerScripts.php"
-        ]
+        "classmap": ["upstream-configuration/scripts/ComposerScripts.php"]
     },
     "scripts": {
-        "pre-update-cmd": [
-            "DrupalComposerManaged\\ComposerScripts::preUpdate"
-        ],
-        "upstream-require": [
-            "DrupalComposerManaged\\ComposerScripts::upstreamRequire"
-        ]
-    },
-    "scripts-descriptions": {
-        "upstream-require": "Add a dependency to an upstream. See https://pantheon.io/docs/create-custom-upstream for information on creating custom upstreams."
+        "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
+        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"]
     },
     "config": {
         "preferred-install": "dist",
@@ -237,7 +230,8 @@
             "oomphinc/composer-installers-extender": true,
             "rvtraveller/qs-composer-installer": true,
             "wikimedia/composer-merge-plugin": true,
-            "drupal/console-extend-plugin": true
+            "drupal/console-extend-plugin": true,
+            "phpstan/extension-installer": true
         }
     }
 }

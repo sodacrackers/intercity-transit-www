@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62f127aa15f57bab441f48d5e90ebfbe",
+    "content-hash": "0f6484520d73d104dcff202a3717d87d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -10758,23 +10758,23 @@
         },
         {
             "name": "google/protobuf",
-            "version": "v3.10.0",
+            "version": "v3.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/protocolbuffers/protobuf-php.git",
-                "reference": "5dffdd2c84112e6c91fd84f92e3df96649426881"
+                "reference": "66495c7f8be461c4a65d697e0705a7ef55ca8c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/5dffdd2c84112e6c91fd84f92e3df96649426881",
-                "reference": "5dffdd2c84112e6c91fd84f92e3df96649426881",
+                "url": "https://api.github.com/repos/protocolbuffers/protobuf-php/zipball/66495c7f8be461c4a65d697e0705a7ef55ca8c19",
+                "reference": "66495c7f8be461c4a65d697e0705a7ef55ca8c19",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "php": ">=7.0.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=4.8.0"
+                "phpunit/phpunit": ">=5.0.0"
             },
             "suggest": {
                 "ext-bcmath": "Need to support JSON deserialization"
@@ -10796,10 +10796,9 @@
                 "proto"
             ],
             "support": {
-                "issues": "https://github.com/protocolbuffers/protobuf-php/issues",
-                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.10.0"
+                "source": "https://github.com/protocolbuffers/protobuf-php/tree/v3.22.0"
             },
-            "time": "2019-10-03T20:08:37+00:00"
+            "time": "2023-02-10T20:00:39+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -22352,7 +22351,14 @@
             "time": "2021-07-28T10:34:58+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "google/protobuf",
+            "version": "3.22.0.0",
+            "alias": "3.10.0",
+            "alias_normalized": "3.10.0.0"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "drupal/auto_entitylabel": 20,
