@@ -7,9 +7,6 @@ dependencies:
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: breadcrumbs
 theme: transit
 region: header_mid

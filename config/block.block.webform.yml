@@ -10,9 +10,6 @@ dependencies:
     - webform
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: webform
 theme: transit
 region: sidebar_second

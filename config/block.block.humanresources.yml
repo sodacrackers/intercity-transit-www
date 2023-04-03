@@ -15,8 +15,6 @@ dependencies:
 third_party_settings:
   menu_block_title:
     modify_title: false
-  block_class:
-    classes: null
 id: humanresources
 theme: transit
 region: sidebar_first

@@ -9,9 +9,6 @@ dependencies:
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 _core:
   default_config_hash: DweBpscQZdG0-fHkSpUzdYucrNH45G_KF7Z82V-oyQM
 id: transit_account_menu

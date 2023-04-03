@@ -9,9 +9,6 @@ dependencies:
     - block_content
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: business
 theme: transit
 region: none

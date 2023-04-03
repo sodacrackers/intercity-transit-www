@@ -10,9 +10,6 @@ dependencies:
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__procurement_item_block_1
 theme: transit
 region: content

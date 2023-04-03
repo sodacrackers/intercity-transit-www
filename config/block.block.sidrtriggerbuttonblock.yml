@@ -7,9 +7,6 @@ dependencies:
     - sidr
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: sidrtriggerbuttonblock
 theme: transit
 region: header_top
