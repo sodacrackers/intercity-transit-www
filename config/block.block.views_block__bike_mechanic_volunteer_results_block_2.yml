@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.bike_mechanic_volunteer_results
   module:
-    - block_class
     - system
     - views
   theme:

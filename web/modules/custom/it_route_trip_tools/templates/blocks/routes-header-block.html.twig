@@ -1,0 +1,23 @@
+{% set class_map = [
+    'col-md-12',
+    'col-md-6',
+    'col-md-4',
+    'col-md-3',
+    'col-md-2',
+    'col-md-2',
+] %}
+{% set width_class = class_map[additional_blocks|length] %}
+<div class="container-fluid">
+    <div class="col-xs-12 {{ width_class }}">
+        <select>
+            {% for key, value in routes_options %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% for single_block in additional_blocks %}
+        <div class="{{ width_class }}">
+            {% include '@it_route_trip_tools/blocks/header-block.html.twig' with single_block %}
+        </div>
+    {% endfor %}
+</div>

@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.service_changes_next_event
   module:
-    - block_class
     - system
     - views
   theme:

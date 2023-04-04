@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.event_files_for_sidebar
   module:
-    - block_class
     - node
     - views
   theme:

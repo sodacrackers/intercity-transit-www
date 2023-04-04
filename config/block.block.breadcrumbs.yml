@@ -3,14 +3,13 @@ langcode: en
 status: true
 dependencies:
   module:
-    - block_class
     - system
   theme:
     - transit
 id: breadcrumbs
 theme: transit
 region: header_mid
-weight: -44
+weight: -48
 provider: null
 plugin: system_breadcrumb_block
 settings:

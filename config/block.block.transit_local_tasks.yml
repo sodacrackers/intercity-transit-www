@@ -2,8 +2,6 @@ uuid: 87fe1fb0-a58b-4c31-a428-f86ffd5c9c7f
 langcode: en
 status: true
 dependencies:
-  module:
-    - block_class
   theme:
     - transit
 _core:

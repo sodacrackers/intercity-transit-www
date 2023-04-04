@@ -5,7 +5,6 @@ dependencies:
   content:
     - 'block_content:hard_coded_block:e4e106a4-2838-4591-9b27-9f4e75aa71a9'
   module:
-    - block_class
     - block_content
   theme:
     - transit

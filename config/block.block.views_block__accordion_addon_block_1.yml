@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.accordion_addon
   module:
-    - block_class
     - system
     - views
   theme:

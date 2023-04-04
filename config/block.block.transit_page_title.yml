@@ -11,7 +11,7 @@ _core:
 id: transit_page_title
 theme: transit
 region: header_mid
-weight: -43
+weight: -47
 provider: null
 plugin: page_title_block
 settings:

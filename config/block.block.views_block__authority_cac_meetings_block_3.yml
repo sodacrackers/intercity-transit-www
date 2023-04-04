@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.authority_cac_meetings
   module:
-    - block_class
     - system
     - views
   theme:

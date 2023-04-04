@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="col-xs-12 col-md-6">
+        <h2>Select a Bus Route</h2>
+        <ul>
+            {% for route_id, route_name in routes_options %}
+                <li><a href="/plan-your-trip/routes/{{ route_id }}">{{ route_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <h2>Alerts & Announcements</h2>
+        <a href="{{ alert_view_all_link }}">View all alerts</a>
+        <div id="accordion">
+        {% for alert_id, alert in alert_options %}
+            <div class="card">
+                <div class="card-header" id="heading{{ loop.index }}">
+                    {{ alert.alert.headerText.translation[0].text }}
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                            +
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}" data-parent="#accordion">
+                    <div class="card-body">
+                        Cause: {{ alert.alert.cause }}<br/>
+                        Effect: {{ alert.alert.effect }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

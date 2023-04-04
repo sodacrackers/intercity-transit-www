@@ -5,14 +5,13 @@ dependencies:
   content:
     - 'block_content:hard_coded_block:0bbe361b-8628-4d7b-8009-8180a433a29b'
   module:
-    - block_class
     - block_content
   theme:
     - transit
 id: roadtrip
 theme: transit
 region: header_top
-weight: -38
+weight: -47
 provider: null
 plugin: 'block_content:0bbe361b-8628-4d7b-8009-8180a433a29b'
 settings:

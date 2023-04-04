@@ -5,7 +5,6 @@ dependencies:
   config:
     - system.menu.human-resources
   module:
-    - block_class
     - menu_block
     - menu_block_title
     - system

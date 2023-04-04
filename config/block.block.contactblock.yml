@@ -5,7 +5,6 @@ dependencies:
   config:
     - contact.form.customer_service
   module:
-    - block_class
     - contact_block
     - system
   theme:

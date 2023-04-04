@@ -109,7 +109,45 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 				'current_page' => '',
 				'route_id' => ''
 			],	
-		]
+		],
+        /** new templates */
+        'routes_header_block' => [
+            'template' => 'blocks/routes-header-block',
+            'variables' => [
+                'routes_options' => [],
+                'additional_blocks' => [
+                    [
+                        'title' => t('Service Alerts'),
+                        'link' => [
+                            'title' => 'View Alerts',
+                            'url' => '/alerts'
+                        ],
+                    ],
+                    [
+                        'title' => t('Planning a Trip?'),
+                        'link' => [
+                            'title' => 'Go to Trip Planner',
+                            'url' => '/plan-your-trip/trip-planner'
+                        ],
+                    ],
+                    [
+                        'title' => t('Stops And Stations'),
+                        'link' => [
+                            'title' => 'View stops',
+                            'url' => '/stops'
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'routes_new_page' => [
+            'template' => 'pages/routes-new-page',
+            'variables' => [
+                'routes_options' => [],
+                'alert_options' => [],
+                'alert_view_all_link' => ''
+            ],
+        ]
 	];
 }
 

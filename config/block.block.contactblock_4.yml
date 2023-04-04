@@ -5,7 +5,6 @@ dependencies:
   config:
     - contact.form.pace_car_pledge
   module:
-    - block_class
     - contact_block
     - system
   theme:

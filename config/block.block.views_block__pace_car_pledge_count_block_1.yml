@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.pace_car_pledge_count
   module:
-    - block_class
     - system
     - views
   theme:
