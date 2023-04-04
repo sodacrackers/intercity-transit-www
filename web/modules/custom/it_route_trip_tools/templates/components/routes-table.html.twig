@@ -6,7 +6,7 @@
 			{% set dir_class = 'hide-dir hidden' %}
 		{% endif %}
 
-		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables">
+		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables dir-tables-{{ dir }}">
 			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
 			    <button id="{{ dir }}-back" role="button" class=" left-table-button btn btn-default" disabled><i class="fas fa-chevron-left"></i><span class="sr-only">{{ dir }} Back</span></button>
 			    <button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default"><i class="fas fa-chevron-right"></i><span class="sr-only">{{ dir }} Forward</span></button>

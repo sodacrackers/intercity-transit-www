@@ -150,6 +150,18 @@
 					var inbound_table_width = $('#inbound-tables table theah').width();
 				}
 			});
+			$('input[name="direction"]').once().click(function() {
+				const choice = $(this).val();
+				const opposite = choice === 'inbound' ? 'outbound' : 'inbound';
+				$('button#direction').addClass(choice);
+				$('button#direction').removeClass(opposite);
+				$('.dir-heading-' + choice).removeClass('hidden');
+				$('.dir-heading-' + opposite).addClass('hidden');
+				$('.dir-tables-' + choice).removeClass('hidden');
+				$('.dir-tables-' + opposite).addClass('hidden');
+				$('.map-frame-' + choice + ' .maps-' + choice).removeClass('hidden').removeClass('show-dir').removeClass('hide-dir');
+				$('.map-frame-' + opposite + ' .maps-' + opposite).addClass('hidden').addClass('show-dir').addClass('hide-dir');
+			});
 			$('.outbound-panel').on('hide.bs.collapse', function () {
 				$('.outbound-route-map-toggle').html('Show Route Map');
 			})

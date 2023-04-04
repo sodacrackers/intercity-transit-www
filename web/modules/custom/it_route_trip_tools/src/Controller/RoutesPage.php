@@ -68,10 +68,10 @@ class RoutesPage extends ControllerBase {
 
   public function BuildPage($routeId = NULL) {
 
+    $config = $this->config('it_route_trip_tools.settings');
+    $route_options_request = $config->get('route_options_request');
+    $routes_options = it_route_trip_tools_build_routes_options($route_options_request);
     if (empty($routeId) || $routeId === 'all') {
-      $config = $this->config('it_route_trip_tools.settings');
-      $route_options_request = $config->get('route_options_request');
-      $routes_options = it_route_trip_tools_build_routes_options($route_options_request);
       $alerts = $this->gtfs->getArray('Alert');
       return [
         '#theme' => 'routes_new_page',
@@ -80,13 +80,16 @@ class RoutesPage extends ControllerBase {
         '#alert_view_all_link' => '/plan-your-trip/alerts',
       ];
     }
-    
+
     /*Need to grab the Routes form*/
     $routes_form = \Drupal::formBuilder()->getForm('Drupal\it_route_trip_tools\Form\RoutesForm');
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
     $routes_path = $config->get('route_page_path');
 
     if ($routeId != 'all') {
+      $routes_stops_api_base = $config->get('route_stops_api_base');
+      $shapes_request = $config->get('route_shapes_request');
+      $shapes_path = $routes_stops_api_base . '/' . $shapes_request;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
       $route_data = it_route_trip_tools_get_route_data($routeId);
       $request = \Drupal::request();
@@ -116,6 +119,8 @@ class RoutesPage extends ControllerBase {
       ];
       return [
         '#theme' => 'routes_page',
+        '#route_id' => $routeId,
+        '#routes_options' => $routes_options,
         '#routes_form' => $build_form,
         '#routes_map' => $routes_map,
         '#routes_table' => $routes_table,

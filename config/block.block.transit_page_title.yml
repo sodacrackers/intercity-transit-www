@@ -24,4 +24,4 @@ visibility:
     id: request_path
     negate: true
     context_mapping: {  }
-    pages: "<Front>\r\n/saml/drupal_login/portal_intercitytransit_com\r\n/plan-your-trip/routes"
+    pages: "<Front>\r\n/saml/drupal_login/portal_intercitytransit_com\r\n/plan-your-trip/routes\r\n/plan-your-trip/routes/*"

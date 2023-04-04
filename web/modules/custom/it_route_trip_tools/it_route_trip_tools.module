@@ -32,6 +32,8 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 		'routes_page' => [
 			'template' => 'pages/routes-page',
 			'variables' => [
+				'route_id' => NULL,
+				'routes_options' => array(),
 				'route_list' => array(),
 				'routes_form' => array(),
 				'routes_map' => array(),
