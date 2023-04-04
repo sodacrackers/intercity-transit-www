@@ -9,7 +9,7 @@
 {% set width_class = class_map[additional_blocks|length] %}
 <div class="container-fluid">
     <div class="col-xs-12 {{ width_class }}">
-        <select>
+        <select id="route-change">
             {% for key, value in routes_options %}
                 <option value="{{ key }}">{{ value }}</option>
             {% endfor %}

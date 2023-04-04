@@ -162,6 +162,37 @@
 				$('.map-frame-' + choice + ' .maps-' + choice).removeClass('hidden').removeClass('show-dir').removeClass('hide-dir');
 				$('.map-frame-' + opposite + ' .maps-' + opposite).addClass('hidden').addClass('show-dir').addClass('hide-dir');
 			});
+			$('.btn-stops-toggle').once().click(function() {
+				$(this).find('.btn').toggleClass('active');
+				$(this).find('.btn').toggleClass('btn-primary');
+				$(this).find('.btn').toggleClass('btn-default');
+			});
+			$('input[name="display_stops_options"]').once().change(function() {
+				const show_rows = $(this).val();
+				if (show_rows === 'allstops') {
+					$('tr.non-timepoint').show();
+				} else {
+					$('tr.non-timepoint').hide();
+				}
+			});
+			$('input[name="show_stop"]').once().click(function() {
+				const searchIDs = $('input[name="show_stop"]:checked').map(function(){
+					return $(this).val();
+				}).get();
+				if (searchIDs.length === 0) {
+					$('tr[data-stop-id]').show();
+				}
+				else {
+					$('tr[data-stop-id]').hide();
+					searchIDs.forEach(function (item) {
+						console.log()
+						$('tr[data-stop-id="' + item + '"]').show();
+					});
+				}
+			});
+			$('select#route-change').once().change(function() {
+				window.location.href = '/plan-your-trip/routes/' + $(this).val();
+			});
 			$('.outbound-panel').on('hide.bs.collapse', function () {
 				$('.outbound-route-map-toggle').html('Show Route Map');
 			})
