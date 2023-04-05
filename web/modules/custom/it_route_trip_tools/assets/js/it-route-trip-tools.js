@@ -162,6 +162,20 @@
 				$('.map-frame-' + choice + ' .maps-' + choice).removeClass('hidden').removeClass('show-dir').removeClass('hide-dir');
 				$('.map-frame-' + opposite + ' .maps-' + opposite).addClass('hidden').addClass('show-dir').addClass('hide-dir');
 			});
+			$('input[name="dayoftravel"]').once().click(function() {
+				const choice = $(this).val();
+				const opposite = choice === 'weekdays-info' ? 'weekend-info' : 'weekdays-info';
+				$('.' + choice).removeClass('hide');
+				$('.' + opposite).addClass('hide');
+				// $('button#direction').addClass(choice);
+				// $('button#direction').removeClass(opposite);
+				// $('.dir-heading-' + choice).removeClass('hidden');
+				// $('.dir-heading-' + opposite).addClass('hidden');
+				// $('.dir-tables-' + choice).removeClass('hidden');
+				// $('.dir-tables-' + opposite).addClass('hidden');
+				// $('.map-frame-' + choice + ' .maps-' + choice).removeClass('hidden').removeClass('show-dir').removeClass('hide-dir');
+				// $('.map-frame-' + opposite + ' .maps-' + opposite).addClass('hidden').addClass('show-dir').addClass('hide-dir');
+			});
 			$('.btn-stops-toggle').once().click(function() {
 				$(this).find('.btn').toggleClass('active');
 				$(this).find('.btn').toggleClass('btn-primary');
@@ -185,7 +199,6 @@
 				else {
 					$('tr[data-stop-id]').hide();
 					searchIDs.forEach(function (item) {
-						console.log()
 						$('tr[data-stop-id="' + item + '"]').show();
 					});
 				}

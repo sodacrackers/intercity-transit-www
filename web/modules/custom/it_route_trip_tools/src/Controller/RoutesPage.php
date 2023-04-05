@@ -91,40 +91,45 @@ class RoutesPage extends ControllerBase {
       $shapes_request = $config->get('route_shapes_request');
       $shapes_path = $routes_stops_api_base . '/' . $shapes_request;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
-      $route_data = it_route_trip_tools_get_route_data($routeId);
+      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, 1);
+      $route_data_weekend = it_route_trip_tools_get_route_table_map_data($routeId, 2);
       $request = \Drupal::request();
-      if (empty($route_data)) {
+      if (empty($route_data_weekdays)) {
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
       }
       if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
-        $new_title = $route_data['short_name'] . ' - ' . $route_data['long_name'];
+        $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];
         $route->setDefault('_title', $new_title);
       }
       $all_routes_map_data = '';
       $all_routes_map_data_array = [];
-      /*Build the routes form*/
-      $build_form = [
-        '#theme' => 'routes_form',
-        '#form' => $routes_form,
-        '#route_data' => $route_data,
-      ];
-      /*Build the routes map*/
-      $routes_map = [
+
+      $routes_map_weekdays = [
         '#theme' => 'routes_map',
-        '#route_data' => $route_data
+        '#route_data' => $route_data_weekdays
       ];
-      $routes_table = [
+      $routes_table_weekdays = [
         '#theme' => 'routes_table',
-        '#route_data' => $route_data
+        '#route_data' => $route_data_weekdays
+      ];
+      $routes_map_weekend = [
+        '#theme' => 'routes_map',
+        '#route_data' => $route_data_weekend
+      ];
+      $routes_table_weekend = [
+        '#theme' => 'routes_table',
+        '#route_data' => $route_data_weekend
       ];
       return [
         '#theme' => 'routes_page',
         '#route_id' => $routeId,
         '#routes_options' => $routes_options,
-        '#routes_form' => $build_form,
-        '#routes_map' => $routes_map,
-        '#routes_table' => $routes_table,
-        '#route_data' => $route_data,
+        '#routes_map_weekdays' => $routes_map_weekdays,
+        '#routes_map_weekend' => $routes_map_weekend,
+        '#routes_table_weekdays' => $routes_table_weekdays,
+        '#routes_table_weekend' => $routes_table_weekend,
+        '#route_data_weekdays' => $route_data_weekdays,
+        '#route_data_weekend' => $route_data_weekend,
         '#all_routes_map_data' => $all_routes_map_data,
         '#attached' => [
           'drupalSettings' => [

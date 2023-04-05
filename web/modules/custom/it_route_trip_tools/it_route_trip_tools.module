@@ -35,10 +35,12 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 				'route_id' => NULL,
 				'routes_options' => array(),
 				'route_list' => array(),
-				'routes_form' => array(),
-				'routes_map' => array(),
-				'routes_table' => array(),
-				'route_data' => array(),
+				'routes_map_weekdays' => array(),
+				'routes_table_weekdays' => array(),
+				'route_data_weekdays' => array(),
+				'routes_map_weekend' => array(),
+				'routes_table_weekend' => array(),
+				'route_data_weekend' => array(),
 				'all_routes_map_data' => ''
 			],
 		],
@@ -203,7 +205,7 @@ function it_route_trip_tools_get_api_data($data, $apiId) {
 	The data built here is used for the map and table for a returned route.
 
 */
-function it_route_trip_tools_get_route_table_map_data($routeId, $serv, $dir) {
+function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
 	//Grab the config data
 	$config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
 	$base_uri = $config->get('route_stops_api_base');

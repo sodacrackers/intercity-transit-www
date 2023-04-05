@@ -9,42 +9,66 @@
 	</ul>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active in" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-			{% if route_data %}
-				<div id="route-effective" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					Effective from {{ route_data.effective_from|date('m-d-Y')  }} until {{ route_data.effective_until|date('m-d-Y')  }}
+			{% if route_data_weekdays %}
+				<div id="route-effective-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+					Effective from {{ route_data_weekdays.effective_from|date('m-d-Y')  }} until {{ route_data_weekdays.effective_until|date('m-d-Y')  }}
 				</div>
-				<div id="route-map" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
-					<div id="route-map" class="col-xs-12 col-sm-12 col-md-8 col-lg-12">
-						{{ routes_map }}
+				{% if route_data_weekend %}
+					<div id="route-effective-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
+						Effective from {{ route_data_weekend.effective_from|date('m-d-Y')  }} until {{ route_data_weekend.effective_until|date('m-d-Y')  }}
 					</div>
+			    {% endif %}
+				<div id="route-map" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
+					<div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-8 col-lg-12 weekdays-info">
+						{{ routes_map_weekdays }}
+					</div>
+					{% if route_data_weekend %}
+						<div id="route-map-weekend" class="col-xs-12 col-sm-12 col-md-8 col-lg-12 weekend-info hide">
+							{{ routes_map_weekend }}
+						</div>
+					{% endif %}
 					<div id="route-info-header">
-						<div id="display-now-route-info" class="col-xs-12 col-sm-12 col-lg-8">
-							{% for dir, dir_data in route_data.times_alt  %}
+						<div id="display-now-route-info-weekdays" class="col-xs-12 col-sm-12 col-lg-8 weekdays-info">
+							{% for dir, dir_data in route_data_weekdays.times_alt  %}
 								{% if dir != 'inbound' %}
 									{% set dir_class = 'show-dir' %}
-									<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data.short_name }} {{ route_data.long_name }} - Outbound {% if route_data.service_id == 1 %}Monday - Friday {% else %} Weekends {% endif %}</h2>
+									<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Outbound Monday - Friday</h2>
 								{% else %}
 									{% set dir_class = 'hide-dir hidden' %}
-									<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data.short_name }} {{ route_data.long_name }} - Inbound {{ route_data.dir }} {% if route_data.service_id == 1 %}Monday - Friday {% else %} Weekends {% endif %}</h2>
+									<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Inbound {{ route_data_weekdays.dir }} Monday - Friday</h2>
 								{% endif %}
 							{% endfor %}
 						</div>
-{#						<div class="col-xs-12 col-sm-12 col-lg-4">#}
-{#							<div class="btn-group btn-toggle dir-control-buttons">#}
-{#								<div class="dir-control-button">#}
-{#									<button id="direction" role="button" class="btn btn-primary">Switch Directions</button>#}
-{#								</div>#}
-{#							</div>#}
-{#						</div>#}
-{#						<div id="icon-legend" class="col-xs-12 col-sm-12 col-lg-12">#}
-{#							<legend>#}
-{#								<p><i class="fas fa-1x fa-diamond"></i> = Timepoint (stop time guaranteed)<br /><i class="fas fa-1x fa-circle"></i> = Non-Timepoint (stop time estimated)</p>#}
-{#							</legend>#}
-{#						</div>#}
+						{% if route_data_weekend %}
+							<div id="display-now-route-info-weekend" class="col-xs-12 col-sm-12 col-lg-8 weekend-info hide">
+								{% for dir, dir_data in route_data_weekend.times_alt  %}
+									{% if dir != 'inbound' %}
+										{% set dir_class = 'show-dir' %}
+										<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Outbound Weekends</h2>
+									{% else %}
+										{% set dir_class = 'hide-dir hidden' %}
+										<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Inbound {{ route_data_weekend.dir }} Weekends</h2>
+									{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+						{#						<div class="col-xs-12 col-sm-12 col-lg-4">#}
+						{#							<div class="btn-group btn-toggle dir-control-buttons">#}
+						{#								<div class="dir-control-button">#}
+						{#									<button id="direction" role="button" class="btn btn-primary">Switch Directions</button>#}
+						{#								</div>#}
+						{#							</div>#}
+						{#						</div>#}
+						{#						<div id="icon-legend" class="col-xs-12 col-sm-12 col-lg-12">#}
+						{#							<legend>#}
+						{#								<p><i class="fas fa-1x fa-diamond"></i> = Timepoint (stop time guaranteed)<br /><i class="fas fa-1x fa-circle"></i> = Non-Timepoint (stop time estimated)</p>#}
+						{#							</legend>#}
+						{#						</div>#}
 						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12">
 							<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
 								<h5>Find a Route Schedule</h5>
 								<select id="route-change">
+									<option value="">- Select Route -</option>
 									{% for key, value in routes_options %}
 										<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ value }}</option>
 									{% endfor %}
@@ -60,7 +84,7 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{% for stop_id, stop_data in route_data.stop_markers.outbound %}
+										{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
 											<li>
 												<div class="dropdown-item">
 													<div class="form-check">
@@ -79,11 +103,11 @@
 								</h5>
 								<div class="form-radios">
 									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="weekdays" id="weekdays" name="dayoftravel"/>
+										<input class="form-check-input" type="radio" value="weekdays-info" id="weekdays" name="dayoftravel" checked="checked" />
 										<label class="form-check-label" for="weekdays">Monday - Friday</label>
 									</div>
 									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="weekends" id="weekends" name="dayoftravel"/>
+										<input class="form-check-input" type="radio" value="weekend-info" id="weekend" name="dayoftravel"/>
 										<label class="form-check-label" for="weekends">Saturday - Sunday</label>
 									</div>
 								</div>
@@ -109,8 +133,11 @@
 
 						</div>
 					</div>
-					<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						{{ routes_table }}
+					<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+						{{ routes_table_weekdays }}
+					</div>
+					<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
+						{{ routes_table_weekend }}
 					</div>
 
 				</div>
