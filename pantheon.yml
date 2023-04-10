@@ -8,4 +8,20 @@ database:
 drush_version: 10
 build_step: true
 
-# trigger a build on Pantheon
+workflows:
+  deploy:
+    after:
+      - type: webphp
+        description: Deploy with drush
+        script: private/scripts/deploy.php
+      - type: webphp
+        description: Notify slack
+        script: private/scripts/notify_slack.php
+  sync_code:
+    after:
+      - type: webphp
+        description: Deploy with drush
+        script: private/scripts/deploy.php
+      - type: webphp
+        description: Notify slack
+        script: private/scripts/notify_slack.php
