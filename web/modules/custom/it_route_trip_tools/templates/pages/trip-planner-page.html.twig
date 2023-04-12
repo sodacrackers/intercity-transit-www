@@ -7,12 +7,12 @@
             var selected_time = $(this).val()
             $('#time_input').val(selected_time);
           });
-          {% if trip_data %}
+          {% if trip_data and trip_data.start_add %}
             $('#start_add').val('{{ trip_data.start_add }}');
             $('#start_add_id').val('{{ trip_data.start_add_id }}');
             $('#dest_add').val('{{ trip_data.dest_add }}');
             $('#dest_add_id').val('{{ trip_data.dest_add_id }}');
-            $('#ttype').val('{{ trip_data.ttype }}');  
+            $('#ttype').val('{{ trip_data.ttype }}');
             $('#opt').val('{{ trip_data.opt }}');
             $('#date').val('{{ trip_data.date }}');
             $('#time').val('{{ trip_data.time }}');
@@ -29,8 +29,8 @@
           var startErrorDiv = document.getElementById('start-add-alert');
           var destErrorDiv = document.getElementById('dest-add-alert');
 
-          start_add_input.addEventListener('change', function() { 
-              if (start_add_id_input.value == '') {        
+          start_add_input.addEventListener('change', function() {
+              if (start_add_id_input.value == '') {
                 startErrorDiv.classList.remove('hidden');
                 startErrorDiv.innerHTML = 'Please enter a valid start address';
               }
@@ -45,21 +45,21 @@
       })(jQuery);
 
       var placeSearch, startaddress, destaddress;
-      
+
       var stateBounds={
         wa: ['47.1853106', '-125.36955', '47.7510741', '-120.7401385']
       };
 
       function getStateBounds(state) {
         return new google.maps.LatLngBounds(
-          new google.maps.LatLng(stateBounds[state][0], 
-                                 stateBounds[state][1]), 
-          new google.maps.LatLng(stateBounds[state][2], 
+          new google.maps.LatLng(stateBounds[state][0],
+                                 stateBounds[state][1]),
+          new google.maps.LatLng(stateBounds[state][2],
                                  stateBounds[state][3])
-          ); 
+          );
       }
       function initMap(ajax_submit) {
-        
+
         if (ajax_submit == 1) {
           ajax_submit = 0;
           var start_add = document.getElementById('start_add').value;
@@ -92,7 +92,7 @@
           }
           directionsRenderer.setMap(map);
           directionsRenderer.setPanel(document.getElementById('route-results'));
-          
+
           directionsService.route({
             origin: {
               'placeId': start_add_id
@@ -119,8 +119,8 @@
           });
         }
         else {
-          {% if trip_data %}
-            var ttype = '{{ trip_data.ttype }}';  
+          {% if trip_data and trip_data.ttype %}
+            var ttype = '{{ trip_data.ttype }}';
             var routeopt = '{{ trip_data.opt }}';
             var date = '{{ trip_data.date }}';
             var time = '{{ trip_data.time }}';
@@ -133,7 +133,7 @@
 
             directionsRenderer.setMap(map);
             directionsRenderer.setPanel(document.getElementById('route-results'));
-            
+
             if (ttype == 'dep') {
               transit_options = {
                 departureTime: datetime,
@@ -212,7 +212,7 @@
             var startErrorDiv = document.getElementById('start-add-alert');
             startErrorDiv.classList.add('hidden');
             startErrorDiv.innerHTML = '';
-          } 
+          }
         }
 
         function getDestId() {
@@ -291,7 +291,7 @@
                   <button class="address-clear btn btn-danger" id="dest-add-control" type="button">X</button>
                 </div>
                 <div class="alert alert-danger hidden" id="dest-add-alert"></div>
-              </div>                                        
+              </div>
               <div class="form-group">
                 <label for="date" class="sr-only">Select a Date</label>
                 <input type="text" name="date" id="date" name="fromdatepicker" class="form-control">
@@ -308,7 +308,7 @@
                 <input type="text" name="selected_time" id="time_input" class="hidden" aria-hidden="true" />
                 <input class="form-control timepicker-content" id="time" name="time">
               </div>
-              <div class="form-group opt-field">     
+              <div class="form-group opt-field">
                 <label for="opt" class="sr-only">Route Options</label>
                 <select class="form-control padding" id="opt" name="opt">
                   <option value="FEWER_TRANSFERS">Fewer Transfers</option>
