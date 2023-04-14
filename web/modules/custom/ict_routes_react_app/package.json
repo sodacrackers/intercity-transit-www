@@ -13,9 +13,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.2.3",
+    "css-loader": "^6.7.3",
+    "luxon": "^3.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.7.3",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "svg-url-loader": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
