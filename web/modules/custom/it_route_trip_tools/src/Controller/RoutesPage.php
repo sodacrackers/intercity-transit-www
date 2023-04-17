@@ -82,14 +82,10 @@ class RoutesPage extends ControllerBase {
     }
 
     /*Need to grab the Routes form*/
-    $routes_form = \Drupal::formBuilder()->getForm('Drupal\it_route_trip_tools\Form\RoutesForm');
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
     $routes_path = $config->get('route_page_path');
 
     if ($routeId != 'all') {
-      $routes_stops_api_base = $config->get('route_stops_api_base');
-      $shapes_request = $config->get('route_shapes_request');
-      $shapes_path = $routes_stops_api_base . '/' . $shapes_request;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
       $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, 1);
       $route_data_weekend = it_route_trip_tools_get_route_table_map_data($routeId, 2);

@@ -255,7 +255,7 @@ class Gtfs {
     // Fetch the data from the API endpoint.
     $query = ['Type' => $type];
     if ($format === 'json') {
-      $query['debug'] = 'true';
+//      $query['debug'] = 'true';
     }
     $url = Url::fromUri($this->baseUrl, ['query' => $query]);
     try {
