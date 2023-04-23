@@ -63,6 +63,7 @@ class BusData extends ControllerBase {
       $route_data = it_route_trip_tools_get_route_table_map_data($routeId, $service_type);
       $trip_updates = $this->gtfs->getArray('TripUpdate');
       $vehicle_position = $this->gtfs->getArray('VehiclePosition');
+      $route_data['alerts'] = $this->getRouteAlerts($routeId);
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
         $direction_id = $direction_name == 'inbound' ? '0' : '1';
         $trips = $this->getTripsByRouteAndDirection($routeId, $direction_id);
@@ -109,11 +110,11 @@ class BusData extends ControllerBase {
     $stop_time_updates = array();
     foreach ($json_data['entity'] as $entity) {
       if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
-        if ($entity['tripUpdate']['vehicle'] != NULL) {
+        if (!empty($entity['tripUpdate']['vehicle'])) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
         }
-        foreach ($entity['tripUpdate']['stopTimeUpdate'] as $stop_time_update) {
+        foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
           $stop_id = intval($stop_time_update['stopId']);
           if ($stop_time_update['arrival'] != NULL) {
             $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
@@ -143,7 +144,7 @@ class BusData extends ControllerBase {
 
     foreach ($json_data['entity'] as $entity) {
       if ($entity['vehicle'] != NULL) {
-        if ($entity['vehicle']['trip'] != NULL) {
+        if (!empty($entity['vehicle']['trip'])) {
           if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
             $vehicle_id = $entity['vehicle']['vehicle']['id'];
             $latitude = $entity['vehicle']['position']['latitude'];
@@ -157,10 +158,58 @@ class BusData extends ControllerBase {
     return $vehicle_positions;
   }
 
-  function getRealTimeByStopId($stop_id, $stop_updates) {
+  private function getRealTimeByStopId($stop_id, $stop_updates) {
     return array_filter($stop_updates, function ($item) use ($stop_id) {
       return $item['stop_id'] === $stop_id;
     });
+  }
+
+  private function loadAlertsByRoute($route_id) {
+    // Load the node storage service.
+    $node_storage = $this->entityTypeManager()->getStorage('node');
+    // Load all published nodes of type "alert".
+    $query = $node_storage->getQuery()
+      ->condition('type', 'rider_alerts')
+      ->condition('field_affected_routes_new_.entity.name', $route_id)
+      ->condition('field_start_date', date('Y-m-d'), '<')
+      ->condition('field_end_date', date('Y-m-d'), '>')
+      ->condition('status', 1);
+    $nids = $query->execute();
+    // Load the node entities.
+    $alerts_with_end = $node_storage->loadMultiple($nids);
+    // Load all published nodes of type "alert".
+    $query = $node_storage->getQuery()
+      ->condition('type', 'rider_alerts')
+      ->condition('field_affected_routes_new_.entity.name', $route_id)
+      ->condition('field_start_date', date('Y-m-d'), '<')
+      ->notExists('field_end_date')
+      ->condition('field_end_date_until_further_not', TRUE)
+      ->condition('status', 1);
+    $nids = $query->execute();
+    // Load the node entities.
+    $alerts_with_no_end = $node_storage->loadMultiple($nids);
+    return array_merge($alerts_with_end, $alerts_with_no_end);
+
+  }
+
+  private function getRouteAlerts($route_id) {
+    $alerts = $this->loadAlertsByRoute($route_id);
+    return array_map(function ($item) {
+      return [
+        'id' => $item->id(),
+        'title' => $item->label(),
+        'url' => $item->toUrl()->toString(TRUE),
+        'description' => $item->get('body')->getValue()[0],
+        'affected_routes' => array_map(function ($routes) {
+          return $routes->label();
+        }, $item->get('field_affected_routes_new_')->referencedEntities()),
+        'start_date' => $item->get('field_start_date')->value,
+        'end_date' => $item->get('field_end_date')->value,
+        'end_until_further_notice' => $item->get('field_end_date_until_further_not')->value,
+        'detour_map' => empty($item->get('field_image')->entity) ? NULL : $item->get('field_image')->entity->createUrl(),
+        'live_nid' => $item->get('field_live_nid')->value,
+      ];
+    }, $alerts);
   }
 
 }
