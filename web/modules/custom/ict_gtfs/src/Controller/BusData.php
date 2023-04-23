@@ -62,6 +62,7 @@ class BusData extends ControllerBase {
     if ($routeId) {
       $route_data = it_route_trip_tools_get_route_table_map_data($routeId, $service_type);
       $trip_updates = $this->gtfs->getArray('TripUpdate');
+      $vehicle_position = $this->gtfs->getArray('VehiclePosition');
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
         $direction_id = $direction_name == 'inbound' ? '0' : '1';
         $trips = $this->getTripsByRouteAndDirection($routeId, $direction_id);
@@ -69,6 +70,7 @@ class BusData extends ControllerBase {
           return $item[2];
         }, $trips);
         $stop_updates = $this->getStopTimeUpdates($trip_updates, $trip_ids);
+        $route_data['vehicle_position'][$direction_name] = $this->getVehiclePositions($vehicle_position, $trip_ids);
         foreach ($direction as $stop_id => &$stop_data) {
           $stop_data['real_time'] = $this->getRealTimeByStopId($stop_id, $stop_updates);
         }
@@ -108,17 +110,17 @@ class BusData extends ControllerBase {
     foreach ($json_data['entity'] as $entity) {
       if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
         $route_id = $entity['tripUpdate']['trip']['routeId'];
-        if ($entity['tripUpdate']['vehicle'] != null) {
+        if ($entity['tripUpdate']['vehicle'] != NULL) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
         }
         foreach ($entity['tripUpdate']['stopTimeUpdate'] as $stop_time_update) {
           $stop_id = intval($stop_time_update['stopId']);
-          if ($stop_time_update['arrival'] != null) {
+          if ($stop_time_update['arrival'] != NULL) {
             $arrival_delay = $stop_time_update['arrival']['delay'];
             $arrival_time = $stop_time_update['arrival']['time'];
           }
-          if ($stop_time_update['departure'] != null) {
+          if ($stop_time_update['departure'] != NULL) {
             $departure_delay = $stop_time_update['departure']['delay'];
             $departure_time = $stop_time_update['departure']['time'];
           }
@@ -135,6 +137,25 @@ class BusData extends ControllerBase {
       }
     }
     return $stop_time_updates;
+  }
+
+  private function getVehiclePositions($json_data, $trip_list) {
+    $vehicle_positions = array();
+
+    foreach ($json_data['entity'] as $entity) {
+      if ($entity['vehicle'] != NULL) {
+        if ($entity['vehicle']['trip'] != NULL) {
+          if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
+            $vehicle_id = $entity['vehicle']['vehicle']['id'];
+            $latitude = $entity['vehicle']['position']['latitude'];
+            $longitude = $entity['vehicle']['position']['lngitude'];
+            $bearing = $entity['vehicle']['position']['bearing'];
+            $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
+          }
+        }
+      }
+    }
+    return $vehicle_positions;
   }
 
   function getRealTimeByStopId($stop_id, $stop_updates) {
