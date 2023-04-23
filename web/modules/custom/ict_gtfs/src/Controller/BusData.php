@@ -109,7 +109,6 @@ class BusData extends ControllerBase {
     $stop_time_updates = array();
     foreach ($json_data['entity'] as $entity) {
       if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
-        $route_id = $entity['tripUpdate']['trip']['routeId'];
         if ($entity['tripUpdate']['vehicle'] != NULL) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
@@ -117,11 +116,11 @@ class BusData extends ControllerBase {
         foreach ($entity['tripUpdate']['stopTimeUpdate'] as $stop_time_update) {
           $stop_id = intval($stop_time_update['stopId']);
           if ($stop_time_update['arrival'] != NULL) {
-            $arrival_delay = $stop_time_update['arrival']['delay'];
+            $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
             $arrival_time = $stop_time_update['arrival']['time'];
           }
           if ($stop_time_update['departure'] != NULL) {
-            $departure_delay = $stop_time_update['departure']['delay'];
+            $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
             $departure_time = $stop_time_update['departure']['time'];
           }
           $stop_time_updates[] = [
