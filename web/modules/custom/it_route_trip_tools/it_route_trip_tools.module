@@ -194,6 +194,8 @@ function it_route_trip_tools_get_api_data($data, $apiId) {
 	else:
 		$api_data = file_get_contents($data);
 		$json = json_decode($api_data, TRUE);
+    $expire = \Drupal::service('datetime.time')->getRequestTime() + (60 * 60 * 24); // 1 day cache.
+    \Drupal::cache()->set($cid, $json, $expire);
 	endif;
 	return $json;
 
@@ -416,6 +418,9 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
 	    else:
 	    	$json = '';
 	    endif;
+
+      $expire = \Drupal::service('datetime.time')->getRequestTime() + (60 * 60 * 24); // 1 day cache.
+      \Drupal::cache()->set($cid, $json, $expire);
     endif;
     // Simply returns the array. It will either be the cached or uncached version
 	return $json;
