@@ -206,7 +206,7 @@ class BusData extends ControllerBase {
         'start_date' => $item->get('field_start_date')->value,
         'end_date' => $item->get('field_end_date')->value,
         'end_until_further_notice' => $item->get('field_end_date_until_further_not')->value,
-        'detour_map' => empty($item->get('field_image')->entity) ? NULL : $item->get('field_image')->entity->createUrl(),
+        'detour_map' => empty($item->get('field_image')->entity) ? NULL : $item->get('field_image')->entity->createFileUrl(),
         'live_nid' => $item->get('field_live_nid')->value,
       ];
     }, $alerts);
