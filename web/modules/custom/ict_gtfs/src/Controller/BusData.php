@@ -58,7 +58,7 @@ class BusData extends ControllerBase {
 
   public function json(Request $request) {
     $routeId = $request->query->get('route_id');
-    $service_type = $request->query->get('service_type') ?: 1;
+    $service_type = $request->query->get('service_type') ?: '1';
     if ($routeId) {
       $route_data = it_route_trip_tools_get_route_table_map_data($routeId, $service_type);
       $trip_updates = $this->gtfs->getArray('TripUpdate');
@@ -95,7 +95,8 @@ class BusData extends ControllerBase {
   private function getStaticData(string $data_type) {
     $filepath = $this->moduleHandler->getPath('ict_gtfs') . '/data/' . $data_type . '.txt';
     $file_to_read = file_get_contents($filepath);
-    $rows_to_parse = explode("\r\n", $file_to_read);
+    $file_to_read = str_replace("\r\n", "\n", $file_to_read);
+    $rows_to_parse = explode("\n", $file_to_read);
     return array_map('str_getcsv', $rows_to_parse);
   }
 
