@@ -13,3 +13,11 @@ ict_gtfs.json_endpoint:
     _controller: 'Drupal\ict_gtfs\Controller\BusData::json'
   requirements:
     _access: 'TRUE'
+
+ict_gtfs.static_data_settings:
+  path: '/admin/config/system/static-data-settings'
+  defaults:
+    _title: 'Avail static data config'
+    _form: 'Drupal\ict_gtfs\Form\StaticDataSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'

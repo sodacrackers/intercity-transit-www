@@ -5,3 +5,12 @@ allowed_types:
   - TripUpdate
   - VehiclePosition
 json_from_object: 1
+items:
+  -
+    detail:
+      file:
+        - '3531'
+      date_from: '2023-04-30'
+      date_to: '2023-05-02'
+      remove: X
+    weight: '1'

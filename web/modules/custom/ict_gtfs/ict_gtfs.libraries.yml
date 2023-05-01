@@ -1,0 +1,5 @@
+# Custom module library for general purposes.
+ict_custom_backend:
+  css:
+    component:
+      css/custom-backend.css: {}
