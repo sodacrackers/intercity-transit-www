@@ -76,6 +76,13 @@ class Gtfs {
   protected $time;
 
   /**
+   * The zip files and configs.
+   *
+   * @var array;
+   */
+  private $items;
+
+  /**
    * Constructs a Gtfs object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -95,6 +102,7 @@ class Gtfs {
     $this->maxAge = $settings->get('max_age');
     $this->allowedTypes = $settings->get('allowed_types');
     $this->jsonFromFeedMessage = $settings->get('json_from_object');
+    $this->items = $settings->get('items');
 
     $this->httpClient = $http_client;
     $this->logger = $logger;
@@ -312,6 +320,96 @@ class Gtfs {
     $this->cache->set($cid, $json, $expire);
 
     return $json;
+  }
+
+  public function getActiveConfigurationPath() {
+    $now = time();
+    $active_zip = array_reduce($this->items, function ($carry, $item) use ($now) {
+      $from = strtotime($item['detail']['date_from']);
+      $to = strtotime($item['detail']['date_to']);
+      return $from <= $now && $to >= $now ? $item : $carry;
+    });
+    if ($active_zip) {
+      $folder_name = $active_zip['detail']['date_from'] . '-' . $active_zip['detail']['date_to'] . '/';
+      return \Drupal::service('file_system')->realpath('private://avail/' . $folder_name);
+    }
+  }
+
+  public function getStaticData(string $data_type) {
+    $path = $this->getActiveConfigurationPath();
+    if ($path) {
+      $filepath = $path . '/'. $data_type . '.txt';
+      $file_to_read = file_get_contents($filepath);
+      $file_to_read = str_replace("\r\n", "\n", $file_to_read);
+      $rows_to_parse = explode("\n", $file_to_read);
+      return array_map('str_getcsv', $rows_to_parse);
+    }
+    return [];
+  }
+
+  public function getTripsByRouteAndDirection(string $route_id, string $direction) {
+    $trips = $this->getStaticData('trips');
+    return array_filter($trips, function ($item) use ($route_id, $direction) {
+      return $item[0] === $route_id && $item[4] === $direction;
+    });
+  }
+
+  public function getStopTimeUpdates($json_data, $trip_list) {
+    $stop_time_updates = array();
+    foreach ($json_data['entity'] as $entity) {
+      if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
+        if (!empty($entity['tripUpdate']['vehicle'])) {
+          $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
+          $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
+        }
+        foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
+          $stop_id = intval($stop_time_update['stopId']);
+          if ($stop_time_update['arrival'] != NULL) {
+            $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
+            $arrival_time = $stop_time_update['arrival']['time'];
+          }
+          if ($stop_time_update['departure'] != NULL) {
+            $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
+            $departure_time = $stop_time_update['departure']['time'];
+          }
+          $stop_time_updates[] = [
+            'stop_id' => $stop_id,
+            'vehicle_id' => $vehicle_id,
+            'vehicle_label' => $vehicle_label,
+            'arrival_time' => $arrival_time,
+            'arrival_delay' => $arrival_delay,
+            'departure_delay' => $departure_delay,
+            'departure_time' => $departure_time,
+          ];
+        }
+      }
+    }
+    return $stop_time_updates;
+  }
+
+  public function getVehiclePositions($json_data, $trip_list) {
+    $vehicle_positions = array();
+
+    foreach ($json_data['entity'] as $entity) {
+      if ($entity['vehicle'] != NULL) {
+        if (!empty($entity['vehicle']['trip'])) {
+          if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
+            $vehicle_id = $entity['vehicle']['vehicle']['id'];
+            $latitude = $entity['vehicle']['position']['latitude'];
+            $longitude = $entity['vehicle']['position']['lngitude'];
+            $bearing = $entity['vehicle']['position']['bearing'];
+            $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
+          }
+        }
+      }
+    }
+    return $vehicle_positions;
+  }
+
+  public function getRealTimeByStopId($stop_id, $stop_updates) {
+    return array_filter($stop_updates, function ($item) use ($stop_id) {
+      return $item['stop_id'] === $stop_id;
+    });
   }
 
 }
