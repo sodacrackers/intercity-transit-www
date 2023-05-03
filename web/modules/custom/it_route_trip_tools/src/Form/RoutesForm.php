@@ -48,7 +48,7 @@ class RoutesForm extends FormBase {
     $base_uri = $config->get('route_api_base');
     $route_options_request = $config->get('route_options_request');
 
-    $routes_options = it_route_trip_tools_build_routes_options($route_options_request);
+    $routes_options = it_route_trip_tools_build_routes_options(TRUE);
     $cur_dir = dirname($_SERVER['REQUEST_URI']);
     $selected_route = basename($_SERVER['REQUEST_URI']);
     if (\Drupal::request()->request->get('service_option')):

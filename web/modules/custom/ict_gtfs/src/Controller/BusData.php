@@ -66,14 +66,14 @@ class BusData extends ControllerBase {
       $route_data['alerts'] = $this->getRouteAlerts($routeId);
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
         $direction_id = $direction_name == 'inbound' ? '0' : '1';
-        $trips = $this->getTripsByRouteAndDirection($routeId, $direction_id);
+        $trips = $this->gtfs->getTripsByRouteAndDirection($routeId, $direction_id);
         $trip_ids = array_map(function ($item) {
           return $item[2];
         }, $trips);
-        $stop_updates = $this->getStopTimeUpdates($trip_updates, $trip_ids);
-        $route_data['vehicle_position'][$direction_name] = $this->getVehiclePositions($vehicle_position, $trip_ids);
+        $stop_updates = $this->gtfs->getStopTimeUpdates($trip_updates, $trip_ids);
+        $route_data['vehicle_position'][$direction_name] = $this->gtfs->getVehiclePositions($vehicle_position, $trip_ids);
         foreach ($direction as $stop_id => &$stop_data) {
-          $stop_data['real_time'] = $this->getRealTimeByStopId($stop_id, $stop_updates);
+          $stop_data['real_time'] = $this->gtfs->getRealTimeByStopId($stop_id, $stop_updates);
         }
       }
       $context = new RenderContext();
@@ -90,79 +90,6 @@ class BusData extends ControllerBase {
       return $response;
     }
 
-  }
-
-  private function getStaticData(string $data_type) {
-    $filepath = $this->moduleHandler->getPath('ict_gtfs') . '/data/' . $data_type . '.txt';
-    $file_to_read = file_get_contents($filepath);
-    $file_to_read = str_replace("\r\n", "\n", $file_to_read);
-    $rows_to_parse = explode("\n", $file_to_read);
-    return array_map('str_getcsv', $rows_to_parse);
-  }
-
-  private function getTripsByRouteAndDirection(string $route_id, string $direction) {
-    $trips = $this->getStaticData('trips');
-    return array_filter($trips, function ($item) use ($route_id, $direction) {
-      return $item[0] === $route_id && $item[4] === $direction;
-    });
-  }
-
-  private function getStopTimeUpdates($json_data, $trip_list) {
-    $stop_time_updates = array();
-    foreach ($json_data['entity'] as $entity) {
-      if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
-        if (!empty($entity['tripUpdate']['vehicle'])) {
-          $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
-          $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
-        }
-        foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
-          $stop_id = intval($stop_time_update['stopId']);
-          if ($stop_time_update['arrival'] != NULL) {
-            $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
-            $arrival_time = $stop_time_update['arrival']['time'];
-          }
-          if ($stop_time_update['departure'] != NULL) {
-            $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
-            $departure_time = $stop_time_update['departure']['time'];
-          }
-          $stop_time_updates[] = [
-            'stop_id' => $stop_id,
-            'vehicle_id' => $vehicle_id,
-            'vehicle_label' => $vehicle_label,
-            'arrival_time' => $arrival_time,
-            'arrival_delay' => $arrival_delay,
-            'departure_delay' => $departure_delay,
-            'departure_time' => $departure_time,
-          ];
-        }
-      }
-    }
-    return $stop_time_updates;
-  }
-
-  private function getVehiclePositions($json_data, $trip_list) {
-    $vehicle_positions = array();
-
-    foreach ($json_data['entity'] as $entity) {
-      if ($entity['vehicle'] != NULL) {
-        if (!empty($entity['vehicle']['trip'])) {
-          if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
-            $vehicle_id = $entity['vehicle']['vehicle']['id'];
-            $latitude = $entity['vehicle']['position']['latitude'];
-            $longitude = $entity['vehicle']['position']['lngitude'];
-            $bearing = $entity['vehicle']['position']['bearing'];
-            $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
-          }
-        }
-      }
-    }
-    return $vehicle_positions;
-  }
-
-  private function getRealTimeByStopId($stop_id, $stop_updates) {
-    return array_filter($stop_updates, function ($item) use ($stop_id) {
-      return $item['stop_id'] === $stop_id;
-    });
   }
 
   private function loadAlertsByRoute($route_id) {

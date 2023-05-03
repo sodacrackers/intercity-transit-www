@@ -1,0 +1,17 @@
+.inline-element-small {
+  display: inline-block;
+  width: 8%;
+  padding-left: 1rem;
+}
+
+.inline-element-large {
+  display: inline-block;
+  width: 28%;
+  padding-left: 1rem;
+}
+
+div[id^=ajax-wrapper] {
+  display: inline-block;
+  width: 28%;
+  padding-left: 1rem;
+}
