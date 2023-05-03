@@ -451,13 +451,18 @@ function it_route_trip_tools_get_stop_data($stopId) {
 	Build the select list for the routes form
 	Uses it_route_trip_tools_get_api_data()
 */
-function it_route_trip_tools_build_routes_options($route_options_request) {
+function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
   $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
   $res = [];
   foreach ($routes as $id => $route) {
     if ($id !== 0 && count($route) > 1) {
       $res[$route[0]] = $route[3];
     }
+  }
+  if ($filter_disabled) {
+    $disabled_routes = \Drupal::config('ict_gtfs.settings')->get('disable_routes');
+    $disabled_routes = array_filter($disabled_routes ?: []);
+    $res = array_diff_key($res, $disabled_routes);
   }
   return $res;
 }

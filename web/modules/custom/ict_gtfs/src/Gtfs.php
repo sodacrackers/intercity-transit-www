@@ -324,7 +324,7 @@ class Gtfs {
 
   public function getActiveConfiguration() {
     $now = time();
-    return array_reduce($this->items, function ($carry, $item) use ($now) {
+    return array_reduce($this->items ?: [], function ($carry, $item) use ($now) {
       $from = strtotime($item['detail']['date_from']);
       $to = strtotime($item['detail']['date_to']);
       return $from <= $now && $to >= $now ? $item : $carry;

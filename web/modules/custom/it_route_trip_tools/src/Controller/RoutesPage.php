@@ -70,7 +70,7 @@ class RoutesPage extends ControllerBase {
 
     $config = $this->config('it_route_trip_tools.settings');
     $route_options_request = $config->get('route_options_request');
-    $routes_options = it_route_trip_tools_build_routes_options($route_options_request);
+    $routes_options = it_route_trip_tools_build_routes_options(TRUE);
     if (empty($routeId) || $routeId === 'all') {
       $alerts = $this->gtfs->getArray('Alert');
       return [

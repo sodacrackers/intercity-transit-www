@@ -129,6 +129,16 @@ class StaticDataSettingsForm extends ConfigFormBase {
       ],
     ];
 
+    $routes = it_route_trip_tools_build_routes_options();
+    if ($routes) {
+      $form['disable_routes'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Disable routes'),
+        '#options' => $routes,
+        '#default_value' => $config->get('disable_routes') ?: [],
+      ];
+    }
+
     $form['#attached']['library'][] = 'ict_gtfs/ict_custom_backend';
     return $form;
   }
@@ -172,7 +182,8 @@ class StaticDataSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $items = $form_state->getValue('items');
+    $items = $form_state->getValue('items') ?: [];
+    $disable_routes = $form_state->getValue('disable_routes') ?: [];
     $file_storage = \Drupal::entityTypeManager()->getStorage('file');
     foreach ($items as $item) {
       $file = !empty($item['detail']['file'][0]) ? $file_storage->load($item['detail']['file'][0]) : NULL;
@@ -191,6 +202,7 @@ class StaticDataSettingsForm extends ConfigFormBase {
 
     $this->config('ict_gtfs.settings')
       ->set('items', $items)
+      ->set('disable_routes', $disable_routes)
       ->save();
     parent::submitForm($form, $form_state);
   }
