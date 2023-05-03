@@ -175,7 +175,7 @@ class StaticDataSettingsForm extends ConfigFormBase {
     $items = $form_state->getValue('items');
     $file_storage = \Drupal::entityTypeManager()->getStorage('file');
     foreach ($items as $item) {
-      $file = $file_storage->load($item['detail']['file'][0]);
+      $file = !empty($item['detail']['file'][0]) ? $file_storage->load($item['detail']['file'][0]) : NULL;
       if ($file instanceof FileInterface) {
         $file->setPermanent();
         $file->save();

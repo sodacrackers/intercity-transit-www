@@ -322,13 +322,17 @@ class Gtfs {
     return $json;
   }
 
-  public function getActiveConfigurationPath() {
+  public function getActiveConfiguration() {
     $now = time();
-    $active_zip = array_reduce($this->items, function ($carry, $item) use ($now) {
+    return array_reduce($this->items, function ($carry, $item) use ($now) {
       $from = strtotime($item['detail']['date_from']);
       $to = strtotime($item['detail']['date_to']);
       return $from <= $now && $to >= $now ? $item : $carry;
     });
+  }
+
+  public function getActiveConfigurationPath() {
+    $active_zip = $this->getActiveConfiguration();
     if ($active_zip) {
       $folder_name = $active_zip['detail']['date_from'] . '-' . $active_zip['detail']['date_to'] . '/';
       return \Drupal::service('file_system')->realpath('private://avail/' . $folder_name);
@@ -352,6 +356,48 @@ class Gtfs {
     return array_filter($trips, function ($item) use ($route_id, $direction) {
       return $item[0] === $route_id && $item[4] === $direction;
     });
+  }
+
+  public function getStopTimes(string $route_id, string $direction) {
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction));
+    $trip_ids = array_map(function ($item) {
+      return $item[2];
+    }, $trips);
+    $stop_times = $this->getStaticData('stop_times');
+    $stop_times = array_filter($stop_times, function ($item) use ($trip_ids) {
+      return in_array($item[0], $trip_ids);
+    });
+    $stops = $this->getStaticData('stops');
+    $built_stops = [];
+    foreach ($stops as $stop) {
+      $built_stops[$stop[0]] = [
+        'name' => $stop[2],
+        'lat' => $stop[4],
+        'lon' => $stop[5],
+      ];
+    }
+
+    $built_stop_times = [];
+    foreach ($stop_times as $stop_time) {
+      $built_stop_times[] = [
+        'trip_id' => $stop_time[0],
+        'arrival_time' => $stop_time[1],
+        'departure_time' => $stop_time[2],
+        'stop_id' => $stop_time[3],
+        'stop_sequence' => $stop_time[4],
+        'stop_headsign' => $stop_time[5],
+        'pickup_type' => $stop_time[6],
+        'drop_off_type' => $stop_time[7],
+        'shape_dist_traveled' => $stop_time[8],
+        'timepoint' => $stop_time[9],
+        'name' => $built_stops[$stop_time[3]]['name'],
+        'lat' => $built_stops[$stop_time[3]]['lat'],
+        'lon' => $built_stops[$stop_time[3]]['lon'],
+      ];
+    }
+
+    return $built_stop_times;
+
   }
 
   public function getStopTimeUpdates($json_data, $trip_list) {

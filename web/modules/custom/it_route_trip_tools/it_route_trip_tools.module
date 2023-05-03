@@ -464,34 +464,23 @@ function it_route_trip_tools_build_routes_options($route_options_request) {
 
 
 function it_route_trip_tools_build_route_title($routeId) {
-
-	//Grab the config data
-	$config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-	$base_uri = $config->get('route_stops_api_base');
-	$request = $config->get('route_options_request');
-
-	$json = $base_uri . '/' . $request;
-	$routes = it_route_trip_tools_get_api_data($json, 'route_titles');
-	foreach ($routes as $key => $item):
-		if (($item['route_short_name']) == $routeId):
-			return $item['route_short_name'] . ' - ' . $item['route_long_name'];
-		endif;
-	endforeach;
+  $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
+  foreach ($routes as $route) {
+    if ($route[0] == $routeId) {
+      return $route[3];
+    }
+  }
+  return '';
 }
 
 function it_route_trip_tools_build_stop_title($stopId) {
-
-	//Grab the config data
-	$config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-	$base_uri = $config->get('route_stops_api_base');
-	$request = $config->get('stops_options_request');
-	$json = $base_uri . '/' . $request;
-	$stops = it_route_trip_tools_get_api_data($json, 'stop_titles');
-	foreach ($stops as $key => $item):
-		if (($item['stop_id']) == $stopId):
-			return $item['stop_id'] . ' - ' . $item['stop_name'];
-		endif;
-	endforeach;
+  $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
+  foreach ($stops as $stop) {
+    if ($stop[0] == $stopId) {
+      return $stop[2];
+    }
+  }
+  return '';
 }
 
 /*
