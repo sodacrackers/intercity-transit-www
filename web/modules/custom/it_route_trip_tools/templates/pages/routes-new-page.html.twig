@@ -1,31 +1,46 @@
+{{ attach_library('it_route_trip_tools/routes') }}
 <div class="container-fluid">
-    <div class="col-xs-12 col-md-6">
-        <h2>Select a Bus Route</h2>
-        <ul>
-            {% for route_id, route_name in routes_options %}
-                <li><a href="/plan-your-trip/routes/{{ route_id }}">{{ route_name }}</a></li>
+    <div class="col-xs-12 col-md-6 alerts-right-panel">
+        <h2 class="routes-title">Select a Bus Route</h2>
+        <ul class="routes-container">
+            {% for route_id, route_options in routes_options %}
+                <li class="route-item">
+                    <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
+                        <span class="route-item-id">{{ route_id }}</span>
+                        <span class="route-item-name">{{ route_options.name }}</span>
+                        {% if route_options.alerts > 0 %}
+                          <span class="route-item-alerts">
+                              <img src="/modules/custom/it_route_trip_tools/assets/images/alert.png" />
+                              {{ route_options.alerts }}
+                          </span>
+                        {% endif %}
+                        <img class="card-arrow" style="float: right" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" />
+                    </a>
+                </li>
             {% endfor %}
         </ul>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <h2>Alerts & Announcements</h2>
-        <a href="{{ alert_view_all_link }}">View all alerts</a>
+    <div class="col-xs-12 col-md-6 alerts-left-panel">
+        <h2><span clasS="routes-title">Alerts & Announcements</span>
+            <span style="float: right;">
+                <a class="card-link" href="{{ alert_view_all_link }}">View all alerts<img class="card-arrow" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+            </span>
+        </h2>
         <div id="accordion">
         {% for alert_id, alert in alert_options %}
             <div class="card">
                 <div class="card-header" id="heading{{ loop.index }}">
-                    {{ alert.alert.headerText.translation[0].text }}
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
-                            +
+                        {{ alert.title }}
+                        <button class="btn btn-link alerts-collapse" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                            <img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg" />
                         </button>
                     </h5>
                 </div>
 
                 <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}" data-parent="#accordion">
                     <div class="card-body">
-                        Cause: {{ alert.alert.cause }}<br/>
-                        Effect: {{ alert.alert.effect }}
+                        {{ alert.description.value|raw }}
                     </div>
                 </div>
             </div>

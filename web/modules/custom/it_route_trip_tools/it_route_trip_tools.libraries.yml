@@ -75,3 +75,11 @@ admin:
       assets/css/admin-form.css: {}
   js:
     assets/js/bootstrap.min.js: {}
+header_block:
+  css:
+    theme:
+      assets/css/header-block.css: {}
+routes:
+  css:
+    theme:
+      assets/css/routes.css: {}

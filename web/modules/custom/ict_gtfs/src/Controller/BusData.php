@@ -92,9 +92,9 @@ class BusData extends ControllerBase {
 
   }
 
-  private function loadAlertsByRoute($route_id) {
+  public static function loadAlertsByRoute($route_id) {
     // Load the node storage service.
-    $node_storage = $this->entityTypeManager()->getStorage('node');
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
     // Load all published nodes of type "alert".
     $query = $node_storage->getQuery()
       ->condition('type', 'rider_alerts')

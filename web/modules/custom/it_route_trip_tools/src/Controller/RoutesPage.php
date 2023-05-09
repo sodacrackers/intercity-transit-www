@@ -1,6 +1,7 @@
 <?php
 namespace Drupal\it_route_trip_tools\Controller;
 
+use Drupal\ict_gtfs\Controller\BusData;
 use Drupal\ict_gtfs\Gtfs;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -66,17 +67,76 @@ class RoutesPage extends ControllerBase {
     });
   }
 
+  private function customizeOptions($options) {
+    $new_options = [];
+    foreach ($options as $route_id => $route_name) {
+      $new_options[$route_id] = [
+        'name' => explode('-', $route_name)[1],
+        'alerts' => count(BusData::loadAlertsByRoute($route_id))
+      ];
+    }
+    return $new_options;
+  }
+
+  private function loadAllAlerts() {
+      // Load the node storage service.
+      $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+      // Load all published nodes of type "alert".
+      $query = $node_storage->getQuery()
+        ->condition('type', 'rider_alerts')
+        ->condition('field_start_date', date('Y-m-d'), '<')
+        ->condition('field_end_date', date('Y-m-d'), '>')
+        ->condition('status', 1);
+      $nids = $query->execute();
+      // Load the node entities.
+      $alerts_with_end = $node_storage->loadMultiple($nids);
+      // Load all published nodes of type "alert".
+      $query = $node_storage->getQuery()
+        ->condition('type', 'rider_alerts')
+        ->condition('field_start_date', date('Y-m-d'), '<')
+        ->notExists('field_end_date')
+        ->condition('field_end_date_until_further_not', TRUE)
+        ->condition('status', 1);
+      $query->sort('created', 'DESC');
+      $query->range(0, 8);
+      $nids = $query->execute();
+      // Load the node entities.
+      $alerts_with_no_end = $node_storage->loadMultiple($nids);
+      return array_merge($alerts_with_end, $alerts_with_no_end);
+  }
+
+
+  private function getAllAlerts() {
+    $alerts = $this->loadAllAlerts();
+    return array_map(function ($item) {
+      return [
+        'id' => $item->id(),
+        'title' => $item->label(),
+        'url' => $item->toUrl()->toString(TRUE),
+        'description' => $item->get('body')->getValue()[0],
+        'affected_routes' => array_map(function ($routes) {
+          return $routes->label();
+        }, $item->get('field_affected_routes_new_')->referencedEntities()),
+        'start_date' => $item->get('field_start_date')->value,
+        'end_date' => $item->get('field_end_date')->value,
+        'end_until_further_notice' => $item->get('field_end_date_until_further_not')->value,
+        'detour_map' => empty($item->get('field_image')->entity) ? NULL : $item->get('field_image')->entity->createFileUrl(),
+        'live_nid' => $item->get('field_live_nid')->value,
+      ];
+    }, $alerts);
+  }
+
   public function BuildPage($routeId = NULL) {
 
-    $config = $this->config('it_route_trip_tools.settings');
-    $route_options_request = $config->get('route_options_request');
     $routes_options = it_route_trip_tools_build_routes_options(TRUE);
+    $routes_options = $this->customizeOptions($routes_options);
+
     if (empty($routeId) || $routeId === 'all') {
-      $alerts = $this->gtfs->getArray('Alert');
+      $alerts = $this->getAllAlerts();
       return [
         '#theme' => 'routes_new_page',
         '#routes_options' => $routes_options,
-        '#alert_options' => $this->getActiveAlerts($alerts['entity']),
+        '#alert_options' => $alerts,
         '#alert_view_all_link' => '/plan-your-trip/alerts',
       ];
     }

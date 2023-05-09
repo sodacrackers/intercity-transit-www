@@ -1,0 +1,81 @@
+.routes-title {
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 160%;
+
+  color: #0D1A29;
+
+}
+
+.card-arrow {
+  color: #003087 !important;
+  fill: currentColor;
+  height: 15px;
+}
+
+.card-link {
+  font-size: 15px;
+}
+
+.route-link, .card-link {
+  border: none !important;
+}
+
+.route-item {
+  border-bottom: 1px solid #D8E1F0;
+  list-style-type: none;
+  padding-bottom: 15px !important;
+  margin-bottom: 15px;
+}
+
+.route-item-id, .route-item-alerts {
+  padding: 5px 7px;
+  margin: 5px;
+  border: 1px solid #D8E1F0;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 135%;
+  color: #000000;
+}
+.route-item-id {
+  background: #F1F3F6;
+}
+
+.route-item-name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 150%;
+  color: #003087;
+}
+
+.routes-page-content-container, .region-header-mid  {
+  background-color: white !important;
+}
+
+.routes-container {
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.card-header h5 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 150%;
+  color: #0D1A29 !important;
+}
+
+.alerts-collapse {
+  float: right;
+  padding: 0 !important;
+}
+
+#accordion .card {
+  background: #F1F3F6 !important;
+  margin-top: 16px;
+}
