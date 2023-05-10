@@ -7,14 +7,15 @@ smtp_port: '587'
 smtp_protocol: tls
 smtp_autotls: true
 smtp_timeout: 30
-smtp_username: AKIAIZVCZM44GSKA2LAQ
-smtp_password: AqdOllLpCx6xon9c3knBSpo5e35kjLfsoF2qTCDOsNtV
+smtp_username: AKIAUMLO6YFPR3VSC6AH
+smtp_password: BLdlhSZcJ9ProtyHfIEM9QrhgfukB8y4mJ/6oYLrWj3Q
 smtp_from: noreply@intercitytransit.com
 smtp_fromname: 'Intercity Transit'
 smtp_client_hostname: ''
 smtp_client_helo: ''
 smtp_allowhtml: '1'
-smtp_test_address: ''
-smtp_debugging: true
+smtp_test_address: rrinehart@intercitytransit.com
+smtp_reroute_address: ''
+smtp_debugging: false
 prev_mail_system: php_mail
 smtp_keepalive: false

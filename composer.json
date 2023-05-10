@@ -190,7 +190,7 @@
             "drupal/core": {
                 "Grouped date exposed filter notice: https://www.drupal.org/project/drupal/issues/2825860": "https://www.drupal.org/files/issues/2020-06-04/2825860-exposed-filter-notice-38.patch",
                 "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
-                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2021-04-19/ckeditor-p-tag-added-to-media-3131055-17.patch"
+                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch"
             },
             "drupal/scheduled_updates": {
                 "D9 patches https://www.drupal.org/project/scheduled_updates/issues/3172330": "https://www.drupal.org/files/issues/2021-12-21/3172330-46.patch"

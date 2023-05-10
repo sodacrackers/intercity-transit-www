@@ -45,18 +45,16 @@ class ItTwigExtensions extends AbstractExtension {
     endif;
   }
   public static function tripPlanner() {
-    if (!empty($_POST)):
-      $trip_data = array();  
-      $trip_data['start_add'] = $_POST['start_add'];
-      $trip_data['start_add_id'] = $_POST['start_add_id'];
-      $trip_data['dest_add'] = $_POST['dest_add'];
-      $trip_data['dest_add_id'] = $_POST['dest_add_id'];
-      $trip_data['opt'] = $_POST['opt'];
-      $trip_data['selected_time'] = $_POST['selected_time'];
-      $trip_data['time'] = $_POST['time'];
-      $trip_data['date'] = $_POST['date'];
-      $trip_data['ttype'] = $_POST['ttype'];
-      return $trip_data;
-    endif;
+    $trip_data = array();
+    $trip_data['start_add'] = $_POST['start_add'] ?? NULL;
+    $trip_data['start_add_id'] = $_POST['start_add_id'] ?? NULL;
+    $trip_data['dest_add'] = $_POST['dest_add'] ?? NULL;
+    $trip_data['dest_add_id'] = $_POST['dest_add_id'] ?? NULL;
+    $trip_data['opt'] = $_POST['opt'] ?? NULL;
+    $trip_data['selected_time'] = $_POST['selected_time'] ?? NULL;
+    $trip_data['time'] = $_POST['time'] ?? NULL;
+    $trip_data['date'] = $_POST['date'] ?? NULL;
+    $trip_data['ttype'] = $_POST['ttype'] ?? NULL;
+    return $trip_data;
   }
 }
