@@ -65,65 +65,88 @@
 						{#								<p><i class="fas fa-1x fa-diamond"></i> = Timepoint (stop time guaranteed)<br /><i class="fas fa-1x fa-circle"></i> = Non-Timepoint (stop time estimated)</p>#}
 						{#							</legend>#}
 						{#						</div>#}
-						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12">
-							<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
-								<h5>Find a Route Schedule</h5>
-								<select id="route-change" class="btn btn-default input-width-80">
-									<option value="">- Select Route -</option>
-									{% for key, options in routes_options %}
-										<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ key }}-{{ options.name }}</option>
-									{% endfor %}
-								</select>
-							</div>
-							<div id="filter-stops" class="col-xs-12 col-sm-12 col-md-3">
-								<h5>
-									Customize Table View
-								</h5>
-								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										Select stops
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
-											<li>
-												<div class="dropdown-item">
-													<div class="form-check">
-														<input name="show_stop" class="form-check-input" type="checkbox" value="{{ stop_id }}" id="checkstop{{ stop_id }}" />
-														<label class="form-check-label" for="checkstop{{ stop_id }}">{{ stop_data.stop_data.stopName }}</label>
-													</div>
-												</div>
-											</li>
+						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12" id="headingcollapse">
+							<h5 class="mb-0">
+								Routes options
+								<button class="btn btn-link alerts-collapse" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="true" aria-controls="collapsefilters">
+									<img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg" />
+								</button>
+							</h5>
+							<div id="collapsefilters" aria-labelledby="headingcollapse" data-parent="#accordion">
+								<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
+									<h5>Find a Route Schedule</h5>
+									<select id="route-change" class="btn btn-default input-width-80">
+										<option value="">- Select Route -</option>
+										{% for key, options in routes_options %}
+											<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ key }}-{{ options.name }}</option>
 										{% endfor %}
-									</ul>
+									</select>
 								</div>
-							</div>
-							<div id="filter-day" class="col-xs-12 col-sm-12 col-md-2">
-								<h5>
-									Day of Travel
-								</h5>
-								<div class="form-radios">
-									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="weekdays-info" id="weekdays" name="dayoftravel" checked="checked" />
-										<label class="form-check-label" for="weekdays">Monday - Friday</label>
-									</div>
-									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="weekend-info" id="weekend" name="dayoftravel"/>
-										<label class="form-check-label" for="weekends">Saturday - Sunday</label>
+								<div id="filter-viewmode" class="col-xs-12 col-sm-12 col-md-3 block">
+									<h5>
+										View Schedule as
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekdays-info" id="weekdays" name="viewmode" checked="checked" />
+											<label class="form-check-label" for="weekdays">Table</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekend-info" id="weekend" name="viewmode"/>
+											<label class="form-check-label" for="weekends">List</label>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div id="filter-direction" class="col-xs-12 col-sm-12 col-md-2">
-								<h5>
-									Direction
-								</h5>
-								<div class="form-radios">
-									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="outbound" id="outoubnd" name="direction" checked="checked" />
-										<label class="form-check-label" for="outoubnd">Outbound</label>
+								<div id="filter-stops" class="col-xs-12 col-sm-12 col-md-3">
+									<h5>
+										Customize Table View
+									</h5>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											Select stops
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
+												<li>
+													<div class="dropdown-item">
+														<div class="form-check">
+															<input name="show_stop" class="form-check-input" type="checkbox" value="{{ stop_id }}" id="checkstop{{ stop_id }}" />
+															<label class="form-check-label" for="checkstop{{ stop_id }}">{{ stop_data.stop_data.stopName }}</label>
+														</div>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
 									</div>
-									<div class="form-radio">
-										<input class="form-check-input" type="radio" value="inbound" id="inbound" name="direction" />
-										<label class="form-check-label" for="inbound">Inbound</label>
+								</div>
+								<div id="filter-day" class="col-xs-12 col-sm-12 col-md-2">
+									<h5>
+										Day of Travel
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekdays-info" id="weekdays" name="dayoftravel" checked="checked" />
+											<label class="form-check-label" for="weekdays">Monday - Friday</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekend-info" id="weekend" name="dayoftravel"/>
+											<label class="form-check-label" for="weekends">Saturday - Sunday</label>
+										</div>
+									</div>
+								</div>
+								<div id="filter-direction" class="col-xs-12 col-sm-12 col-md-2">
+									<h5>
+										Direction
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="outbound" id="outoubnd" name="direction" checked="checked" />
+											<label class="form-check-label" for="outoubnd">Outbound</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="inbound" id="inbound" name="direction" />
+											<label class="form-check-label" for="inbound">Inbound</label>
+										</div>
 									</div>
 								</div>
 							</div>

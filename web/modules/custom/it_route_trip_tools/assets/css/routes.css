@@ -79,3 +79,7 @@
   background: #F1F3F6 !important;
   margin-top: 16px;
 }
+
+.card-body span {
+  white-space: initial;
+}

@@ -102,6 +102,10 @@ label.form-check-label {
   margin-top: 2rem;
 }
 
+#inbound-map-heading {
+  margin-top: 2rem;
+}
+
 #route-map-weekdays {
   padding: 0;
 }
@@ -216,4 +220,63 @@ label.form-check-label {
   text-align: center;
 
   color: #003087;
+}
+#filter-route {
+  display: block;
+}
+#filter-viewmode {
+  display: none;
+}
+#filters > h5 {
+  display: none;
+}
+#filters .collapse {
+  display: block !important;
+}
+
+@media (max-width: 992px) {
+  #download-link {
+    display: none;
+  }
+  a.nav-link, li.nav-item.active  a.nav-link {
+    font-size: 18px;
+    line-height: unset;
+    white-space: nowrap;
+  }
+  #filters {
+    border: 1px solid #D1D2D6;
+    /* Intercity DS */
+
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 15px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+  }
+  #what-are-timepoints {
+    display: none;
+  }
+  #filter-route {
+    display: none;
+  }
+  #filter-viewmode {
+    display: block;
+  }
+  li.nav-item:not(.active) {
+    padding-bottom: 10px !important;
+  }
+
+  #filters .collapse {
+    display: none !important;
+  }
+  #filters > h5 {
+    display: block !important;
+    padding-left: 15px;
+  }
+  #filters > h5 button {
+    margin-left: ;
+  }
 }
