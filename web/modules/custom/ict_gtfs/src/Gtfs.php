@@ -370,11 +370,13 @@ class Gtfs {
     $stops = $this->getStaticData('stops');
     $built_stops = [];
     foreach ($stops as $stop) {
-      $built_stops[$stop[0]] = [
-        'name' => $stop[2],
-        'lat' => $stop[4],
-        'lon' => $stop[5],
-      ];
+      if ($stop[0]) {
+        $built_stops[$stop[0]] = [
+          'name' => $stop[2],
+          'lat' => $stop[4],
+          'lon' => $stop[5],
+        ];
+      }
     }
 
     $built_stop_times = [];

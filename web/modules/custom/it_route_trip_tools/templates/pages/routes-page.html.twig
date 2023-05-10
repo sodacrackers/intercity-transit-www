@@ -1,7 +1,8 @@
-<div class="container-fluid">
+{{ attach_library('it_route_trip_tools/route') }}
+<div class="container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<li class="nav-item">
-			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
+		<li class="nav-item active">
+			<a class="nav-link" id="home-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false">Real Time</a>
@@ -10,14 +11,14 @@
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade active in" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
 			{% if route_data_weekdays %}
-				<div id="route-effective-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
-					Effective from {{ route_data_weekdays.effective_from|date('m-d-Y')  }} until {{ route_data_weekdays.effective_until|date('m-d-Y')  }}
-				</div>
-				{% if route_data_weekend %}
-					<div id="route-effective-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
-						Effective from {{ route_data_weekend.effective_from|date('m-d-Y')  }} until {{ route_data_weekend.effective_until|date('m-d-Y')  }}
-					</div>
-			    {% endif %}
+{#				<div id="route-effective-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">#}
+{#					Effective from {{ route_data_weekdays.effective_from|date('m-d-Y')  }} until {{ route_data_weekdays.effective_until|date('m-d-Y')  }}#}
+{#				</div>#}
+{#				{% if route_data_weekend %}#}
+{#					<div id="route-effective-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">#}
+{#						Effective from {{ route_data_weekend.effective_from|date('m-d-Y')  }} until {{ route_data_weekend.effective_until|date('m-d-Y')  }}#}
+{#					</div>#}
+{#			    {% endif %}#}
 				<div id="route-map" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
 					<div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-8 col-lg-12 weekdays-info">
 						{{ routes_map_weekdays }}
@@ -28,30 +29,30 @@
 						</div>
 					{% endif %}
 					<div id="route-info-header">
-						<div id="display-now-route-info-weekdays" class="col-xs-12 col-sm-12 col-lg-8 weekdays-info">
-							{% for dir, dir_data in route_data_weekdays.times_alt  %}
-								{% if dir != 'inbound' %}
-									{% set dir_class = 'show-dir' %}
-									<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Outbound Monday - Friday</h2>
-								{% else %}
-									{% set dir_class = 'hide-dir hidden' %}
-									<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Inbound {{ route_data_weekdays.dir }} Monday - Friday</h2>
-								{% endif %}
-							{% endfor %}
-						</div>
-						{% if route_data_weekend %}
-							<div id="display-now-route-info-weekend" class="col-xs-12 col-sm-12 col-lg-8 weekend-info hide">
-								{% for dir, dir_data in route_data_weekend.times_alt  %}
-									{% if dir != 'inbound' %}
-										{% set dir_class = 'show-dir' %}
-										<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Outbound Weekends</h2>
-									{% else %}
-										{% set dir_class = 'hide-dir hidden' %}
-										<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Inbound {{ route_data_weekend.dir }} Weekends</h2>
-									{% endif %}
-								{% endfor %}
-							</div>
-						{% endif %}
+{#						<div id="display-now-route-info-weekdays" class="col-xs-12 col-sm-12 col-lg-8 weekdays-info">#}
+{#							{% for dir, dir_data in route_data_weekdays.times_alt  %}#}
+{#								{% if dir != 'inbound' %}#}
+{#									{% set dir_class = 'show-dir' %}#}
+{#									<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Outbound Monday - Friday</h2>#}
+{#								{% else %}#}
+{#									{% set dir_class = 'hide-dir hidden' %}#}
+{#									<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekdays.short_name }} {{ route_data_weekdays.long_name }} - Inbound {{ route_data_weekdays.dir }} Monday - Friday</h2>#}
+{#								{% endif %}#}
+{#							{% endfor %}#}
+{#						</div>#}
+{#						{% if route_data_weekend %}#}
+{#							<div id="display-now-route-info-weekend" class="col-xs-12 col-sm-12 col-lg-8 weekend-info hide">#}
+{#								{% for dir, dir_data in route_data_weekend.times_alt  %}#}
+{#									{% if dir != 'inbound' %}#}
+{#										{% set dir_class = 'show-dir' %}#}
+{#										<h2 class="dir-heading dir-heading-outbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Outbound Weekends</h2>#}
+{#									{% else %}#}
+{#										{% set dir_class = 'hide-dir hidden' %}#}
+{#										<h2 class="dir-heading dir-heading-inbound displaying-now {{ dir_class }}">Displaying {{ route_data_weekend.short_name }} {{ route_data_weekend.long_name }} - Inbound {{ route_data_weekend.dir }} Weekends</h2>#}
+{#									{% endif %}#}
+{#								{% endfor %}#}
+{#							</div>#}
+{#						{% endif %}#}
 						{#						<div class="col-xs-12 col-sm-12 col-lg-4">#}
 						{#							<div class="btn-group btn-toggle dir-control-buttons">#}
 						{#								<div class="dir-control-button">#}
@@ -67,10 +68,10 @@
 						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12">
 							<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
 								<h5>Find a Route Schedule</h5>
-								<select id="route-change">
+								<select id="route-change" class="btn btn-default input-width-80">
 									<option value="">- Select Route -</option>
-									{% for key, value in routes_options %}
-										<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ value }}</option>
+									{% for key, options in routes_options %}
+										<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ key }}-{{ options.name }}</option>
 									{% endfor %}
 								</select>
 							</div>
@@ -79,9 +80,8 @@
 									Customize Table View
 								</h5>
 								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										Choose stops
-										<span class="caret"></span>
+									<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										Select stops
 									</button>
 									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 										{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
@@ -127,10 +127,10 @@
 									</div>
 								</div>
 							</div>
-							<div id="download-link" class="col-xs-12 col-sm-12 col-md-2">
-								Download
-							</div>
-
+{#							<div id="download-link" class="col-xs-12 col-sm-12 col-md-2">#}
+{#								Download#}
+{#							</div>#}
+							<a id="download-link" class="btn btn-save"><img src="/modules/custom/it_route_trip_tools/assets/images/pdf.svg" />Download Route</a>
 						</div>
 					</div>
 					<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
