@@ -1,4 +1,5 @@
 {% set module_path = _self|split('\/templates') %}
+{{ attach_library('it_route_trip_tools/maps-autocomplete') }}
 {{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
 <div class="map-frame">
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -14,7 +15,7 @@
   </script>
 	<script>
 
-    const it_bounds = {
+    var it_bounds = {
 		  north: {{ route_data.bounding.max.lat }},
 		  south: {{ route_data.bounding.min.lat }},
 		  west: {{ route_data.bounding.min.lng }},
@@ -93,7 +94,7 @@
 					text: 'Start',
 			{% elseif start_end_check == 2 %}
 					text: 'End',
-			{% endif %}	
+			{% endif %}
 					fontWeight: 'bold',
 					color: '#fff'
 		    },
@@ -104,10 +105,10 @@
 		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
 		    description: content
 	  	});
-	  	{{ dir }}_markers.push(stop_marker);   
+	  	{{ dir }}_markers.push(stop_marker);
 	{% endfor %}
 	  	//Create and open InfoWindow.
-  		var infoWindow = new google.maps.InfoWindow(); 
+  		var infoWindow = new google.maps.InfoWindow();
   		for (var i = 0; i < {{ dir }}_markers.length; i++) {
 	      var data = {{ dir }}_markers[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
@@ -131,7 +132,7 @@
 				{% for key,inbound_shapes in route_data.inbound_shapes %}
 					const routePathCoordinates_{{ dir }}_{{ key }} = [
 						{% for inbound_shape in inbound_shapes %}
-						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},	
+						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
 						{% endfor %}
 					];
 					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
@@ -148,7 +149,7 @@
 					const routePathCoordinates_{{ dir }}_{{ key }} = [
 						{% for outbound_shape in outbound_shapes %}
 						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
-						{% endfor %}					
+						{% endfor %}
 					];
 					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ key }},
@@ -176,8 +177,8 @@
   </script>
 {% for dir, stop_ids in route_data.stop_markers %}
 	{% if dir != 'inbound' %}
-		{% set dir_class = 'show-dir' %}	
-	{% else %}				
+		{% set dir_class = 'show-dir' %}
+	{% else %}
 		{% set dir_class = 'hide-dir hidden' %}
 	{% endif %}
 	<div id="{{ dir }}-map" class="maps {{ dir_class }}">

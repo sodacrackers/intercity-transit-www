@@ -78,7 +78,7 @@ class RoutesPage extends ControllerBase {
     return $new_options;
   }
 
-  private function loadAllAlerts() {
+  public static function loadAllAlerts() {
       // Load the node storage service.
       $node_storage = \Drupal::entityTypeManager()->getStorage('node');
       // Load all published nodes of type "alert".
@@ -106,13 +106,14 @@ class RoutesPage extends ControllerBase {
   }
 
 
-  private function getAllAlerts() {
-    $alerts = $this->loadAllAlerts();
+  public static function getAllAlerts() {
+    $alerts = self::loadAllAlerts();
     return array_map(function ($item) {
       return [
         'id' => $item->id(),
         'title' => $item->label(),
-        'url' => $item->toUrl()->toString(TRUE),
+        'url' => $item->toUrl()->toString(),
+        'severity' => $item->get('field_severity')->value,
         'description' => $item->get('body')->getValue()[0],
         'affected_routes' => array_map(function ($routes) {
           return $routes->label();

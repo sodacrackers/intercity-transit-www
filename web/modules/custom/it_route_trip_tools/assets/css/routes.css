@@ -68,6 +68,7 @@
   font-size: 17px;
   line-height: 150%;
   color: #0D1A29 !important;
+  white-space: normal;
 }
 
 .alerts-collapse {
@@ -80,6 +81,34 @@
   margin-top: 16px;
 }
 
-.card-body span {
-  white-space: initial;
+.card-body span, .card-body p {
+  white-space: normal;
+}
+
+.region-header-mid {
+  min-height: 65px;
+}
+
+.region-header-mid, .region-header-mid .breadcrumb {
+  background: #F0F5FA;
+}
+
+.region-header-mid .breadcrumb {
+  padding: 21px 15px;
+}
+
+.region-header-mid .breadcrumb li {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 135%;
+  color: #003087;
+}
+
+.region-header-mid .breadcrumb li a {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 135%;
+  color: #0D1A29;
 }

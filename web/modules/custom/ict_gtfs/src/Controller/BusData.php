@@ -120,13 +120,14 @@ class BusData extends ControllerBase {
 
   }
 
-  private function getRouteAlerts($route_id) {
-    $alerts = $this->loadAlertsByRoute($route_id);
+  public static function getRouteAlerts($route_id) {
+    $alerts = self::loadAlertsByRoute($route_id);
     return array_map(function ($item) {
       return [
         'id' => $item->id(),
         'title' => $item->label(),
-        'url' => $item->toUrl()->toString(TRUE),
+        'url' => $item->toUrl()->toString(),
+        'severity' => $item->get('field_severity')->value,
         'description' => $item->get('body')->getValue()[0],
         'affected_routes' => array_map(function ($routes) {
           return $routes->label();

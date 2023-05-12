@@ -80,8 +80,21 @@
   padding-right: 65px !important;
 }
 
+.region-header-mid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 @media (max-width: 992px) {
   .hide-mobile {
+    display: none;
+  }
+
+  .alerts-right-panel {
+    padding-right: 15px !important;
+  }
+
+  .header-routes-all .breadcrumb {
     display: none;
   }
 }

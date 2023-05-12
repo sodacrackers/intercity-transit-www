@@ -234,6 +234,37 @@ function it_route_trip_get_trips($stop_times) {
   return [];
 }
 
+function it_route_trip_tools_get_min($shapes, $key) {
+  $val = 999;
+  foreach ($shapes as $shape) {
+    foreach ($shape as $coord) {
+      if ($coord[$key] < $val) {
+        $val = $coord[$key];
+      }
+    }
+  }
+  return $val;
+}
+
+function it_route_trip_tools_get_max($shapes, $key) {
+  $val = -999;
+  foreach ($shapes as $shape) {
+    foreach ($shape as $coord) {
+      if ($coord[$key] > $val) {
+        $val = $coord[$key];
+      }
+    }
+  }
+  return $val;
+}
+
+function it_route_trip_tools_get_center($boundaries) {
+  return [
+    'lat' => ((float) $boundaries['max']['lat'] + (float) $boundaries['min']['lat']) / 2,
+    'lng' => ((float) $boundaries['max']['lng'] + (float) $boundaries['min']['lng']) / 2,
+  ];
+}
+
 /*
 
 	The data built here is used for the map and table for a returned route.
@@ -243,7 +274,20 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
 
   $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0);
   $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1);
+  $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0);
+  $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1);
   $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
+
+  $bounding = [
+    'min' => [
+      'lat' => it_route_trip_tools_get_min($shapes_inbound, 'lat'),
+      'lng' => it_route_trip_tools_get_min($shapes_inbound, 'lng'),
+    ],
+    'max' => [
+      'lat' => it_route_trip_tools_get_max($shapes_inbound, 'lat'),
+      'lng' => it_route_trip_tools_get_max($shapes_inbound, 'lng'),
+    ],
+  ];
 
   return [
     'short_name' => $routeId,
@@ -251,8 +295,11 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
     'service_id' => $serv,
     'effective_from' => $active_config['detail']['date_from'],
     'effective_until' => $active_config['detail']['date_to'],
-    'inbound_shapes' => [],
-    'outbound_shapes' => [],
+    'map_type' => 'roadmap',
+    'bounding' => $bounding,
+    'center' => it_route_trip_tools_get_center($bounding),
+    'inbound_shapes' => $shapes_inbound,
+    'outbound_shapes' => $shapes_outbound,
     'stop_markers' => [
       'inbound' => it_route_trip_get_stop_markers($stop_times_inbound),
       'outbound' => it_route_trip_get_stop_markers($stop_times_outbound),

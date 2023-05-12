@@ -402,6 +402,28 @@ class Gtfs {
 
   }
 
+  public function getShapes($route_id, $direction) {
+    $shapes = $this->getStaticData('shapes');
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction));
+    $trip_shapes = array_unique(array_map(function ($item) {
+      return $item[6];
+    }, $trips));
+    $ret_shapes = [];
+    foreach ($trip_shapes as $trip_shape) {
+      $filtered_shapes = array_filter($shapes, function ($item) use ($trip_shape) {
+        return $item[0] == $trip_shape;
+      });
+      $ret_shapes[] = array_map(function ($item) {
+        return [
+          'lat' => $item[3],
+          'lng' => $item[4],
+        ];
+      }, $filtered_shapes);
+    }
+    return $ret_shapes;
+
+  }
+
   public function getStopTimeUpdates($json_data, $trip_list) {
     $stop_time_updates = array();
     foreach ($json_data['entity'] as $entity) {
@@ -444,7 +466,7 @@ class Gtfs {
           if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
             $vehicle_id = $entity['vehicle']['vehicle']['id'];
             $latitude = $entity['vehicle']['position']['latitude'];
-            $longitude = $entity['vehicle']['position']['lngitude'];
+            $longitude = $entity['vehicle']['position']['longitude'];
             $bearing = $entity['vehicle']['position']['bearing'];
             $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
           }

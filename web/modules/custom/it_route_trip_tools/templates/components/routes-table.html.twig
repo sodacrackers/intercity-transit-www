@@ -1,4 +1,6 @@
 {{ attach_library('it_route_trip_tools/tables') }}
+
+<div class="mobile-tables-container">
 	{% for dir, dir_data in route_data.times_alt  %}
 		{% if dir != 'inbound' %}
 			{% set dir_class = 'show-dir' %}
@@ -51,3 +53,45 @@
 			</div>
 		</div>
 	{% endfor %}
+</div>
+<div class="mobile-lists-container hide-on-desktop hide-on-mobile">
+	<div class="btn-group btn-stops-toggle" data-toggle="buttons">
+		<label class="btn btn-primary active">
+			<input type="radio" name="display_stops_options" value="allstops" checked="checked">All stops
+		</label>
+		<label class="btn btn-default">
+			<input type="radio" name="display_stops_options" value="timepoint">Timepoints
+		</label>
+	</div>
+	<a data-toggle="tooltip" data-placement="right" id="what-are-timepoints" title="" data-original-title="What are timepoints?">What are timepoints?</a>
+	<div style="display: flex; float: right;">
+		<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default" style="order: 1;" disabled><i class="fas fa-arrow-left" style="color:white;"></i><span class="sr-only">{{ dir }} Back</span></button>
+		<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default" style="order: 2; margin-left: 15px;"><i class="fas fa-arrow-right" style="color:white"></i><span class="sr-only">{{ dir }} Forward</span></button>
+	</div>
+	{% for dir, dir_data in route_data.times_alt  %}
+		{% if dir != 'inbound' %}
+			{% set dir_class = 'show-dir' %}
+		{% else %}
+			{% set dir_class = 'hide-dir hidden' %}
+		{% endif %}
+		<div id="{{ dir }}-lists row" class="{{ dir_class }} dir-lists dir-lists-{{ dir }}">
+		{% for stop_id, stop_data in dir_data.stops %}
+			{% for timepoint, stop_names in stop_data %}
+				{% for stop_name, stop_times in stop_names %}
+		            <div class="col-xs-12 col-sm-12 col-lg-12 lists-list-item {{ timepoint }}" data-stop-id="{{ stop_id }}">
+						<div class="lists-list-item-title">
+							{{ stop_name }}
+							{% if timepoint == 'timepoint' %}
+								<span class="lists-list-item-timepoint">Timepoint</span>
+							{% endif %}
+						</div>
+						<div class="lists-list-item-content">
+							{{ stop_times|join(', ') }}
+						</div>
+					</div>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+		</div>
+	{% endfor %}
+</div>

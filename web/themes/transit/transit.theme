@@ -1,5 +1,7 @@
 <?php
 
+use \Drupal\ict_gtfs\Controller\BusData;
+
 function transit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 if (strpos($form_id, 'contact_message_') !== FALSE) {
     unset($form['actions']['preview']);
@@ -19,4 +21,18 @@ function transit_preprocess_page(&$vars) {
     if ($vars['is_front']) {
         $vars['#attached']['library'][] = 'transit/global-footer';
     }
+}
+
+function transit_preprocess_region(&$vars) {
+  if ($vars['region'] === 'header_mid') {
+    $vars['is_routes'] = 'it_route_trip_tools.routes' === \Drupal::routeMatch()->getRouteName();
+    $routeId = \Drupal::routeMatch()->getParameter('routeId');
+    $vars['route_id'] = $routeId;
+    if ($routeId && $routeId != 'all') {
+      $vars['alerts'] = BusData::getRouteAlerts($routeId);
+    }
+//    else {
+//      $vars['alerts'] = \Drupal\it_route_trip_tools\Controller\RoutesPage::getAllAlerts();
+//    }
+  }
 }

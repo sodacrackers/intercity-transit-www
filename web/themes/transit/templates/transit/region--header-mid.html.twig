@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ *
+ * @ingroup templates
+ */
+#}
+{%
+    set classes = [
+    is_routes ? 'container-fluid',
+    is_routes ? 'header-routes-' ~ route_id,
+    'region',
+    'region-' ~ region|clean_class,
+]
+%}
+{% if content %}
+    <div{{ attributes.addClass(classes) }}>
+        {{ content }}
+
+        {% if alerts|length > 0 %}
+            <span class="route-item-alerts" data-toggle="modal" data-target="#alertsModal">
+              <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" style="width: 20px" />
+              {{ alerts|length }}
+            </span>
+            {% if route_id != 'all' %}
+                <div class="modal fade" id="alertsModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modalLabel">Alerts</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {% for alert_id, alert in alerts %}
+                                    <div class="row container-fluid">
+                                        <p>
+                                            {{ alert.description.summary|raw }}
+                                        </p>
+                                        <a class="card-link" href="{{ alert.url }}">View alert<img class="card-arrow" style="margin-left: 10px" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="/alerts">
+                                    <span aria-hidden="true">View All Alerts</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endif %}
