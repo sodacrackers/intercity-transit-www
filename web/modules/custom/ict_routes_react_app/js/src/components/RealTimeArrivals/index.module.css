@@ -61,7 +61,7 @@
   border-left: 1px dashed #003087;
   padding-top: 0;
   margin-left: 47px !important;
-  padding-bottom: 16px;
+  padding-bottom: 0;
 }
 
 .timepoint {
@@ -220,7 +220,6 @@
 }
 
 .timepointSwitch {
-  display: flex;
   height: 50px;
   align-items: center;
   justify-content: center;
@@ -280,6 +279,7 @@
 
 .shape {
   margin-top: -9px;
+  margin-left: -3px;
 }
 
 .estimated {
@@ -410,6 +410,7 @@
   .timepointRight {
     justify-content: flex-end !important;
     align-items: end !important;
+    padding-right: 8px !important;
   }
 
   .right {
@@ -434,8 +435,34 @@
 }
 
 @media screen and (max-width: 767px) {
+  .mapContainer {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .legend .arrivalTag {
+    margin-left: 0 !important;
+  }
+
+  .routesWrapper {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .stopCol {
+    padding: 1.5rem 1.5rem 0 0 !important;
+  }
+
+  .indicator {
+    margin-right: 2px !important;
+  }
+
   .hide, .show {
     margin-left: -6px !important;
+  }
+
+  .hide .dot, .show .dot {
+    margin-left: -39px;
   }
 
   .notification {
@@ -454,8 +481,12 @@
     display: none;
   }
 
+  .hideOnMobile {
+    display: none;
+  }
+
   .stopInfo, .empty {
-    margin-left: 28px !important;
+    margin-left: 20px !important;
   }
 
   .timepointRight {
@@ -484,7 +515,13 @@
   .arrivalTag, .lateArrivalTag, .earlyArrivalTag {
     text-align: left;
     margin-bottom: 16px !important;
+    margin-left: 8px !important;
     padding: auto;
+  }
+
+  .growOnMobile {
+    width: 100%;
+    min-width: 100% !important;
   }
 }
 
