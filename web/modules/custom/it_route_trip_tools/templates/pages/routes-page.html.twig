@@ -2,14 +2,14 @@
 <div class="container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 		<li class="nav-item active">
-			<a class="nav-link" id="home-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
+			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false">Real Time</a>
+			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false">Real Time</a>
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane active in" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+		<div class="tab-pane active in fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
 			{% if route_data_weekdays %}
 				<div id="route-map container-fluid" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
 					<div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-8 col-lg-12 weekdays-info">
@@ -130,8 +130,8 @@
 			{%  endif %}
 			{% endif %}
 		</div>
-		<div class="tab-pane" id="real-time" role="tabpanel" aria-labelledby="real-time-tab">
-{#			{{ drupal_block('ict_routes_react_app_block') }}#}
+		<div class="tab-pane fade" id="real-time" role="tabpanel" aria-labelledby="realtime-tab">
+			{{ drupal_block('ict_routes_react_app_block') }}
 		</div>
 	</div>
 </div>

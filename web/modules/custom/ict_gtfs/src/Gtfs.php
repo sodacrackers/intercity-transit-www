@@ -434,11 +434,11 @@ class Gtfs {
         }
         foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
           $stop_id = intval($stop_time_update['stopId']);
-          if ($stop_time_update['arrival'] != NULL) {
+          if (isset($stop_time_update['arrival']) && $stop_time_update['arrival'] != NULL) {
             $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
             $arrival_time = $stop_time_update['arrival']['time'];
           }
-          if ($stop_time_update['departure'] != NULL) {
+          if (isset($stop_time_update['departure']) && $stop_time_update['departure'] != NULL) {
             $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
             $departure_time = $stop_time_update['departure']['time'];
           }
