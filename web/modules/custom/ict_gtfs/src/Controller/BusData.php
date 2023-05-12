@@ -10,6 +10,7 @@ use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\ict_gtfs\Gtfs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -79,13 +80,12 @@ class BusData extends ControllerBase {
       $context = new RenderContext();
       /** @var \Drupal\Core\Cache\CacheableJsonResponse $response */
       $response = $this->renderer->executeInRenderContext($context, function () use ($route_data) {
-        $response = CacheableJsonResponse::create($route_data);
-        $response->addCacheableDependency(CacheableMetadata::createFromRenderArray([
-          '#cache' => [
-            'max-age' => 30,
-          ],
-        ]));
-        return $response;
+        //        $response->addCacheableDependency(CacheableMetadata::createFromRenderArray([
+//          '#cache' => [
+//            'max-age' => 30,
+//          ],
+//        ]));
+        return JsonResponse::create($route_data);
       });
       return $response;
     }
