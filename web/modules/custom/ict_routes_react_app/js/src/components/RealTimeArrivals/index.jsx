@@ -125,7 +125,7 @@ const RealTimeArrivals = () => {
                         <tbody>
                           <tr>
                             <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.arrival_time) * 1000).toLocal().toFormat('h:mm a')}</td>
+                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
                             <td className="col-7">{
                               Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.arrival_delay) > 60 ? (
                                 <div className={styles.datapointLate}>
@@ -145,7 +145,7 @@ const RealTimeArrivals = () => {
                           </tr>
                           <tr>
                             <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.arrival_time) * 1000).toLocal().toFormat('h:mm a')}</td>
+                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
                             <td className="col-7">{
                               Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.arrival_delay) > 60 ? (
                                 <div className={styles.datapointLate}>
@@ -165,7 +165,7 @@ const RealTimeArrivals = () => {
                           </tr>
                           <tr>
                             <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.arrival_time) * 1000).toLocal().toFormat('h:mm a')}</td>
+                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
                             <td className="col-7">{
                               Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.arrival_delay) > 60 ? (
                                 <div className={styles.datapointLate}>
@@ -281,12 +281,13 @@ const RealTimeArrivals = () => {
                   if (stopObj && Object.keys(stopObj).length > 0) {
                     const stopTimes = stopObj?.stop_times;
                     const formatDepartureTime = (index, changeDay) => changeDay 
-                    ? DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm a').plus({days: 1}).toMillis() + (delay * 1000))
-                    : DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm a').toMillis() + (delay * 1000));
+                    ? DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm:ss').plus({days: 1}).toMillis() + (delay * 1000))
+                    : DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm:ss').toMillis() + (delay * 1000));
                     const isTimepoint = data.stop_markers[direction][stopId].stop_data.timepoint > 0;
                     const now = DateTime.now().toMillis();
-                    const firstItemIndex = stopTimes?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
+                    const firstItemIndex = stopTimes?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item, 'h:mm:ss').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
                     const delay = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[0]]?.departure_delay) | 0;
+                    console.log(delay);
                     const delayNext = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[1]]?.departure_delay) | 0;
                     const delayLast = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[2]]?.departure_delay) | 0;
                     const departureTimeFormatted = firstItemIndex > -1 
@@ -304,6 +305,7 @@ const RealTimeArrivals = () => {
                           ? formatDepartureTime(0, true)
                           : formatDepartureTime(1, true)
                       : formatDepartureTime(2, true);
+                    console.log(departureTimeFormatted);
                     const waitTime = (Number(departureTimeFormatted.toMillis()) - now) / 60000;
                     const waitTimeNext = (Number(departureTimeFormattedNext.toMillis()) - now) / 60000;
                     const waitTimeLast = (Number(departureTimeFormattedLast.toMillis()) - now) / 60000;
