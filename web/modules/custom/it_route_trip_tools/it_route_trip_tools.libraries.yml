@@ -87,3 +87,5 @@ route:
   css:
     theme:
       assets/css/route.css: {}
+  js:
+    assets/js/route.js: {}

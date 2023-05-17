@@ -73,9 +73,9 @@ class ReactAppBlock extends BlockBase implements ContainerFactoryPluginInterface
       ]);
       $build['ict_routes_react_app_block'] = [
         '#markup' => '<div id="ict-routes-react-app" data-api-url="' . $url->toString() . '"></div>',
-        '#attached' => [
-          'library' => 'ict_routes_react_app/ict_routes_react_app'
-        ],
+//        '#attached' => [
+//          'library' => 'ict_routes_react_app/ict_routes_react_app'
+//        ],
       ];
     }
     return $build;

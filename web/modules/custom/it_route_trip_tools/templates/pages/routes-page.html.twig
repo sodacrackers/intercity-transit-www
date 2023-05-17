@@ -9,7 +9,7 @@
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane active in fade" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+		<div id="schedule">
 			{% if route_data_weekdays %}
 				<div id="route-map container-fluid" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
 					<div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-8 col-lg-12 weekdays-info">
@@ -120,15 +120,18 @@
 				</div>
 			{% else %}
 				{{ attach_library('it_route_trip_tools/all-routes-map') }}
-			{% if all_routes_map_data %}
-				<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-				<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-				<div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div id="all-routes-map"></div>
-				</div>
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
-			{%  endif %}
+				{% if all_routes_map_data %}
+					<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+					<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+					<div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div id="all-routes-map"></div>
+					</div>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
+				{%  endif %}
 			{% endif %}
+		</div>
+		<div>
+			{{ drupal_block('ict_routes_react_app_block') }}
 		</div>
 	</div>
 </div>

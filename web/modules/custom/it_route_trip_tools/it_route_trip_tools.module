@@ -224,7 +224,7 @@ function it_route_trip_get_stop_markers($stop_times) {
 function it_route_trip_get_times_alt($stop_times) {
   $res = [];
   foreach ($stop_times as $stop_time) {
-    $res['stops'][$stop_time['stop_id']][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = $stop_time['arrival_time'];
+    $res['stops'][$stop_time['stop_id']][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = str_pad(substr($stop_time['arrival_time'], 0, strlen($stop_time['arrival_time']) - 3), 5, '0', STR_PAD_LEFT);
   }
   $res['trip_count'] = count($res['stops']);
   return $res;
