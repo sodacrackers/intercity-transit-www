@@ -1,3 +1,7 @@
+.nav-tabs {
+  margin-bottom: 15px !important;
+}
+
 li.nav-item {
   border-top: none;
   border-left: none;
@@ -437,3 +441,4 @@ label.form-check-label {
     padding: 5px 15px;
   }
 }
+
