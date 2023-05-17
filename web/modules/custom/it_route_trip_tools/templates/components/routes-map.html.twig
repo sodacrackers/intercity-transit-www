@@ -1,203 +1,203 @@
-{% set module_path = _self|split('\/templates') %}
-{{ attach_library('it_route_trip_tools/maps-autocomplete') }}
-{{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
-<div class="map-frame">
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-	<script>
-    function buildMaps() {
-{% for dir, stop_ids in route_data.stop_markers %}
-			initMap_{{ dir }}();
-{% endfor %}
-		}
-	</script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer>
-  </script>
-	<script>
+{#{% set module_path = _self|split('\/templates') %}#}
+{#{{ attach_library('it_route_trip_tools/maps-autocomplete') }}#}
+{#{{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}#}
+{#<div class="map-frame">#}
+{#	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>#}
+{#	<script>#}
+{#    function buildMaps() {#}
+{#{% for dir, stop_ids in route_data.stop_markers %}#}
+{#			initMap_{{ dir }}();#}
+{#{% endfor %}#}
+{#		}#}
+{#	</script>#}
+{#  <script#}
+{#    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer>#}
+{#  </script>#}
+{#	<script>#}
 
-    var it_bounds = {
-		  north: {{ route_data.bounding.max.lat }},
-		  south: {{ route_data.bounding.min.lat }},
-		  west: {{ route_data.bounding.min.lng }},
-		  east: {{ route_data.bounding.max.lng }},
-		};
-{% for dir, stop_ids in route_data.stop_markers %}
-		var {{ dir }}_markers = [];
-		function initMap_{{ dir }}() {
-			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}"), {
-		   	center: {lat:{{ route_data.center.lat }}, lng:{{ route_data.center.lng }}},
-		    mapTypeId: "{{ route_data.map_type }}",
-			});
-			{{dir}}MapBoundary(map);
-			var start = {
-		    path: 'M -4 -2, h 8, v 4, h -8, Z',
-		    strokeColor: '#fff',
-		    fillColor: '#217b03',
-		    scale: 6,
-		    strokeWeight: 1,
-		    fillOpacity: 1
-			};
-  		var end = {
-		    path: 'M -4 -2, h 8, v 4, h -8, Z',
-		    fillColor: '#F00',
-		    scale: 6,
-		    strokeWeight: 1,
-		    fillOpacity: 1,
-  		};
-			var timepoint = {
-		    path: "M -2,0 0,-2 2,0 0,2 z",
-		    scale: 4,
-		    strokeWeight: 1,
-		    strokeColor: "#fff",
-		    fillColor: "#217b03",
-		    fillOpacity: 1,
-  		};
-  		var stop = {
-  			path: google.maps.SymbolPath.CIRCLE,
-  			scale: 4,
-  			fillColor: '#fff',
-  			fillOpacity: 1,
-  			strokeWeight: 1,
-  			strokeColor:'#217b03'
-  		};
-	{% for stop_id, stop_dataset in stop_ids %}
-		{% if loop.first %}
-			var icon_val = start;
-			{% set start_end_check = 1 %}
-			{% set start_end_text = 'Start' %}
-		{% elseif loop.last %}
-			var icon_val = end;
-			{% set start_end_check = 2 %}
-			{% set start_end_text = 'End' %}
-		{% else %}
-			{% if stop_dataset.stop_data.timepoint == 1 %}
-			var icon_val = timepoint;
-			{% else %}
-			var icon_val = stop;
-			{% endif %}
-			{% set start_end_check = 0 %}
-			{% set start_end_text = '' %}
-		{% endif %}
-		{% set times_array = [] %}
-		{% for time in stop_dataset.stop_times %}
-		    {% if time != '' %}
-		        {% set times_array = times_array|merge([time]) %}
-		    {% endif %}
-		{% endfor %}
-		{% set times = times_array|join(', ') %}
-	  	var content = '<h3>{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}</h3><p>{{ times }}</p>';
-			var stop_marker = new google.maps.Marker({
-		    icon: icon_val,
-    {% if start_end_check != 0 %}
-	    	label: {
-  		{% if start_end_check == 1 %}
-					text: 'Start',
-			{% elseif start_end_check == 2 %}
-					text: 'End',
-			{% endif %}
-					fontWeight: 'bold',
-					color: '#fff'
-		    },
-    {% endif %}
-		    map,
-		    lat: {{ stop_dataset.stop_data.stopLat }},
-		    lng: {{ stop_dataset.stop_data.stopLon }},
-		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
-		    description: content
-	  	});
-	  	{{ dir }}_markers.push(stop_marker);
-	{% endfor %}
-	  	//Create and open InfoWindow.
-  		var infoWindow = new google.maps.InfoWindow();
-  		for (var i = 0; i < {{ dir }}_markers.length; i++) {
-	      var data = {{ dir }}_markers[i];
-	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
-	      var marker = new google.maps.Marker({
-          position: markerLatLng,
-          map: map,
-          title: data.title,
-          icon: data.icon,
-          label: data.label
-	      });
-    		//Attach click event to the marker.
-        (function (marker, data) {
-            google.maps.event.addListener(marker, "click", function (e) {
-                //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.description + "</div>");
-                infoWindow.open(map, marker);
-            });
-        })(marker, data);
-      }
-      {% if dir == 'inbound' %}
-				{% for key,inbound_shapes in route_data.inbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ key }} = [
-						{% for inbound_shape in inbound_shapes %}
-						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
-						{% endfor %}
-					];
-					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ key }},
-				    geodesic: true,
-				    strokeColor: '#217b03',
-				    strokeOpacity: .75,
-				    strokeWeight: 4,
-					});
-					routePath_{{ dir }}_{{ key }}.setMap(map);
-				{% endfor %}
-			{% else %}
-				{% for key,outbound_shapes in route_data.outbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ key }} = [
-						{% for outbound_shape in outbound_shapes %}
-						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
-						{% endfor %}
-					];
-					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ key }},
-				    geodesic: true,
-				    strokeColor: '#217b03',
-				    strokeOpacity: .75,
-				    strokeWeight: 4,
-					});
-					routePath_{{ dir }}_{{ key }}.setMap(map);
-				{% endfor %}
-			{% endif %}
-		}
-		function {{dir}}MapBoundary(map) {
-			var latlng = [
-				new google.maps.LatLng({{ route_data.bounding.min.lat }}, {{ route_data.bounding.min.lng }}),
-				new google.maps.LatLng({{ route_data.bounding.max.lat }}, {{ route_data.bounding.max.lng }}),
-			];
-			var latlngbounds = new google.maps.LatLngBounds();
-			for (var i = 0; i < latlng.length; i++) {
-				latlngbounds.extend(latlng[i]);
-			}
-			map.fitBounds(latlngbounds);
-		}
-{% endfor %}
-  </script>
-{% for dir, stop_ids in route_data.stop_markers %}
-	{% if dir != 'inbound' %}
-		{% set dir_class = 'show-dir' %}
-	{% else %}
-		{% set dir_class = 'hide-dir hidden' %}
-	{% endif %}
-	<div id="{{ dir }}-map" class="maps {{ dir_class }}">
-  	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-			<div class="panel panel-default {{ dir }}-panel">
-	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ dir }}-map-body" aria-expanded="true" aria-controls="{{ dir }}-map-body" class="{{ dir }}-route-map-toggle">
-      	  		Show Route Map
-		        </a>
-      		</h4>
-	    	</div>
-	    	<div id="{{ dir }}-map-body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ dir }}-map-heading">
-      		<div id="route-map" class=" panel-body">
-						<div id="route-map-frame-{{ dir }}"></div>
-					</div>
-	    	</div>
-			</div>
-		</div>
-  </div>
-{% endfor %}
-</div>
+{#    var it_bounds = {#}
+{#		  north: {{ route_data.bounding.max.lat }},#}
+{#		  south: {{ route_data.bounding.min.lat }},#}
+{#		  west: {{ route_data.bounding.min.lng }},#}
+{#		  east: {{ route_data.bounding.max.lng }},#}
+{#		};#}
+{#{% for dir, stop_ids in route_data.stop_markers %}#}
+{#		var {{ dir }}_markers = [];#}
+{#		function initMap_{{ dir }}() {#}
+{#			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}"), {#}
+{#		   	center: {lat:{{ route_data.center.lat }}, lng:{{ route_data.center.lng }}},#}
+{#		    mapTypeId: "{{ route_data.map_type }}",#}
+{#			});#}
+{#			{{dir}}MapBoundary(map);#}
+{#			var start = {#}
+{#		    path: 'M -4 -2, h 8, v 4, h -8, Z',#}
+{#		    strokeColor: '#fff',#}
+{#		    fillColor: '#217b03',#}
+{#		    scale: 6,#}
+{#		    strokeWeight: 1,#}
+{#		    fillOpacity: 1#}
+{#			};#}
+{#  		var end = {#}
+{#		    path: 'M -4 -2, h 8, v 4, h -8, Z',#}
+{#		    fillColor: '#F00',#}
+{#		    scale: 6,#}
+{#		    strokeWeight: 1,#}
+{#		    fillOpacity: 1,#}
+{#  		};#}
+{#			var timepoint = {#}
+{#		    path: "M -2,0 0,-2 2,0 0,2 z",#}
+{#		    scale: 4,#}
+{#		    strokeWeight: 1,#}
+{#		    strokeColor: "#fff",#}
+{#		    fillColor: "#217b03",#}
+{#		    fillOpacity: 1,#}
+{#  		};#}
+{#  		var stop = {#}
+{#  			path: google.maps.SymbolPath.CIRCLE,#}
+{#  			scale: 4,#}
+{#  			fillColor: '#fff',#}
+{#  			fillOpacity: 1,#}
+{#  			strokeWeight: 1,#}
+{#  			strokeColor:'#217b03'#}
+{#  		};#}
+{#	{% for stop_id, stop_dataset in stop_ids %}#}
+{#		{% if loop.first %}#}
+{#			var icon_val = start;#}
+{#			{% set start_end_check = 1 %}#}
+{#			{% set start_end_text = 'Start' %}#}
+{#		{% elseif loop.last %}#}
+{#			var icon_val = end;#}
+{#			{% set start_end_check = 2 %}#}
+{#			{% set start_end_text = 'End' %}#}
+{#		{% else %}#}
+{#			{% if stop_dataset.stop_data.timepoint == 1 %}#}
+{#			var icon_val = timepoint;#}
+{#			{% else %}#}
+{#			var icon_val = stop;#}
+{#			{% endif %}#}
+{#			{% set start_end_check = 0 %}#}
+{#			{% set start_end_text = '' %}#}
+{#		{% endif %}#}
+{#		{% set times_array = [] %}#}
+{#		{% for time in stop_dataset.stop_times %}#}
+{#		    {% if time != '' %}#}
+{#		        {% set times_array = times_array|merge([time]) %}#}
+{#		    {% endif %}#}
+{#		{% endfor %}#}
+{#		{% set times = times_array|join(', ') %}#}
+{#	  	var content = '<h3>{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}</h3><p>{{ times }}</p>';#}
+{#			var stop_marker = new google.maps.Marker({#}
+{#		    icon: icon_val,#}
+{#    {% if start_end_check != 0 %}#}
+{#	    	label: {#}
+{#  		{% if start_end_check == 1 %}#}
+{#					text: 'Start',#}
+{#			{% elseif start_end_check == 2 %}#}
+{#					text: 'End',#}
+{#			{% endif %}#}
+{#					fontWeight: 'bold',#}
+{#					color: '#fff'#}
+{#		    },#}
+{#    {% endif %}#}
+{#		    map,#}
+{#		    lat: {{ stop_dataset.stop_data.stopLat }},#}
+{#		    lng: {{ stop_dataset.stop_data.stopLon }},#}
+{#		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',#}
+{#		    description: content#}
+{#	  	});#}
+{#	  	{{ dir }}_markers.push(stop_marker);#}
+{#	{% endfor %}#}
+{#	  	//Create and open InfoWindow.#}
+{#  		var infoWindow = new google.maps.InfoWindow();#}
+{#  		for (var i = 0; i < {{ dir }}_markers.length; i++) {#}
+{#	      var data = {{ dir }}_markers[i];#}
+{#	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);#}
+{#	      var marker = new google.maps.Marker({#}
+{#          position: markerLatLng,#}
+{#          map: map,#}
+{#          title: data.title,#}
+{#          icon: data.icon,#}
+{#          label: data.label#}
+{#	      });#}
+{#    		//Attach click event to the marker.#}
+{#        (function (marker, data) {#}
+{#            google.maps.event.addListener(marker, "click", function (e) {#}
+{#                //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.#}
+{#                infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data.description + "</div>");#}
+{#                infoWindow.open(map, marker);#}
+{#            });#}
+{#        })(marker, data);#}
+{#      }#}
+{#      {% if dir == 'inbound' %}#}
+{#				{% for key,inbound_shapes in route_data.inbound_shapes %}#}
+{#					const routePathCoordinates_{{ dir }}_{{ key }} = [#}
+{#						{% for inbound_shape in inbound_shapes %}#}
+{#						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},#}
+{#						{% endfor %}#}
+{#					];#}
+{#					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({#}
+{#				    path: routePathCoordinates_{{ dir }}_{{ key }},#}
+{#				    geodesic: true,#}
+{#				    strokeColor: '#217b03',#}
+{#				    strokeOpacity: .75,#}
+{#				    strokeWeight: 4,#}
+{#					});#}
+{#					routePath_{{ dir }}_{{ key }}.setMap(map);#}
+{#				{% endfor %}#}
+{#			{% else %}#}
+{#				{% for key,outbound_shapes in route_data.outbound_shapes %}#}
+{#					const routePathCoordinates_{{ dir }}_{{ key }} = [#}
+{#						{% for outbound_shape in outbound_shapes %}#}
+{#						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},#}
+{#						{% endfor %}#}
+{#					];#}
+{#					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({#}
+{#				    path: routePathCoordinates_{{ dir }}_{{ key }},#}
+{#				    geodesic: true,#}
+{#				    strokeColor: '#217b03',#}
+{#				    strokeOpacity: .75,#}
+{#				    strokeWeight: 4,#}
+{#					});#}
+{#					routePath_{{ dir }}_{{ key }}.setMap(map);#}
+{#				{% endfor %}#}
+{#			{% endif %}#}
+{#		}#}
+{#		function {{dir}}MapBoundary(map) {#}
+{#			var latlng = [#}
+{#				new google.maps.LatLng({{ route_data.bounding.min.lat }}, {{ route_data.bounding.min.lng }}),#}
+{#				new google.maps.LatLng({{ route_data.bounding.max.lat }}, {{ route_data.bounding.max.lng }}),#}
+{#			];#}
+{#			var latlngbounds = new google.maps.LatLngBounds();#}
+{#			for (var i = 0; i < latlng.length; i++) {#}
+{#				latlngbounds.extend(latlng[i]);#}
+{#			}#}
+{#			map.fitBounds(latlngbounds);#}
+{#		}#}
+{#{% endfor %}#}
+{#  </script>#}
+{#{% for dir, stop_ids in route_data.stop_markers %}#}
+{#	{% if dir != 'inbound' %}#}
+{#		{% set dir_class = 'show-dir' %}#}
+{#	{% else %}#}
+{#		{% set dir_class = 'hide-dir hidden' %}#}
+{#	{% endif %}#}
+{#	<div id="{{ dir }}-map" class="maps {{ dir_class }}">#}
+{#  	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">#}
+{#			<div class="panel panel-default {{ dir }}-panel">#}
+{#	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">#}
+{#      		<h4 class="panel-title">#}
+{#        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ dir }}-map-body" aria-expanded="true" aria-controls="{{ dir }}-map-body" class="{{ dir }}-route-map-toggle">#}
+{#      	  		Show Route Map#}
+{#		        </a>#}
+{#      		</h4>#}
+{#	    	</div>#}
+{#	    	<div id="{{ dir }}-map-body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ dir }}-map-heading">#}
+{#      		<div id="route-map" class=" panel-body">#}
+{#						<div id="route-map-frame-{{ dir }}"></div>#}
+{#					</div>#}
+{#	    	</div>#}
+{#			</div>#}
+{#		</div>#}
+{#  </div>#}
+{#{% endfor %}#}
+{#</div>#}
