@@ -367,6 +367,9 @@ class Gtfs {
     $stop_times = array_filter($stop_times, function ($item) use ($trip_ids) {
       return in_array($item[0], $trip_ids);
     });
+    usort($stop_times, function ($item, $comp) {
+      return (int) $item[4] - (int) $comp[4];
+    });
     $stops = $this->getStaticData('stops');
     $built_stops = [];
     foreach ($stops as $stop) {
