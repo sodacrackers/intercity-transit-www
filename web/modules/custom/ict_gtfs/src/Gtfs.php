@@ -363,6 +363,20 @@ class Gtfs {
     $trip_ids = array_map(function ($item) {
       return $item[2];
     }, $trips);
+    $keyed_trips = [];
+    foreach ($trips as $trip) {
+      $keyed_trips[$trip[2]] = [
+        'route_id' => $trip[0],
+        'service_id' => $trip[1],
+        'trip_id' => $trip[2],
+        'trip_headsign' => $trip[3],
+        'direction_id' => $trip[4],
+        'block_id' => $trip[5],
+        'shape_id' => $trip[6],
+        'wheelchair_accessible' => $trip[7],
+        'bikes_allowed' => $trip[8],
+      ];
+    }
     $stop_times = $this->getStaticData('stop_times');
     $stop_times = array_filter($stop_times, function ($item) use ($trip_ids) {
       return in_array($item[0], $trip_ids);
@@ -398,6 +412,7 @@ class Gtfs {
         'name' => $built_stops[$stop_time[3]]['name'],
         'lat' => $built_stops[$stop_time[3]]['lat'],
         'lon' => $built_stops[$stop_time[3]]['lon'],
+        'shape_id' => $keyed_trips[$stop_time[0]]['shape_id']
       ];
     }
 

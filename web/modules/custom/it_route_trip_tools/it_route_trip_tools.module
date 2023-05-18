@@ -231,7 +231,37 @@ function it_route_trip_get_times_alt($stop_times) {
 }
 
 function it_route_trip_get_trips($stop_times) {
-  return [];
+  $res = [];
+  foreach ($stop_times as $stop_time) {
+    if (empty($res[$stop_time['trip_id']])) {
+      $res[$stop_time['trip_id']] = [
+        'tripId' => $stop_time['trip_id'],
+        'tripStartTime' => it_route_trip_format_time($stop_time['departure_time']),
+        'tripEndTime' => '',
+        'shapeId' => (int) $stop_time['shape_id'],
+        'stopTimes' => [],
+      ];
+    }
+    $res[$stop_time['trip_id']]['stopTimes'][] = [
+      'stopSequence' =>  (int) $stop_time['stop_sequence'],
+      'stopId' =>  (int) $stop_time['stop_id'],
+      'stopName' => $stop_time['name'],
+      'departureTime' =>  it_route_trip_format_time($stop_time['departure_time']),
+      'timepoint' =>  (int) $stop_time['timepoint'],
+    ];
+    $res[$stop_time['trip_id']]['tripEndTime'] = it_route_trip_format_time($stop_time['departure_time']);
+  }
+  $trips = array_values($res);
+  foreach ($trips as $delta => &$trip) {
+    $trip['tripId'] = $delta;
+  }
+  return $trips;
+}
+
+function it_route_trip_format_time($time) {
+  $time_no_sec = substr($time, 0, strlen($time) - 3);
+  $hours = (int) explode(':', $time_no_sec)[0];
+  return $time_no_sec . ($hours > 11 ? ' pm' : ' am');
 }
 
 function it_route_trip_tools_get_min($shapes, $key) {
@@ -289,6 +319,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
     ],
   ];
 
+
   return [
     'short_name' => $routeId,
     'long_name' => it_route_trip_tools_build_route_title($routeId),
@@ -309,7 +340,10 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
       'inbound' => it_route_trip_get_times_alt($stop_times_inbound),
       'outbound' => it_route_trip_get_times_alt($stop_times_outbound),
     ],
-//    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv),
+    'trips' => [
+      'inbound' => it_route_trip_get_trips($stop_times_inbound),
+      'outbound' => it_route_trip_get_trips($stop_times_outbound),
+    ],
   ];
 	
 }
@@ -324,6 +358,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
 */
 function it_route_trip_tools_get_fake_trips($routeId, $serv) {
   //Grab the config data
+  $serv = (int) $serv - 1;
   $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
   $base_uri = $config->get('route_stops_api_base');
   $request = $config->get('route_search_request');
