@@ -351,15 +351,15 @@ class Gtfs {
     return [];
   }
 
-  public function getTripsByRouteAndDirection(string $route_id, string $direction) {
+  public function getTripsByRouteAndDirection(string $route_id, string $direction, string $service_type) {
     $trips = $this->getStaticData('trips');
-    return array_filter($trips, function ($item) use ($route_id, $direction) {
-      return $item[0] === $route_id && $item[4] === $direction;
+    return array_filter($trips, function ($item) use ($route_id, $direction, $service_type) {
+      return $item[0] === $route_id && $item[4] === $direction && $item[1] == $service_type;
     });
   }
 
-  public function getStopTimes(string $route_id, string $direction) {
-    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction));
+  public function getStopTimes(string $route_id, string $direction, string $service_type) {
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction, $service_type));
     $trip_ids = array_map(function ($item) {
       return $item[2];
     }, $trips);
@@ -402,9 +402,9 @@ class Gtfs {
 
   }
 
-  public function getShapes($route_id, $direction) {
+  public function getShapes($route_id, $direction, $service_type) {
     $shapes = $this->getStaticData('shapes');
-    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction));
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction, $service_type));
     $trip_shapes = array_unique(array_map(function ($item) {
       return $item[6];
     }, $trips));
@@ -480,6 +480,18 @@ class Gtfs {
     return array_filter($stop_updates, function ($item) use ($stop_id) {
       return $item['stop_id'] === $stop_id;
     });
+  }
+
+  public function getCurrentServiceType() {
+    $calendar_dates = $this->getStaticData('calendar_dates');
+    $calendar_structured = [];
+    foreach ($calendar_dates as $calendar_date) {
+      if (isset($calendar_date[1])) {
+        $calendar_structured[$calendar_date[1]] = $calendar_date[0];
+      }
+    }
+    $today = (int) date('Ymd');
+    return $calendar_structured[$today] ?? (int) date('N', strtotime('now')) >= 6 ? '3' : '2';
   }
 
 }

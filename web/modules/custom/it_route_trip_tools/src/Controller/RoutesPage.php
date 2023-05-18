@@ -148,8 +148,8 @@ class RoutesPage extends ControllerBase {
 
     if ($routeId != 'all') {
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
-      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, 1);
-      $route_data_weekend = it_route_trip_tools_get_route_table_map_data($routeId, 2);
+      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, 2);
+      $route_data_weekend = it_route_trip_tools_get_route_table_map_data($routeId, 3);
       $request = \Drupal::request();
       if (empty($route_data_weekdays)) {
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();

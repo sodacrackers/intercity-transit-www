@@ -272,10 +272,10 @@ function it_route_trip_tools_get_center($boundaries) {
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
 
-  $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0);
-  $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1);
-  $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0);
-  $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1);
+  $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0, $serv);
+  $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1, $serv);
+  $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0, $serv);
+  $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1, $serv);
   $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
 
   $bounding = [
@@ -309,7 +309,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
       'inbound' => it_route_trip_get_times_alt($stop_times_inbound),
       'outbound' => it_route_trip_get_times_alt($stop_times_outbound),
     ],
-    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv),
+//    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv),
   ];
 	
 }

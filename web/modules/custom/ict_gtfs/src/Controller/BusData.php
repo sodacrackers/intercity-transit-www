@@ -59,7 +59,7 @@ class BusData extends ControllerBase {
 
   public function json(Request $request) {
     $routeId = $request->query->get('route_id');
-    $service_type = $request->query->get('service_type') ?: '1';
+    $service_type = $request->query->get('service_type') ?: '2';
     if ($routeId) {
       $route_data = it_route_trip_tools_get_route_table_map_data($routeId, $service_type);
       $trip_updates = $this->gtfs->getArray('TripUpdate');
@@ -67,7 +67,7 @@ class BusData extends ControllerBase {
       $route_data['alerts'] = $this->getRouteAlerts($routeId);
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
         $direction_id = $direction_name == 'inbound' ? '0' : '1';
-        $trips = $this->gtfs->getTripsByRouteAndDirection($routeId, $direction_id);
+        $trips = $this->gtfs->getTripsByRouteAndDirection($routeId, $direction_id, $service_type);
         $trip_ids = array_map(function ($item) {
           return $item[2];
         }, $trips);

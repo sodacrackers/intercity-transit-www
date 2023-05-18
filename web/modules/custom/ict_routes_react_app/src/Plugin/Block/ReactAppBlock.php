@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Drupal\ict_gtfs\Gtfs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -63,7 +64,7 @@ class ReactAppBlock extends BlockBase implements ContainerFactoryPluginInterface
     $route_id_path = $this->currentPath->getPath();
     $route_id_parts = explode('/', $route_id_path);
     $route_id = $route_id_parts[3] ?? NULL;
-    $service_type = date('N', strtotime('now')) >= 6 ? '2' : '1';
+    $service_type = \Drupal::service('ict.gtfs')->getCurrentServiceType();
     if ($route_id) {
       $url = Url::fromRoute('ict_gtfs.json_endpoint', [], [
         'query' => [
