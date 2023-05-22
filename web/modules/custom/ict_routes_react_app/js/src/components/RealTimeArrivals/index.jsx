@@ -46,14 +46,12 @@ const RealTimeArrivals = () => {
           clean[st.stopSequence] = clean[st.stopSequence] ? [...clean[st.stopSequence], st] : [st];
         })
       })
-      Object.keys(json.stop_markers[direction]).forEach((stopMarkerKey) => {
+      Object.keys(json[`${direction}_shapes`][0]).forEach((stopMarkerKey) => {
         coords.push({
-          lat: json?.stop_markers[direction][stopMarkerKey]?.stop_data?.stopLat,
-          lng: json?.stop_markers[direction][stopMarkerKey]?.stop_data?.stopLon,
-          seq: json?.stop_markers[direction][stopMarkerKey]?.stop_data?.stopSequence,
+          lat: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lat),
+          lng: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lng),
         })
       })
-      coords.sort((a, b) => a.seq - b.seq)
 
       setData(json);
       setCoordinates(coords);
@@ -75,11 +73,27 @@ const RealTimeArrivals = () => {
   }
 
   const getNextStop = (stopData) => {
-    const step = stopData.stopSequence;
-    const newVal = Object.values(data?.stop_markers[direction]).find(item => {
-      return item.stop_data.stopSequence === step + 1
+    const newValues = Object.values(data?.stop_markers[direction]).sort((item, nextItem) => {
+      return Number(item.stop_data.stopSequence) - Number(nextItem.stop_data.stopSequence);
     });
-    return newVal?.stop_data?.stopName;
+    const index = newValues.findIndex((item) => JSON.stringify(stopData) === JSON.stringify(item.stop_data));
+    return newValues.length > index + 1 ? newValues[index + 1].stop_data.stopName : null;
+  }
+
+  const getDatapoint = (stopKey, isClass = false) => {
+    const newValues = Object.values(data?.stop_markers[direction]).sort((item, nextItem) => {
+      return Number(item.stop_data.stopSequence) - Number(nextItem.stop_data.stopSequence);
+    });
+    if (JSON.stringify(data?.stop_markers[direction][stopKey]) === JSON.stringify(newValues[0])) {
+      return isClass ? styles.startPoint : 'Start';
+    } else if (data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label) {
+      if (data?.stop_markers[direction][stopKey].stop_data.timepoint === '1') {
+        return isClass ? styles.dataTimepoint : '';
+      }
+      return isClass ? styles.datapoint : '';
+    } else {
+      return isClass ? styles.endPoint : 'End';
+    }
   }
 
   React.useEffect(() => {
@@ -100,13 +114,32 @@ const RealTimeArrivals = () => {
           defaultZoom={12}
           onGoogleApiLoaded={({map, maps}) => renderPolylines(map, maps)}
         >
+        {data?.vehicle_position[direction].map((vehicle) => {
+          return (
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 150, hide: 300 }}
+              lat={Number(vehicle.latitude)}
+              lng={Number(vehicle.longitude)}
+              overlay={
+                <Tooltip className={styles.tooltipVehicle}>
+                  {vehicle.vehicle_id}
+                </Tooltip>
+              }
+            >
+              <div style={{ fontSize: '18px', width: '50px', textAlign: 'center', background: 'blue', color: 'white', zIndex: '9999' }}>
+                BUS
+              </div>
+            </OverlayTrigger>
+          )
+        })}
         {Object.keys(data?.stop_markers[direction]).map((stopKey) => {
           return (
             <OverlayTrigger
               placement="top"
               delay={{ show: 150, hide: 300 }}
-              lat={data?.stop_markers[direction][stopKey].stop_data?.stopLat}
-              lng={data?.stop_markers[direction][stopKey].stop_data?.stopLon}
+              lat={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLat)}
+              lng={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLon)}
               overlay={
                 <Tooltip className={styles.toolTipMap}>
                   <button className={styles.closeButton}>x</button>
@@ -190,16 +223,9 @@ const RealTimeArrivals = () => {
                 </Tooltip>
               }
             >
-              <div className={
-                data?.stop_markers[direction][stopKey].stop_data.stopSequence === 0
-                ? styles.startPoint
-                : data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label
-                ? data?.stop_markers[direction][stopKey].stop_data.timepoint
-                  ? styles.dataTimepoint
-                  : styles.datapoint
-                : styles.endPoint}
+              <div className={getDatapoint(stopKey, true)}
               >
-                {data?.stop_markers[direction][stopKey].stop_data.stopSequence === 0 ? 'Start' : !data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label ? 'End' : ''}
+                {getDatapoint(stopKey)}
               </div>
             </OverlayTrigger>
           )
@@ -280,35 +306,34 @@ const RealTimeArrivals = () => {
                   const stopObj = data.stop_markers[direction][stopId];
                   if (stopObj && Object.keys(stopObj).length > 0) {
                     const stopTimes = stopObj?.stop_times;
-                    const formatDepartureTime = (index, changeDay) => changeDay 
-                    ? DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm:ss').plus({days: 1}).toMillis() + (delay * 1000))
-                    : DateTime.fromMillis(DateTime.fromFormat(stopTimes[index], 'h:mm:ss').toMillis() + (delay * 1000));
-                    const isTimepoint = data.stop_markers[direction][stopId].stop_data.timepoint > 0;
+                    const formatDepartureTime = (index, delayAmount, changeDay = false) => changeDay 
+                    ? DateTime.fromMillis(DateTime.fromFormat(sanitizedData[stopIndex][index].departureTime, 'h:mm a').plus({days: 1}).toMillis() + (delayAmount * 1000))
+                    : DateTime.fromMillis(DateTime.fromFormat(sanitizedData[stopIndex][index].departureTime, 'h:mm a').toMillis() + (delayAmount * 1000));
+                    const isTimepoint = Number(data.stop_markers[direction][stopId].stop_data.timepoint) > 0;
                     const now = DateTime.now().toMillis();
-                    const firstItemIndex = stopTimes?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item, 'h:mm:ss').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
+                    const firstItemIndex = sanitizedData[stopIndex]?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item.departureTime, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
                     const delay = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[0]]?.departure_delay) | 0;
-                    console.log(delay);
                     const delayNext = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[1]]?.departure_delay) | 0;
                     const delayLast = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[2]]?.departure_delay) | 0;
                     const departureTimeFormatted = firstItemIndex > -1 
-                      ?  formatDepartureTime(firstItemIndex)
-                      :  formatDepartureTime(0, true);
+                      ?  formatDepartureTime(firstItemIndex, delay)
+                      :  formatDepartureTime(0, delay, true);
                     const departureTimeFormattedNext = firstItemIndex > -1 
                       ? stopTimes.length >= firstItemIndex + 2
-                        ? formatDepartureTime(firstItemIndex + 1)
-                        : formatDepartureTime(0, true)
-                      : formatDepartureTime(1, true);
+                        ? formatDepartureTime(firstItemIndex + 1, delayNext)
+                        : formatDepartureTime(0, delayNext, true)
+                      : formatDepartureTime(1, delayNext, true);
                     const departureTimeFormattedLast = firstItemIndex > -1 
                       ? stopTimes.length >= firstItemIndex + 3
-                        ? formatDepartureTime(firstItemIndex + 2)
+                        ? formatDepartureTime(firstItemIndex + 2, delayLast)
                         : stopTimes.length === firstItemIndex + 1
-                          ? formatDepartureTime(0, true)
-                          : formatDepartureTime(1, true)
-                      : formatDepartureTime(2, true);
-                    console.log(departureTimeFormatted);
-                    const waitTime = (Number(departureTimeFormatted.toMillis()) - now) / 60000;
-                    const waitTimeNext = (Number(departureTimeFormattedNext.toMillis()) - now) / 60000;
-                    const waitTimeLast = (Number(departureTimeFormattedLast.toMillis()) - now) / 60000;
+                          ? formatDepartureTime(0, delayLast, true)
+                          : formatDepartureTime(1, delayLast, true)
+                      : formatDepartureTime(2, delayLast, true);
+                    console.log(delay, delayNext, delayLast)
+                    const waitTime = (departureTimeFormatted.toMillis() - now) / 60000;
+                    const waitTimeNext = (departureTimeFormattedNext.toMillis() - now) / 60000;
+                    const waitTimeLast = (departureTimeFormattedLast.toMillis() - now) / 60000;
                     const waitTimeString = (waitTime < 60 && waitTime > -60) ? `${Math.floor(waitTime)} min` : `${Math.floor(waitTime / 60)} hr ${Math.floor(waitTime % 60)} min`;
                     const waitTimeStringNext = (waitTimeNext < 60 && waitTimeNext > -60) ? `${Math.floor(waitTimeNext)} min` : `${Math.floor(waitTimeNext / 60)} hr ${Math.floor(waitTimeNext % 60)} min`;
                     const waitTimeStringLast = (waitTimeLast < 60 && waitTimeLast > -60) ? `${Math.floor(waitTimeLast)} min` : `${Math.floor(waitTimeLast / 60)} hr ${Math.floor(waitTimeLast % 60)} min`;
