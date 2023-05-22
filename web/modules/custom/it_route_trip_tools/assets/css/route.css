@@ -174,7 +174,7 @@ label.form-check-label {
   border-left: 1px solid #D1D2D6;
 }
 
-.table-header .btn-stops-toggle {
+.table-header .btn-stops-toggle, .mobile-lists-container .btn-stops-toggle {
   height: 50px;
   align-items: center;
   justify-content: center;
@@ -188,7 +188,9 @@ label.form-check-label {
 }
 
 .table-header .btn-stops-toggle .btn-default,
-.table-header .btn-stops-toggle .btn-primary {
+.mobile-lists-container .btn-stops-toggle .btn-default,
+.table-header .btn-stops-toggle .btn-primary,
+.mobile-lists-container .btn-stops-toggle .btn-primary {
   color: rgba(13, 26, 41, 1);
   background-color: transparent;
   border: none;
@@ -198,7 +200,9 @@ label.form-check-label {
 }
 
 .table-header .btn-stops-toggle .active,
-.table-header .btn-stops-toggle .active.focus {
+.table-header .btn-stops-toggle .active.focus,
+.mobile-lists-container .btn-stops-toggle .active,
+.mobile-lists-container .btn-stops-toggle .active.focus {
   color: #fff;
   background-color: #007B5F !important;
   border: none;
@@ -266,9 +270,6 @@ label.form-check-label {
 }
 #filters > h5 {
   display: none;
-}
-#filters .collapse {
-  display: block !important;
 }
 
 .region-header-mid {
@@ -349,6 +350,22 @@ label.form-check-label {
   #download-link {
     display: none;
   }
+  #route-info-header {
+    width: 100%;
+  }
+  .alerts-collapse {
+    float: right;
+    padding-top: 0 !important;
+  }
+
+  .form-radios {
+    display: flex;
+    gap: 10px
+  }
+
+  #what-are-timepoints {
+    display: none;
+  }
   a.nav-link, li.nav-item.active  a.nav-link {
     font-size: 18px;
     line-height: unset;
@@ -396,9 +413,6 @@ label.form-check-label {
     padding-bottom: 10px !important;
   }
 
-  #filters .collapse {
-    display: none !important;
-  }
   #filters > h5 {
     display: block !important;
     padding-left: 15px;
@@ -442,3 +456,40 @@ label.form-check-label {
   }
 }
 
+.close.ui-dialog-titlebar-close {
+  position: unset !important;
+  margin-right: 5px;
+}
+
+.close.ui-dialog-titlebar-close span {
+  border-radius: 15px !important;
+  border: 1px solid #003087 !important;
+  width: 30px !important;
+  height: 30px !important;
+  color: #003087 !important;
+  font-weight: 100 !important;
+  font-size: x-large !important;
+}
+
+
+#view-all-alerts-breadcrumb {
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px;
+
+  width: 100%;
+  height: 46px;
+
+  background: #FFFFFF;
+
+  border: 1px solid #003087;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 135%;
+
+  text-align: center;
+
+  color: #003087;
+}

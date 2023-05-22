@@ -22,14 +22,14 @@
 					{% endif %}
 				</div>
 					<div id="route-info-header">
-						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12" id="headingcollapse">
+						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12 accordion">
 							<h5 class="mb-0">
 								Routes options
 								<button class="btn btn-link alerts-collapse" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="true" aria-controls="collapsefilters">
 									<img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg" />
 								</button>
 							</h5>
-							<div id="collapsefilters" aria-labelledby="headingcollapse" data-parent="#accordion">
+							<div id="collapsefilters" aria-labelledby="filters" data-parent="#accordion" aria-expanded="true" class="in">
 								<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
 									<h5>Find a Route Schedule</h5>
 									<select id="route-change" class="btn btn-default input-width-80">
@@ -107,7 +107,7 @@
 									</div>
 								</div>
 							</div>
-							<a id="download-link" class="btn btn-save"><img src="/modules/custom/it_route_trip_tools/assets/images/pdf.svg" />Download Route</a>
+							<a id="download-link" class="btn btn-save" href="{{ download_url }}" target="_blank"><img src="/modules/custom/it_route_trip_tools/assets/images/pdf.svg" />Download Route</a>
 						</div>
 					</div>
 					<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">

@@ -41,7 +41,8 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 				'routes_map_weekend' => array(),
 				'routes_table_weekend' => array(),
 				'route_data_weekend' => array(),
-				'all_routes_map_data' => ''
+				'all_routes_map_data' => '',
+        'download_url' => '',
 			],
 		],
 		'routes_form' => [

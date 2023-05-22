@@ -4,6 +4,8 @@ namespace Drupal\it_route_trip_tools\Controller;
 use Drupal\ict_gtfs\Controller\BusData;
 use Drupal\ict_gtfs\Gtfs;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\media\Entity\Media;
+use Drupal\media\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -177,6 +179,12 @@ class RoutesPage extends ControllerBase {
         '#theme' => 'routes_table',
         '#route_data' => $route_data_weekend
       ];
+      $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+        'bundle' => 'route_pdfs',
+        'name' => $routeId,
+      ]);
+      $media = reset($medias);
+      $download_url = $media instanceof MediaInterface ? $media->get('field_document')->entity->createFileUrl() : '';
       return [
         '#theme' => 'routes_page',
         '#route_id' => $routeId,
@@ -188,6 +196,7 @@ class RoutesPage extends ControllerBase {
         '#route_data_weekdays' => $route_data_weekdays,
         '#route_data_weekend' => $route_data_weekend,
         '#all_routes_map_data' => $all_routes_map_data,
+        '#download_url' => $download_url,
         '#attached' => [
           'drupalSettings' => [
             'it_route_trip_tools' => [
