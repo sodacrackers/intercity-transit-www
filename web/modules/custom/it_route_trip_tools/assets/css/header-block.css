@@ -3,14 +3,18 @@
   height:500px;
   background: url('/modules/custom/it_route_trip_tools/assets/images/header hero.jpeg');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size:cover;
+  background-position: 50% 120%;
+  background-size: cover;
   background-attachment: fixed;
   max-height: 280px;
 }
 .bgimage h5 {
   color:white;
   text-shadow:2px 2px #333;
+}
+
+.grey-overlay {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .vcenter {
@@ -86,6 +90,10 @@
 }
 
 @media (max-width: 992px) {
+  .card.vcenter, #route-change {
+    width: 100%;
+  }
+
   .hide-mobile {
     display: none;
   }
@@ -96,6 +104,22 @@
 
   .header-routes-all .breadcrumb {
     display: none;
+  }
+
+  .bgimage {
+    background-attachment: initial;
+  }
+
+  .route-item-name {
+    display: inline-block;
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .hide-on-mobile {
+    display: none !important;
   }
 }
 

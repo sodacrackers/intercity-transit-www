@@ -112,3 +112,14 @@
   line-height: 135%;
   color: #0D1A29;
 }
+
+@media (max-width: 992px) {
+  .card .card-header h5 {
+    display: flex;
+    margin: 15px;
+  }
+  .card .card-header h5 button img {
+    max-width: unset;
+    margin-right: -30px
+  }
+}
