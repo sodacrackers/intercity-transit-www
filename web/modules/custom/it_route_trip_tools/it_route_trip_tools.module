@@ -341,6 +341,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
       'inbound' => it_route_trip_get_times_alt($stop_times_inbound),
       'outbound' => it_route_trip_get_times_alt($stop_times_outbound),
     ],
+//    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv)
     'trips' => [
       'inbound' => it_route_trip_get_trips($stop_times_inbound),
       'outbound' => it_route_trip_get_trips($stop_times_outbound),
