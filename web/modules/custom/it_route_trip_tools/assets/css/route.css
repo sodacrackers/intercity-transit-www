@@ -185,6 +185,7 @@ label.form-check-label {
   display: inline-flex;
   padding-left: 6px;
   padding-right: 6px;
+  font-size: 14px !important;
 }
 
 .table-header .btn-stops-toggle .btn-default,
@@ -210,6 +211,7 @@ label.form-check-label {
   border-radius: 86.0282px !important;
   height: 34px;
   box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.1);
+  font-size: 14px !important;
 }
 
 #filters .dropdown-item {
