@@ -52,7 +52,6 @@ const RealTimeArrivals = () => {
           lng: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lng),
         })
       })
-
       setData(json);
       setCoordinates(coords);
       setSanitizedData(clean);
@@ -97,7 +96,8 @@ const RealTimeArrivals = () => {
   }
 
   React.useEffect(() => {
-    const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
+    // const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
+    const apiUrl = '/api/json/real-time-data?route_id=12&service_type=2';
     setLoading(true);
     getData(apiUrl);
   }, [direction, view])
@@ -302,16 +302,18 @@ const RealTimeArrivals = () => {
               <div className={styles.notification}>Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
               <Col xs="12">
                 {Object.keys(sanitizedData)?.map((_, stopIndex) => {
-                  const stopId = Number(sanitizedData[stopIndex][0].stopId);
+                  const stopId = Number(sanitizedData[Object.keys(sanitizedData)[stopIndex]][0].stopId);
                   const stopObj = data.stop_markers[direction][stopId];
                   if (stopObj && Object.keys(stopObj).length > 0) {
                     const stopTimes = stopObj?.stop_times;
-                    const formatDepartureTime = (index, delayAmount, changeDay = false) => changeDay 
-                    ? DateTime.fromMillis(DateTime.fromFormat(sanitizedData[stopIndex][index].departureTime, 'h:mm a').plus({days: 1}).toMillis() + (delayAmount * 1000))
-                    : DateTime.fromMillis(DateTime.fromFormat(sanitizedData[stopIndex][index].departureTime, 'h:mm a').toMillis() + (delayAmount * 1000));
+                    const formatDepartureTime = (index, delayAmount, changeDay = false) => {
+                      return changeDay
+                        ? DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index].departureTime, 'h:mm a').plus({days: 1}).toMillis() + (delayAmount * 1000))
+                        : DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index].departureTime, 'h:mm a').toMillis() + (delayAmount * 1000));
+                    }
                     const isTimepoint = Number(data.stop_markers[direction][stopId].stop_data.timepoint) > 0;
                     const now = DateTime.now().toMillis();
-                    const firstItemIndex = sanitizedData[stopIndex]?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item.departureTime, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
+                    const firstItemIndex = sanitizedData[Object.keys(sanitizedData)[stopIndex]]?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item.departureTime, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
                     const delay = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[0]]?.departure_delay) | 0;
                     const delayNext = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[1]]?.departure_delay) | 0;
                     const delayLast = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[2]]?.departure_delay) | 0;
@@ -330,7 +332,6 @@ const RealTimeArrivals = () => {
                           ? formatDepartureTime(0, delayLast, true)
                           : formatDepartureTime(1, delayLast, true)
                       : formatDepartureTime(2, delayLast, true);
-                    console.log(delay, delayNext, delayLast)
                     const waitTime = (departureTimeFormatted.toMillis() - now) / 60000;
                     const waitTimeNext = (departureTimeFormattedNext.toMillis() - now) / 60000;
                     const waitTimeLast = (departureTimeFormattedLast.toMillis() - now) / 60000;
