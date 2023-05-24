@@ -509,7 +509,10 @@ class Gtfs {
       }
     }
     $today = (int) date('Ymd');
-    return $calendar_structured[$today] ?? (int) date('N', strtotime('now')) >= 6 ? '3' : '2';
+    if (isset($calendar_structured[$today])) {
+      return $calendar_structured[$today];
+    }
+    return (int) date('N', strtotime('now')) >= 6 ? '3' : '2';
   }
 
 }
