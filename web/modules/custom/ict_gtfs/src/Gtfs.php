@@ -422,19 +422,21 @@ class Gtfs {
 
   public function getShapes($route_id, $direction, $service_type) {
     $shapes = $this->getStaticData('shapes');
+    $lat_index = array_search('shape_pt_lat', $shapes[0]);
+    $lon_index = array_search('shape_pt_lon', $shapes[0]);
     $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction, $service_type));
     $trip_shapes = array_unique(array_map(function ($item) {
       return $item[6];
     }, $trips));
     $ret_shapes = [];
     foreach ($trip_shapes as $trip_shape) {
-      $filtered_shapes = array_filter($shapes, function ($item) use ($trip_shape) {
+      $filtered_shapes = array_filter($shapes, function ($item) use ($trip_shape, $lat_index, $lon_index) {
         return $item[0] == $trip_shape;
       });
-      $ret_shapes[] = array_map(function ($item) {
+      $ret_shapes[] = array_map(function ($item) use ($lat_index, $lon_index) {
         return [
-          'lat' => $item[3],
-          'lng' => $item[4],
+          'lat' => $item[$lat_index],
+          'lng' => $item[$lon_index],
         ];
       }, $filtered_shapes);
     }
