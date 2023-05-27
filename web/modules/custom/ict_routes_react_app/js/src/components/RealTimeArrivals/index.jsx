@@ -85,19 +85,18 @@ const RealTimeArrivals = () => {
     });
     if (JSON.stringify(data?.stop_markers[direction][stopKey]) === JSON.stringify(newValues[0])) {
       return isClass ? styles.startPoint : 'Start';
-    } else if (data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label) {
+    } else if (JSON.stringify(data?.stop_markers[direction][stopKey]) === JSON.stringify(newValues[newValues.length - 1])) {
+      return isClass ? styles.endPoint : 'End';
+    } else {
       if (data?.stop_markers[direction][stopKey].stop_data.timepoint === '1') {
         return isClass ? styles.dataTimepoint : '';
       }
       return isClass ? styles.datapoint : '';
-    } else {
-      return isClass ? styles.endPoint : 'End';
     }
   }
 
   React.useEffect(() => {
-    // const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
-    const apiUrl = '/api/json/real-time-data?route_id=12&service_type=2';
+    const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
     setLoading(true);
     getData(apiUrl);
   }, [direction, view])
@@ -252,7 +251,7 @@ const RealTimeArrivals = () => {
                     }
                   >
                     <div className={styles.infoIcon}>
-                      <Image src={info} />
+                      <Image src={info} alt="More information on Timepoints" />
                     </div>
                   </OverlayTrigger>
                 </Col>
@@ -262,6 +261,7 @@ const RealTimeArrivals = () => {
                     <Form.Check
                       type="radio"
                       label="Inbound"
+                      aria-label="Inbound"
                       value="inbound"
                       onClick={() => setDirection('inbound')}
                       checked={direction === 'inbound'}
@@ -270,6 +270,7 @@ const RealTimeArrivals = () => {
                     <Form.Check
                       type="radio"
                       label="Outbound"
+                      aria-label="Outbound"
                       value="outbound"
                       onClick={() => setDirection('outbound')}
                       checked={direction === 'outbound'}
@@ -283,6 +284,7 @@ const RealTimeArrivals = () => {
                     <Form.Check
                       type="radio"
                       label="Minutes to Wait"
+                      aria-label="Minutes to Wait"
                       value="wait"
                       onClick={() => setView('wait')}
                       checked={view === 'wait'}
@@ -291,6 +293,7 @@ const RealTimeArrivals = () => {
                     <Form.Check
                       type="radio"
                       label="Est. Departure Time"
+                      aria-label="Est. Departure Time"
                       value="departure"
                       onClick={() => setView('departure')}
                       checked={view === 'departure'}
@@ -352,7 +355,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delay <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormatted.toFormat('h:mm a')}</span><Image className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormatted.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                             {waitTimeNext && (
@@ -361,7 +364,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delayNext <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedNext.toFormat('h:mm a')}</span><Image className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedNext.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                             {waitTimeLast && (
@@ -370,7 +373,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delayLast <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedLast.toFormat('h:mm a')}</span><Image className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedLast.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                           </Col>
@@ -397,9 +400,9 @@ const RealTimeArrivals = () => {
             <div className={styles.legend}>
               <div className={styles.legendTitle}>Arrivals Info &amp; Legend</div>
               <div className="d-flex mb-3">
-                <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image className={styles.indicator} src={circleCheck} />On Time<Image className={styles.shape} src={symbolGreen} /></div>
-                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image className={styles.indicator} src={alarmClock} />Early<Image className={styles.shape} src={symbolPurple} /></div>
-                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.lateArrivalTag}><Image className={styles.indicator} src={circleExclamation} />Late<Image className={styles.shape} src={symbolRed} /></div>
+                <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
+                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>
+                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.lateArrivalTag}><Image alt="Late" className={styles.indicator} src={circleExclamation} />Late<Image alt="Late" className={styles.shape} src={symbolRed} /></div>
               </div>
               <div className={styles.legendText}>
                 <div className="mb-4">Estimated arrival times are based on real-time data.</div>
@@ -410,7 +413,7 @@ const RealTimeArrivals = () => {
         </Row>
       </Container>
     </>
-  ) : <div className="mt-5 text-center"><h2>Loading Real Time Information...</h2><Spinner style={{ width: '10rem', height: '10rem' }} className={styles.spinner} variant="success" /></div>
+  ) : <div className="mt-5 text-center" aria-busy="true"><h2>Loading Real Time Information...</h2><Spinner style={{ width: '10rem', height: '10rem' }} className={styles.spinner} variant="success" /></div>
 }
 
 export default RealTimeArrivals;
