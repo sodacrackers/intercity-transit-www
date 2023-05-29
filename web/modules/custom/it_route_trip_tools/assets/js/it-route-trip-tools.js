@@ -228,20 +228,20 @@
 				window.location.href = '/plan-your-trip/routes/' + $(this).val();
 			});
 			$('.outbound-panel').on('hide.bs.collapse', function () {
-				$('.outbound-route-map-toggle').html('Show Route Map');
+				$('.outbound-route-map-toggle').html('Show Map');
 			})
 			$('.outbound-panel').on('show.bs.collapse', function () {				
-				$('.outbound-route-map-toggle').html('Hide Route Map');
+				$('.outbound-route-map-toggle').html('Hide Map');
 				if (!$(this).hasClass('already-opened')) {
 					initMap_outbound();
 					$(this).addClass('already-opened');
 				}
 			})
 			$('.inbound-panel').on('hide.bs.collapse', function () {
-				$('.inbound-route-map-toggle').html('Show Route Map');
+				$('.inbound-route-map-toggle').html('Show Map');
 			})
 			$('.inbound-panel').on('show.bs.collapse', function () {
-				$('.inbound-route-map-toggle').html('Hide Route Map');
+				$('.inbound-route-map-toggle').html('Hide Map');
 				if (!$(this).hasClass('already-opened')) {
 					initMap_inbound();
 					$(this).addClass('already-opened');
