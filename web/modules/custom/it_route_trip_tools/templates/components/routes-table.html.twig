@@ -38,9 +38,9 @@
 								{% endif %}
 								{% for stop_name, stop_times in stop_names %}
 									<tr class="{{ timepoint_class }}" data-stop-id="{{ stop_id }}">
-										<td style="width: {{ (100/((stop_times|length) + 4)) * 4 }}%">
+										<th style="width: {{ (100/((stop_times|length) + 4)) * 4 }}%">
 											{{ stop_name }}
-										</td>
+										</th>
 										{%  for stop_time in stop_times %}
 											<td style="width: {{ (100/((stop_times|length) + 4)) }}%">{{ stop_time }}</td>
 										{% endfor %}
