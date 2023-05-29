@@ -19,41 +19,41 @@
 					}
 				}
 			}
-			$('#inbound-forward').once().on('touch, click', function(){
+			$('.inbound-forward').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('#inbound-large-screen-route-table table');
+				var table = $('.inbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos + 400
 				}, 400);
-				$('#inbound-back').attr('disabled', false);
+				$('.inbound-back').attr('disabled', false);
 			});
-			$('#inbound-back').once().on('touch, click', function(){
+			$('.inbound-back').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('#inbound-large-screen-route-table table');
+				var table = $('.inbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos - 400
 				}, 400);
-				$('#inbound-forward').attr('disabled', false);
+				$('.inbound-forward').attr('disabled', false);
 			});
-			$('#outbound-forward').once().on('touch, click', function(){
+			$('.outbound-forward').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('#outbound-large-screen-route-table table');
+				var table = $('.outbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos + 400
 				}, 400);
-				$('#outbound-back').attr('disabled', false);
+				$('.outbound-back').attr('disabled', false);
 			});
-			$('#outbound-back').once().on('touch, click', function(){
+			$('.outbound-back').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('#outbound-large-screen-route-table table');
+				var table = $('.outbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos - 400
 				}, 400);
-				$('#outbound-forward').attr('disabled', false);
+				$('.outbound-forward').attr('disabled', false);
 			});
 			const $outbound = $('#outbound-large-screen-route-table table');	
 			const $inbound = $('#outbound-large-screen-route-table table');	

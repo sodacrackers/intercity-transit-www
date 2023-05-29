@@ -271,23 +271,23 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   margin: 0 0 15px 0;
   text-align: right;
 }
-#route-table {
+#route-table-weekdays, #route-table-weekend {
   margin-top: 10px;
 }
-#route-table tr.bold td {
+#route-table-weekdays tr.bold td, #route-table-weekend tr.bold td {
   font-weight: bold;
 }
-#route-table tr td {
+#route-table-weekdays tr td, #route-table-weekend tr td {
   min-width: 90px;
 }
-#route-table .table-controls {
+#route-table-weekdays .table-controls, #route-table-weekend .table-controls {
   margin-bottom: 20px;
 }
-#route-table .table-controls .btn-primary.active {
+#route-table-weekdays .table-controls .btn-primary.active, #route-table-weekend .table-controls .btn-primary.active {
   background: #003087;
   color: #fff;
 }
-#route-table .table-controls .btn-primary.active:hover {
+#route-table-weekdays .table-controls .btn-primary.active:hover, #route-table-weekend .table-controls .btn-primary.active:hover {
   background-color: #424d51;
 }
 #route-map {
@@ -844,7 +844,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   background: #000;
 }
 @media only screen and (max-width: 991px) {
-  #route-table {
+  #route-table-weekdays, #route-table-weekend {
     margin-top: 0;
   }
 }

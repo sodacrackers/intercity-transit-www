@@ -11,7 +11,7 @@
 		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables dir-tables-{{ dir }}">
 			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
 		    </div>
-			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive">
+			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive {{ dir }}-large-screen-route-table">
 				<div class="table-header">
 					<div class="btn-group btn-stops-toggle" data-toggle="buttons">
 						<label class="btn btn-primary active">
@@ -23,8 +23,8 @@
 					</div>
 					<a data-toggle="tooltip" data-placement="right" id="what-are-timepoints" class="what-are-timepoints" title="" data-original-title="Buses do not leave Timepoints ahead of the published scheduled time.">What are timepoints?<img src="/modules/custom/it_route_trip_tools/assets/images/info.svg" style="margin-left: 4px" /></a>
 					<div style="display: flex; float: right;">
-						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default" style="order: 1;" disabled><i class="fas fa-arrow-left" style="color:white;"></i><span class="sr-only">{{ dir }} Back</span></button>
-						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default" style="order: 2; margin-left: 15px;"><i class="fas fa-arrow-right" style="color:white"></i><span class="sr-only">{{ dir }} Forward</span></button>
+						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-back" style="order: 1;" disabled><i class="fas fa-arrow-left" style="color:white;"></i><span class="sr-only">{{ dir }} Back</span></button>
+						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-forward" style="order: 2; margin-left: 15px;"><i class="fas fa-arrow-right" style="color:white"></i><span class="sr-only">{{ dir }} Forward</span></button>
 					</div>
 				</div>
 				<table class="table table-hover table-condensed">
