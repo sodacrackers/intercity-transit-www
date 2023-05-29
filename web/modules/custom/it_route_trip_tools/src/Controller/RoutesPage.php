@@ -73,7 +73,7 @@ class RoutesPage extends ControllerBase {
     $new_options = [];
     foreach ($options as $route_id => $route_name) {
       $new_options[$route_id] = [
-        'name' => explode('-', $route_name)[1],
+        'name' => $route_name,
         'alerts' => count(BusData::loadAlertsByRoute($route_id))
       ];
     }

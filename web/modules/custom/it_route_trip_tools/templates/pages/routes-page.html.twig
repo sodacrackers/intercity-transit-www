@@ -35,7 +35,7 @@
 									<select id="route-change" class="btn btn-default input-width-80">
 										<option value="">- Select Route -</option>
 										{% for key, options in routes_options %}
-											<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ key }}-{{ options.name }}</option>
+											<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.name }}</option>
 										{% endfor %}
 									</select>
 								</div>
