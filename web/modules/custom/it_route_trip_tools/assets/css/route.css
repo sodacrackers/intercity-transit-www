@@ -159,6 +159,11 @@ label.form-check-label {
   border-left: none;
 }
 
+#inbound-large-screen-route-table table.table, #outbound-large-screen-route-table table.table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
 #inbound-large-screen-route-table table.table tbody tr.timepoint td:nth-child(1):before,
 #outbound-large-screen-route-table table.table tbody tr.timepoint td:nth-child(1):before,
 #inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
@@ -182,14 +187,17 @@ label.form-check-label {
 #outbound-large-screen-route-table table.table tbody tr th {
   text-align: left !important;
   vertical-align: middle !important;
-  border: 1px solid #D1D2D6;
+  /*border: 1px solid #D1D2D6;*/
 }
 
 #inbound-large-screen-route-table table.table tbody tr td,
 #outbound-large-screen-route-table table.table tbody tr td {
   text-align: center !important;
   vertical-align: middle !important;
-  border: 1px solid #D1D2D6;
+  border-top: 1px solid #D1D2D6;
+  border-right: 1px solid #D1D2D6;
+  border-bottom: 0;
+  border-left: 0;
 }
 
 #outbound-large-screen-route-table table.table,
