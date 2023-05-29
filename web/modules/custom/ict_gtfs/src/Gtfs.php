@@ -448,6 +448,12 @@ class Gtfs {
     $stop_time_updates = array();
     foreach ($json_data['entity'] as $entity) {
       if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
+        $vehicle_id =
+        $vehicle_label =
+        $arrival_time =
+        $arrival_delay =
+        $departure_delay =
+        $departure_time = NULL;
         if (!empty($entity['tripUpdate']['vehicle'])) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];

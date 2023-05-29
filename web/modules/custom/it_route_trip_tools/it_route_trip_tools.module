@@ -607,6 +607,7 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
       $res[$route[0]] = $route[3];
     }
   }
+  asort($res);
   if ($filter_disabled) {
     $disabled_routes = \Drupal::config('ict_gtfs.settings')->get('disable_routes');
     $disabled_routes = array_filter($disabled_routes ?: []);
