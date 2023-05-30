@@ -185,9 +185,9 @@
   	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default {{ dir }}-panel">
 	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
-      		<h4 class="panel-title">
-				<span class="glyphicon glyphicon-chevron-down"></span>
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ dir }}-map-body" aria-expanded="true" aria-controls="{{ dir }}-map-body" class="{{ dir }}-route-map-toggle">
+      		<h4 class="panel-title" style="position: relative;">
+				<span class="glyphicon glyphicon-chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 50px; align-items: center; display: flex; justify-content: center; color: white;"></span>
+        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ dir }}-map-body" aria-expanded="true" aria-controls="{{ dir }}-map-body" class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
       	  		Show Map
 		        </a>
       		</h4>
