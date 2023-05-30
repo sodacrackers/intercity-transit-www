@@ -385,7 +385,7 @@ label.form-check-label {
   .navbar-we-mega-menu>.container-fluid {
     display: block;
     align-items: start;
-    justify-content: left;
+    justify-content: left !important;
   }
 }
 
@@ -604,4 +604,29 @@ header.navbar.navbar-default {
   border-radius: 0;
   border: 0;
   background-color: transparent;
+}
+
+.navbar-we-mega-menu {
+  padding-top: 0 !important;
+  padding-bottom: none !important;
+}
+
+.nav-outer-wrapper header.navbar.navbar-default {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media screen and (min-width: 1200px) {
+  html body .container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+#realtime-tab, #schedule-tab {
+  font-family: 'Roboto', sans-serif !important;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 28px !important;
 }
