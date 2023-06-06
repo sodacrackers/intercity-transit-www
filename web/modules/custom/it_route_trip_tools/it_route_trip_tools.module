@@ -401,7 +401,7 @@ function it_route_trip_tools_get_stop_details($stop_id) {
               "shape_pt_lat" => (float) $item[$shape_pt_lat_index],
               "shape_pt_lon" => (float) $item[$shape_pt_lon_index],
             ];
-          }, $first_shape_items),
+          }, array_values($first_shape_items)),
         ],
       ];
     }
