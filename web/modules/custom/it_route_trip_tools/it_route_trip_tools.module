@@ -397,7 +397,7 @@ function it_route_trip_tools_get_stop_details($stop_id) {
           "shapeId" => $shape_id,
           "shapeData" => array_map(function ($item) use ($shape_pt_sequence_index, $shape_pt_lat_index, $shape_pt_lon_index) {
             return [
-              "shape_pt_sequence" => $item[$shape_pt_sequence_index],
+              "shape_pt_sequence" => (int) $item[$shape_pt_sequence_index],
               "shape_pt_lat" => (float) $item[$shape_pt_lat_index],
               "shape_pt_lon" => (float) $item[$shape_pt_lon_index],
             ];
