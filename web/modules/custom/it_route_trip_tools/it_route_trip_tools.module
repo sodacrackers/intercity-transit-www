@@ -421,8 +421,8 @@ function it_route_trip_tools_get_stop_details($stop_id) {
   return [
     "stopId" => $stop_id,
     "stopName" => $stop[$name_index],
-    "stopLat" => $stop[$lat_index],
-    "stopLon" => $stop[$lon_index],
+    "stopLat" => (float) $stop[$lat_index],
+    "stopLon" => (float) $stop[$lon_index],
     "timepoint" => $is_timepoint,
     "routes" => array_values($route_ids),
   ];
