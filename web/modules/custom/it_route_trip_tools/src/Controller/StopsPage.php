@@ -36,22 +36,15 @@ class StopsPage extends ControllerBase {
    */
   public function BuildPage($stopId = NULL) {
     $stop_data = array();
-    $stops_map_data_array = array();
     $stop_id = '';
     $stop_name = '';
     $stop_lat = '';
     $stop_lon = '';
     if (($stopId != '') && (is_numeric($stopId))):
-      $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-      $api_base = $config->get('route_stops_api_base');
-      $stops_request = $config->get('stops_request'); 
-      $stop_request_path = $api_base . '/' . $stops_request . '?&stop_id=' . $stopId;
-      $stop_result = it_route_trip_tools_get_api_data($stop_request_path, 'stop_options');
-      $stops_path = $config->get('stops_page_path');
+      $stop_result = it_route_trip_tools_get_stop_details($stopId);
       $schedule_count = 0;
       $stops_map_data_array = array();
       if (!empty($stop_result)):
-        $routes = array();
         $schedule_times = array();
         foreach ($stop_result['routes'] as $route):
             foreach($route['schedule'] as $schedule):
