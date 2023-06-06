@@ -319,6 +319,12 @@ function it_route_trip_tools_get_stop_options() {
 
 function it_route_trip_tools_get_stop_details($stop_id) {
   // Get the stop by ID.
+  $shapes = \Drupal::service('ict.gtfs')->getStaticData('shapes');
+  $headers = array_shift($shapes);
+  $shape_index = array_search('shape_id', $headers);
+  $shape_pt_sequence_index = array_search('shape_pt_sequence', $headers);
+  $shape_pt_lat_index = array_search('shape_pt_lat', $headers);
+  $shape_pt_lon_index = array_search('shape_pt_lon', $headers);
   $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
   $headers = array_shift($stops);
   $id_index = array_search('stop_id', $headers);
@@ -354,6 +360,7 @@ function it_route_trip_tools_get_stop_details($stop_id) {
   $trip_id_index = array_search('trip_id', $headers);
   $route_id_index = array_search('route_id', $headers);
   $service_type_index = array_search('service_id', $headers);
+  $shape_id_index = array_search('shape_id', $headers);
   $route_ids = [];
   $filtered_trips = array_filter($trips, function ($item) use ($trip_ids, $trip_id_index) {
     return array_key_exists($item[$trip_id_index], $trip_ids);
@@ -365,9 +372,13 @@ function it_route_trip_tools_get_stop_details($stop_id) {
   foreach ($filtered_trips as $filtered_trip) {
     $route_id = $filtered_trip[$route_id_index];
     $trip_id = $filtered_trip[$trip_id_index];
+    $shape_id = $filtered_trip[$shape_id_index];
     if (!isset($route_ids[$route_id])) {
       $actual_route = array_reduce($all_routes, function ($carry, $item) use ($route_id, $all_routes_id_index) {
         return $item[$all_routes_id_index] == $route_id ? $item : $carry;
+      });
+      $first_shape_items = array_filter($shapes, function ($item) use ($shape_id, $shape_index) {
+        return $item[$shape_index] == $shape_id;
       });
       $route_ids[$route_id] = [
         "routeShortName" => $route_id,
@@ -383,8 +394,14 @@ function it_route_trip_tools_get_stop_details($stop_id) {
           ],
         ],
         "shape" => [
-          "shapeId" => '',
-          "shapeData" => []
+          "shapeId" => $shape_id,
+          "shapeData" => array_map(function ($item) use ($shape_pt_sequence_index, $shape_pt_lat_index, $shape_pt_lon_index) {
+            return [
+              "shape_pt_sequence" => $item[$shape_pt_sequence_index],
+              "shape_pt_lat" => $item[$shape_pt_lat_index],
+              "shape_pt_lon" => $item[$shape_pt_lon_index],
+            ];
+          }, $first_shape_items),
         ],
       ];
     }
