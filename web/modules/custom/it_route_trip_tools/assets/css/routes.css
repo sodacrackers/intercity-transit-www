@@ -123,3 +123,33 @@
     margin-right: -30px
   }
 }
+
+
+.maps .panel-title a, .maps .panel-title span {
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 165%;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.maps .panel-title a:hover {
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 165%;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+span.map-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(40%);
+  height: calc(100% - 4rem);
+  width: 53px;
+  background-color: #003087;
+  color: white !important;
+}

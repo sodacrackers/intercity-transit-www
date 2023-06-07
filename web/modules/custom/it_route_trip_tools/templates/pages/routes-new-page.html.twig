@@ -1,87 +1,111 @@
 {{ attach_library('it_route_trip_tools/routes') }}
 {{ attach_library('it_route_trip_tools/maps-autocomplete') }}
 {{ attach_library('it_route_trip_tools/all-routes-map') }}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places"
+        defer></script>
 <div class="container-fluid">
-    <div class="col-xs-12 col-md-12">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default stops-panel">
-                <div class="panel-heading" role="tab" id="routes-map-heading">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#routes-map-body" aria-expanded="true" aria-controls="routes-map-body" class="routes-map-toggle">
-                            Show Routes Map
-                        </a>
-                    </h4>
-                </div>
-                <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-                <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-                <div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div id="all-routes-map"></div>
-                </div>
-                <div id="tripplanner-menu" name="trip-planner-menu" style="display: none !important">
-                    <div class="form-group">
-                        <label for="start_add" class="sr-only">Starting Address</label>
-                        <input type="text" name="start_add_id" id="start_add_id" class="hidden start-add-control" aria-hidden="true">
-                        <div class="start-add-container">
-                            <input name="start_add" id="start_add" type="text" placeholder="From" class="form-control start-add-control pac-target-input" autocomplete="off">
-                            <button class="address-clear btn btn-danger" id="start-add-control" type="button">X</button>
-                        </div>
-                        <div class="alert alert-danger hidden" id="start-add-alert"></div>
-                        <button id="locate" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" onclick="showPosition();">Use My Location</button>
-                    </div>
-                    <div class="form-group">
-                        <label for="dest_add" class="sr-only">Destination Address</label>
-                        <input type="text" name="dest_add_id" id="dest_add_id" class="hidden dest-add-control" aria-hidden="true">
-                        <div class="dest-add-container">
-                            <input name="dest_add" id="dest_add" type="text" placeholder="To" class="form-control dest-add-control pac-target-input" autocomplete="off">
-                            <button class="address-clear btn btn-danger" id="dest-add-control" type="button">X</button>
-                        </div>
-                        <div class="alert alert-danger hidden" id="dest-add-alert"></div>
-                    </div>
-                </div>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
+    <div class="col-xs-12 col-md-12" style="padding-left: 0; padding-right: 0; margin-top: 15px">
+        <div class="panel-group panel-default maps" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel-heading" role="tab" id="all-routes-map-heading">
+                <h4 class="panel-title" style="position: relative;">
+                    <span class="glyphicon glyphicon-chevron-down"
+                          style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 50px; align-items: center; display: flex; justify-content: center; color: white;"></span>
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#all-routes-map-body"
+                       aria-expanded="true" aria-controls="all-routes-map-body" class="all-routes-route-map-toggle"
+                       style="margin-left: 50px">
+                        Show Map
+                    </a>
+                </h4>
             </div>
+            <div id="all-routes-map-body" class="panel-collapse collapse" role="tabpanel"
+                 aria-labelledby="all-routes-map-heading">
+                <div id="route-map" class=" panel-body">
+                    <div id="all-routes-map"></div>
+                    <div id="tripplanner-menu" name="trip-planner-menu" style="display: none !important">
+                        <div class="form-group">
+                            <label for="start_add" class="sr-only">Starting Address</label>
+                            <input type="text" name="start_add_id" id="start_add_id" class="hidden start-add-control"
+                                   aria-hidden="true">
+                            <div class="start-add-container">
+                                <input name="start_add" id="start_add" type="text" placeholder="From"
+                                       class="form-control start-add-control pac-target-input" autocomplete="off">
+                                <button class="address-clear btn btn-danger" id="start-add-control" type="button">X
+                                </button>
+                            </div>
+                            <div class="alert alert-danger hidden" id="start-add-alert"></div>
+                            <button id="locate" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                                    type="button" onclick="showPosition();">Use My Location
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest_add" class="sr-only">Destination Address</label>
+                            <input type="text" name="dest_add_id" id="dest_add_id" class="hidden dest-add-control"
+                                   aria-hidden="true">
+                            <div class="dest-add-container">
+                                <input name="dest_add" id="dest_add" type="text" placeholder="To"
+                                       class="form-control dest-add-control pac-target-input" autocomplete="off">
+                                <button class="address-clear btn btn-danger" id="dest-add-control" type="button">X
+                                </button>
+                            </div>
+                            <div class="alert alert-danger hidden" id="dest-add-alert"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="col-xs-12 col-md-6 alerts-right-panel">
-        <h2 class="routes-title">Select a Bus Route</h2>
-        <ul class="routes-container">
-            {% for route_id, route_options in routes_options %}
-                <li class="route-item">
-                    <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
-                        <span class="route-item-id">{{ route_id }}</span>
-                        <span class="route-item-name">{{ route_options.name }}</span>
-                        {% if route_options.alerts > 0 %}
-                          <span class="route-item-alerts">
-                              <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts" style="width: 20px" />
+</div>
+</div>
+<div class="col-xs-12 col-md-6 alerts-right-panel">
+    <h2 class="routes-title">Select a Bus Route</h2>
+    <ul class="routes-container">
+        {% for route_id, route_options in routes_options %}
+            <li class="route-item">
+                <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
+                    <span class="route-item-id">{{ route_id }}</span>
+                    <span class="route-item-name">{{ route_options.name }}</span>
+                    {% if route_options.alerts > 0 %}
+                        <span class="route-item-alerts">
+                              <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts"
+                                   style="width: 20px"/>
                               {{ route_options.alerts }}
                           </span>
-                        {% endif %}
-                        <img class="card-arrow" style="float: right" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" />
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="col-xs-12 col-md-6 alerts-left-panel">
-        <h2><span class="routes-title">Alerts <span class="hide-on-mobile">& Announcements</span></span>
-            <span style="float: right;">
-                <a class="card-link" href="{{ alert_view_all_link }}">View all alerts<img class="card-arrow" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+                    {% endif %}
+                    <img class="card-arrow" style="float: right"
+                         src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="col-xs-12 col-md-6 alerts-left-panel">
+    <h2><span class="routes-title">Alerts <span class="hide-on-mobile">& Announcements</span></span>
+        <span style="float: right;">
+                <a class="card-link" href="{{ alert_view_all_link }}">View all alerts<img class="card-arrow"
+                                                                                          src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/></a>
             </span>
-        </h2>
-        <div id="accordion">
+    </h2>
+    <div id="accordion">
         {% for alert_id, alert in alert_options %}
             <div class="card">
                 <div class="card-header" id="heading{{ loop.index }}">
                     <h5 class="mb-0">
-                        <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.severity ? alert.severity : 'alert' }}.svg" style="margin-left: -30px; margin-right: 10px; width: 20px" />
+                        <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.severity ? alert.severity : 'alert' }}.svg"
+                             style="margin-left: -30px; margin-right: 10px; width: 20px"/>
                         <span class="alert-title">{{ alert.title }}</span>
-                        <button class="btn btn-link alerts-collapse" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
-                            <img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg" />
+                        <button class="btn btn-link alerts-collapse" data-toggle="collapse"
+                                data-target="#collapse{{ loop.index }}" aria-expanded="true"
+                                aria-controls="collapse{{ loop.index }}">
+                            <img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg"/>
                         </button>
                     </h5>
                 </div>
 
-                <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}" data-parent="#accordion">
+                <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
+                     data-parent="#accordion">
                     <div class="card-body">
                         {{ alert.description.value|raw }}
                     </div>
