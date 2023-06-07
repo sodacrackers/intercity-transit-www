@@ -149,7 +149,7 @@ class RoutesPage extends ControllerBase {
       $res[$route_id] = [
         "RouteName" => $route_id,
         "RouteDescription" => "RouteDescription",
-        "Color" => $route[$routes_color_index],
+        "Color" => '#' . $route[$routes_color_index],
         "Shapes" => []
       ];
       $trips_in_route = array_filter($trips, function ($item) use ($route_id, $route_id_index) {
@@ -162,16 +162,16 @@ class RoutesPage extends ControllerBase {
         });
         $res[$route_id]['Shapes'][] = [
           "shapeId" => $shape_id,
-          "shapeData" => array_map(function ($item) use ($shape_pt_lat_index, $shape_pt_lon_index) {
+          "shapeData" => array_values(array_map(function ($item) use ($shape_pt_lat_index, $shape_pt_lon_index) {
             return [
               'lat' => (float) $item[$shape_pt_lat_index],
               'lon' => (float) $item[$shape_pt_lon_index],
             ];
-          }, $shape_items_in_trip),
+          }, $shape_items_in_trip)),
         ];
       }
     }
-    return $res;
+    return array_values($res);
   }
 
   public function BuildPage($routeId = NULL) {
