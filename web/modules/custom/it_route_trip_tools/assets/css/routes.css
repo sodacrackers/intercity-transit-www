@@ -153,3 +153,7 @@ span.map-toggle {
   background-color: #003087;
   color: white !important;
 }
+
+#all-routes-map {
+  min-height: 600px;
+}
