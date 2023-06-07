@@ -129,10 +129,61 @@ class RoutesPage extends ControllerBase {
     }, $alerts);
   }
 
+  public function getAllRoutesData() {
+    $routes = $this->gtfs->getStaticData('routes');
+    $headers = array_shift($routes);
+    $routes_id_index = array_search('route_id', $headers);
+    $routes_color_index = array_search('route_color', $headers);
+    $shapes = $this->gtfs->getStaticData('shapes');
+    $headers = array_shift($shapes);
+    $shape_index = array_search('shape_id', $headers);
+    $shape_pt_lat_index = array_search('shape_pt_lat', $headers);
+    $shape_pt_lon_index = array_search('shape_pt_lon', $headers);
+    $trips = $this->gtfs->getStaticData('trips');
+    $headers = array_shift($trips);
+    $route_id_index = array_search('route_id', $headers);
+    $shape_id_index = array_search('shape_id', $headers);
+    $res = [];
+    foreach ($routes as $route) {
+      $route_id = $route[$routes_id_index];
+      $res[$route_id] = [
+        "RouteName" => $route_id,
+        "RouteDescription" => "RouteDescription",
+        "Color" => $route[$routes_color_index],
+        "Shapes" => []
+      ];
+      $trips_in_route = array_filter($trips, function ($item) use ($route_id, $route_id_index) {
+        return $item[$route_id_index] == $route_id;
+      });
+      foreach ($trips_in_route as $trip_in_route) {
+        $shape_id = $trip_in_route[$shape_id_index];
+        $shape_items_in_trip = array_filter($shapes, function($item) use ($shape_index, $shape_id) {
+          return $item[$shape_index] == $shape_id;
+        });
+        $res[$route_id]['Shapes'][] = [
+          "shapeId" => $shape_id,
+          "shapeData" => array_map(function ($item) use ($shape_pt_lat_index, $shape_pt_lon_index) {
+            return [
+              'lat' => (float) $item[$shape_pt_lat_index],
+              'lon' => (float) $item[$shape_pt_lon_index],
+            ];
+          }, $shape_items_in_trip),
+        ];
+      }
+    }
+    return $res;
+  }
+
   public function BuildPage($routeId = NULL) {
 
     $routes_options = it_route_trip_tools_build_routes_options(TRUE);
     $routes_options = $this->customizeOptions($routes_options);
+
+    $all_routes_map_data_array = $this->getAllRoutesData();
+
+    /*Need to grab the Routes form*/
+    $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
+    $routes_path = $config->get('route_page_path');
 
     if (empty($routeId) || $routeId === 'all') {
       $alerts = $this->getAllAlerts();
@@ -141,12 +192,18 @@ class RoutesPage extends ControllerBase {
         '#routes_options' => $routes_options,
         '#alert_options' => $alerts,
         '#alert_view_all_link' => '/plan-your-trip/alerts',
+        '#attached' => [
+          'drupalSettings' => [
+            'it_route_trip_tools' => [
+              'all_routes_map_data_array' => [
+                $all_routes_map_data_array
+              ],
+              'routes_path' => $routes_path
+            ]
+          ]
+        ]
       ];
     }
-
-    /*Need to grab the Routes form*/
-    $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-    $routes_path = $config->get('route_page_path');
 
     if ($routeId != 'all') {
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
@@ -160,8 +217,6 @@ class RoutesPage extends ControllerBase {
         $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];
         $route->setDefault('_title', $new_title);
       }
-      $all_routes_map_data = '';
-      $all_routes_map_data_array = [];
 
       $routes_map_weekdays = [
         '#theme' => 'routes_map',

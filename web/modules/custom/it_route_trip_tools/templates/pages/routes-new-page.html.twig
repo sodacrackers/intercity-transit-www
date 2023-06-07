@@ -1,5 +1,47 @@
 {{ attach_library('it_route_trip_tools/routes') }}
+{{ attach_library('it_route_trip_tools/maps-autocomplete') }}
+{{ attach_library('it_route_trip_tools/all-routes-map') }}
 <div class="container-fluid">
+    <div class="col-xs-12 col-md-12">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default stops-panel">
+                <div class="panel-heading" role="tab" id="routes-map-heading">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#routes-map-body" aria-expanded="true" aria-controls="routes-map-body" class="routes-map-toggle">
+                            Show Routes Map
+                        </a>
+                    </h4>
+                </div>
+                <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+                <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+                <div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="all-routes-map"></div>
+                </div>
+                <div id="tripplanner-menu" name="trip-planner-menu" style="display: none !important">
+                    <div class="form-group">
+                        <label for="start_add" class="sr-only">Starting Address</label>
+                        <input type="text" name="start_add_id" id="start_add_id" class="hidden start-add-control" aria-hidden="true">
+                        <div class="start-add-container">
+                            <input name="start_add" id="start_add" type="text" placeholder="From" class="form-control start-add-control pac-target-input" autocomplete="off">
+                            <button class="address-clear btn btn-danger" id="start-add-control" type="button">X</button>
+                        </div>
+                        <div class="alert alert-danger hidden" id="start-add-alert"></div>
+                        <button id="locate" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" onclick="showPosition();">Use My Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="dest_add" class="sr-only">Destination Address</label>
+                        <input type="text" name="dest_add_id" id="dest_add_id" class="hidden dest-add-control" aria-hidden="true">
+                        <div class="dest-add-container">
+                            <input name="dest_add" id="dest_add" type="text" placeholder="To" class="form-control dest-add-control pac-target-input" autocomplete="off">
+                            <button class="address-clear btn btn-danger" id="dest-add-control" type="button">X</button>
+                        </div>
+                        <div class="alert alert-danger hidden" id="dest-add-alert"></div>
+                    </div>
+                </div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
+            </div>
+        </div>
+    </div>
     <div class="col-xs-12 col-md-6 alerts-right-panel">
         <h2 class="routes-title">Select a Bus Route</h2>
         <ul class="routes-container">
