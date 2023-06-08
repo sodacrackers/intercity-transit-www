@@ -191,7 +191,7 @@ class RoutesPage extends ControllerBase {
         '#theme' => 'routes_new_page',
         '#routes_options' => $routes_options,
         '#alert_options' => $alerts,
-        '#alert_view_all_link' => '/plan-your-trip/alerts',
+        '#alert_view_all_link' => '/rider-alerts',
         '#attached' => [
           'drupalSettings' => [
             'it_route_trip_tools' => [

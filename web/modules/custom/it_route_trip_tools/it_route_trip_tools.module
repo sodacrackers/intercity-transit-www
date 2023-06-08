@@ -125,7 +125,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
                         'title' => t('Service Alerts'),
                         'link' => [
                             'title' => 'View Alerts',
-                            'url' => '/alerts'
+                            'url' => '/rider-alerts'
                         ],
                         'color' => '#6CACDE',
                     ],
@@ -140,7 +140,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
                     [
                         'title' => t('Stops And Stations'),
                         'link' => [
-                            'title' => 'View stops',
+                            'title' => 'Find a Stop',
                             'url' => '/stops'
                         ],
                         'color' => '#003087',

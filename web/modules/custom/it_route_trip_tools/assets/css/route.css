@@ -630,3 +630,10 @@ header.navbar.navbar-default {
   font-weight: 400 !important;
   font-size: 28px !important;
 }
+
+
+@media (max-width: 992px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
