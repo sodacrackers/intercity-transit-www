@@ -31,6 +31,7 @@
               <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts" style="width: 20px" />
               {{ alerts|length }}
             </span>
+            <a data-toggle="modal" data-target="#alertsModal" href="#" style="display: block;float: right;font-style: normal;font-weight: 500;font-size: 17px;line-height: 150%;text-align: right;text-decoration-line: underline;color: #D73D09;">Route {{ route_id }} Service Alerts</a>
             {% if route_id != 'all' %}
                 <div class="modal fade" id="alertsModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

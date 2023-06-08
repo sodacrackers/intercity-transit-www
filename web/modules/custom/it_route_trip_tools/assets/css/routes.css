@@ -17,6 +17,7 @@
 
 .card-link {
   font-size: 15px;
+  font-weight: 500;
 }
 
 .route-link, .card-link {
@@ -53,6 +54,10 @@
   color: #003087;
 }
 
+.route-item-name:hover {
+  color: #347960;
+}
+
 .routes-page-content-container, .region-header-mid  {
   background-color: white !important;
 }
@@ -79,6 +84,10 @@
 #accordion .card {
   background: #F1F3F6 !important;
   margin-top: 16px;
+}
+
+#accordion .card:hover {
+  outline: 1px solid #347960;
 }
 
 .card-body span, .card-body p {

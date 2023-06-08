@@ -149,24 +149,24 @@ class RoutesPage extends ControllerBase {
       $res[$route_id] = [
         "RouteName" => $route_id,
         "RouteDescription" => "RouteDescription",
-        "Color" => '#' . $route[$routes_color_index],
+        "Color" => '#' . ($route[$routes_color_index] ?? 'FFF'),
         "Shapes" => []
       ];
       $trips_in_route = array_filter($trips, function ($item) use ($route_id, $route_id_index) {
         return $item[$route_id_index] == $route_id;
       });
       foreach ($trips_in_route as $trip_in_route) {
-        $shape_id = $trip_in_route[$shape_id_index];
+        $shape_id = $trip_in_route[$shape_id_index] ?? NULL;
         $shape_items_in_trip = array_filter($shapes, function($item) use ($shape_index, $shape_id) {
           return $item[$shape_index] == $shape_id;
         });
         $res[$route_id]['Shapes'][] = [
           "shapeId" => $shape_id,
           "shapeData" => array_values(array_map(function ($item) use ($shape_pt_lat_index, $shape_pt_lon_index) {
-            return [
+            return isset($item[$shape_pt_lat_index]) && isset($item[$shape_pt_lon_index]) ? [
               'lat' => (float) $item[$shape_pt_lat_index],
               'lon' => (float) $item[$shape_pt_lon_index],
-            ];
+            ] : [];
           }, $shape_items_in_trip)),
         ];
       }
@@ -250,7 +250,7 @@ class RoutesPage extends ControllerBase {
         '#routes_table_weekend' => $routes_table_weekend,
         '#route_data_weekdays' => $route_data_weekdays,
         '#route_data_weekend' => $route_data_weekend,
-        '#all_routes_map_data' => $all_routes_map_data,
+        '#all_routes_map_data' => 1,
         '#download_url' => $download_url,
         '#attached' => [
           'drupalSettings' => [

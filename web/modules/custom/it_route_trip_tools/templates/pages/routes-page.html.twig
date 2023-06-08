@@ -2,10 +2,10 @@
 <div class="container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
 		<li class="nav-item active">
-			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Schedule</a>
+			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">Route {{ route_id }} Schedule</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false">Real Time</a>
+			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false">Route {{ route_id }} Real-Time Arrivals</a>
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
@@ -60,7 +60,7 @@
 									</h5>
 									<div class="dropdown">
 										<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											Select stops
+											Select all that apply
 										</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
