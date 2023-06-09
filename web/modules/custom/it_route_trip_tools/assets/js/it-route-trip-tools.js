@@ -195,7 +195,7 @@
 					$('.lists-list-item.not-timepoint').hide();
 				}
 			});
-			$('input[name="show_stop"]').once().click(function() {
+			$('#applyRoutesFilter').once().click(function() {
 				const searchIDs = $('input[name="show_stop"]:checked').map(function(){
 					return $(this).val();
 				}).get();

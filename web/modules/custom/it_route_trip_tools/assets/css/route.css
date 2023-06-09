@@ -637,3 +637,19 @@ header.navbar.navbar-default {
     display: none !important;
   }
 }
+
+#applyRoutesFilter {
+  width: -webkit-fill-available;
+  margin: 5px;
+  background: #003087;
+  border-radius: 4px;
+  justify-content: center;
+  padding: 10px 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 150%;
+  text-align: center;
+  color: #FFFFFF;
+  display: grid;
+}
