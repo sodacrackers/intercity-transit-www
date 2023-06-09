@@ -733,19 +733,28 @@ function it_route_trip_tools_get_stop_data($stopId) {
 */
 function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
   $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
+  $headers = array_shift($routes);
+  $id_index = array_search('route_id', $headers);
+  $name_index = array_search('route_long_name', $headers);
+  $sort_index = array_search('route_sort_order', $headers);
   $res = [];
   foreach ($routes as $id => $route) {
-    if ($id !== 0 && count($route) > 1) {
-      $res[$route[0]] = $route[3];
+    if (count($route) > 1) {
+      $sort_key = (int) $route[$sort_index];
+      $res[$sort_key][$route[$id_index]] = $route[$name_index];
     }
   }
-  asort($res);
+  $final = [];
+  foreach ($res as $sort => $route) {
+    $route_id = array_keys($route)[0];
+    $final[$route_id] = $route[$route_id];
+  }
   if ($filter_disabled) {
     $disabled_routes = \Drupal::config('ict_gtfs.settings')->get('disable_routes');
     $disabled_routes = array_filter($disabled_routes ?: []);
-    $res = array_diff_key($res, $disabled_routes);
+    $final = array_diff_key($final, $disabled_routes);
   }
-  return $res;
+  return $final;
 }
 
 
