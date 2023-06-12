@@ -211,6 +211,13 @@
 						$('div[data-stop-id="' + item + '"]').show();
 					});
 				}
+        if (searchIDs.length === 1) {
+					$('.transit-footer').removeClass('transit-margin');
+          $('.transit-footer').addClass('transit-margin-0');
+				} else {
+					$('.transit-footer').addClass('transit-margin');
+          $('.transit-footer').removeClass('transit-margin-0');
+				}
 			});
 			$('input[name="viewmode"]').once().change(function() {
 				const viewmode = $(this).val();

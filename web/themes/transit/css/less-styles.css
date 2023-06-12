@@ -46,7 +46,8 @@ html body {
   /* Mobile header styles */
 }
 html body .dialog-off-canvas-main-canvas {
-  overflow: hidden;
+  overflow-x: hidden;
+  min-height: 800px;
 }
 @media screen and (min-width: 1200px) {
   html body .container {
@@ -501,9 +502,14 @@ html body.path-frontpage .home-content-left-right .region-content-right .panel-g
   border: 0;
   font-size: 1.6rem;
 }
+.transit-margin {
+  margin-top: 45px !important;
+}
+.transit-margin-0 {
+  margin-top: 0 !important;
+}
 html body footer {
   font-size: 17px;
-  margin-top: 45px;
 }
 @media screen and (max-width: 800px) {
   html body footer {
