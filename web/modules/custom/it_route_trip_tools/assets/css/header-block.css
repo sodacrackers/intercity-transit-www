@@ -1,11 +1,6 @@
 .bgimage {
   width:100%;
-  height:500px;
-  background: url('/modules/custom/it_route_trip_tools/assets/images/header hero.jpeg');
-  background-repeat: no-repeat;
-  background-position: 50% 120%;
-  background-size: cover;
-  background-attachment: fixed;
+  height:280px;
   max-height: 280px;
 }
 .bgimage h5 {
@@ -87,9 +82,79 @@
 .region-header-mid {
   padding-left: 0 !important;
   padding-right: 0 !important;
+  background: url('/modules/custom/it_route_trip_tools/assets/images/header hero.jpeg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  width:100%;
+  height:280px;
+  max-height: 280px;
+}
+
+.mid-height {
+  height: 350px;
+  background-color: #F0F5FA;
+  margin-bottom: 25px;
+}
+
+.routes-page-content-container .region-content > div {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hide-mobile .card {
+  padding: 20px !important;
+  width: 225px;
+  height: 120px;
+}
+
+.p-0-10 {
+  padding: 0 10px !important;
+  margin: 0 auto 10px !important
+}
+
+button.alerts-collapse:focus, button.alerts-collapse:active
+button.alerts-collapse figure:focus, button.alerts-collapse figure:hover, button.alerts-collapse figure:active,
+button.alerts-collapse figure:focus::before, button.alerts-collapse figure:hover::before, button.alerts-collapse figure:active::before {
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+button.alerts-collapse figure {
+  border-radius: 50%;
+  border: 1px solid #395b9f;  
+  height: 24px;
+  width: 24px;
+}
+
+button.alerts-collapse figure:before {
+  content: "-";
+  font-size: 22px;
+  display: block;
+  position: relative;
+  top: -4px;
+  text-decoration: none !important;
+}
+
+button.alerts-collapse.collapsed figure:before {
+  content: "+" !important;
+}
+
+@media (min-width: 992px) {
+  .routes-page-content-container > .alerts-right-panel {
+    padding-left: 0;
+  }
+  .routes-page-content-container > .alerts-left-panel {
+    padding-right: 0;
+  }
 }
 
 @media (max-width: 992px) {
+  .mid-height {
+    height: auto !important;
+    margin-bottom: 0 !important;
+  }
   .card.vcenter, #route-change {
     width: 100%;
   }

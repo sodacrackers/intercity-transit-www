@@ -16,10 +16,12 @@ html {
 
     .container {
       @media @min1200 {
-        width: 1260px;
+        max-width: 1160px !important;
+        margin: 0 auto !important;
       }
       @media @max1199 {
-        width: 100%;
+        width: calc(100% - 40px) !important;
+        margin: 0 auto !important;
       }
     }
 

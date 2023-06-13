@@ -51,12 +51,14 @@ html body .dialog-off-canvas-main-canvas {
 }
 @media screen and (min-width: 1200px) {
   html body .container {
-    width: 1260px;
+    max-width: 1160px !important;
+    margin: 0 auto !important;      
   }
 }
 @media screen and (max-width: 1199px) {
   html body .container {
-    width: 100%;
+    width: calc(100% - 40px) !important;
+    margin: 0 auto !important;
   }
 }
 html body h1,
@@ -211,6 +213,7 @@ html body .transit-header-top {
 }
 html body .transit-header-top .search-block-form {
   padding-top: 18px;
+  padding-right: 0;
 }
 html body .transit-header-top .search-block-form input#edit-keys {
   border-radius: 20px !important;
@@ -249,9 +252,6 @@ html body .transit-header-top .logo img {
   html body .transit-header-top .search-block-form .form-actions .btn-primary {
     padding: 4px 0 0 6px;
   }
-}
-html body .nav-outer-wrapper {
-  border-bottom: 2px solid #6CACE4;
 }
 html body .navbar-default {
   /*border-bottom: 2px solid @LightBlue;*/
