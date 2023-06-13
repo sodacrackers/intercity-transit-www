@@ -269,11 +269,18 @@ label.form-check-label {
 }
 
 #filters .dropdown-menu {
-  max-height: 600px;
+  max-height: 225px;
   width: max-content;
   overflow-y: scroll;
   background-color: #F1F3F6;
 }
+
+#filters .dropdown-menu:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
 #filters .dropdown-menu li {
   margin-bottom: 0;
   padding-bottom: 0;
