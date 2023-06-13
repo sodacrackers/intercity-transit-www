@@ -9,24 +9,22 @@
 ] %}
 {% set width_class = class_map[additional_blocks|length] %}
 <section class="bgimage">
-    <div class="container-fluid h-full grey-overlay">
-        <div class="row h-full">
-            <div class="col-xs-12 {{ width_class }} h-full">
-                <div class="card vcenter">
-                    <h4 class="card-title text-white">Find a Schedule</h4>
-                    <select id="route-change">
-                        <option value="">- Select Route -</option>
-                        {% for key, value in routes_options %}
-                            <option value="{{ key }}">{{ value }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+    <div class="row h-full">
+        <div class="col-xs-12 {{ width_class }} h-full">
+            <div class="card vcenter">
+                <h4 class="card-title text-white">Find a Schedule</h4>
+                <select id="route-change">
+                    <option value="">- Select Route -</option>
+                    {% for key, value in routes_options %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            {% for single_block in additional_blocks %}
-                <div class="{{ width_class }} h-full hide-mobile">
-                    {% include '@it_route_trip_tools/blocks/header-block.html.twig' with single_block %}
-                </div>
-            {% endfor %}
         </div>
+        {% for single_block in additional_blocks %}
+            <div class="{{ width_class }} h-full hide-mobile">
+                {% include '@it_route_trip_tools/blocks/header-block.html.twig' with single_block %}
+            </div>
+        {% endfor %}
     </div>
 </section>

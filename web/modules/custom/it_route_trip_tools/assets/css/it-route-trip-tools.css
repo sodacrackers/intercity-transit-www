@@ -210,8 +210,12 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 @media screen and (min-width: 992px) {
   html body.path-plan-your-trip .routes-page-content-container {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .header-routes-all {
+    margin-left: -20px;
+    margin-right: -20px;
   }
 }
 #route-filter-control {
@@ -273,6 +277,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 #route-table-weekdays, #route-table-weekend {
   margin-top: 10px;
+  padding: 0;
 }
 #route-table-weekdays tr.bold td, #route-table-weekend tr.bold td {
   font-weight: bold;
@@ -293,11 +298,6 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #route-map {
   padding: 0 !important;
   z-index: 100;
-}
-@media screen and (max-width: 991px) {
-  #route-map {
-    margin-left: 5px;
-  }
 }
 #route-map .map-frame {
   width: 100%;

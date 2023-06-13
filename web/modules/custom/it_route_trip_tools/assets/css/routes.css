@@ -5,7 +5,7 @@
   font-size: 24px;
   line-height: 160%;
 
-  color: #0D1A29;
+  color: #0D1A29 !important;
 
 }
 
@@ -103,7 +103,7 @@
 }
 
 .region-header-mid .breadcrumb {
-  padding: 21px 15px;
+  padding: 21px 0;
 }
 
 .region-header-mid .breadcrumb li {

@@ -1,5 +1,24 @@
+#collapsefilters > div {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+
+#myTab #realtime-tab, #myTab #schedule-tab {
+  color: #518e79;
+}
+
 .nav-tabs {
   margin-bottom: 15px !important;
+}
+
+@media screen and (max-width: 1199px) {  
+  #myTab.nav-tabs > li {
+    width: 100%;
+  }
+  #myTab #realtime-tab, #myTab #schedule-tab {
+    font-size: 22px !important;
+  }
 }
 
 li.nav-item {
@@ -8,6 +27,15 @@ li.nav-item {
   border-right: none;
   border-bottom: 8px solid #9EA3A9;
   width: 50%;
+}
+
+li.nav-item:hover {
+  border-bottom: 8px solid #2B7051 !important;
+}
+
+li.nav-item a.nav-link:hover {
+  color: #2B7051 !important;
+  background: none !important;
 }
 
 li.nav-item.active {
@@ -289,9 +317,8 @@ label.form-check-label {
 #download-link {
   justify-content: center;
   align-items: center;
-  padding: 12px 16px;
-
-  width: 170.4px;
+  display: flex;
+  padding: 14px 0 !important;
   height: 46px;
 
   background: #FFFFFF;
@@ -307,11 +334,38 @@ label.form-check-label {
 
   color: #003087;
 }
+#download-link:hover, #download-link:active {
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  background: #003087;
+}
+#download-link .download-icon {
+  height: 25px;
+  width: 25px;
+  background: url("/modules/custom/it_route_trip_tools/assets/images/pdf.svg");
+}
+#download-link:hover .download-icon, #download-link:active .download-icon {
+  background: url("/modules/custom/it_route_trip_tools/assets/images/pdf-alt.svg");
+}
+#download-link span {
+  display: inline-block;
+}
 #filter-route {
   display: block;
 }
 #filter-viewmode {
   display: none;
+}
+@media screen and (min-width: 992px) {
+  #filters {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+@media screen and (max-width: 1159px) {
+  #download-link {
+    font-size: 12px !important;
+  }
 }
 #filters > h5 {
   display: none;
@@ -324,9 +378,13 @@ label.form-check-label {
 .region-header-mid, .region-header-mid .breadcrumb {
   background: #F0F5FA;
 }
+.region-header-top > div {
+  padding-left: none;
+  padding-right: none;
+}
 
 .region-header-mid .breadcrumb {
-  padding: 21px 15px;
+  padding: 20px 5px;
   float: left;
   position: absolute;
 }
@@ -396,7 +454,13 @@ label.form-check-label {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
+  .main-container {
+    height: 20px;
+  }
+  .region-header-mid {
+    min-height: 90px;
+  }
   #download-link {
     display: none;
   }
@@ -447,11 +511,9 @@ label.form-check-label {
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
     border-radius: 4px;
     padding-right: 0;
-    padding-left: 0;
+    padding-left: 15px;
     padding-bottom: 15px;
-    margin-right: 15px;
-    margin-left: 15px;
-    margin-bottom: 30px;
+    margin: 0 auto;
   }
   #filter-route {
     display: none;
@@ -521,6 +583,21 @@ label.form-check-label {
   font-size: x-large !important;
 }
 
+#alertsModal h4 {
+  color: #363636 !important;
+}
+
+#alertsModal .card-link {
+  color: #003087 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+#alertsModal .modal-header .close,
+#alertsModal .modal-header .close:hover,
+#alertsModal .modal-header .close:active {
+  outline: 0 !important;
+}
 
 #view-all-alerts-breadcrumb {
   justify-content: center;
@@ -542,6 +619,12 @@ label.form-check-label {
   text-align: center;
 
   color: #003087;
+}
+
+#view-all-alerts-breadcrumb:hover, #view-all-alerts-breadcrumb:active {
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  background: #003087;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd)>* {
@@ -628,6 +711,9 @@ header.navbar.navbar-default {
     width: 100% !important;
     max-width: 100% !important;
   }
+  #filters {
+    padding: 0 !important;
+  }
 }
 
 #realtime-tab, #schedule-tab {
@@ -636,12 +722,18 @@ header.navbar.navbar-default {
   font-style: normal !important;
   font-weight: 400 !important;
   font-size: 28px !important;
+  width: 100%;
+  text-align: center !important;
 }
 
 
 @media (max-width: 992px) {
   .hide-on-mobile {
     display: none !important;
+  }
+
+  ol.breadcrumb {
+    margin-left: -20px;
   }
 }
 

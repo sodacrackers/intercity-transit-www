@@ -64,8 +64,8 @@
 
 {# Header_Top #}
 <div class="transit-header-top ms-dialogHidden">
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div class="row container" style="padding-left: 20px;">
             <div class="region region-header-top">
                 {% block header_top %}
                     {{ page.header_top }}
@@ -102,7 +102,7 @@
 
 
 {# Header_Mid #}
-<div>
+<div class="mid-height">
   {% block header_mid %}
     {{ page.header_mid }}
   {% endblock %}
@@ -184,7 +184,7 @@
 	</div>
 {% endblock %}
 </div>
-<div>        
+<div class="container p-0-10">        
 	<div class="row routes-page-content-container">
 	{# Content #}
 					{% block content %}

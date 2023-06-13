@@ -43,6 +43,12 @@
   }
   .search-form-block-control.desktop-show #search-form {
     display: block;
+    padding: 0 !important;
+    float: right !important;
+    width: 100%;
+  }
+  .search-form-block-control.desktop-show #search-form .card {
+    padding: 0;
   }
   .search-form-block-control.desktop-show #search-form div {
     display: block;
