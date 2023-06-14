@@ -166,3 +166,7 @@ span.map-toggle {
 #all-routes-map {
   min-height: 600px;
 }
+
+.panel-title .glyphicon {
+  cursor: pointer;
+}

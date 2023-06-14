@@ -734,6 +734,9 @@ function it_route_trip_tools_get_stop_data($stopId) {
 function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
   $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
   $headers = array_shift($routes);
+  if (empty($headers)) {
+    return [];
+  }
   $id_index = array_search('route_id', $headers);
   $name_index = array_search('route_long_name', $headers);
   $sort_index = array_search('route_sort_order', $headers);

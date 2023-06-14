@@ -235,22 +235,29 @@
 				window.location.href = '/plan-your-trip/routes/' + $(this).val();
 			});
 			$('.outbound-panel').on('hide.bs.collapse', function () {
-				$('.outbound-route-map-toggle').html('Show Map');
+				let currentTitle = $('.outbound-route-map-toggle').html();
+				$('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
 			})
 			$('.outbound-panel').on('show.bs.collapse', function () {				
-				$('.outbound-route-map-toggle').html('Hide Map');
+				let currentTitle = $('.outbound-route-map-toggle').html();
+				$('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
 				if (!$(this).hasClass('already-opened')) {
 					initMap_outbound();
 					$(this).addClass('already-opened');
 				}
 			})
+
+			$('.panel-title .glyphicon').once('bindclick').on('click', function (event) {
+				$(event.target).closest('.outbound-panel').find('a[data-toggle]').click();
+				$(event.target).closest('.inbound-panel').find('a[data-toggle]').click();
+			});
 			$('.inbound-panel').on('hide.bs.collapse', function () {
 				$('.inbound-route-map-toggle').html('Show Map');
 			})
 			$('.inbound-panel').on('show.bs.collapse', function () {
 				$('.inbound-route-map-toggle').html('Hide Map');
 				if (!$(this).hasClass('already-opened')) {
-					initMap_inbound();
+					// initMap_inbound();
 					$(this).addClass('already-opened');
 				}
 			})

@@ -42,8 +42,8 @@
 											{{ stop_name }}
 										</th>
 										{%  for stop_time in stop_times %}
-											{% set formatted_stop_time = stop_time|date('g:i a') %}
-											<td style="width: {{ (100/((stop_times|length) + 4)) }}%; {{ ' pm' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</td>
+											{% set formatted_stop_time = stop_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
+											<td style="width: {{ (100/((stop_times|length) + 4)) }}%; {{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</td>
 										{% endfor %}
 									</tr>
 								{% endfor %}
@@ -84,8 +84,8 @@
 						</div>
 						<div class="lists-list-item-content">
 							{%  for stop_time in stop_times %}
-								{% set formatted_stop_time = stop_time|date('g:i a') %}
-								<span style="{{ ' pm' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</span>{{ loop.last == false ? ',' }}
+								{% set formatted_stop_time = stop_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
+								<span style="{{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</span>{{ loop.last == false ? ',' }}
 							{% endfor %}
 						</div>
 					</div>
