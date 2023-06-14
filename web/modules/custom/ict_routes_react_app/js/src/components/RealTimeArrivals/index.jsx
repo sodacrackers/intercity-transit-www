@@ -5,6 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image'
 import Spinner from 'react-bootstrap/Spinner';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import GoogleMapReact from 'google-map-react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -18,11 +21,13 @@ import symbolGreen from '../../assets/symbol-green.svg';
 import symbolPurple from '../../assets/symbol-purple.svg';
 import symbolRed from '../../assets/symbol-red.svg';
 import info from '../../assets/info.svg';
+import chevronDown from '../../assets/chevron-down.svg';
+import chevronUp from '../../assets/chevron-up.svg';
 
 import styles from './index.module.css';
 
 
-const RealTimeArrivals = () => {
+const RealTimeDepartures = () => {
   const [data, setData] = React.useState({});
   const [sanitizedData, setSanitizedData] = React.useState({});
   const [direction, setDirection] = React.useState('inbound');
@@ -30,6 +35,22 @@ const RealTimeArrivals = () => {
   const [loading, setLoading] = React.useState(true);
   const [nonTimepointsHidden, setNonTimepointsHidden] = React.useState(false);
   const [coordinates, setCoordinates] = React.useState([]);
+  const [mapVisible, setMapVisible] = React.useState(false);
+
+  const CustomToggle = ({ children, eventKey }) => {
+    const decoratedOnClick = useAccordionButton(eventKey, () => {
+      setMapVisible(!mapVisible);
+    });
+    return (
+      <button
+        type="button"
+        className={styles.mapAccordionToggle}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
 
   const getData = async(apiUrl) => {
     try {
@@ -103,133 +124,142 @@ const RealTimeArrivals = () => {
 
   return Object.keys(data).length && !loading ? (
     <>
-      <div className={styles.mapContainer} style={{ width: '100%', height: '477px', marginBottom: '32px' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
-          defaultCenter={{
-              lat: data?.center?.lat,
-              lng: data?.center?.lng
-            }}
-          defaultZoom={12}
-          onGoogleApiLoaded={({map, maps}) => renderPolylines(map, maps)}
-        >
-        {data?.vehicle_position[direction].map((vehicle) => {
-          return (
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 150, hide: 300 }}
-              lat={Number(vehicle.latitude)}
-              lng={Number(vehicle.longitude)}
-              overlay={
-                <Tooltip className={styles.tooltipVehicle}>
-                  {vehicle.vehicle_id}
-                </Tooltip>
-              }
-            >
-              <div style={{ fontSize: '18px', width: '50px', textAlign: 'center', background: 'blue', color: 'white', zIndex: '9999' }}>
-                BUS
-              </div>
-            </OverlayTrigger>
-          )
-        })}
-        {Object.keys(data?.stop_markers[direction]).map((stopKey) => {
-          return (
-            <OverlayTrigger
-              placement="top"
-              delay={{ show: 150, hide: 300 }}
-              lat={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLat)}
-              lng={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLon)}
-              overlay={
-                <Tooltip className={styles.toolTipMap}>
-                  <button className={styles.closeButton}>x</button>
-                  <div>
-                    <h4>{data?.stop_markers[direction][stopKey].stop_data?.stopName} - Stop {data?.stop_markers[direction][stopKey].stop_data?.stopId}</h4>
-                    {getNextStop(data?.stop_markers[direction][stopKey].stop_data) && <div><strong>Headed to {getNextStop(data?.stop_markers[direction][stopKey].stop_data)}</strong></div>}
-                    {data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label ?
-                      <Table className="d-table" striped bordered hover responsive>
-                        <thead>
-                          <tr>
-                            <th className="col-2">Bus</th>
-                            <th className="col-3">ETA</th>
-                            <th className="col-7">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
-                            <td className="col-7">{
-                              Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.arrival_delay) > 60 ? (
-                                <div className={styles.datapointLate}>
-                                  Late
-                                </div>
-                              ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.arrival_delay) < -60
-                                ? (
-                                  <div className={styles.datapointEarly}>
-                                    Early
-                                  </div>
-                              ) : (
-                                <div className={styles.datapointOnTime}>
-                                  On Time
-                                </div>
-                              )
-                            }</td>
-                          </tr>
-                          <tr>
-                            <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
-                            <td className="col-7">{
-                              Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.arrival_delay) > 60 ? (
-                                <div className={styles.datapointLate}>
-                                  Late
-                                </div>
-                              ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.arrival_delay) < -60
-                                ? (
-                                  <div className={styles.datapointEarly}>
-                                    Early
-                                  </div>
-                              ) : (
-                                <div className={styles.datapointOnTime}>
-                                  On Time
-                                </div>
-                              )
-                            }</td>
-                          </tr>
-                          <tr>
-                            <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.vehicle_label}</td>
-                            <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.arrival_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
-                            <td className="col-7">{
-                              Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.arrival_delay) > 60 ? (
-                                <div className={styles.datapointLate}>
-                                  Late
-                                </div>
-                              ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.arrival_delay) < -60
-                                ? (
-                                  <div className={styles.datapointEarly}>
-                                    Early
-                                  </div>
-                              ) : (
-                                <div className={styles.datapointOnTime}>
-                                  On Time
-                                </div>
-                              )
-                            }</td>
-                          </tr>
-                        </tbody>
-                      </Table>
-                    : <h4 className="text-center">End of the Line</h4>}
-                  </div>
-                </Tooltip>
-              }
-            >
-              <div className={getDatapoint(stopKey, true)}
+      <div className={styles.mapContainer}>
+        <Accordion className={styles.mapAccordion} flush>
+          <Card className="mapAccordionHeader">
+            <Card.Header>
+              <CustomToggle eventKey={0}><img src={mapVisible ? chevronUp : chevronDown} alt="Toggle Map Visiblity" /></CustomToggle>{mapVisible ? 'Close Real-Time Map' : 'Open Real-Time Map'}
+            </Card.Header>
+            <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
+                defaultCenter={{
+                    lat: data?.center?.lat,
+                    lng: data?.center?.lng
+                  }}
+                defaultZoom={12}
+                onGoogleApiLoaded={({map, maps}) => renderPolylines(map, maps)}
               >
-                {getDatapoint(stopKey)}
-              </div>
-            </OverlayTrigger>
-          )
-        })}
-        </GoogleMapReact>
+                {data?.vehicle_position[direction].map((vehicle) => {
+                  return (
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 150, hide: 300 }}
+                      lat={Number(vehicle.latitude)}
+                      lng={Number(vehicle.longitude)}
+                      overlay={
+                        <Tooltip className={styles.tooltipVehicle}>
+                          {vehicle.vehicle_id}
+                        </Tooltip>
+                      }
+                    >
+                      <div style={{ fontSize: '18px', width: '50px', textAlign: 'center', background: 'blue', color: 'white', zIndex: '9999' }}>
+                        BUS
+                      </div>
+                    </OverlayTrigger>
+                  )
+                })}
+                {Object.keys(data?.stop_markers[direction]).map((stopKey) => {
+                  return (
+                    <OverlayTrigger
+                      placement="top"
+                      delay={{ show: 150, hide: 300 }}
+                      lat={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLat)}
+                      lng={Number(data?.stop_markers[direction][stopKey].stop_data?.stopLon)}
+                      overlay={
+                        <Tooltip className={styles.toolTipMap}>
+                          <button className={styles.closeButton}>x</button>
+                          <div>
+                            <h4>{data?.stop_markers[direction][stopKey].stop_data?.stopName} - Stop {data?.stop_markers[direction][stopKey].stop_data?.stopId}</h4>
+                            {getNextStop(data?.stop_markers[direction][stopKey].stop_data) && <div><strong>Headed to {getNextStop(data?.stop_markers[direction][stopKey].stop_data)}</strong></div>}
+                            {data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label ?
+                              <Table className="d-table" striped bordered hover responsive>
+                                <thead>
+                                  <tr>
+                                    <th className="col-2">Bus</th>
+                                    <th className="col-3">ETA</th>
+                                    <th className="col-7">Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                    <td className="col-7">{
+                                      Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.departure_delay) > 60 ? (
+                                        <div className={styles.datapointLate}>
+                                          Late
+                                        </div>
+                                      ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.departure_delay) < -60
+                                        ? (
+                                          <div className={styles.datapointEarly}>
+                                            Early
+                                          </div>
+                                      ) : (
+                                        <div className={styles.datapointOnTime}>
+                                          On Time
+                                        </div>
+                                      )
+                                    }</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.vehicle_label}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                    <td className="col-7">{
+                                      Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) > 60 ? (
+                                        <div className={styles.datapointLate}>
+                                          Late
+                                        </div>
+                                      ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) < -60
+                                        ? (
+                                          <div className={styles.datapointEarly}>
+                                            Early
+                                          </div>
+                                      ) : (
+                                        <div className={styles.datapointOnTime}>
+                                          On Time
+                                        </div>
+                                      )
+                                    }</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.vehicle_label}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                    <td className="col-7">{
+                                      Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) > 60 ? (
+                                        <div className={styles.datapointLate}>
+                                          Late
+                                        </div>
+                                      ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) < -60
+                                        ? (
+                                          <div className={styles.datapointEarly}>
+                                            Early
+                                          </div>
+                                      ) : (
+                                        <div className={styles.datapointOnTime}>
+                                          On Time
+                                        </div>
+                                      )
+                                    }</td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            : <h4 className="text-center">End of the Line</h4>}
+                          </div>
+                        </Tooltip>
+                      }
+                    >
+                      <div className={getDatapoint(stopKey, true)}
+                      >
+                        {getDatapoint(stopKey)}
+                      </div>
+                    </OverlayTrigger>
+                  )
+                })}
+              </GoogleMapReact>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
       </div>
       <Container className={styles.routesWrapper}>
         <Row>
@@ -279,7 +309,7 @@ const RealTimeArrivals = () => {
                   </Row>
                 </Col>
                 <Col className={styles.growOnMobile} style={{ minWidth: '300px' }}>
-                  <div className="w-100"><strong className={styles.strong}>View Next Arrival As:</strong></div>
+                  <div className="w-100"><strong className={styles.strong}>View Next Departure As:</strong></div>
                   <Row className={styles.formCheckRow}>
                     <Form.Check
                       type="radio"
@@ -292,8 +322,8 @@ const RealTimeArrivals = () => {
                     />
                     <Form.Check
                       type="radio"
-                      label="Est. Departure Time"
-                      aria-label="Est. Departure Time"
+                      label="Departure Time"
+                      aria-label="Departure Time"
                       value="departure"
                       onClick={() => setView('departure')}
                       checked={view === 'departure'}
@@ -355,7 +385,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delay <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormatted.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormatted.toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                             {waitTimeNext && (
@@ -364,7 +394,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delayNext <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedNext.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedNext.toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                             {waitTimeLast && (
@@ -373,7 +403,7 @@ const RealTimeArrivals = () => {
                                 ? styles.lateArrivalTag
                                 : delayLast <= -60
                                   ? styles.earlyArrivalTag
-                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedLast.toFormat('h:mm a')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{departureTimeFormattedLast.toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
                               </div>
                             )}
                           </Col>
@@ -396,16 +426,16 @@ const RealTimeArrivals = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="order-1 order-xl-5 mb-4" xs="12" xl="4">
+          <Col className="order-1 order-xl-5 mb-4 px-0" xs="12" xl="4">
             <div className={styles.legend}>
-              <div className={styles.legendTitle}>Arrivals Info &amp; Legend</div>
+              <div className={styles.legendTitle}>Departures Info &amp; Legend</div>
               <div className="d-flex mb-3">
                 <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
                 <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>
                 <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.lateArrivalTag}><Image alt="Late" className={styles.indicator} src={circleExclamation} />Late<Image alt="Late" className={styles.shape} src={symbolRed} /></div>
               </div>
               <div className={styles.legendText}>
-                <div className="mb-4">Estimated arrival times are based on real-time data.</div>
+                <div className="mb-4">Estimated departure times are based on real-time data.</div>
                 <div>The times listed correspond to a bus that is currently on this route.</div>
               </div>
             </div>
@@ -416,4 +446,4 @@ const RealTimeArrivals = () => {
   ) : <div className="mt-5 text-center" aria-busy="true"><h2>Loading Real Time Information...</h2><Spinner style={{ width: '10rem', height: '10rem' }} className={styles.spinner} variant="success" /></div>
 }
 
-export default RealTimeArrivals;
+export default RealTimeDepartures;

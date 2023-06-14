@@ -2,3 +2,13 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.mapAccordionHeader .card-header {
+  background-color: #F1F3F6;
+  border: 1px solid rgba(209, 210, 214, 1);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 165%;
+  color: #003087;
+  padding: 0 !important;
+  height: 53px;
+}

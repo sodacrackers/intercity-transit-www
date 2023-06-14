@@ -108,11 +108,6 @@
   height: 120px;
 }
 
-.p-0-10 {
-  padding: 0 10px !important;
-  margin: 0 auto 10px !important
-}
-
 button.alerts-collapse:focus, button.alerts-collapse:active
 button.alerts-collapse figure:focus, button.alerts-collapse figure:hover, button.alerts-collapse figure:active,
 button.alerts-collapse figure:focus::before, button.alerts-collapse figure:hover::before, button.alerts-collapse figure:active::before {
