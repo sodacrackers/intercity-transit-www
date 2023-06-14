@@ -19,10 +19,6 @@ elements: |-
     markup:
       '#type': webform_markup
       '#markup': |-
-        <h2>COVID-19 Vaccination Requirement</h2>
-
-        <p>All Intercity Transit employees, volunteers and interns are required to be fully vaccinated as a condition of employment or participation.</p>
-
         <h2>Driver Eligibility Requirements</h2>
 
         <ul>

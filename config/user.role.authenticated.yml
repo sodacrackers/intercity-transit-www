@@ -5,6 +5,7 @@ dependencies:
   module:
     - contact
     - fontawesome
+    - google_analytics
     - media
     - paragraphs_type_permissions
     - search
@@ -23,6 +24,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'access user contact forms'
+  - 'opt-in or out of google analytics tracking'
   - 'search content'
   - 'use advanced search'
   - 'view media'

@@ -1,4 +1,4 @@
-uuid: 4235103a-33f9-4b8c-8575-ea1d331663ef
+uuid: 8ddf1269-4c6f-4bfb-9975-3e7dbb6d4449
 langcode: en
 status: true
 dependencies:
@@ -9,21 +9,21 @@ dependencies:
     - views
   theme:
     - transit
-id: views_block__accordion_addon_block_1
+id: views_block__accordion_addon_block_3
 theme: transit
 region: content
 weight: 0
 provider: null
-plugin: 'views_block:accordion_addon-block_1'
+plugin: 'views_block:accordion_addon-block_3'
 settings:
-  id: 'views_block:accordion_addon-block_1'
-  label: 'Construction Update'
+  id: 'views_block:accordion_addon-block_3'
+  label: ''
   label_display: '0'
   provider: views
-  views_label: 'Construction Update'
+  views_label: ''
   items_per_page: none
 visibility:
   request_path:
     id: request_path
     negate: false
-    pages: "/construction/ust-project\r\n"
+    pages: /Construction/MWPR-improvements

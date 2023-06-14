@@ -23,7 +23,7 @@ elements: |-
         '#type': container
         preferred_name:
           '#type': textfield
-          '#title': 'Preferred Name'
+          '#title': 'Preferred Full Name'
           '#required': true
         pronouns:
           '#type': textfield
@@ -64,7 +64,7 @@ elements: |-
         '#options': yes_no
     mechanic_skills:
       '#type': textarea
-      '#title': 'Please tell us about your bike mechanic skills.'
+      '#title': 'Please tell us about your bike mechanic skills. (No mechanic experience is required to volunteer with us.)'
     bicycle_skills:
       '#type': textarea
       '#title': 'Please tell us about your bicycle skills. Are you comfortable riding on the road?'
@@ -74,6 +74,9 @@ elements: |-
     reasons_to_volunteer:
       '#type': textarea
       '#title': 'What are some of the reasons you would like to volunteer with us?'
+    accomodations_requirements:
+      '#type': textarea
+      '#title': 'Do you require any accommodations to be successful while volunteering with us? '
     volunteer_opportunities:
       '#type': checkboxes
       '#title': 'Which volunteer opportunities interest you? Check all that apply.'
@@ -94,24 +97,39 @@ elements: |-
   background_check:
     '#type': webform_wizard_page
     '#title': 'Background Check'
+    background_check_heading:
+      '#type': webform_markup
+      '#display_on': both
+      '#markup': '<h4><u>BACKGROUND CHECK</u></h4>'
     bg_check_markup:
       '#type': webform_markup
-      '#markup': '<h3>For you to volunteer with the Walk N Roll, we need to conduct a Washington State Patrol (WSP) background check.</h3>'
+      '#markup': '<h3>For you to volunteer with the Walk N Roll, we need to conduct a background check.</h3>'
     permit_bg_check:
       '#type': radios
-      '#title': 'Do you permit Walk N Roll to conduct a WSP background check?'
+      '#title': 'Do you permit Walk N Roll to conduct a background check?'
       '#options': yes_no
+    accurate_email_notification:
+      '#type': webform_markup
+      '#states':
+        visible:
+          ':input[name="permit_bg_check"]':
+            value: 'Yes'
+      '#display_on': both
+      '#markup': '<h4> <font color=''red''>You will receive an email from Accurate requesting information regarding a background check.</font></h4>'
     flexbox_name:
       '#type': webform_flexbox
+      '#attributes':
+        style: 'display: none'
       full_legal_name:
         '#type': textfield
         '#title': 'Full Legal Name'
-        '#required': true
       alias_maiden_names:
         '#type': textfield
         '#title': 'Alias/Maiden Names'
     flexbox_dob_race_sex:
       '#type': webform_flexbox
+      '#attributes':
+        style: 'display: none'
       date_of_birth:
         '#type': date
         '#title': 'Date of Birth'
@@ -119,20 +137,19 @@ elements: |-
         '#date_date_max': '-5years'
         '#datepicker': true
         '#date_date_format': m/d/Y
-        '#required': true
       sex:
         '#type': textfield
         '#title': Sex
-        '#required': true
       race:
         '#type': textfield
         '#title': Race
-        '#required': true
     convicted_crime:
       '#type': radios
       '#title': 'Have you ever been convicted of a crime?'
       '#description': 'If so, please explain. Answering &ldquo;Yes&rdquo; will not necessarily prevent you from volunteering with Walk N Roll.'
       '#options': yes_no
+      '#attributes':
+        style: 'display: none'
     convinction_crime_explanation:
       '#type': textarea
       '#title': 'If “Yes,” please explain:'
@@ -140,36 +157,16 @@ elements: |-
         visible:
           ':input[name="convicted_crime"]':
             value: 'Yes'
+      '#wrapper_attributes':
+        style: 'display: none'
+    photo_permission:
+      '#type': webform_markup
+      '#display_on': both
+      '#markup': '<h4><u>PHOTO PERMISSION</u></h4>'
     approve_use_name_image:
       '#type': radios
       '#title': 'Do you grant Walk N Roll permission to use your name and image in Walk N Roll publications and promotional materials (e.g. Walk N Roll website, newsletter, videos, social media, etc.)?'
       '#options': yes_no
-    markup_01:
-      '#type': webform_markup
-      '#display_on': both
-      '#markup': '<h4><u>VOLUNTEER AGREEEMENT</u></h4>'
-    agreement_checkboxes:
-      '#type': checkboxes
-      '#title': 'I will make my best effort to:'
-      '#options':
-        'Be reliable. Please be there as scheduled or call to cancel.': 'Be reliable. Please be there as scheduled or call to cancel.'
-        'Sign the volunteer log.': 'Sign the volunteer log.'
-        'Be a positive role model for others in the Walk N Roll space.': 'Be a positive role model for others in the Walk N Roll space.'
-        'Follow the program rules and assist others in doing the same.': 'Follow the program rules and assist others in doing the same.'
-        'Ask for help when I need it.': 'Ask for help when I need it.'
-        'Report any problems to staff.': 'Report any problems to staff.'
-        'Conduct personal bike repairs only at appropriate times and by special arrangement with staff.': 'Conduct personal bike repairs only at appropriate times and by special arrangement with staff.'
-    bg_check_approval:
-      '#type': webform_markup
-      '#markup': |-
-        <h5>The information about me in this application is true and complete. I agree that any misstatements or omissions as to material fact will constitute the grounds for unfavorable consideration or dismissal from volunteering with Walk N Roll.</h5>
-
-        <h5>I am aware that a criminal background check will be performed upon submittal of this volunteer application.</h5>
-    bg_check_agreement_checkbox:
-      '#type': checkbox
-      '#title': 'By checking this box you confirm that you” HAVE READ THIS AGREEMENT, FULLY UNDERSTAND ITS TERMS, AND AGREE TO IT.'
-      '#required': true
-      '#required_error': 'Agreement must be read and approved to continue'
   emergency_contact_and_waiver:
     '#type': webform_wizard_page
     '#title': 'Emergency Contact and Waiver'
@@ -207,13 +204,56 @@ elements: |-
         I RELEASE, COVENANT NOT TO SUE, and HOLD HARMLESS Intercity Transit, its administrators, directors, agents, officers, members, volunteers, and employees, other participants, or any sponsors (&ldquo;Releasees&rdquo;) for any and all liability related to Activities caused or alleged to be caused in whole or in part by the Releasees. I further agree that if, despite this release, I, or anyone on my behalf, make such claim against any of the Releasees, I will indemnify and hold harmless the Releasees from any and all costs they incur as the result of such claim including, but not limited to, attorney fees and costs.<br />
         <br />
         In case of an emergency involving actual or possible illness or injury to myself, I hereby authorize and give permission to any physician, hospital, health care provider, or other medical personnel selected by the staff of Intercity Transit to provide prompt medical treatment and arrange necessary related transportation. I agree that once I am in the care of medical personnel or a medical facility, Intercity Transit shall have no further responsibility me and I agree to pay all costs associated with such medical care and transportation. I agree to allow Intercity Transit staff to dispense medications to me as I request.<br />
-        As a volunteer, I will follow the direction of Intercity Staff during any volunteer activities, and acknowledge that I may be asked to leave if my actions jeopardize others, violate policy, or otherwise detract from any program operations and activities.<br />
+        <br />
+        As a volunteer, I will follow the direction of Intercity Transit Staff during any volunteer activities, and acknowledge that I may be asked to leave if my actions jeopardize others, violate policy, or otherwise detract from any program operations and activities.<br />
         <br />
         It is my responsibility to ride and behave safely at all times. Practice safe work habits and safe riding habits. Always wear a helmet when riding to, from or on Intercity Transit programs. I HAVE READ THIS AGREEMENT, FULLY UNDERSTAND ITS TERMS, AND AGREE TO IT.
     waiver_agreement_checkbox:
       '#type': checkbox
-      '#title': 'By checking this box you confirm that you” HAVE READ THIS AGREEMENT, FULLY UNDERSTAND ITS TERMS, AND AGREE TO IT.'
+      '#title': 'By checking this box you confirm that you HAVE READ THIS WAIVER, FULLY UNDERSTAND ITS TERMS, AND AGREE TO IT.'
       '#required': true
+    markup_01:
+      '#type': webform_markup
+      '#display_on': both
+      '#markup': '<h4><u>VOLUNTEER AGREEEMENT</u></h4>'
+    agreement_checkboxes:
+      '#type': checkboxes
+      '#title': 'I will make my best effort to:'
+      '#options':
+        'Be reliable. Please be there as scheduled or call to cancel.': 'Be reliable. Please be there as scheduled or call to cancel.'
+        'Sign the volunteer log.': 'Sign the volunteer log.'
+        'Be a positive role model for others in the Walk N Roll space.': 'Be a positive role model for others in the Walk N Roll space.'
+        'Follow the program rules and assist others in doing the same.': 'Follow the program rules and assist others in doing the same.'
+        'Ask for help when I need it.': 'Ask for help when I need it.'
+        'Report any problems to staff.': 'Report any problems to staff.'
+        'Conduct personal bike repairs only at appropriate times and by special arrangement with staff.': 'Conduct personal bike repairs only at appropriate times and by special arrangement with staff.'
+      '#attributes':
+        style: 'display: none'
+    bg_check_approval:
+      '#type': webform_markup
+      '#wrapper_attributes':
+        style: 'display: none'
+      '#markup': |-
+        <h5>The information about me in this application is true and complete. I agree that any misstatements or omissions as to material fact will constitute the grounds for unfavorable consideration or dismissal from volunteering with Walk N Roll.</h5>
+
+        <h5>I am aware that a criminal background check will be performed upon submittal of this volunteer application.</h5>
+    agreement_terms:
+      '#type': webform_markup
+      '#display_on': both
+      '#markup': |-
+        <h5>The Walk N Roll Bike Shop is an educational space. Volunteers contribute to the creation of a safe and respectful learning environment by following our shop guidelines:</h5>
+        <ul>
+          <li>We respect people&#39;s background and identities, including their names and pronouns.</li>
+        	<li>We allow everyone to learn about bikes and tools at their own pace. We ask for permission before working on someone&#39;s project or taking their tools.</li>
+        	<li>We clean and return all tools to their proper place at the end of each session.</li>
+        	<li>We ask for help when we need it.</li>
+        	<li>We communicate any problems to staff.</li>
+        </ul>
+    bg_check_agreement_checkbox:
+      '#type': checkbox
+      '#title': 'I understand that my participation in the program is contingent upon my contribution to these guidelines. Check this box to confirm HAVE READ these guidelines and FULLY UNDERSTAND ITS TERMS, AND AGREE TO IT.'
+      '#required': true
+      '#required_error': 'Agreement must be read and approved to continue'
 css: ''
 javascript: ''
 settings:

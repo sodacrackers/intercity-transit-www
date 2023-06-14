@@ -9,7 +9,7 @@ dependencies:
 id: intercity_transit
 label: 'Intercity Transit'
 weight: 0
-container_id: GTM-WRG7FZL
+container_id: GTM-MGSNSGD
 data_layer: dataLayer
 include_classes: false
 whitelist_classes: |-
@@ -42,4 +42,27 @@ status_toggle: 'exclude listed'
 status_list: |-
   403
   404
-conditions: {  }
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles: {  }
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+    bundles: {  }
+  'entity_bundle:webform_submission':
+    id: 'entity_bundle:webform_submission'
+    negate: false
+    context_mapping:
+      webform_submission: '@webform.webform_submission_route_context:webform_submission'
+    bundles: {  }
+  webform:
+    id: webform
+    negate: false
+    context_mapping: {  }
+    webforms: {  }
