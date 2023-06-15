@@ -125,6 +125,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
                         'title' => t('Service Alerts'),
                         'link' => [
                             'title' => 'View Alerts',
+                            'mobile_title' => 'View Alerts',
                             'url' => '/rider-alerts'
                         ],
                         'color' => '#6CACDE',
@@ -133,6 +134,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
                         'title' => t('Planning a Trip?'),
                         'link' => [
                             'title' => 'Go to Trip Planner',
+                            'mobile_title' => 'Trip Planner',
                             'url' => '/plan-your-trip/trip-planner'
                         ],
                         'color' => '#33957F',
@@ -141,6 +143,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
                         'title' => t('Stops And Stations'),
                         'link' => [
                             'title' => 'Find a Stop',
+                            'mobile_title' => 'View Stops',
                             'url' => '/stops'
                         ],
                         'color' => '#003087',
