@@ -437,8 +437,25 @@
     padding-right: 8px !important;
   }
 
+  .growOnMobile {
+    width: 100%;
+    min-width: 100% !important;
+  }
+
+  html body .container.routesWrapper {
+    width: 100% !important;
+  }
+
   .right {
-    justify-content: left !important;
+    padding-right: 20px !important;
+  }
+
+  .timepointSwitch, .infoIcon {
+    display: none;
+  }
+
+  .hideOnMobile {
+    display: none;
   }
 
   .filterSection {
@@ -454,11 +471,30 @@
   }
   
   .formCheckLeft {
-    margin-left: 20px !important;
+    padding-left: 28px !important;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .formCheck label,
+  .formCheckLeft label {
+    font-size: 13px !important;
+  }
+  .strong {
+    font-size: 14px !important;
+  }
+  .growOnMobile {
+    width: 50% !important;
+    min-width: 50% !important;
+    display: inline-block !important;
+  }
+  .formCheckLeft, .formCheck {
+   width: 100% !important;
+   padding-left: 28px !important;
+  }
+  .spinner {
+    margin-top: 150px;
+  }
   .mapContainer {
     padding-left: 6px;
     padding-right: 6px;
@@ -500,14 +536,6 @@
   .stopText {
     padding-left: 0 !important;
   }
-  
-  .timepointSwitch, .infoIcon {
-    display: none;
-  }
-
-  .hideOnMobile {
-    display: none;
-  }
 
   .stopInfo, .empty {
     margin-left: 20px !important;
@@ -542,11 +570,6 @@
     margin-left: 8px !important;
     padding: auto;
   }
-
-  .growOnMobile {
-    width: 100%;
-    min-width: 100% !important;
-  }
 }
 
 .mountedStyle {
@@ -568,6 +591,7 @@
   border: none;
   float: right;
 }
+
 
 @keyframes inAnimation {
   0% {

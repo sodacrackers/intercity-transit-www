@@ -10,7 +10,7 @@
 {% set width_class = class_map[additional_blocks|length] %}
 <section class="bgimage">
     <div class="row h-full">
-        <div class="col-xs-12 {{ width_class }} h-full">
+        <div class="col-xs-12 {{ width_class }}">
             <div class="card vcenter">
                 <h4 class="card-title text-white">Find a Schedule</h4>
                 <select id="route-change">
@@ -22,8 +22,13 @@
             </div>
         </div>
         {% for single_block in additional_blocks %}
-            <div class="{{ width_class }} h-full hide-mobile">
+            <div class="{{ width_class }} hide-mobile">
                 {% include '@it_route_trip_tools/blocks/header-block.html.twig' with single_block %}
+            </div>
+        {% endfor %}
+        {% for single_block in additional_blocks %}
+            <div class="col-xs-4 show-mobile">
+                {% include '@it_route_trip_tools/blocks/header-block-mobile.html.twig' with single_block %}
             </div>
         {% endfor %}
     </div>

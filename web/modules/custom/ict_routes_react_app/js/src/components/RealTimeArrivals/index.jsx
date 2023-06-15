@@ -117,10 +117,27 @@ const RealTimeDepartures = () => {
   }
 
   React.useEffect(() => {
+    setSanitizedData({});
     const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
     setLoading(true);
     getData(apiUrl);
-  }, [direction, view])
+  }, [direction])
+
+  React.useEffect(() => {
+    if (!data || !Object.keys(data).length) {
+      const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
+      setLoading(true);
+      getData(apiUrl);
+    }
+  }, [view])
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
+      getData(apiUrl);
+    }, 30000)
+    return () => clearInterval(intervalId);
+  }, [])
 
   return Object.keys(data).length && !loading ? (
     <>
@@ -341,12 +358,12 @@ const RealTimeDepartures = () => {
                     const stopTimes = stopObj?.stop_times;
                     const formatDepartureTime = (index, delayAmount, changeDay = false) => {
                       return changeDay
-                        ? DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index].departureTime, 'h:mm a').plus({days: 1}).toMillis() + (delayAmount * 1000))
-                        : DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index].departureTime, 'h:mm a').toMillis() + (delayAmount * 1000));
+                        ? sanitizedData[Object.keys(sanitizedData)[stopIndex]][index]?.departureTime && DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index]?.departureTime, 'h:mm a').plus({days: 1}).toMillis() + (delayAmount * 1000))
+                        : sanitizedData[Object.keys(sanitizedData)[stopIndex]][index]?.departureTime && DateTime.fromMillis(DateTime.fromFormat(sanitizedData[Object.keys(sanitizedData)[stopIndex]][index]?.departureTime, 'h:mm a').toMillis() + (delayAmount * 1000));
                     }
                     const isTimepoint = Number(data.stop_markers[direction][stopId].stop_data.timepoint) > 0;
                     const now = DateTime.now().toMillis();
-                    const firstItemIndex = sanitizedData[Object.keys(sanitizedData)[stopIndex]]?.findIndex((item) => DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item.departureTime, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
+                    const firstItemIndex = sanitizedData[Object.keys(sanitizedData)[stopIndex]]?.findIndex((item) => item?.departureTime && DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromFormat(item?.departureTime, 'h:mm a').toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis());
                     const delay = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[0]]?.departure_delay) | 0;
                     const delayNext = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[1]]?.departure_delay) | 0;
                     const delayLast = Number(data.stop_markers[direction][stopId]?.real_time[Object.keys(data.stop_markers[direction][stopId]?.real_time)[2]]?.departure_delay) | 0;
@@ -365,20 +382,20 @@ const RealTimeDepartures = () => {
                           ? formatDepartureTime(0, delayLast, true)
                           : formatDepartureTime(1, delayLast, true)
                       : formatDepartureTime(2, delayLast, true);
-                    const waitTime = (departureTimeFormatted.toMillis() - now) / 60000;
-                    const waitTimeNext = (departureTimeFormattedNext.toMillis() - now) / 60000;
-                    const waitTimeLast = (departureTimeFormattedLast.toMillis() - now) / 60000;
+                    const waitTime = departureTimeFormatted && (departureTimeFormatted.toMillis() - now) / 60000;
+                    const waitTimeNext = departureTimeFormattedNext && (departureTimeFormattedNext.toMillis() - now) / 60000;
+                    const waitTimeLast = departureTimeFormattedLast && (departureTimeFormattedLast.toMillis() - now) / 60000;
                     const waitTimeString = (waitTime < 60 && waitTime > -60) ? `${Math.floor(waitTime)} min` : `${Math.floor(waitTime / 60)} hr ${Math.floor(waitTime % 60)} min`;
                     const waitTimeStringNext = (waitTimeNext < 60 && waitTimeNext > -60) ? `${Math.floor(waitTimeNext)} min` : `${Math.floor(waitTimeNext / 60)} hr ${Math.floor(waitTimeNext % 60)} min`;
                     const waitTimeStringLast = (waitTimeLast < 60 && waitTimeLast > -60) ? `${Math.floor(waitTimeLast)} min` : `${Math.floor(waitTimeLast / 60)} hr ${Math.floor(waitTimeLast % 60)} min`;
                     return (
                       <div className={(!isTimepoint && nonTimepointsHidden) ? styles.unmountedStyle : styles.mountedStyle} >
                         <Row className={isTimepoint ? styles.timepoint : styles.stopInfo}>
-                          <Col md="6" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
+                          <Col md={isTimepoint && "6"} lg="6" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
                             {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
                             <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
                           </Col>
-                          <Col md="6" className={isTimepoint ? styles.timepointRight : styles.right}>
+                          <Col md={isTimepoint && "6"} lg="6" className={isTimepoint ? styles.timepointRight : styles.right}>
                             {waitTime && (
                               <div className={
                                 delay >= 60 
