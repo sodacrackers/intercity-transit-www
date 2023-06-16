@@ -279,9 +279,9 @@ const RealTimeDepartures = () => {
         </Accordion>
       </div>
       <Container className={styles.routesWrapper}>
-        <Row>
+        <Row className={styles.routesRow}>
           <Col className="order-5 order-xl-1 px-0" xl="8" xs="12">
-            <Row>
+            <Row className={styles.noMarginsOnMobile}>
               <Row className={styles.filterSection}>
                 <Col className={styles.hideOnMobile} style={{ minWidth: '25%', paddingLeft: 0 }}>
                   <div className={styles.timepointSwitch}>
@@ -444,16 +444,19 @@ const RealTimeDepartures = () => {
             </Row>
           </Col>
           <Col className="order-1 order-xl-5 mb-4 px-0" xs="12" xl="4">
-            <div className={styles.legend}>
-              <div className={styles.legendTitle}>Departures Info &amp; Legend</div>
-              <div className="d-flex mb-3">
-                <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
-                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>
-                <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.lateArrivalTag}><Image alt="Late" className={styles.indicator} src={circleExclamation} />Late<Image alt="Late" className={styles.shape} src={symbolRed} /></div>
-              </div>
-              <div className={styles.legendText}>
-                <div className="mb-4">Estimated departure times are based on real-time data.</div>
-                <div>The times listed correspond to a bus that is currently on this route.</div>
+            <div className={styles.stickyWrapper}>
+              <div className={styles.void} />
+              <div className={styles.legend}>
+                <div className={styles.legendTitle}>Departures Info &amp; Legend</div>
+                <div className="d-flex mb-3">
+                  <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
+                  <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>
+                  <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.lateArrivalTag}><Image alt="Late" className={styles.indicator} src={circleExclamation} />Late<Image alt="Late" className={styles.shape} src={symbolRed} /></div>
+                </div>
+                <div className={styles.legendText}>
+                  <div className="mb-4">Estimated departure times are based on real-time data.</div>
+                  <div>The times listed correspond to a bus that is currently on this route.</div>
+                </div>
               </div>
             </div>
           </Col>
