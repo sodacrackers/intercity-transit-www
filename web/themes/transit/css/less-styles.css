@@ -46,7 +46,6 @@ html body {
   /* Mobile header styles */
 }
 html body .dialog-off-canvas-main-canvas {
-  overflow-x: hidden;
   min-height: 800px;
 }
 @media screen and (min-width: 1200px) {
@@ -57,7 +56,7 @@ html body .dialog-off-canvas-main-canvas {
 }
 @media screen and (max-width: 1199px) {
   html body .container {
-    width: calc(100% - 40px) !important;
+    width: 100% !important;
     margin: 0 auto !important;
   }
 }
