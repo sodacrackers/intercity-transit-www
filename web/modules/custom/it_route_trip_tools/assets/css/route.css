@@ -782,3 +782,15 @@ header.navbar.navbar-default {
   color: #FFFFFF;
   display: grid;
 }
+
+#alertsModal.modal.fade.in {
+  background-color: rgba(200, 200, 200, 0.8) !important;
+  opacity: 1 !important;
+}
+#alertsModal.modal.fade.in .modal-dialog, #alertsModal.modal.fade.in .modal-dialog .modal-content {
+  background-color: white !important;
+  opacity: 1 !important;
+}
+#alertsModal.modal.fade.in .modal-dialog {
+  top: 20%;
+}
