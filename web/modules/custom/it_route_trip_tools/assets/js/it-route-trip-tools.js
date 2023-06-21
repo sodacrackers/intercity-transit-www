@@ -234,18 +234,15 @@
 			$('select#route-change').once().change(function() {
 				window.location.href = '/plan-your-trip/routes/' + $(this).val();
 			});
-			$('.outbound-panel').on('hide.bs.collapse', function () {
+			$('.outbound-panel').on('click', function () {
 				let currentTitle = $('.outbound-route-map-toggle').html();
 				$('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-			})
-			$('.outbound-panel').on('show.bs.collapse', function () {				
-				let currentTitle = $('.outbound-route-map-toggle').html();
-				$('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
+				$('#outbound-map-body').toggleClass('hide').toggleClass('show');
 				if (!$(this).hasClass('already-opened')) {
 					initMap_outbound();
 					$(this).addClass('already-opened');
 				}
-			})
+			});
 
 			$('.panel-title .glyphicon').once('bindclick').on('click', function (event) {
 				$(event.target).closest('.outbound-panel').find('a[data-toggle]').click();
