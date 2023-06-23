@@ -493,7 +493,7 @@ class Gtfs {
             $vehicle_id = $entity['vehicle']['vehicle']['id'];
             $latitude = $entity['vehicle']['position']['latitude'];
             $longitude = $entity['vehicle']['position']['longitude'];
-            $bearing = $entity['vehicle']['position']['bearing'];
+            $bearing = $entity['vehicle']['position']['bearing'] ?? '';
             $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
           }
         }

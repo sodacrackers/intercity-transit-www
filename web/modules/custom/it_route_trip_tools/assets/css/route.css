@@ -323,26 +323,6 @@ label.form-check-label {
   padding-bottom: 20px;
 }
 
-@media (max-width: 991px) {
-  .p-0-10 {
-    width: 100% !important;
-  }
-}
-
-@media (max-width: 767px) {
-  #ict-routes-react-app > .container,
-  .region-content,
-  .region-content .container {
-    padding: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-  }
-  .p-0-10 {
-    width: 100% !important;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-  }
-}
 
 #download-link {
   justify-content: center;
@@ -485,6 +465,32 @@ label.form-check-label {
 }
 
 @media (max-width: 991px) {
+  .p-0-10 {
+    width: 100% !important;
+  }
+
+  #collapsefilters {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgb(209, 210, 214);
+  }
+
+  #filters {
+    margin-bottom: 15px;
+  }
+
+  #route-info-header {
+    margin-bottom: 15px;
+  }
+
+  #filters h5 {
+    margin-top: 5px;
+  }
+
+  #filters h5.mb-0 {
+    padding-left: 0;
+  }
+
   .main-container {
     height: 20px;
   }
@@ -540,9 +546,7 @@ label.form-check-label {
 
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
     border-radius: 4px;
-    padding-right: 0;
-    padding-left: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
     margin: 0 auto;
   }
   #filter-route {
