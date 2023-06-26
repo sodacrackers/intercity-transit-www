@@ -14,6 +14,7 @@
 
 .grey-overlay {
   background: rgba(0, 0, 0, 0.5);
+  padding: 80px auto !important;
 }
 
 .vcenter {
@@ -79,18 +80,24 @@
   background-position-y: 50%;
 }
 
+#search-api-page-block-form-search {
+  margin-right: -15px !important;
+}
+
 .align-center {
   text-align: center;
 }
 
-.alerts-right-panel {
-  padding-right: 65px !important;
+.region-header-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .region-header-mid {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  background: url('/modules/custom/it_route_trip_tools/assets/images/header hero.jpeg');
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+  background: url('/modules/custom/it_route_trip_tools/assets/images/intercity-hero.jpeg');
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
@@ -105,7 +112,7 @@
 
 .mid-height {
   height: 350px;
-  background-color: #F0F5FA;
+  background: #F1F3F6;
   margin-bottom: 25px;
 }
 
@@ -115,10 +122,21 @@
 }
 
 .hide-mobile .card {
-  padding: 20px !important;
-  width: 225px;
-  height: 120px;
+  padding: 24px !important;
+  height: 130px;
   margin-top: 140px !important;
+  width: 245px;
+  text-align: center;
+}
+
+.hide-mobile .card-title {
+  margin-bottom: 12px;
+}
+
+.hide-mobile .card-link {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 150%;
 }
 
 button.alerts-collapse:focus, button.alerts-collapse:active
@@ -136,8 +154,8 @@ button.alerts-collapse figure {
   width: 24px;
 }
 
-button.alerts-collapse figure:before {
-  content: "-";
+button.alerts-collapse:not(.collapsed) figure:before {
+  content: "-" !important;
   font-size: 22px;
   display: block;
   position: relative;
@@ -147,6 +165,11 @@ button.alerts-collapse figure:before {
 
 button.alerts-collapse.collapsed figure:before {
   content: "+" !important;
+  font-size: 22px;
+  display: block;
+  position: relative;
+  top: -4px;
+  text-decoration: none !important;
 }
 
 @media (min-width: 992px) {

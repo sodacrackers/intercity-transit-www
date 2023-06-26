@@ -1,18 +1,58 @@
-.routes-title {
-
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 160%;
-
+.routes-h2 {
+  font-weight: 700 !important;
+  font-size: 24px !important;
+  line-height: 160% !important;
   color: #0D1A29 !important;
+  margin-top: 32px;
+  margin-bottom: 15px;
+}
 
+.container.p-0-10 {
+  padding: 0 10px !important;
+  margin: 0 auto 30px !important;
+}
+
+.all-routes-route-map-toggle {
+  padding: 15px 17px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  border: 1px solid #D1D2D6;
+  background: #003087;
+  height: 53px;
+  display: inline-flex;
+  width: 53px;
+  margin-top: -11px;
+}
+
+#accordion .panel-title {
+  height: 53px;
+  margin-left: -30px !important;
+  margin-right: -45px !important;
+  display: flex;
+}
+
+.show-map {
+  display: inline-flex;
+  padding-left: 20px;
+}
+
+.chevron-down {
+  background-image: url('../images/chevron-down.svg');
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: 350ms ease all;
+  -moz-transition: 350ms ease all;
+  -o-transition: 350ms ease all;
+  transition: 350ms ease all;
 }
 
 .card-arrow {
   color: #003087 !important;
   fill: currentColor;
   height: 15px;
+  margin-top: 6px;
 }
 
 .card-link {
@@ -24,16 +64,21 @@
   border: none !important;
 }
 
+.route-link {
+  padding: 13px 0px;
+  height: 100%;
+}
+
 .route-item {
-  border-bottom: 1px solid #D8E1F0;
+  border-bottom: 1px solid #D1D2D6;
   list-style-type: none;
-  padding-bottom: 15px !important;
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 56px;
 }
 
 .route-item-id, .route-item-alerts {
   padding: 5px 7px;
-  margin: 5px;
   border: 1px solid #D8E1F0;
   border-radius: 4px;
   font-style: normal;
@@ -42,6 +87,19 @@
   line-height: 135%;
   color: #000000;
 }
+
+.route-item-id {
+  margin: 0 15px 0 0;
+}
+
+.route-item-alerts {
+  margin: 0 0 0 15px;
+}
+
+.route-item a:hover, .route-item a:active {
+  text-decoration: none !important;
+}
+
 .route-item-id {
   background: #F1F3F6;
 }
@@ -54,7 +112,8 @@
   color: #003087;
 }
 
-.route-item-name:hover {
+.route-item:hover .route-item-name,
+.route-item:active .route-item-name {
   color: #347960;
 }
 
@@ -77,17 +136,43 @@
 }
 
 .alerts-collapse {
-  float: right;
-  padding: 0 !important;
+  position: absolute;
+  right: 5px;
+  margin-top: -20px;
+}
+
+.alerts-collapse:hover,
+.alerts-collapse:active {
+  text-decoration: none !important;
 }
 
 #accordion .card {
   background: #F1F3F6 !important;
   margin-top: 16px;
+  padding: 16px 0 16px 48px !important;
 }
 
 #accordion .card:hover {
   outline: 1px solid #347960;
+}
+
+#accordion .card .card-header h5 {
+  display: flex;
+}
+
+#accordion .card .card-header h5 span {
+  padding-right: 8px;
+  height: 100%;
+  align-items: center;
+}
+
+#accordion .card .card-header h5 span,
+#accordion .card .card-header h5 img {
+  display: inline-flex;
+}
+
+#accordion .collapse.in {
+  padding-right: 24px;
 }
 
 .card-body span, .card-body p {
@@ -135,7 +220,6 @@
 
 
 .maps .panel-title a, .maps .panel-title span {
-  color: black;
   font-weight: 500;
   font-size: 20px;
   line-height: 165%;
@@ -144,7 +228,6 @@
 }
 
 .maps .panel-title a:hover {
-  color: black;
   font-weight: 500;
   font-size: 20px;
   line-height: 165%;
@@ -163,10 +246,62 @@ span.map-toggle {
   color: white !important;
 }
 
+
 #all-routes-map {
   min-height: 600px;
 }
 
+body div#all-routes-map > div [style] {position: relative !important;}
+
 .panel-title .glyphicon {
   cursor: pointer;
+}
+
+.panel-container {
+  padding: 0 !important;
+}
+
+.alerts-right-panel {
+  padding: 0 32px 0 0 !important;
+}
+
+.alerts-left-panel {
+  padding: 0 0 0 32px !important;
+}
+
+@media (max-width: 1200px) {
+  html body .transit-header-top .search-block-form input#edit-keys {
+    width: calc(83% - 15px) !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .routes-page-content-container  {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .routes-page-content-container .alerts-left-panel {
+    padding: 0 !important;
+  }
+  .routes-page-content-container #accordion .card {
+    padding: 24px 32px !important;
+  }
+  #accordion .card .card-header h5 span {
+    flex-grow: 1;
+  }
+  #accordion .card .card-header h5 button {
+    right: -56px;
+  }
+  #accordion .card .card-header figure {
+    right: -32px;
+  }
+
+  .header-container {
+    padding-left: 0 !important;
+    margin-left: 15px !important;
+  }
+
+  #search-form, .search-api-page-block-form-search, .search-form__submit, .search-toggle {
+    display: none !important;
+  }
 }

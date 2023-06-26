@@ -6,17 +6,18 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places"
         defer></script>
 <div class="container-fluid">
-    <div class="col-xs-12 col-md-12" style="padding-left: 0; padding-right: 0; margin-top: 15px">
+    <div class="col-xs-12 col-md-12" style="padding-left: 0; padding-right: 0; margin-top: 15px; height: 53px; background: #F1F3F6;">
         <div class="panel-group panel-default maps" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel-heading" role="tab" id="all-routes-map-heading">
                 <h4 class="panel-title" style="position: relative;">
-                    <span class="glyphicon glyphicon-chevron-down"
-                          style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 50px; align-items: center; display: flex; justify-content: center; color: white;"></span>
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#all-routes-map-body"
                        aria-expanded="true" aria-controls="all-routes-map-body" class="all-routes-route-map-toggle"
-                       style="margin-left: 50px">
-                        Show Map
+                       onclick="document.getElementById('map-toggle').style.transform === 'rotate(180deg)' 
+                        ? document.getElementById('map-toggle').style.transform = 'rotate(0deg)' 
+                        : document.getElementById('map-toggle').style.transform = 'rotate(180deg)'">
+                        <span class="chevron-down" id="map-toggle" />
                     </a>
+                    <span class="show-map">Show Map</span>
                 </h4>
             </div>
             <div id="all-routes-map-body" class="panel-collapse collapse" role="tabpanel"
@@ -59,58 +60,60 @@
     </div>
 </div>
 </div>
-<div class="col-xs-12 col-md-6 alerts-right-panel">
-    <h2 class="routes-title">Select a Bus Route</h2>
-    <ul class="routes-container">
-        {% for route_id, route_options in routes_options %}
-            <li class="route-item">
-                <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
-                    <span class="route-item-id">{{ route_id }}</span>
-                    <span class="route-item-name">{{ route_options.name }}</span>
-                    {% if route_options.alerts > 0 %}
-                        <span class="route-item-alerts">
-                              <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts"
-                                   style="width: 20px"/>
-                              {{ route_options.alerts }}
-                          </span>
-                    {% endif %}
-                    <img class="card-arrow" style="float: right"
-                         src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="col-xs-12 col-md-6 alerts-left-panel">
-    <h2><span class="routes-title">Alerts <span class="hide-on-mobile">& Announcements</span></span>
-        <span style="float: right;">
-                <a class="card-link" href="{{ alert_view_all_link }}">View all alerts<img class="card-arrow"
-                                                                                          src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/></a>
-            </span>
-    </h2>
-    <div id="accordion">
-        {% for alert_id, alert in alert_options %}
-            <div class="card">
-                <div class="card-header" id="heading{{ loop.index }}">
-                    <h5 class="mb-0">
-                        <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.severity ? alert.severity : 'alert' }}.svg"
-                             style="margin-left: -30px; margin-right: 10px; width: 24px"/>
-                        <span class="alert-title">{{ alert.title }}</span>
-                        <button class="btn btn-link alerts-collapse collapsed" data-toggle="collapse"
-                                data-target="#collapse{{ loop.index }}" aria-expanded="true"
-                                aria-controls="collapse{{ loop.index }}">
-                            <figure />
-                        </button>
-                    </h5>
-                </div>
+<div class="container-fluid panel-container">
+  <div class="col-xs-12 col-md-6 alerts-right-panel">
+      <h2 class="routes-h2">Select a Bus Route</h2>
+      <ul class="routes-container">
+          {% for route_id, route_options in routes_options %}
+              <li class="route-item">
+                  <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
+                      <span class="route-item-id">{{ route_id }}</span>
+                      <span class="route-item-name">{{ route_options.name|split('-')[1] }}</span>
+                      {% if route_options.alerts > 0 %}
+                          <span class="route-item-alerts">
+                                <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts"
+                                    style="width: 20px"/>
+                                {{ route_options.alerts }}
+                            </span>
+                      {% endif %}
+                      <img class="card-arrow" style="float: right"
+                          src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/>
+                  </a>
+              </li>
+          {% endfor %}
+      </ul>
+  </div>
+  <div class="col-xs-12 col-md-6 alerts-left-panel">
+      <h2><span class="routes-h2">Alerts <span class="hide-on-mobile">& Announcements</span></span>
+          <span style="float: right;">
+                  <a class="card-link" href="{{ alert_view_all_link }}">View All Alerts<img class="card-arrow"
+                                                                                            src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/></a>
+              </span>
+      </h2>
+      <div id="accordion">
+          {% for alert_id, alert in alert_options %}
+              <div class="card">
+                  <div class="card-header" id="heading{{ loop.index }}">
+                      <h5 class="mb-0">
+                          <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.severity ? alert.severity : 'alert' }}.svg"
+                              style="margin-left: -30px; margin-right: 20px; width: 24px"/>
+                          <span class="alert-title">{{ alert.title }}</span>
+                          <button class="btn btn-link alerts-collapse collapse collapsed" style="position:relative;margin-right:20px;display: block; margin-top: 8px;" data-toggle="collapse"
+                                  data-target="#collapse{{ loop.index }}" aria-expanded="true"
+                                  aria-controls="collapse{{ loop.index }}">
+                              <figure />
+                          </button>
+                      </h5>
+                  </div>
 
-                <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
-                     data-parent="#accordion">
-                    <div class="card-body">
-                        {{ alert.description.value|raw }}
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+                  <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}"
+                      data-parent="#accordion">
+                      <div class="card-body">
+                          {{ alert.description.value|raw }}
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+  </div>
 </div>

@@ -53,8 +53,8 @@
 
 .earlyArrivalTag {
   height: 30px;
-  border: 1px solid rgba(116, 56, 194, 1);
-  color: rgba(116, 56, 194, 1);
+  border: 1px solid #005EB8;
+  color: #005EB8;
   margin-left: 12px;
   padding: 6px;
   border-radius: 4px;
@@ -379,7 +379,7 @@
 
 .datapointEarly {
   font-weight: 600;
-  color: rgba(116, 56, 194, 1);
+  color: #005EB8;
 }
 
 .datapointOnTime {
