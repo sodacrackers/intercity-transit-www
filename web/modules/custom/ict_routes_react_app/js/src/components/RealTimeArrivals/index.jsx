@@ -326,7 +326,7 @@ const RealTimeDepartures = () => {
                   </Row>
                 </Col>
                 <Col className={styles.growOnMobile} style={{ minWidth: '300px' }}>
-                  <div className="w-100"><strong className={styles.strong}>View Next Departure As:</strong></div>
+                  <div className="w-100"><strong className={styles.strong}>View Next Arrival As:</strong></div>
                   <Row className={styles.formCheckRow}>
                     <Form.Check
                       type="radio"
@@ -339,8 +339,8 @@ const RealTimeDepartures = () => {
                     />
                     <Form.Check
                       type="radio"
-                      label="Departure Time"
-                      aria-label="Departure Time"
+                      label="Arrival Time"
+                      aria-label="Arrival Time"
                       value="departure"
                       onClick={() => setView('departure')}
                       checked={view === 'departure'}
@@ -443,11 +443,11 @@ const RealTimeDepartures = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="order-1 order-xl-5 mb-4 px-0" xs="12" xl="4">
+          <Col className="order-1 order-xl-5 px-0" style={{ marginBottom: '40px' }} xs="12" md="9" xl="4">
             <div className={styles.stickyWrapper}>
               <div className={styles.void} />
               <div className={styles.legend}>
-                <div className={styles.legendTitle}>Departures Info &amp; Legend</div>
+                <div className={styles.legendTitle}>Arrivals Info &amp; Legend</div>
                 <div className="d-flex mb-3">
                   <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
                   <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>

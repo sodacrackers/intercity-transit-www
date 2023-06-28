@@ -68,12 +68,27 @@
 .lateArrivalTag,
 .earlyArrivalTag {
   background-color: #FFFFFF;
+  min-width: 110px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrivalTag > *,
+.lateArrivalTag > *,
+.earlyArrivalTag > * {
+  display: inline-flex;
 }
 
 .legend .arrivalTag,
 .legend .lateArrivalTag,
 .legend .earlyArrivalTag {
   min-width: 70px !important;
+}
+
+.legend .arrivalTag .shape,
+.legend .lateArrivalTag .shape,
+.legend .earlyArrivalTag .shape {
+  margin-top: -8px;
 }
 
 .stopInfo {
@@ -314,9 +329,7 @@
 }
 
 .shape {
-  margin-top: -2px;
-  margin-left: -5px;
-  position: absolute;
+  height: 10px;
 }
 
 .estimated {
@@ -324,6 +337,12 @@
   font-weight: 400;
   font-size: 15px;
   line-height: 20.25px;
+}
+
+@media (max-width: 767px) {
+  .estimated {
+    margin-right: 16px;
+  }
 }
 
 .stopCol {
