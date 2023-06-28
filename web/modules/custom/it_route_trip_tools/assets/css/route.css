@@ -8,17 +8,14 @@
   color: #518e79;
 }
 
-.nav-tabs {
-  margin-bottom: 15px !important;
+@media (max-width: 768px) {
+  #myTab .route-id {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 1199px) {  
-  #myTab.nav-tabs > li {
-    width: 100%;
-  }
-  #myTab #realtime-tab, #myTab #schedule-tab {
-    font-size: 22px !important;
-  }
+.nav-tabs {
+  margin-bottom: 15px !important;
 }
 
 li.nav-item {
