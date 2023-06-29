@@ -269,6 +269,10 @@ body div#all-routes-map > div [style] {position: relative !important;}
   padding: 0 0 0 32px !important;
 }
 
+html body .transit-header-top .search-block-form input#edit-keys {
+  padding-left: 10px;
+}
+
 @media (max-width: 1200px) {
   html body .transit-header-top .search-block-form input#edit-keys {
     width: calc(83% - 15px) !important;
@@ -298,7 +302,6 @@ body div#all-routes-map > div [style] {position: relative !important;}
 
   .header-container {
     padding-left: 0 !important;
-    margin-left: 15px !important;
   }
 
   #search-form, .search-api-page-block-form-search, .search-form__submit, .search-toggle {
