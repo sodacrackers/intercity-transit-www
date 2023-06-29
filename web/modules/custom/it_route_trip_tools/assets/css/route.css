@@ -3,14 +3,41 @@
   padding-right: 0 !important;
 }
 
+.search-block-form {
+  float: right;
+}
+
+#search-form .card-body {
+  width: 100%;
+  position: absolute;
+  background: transparent;
+  border: none;
+}
+
+#search-form .icon {
+  margin-left: 0;
+}
 
 #myTab #realtime-tab, #myTab #schedule-tab {
   color: #518e79;
 }
 
 @media (max-width: 768px) {
-  #myTab .route-id {
-    display: none;
+
+  .alerts-link {
+    display: none !important;
+  }
+
+  .grey-overlay {
+    margin-left: 15px;
+  }
+
+  .route-item-alerts {
+    margin-right: 15px !important;
+  }
+
+  .breadcrumb {
+    margin-left: 0 !important;
   }
 }
 
@@ -385,13 +412,19 @@ label.form-check-label {
 .region-header-mid, .region-header-mid .breadcrumb {
   background: #F0F5FA;
 }
+
+.region-header-top {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .region-header-top > div {
-  padding-left: none;
-  padding-right: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .region-header-mid .breadcrumb {
-  padding: 20px 5px;
+  padding: 20px 0;
   float: left;
   position: absolute;
 }
@@ -462,6 +495,14 @@ label.form-check-label {
 }
 
 @media (max-width: 991px) {
+  #myTab .route-id {
+    display: none;
+  }
+
+  .sidr-trigger {
+    right: 30px !important;
+  }
+
   .p-0-10 {
     width: 100% !important;
   }
@@ -470,6 +511,10 @@ label.form-check-label {
     margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid rgb(209, 210, 214);
+  }
+
+  #collapsefilters > div {
+    width: 100%
   }
 
   #filters {

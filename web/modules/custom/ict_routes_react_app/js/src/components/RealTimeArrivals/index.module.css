@@ -2,6 +2,11 @@
   color: rgba(13, 26, 41, 1);
 }
 
+.mapContainer {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .mapAccordionToggle {
   height: 100%;
   width: 56px;
@@ -107,7 +112,7 @@
   background: #F1F3F6;
   border: 1px solid #D1D2D6;
   border-radius: 4px;
-  margin-left: -96px;
+  margin-left: 0 !important;
 }
 
 .dot {
@@ -504,7 +509,7 @@
   }
 
   .filterSection {
-    padding: 16px;
+    padding: 16px 0;
     border: 1px solid rgba(209, 210, 214, 1);
     box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
     margin-left: 0 !important;

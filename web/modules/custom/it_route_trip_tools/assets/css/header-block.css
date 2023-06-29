@@ -116,6 +116,11 @@
   margin-bottom: 25px;
 }
 
+.routes-page-content-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .routes-page-content-container .region-content > div {
   padding-left: 0;
   padding-right: 0;
@@ -257,5 +262,19 @@ button.alerts-collapse.collapsed figure:before {
 @media (max-width: 1400px) {
   .card {
     padding: 20px 50px;
+  }
+}
+
+@media (max-width: 991px) {
+  .alerts-right-panel {
+    padding: 0 15px !important;
+  }
+
+  .panel-default.maps {
+    padding-left: 10px !important;
+  }
+
+  .bgimage .card-title {
+    margin-left: -5px;
   }
 }

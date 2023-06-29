@@ -11,7 +11,7 @@ dependencies:
     - transit
 third_party_settings:
   block_class:
-    classes: 'col-lg-5 col-md-5 col-sm-6 col-xs-7'
+    classes: 'col-lg-7 col-md-7 col-sm-6 col-xs-5'
 id: searchapipagesearchblockform
 theme: transit
 region: header_top
