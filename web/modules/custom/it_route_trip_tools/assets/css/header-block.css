@@ -25,8 +25,20 @@
   transform: translateY(-50%) translateX(-50%);
 }
 
+section.bgimage > .row {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  section.bgimage > .row {
+    display: block;
+    padding-top: 100px;
+  }
+}
+
+
 .card.vcenter {
-  margin-top: 120px;
+  margin-right: -5px;
 }
 
 .h-full {
@@ -78,6 +90,7 @@
   background-repeat: no-repeat;
   background-position-x: 95%;
   background-position-y: 50%;
+  min-width: 275px;
 }
 
 #search-api-page-block-form-search {
@@ -126,12 +139,26 @@
   padding-right: 0;
 }
 
+.bgimage > .row > div:not(.hide-mobile):not(.show-mobile) > .card {
+  margin-left: -15px;
+}
+
 .hide-mobile .card {
   padding: 24px !important;
   height: 130px;
-  margin-top: 140px !important;
+  margin-top: 20px !important;
   width: 245px;
   text-align: center;
+  margin-left: 10px !important;
+}
+
+div.grey-overlay > div > div {
+  padding-left: 0 !important;
+}
+
+.hide-mobile .card:active,
+.hide-mobile .card:hover {
+  opacity: 0.9;
 }
 
 .hide-mobile .card-title {
@@ -187,6 +214,15 @@ button.alerts-collapse.collapsed figure:before {
 }
 
 @media (max-width: 992px) {
+  .bgimage > .row > div:not(.hide-mobile):not(.show-mobile) > .card {
+    margin-left: -5px !important;
+  }
+
+  .routes-page-content-container .region-content > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   #block-routesheader {
     margin-left: -15px;
     margin-right: -15px;
@@ -205,6 +241,12 @@ button.alerts-collapse.collapsed figure:before {
     font-size: 16px;
     text-decoration: underline;
   }
+
+  .mobile-white-link:hover,
+  .mobile-white-link:active {
+    opacity: 0.9;
+  }
+
   .card.vcenter {
     position: relative;
     display: block;
@@ -225,7 +267,6 @@ button.alerts-collapse.collapsed figure:before {
 
   .show-mobile {
     display: block !important;
-    margin-top: -25px;
   }
 
   .alerts-right-panel {
@@ -259,6 +300,17 @@ button.alerts-collapse.collapsed figure:before {
   }
 }
 
+@media (min-width: 992px) {
+  #route-change {
+    margin-right: -30px;
+   }
+
+  .panel-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 @media (max-width: 1400px) {
   .card {
     padding: 20px 50px;
@@ -271,10 +323,30 @@ button.alerts-collapse.collapsed figure:before {
   }
 
   .panel-default.maps {
-    padding-left: 10px !important;
+    padding-left: 0 !important;
   }
 
   .bgimage .card-title {
     margin-left: -5px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+  .show-mobile {
+    margin-top: 140px;
+  }
+  .mobile-white-link {
+    margin-top: -40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .show-mobile {
+    margin-top: -25px;
+  }
+  .mobile-white-link {
+    margin-top: 0;
+    padding-left: 5px;
   }
 }

@@ -21,7 +21,7 @@
 							<input type="radio" name="display_stops_options" value="timepoint">Timepoints
 						</label>
 					</div>
-					<a data-toggle="tooltip" data-placement="right" id="what-are-timepoints" class="what-are-timepoints hide-on-mobile" title="" data-original-title="Buses do not leave Timepoints ahead of the published scheduled time.">What are timepoints?<img src="/modules/custom/it_route_trip_tools/assets/images/info.svg" style="margin-left: 4px" /></a>
+          <div class="timepoint-paragraph">Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
 					<div style="display: flex; float: right;">
 						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-back" style="order: 1;" disabled><i class="fas fa-arrow-left" style="color:white;"></i><span class="sr-only">{{ dir }} Back</span></button>
 						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-forward" style="order: 2; margin-left: 15px;"><i class="fas fa-arrow-right" style="color:white"></i><span class="sr-only">{{ dir }} Forward</span></button>
@@ -64,7 +64,6 @@
 			<input type="radio" name="display_stops_options" value="timepoint">Timepoints
 		</label>
 	</div>
-	<a data-toggle="tooltip" data-placement="right" id="what-are-timepoints" title="" data-original-title="What are timepoints?">What are timepoints?</a>
 	{% for dir, dir_data in route_data.times_alt  %}
 		{% if dir != 'inbound' %}
 			{% set dir_class = 'show-dir' %}

@@ -1929,6 +1929,12 @@ color: #002F87;
     color: #fff !important;
 }
 
+@media (max-width: 991px) {
+  .main-container {
+    height: 0;
+  }
+}
+
 /*essential trip request*/
 .node-essential-trip-request-form .field--widget-geofield-map .panel-title,
 .node-essential-trip-request-form .field--type-datetime .panel-title,

@@ -321,10 +321,16 @@ label.form-check-label {
 }
 
 #filters .dropdown-menu {
+  background-color: #F1F3F6;
+  width: auto;
+}
+
+#filters .dropdown-menu ul {
   max-height: 225px;
   width: max-content;
   overflow-y: scroll;
-  background-color: #F1F3F6;
+  list-style: none;
+  padding-left: 0;
 }
 
 #filters .dropdown-menu:after {
@@ -339,14 +345,25 @@ label.form-check-label {
 }
 
 .p-0-10 {
-  padding: 0 10px !important;
-  margin: 0 auto 12px !important
+  padding: 0 !important;
+}
+
+.path-plan-your-trip .container-fluid .breadcrumb {
+  margin-left: -10px;
 }
 
 #ict-routes-react-app {
   padding-bottom: 20px;
 }
 
+@media (max-width: 768px) {
+  .transit-footer .transit-footer--main li {
+    max-width: 96px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 
 #download-link {
   justify-content: center;
@@ -710,7 +727,7 @@ label.form-check-label {
   --bs-table-accent-bg: none !important;
 }
 
-.maps .panel-title a, .maps .panel-title span {
+.maps .panel-title span {
   color: black;
   font-weight: 500;
   font-size: 20px;
@@ -719,7 +736,7 @@ label.form-check-label {
   border-bottom: none;
 }
 
-.maps .panel-title a:hover {
+.maps .panel-title:hover {
   color: black;
   font-weight: 500;
   font-size: 20px;

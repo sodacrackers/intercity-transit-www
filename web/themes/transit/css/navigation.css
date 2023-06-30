@@ -52,6 +52,8 @@ html body .nav-outer-wrapper {
   width: 100%;
   display: block;
   overflow: visible;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 @media screen and (max-width: 991px) {
   html body .nav-outer-wrapper {
