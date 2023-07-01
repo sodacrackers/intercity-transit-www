@@ -131,6 +131,7 @@ class RoutesPage extends ControllerBase {
 
   public function getAllRoutesData() {
     $routes = $this->gtfs->getStaticData('routes');
+    $routes = array_filter($routes);
     $headers = array_shift($routes);
     $routes_id_index = array_search('route_id', $headers);
     $routes_color_index = array_search('route_color', $headers);
