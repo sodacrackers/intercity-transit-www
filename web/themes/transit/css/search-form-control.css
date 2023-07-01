@@ -37,6 +37,13 @@
 /* A (16px)	5.24px */
 /* B (18px)	4.72px */
 /* A (16px)	4.19px */
+
+@media (max-width: 1199px) {
+  .search-form-block-control #search-form div {
+    max-width: calc(100% - 5px);
+  }
+}
+
 @media screen and (min-width: 992px) {
   .search-form-block-control.desktop-show button.search-toggle {
     display: none;

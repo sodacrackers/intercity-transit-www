@@ -185,12 +185,17 @@
   	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default {{ dir }}-panel">
 	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
-      		<h4 class="panel-title" style="position: relative;">
-				<span class="glyphicon glyphicon-chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 50px; align-items: center; display: flex; justify-content: center; color: white;"></span>
-        		<a role="button" data-route-id="{{ route_data.short_name }}" class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
+      		<a id="map-title" class="panel-title" style="position: relative;" role="button" data-route-id="{{ route_data.short_name }}"
+            onclick="document.querySelector('#map-title #map-chevron span').style.transform === 'rotate(180deg)' 
+                        ? document.querySelector('#map-title #map-chevron span').style.transform = 'rotate(0deg)' 
+                        : document.querySelector('#map-title #map-chevron span').style.transform = 'rotate(180deg)'">
+				    <span id="map-chevron" class="chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 53px; align-items: center; display: flex; justify-content: center; color: white; border-radius: 3px;">
+              <span></span>
+            </span>
+        		<h4 class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
       	  		Open Route {{ route_data.short_name }} Map
-		        </a>
-      		</h4>
+		        </h4>
+      		</a>
 	    	</div>
 	    	<div id="{{ dir }}-map-body" class="panel-collapse hide">
       		<div id="route-map" class=" panel-body">

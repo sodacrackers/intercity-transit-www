@@ -184,6 +184,11 @@
   outline: 1px solid #347960;
 }
 
+#all-routes-map-heading:hover {
+  outline: 1px solid #347960;
+  border-radius: 3px;
+}
+
 #accordion .card .card-header h5 {
   display: flex;
 }
@@ -247,20 +252,16 @@
 }
 
 
-.maps .panel-title a, .maps .panel-title span {
+.maps .panel-title h4, .maps .panel-title span {
   font-weight: 500;
   font-size: 20px;
   line-height: 165%;
-  text-decoration: none;
+  text-decoration: none !important;
   border-bottom: none;
 }
 
-.maps .panel-title a:hover {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 165%;
+.maps .panel-title:hover h4 {
   text-decoration: none;
-  border-bottom: none;
 }
 
 span.map-toggle {
@@ -268,7 +269,7 @@ span.map-toggle {
   top: 0;
   left: 0;
   transform: translateY(40%);
-  height: calc(100% - 4rem);
+  height: 53px;
   width: 53px;
   background-color: #003087;
   color: white !important;
