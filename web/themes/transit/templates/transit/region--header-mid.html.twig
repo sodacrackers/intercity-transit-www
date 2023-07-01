@@ -47,10 +47,15 @@
                               <div class="modal-body">
                                   {% for alert_id, alert in alerts %}
                                       <div class="row container-fluid">
+                                        <div class="col alert-severity">
+                                          <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.severity ? alert.severity : 'alert' }}.svg" alt="{{alert.severity}}" />
+                                        </div>
+                                        <div class="col">
                                           <p>
                                               {{ alert.description.summary|raw }}
                                           </p>
-                                          <a class="card-link" href="{{ alert.url }}">View alert<img class="card-arrow" style="margin-left: 10px" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+                                          <a class="card-link" href="{{ alert.url }}">Read More<img class="card-arrow" style="margin-left: 10px" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+                                        </div>
                                       </div>
                                   {% endfor %}
                               </div>
