@@ -22,7 +22,6 @@ import symbolPurple from '../../assets/symbol-purple.svg';
 import symbolRed from '../../assets/symbol-red.svg';
 import info from '../../assets/info.svg';
 import chevronDown from '../../assets/chevron-down.svg';
-import chevronUp from '../../assets/chevron-up.svg';
 
 import styles from './index.module.css';
 
@@ -44,10 +43,13 @@ const RealTimeDepartures = () => {
     return (
       <button
         type="button"
-        className={styles.mapAccordionToggle}
         onClick={decoratedOnClick}
+        style={{ width: '100%', height: '100%', padding: '0', textAlign: 'left' }}
       >
-        {children}
+        <div className={styles.mapAccordionToggle}>
+          {children}
+        </div>
+        <span className={styles.mapAccordionLabel}>{mapVisible ? 'Close Real-Time Map' : 'Open Real-Time Map'}</span>
       </button>
     );
   }
@@ -143,9 +145,11 @@ const RealTimeDepartures = () => {
     <>
       <div className={styles.mapContainer}>
         <Accordion className={styles.mapAccordion} flush>
-          <Card className="mapAccordionHeader">
-            <Card.Header>
-              <CustomToggle eventKey={0}><img src={mapVisible ? chevronUp : chevronDown} alt="Toggle Map Visiblity" /></CustomToggle>{mapVisible ? 'Close Real-Time Map' : 'Open Real-Time Map'}
+          <Card id="mapAccordionHeader" className={styles.mapAccordionHeader}>
+            <Card.Header onClick={() => setMapVisible(!mapVisible)} style={{ cursor: 'pointer', marginBottom: '10px' }}>
+              <CustomToggle eventKey={0}>
+                <img src={chevronDown} style={mapVisible ? { transform: 'rotate(180deg)' } : { transform: 'rotate(0deg)'}} alt="Toggle Map Visiblity" />
+              </CustomToggle>
             </Card.Header>
             <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
               <GoogleMapReact

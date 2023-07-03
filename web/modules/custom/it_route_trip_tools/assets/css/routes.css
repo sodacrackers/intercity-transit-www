@@ -167,7 +167,13 @@
 
 #all-routes-map-heading {
   cursor: pointer;
+  margin-bottom: 10px;
 }
+
+#ict-routes-react-app > div .accordion .card:hover {
+  outline: 1px solid #347960;
+}
+
 
 .alerts-collapse:hover,
 .alerts-collapse:active {

@@ -9,15 +9,38 @@
 
 .mapAccordionToggle {
   height: 100%;
-  width: 56px;
+  width: 53px;
   color: #FFFFFF;
   background: #003087;
-  padding: 6px 20px;
-  align-items: center;
+  padding: 8px !important;
+  border-radius: 3px;
   font-size: 18px;
   font-weight: 900;
   padding: 0 15px;
   margin-right: 20px;
+  -webkit-transition: 350ms ease all;
+  -moz-transition: 350ms ease all;
+  -o-transition: 350ms ease all;
+  transition: 350ms ease all;
+  text-align: center;
+}
+
+.mapAccordionLabel {
+  display: block;
+  margin-left: 53px;
+  padding-left: 20px;
+  width: calc(100% - 53px);
+  text-align: left;
+  position: absolute;
+  top: 10px;
+}
+
+.mapToggle {
+  width: 100%;
+}
+
+.mapAccordionHeader {
+  margin-bottom: 17px;
 }
 
 .mapAccordionBody {
@@ -27,6 +50,7 @@
 }
 
 .mapAccordion {
+  margin-top: 17px;
   margin-bottom: 32px;
 }
 
