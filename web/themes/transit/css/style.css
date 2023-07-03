@@ -1929,6 +1929,12 @@ color: #002F87;
     color: #fff !important;
 }
 
+@media (max-width: 991px) {
+  .main-container {
+    height: 0;
+  }
+}
+
 /*essential trip request*/
 .node-essential-trip-request-form .field--widget-geofield-map .panel-title,
 .node-essential-trip-request-form .field--type-datetime .panel-title,
@@ -1994,6 +2000,7 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 div#edit-actions--2 button {
     border-radius: 0 5px 5px 0;
 }
+
 /*
 #route-table thead tr {
                 border: none;

@@ -603,6 +603,13 @@ html body footer .transit-footer--bottom p {
     color: #fff;
     font-size: 1.8rem;
   }
+
+  @media (max-width: 991px) {
+    html body .transit-header-top .search-form-block-control.mobile-hide button.search-toggle {
+      display: none;
+    }
+  }
+  
   html body .transit-header-top .search-form-block-control.mobile-hide button.search-toggle[aria-expanded="true"] {
     display: none;
   }

@@ -1,3 +1,13 @@
+.breadcrumb li a:hover,
+.breadcrumb li a:active {
+  opacity: 0.9;
+  text-decoration: underline;
+}
+
+.header-container {
+  padding: 0 !important;
+}
+
 .routes-h2 {
   font-weight: 700 !important;
   font-size: 24px !important;
@@ -8,8 +18,12 @@
 }
 
 .container.p-0-10 {
-  padding: 0 10px !important;
   margin: 0 auto 30px !important;
+}
+
+
+#customize-dropdown {
+  overflow-y: scroll;
 }
 
 .all-routes-route-map-toggle {
@@ -22,7 +36,6 @@
   height: 53px;
   display: inline-flex;
   width: 53px;
-  margin-top: -11px;
 }
 
 #accordion .panel-title {
@@ -35,17 +48,28 @@
 .show-map {
   display: inline-flex;
   padding-left: 20px;
+  position: absolute !important;
+  top: 10px;
 }
 
 .chevron-down {
   background-image: url('../images/chevron-down.svg');
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
   -webkit-transition: 350ms ease all;
   -moz-transition: 350ms ease all;
   -o-transition: 350ms ease all;
   transition: 350ms ease all;
+  background-position: center;
+  height: 53px;
+  width: 53px;
+  margin-left: 0;
+}
+
+.panel-link-body {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  margin-top: -10px;
 }
 
 .card-arrow {
@@ -141,6 +165,10 @@
   margin-top: -20px;
 }
 
+#all-routes-map-heading {
+  cursor: pointer;
+}
+
 .alerts-collapse:hover,
 .alerts-collapse:active {
   text-decoration: none !important;
@@ -154,6 +182,11 @@
 
 #accordion .card:hover {
   outline: 1px solid #347960;
+}
+
+#all-routes-map-heading:hover {
+  outline: 1px solid #347960;
+  border-radius: 3px;
 }
 
 #accordion .card .card-header h5 {
@@ -219,20 +252,16 @@
 }
 
 
-.maps .panel-title a, .maps .panel-title span {
+.maps .panel-title h4, .maps .panel-title span {
   font-weight: 500;
   font-size: 20px;
   line-height: 165%;
-  text-decoration: none;
+  text-decoration: none !important;
   border-bottom: none;
 }
 
-.maps .panel-title a:hover {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 165%;
+.maps .panel-title:hover h4 {
   text-decoration: none;
-  border-bottom: none;
 }
 
 span.map-toggle {
@@ -240,7 +269,7 @@ span.map-toggle {
   top: 0;
   left: 0;
   transform: translateY(40%);
-  height: calc(100% - 4rem);
+  height: 53px;
   width: 53px;
   background-color: #003087;
   color: white !important;
@@ -257,16 +286,20 @@ body div#all-routes-map > div [style] {position: relative !important;}
   cursor: pointer;
 }
 
-.panel-container {
-  padding: 0 !important;
-}
-
 .alerts-right-panel {
   padding: 0 32px 0 0 !important;
 }
 
 .alerts-left-panel {
   padding: 0 0 0 32px !important;
+}
+
+.alerts-left-panel > h2 > span > .card-link {
+  margin-right: 5px;
+}
+
+.alerts-left-panel > h2 > span > .card-arrow {
+  margin-top: 0 !important;
 }
 
 html body .transit-header-top .search-block-form input#edit-keys {
@@ -281,8 +314,8 @@ html body .transit-header-top .search-block-form input#edit-keys {
 
 @media (max-width: 991px) {
   .routes-page-content-container  {
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
   }
   .routes-page-content-container .alerts-left-panel {
     padding: 0 !important;
@@ -306,5 +339,9 @@ html body .transit-header-top .search-block-form input#edit-keys {
 
   #search-form, .search-api-page-block-form-search, .search-form__submit, .search-toggle {
     display: none !important;
+  }
+
+  #accordion .panel-title {
+    margin-right: 0 !important;
   }
 }

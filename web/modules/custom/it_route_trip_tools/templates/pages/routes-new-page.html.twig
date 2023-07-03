@@ -11,13 +11,14 @@
             <div class="panel-heading" role="tab" id="all-routes-map-heading">
                 <h4 class="panel-title" style="position: relative;">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#all-routes-map-body"
-                       aria-expanded="true" aria-controls="all-routes-map-body" class="all-routes-route-map-toggle"
-                       onclick="document.getElementById('map-toggle').style.transform === 'rotate(180deg)' 
-                        ? document.getElementById('map-toggle').style.transform = 'rotate(0deg)' 
-                        : document.getElementById('map-toggle').style.transform = 'rotate(180deg)'">
-                        <span class="chevron-down" id="map-toggle" />
+                       aria-expanded="true" aria-controls="all-routes-map-body"
+                       class="panel-link-body"
+                       onclick="document.querySelector('#map-toggle .chevron-down').style.transform === 'rotate(180deg)' 
+                        ? document.querySelector('#map-toggle .chevron-down').style.transform = 'rotate(0deg)' 
+                        : document.querySelector('#map-toggle .chevron-down').style.transform = 'rotate(180deg)'">
+                          <span class="all-routes-route-map-toggle" id="map-toggle"><span class="chevron-down"></span></span>
+                          <span class="show-map">Show Map</span>
                     </a>
-                    <span class="show-map">Show Map</span>
                 </h4>
             </div>
             <div id="all-routes-map-body" class="panel-collapse collapse" role="tabpanel"

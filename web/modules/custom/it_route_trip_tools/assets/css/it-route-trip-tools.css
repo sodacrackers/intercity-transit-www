@@ -7,6 +7,14 @@ html body #route-info-header h2.dir-heading.displaying-now {
   margin-bottom: 0;
   margin-top: 0;
 }
+.timepoint-paragraph {
+  display: inline-block;
+  max-width: 285px;
+  font-size: 12px;
+  padding-left: 20px;
+  vertical-align: middle;
+}
+
 html body #route-info-header #icon-legend {
   margin: 20px 15px 0 15px;
 }
@@ -210,8 +218,8 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 @media screen and (min-width: 992px) {
   html body.path-plan-your-trip .routes-page-content-container {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .header-routes-all {
     margin-left: -20px;
@@ -849,5 +857,21 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 @media only screen and (max-width: 991px) {
   #route-table-weekdays, #route-table-weekend {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .timepoint-paragraph {
+    max-width: 205px;
+    font-size: 11px;
+  }
+  .routes-page-content-container #realtime-tab, .routes-page-content-container #schedule-tab {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .timepoint-paragraph {
+    display: none;
   }
 }

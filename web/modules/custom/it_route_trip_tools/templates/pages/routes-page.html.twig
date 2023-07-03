@@ -62,23 +62,23 @@
 										<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 											Select all that apply
 										</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											{% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="customize-dropdown">
+											<ul>
+                      {% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
 												<li>
 													<div class="dropdown-item">
 														<div class="form-check">
 															<input name="show_stop" class="form-check-input" type="checkbox" value="{{ stop_id }}" id="checkstop{{ stop_id }}" />
-															<label class="form-check-label" for="checkstop{{ stop_id }}">{{ stop_data.stop_data.stopName }}</label>
+															<label class="form-check-label" onclick="event.stopPropagation();" for="checkstop{{ stop_id }}">{{ stop_data.stop_data.stopName }}</label>
 														</div>
 													</div>
 												</li>
 											{% endfor %}
-											<li>
-												<button class="btn btn-default" type="button" id="applyRoutesFilter">
-													Apply
-												</button>
-											</li>
-										</ul>
+                      </ul>
+                      <button class="btn btn-default" type="button" id="applyRoutesFilter">
+                        Apply
+                      </button>
+										</div>
 									</div>
 								</div>
 								<div id="filter-day" class="col-xs-12 col-sm-12 col-md-2">
