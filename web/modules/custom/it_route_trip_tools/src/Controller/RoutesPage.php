@@ -149,6 +149,9 @@ class RoutesPage extends ControllerBase {
     $res = [];
     foreach ($routes as $route) {
       $route_id = $route[$routes_id_index];
+      if (empty($route_id)) {
+        continue;
+      }
       $res[$route_id] = [
         "RouteName" => $route_id,
         "RouteDescription" => "RouteDescription",
