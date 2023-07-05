@@ -7,7 +7,7 @@
 				var outbound_table_width = $('#outbound-tables table thead').width();
 				if (outbound_table_width !== undefined) {
 					if (outbound_width < outbound_table_width) {
-						
+
 					}
 				}
 			}
@@ -55,60 +55,60 @@
 				}, 400);
 				$('.outbound-forward').attr('disabled', false);
 			});
-			const $outbound = $('#outbound-large-screen-route-table table');	
-			const $inbound = $('#outbound-large-screen-route-table table');	
+			const $outbound = $('#outbound-large-screen-route-table table');
+			const $inbound = $('#outbound-large-screen-route-table table');
 			let outbound_last_left = $outbound.scrollLeft();
 			let inbound_last_left = $inbound.scrollLeft();
 			$outbound.on('scroll', function() {
-			    const outbound_curr_left = $outbound.scrollLeft();
-			    if(outbound_curr_left > outbound_last_left) {
-	            	$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
-			   	}
-			   	if (outbound_curr_left < outbound_last_left) {
-	            	$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
-			   	}
-			   	outbound_last_left = outbound_curr_left;
-		    });
-		    $inbound.on('scroll', function() {
-			    const inbound_curr_left = $inbound.scrollLeft();
-			    if(inbound_curr_left > inbound_last_left) {
-	            	$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
-			   	}
-			   	if (inbound_curr_left < inbound_last_left) {
-	            	$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
-			   	}
-			   	inbound_last_left = inbound_curr_left;
-		    });
+				const outbound_curr_left = $outbound.scrollLeft();
+				if(outbound_curr_left > outbound_last_left) {
+					$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
+				}
+				if (outbound_curr_left < outbound_last_left) {
+					$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
+				}
+				outbound_last_left = outbound_curr_left;
+			});
+			$inbound.on('scroll', function() {
+				const inbound_curr_left = $inbound.scrollLeft();
+				if(inbound_curr_left > inbound_last_left) {
+					$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
+				}
+				if (inbound_curr_left < inbound_last_left) {
+					$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
+				}
+				inbound_last_left = inbound_curr_left;
+			});
 			$(function () {
-		        const $outbound_table = $('#outbound-large-screen-route-table table');
+				const $outbound_table = $('#outbound-large-screen-route-table table');
 				const $inbound_table = $('#inbound-large-screen-route-table table');
 				$outbound_table.on('scroll', function () {
 					var new_scroll_left = $outbound_table.scrollLeft(),
-		                width = $outbound_table.outerWidth(),
-		                scroll_width = $outbound_table.get(0).scrollWidth,
-		                right_width_floor = Math.floor(scroll_width - new_scroll_left),
-	               		width_floor = Math.floor(width);
-		            if (right_width_floor - 1 == width_floor || right_width_floor + 1 == width_floor || right_width_floor == width_floor) {
-		            	$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
-		            }
-		            if (new_scroll_left === 0) {
-		                $(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
-		            }
-		        });
-		        $inbound_table.on('scroll', function () {
-		        	var new_scroll_left = $inbound_table.scrollLeft(),
-		                width = $inbound_table.outerWidth(),
-		                scroll_width = $inbound_table.get(0).scrollWidth,
-	               		left_width_check = Math.floor(scroll_width)-Math.floor(new_scroll_left),
-	               		width_floor = Math.floor(width);
-		            if ((left_width_floor - 1 == width_floor) || (left_width_floor + 1 == width_floor) || (left_width_floor == width_floor)) {
-		            	$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
-		            }
-		            if (new_scroll_left === 0) {
-		                $(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
-		            }
-		        });
-		    });
+							width = $outbound_table.outerWidth(),
+							scroll_width = $outbound_table.get(0).scrollWidth,
+							right_width_floor = Math.floor(scroll_width - new_scroll_left),
+							width_floor = Math.floor(width);
+					if (right_width_floor - 1 == width_floor || right_width_floor + 1 == width_floor || right_width_floor == width_floor) {
+						$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
+					}
+					if (new_scroll_left === 0) {
+						$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
+					}
+				});
+				$inbound_table.on('scroll', function () {
+					var new_scroll_left = $inbound_table.scrollLeft(),
+							width = $inbound_table.outerWidth(),
+							scroll_width = $inbound_table.get(0).scrollWidth,
+							left_width_check = Math.floor(scroll_width)-Math.floor(new_scroll_left),
+							width_floor = Math.floor(width);
+					if ((left_width_floor - 1 == width_floor) || (left_width_floor + 1 == width_floor) || (left_width_floor == width_floor)) {
+						$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
+					}
+					if (new_scroll_left === 0) {
+						$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
+					}
+				});
+			});
 
 
 			$('#edit-routes--2').change(function(){
@@ -196,28 +196,45 @@
 				}
 			});
 			$('#applyRoutesFilter').once().click(function() {
+				let stopList = '';
 				const searchIDs = $('input[name="show_stop"]:checked').map(function(){
-					return $(this).val();
+					const check_val = $(this).val();
+					stopList = stopList + $('label[for="checkstop' + check_val + '"]').html() + ', ';
+					return check_val;
 				}).get();
 				if (searchIDs.length === 0) {
 					$('tr[data-stop-id]').show();
 					$('div[data-stop-id]').show();
+					$('#dropdownMenuButton').html('Select all that apply');
+					$('.dropdown .ui-dialog-titlebar-close').hide();
 				}
 				else {
 					$('tr[data-stop-id]').hide();
 					$('div[data-stop-id]').hide();
+					$('.dropdown .ui-dialog-titlebar-close').show();
+					$('#dropdownMenuButton').html(stopList.substr(0, 25) + '...');
 					searchIDs.forEach(function (item) {
 						$('tr[data-stop-id="' + item + '"]').show();
 						$('div[data-stop-id="' + item + '"]').show();
 					});
 				}
-        if (searchIDs.length === 1) {
+				if (searchIDs.length === 1) {
 					$('.transit-footer').removeClass('transit-margin');
-          $('.transit-footer').addClass('transit-margin-0');
+					$('.transit-footer').addClass('transit-margin-0');
 				} else {
 					$('.transit-footer').addClass('transit-margin');
-          $('.transit-footer').removeClass('transit-margin-0');
+					$('.transit-footer').removeClass('transit-margin-0');
 				}
+			});
+			$('.dropdown .ui-dialog-titlebar-close').once().click(function() {
+				$('input[name="show_stop"]:checked').map(function(){
+					$(this).prop('checked', false);
+				}).get();
+				$('tr[data-stop-id]').show();
+				$('div[data-stop-id]').show();
+				$('#dropdownMenuButton').html('Select all that apply');
+				$('.dropdown .ui-dialog-titlebar-close').hide();
+				$(this).hide();
 			});
 			$('input[name="viewmode"]').once().change(function() {
 				const viewmode = $(this).val();
@@ -261,8 +278,8 @@
 			$('.stops-panel').on('hide.bs.collapse', function () {
 				$('.stops-map-toggle').html('Show Stops Map');
 			});
-			
-			$('.stops-panel').on('show.bs.collapse', function () {				
+
+			$('.stops-panel').on('show.bs.collapse', function () {
 				$('.stops-map-toggle').html('Hide Stops Map');
 				if (!$(this).hasClass('already-opened')) {
 					$(this).addClass('already-opened');
