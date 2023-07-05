@@ -72,9 +72,11 @@ class RoutesPage extends ControllerBase {
   private function customizeOptions($options) {
     $new_options = [];
     foreach ($options as $route_id => $route_name) {
+      $alerts = BusData::loadAlertsByRoute($route_id);
       $new_options[$route_id] = [
         'name' => $route_name,
-        'alerts' => count(BusData::loadAlertsByRoute($route_id))
+        'alerts' => count($alerts),
+        'alerts_content' => $alerts,
       ];
     }
     return $new_options;

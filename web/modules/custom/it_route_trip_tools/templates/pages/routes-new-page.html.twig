@@ -70,16 +70,49 @@
                   <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
                       <span class="route-item-id">{{ route_id }}</span>
                       <span class="route-item-name">{{ route_options.name|split('-')[1] }}</span>
-                      {% if route_options.alerts > 0 %}
-                          <span class="route-item-alerts">
-                                <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts"
-                                    style="width: 20px"/>
-                                {{ route_options.alerts }}
-                            </span>
-                      {% endif %}
-                      <img class="card-arrow" style="float: right"
-                          src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/>
                   </a>
+                  {% if route_options.alerts > 0 %}
+                      <span class="route-item-alerts" data-toggle="modal" data-target="#alertsModal{{ route_id }}">
+                            <img src="/modules/custom/it_route_trip_tools/assets/images/alert.svg" alt="Alerts"
+                                style="width: 20px"/>
+                            {{ route_options.alerts }}
+                        </span>
+                      <div class="modal fade" id="alertsModal{{ route_id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title" id="modalLabel">Alerts in Place</h4>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      {% for alert in route_options.alerts_content %}
+                                          <div class="row container-fluid">
+                                              <div class="col alert-severity">
+                                                  <img src="/modules/custom/it_route_trip_tools/assets/images/{{ alert.field_severity.value is not empty ? alert.field_severity.value : 'warning' }}.svg" alt="{{alert.field_severity.value}}" />
+                                              </div>
+                                              <div class="col">
+                                                  <p>
+                                                      {{ alert.body.summary|raw }}
+                                                  </p>
+                                                  <a class="card-link" href="{{ path('entity.node.canonical', {node: alert.id}) }}">Read More<img class="card-arrow" style="margin-left: 10px" src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg" /></a>
+                                              </div>
+                                          </div>
+                                      {% endfor %}
+                                  </div>
+                                  <div class="modal-footer">
+                                      <a class="btn btn-primary" id="view-all-alerts-breadcrumb" href="/alerts">
+                                          <span aria-hidden="true">View All Alerts</span>
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  {% endif %}
+                  <img class="card-arrow" style="float: right"
+                      src="/modules/custom/it_route_trip_tools/assets/images/arrow.svg"/>
               </li>
           {% endfor %}
       </ul>
