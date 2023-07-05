@@ -149,7 +149,7 @@ const RealTimeDepartures = () => {
             </Card.Header>
             <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
               <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
+                bootstrapURLKeys={{ key: "AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI" }} // TODO: add to .env with prod creds
                 defaultCenter={{
                     lat: data?.center?.lat,
                     lng: data?.center?.lng
