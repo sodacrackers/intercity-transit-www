@@ -36,7 +36,7 @@
   display: none;
 }
 .collapse.in {
-  display: block;
+  display: block !important;
 }
 .collapsing {
   position: relative;

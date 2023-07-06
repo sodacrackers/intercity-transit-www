@@ -181,6 +181,23 @@
   margin-top: 16px !important;
 }
 
+@media screen and (max-width: 768px) {
+  .stopInfo {
+    padding-bottom: 20px;
+  }
+
+  .right, .timepointRight {
+    height: auto !important;
+    flex-flow: wrap !important;
+  }
+  .timepoint {
+    height: auto !important;
+  }
+  .timepointMarker {
+    height: auto !important;
+  }
+}
+
 .right {
   display: flex;
   justify-content: end;
