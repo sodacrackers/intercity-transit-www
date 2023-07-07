@@ -153,7 +153,7 @@ const RealTimeDepartures = () => {
             </Card.Header>
             <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
               <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI" }} // TODO: add to .env with prod creds
+                bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
                 defaultCenter={{
                     lat: data?.center?.lat,
                     lng: data?.center?.lng
@@ -161,7 +161,7 @@ const RealTimeDepartures = () => {
                 defaultZoom={12}
                 onGoogleApiLoaded={({map, maps}) => renderPolylines(map, maps)}
               >
-                {data?.vehicle_position[direction].map((vehicle) => {
+                {data?.vehicle_position[direction]?.length && data?.vehicle_position[direction].map((vehicle) => {
                   return (
                     <OverlayTrigger
                       placement="top"
@@ -265,7 +265,7 @@ const RealTimeDepartures = () => {
                                   </tr>
                                 </tbody>
                               </Table>
-                            : <h4 className="text-center">End of the Line</h4>}
+                            : !getNextStop(data?.stop_markers[direction][stopKey].stop_data) && <h4 className="text-center">End of the Line</h4>}
                           </div>
                         </Tooltip>
                       }
