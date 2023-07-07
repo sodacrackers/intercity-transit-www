@@ -8,7 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact, { fitBounds } from 'google-map-react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import Table from 'react-bootstrap/Table';
@@ -22,6 +22,8 @@ import symbolPurple from '../../assets/symbol-purple.svg';
 import symbolRed from '../../assets/symbol-red.svg';
 import info from '../../assets/info.svg';
 import chevronDown from '../../assets/chevron-down.svg';
+import busWestward from '../../assets/bus-westward.svg';
+import busEastward from '../../assets/bus-eastward.svg';
 
 import styles from './index.module.css';
 
@@ -34,6 +36,7 @@ const RealTimeDepartures = () => {
   const [loading, setLoading] = React.useState(true);
   const [nonTimepointsHidden, setNonTimepointsHidden] = React.useState(false);
   const [coordinates, setCoordinates] = React.useState([]);
+  const [centerAndZoom, setCenterAndZoom] = React.useState([]);
   const [mapVisible, setMapVisible] = React.useState(false);
 
   const CustomToggle = ({ children, eventKey }) => {
@@ -75,6 +78,20 @@ const RealTimeDepartures = () => {
           lng: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lng),
         })
       })
+      const { center, zoom} = fitBounds({
+        ne: {
+          lat: json.bounding?.max?.lat,
+          lng: json.bounding?.max?.lng,
+        },
+        sw: {
+          lat: json.bounding?.min?.lat,
+          lng: json.bounding?.min?.lng,
+        }
+      }, {
+        width: 600,
+        height: 480,
+      });
+      setCenterAndZoom([center, zoom])
       setData(json);
       setCoordinates(coords);
       setSanitizedData(clean);
@@ -143,7 +160,7 @@ const RealTimeDepartures = () => {
 
   return Object.keys(data).length && !loading ? (
     <>
-      <div className={styles.mapContainer}>
+      <div className={styles.mapContainer} id="map-container">
         <Accordion className={styles.mapAccordion} flush>
           <Card id="mapAccordionHeader" className={styles.mapAccordionHeader}>
             <Card.Header onClick={() => setMapVisible(!mapVisible)} style={{ cursor: 'pointer', marginBottom: '10px' }}>
@@ -154,14 +171,12 @@ const RealTimeDepartures = () => {
             <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
-                defaultCenter={{
-                    lat: data?.center?.lat,
-                    lng: data?.center?.lng
-                  }}
-                defaultZoom={12}
+                defaultCenter={centerAndZoom[0]}
+                defaultZoom={centerAndZoom.length > 1 && centerAndZoom[1] || 12}
                 onGoogleApiLoaded={({map, maps}) => renderPolylines(map, maps)}
               >
-                {data?.vehicle_position[direction]?.length && data?.vehicle_position[direction].map((vehicle) => {
+                {data?.vehicle_position[direction]?.length && data?.vehicle_position[direction].map((vehicle, vIndex) => {
+                  
                   return (
                     <OverlayTrigger
                       placement="top"
@@ -170,13 +185,11 @@ const RealTimeDepartures = () => {
                       lng={Number(vehicle.longitude)}
                       overlay={
                         <Tooltip className={styles.tooltipVehicle}>
-                          {vehicle.vehicle_id}
+                          Bus {vehicle.vehicle_id}
                         </Tooltip>
                       }
                     >
-                      <div style={{ fontSize: '18px', width: '50px', textAlign: 'center', background: 'blue', color: 'white', zIndex: '9999' }}>
-                        BUS
-                      </div>
+                      <img style={{ height: 50, zIndex: 10, position: 'absolute' }} src={(vehicle?.bearing > 180 && vehicle?.bearing <= 360) ? busWestward : busEastward} alt="Bus Indicator" />
                     </OverlayTrigger>
                   )
                 })}
@@ -447,7 +460,7 @@ const RealTimeDepartures = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="order-1 order-xl-5 px-0" style={{ marginBottom: '40px' }} xs="12" md="9" xl="4">
+          <Col className="order-1 order-xl-5 px-0" id="legend" xs="12" md="9" xl="4">
             <div className={styles.stickyWrapper}>
               <div className={styles.void} />
               <div className={styles.legend}>
