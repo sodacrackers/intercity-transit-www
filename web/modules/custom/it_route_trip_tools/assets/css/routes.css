@@ -287,8 +287,6 @@ span.map-toggle {
   min-height: 600px;
 }
 
-body div#all-routes-map > div [style] {position: relative !important;}
-
 .panel-title .glyphicon {
   cursor: pointer;
 }
