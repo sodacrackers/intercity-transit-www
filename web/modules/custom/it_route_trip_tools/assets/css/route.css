@@ -629,9 +629,6 @@ label.form-check-label {
     padding: 15px;
     margin: 0 auto;
   }
-  #filter-route {
-    display: none;
-  }
   #filter-viewmode {
     display: block;
   }
