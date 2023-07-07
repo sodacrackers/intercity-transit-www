@@ -136,8 +136,6 @@ li.nav-item.active  a.nav-link {
   border-left-color: rgb(204, 204, 204);
 }
 
-
-
 #filters .dropdown-toggle:after {
   display: none !important;
 }
@@ -938,4 +936,9 @@ header.navbar.navbar-default {
 }
 #alertsModal.modal.fade.in .modal-dialog {
   top: 20%;
+}
+
+#filters .ui-dialog-titlebar-close {
+  position: relative !important;
+  left: -25px;
 }
