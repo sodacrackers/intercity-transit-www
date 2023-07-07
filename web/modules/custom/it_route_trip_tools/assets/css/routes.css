@@ -174,7 +174,13 @@
 
 #all-routes-map-heading {
   cursor: pointer;
+  margin-bottom: 10px;
 }
+
+#ict-routes-react-app > div .accordion .card:hover {
+  outline: 1px solid #347960;
+}
+
 
 .alerts-collapse:hover,
 .alerts-collapse:active {
@@ -276,8 +282,7 @@ span.map-toggle {
   width: 53px;
   background-color: #003087;
   color: white !important;
-}
-
+} 
 
 #all-routes-map {
   min-height: 600px;

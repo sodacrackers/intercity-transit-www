@@ -293,9 +293,7 @@ html body .region-content li {
   padding-bottom: 8px;
   font-size: 1.8rem;
 }
-html body .region-content a {
-  border-bottom: dotted 1px;
-}
+
 html body .region-content a:hover {
   border-bottom: none;
 }
@@ -494,7 +492,6 @@ html body.path-frontpage .home-content-left-right .region-content-right .panel-g
 html body.path-frontpage .home-content-left-right .region-content-left .panel-group .panel .panel-heading .panel-title a:focus,
 html body.path-frontpage .home-content-left-right .region-content-right .panel-group .panel .panel-heading .panel-title a:focus {
   text-decoration: none;
-  border-bottom: 1px dotted;
 }
 html body.path-frontpage .home-content-left-right .region-content-left .panel-group .panel .panel-collapse .panel-body,
 html body.path-frontpage .home-content-left-right .region-content-right .panel-group .panel .panel-collapse .panel-body {

@@ -1,3 +1,7 @@
+#legend {
+  margin-bottom: 20px;
+}
+
 #collapsefilters > div {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -173,7 +177,7 @@ label.form-check-label {
   border-radius: 50%;
   border: none;
   font-size: 26px;
-  padding: 6px 12px;
+  padding: 0 11px;
 }
 
 #outbound-map-heading {
@@ -547,6 +551,10 @@ label.form-check-label {
     width: 100%
   }
 
+  #collapsefilters:not(.in) {
+    display: none !important;
+  }
+
   #filters {
     margin-bottom: 15px;
   }
@@ -809,6 +817,12 @@ label.form-check-label {
   margin-left: 0;
   border-radius: 3px;
   content: ' ';
+  transform-origin: unset;
+}
+
+#outbound-map-heading, #inbound-map-heading {
+  margin-bottom: 10px;
+  margin-top: 17px;
 }
 
 .maps .panel-title:hover {

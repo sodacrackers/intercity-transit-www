@@ -9,15 +9,38 @@
 
 .mapAccordionToggle {
   height: 100%;
-  width: 56px;
+  width: 53px;
   color: #FFFFFF;
   background: #003087;
-  padding: 6px 20px;
-  align-items: center;
+  padding: 8px !important;
+  border-radius: 3px;
   font-size: 18px;
   font-weight: 900;
   padding: 0 15px;
   margin-right: 20px;
+  -webkit-transition: 350ms ease all;
+  -moz-transition: 350ms ease all;
+  -o-transition: 350ms ease all;
+  transition: 350ms ease all;
+  text-align: center;
+}
+
+.mapAccordionLabel {
+  display: block;
+  margin-left: 53px;
+  padding-left: 20px;
+  width: calc(100% - 53px);
+  text-align: left;
+  position: absolute;
+  top: 10px;
+}
+
+.mapToggle {
+  width: 100%;
+}
+
+.mapAccordionHeader {
+  margin-bottom: 17px;
 }
 
 .mapAccordionBody {
@@ -27,7 +50,8 @@
 }
 
 .mapAccordion {
-  margin-bottom: 32px;
+  margin-top: 5px;
+  margin-bottom: -10px;
 }
 
 .arrivalTag {
@@ -151,15 +175,35 @@
 
 .timepointRight {
   display: flex;
+  align-items: end !important;
+  margin-left: 0 !important;
   justify-content: end;
   margin: auto 0 !important;
   padding-right: 24px !important;
   margin-top: 16px !important;
 }
 
+@media screen and (max-width: 768px) {
+  .stopInfo {
+    padding-bottom: 20px;
+  }
+
+  .right, .timepointRight {
+    height: auto !important;
+    flex-flow: wrap !important;
+    justify-content: start !important;
+  }
+  .timepoint {
+    height: auto !important;
+  }
+  .timepointMarker {
+    height: auto !important;
+  }
+}
+
 .right {
   display: flex;
-  justify-content: end;
+  justify-content: end !important;
   margin-right: 0 !important;
   padding-right: 0 !important;
 }
@@ -475,16 +519,18 @@
 
 @media screen and (max-width: 575px) {
   .noMarginsOnMobile {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
 @media screen and (max-width: 991px) {
-  .timepointRight {
-    justify-content: flex-end !important;
-    align-items: end !important;
-    padding-right: 8px !important;
+  .timepoint {
+    margin-left: -8px !important;
+  }
+
+  .right {
+    padding-bottom: 20px !important;
   }
 
   .growOnMobile {
@@ -494,10 +540,6 @@
 
   html body .container.routesWrapper {
     width: 100% !important;
-  }
-
-  .right {
-    padding-right: 20px !important;
   }
 
   .timepointSwitch, .infoIcon {
@@ -525,7 +567,21 @@
   }
 }
 
+@media (max-width: 420px) {
+  .timepointMarker {
+    width: 145px !important;
+    top: 60px !important;
+    left: -60px !important;
+  }
+}
+
 @media screen and (max-width: 767px) {
+  .timepointRight {
+    justify-content: flex-end !important;
+    align-items: end !important;
+    margin-right: 40px !important;
+  }
+
   .formCheck label,
   .formCheckLeft label {
     font-size: 13px !important;
@@ -545,10 +601,6 @@
   .spinner {
     margin-top: 150px;
   }
-  .mapContainer {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
 
   .legend .arrivalTag {
     margin-left: 0 !important;
@@ -557,11 +609,6 @@
   .routesRow {
     margin-left: 5px;
     margin-right: 0;
-  }
-
-  .routesWrapper {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
   }
 
   .stopCol {
@@ -614,8 +661,8 @@
   }
 
   .timepointMarker {
-    width: 94px;
-    top: 35px;
+    width: 96px;
+    top: 37px;
     left: -36px;
   }
   
@@ -647,6 +694,9 @@
   float: right;
 }
 
+@mediat (max-width: 441px) {
+
+}
 
 @keyframes inAnimation {
   0% {

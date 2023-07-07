@@ -36,12 +36,12 @@
 </div>
 {% if is_front %}
 <div id="autocomplete-route-map" class="sr-only" style="height: 0; width: 0;"></div>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&libraries=places&location=47.044408,-122.901711&radius=2&strictbounds&callback=initMapAutocomplete"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8&libraries=places&location=47.044408,-122.901711&radius=2&strictbounds&callback=initMapAutocomplete"></script>
 {% endif %}
 {% if routes_path in url|render|render or stops_path in url|render|render %}
 <div id="autocomplete-map" class="sr-only" style="height: 0; width: 0;"></div>
 {% endif %}
 {% if trip_planner_path in url|render|render %}
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbound&callback=initMap&libraries=places"></script>    
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8&location=47.044408,-122.901711&radius=2&strictbound&callback=initMap&libraries=places"></script>    
 {% endif %}
 {{ attach_library('it_route_trip_tools/chosen') }}
