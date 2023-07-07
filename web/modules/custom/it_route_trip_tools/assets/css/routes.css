@@ -211,10 +211,6 @@
   display: inline-flex;
 }
 
-#accordion .collapse.in {
-  padding-right: 24px;
-}
-
 .card-body span, .card-body p {
   white-space: normal;
 }

@@ -251,7 +251,7 @@
 			$('select#route-change').once().change(function() {
 				window.location.href = '/plan-your-trip/routes/' + $(this).val();
 			});
-			$('.outbound-panel').on('click', function () {
+			$('.outbound-panel').once().on('click', function () {
 				let currentTitle = $('.outbound-route-map-toggle').html();
 				$('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
 				$('#outbound-map-body').toggleClass('hide').toggleClass('show');
@@ -265,21 +265,21 @@
 				$(event.target).closest('.outbound-panel').find('a[data-toggle]').click();
 				$(event.target).closest('.inbound-panel').find('a[data-toggle]').click();
 			});
-			$('.inbound-panel').on('hide.bs.collapse', function () {
+			$('.inbound-panel').once().on('hide.bs.collapse', function () {
 				$('.inbound-route-map-toggle').html('Show Map');
 			})
-			$('.inbound-panel').on('show.bs.collapse', function () {
+			$('.inbound-panel').once().on('show.bs.collapse', function () {
 				$('.inbound-route-map-toggle').html('Hide Map');
 				if (!$(this).hasClass('already-opened')) {
 					// initMap_inbound();
 					$(this).addClass('already-opened');
 				}
 			})
-			$('.stops-panel').on('hide.bs.collapse', function () {
+			$('.stops-panel').once().on('hide.bs.collapse', function () {
 				$('.stops-map-toggle').html('Show Stops Map');
 			});
 
-			$('.stops-panel').on('show.bs.collapse', function () {
+			$('.stops-panel').once().on('show.bs.collapse', function () {
 				$('.stops-map-toggle').html('Hide Stops Map');
 				if (!$(this).hasClass('already-opened')) {
 					$(this).addClass('already-opened');
