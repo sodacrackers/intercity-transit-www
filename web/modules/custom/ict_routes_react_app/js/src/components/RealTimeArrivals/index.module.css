@@ -567,20 +567,29 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 419px) {
   .timepointMarker {
     width: 145px !important;
     top: 60px !important;
     left: -60px !important;
   }
+
+  .timepointRight, .right {
+    justify-content: start !important;
+    padding-right: 0 !important;
+    padding-left: 24px !important;
+  }
 }
 
-@media screen and (max-width: 767px) {
+@media (min-width: 420px) and (max-width: 767px) {
   .timepointRight {
     justify-content: flex-end !important;
     align-items: end !important;
     margin-right: 40px !important;
   }
+}
+
+@media screen and (max-width: 767px) {
 
   .formCheck label,
   .formCheckLeft label {
