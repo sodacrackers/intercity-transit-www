@@ -36,10 +36,6 @@
     margin-left: 15px;
   }
 
-  .route-item-alerts {
-    margin-right: 15px !important;
-  }
-
   .breadcrumb {
     margin-left: 0 !important;
   }
@@ -465,12 +461,21 @@ label.form-check-label {
   color: #003087;
 }
 
+.region-header-mid .breadcrumb li:first-child,
+.region-header-mid .breadcrumb li:last-child {
+  display: none;
+}
+
 .region-header-mid .breadcrumb li a {
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 15px;
   line-height: 135%;
-  color: #0D1A29;
+  color: #003087;
+}
+
+html body .breadcrumb li:first-child + li:before {
+  display: none !important;
 }
 
 .modal-content .row.container p, .modal-content .row.container span {
@@ -573,9 +578,6 @@ label.form-check-label {
 
   .main-container {
     height: 20px;
-  }
-  .region-header-mid {
-    min-height: 90px;
   }
   #download-link {
     display: none;
@@ -942,4 +944,10 @@ header.navbar.navbar-default {
 #filters .ui-dialog-titlebar-close {
   position: relative !important;
   left: -25px;
+}
+
+@media (max-width: 420px) {
+  .alerts {
+    display: none !important;
+  }
 }

@@ -108,6 +108,24 @@
   display: inline-flex;
 }
 
+.arrivalTag > span,
+.lateArrivalTag > span,
+.earlyArrivalTag > span {
+  min-width: 69px;
+}
+
+.arrivalTag .shape,
+.lateArrivalTag .shape,
+.earlyArrivalTag .shape {
+  margin-left: -8px;
+}
+
+.legend .arrivalTag .shape,
+.legend .lateArrivalTag .shape,
+.legend .earlyArrivalTag .shape {
+  margin-left: -2px !important;
+}
+
 .legend .arrivalTag,
 .legend .lateArrivalTag,
 .legend .earlyArrivalTag {
@@ -184,26 +202,22 @@
 }
 
 @media screen and (max-width: 768px) {
-  .stopInfo {
-    padding-bottom: 20px;
-  }
-
   .right, .timepointRight {
     height: auto !important;
     flex-flow: wrap !important;
-    justify-content: start !important;
+    justify-content: space-between !important;
   }
   .timepoint {
     height: auto !important;
   }
-  .timepointMarker {
-    height: auto !important;
+  .timepointRight {
+    padding-left: 30px !important;
+    padding: 0 24px !important;
   }
 }
 
 .right {
   display: flex;
-  justify-content: end !important;
   margin-right: 0 !important;
   padding-right: 0 !important;
 }
@@ -284,7 +298,7 @@
 }
 
 .notification {
-  margin: 12px 0;
+  margin: 16px 0;
   display: none;
 }
 
@@ -524,18 +538,19 @@
   }
 }
 
+@media (max-width: 991px) and (min-width: 768px) {
+  .right {
+    padding-bottom: 20px !important;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .timepoint {
     margin-left: -8px !important;
   }
 
-  .right {
-    padding-bottom: 20px !important;
-  }
-
-  .growOnMobile {
-    width: 100%;
-    min-width: 100% !important;
+  .growOnMobile:last-child {
+    margin-top: 16px !important;
   }
 
   html body .container.routesWrapper {
@@ -551,15 +566,11 @@
   }
 
   .filterSection {
-    padding: 16px 0;
+    padding: 12px 0;
     border: 1px solid rgba(209, 210, 214, 1);
     box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
     margin-left: 0 !important;
     margin-top: -10px;
-  }
-
-  .filterSection > div {
-    margin-bottom: 20px;
   }
   
   .formCheckLeft {
@@ -567,7 +578,7 @@
   }
 }
 
-@media (max-width: 419px) {
+@media (max-width: 433px) {
   .timepointMarker {
     width: 145px !important;
     top: 60px !important;
@@ -583,29 +594,14 @@
 
 @media (min-width: 420px) and (max-width: 767px) {
   .timepointRight {
-    justify-content: flex-end !important;
     align-items: end !important;
     margin-right: 40px !important;
   }
 }
 
 @media screen and (max-width: 767px) {
-
-  .formCheck label,
-  .formCheckLeft label {
-    font-size: 13px !important;
-  }
   .strong {
-    font-size: 14px !important;
-  }
-  .growOnMobile {
-    width: 50% !important;
-    min-width: 50% !important;
-    display: inline-block !important;
-  }
-  .formCheckLeft, .formCheck {
-   width: 100% !important;
-   padding-left: 28px !important;
+    font-size: 17px !important;
   }
   .spinner {
     margin-top: 150px;
@@ -703,7 +699,7 @@
   float: right;
 }
 
-@mediat (max-width: 441px) {
+@media (max-width: 441px) {
 
 }
 

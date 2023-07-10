@@ -9,10 +9,10 @@ html body #route-info-header h2.dir-heading.displaying-now {
 }
 .timepoint-paragraph {
   display: inline-block;
-  max-width: 285px;
-  font-size: 12px;
+  font-size: 15px;
   padding-left: 20px;
   vertical-align: middle;
+  margin-bottom: 20px;
 }
 
 html body #route-info-header #icon-legend {
@@ -861,17 +861,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 
 @media (max-width: 767px) {
-  .timepoint-paragraph {
-    max-width: 205px;
-    font-size: 11px;
-  }
   .routes-page-content-container #realtime-tab, .routes-page-content-container #schedule-tab {
     font-size: 20px !important;
-  }
-}
-
-@media (max-width: 550px) {
-  .timepoint-paragraph {
-    display: none;
   }
 }

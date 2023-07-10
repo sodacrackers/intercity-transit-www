@@ -1,13 +1,13 @@
 {{ attach_library('it_route_trip_tools/tables') }}
 
 <div class="mobile-tables-container">
+  <div class="timepoint-paragraph">Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
 	{% for dir, dir_data in route_data.times_alt  %}
 		{% if dir != 'inbound' %}
 			{% set dir_class = 'show-dir' %}
 		{% else %}				
 			{% set dir_class = 'hide-dir hidden' %}
 		{% endif %}
-
 		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables dir-tables-{{ dir }}">
 			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
 		    </div>
@@ -21,7 +21,6 @@
 							<input type="radio" name="display_stops_options" value="timepoint">Timepoints
 						</label>
 					</div>
-          <div class="timepoint-paragraph">Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
 					<div style="display: flex; float: right;">
 						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-back" style="order: 1;" disabled><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-left.svg" /><span class="sr-only">{{ dir }} Back</span></button>
 						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-forward" style="order: 2; margin-left: 15px;"><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-right.svg" /><span class="sr-only">{{ dir }} Forward</span></button>
