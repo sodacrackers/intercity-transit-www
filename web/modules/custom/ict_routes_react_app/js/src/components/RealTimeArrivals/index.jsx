@@ -236,46 +236,50 @@ const RealTimeDepartures = () => {
                                       )
                                     }</td>
                                   </tr>
-                                  <tr>
-                                    <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.vehicle_label}</td>
-                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
-                                    <td className="col-7">{
-                                      Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) > 60 ? (
-                                        <div className={styles.datapointLate}>
-                                          Late
-                                        </div>
-                                      ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) < -60
-                                        ? (
-                                          <div className={styles.datapointEarly}>
-                                            Early
+                                  {data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]] && (
+                                    <tr>
+                                      <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[1]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                      <td className="col-7">{
+                                        Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) > 60 ? (
+                                          <div className={styles.datapointLate}>
+                                            Late
                                           </div>
-                                      ) : (
-                                        <div className={styles.datapointOnTime}>
-                                          On Time
-                                        </div>
-                                      )
-                                    }</td>
-                                  </tr>
-                                  <tr>
-                                    <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.vehicle_label}</td>
-                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
-                                    <td className="col-7">{
-                                      Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) > 60 ? (
-                                        <div className={styles.datapointLate}>
-                                          Late
-                                        </div>
-                                      ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) < -60
-                                        ? (
-                                          <div className={styles.datapointEarly}>
-                                            Early
+                                        ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[1]]?.departure_delay) < -60
+                                          ? (
+                                            <div className={styles.datapointEarly}>
+                                              Early
+                                            </div>
+                                        ) : (
+                                          <div className={styles.datapointOnTime}>
+                                            On Time
                                           </div>
-                                      ) : (
-                                        <div className={styles.datapointOnTime}>
-                                          On Time
-                                        </div>
-                                      )
-                                    }</td>
-                                  </tr>
+                                        )
+                                      }</td>
+                                    </tr>
+                                  )}
+                                  {data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]] && (
+                                    <tr>
+                                      <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[2]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                      <td className="col-7">{
+                                        Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) > 60 ? (
+                                          <div className={styles.datapointLate}>
+                                            Late
+                                          </div>
+                                        ) : Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[2]]?.departure_delay) < -60
+                                          ? (
+                                            <div className={styles.datapointEarly}>
+                                              Early
+                                            </div>
+                                        ) : (
+                                          <div className={styles.datapointOnTime}>
+                                            On Time
+                                          </div>
+                                        )
+                                      }</td>
+                                    </tr>
+                                  )}
                                 </tbody>
                               </Table>
                             : !getNextStop(data?.stop_markers[direction][stopKey].stop_data) && <h4 className="text-center">End of the Line</h4>}
