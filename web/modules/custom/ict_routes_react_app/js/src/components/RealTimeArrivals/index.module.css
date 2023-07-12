@@ -97,7 +97,6 @@
 .lateArrivalTag,
 .earlyArrivalTag {
   background-color: #FFFFFF;
-  min-width: 110px;
   display: flex;
   justify-content: space-between;
 }
@@ -111,13 +110,14 @@
 .arrivalTag > span,
 .lateArrivalTag > span,
 .earlyArrivalTag > span {
-  min-width: 69px;
+  min-width: 40px;
+  margin-left: 0;
 }
 
 .arrivalTag .shape,
 .lateArrivalTag .shape,
 .earlyArrivalTag .shape {
-  margin-left: -8px;
+  margin-left: -4px;
 }
 
 .legend .arrivalTag .shape,
@@ -220,6 +220,7 @@
   display: flex;
   margin-right: 0 !important;
   padding-right: 0 !important;
+  justify-content: end;
 }
 
 .empty {
@@ -579,16 +580,18 @@
 }
 
 @media (max-width: 433px) {
-  .timepointMarker {
-    width: 145px !important;
-    top: 60px !important;
-    left: -60px !important;
-  }
-
   .timepointRight, .right {
     justify-content: start !important;
     padding-right: 0 !important;
     padding-left: 24px !important;
+  }
+}
+
+@media (max-width: 358px) {
+  .timepointMarker {
+    width: 145px !important;
+    top: 60px !important;
+    left: -60px !important;
   }
 }
 
@@ -697,10 +700,6 @@
   background: none;
   border: none;
   float: right;
-}
-
-@media (max-width: 441px) {
-
 }
 
 @keyframes inAnimation {

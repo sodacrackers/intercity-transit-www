@@ -60,6 +60,13 @@
   			strokeWeight: 1,
   			strokeColor:'#217b03'
   		};
+      const events = ['mousedown', 'mousemove', 'mouseover', 'mouseout', 'mouseup',
+      'mousewheel', 'DOMMouseScroll', 'touchstart', 'touchend', 'touchmove',
+      'dblclick', 'contextmenu', 'click'];
+      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}").addEventListener(event, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }))
 	{% for stop_id, stop_dataset in stop_ids %}
 		{% if loop.first %}
 			var icon_val = start;
@@ -199,7 +206,7 @@
 	    	</div>
 	    	<div id="{{ dir }}-map-body" class="panel-collapse hide">
       		<div id="route-map" class=" panel-body">
-						<div id="route-map-frame-{{ dir }}"></div>
+						<div tabindex="1" id="route-map-frame-{{ dir }}"></div>
 					</div>
 	    	</div>
 			</div>

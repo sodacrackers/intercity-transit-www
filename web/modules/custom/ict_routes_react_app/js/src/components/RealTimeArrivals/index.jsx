@@ -95,11 +95,16 @@ const RealTimeDepartures = () => {
       setData(json);
       setCoordinates(coords);
       setSanitizedData(clean);
-      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   }
+
+  React.useEffect(() => {
+    if (Object.keys(sanitizedData).length && loading) {
+      setLoading(false);
+    }
+  }, [sanitizedData])
 
   const renderPolylines = async(map, maps) => {
     let geodesicPolyline = new maps.Polyline({
@@ -136,7 +141,6 @@ const RealTimeDepartures = () => {
   }
 
   React.useEffect(() => {
-    setSanitizedData({});
     const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
     setLoading(true);
     getData(apiUrl);
@@ -156,7 +160,7 @@ const RealTimeDepartures = () => {
       getData(apiUrl);
     }, 30000)
     return () => clearInterval(intervalId);
-  }, [])
+  }, [direction, view])
 
   return Object.keys(data).length && !loading ? (
     <>
@@ -450,7 +454,10 @@ const RealTimeDepartures = () => {
                           ? (
                             <>
                               <div class={styles.empty} />
-                              <div className={nonTimepointsHidden ? styles.show : styles.hide} onClick={() => setNonTimepointsHidden(!nonTimepointsHidden)}>
+                              <div className={nonTimepointsHidden ? styles.show : styles.hide} onClick={(e) => {
+                                e.preventDefault();
+                                setNonTimepointsHidden(!nonTimepointsHidden);
+                              }}>
                                 <div class={styles.dot} />
                                 <div class="d-inline-block">{nonTimepointsHidden ? 'Show' : 'Hide'} Non-Timepoint Stops</div>
                                 </div>
