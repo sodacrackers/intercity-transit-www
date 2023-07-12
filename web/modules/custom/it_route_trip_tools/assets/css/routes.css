@@ -103,6 +103,7 @@
   flex-direction: column;
   height: 56px;
   padding-top: 15px;
+  cursor: pointer;
 }
 
 .route-item-id, .route-item-alerts {

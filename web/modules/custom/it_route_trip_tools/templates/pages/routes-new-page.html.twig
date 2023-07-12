@@ -66,7 +66,7 @@
       <h2 class="routes-h2">Select a Bus Route</h2>
       <ul class="routes-container">
           {% for route_id, route_options in routes_options %}
-              <li class="route-item">
+              <li class="route-item" onclick="window.location.href = '/plan-your-trip/routes/{{ route_id }}'">
                   <a class="route-link" href="/plan-your-trip/routes/{{ route_id }}">
                       <span class="route-item-id">{{ route_id }}</span>
                       <span class="route-item-name">{{ route_options.name|split('-')[1] }}</span>
