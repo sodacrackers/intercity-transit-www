@@ -491,7 +491,7 @@ const RealTimeDepartures = () => {
         </Row>
       </Container>
     </>
-  ) : <div className="mt-5 text-center" aria-busy="true"><h2>Loading Real Time Information...</h2><Spinner style={{ width: '10rem', height: '10rem' }} className={styles.spinner} variant="success" /></div>
+  ) : <div className="mt-5 text-center" aria-busy="true"><h2>Loading Real-Time Information...</h2><Spinner style={{ width: '10rem', height: '10rem' }} className={styles.spinner} variant="success" /></div>
 }
 
 export default RealTimeDepartures;
