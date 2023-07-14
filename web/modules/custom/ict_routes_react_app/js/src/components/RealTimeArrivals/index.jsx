@@ -351,7 +351,7 @@ const RealTimeDepartures = () => {
                   </Row>
                 </Col>
                 <Col className={styles.growOnMobile} style={{ minWidth: '300px' }}>
-                  <div className="w-100"><strong className={styles.strong}>View Next Arrival As:</strong></div>
+                  <div className="w-100"><strong className={styles.strong}>View Next Departure As:</strong></div>
                   <Row className={styles.formCheckRow}>
                     <Form.Check
                       type="radio"
