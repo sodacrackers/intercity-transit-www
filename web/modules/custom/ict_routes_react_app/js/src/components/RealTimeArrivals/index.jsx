@@ -364,8 +364,8 @@ const RealTimeDepartures = () => {
                     />
                     <Form.Check
                       type="radio"
-                      label="Arrival Time"
-                      aria-label="Arrival Time"
+                      label="Departure Time"
+                      aria-label="Departure Time"
                       value="departure"
                       onClick={() => setView('departure')}
                       checked={view === 'departure'}
@@ -475,7 +475,7 @@ const RealTimeDepartures = () => {
             <div className={styles.stickyWrapper}>
               <div className={styles.void} />
               <div className={styles.legend}>
-                <div className={styles.legendTitle}>Arrivals Info &amp; Legend</div>
+                <div className={styles.legendTitle}>Departures Info &amp; Legend</div>
                 <div className="d-flex mb-3">
                   <div style={{ marginLeft: 0, display: 'inline' }} className={styles.arrivalTag}><Image alt="On Time" className={styles.indicator} src={circleCheck} />On Time<Image alt="On Time" className={styles.shape} src={symbolGreen} /></div>
                   <div style={{ marginLeft: '10px', display: 'inline' }} className={styles.earlyArrivalTag}><Image alt="Early" className={styles.indicator} src={alarmClock} />Early<Image alt="Early" className={styles.shape} src={symbolPurple} /></div>

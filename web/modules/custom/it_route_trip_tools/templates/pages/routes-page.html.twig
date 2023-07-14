@@ -2,10 +2,10 @@
 <div class="container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
 		<li class="nav-item active">
-			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true"><span class="route-id">Route {{ route_id }}</span> Schedule</a>
+			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true"><span class="route-id">Route {{ route_short_name }}</span> Schedule</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false"><span class="route-id">Route {{ route_id }}</span> Real-Time Arrivals</a>
+			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false"><span class="route-id">Route {{ route_short_name }}</span> Real-Time Departures</a>
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
