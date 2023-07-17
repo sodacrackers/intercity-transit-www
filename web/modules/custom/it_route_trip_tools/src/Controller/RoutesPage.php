@@ -249,6 +249,7 @@ class RoutesPage extends ControllerBase {
       return [
         '#theme' => 'routes_page',
         '#route_id' => $routeId,
+        '#route_short_name' => $route_data_weekdays['short_name'],
         '#routes_options' => $routes_options,
         '#routes_map_weekdays' => $routes_map_weekdays,
         '#routes_map_weekend' => $routes_map_weekend,
