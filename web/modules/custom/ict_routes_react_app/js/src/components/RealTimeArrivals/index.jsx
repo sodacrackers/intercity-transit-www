@@ -38,6 +38,7 @@ const RealTimeDepartures = () => {
   const [coordinates, setCoordinates] = React.useState([]);
   const [centerAndZoom, setCenterAndZoom] = React.useState([]);
   const [mapVisible, setMapVisible] = React.useState(false);
+  const [mapVisibleMemo, setMapVisibleMemo] = React.useState(false);
 
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () => {
@@ -46,7 +47,11 @@ const RealTimeDepartures = () => {
     return (
       <button
         type="button"
-        onClick={decoratedOnClick}
+        id="mapAccordionButton"
+        onClick={e => {
+          e.preventDefault();
+          decoratedOnClick();
+        }}
         style={{ width: '100%', height: '100%', padding: '0', textAlign: 'left' }}
       >
         <div className={styles.mapAccordionToggle}>
@@ -104,6 +109,16 @@ const RealTimeDepartures = () => {
     if (Object.keys(sanitizedData).length && loading) {
       setLoading(false);
     }
+    if (mapVisibleMemo) {
+      const interval = setInterval(() => {
+        const el = document.getElementById('mapAccordionButton');
+        if (el) {
+          el.click();
+          setMapVisibleMemo(false);
+          return clearInterval(interval);
+        }
+      }, 500)
+    }
   }, [sanitizedData])
 
   const renderPolylines = async(map, maps) => {
@@ -143,6 +158,10 @@ const RealTimeDepartures = () => {
   React.useEffect(() => {
     const apiUrl = document.getElementById('ict-routes-react-app').dataset.apiUrl;
     setLoading(true);
+    if (mapVisible) {
+      setMapVisibleMemo(true);
+    }
+    setMapVisible(false);
     getData(apiUrl);
   }, [direction])
 
