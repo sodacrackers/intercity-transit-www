@@ -1,0 +1,6 @@
+default_min:
+  version: VERSION
+  js:
+    js/default_min.js: {}
+  dependencies:
+    - core/jquery.once

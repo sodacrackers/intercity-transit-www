@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Alters menu block titles to show the active menu item's parent.
+ */
+
+use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\menu_block_title\MenuBlockTitle;
+
+/**
+ * Implements hook_block_view_alter().
+ *
+ * Alters the titles of specified menu blocks to set the title to the parent
+ * menu link title.
+ */
+function menu_block_title_block_view_alter(array &$build, BlockPluginInterface $block) {
+  if (_menu_block_title_needs_modifying($build, $block)) {
+    $build['#pre_render'][] = [MenuBlockTitle::class, 'preRender'];
+    $menu_name = $block->getDerivativeId();
+    $build['#cache']['contexts'][] = 'route.menu_active_trails:' . $menu_name;
+  }
+}
+
+/**
+ * Helper function to determine whether a block needs modification.
+ *
+ * @param \Drupal\Core\Block\BlockPluginInterface $block
+ *   The block entity.
+ *
+ * @return bool
+ *   The boolean indicating whether this block needs modifying.
+ */
+function _menu_block_title_needs_modifying($build, BlockPluginInterface $block) {
+  $configuration = $block->getConfiguration();
+
+  if (isset($configuration['level'])) {
+    $block_config = Block::load($build['#id']);
+    $modify_title = $block_config->getThirdPartySetting('menu_block_title', 'modify_title');
+
+    return empty($modify_title) ? FALSE : $modify_title;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Form alteration for the block form to add options.
+ */
+function menu_block_title_form_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\block\BlockInterface $block */
+  $block = $form_state->getFormObject()->getEntity();
+
+  if (isset($form['settings']['menu_levels'])) {
+    // This will automatically be saved in the third party settings.
+    $form['third_party_settings']['#tree'] = TRUE;
+    $form['third_party_settings']['menu_block_title']['modify_title'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Block title as menu link parent'),
+      '#description' => t('If checked the title of this block will display the parent of the active menu item.'),
+      '#default_value' => $block->getThirdPartySetting('menu_block_title', 'modify_title'),
+    ];
+  }
+}

@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_theme().
+ */
+function menu_link_theme($existing, $type, $theme, $path) {
+  return [
+    'menu_link_element' => [
+      'variables' => ['menu_name' => NULL, 'items' => [], 'attributes' => []],
+    ],
+  ];
+}
+
+/**
+ * Update menu link provider.
+ */
+function menu_link_update_9201() {
+  $connection = Database::getConnection();
+  $connection->update('menu_tree')
+  ->fields([
+    'provider' => 'menu_link',
+  ])
+  ->condition('id', 'menu_link_field:%', 'LIKE')
+  ->condition('provider','', '=')
+  ->execute();
+}

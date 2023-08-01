@@ -1,0 +1,7 @@
+{# this here just makes sure we are testing more than the first node #}
+{% set x = "foobar" %}
+{% if x|render %}
+<div>
+{{ x }}
+{% endif %}
+

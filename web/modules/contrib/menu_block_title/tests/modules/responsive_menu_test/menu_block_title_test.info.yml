@@ -1,0 +1,18 @@
+name: 'Menu Block Title Test'
+type: module
+description: 'Support module for Menu Block Title tests.'
+package: Testing
+dependencies:
+  - drupal:node
+  - drupal:filter
+  - drupal:field
+  - drupal:block
+  - drupal:menu_link_content
+  - menu_block_title:menu_block_title
+  - drupal:language
+core_version_requirement: ^8 || ^9
+
+# Information added by Drupal.org packaging script on 2021-09-29
+version: '8.x-1.4'
+project: 'menu_block_title'
+datestamp: 1632902626

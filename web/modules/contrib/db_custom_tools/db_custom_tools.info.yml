@@ -1,0 +1,6 @@
+name: DB Custom Tools
+description: Set of tools for fixing little things that Wendy ask to have fixed/changed.
+package: Custom
+type: module
+version: 2.0
+core_version_requirement: ^8.8 || ^9

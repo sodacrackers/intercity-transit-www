@@ -1,0 +1,12 @@
+name: Better Search Block
+type: module
+description: Provides better looking theming for the Drupal search block.
+package: search
+core: 8.x
+core_version_requirement: ^8 || ^9
+configure: better_search_settings
+
+# Information added by Drupal.org packaging script on 2021-09-20
+version: '8.x-1.6'
+project: 'better_search'
+datestamp: 1632138928

@@ -1,0 +1,6 @@
+name: CAPTCHA
+type: module
+description: Provides the CAPTCHA API for adding challenges to arbitrary forms.
+package: Spam control
+core_version_requirement: ^8.9 || ^9
+configure: captcha_settings

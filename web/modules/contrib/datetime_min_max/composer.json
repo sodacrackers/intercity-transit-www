@@ -1,0 +1,20 @@
+{
+  "name": "drupal/datetime_min_max",
+  "type": "drupal-module",
+  "authors": [
+    {
+      "name": "Alejandro Arnau Sancho",
+      "email": "aarnaus@gmail.com"
+    }
+  ],
+  "description": "Simple module that provides a new datetime widget that allows you to control the minimum and maximum attributes for datetime field types.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/datetime_min_max",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/datetime_min_max",
+    "source": "http://cgit.drupalcode.org/datetime_min_max"
+  },
+  "require": { }
+}

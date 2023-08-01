@@ -1,0 +1,34 @@
+{
+    "name": "drupal/scheduled_updates",
+    "description": "Schedule entity status (published) updates.",
+    "type": "drupal-module",
+    "keywords": [
+        "Drupal"
+    ],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "homepage": "https://www.drupal.org/project/scheduled_updates",
+    "authors": [
+        {
+            "name": "Ted Bowman",
+            "homepage": "https://www.drupal.org/u/tedbow",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Ruth Ivimey-Cook",
+            "homepage": "https://www.drupal.org/u/rivimey",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/scheduled_updates",
+        "source": "http://git.drupalcode.org/project/scheduled_updates"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9 || ^10"
+            }
+        }
+    }
+}
