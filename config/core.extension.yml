@@ -47,6 +47,7 @@ module:
   filter: 0
   fontawesome: 0
   formblock: 0
+  fullcalendar_view: 0
   google_analytics: 0
   google_tag: 0
   help: 0
@@ -104,6 +105,7 @@ module:
   slick: 0
   slick_ui: 0
   slick_views: 0
+  smart_date: 0
   smtp: 0
   system: 0
   tamper: 0
