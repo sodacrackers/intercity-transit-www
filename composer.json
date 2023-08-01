@@ -143,7 +143,10 @@
         "watech-web/db_custom_tools": "^2",
         "wikimedia/composer-merge-plugin": "^2.0",
         "drupal/adaptivetheme": "^5.1",
-        "drupal/google_tag": "^1.6"
+        "drupal/google_tag": "^1.6",
+        "google/protobuf": "v3.10.0",
+        "drupal/fullcalendar_view": "^5.1",
+        "drupal/smart_date": "^4.1@beta"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
