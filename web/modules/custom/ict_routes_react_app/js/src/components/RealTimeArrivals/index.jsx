@@ -212,7 +212,7 @@ const RealTimeDepartures = () => {
                         </Tooltip>
                       }
                     >
-                      <img style={{ height: 50, zIndex: 10, position: 'absolute' }} src={(vehicle?.bearing > 180 && vehicle?.bearing <= 360) ? busWestward : busEastward} alt="Bus Indicator" />
+                      <img style={{ height: 50, zIndex: 10, position: 'absolute', transform: 'translate(-50%, -100%);' }} src={(vehicle?.bearing > 180 && vehicle?.bearing <= 360) ? busWestward : busEastward} alt="Bus Indicator" />
                     </OverlayTrigger>
                   )
                 })}
