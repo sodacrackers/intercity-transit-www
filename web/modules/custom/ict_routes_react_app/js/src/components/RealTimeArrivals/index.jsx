@@ -234,14 +234,14 @@ const RealTimeDepartures = () => {
                                 <thead>
                                   <tr>
                                     <th className="col-2">Bus</th>
-                                    <th className="col-3">ETA</th>
+                                    <th className="col-3">EDT</th>
                                     <th className="col-7">Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
                                     <td className="col-2">{data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.vehicle_label}</td>
-                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.departure_time) * 1000).toLocal().toFormat('h:mm:ss')}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey].real_time)[0]]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                     <td className="col-7">{
                                       Number(data?.stop_markers[direction][stopKey]?.real_time[Object.keys(data?.stop_markers[direction][stopKey]?.real_time)[0]]?.departure_delay) > 60 ? (
                                         <div className={styles.datapointLate}>
