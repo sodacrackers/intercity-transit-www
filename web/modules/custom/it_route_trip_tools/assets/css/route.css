@@ -39,6 +39,10 @@
   .breadcrumb {
     margin-left: 0 !important;
   }
+
+  .hide-mobile {
+    display: none;
+  }
 }
 
 .nav-tabs {
