@@ -3,19 +3,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - block_class
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 _core:
   default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
 id: transit_page_title
 theme: transit
 region: header_mid
-weight: -43
+weight: -47
 provider: null
 plugin: page_title_block
 settings:
@@ -28,4 +24,4 @@ visibility:
     id: request_path
     negate: true
     context_mapping: {  }
-    pages: "<Front>\r\n/saml/drupal_login/portal_intercitytransit_com"
+    pages: "<Front>\r\n/saml/drupal_login/portal_intercitytransit_com\r\n/plan-your-trip/routes\r\n/plan-your-trip/routes/*"

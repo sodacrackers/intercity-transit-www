@@ -1,30 +1,32 @@
 {{ attach_library('it_route_trip_tools/tables') }}
+
+<div class="mobile-tables-container">
+  <div class="timepoint-paragraph">Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
 	{% for dir, dir_data in route_data.times_alt  %}
 		{% if dir != 'inbound' %}
 			{% set dir_class = 'show-dir' %}
 		{% else %}				
 			{% set dir_class = 'hide-dir hidden' %}
 		{% endif %}
-
-		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables">
+		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables dir-tables-{{ dir }}">
 			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
-			    <button id="{{ dir }}-back" role="button" class=" left-table-button btn btn-default" disabled><i class="fas fa-chevron-left"></i><span class="sr-only">{{ dir }} Back</span></button>
-			    <button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default"><i class="fas fa-chevron-right"></i><span class="sr-only">{{ dir }} Forward</span></button>
 		    </div>
-			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive">
+			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive {{ dir }}-large-screen-route-table">
+				<div class="table-header">
+					<div class="btn-group btn-stops-toggle" data-toggle="buttons">
+						<label class="btn btn-primary active">
+							<input type="radio" name="display_stops_options" value="allstops" checked="checked">All stops
+						</label>
+						<label class="btn btn-default">
+							<input type="radio" name="display_stops_options" value="timepoint">Timepoints
+						</label>
+					</div>
+					<div style="display: flex; float: right;">
+						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-back" style="order: 1;" disabled><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-left.svg" /><span class="sr-only">{{ dir }} Back</span></button>
+						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-forward" style="order: 2; margin-left: 15px;"><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-right.svg" /><span class="sr-only">{{ dir }} Forward</span></button>
+					</div>
+				</div>
 				<table class="table table-hover table-condensed">
-					<thead>
-						<tr>
-							<th>
-								<h2>{{ dir|capitalize }} Stops</h2>
-							</th>
-							{% set counter = 1 %}
-							{% for counter in range(1, dir_data.trip_count) %}
-							    <th>Time</th>
-							    {% set counter = counter + 1 %}
-							{% endfor %}
-						</tr>
-					</thead>
 					<tbody>
 						{% for stop_id, stop_data in dir_data.stops %}
 							{% for timepoint, stop_names in stop_data %}
@@ -34,12 +36,13 @@
 									{% set timepoint_class = 'timepoint' %}
 								{% endif %}
 								{% for stop_name, stop_times in stop_names %}
-									<tr class="{{ timepoint_class }}">
-										<th>
+									<tr class="{{ timepoint_class }}" data-stop-id="{{ stop_data.stop_id }}">
+										<th style="width: {{ (100/((stop_times|length) + 4)) * 4 }}%; border-top: 1px solid #D1D2D6; border-right: 1px solid #D1D2D6; border-bottom: 0; border-left: 0;">
 											{{ stop_name }}
 										</th>
 										{%  for stop_time in stop_times %}
-											<td>{{ stop_time }}</td>
+											{% set formatted_stop_time = (stop_time is empty ? '' : stop_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'})) %}
+											<td style="width: {{ (100/((stop_times|length) + 4)) }}%; {{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</td>
 										{% endfor %}
 									</tr>
 								{% endfor %}
@@ -50,3 +53,43 @@
 			</div>
 		</div>
 	{% endfor %}
+</div>
+<div class="mobile-lists-container hide-on-desktop hide-on-mobile">
+	<div class="btn-group btn-stops-toggle" data-toggle="buttons">
+		<label class="btn btn-primary active">
+			<input type="radio" name="display_stops_options" value="allstops" checked="checked">All stops
+		</label>
+		<label class="btn btn-default">
+			<input type="radio" name="display_stops_options" value="timepoint">Timepoints
+		</label>
+	</div>
+	{% for dir, dir_data in route_data.times_alt  %}
+		{% if dir != 'inbound' %}
+			{% set dir_class = 'show-dir' %}
+		{% else %}
+			{% set dir_class = 'hide-dir hidden' %}
+		{% endif %}
+		<div id="{{ dir }}-lists row" class="{{ dir_class }} dir-lists dir-lists-{{ dir }}">
+		{% for stop_id, stop_data in dir_data.stops %}
+			{% for timepoint, stop_names in stop_data %}
+				{% for stop_name, stop_times in stop_names %}
+		            <div class="col-xs-12 col-sm-12 col-lg-12 lists-list-item {{ timepoint }}" data-stop-id="{{ stop_id }}">
+						<div class="lists-list-item-title">
+							{{ stop_name }}
+							{% if timepoint == 'timepoint' %}
+								<span class="lists-list-item-timepoint">Timepoint</span>
+							{% endif %}
+						</div>
+						<div class="lists-list-item-content">
+							{%  for stop_time in stop_times %}
+								{% set formatted_stop_time = stop_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
+								<span style="{{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</span>{{ loop.last == false ? ',' }}
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+			{% endfor %}
+		{% endfor %}
+		</div>
+	{% endfor %}
+</div>

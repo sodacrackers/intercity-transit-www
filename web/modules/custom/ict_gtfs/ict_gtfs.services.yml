@@ -6,3 +6,9 @@ services:
   ict.gtfs:
     class: Drupal\ict_gtfs\Gtfs
     arguments: ['@config.factory', '@http_client', '@logger.channel.ict_gtfs', '@cache.data', '@datetime.time']
+
+  ict.bus_data_cache_response_subscriber:
+    class: Drupal\ict_gtfs\EventSubscriber\BusDataCacheResponseSubscriber
+    arguments: ['@datetime.time', '@current_user']
+    tags:
+      - { name: event_subscriber }

@@ -3,13 +3,9 @@ langcode: en
 status: false
 dependencies:
   module:
-    - block_class
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 _core:
   default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
 id: transit_powered

@@ -5,14 +5,10 @@ dependencies:
   config:
     - contact.form.customer_service
   module:
-    - block_class
     - contact_block
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: contactblock
 theme: transit
 region: sidebar_second

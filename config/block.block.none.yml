@@ -5,14 +5,10 @@ dependencies:
   content:
     - 'block_content:basic:ae90bffe-f329-49fa-8829-365a20e3c61f'
   module:
-    - block_class
     - block_content
     - node
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: none
 theme: transit
 region: none

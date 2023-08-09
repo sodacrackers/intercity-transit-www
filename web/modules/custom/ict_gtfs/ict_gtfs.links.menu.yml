@@ -4,3 +4,10 @@ ict_gtfs.settings_form:
   parent: system.admin_config_services
   route_name: ict_gtfs.settings_form
   weight: 10
+
+ict_gtfs.static_data_settings:
+  title: Avail static data config
+  description: Upload and manage zip files with Avail static data
+  parent: system.admin_config_system
+  route_name: ict_gtfs.static_data_settings
+  weight: 10

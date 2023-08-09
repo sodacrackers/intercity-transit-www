@@ -25,10 +25,7 @@ class StopsFormBlock extends BlockBase {
 
   public function build() {
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-    $api_base = $config->get('route_stops_api_base');
-    $stops_request = $config->get('stops_options_request'); 
-    $stop_options_path = $api_base . '/' . $stops_request;
-    $stop_options = it_route_trip_tools_get_api_data($stop_options_path, 'stop_options');
+    $stop_options = it_route_trip_tools_get_stop_options();
     $stops_path = $config->get('stops_page_path');
     $stop_url_id = basename($_SERVER['REQUEST_URI']);
     if (is_numeric($stop_url_id)):

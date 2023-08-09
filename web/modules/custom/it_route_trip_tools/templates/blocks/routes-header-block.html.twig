@@ -1,0 +1,35 @@
+{{ attach_library('it_route_trip_tools/header_block') }}
+{% set class_map = [
+    'col-md-12',
+    'col-md-6',
+    'col-md-4',
+    'col-md-3',
+    'col-md-2',
+    'col-md-2',
+] %}
+{% set width_class = class_map[additional_blocks|length] %}
+<section class="bgimage">
+    <div class="row h-full">
+        <div class="col-xs-12 {{ width_class }}">
+            <div class="card vcenter">
+                <h4 class="card-title text-white">Find a Route Schedule</h4>
+                <select id="route-change">
+                    <option value="">- Select Route -</option>
+                    {% for key, value in routes_options %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% for single_block in additional_blocks %}
+            <div class="{{ width_class }} hide-mobile">
+                {% include '@it_route_trip_tools/blocks/header-block.html.twig' with single_block %}
+            </div>
+        {% endfor %}
+        {% for single_block in additional_blocks %}
+            <div class="col-xs-4 show-mobile">
+                {% include '@it_route_trip_tools/blocks/header-block-mobile.html.twig' with single_block %}
+            </div>
+        {% endfor %}
+    </div>
+</section>

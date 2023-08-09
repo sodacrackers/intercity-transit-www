@@ -1,8 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import RealTimeArrivals from './components/RealTimeArrivals';
+import './index.css';
 
-// # Example 1: Simple "Hello, World" code
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 ReactDOM.render(
-    <h1>This is a React app in Drupal!</h1>,
+    <RealTimeArrivals />,
     document.getElementById('ict-routes-react-app')
 );

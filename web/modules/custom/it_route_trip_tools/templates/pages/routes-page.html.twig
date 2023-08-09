@@ -1,51 +1,145 @@
-<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-	{% if route_data %}
-		<div id="route-effective" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			Effective from {{ route_data.effective_from|date('m-d-Y')  }} until {{ route_data.effective_until|date('m-d-Y')  }}
-		</div>
-		<div id="route-map" class="col-xs-12 col-sm-12 col-md-10 col-lg-12">
-			<div id="route-map" class="col-xs-12 col-sm-12 col-md-8 col-lg-12">
-				{{ routes_map }}
-			</div>
-			<div id="route-info-header">
-				<div id="display-now-route-info" class="col-xs-12 col-sm-12 col-lg-8">
-				{% for dir, dir_data in route_data.times_alt  %}
-					{% if dir != 'inbound' %}
-						{% set dir_class = 'show-dir' %}
-						<h2 class="dir-heading displaying-now {{ dir_class }}">Displaying {{ route_data.short_name }} {{ route_data.long_name }} - Outbound {% if route_data.service_id == 1 %}Monday - Friday {% else %} Weekends {% endif %}</h2>
-					{% else %}	
-					{% set dir_class = 'hide-dir hidden' %}			
-						<h2 class="dir-heading displaying-now {{ dir_class }}">Displaying {{ route_data.short_name }} {{ route_data.long_name }} - Inbound {{ route_data.dir }} {% if route_data.service_id == 1 %}Monday - Friday {% else %} Weekends {% endif %}</h2>
+{{ attach_library('it_route_trip_tools/route') }}
+<div class="container">
+	<ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
+		<li class="nav-item active">
+			<a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true"><span class="route-id">Route {{ route_short_name }}</span> Schedule</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="realtime-tab" data-toggle="tab" href="#real-time" role="tab" aria-controls="real-time" aria-selected="false"><span class="route-id">Route {{ route_short_name }}</span> Real-Time <span class="hide-mobile">Departures</span></a>
+		</li>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<div id="schedule">
+			{% if route_data_weekdays %}
+				<div id="route-map" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						{{ routes_map_weekdays }}
+					</div>
+					{% if route_data_weekend %}
+{#						<div id="route-map-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">#}
+{#							{{ routes_map_weekend }}#}
+{#						</div>#}
 					{% endif %}
-				{% endfor %}
 				</div>
-				<div class="col-xs-12 col-sm-12 col-lg-4">
-				    <div class="btn-group btn-toggle dir-control-buttons">
-			            <div class="dir-control-button">
-			                <button id="direction" role="button" class="btn btn-primary">Switch Directions</button>
-			            </div>
-			        </div>
-		        </div>
-				<div id="icon-legend" class="col-xs-12 col-sm-12 col-lg-12">
-					<legend>
-						<p><i class="fas fa-1x fa-diamond"></i> = Timepoint (stop time guaranteed)<br /><i class="fas fa-1x fa-circle"></i> = Non-Timepoint (stop time estimated)</p>
-					</legend>
+					<div id="route-info-header">
+						<div id="filters" class="col-xs-12 col-sm-12 col-lg-12 accordion">
+							<h5 class="mb-0">
+								Routes Options
+								<button class="btn btn-link alerts-collapse" data-toggle="collapse" data-target="#collapsefilters" aria-expanded="true" aria-controls="collapsefilters">
+									<img src="/modules/custom/it_route_trip_tools/assets/images/accordion.svg" />
+								</button>
+							</h5>
+							<div id="collapsefilters" aria-labelledby="filters" data-parent="#filters" aria-expanded="true" class="in show">
+								<div id="filter-route" class="col-xs-12 col-sm-12 col-md-3">
+									<h5>Find a Schedule</h5>
+									<select id="route-change" class="btn btn-default input-width-80">
+										<option value="">- Select Route -</option>
+										{% for key, options in routes_options %}
+											<option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.name }}</option>
+										{% endfor %}
+									</select>
+								</div>
+								<div id="filter-viewmode" class="col-xs-12 col-sm-12 col-md-3 block">
+									<h5>
+										View Schedule as
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="viewtable" id="viewtable" name="viewmode" checked="checked" />
+											<label class="form-check-label" for="viewtable">Table</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="viewlists" id="viewlists" name="viewmode"/>
+											<label class="form-check-label" for="viewlists">List</label>
+										</div>
+									</div>
+								</div>
+								<div id="filter-stops" class="col-xs-12 col-sm-12 col-md-3">
+									<h5>
+										Customize Table View
+									</h5>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle input-width-80" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											Select all that apply
+										</button>
+										<button type="button" class="close ui-dialog-titlebar-close" aria-label="Clear selection" style="display: none">
+											<span aria-hidden="true" style="display: block; margin-top: 25px; margin-right: 15px;">×</span>
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="customize-dropdown">
+											<ul>
+                      {% for stop_id, stop_data in route_data_weekdays.stop_markers.outbound %}
+												<li>
+													<div class="dropdown-item">
+														<div class="form-check">
+															<input name="show_stop" class="form-check-input" type="checkbox" value="{{ stop_id }}" id="checkstop{{ stop_id }}" />
+															<label class="form-check-label" onclick="event.stopPropagation();" for="checkstop{{ stop_id }}">{{ stop_data.stop_data.stopName }}</label>
+														</div>
+													</div>
+												</li>
+											{% endfor %}
+                      </ul>
+                      <button class="btn btn-default" type="button" id="applyRoutesFilter">
+                        Apply
+                      </button>
+										</div>
+									</div>
+								</div>
+								<div id="filter-day" class="col-xs-12 col-sm-12 col-md-2">
+									<h5>
+										Day of Travel
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekdays-info" id="weekdays" name="dayoftravel" checked="checked" />
+											<label class="form-check-label" for="weekdays">Monday - Friday</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="weekend-info" id="weekend" name="dayoftravel"/>
+											<label class="form-check-label" for="weekends">Saturday - Sunday</label>
+										</div>
+									</div>
+								</div>
+								<div id="filter-direction" class="col-xs-12 col-sm-12 col-md-2">
+									<h5>
+										Direction
+									</h5>
+									<div class="form-radios">
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="outbound" id="outoubnd" name="direction" checked="checked" />
+											<label class="form-check-label" for="outoubnd">Outbound</label>
+										</div>
+										<div class="form-radio">
+											<input class="form-check-input" type="radio" value="inbound" id="inbound" name="direction" />
+											<label class="form-check-label" for="inbound">Inbound</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a id="download-link" class="btn btn-save" href="{{ download_url }}" target="_blank"><span class="download-icon"></span><span>Download Schedule<span></a>
+						</div>
+					</div>
+					<div id="route-table-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+						{{ routes_table_weekdays }}
+					</div>
+					<div id="route-table-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
+						{{ routes_table_weekend }}
+					</div>
+
 				</div>
-			</div>
-			<div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				{{ routes_table }}
-			</div>
-				
+			{% else %}
+				{{ attach_library('it_route_trip_tools/all-routes-map') }}
+				{% if all_routes_map_data %}
+					<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+					<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+					<div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div id="all-routes-map"></div>
+					</div>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
+				{%  endif %}
+			{% endif %}
 		</div>
-	{% else %}
-		{{ attach_library('it_route_trip_tools/all-routes-map') }}
-		{% if all_routes_map_data %}
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-	    <div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div id="all-routes-map"></div>
-    	</div>
-    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer></script>
-    	{%  endif %}
-	{% endif %}
+		<div id="real-time-container">
+			{{ drupal_block('ict_routes_react_app_block') }}
+		</div>
+	</div>
 </div>

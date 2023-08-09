@@ -5,13 +5,9 @@ dependencies:
   content:
     - 'block_content:basic:02a41dd4-10fe-4d73-a544-61298807116f'
   module:
-    - block_class
     - block_content
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: footerbottom
 theme: transit
 region: footer_bottom

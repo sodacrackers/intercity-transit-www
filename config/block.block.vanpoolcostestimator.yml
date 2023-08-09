@@ -5,14 +5,10 @@ dependencies:
   content:
     - 'block_content:hard_coded_block:e6d99433-e3a4-4659-be04-117b411b2b2d'
   module:
-    - block_class
     - block_content
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: vanpoolcostestimator
 theme: transit
 region: content

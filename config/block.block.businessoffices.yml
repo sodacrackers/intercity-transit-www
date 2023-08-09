@@ -5,13 +5,9 @@ dependencies:
   content:
     - 'block_content:basic:6ee630fc-9194-400e-b2f2-92e169fd8685'
   module:
-    - block_class
     - block_content
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: businessoffices
 theme: transit
 region: none

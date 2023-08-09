@@ -1,4 +1,5 @@
 {% set module_path = _self|split('\/templates') %}
+{{ attach_library('it_route_trip_tools/maps-autocomplete') }}
 {{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
 <div class="map-frame">
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -10,11 +11,11 @@
 		}
 	</script>
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer>
   </script>
 	<script>
 
-    const it_bounds = {
+    var it_bounds = {
 		  north: {{ route_data.bounding.max.lat }},
 		  south: {{ route_data.bounding.min.lat }},
 		  west: {{ route_data.bounding.min.lng }},
@@ -31,14 +32,14 @@
 			var start = {
 		    path: 'M -4 -2, h 8, v 4, h -8, Z',
 		    strokeColor: '#fff',
-		    fillColor: '#217b03',
+		    fillColor: '#007B5F',
 		    scale: 6,
 		    strokeWeight: 1,
 		    fillOpacity: 1
 			};
   		var end = {
 		    path: 'M -4 -2, h 8, v 4, h -8, Z',
-		    fillColor: '#F00',
+		    fillColor: '#B30000',
 		    scale: 6,
 		    strokeWeight: 1,
 		    fillOpacity: 1,
@@ -48,7 +49,7 @@
 		    scale: 4,
 		    strokeWeight: 1,
 		    strokeColor: "#fff",
-		    fillColor: "#217b03",
+		    fillColor: "#007B5F",
 		    fillOpacity: 1,
   		};
   		var stop = {
@@ -57,8 +58,15 @@
   			fillColor: '#fff',
   			fillOpacity: 1,
   			strokeWeight: 1,
-  			strokeColor:'#217b03'
+  			strokeColor:'#007B5F'
   		};
+      const events = ['mousedown', 'mousemove', 'mouseover', 'mouseout', 'mouseup',
+      'mousewheel', 'DOMMouseScroll', 'touchstart', 'touchend', 'touchmove',
+      'dblclick', 'contextmenu', 'click'];
+      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}").addEventListener(event, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }))
 	{% for stop_id, stop_dataset in stop_ids %}
 		{% if loop.first %}
 			var icon_val = start;
@@ -93,7 +101,7 @@
 					text: 'Start',
 			{% elseif start_end_check == 2 %}
 					text: 'End',
-			{% endif %}	
+			{% endif %}
 					fontWeight: 'bold',
 					color: '#fff'
 		    },
@@ -104,10 +112,10 @@
 		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
 		    description: content
 	  	});
-	  	{{ dir }}_markers.push(stop_marker);   
+	  	{{ dir }}_markers.push(stop_marker);
 	{% endfor %}
 	  	//Create and open InfoWindow.
-  		var infoWindow = new google.maps.InfoWindow(); 
+  		var infoWindow = new google.maps.InfoWindow();
   		for (var i = 0; i < {{ dir }}_markers.length; i++) {
 	      var data = {{ dir }}_markers[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
@@ -131,7 +139,7 @@
 				{% for key,inbound_shapes in route_data.inbound_shapes %}
 					const routePathCoordinates_{{ dir }}_{{ key }} = [
 						{% for inbound_shape in inbound_shapes %}
-						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},	
+						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
 						{% endfor %}
 					];
 					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
@@ -148,7 +156,7 @@
 					const routePathCoordinates_{{ dir }}_{{ key }} = [
 						{% for outbound_shape in outbound_shapes %}
 						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
-						{% endfor %}					
+						{% endfor %}
 					];
 					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ key }},
@@ -176,27 +184,54 @@
   </script>
 {% for dir, stop_ids in route_data.stop_markers %}
 	{% if dir != 'inbound' %}
-		{% set dir_class = 'show-dir' %}	
-	{% else %}				
+		{% set dir_class = 'show-dir' %}
+	{% else %}
 		{% set dir_class = 'hide-dir hidden' %}
 	{% endif %}
 	<div id="{{ dir }}-map" class="maps {{ dir_class }}">
   	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<div class="panel panel-default {{ dir }}-panel">
 	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
-      		<h4 class="panel-title">
-        		<a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ dir }}-map-body" aria-expanded="true" aria-controls="{{ dir }}-map-body" class="{{ dir }}-route-map-toggle">
-      	  		Show Route Map
-		        </a>
-      		</h4>
+      		<a id="map-title" class="panel-title" style="position: relative;" role="button" data-route-id="{{ route_data.short_name }}"
+            onclick="querySelector('#map-chevron span').style.transform === 'rotate(180deg)' 
+                        ? querySelector('#map-chevron span').style.transform = 'rotate(0deg)' 
+                        : querySelector('#map-chevron span').style.transform = 'rotate(180deg)'">
+				    <span id="map-chevron" class="chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 53px; align-items: center; display: flex; justify-content: center; color: white; border-radius: 3px;">
+              <span></span>
+            </span>
+        		<h4 class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
+      	  		Open Route {{ route_data.short_name }} Map
+		        </h4>
+      		</a>
 	    	</div>
-	    	<div id="{{ dir }}-map-body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ dir }}-map-heading">
+	    	<div id="{{ dir }}-map-body" class="panel-collapse hide">
       		<div id="route-map" class=" panel-body">
-						<div id="route-map-frame-{{ dir }}"></div>
+						<div tabindex="1" id="route-map-frame-{{ dir }}"></div>
 					</div>
 	    	</div>
 			</div>
 		</div>
   </div>
 {% endfor %}
+</div>
+<div id="tripplanner-menu" name="trip-planner-menu" style="display: none !important">
+	<div class="form-group">
+		<label for="start_add" class="sr-only">Starting Address</label>
+		<input type="text" name="start_add_id" id="start_add_id" class="hidden start-add-control" aria-hidden="true">
+		<div class="start-add-container">
+			<input name="start_add" id="start_add" type="text" placeholder="From" class="form-control start-add-control pac-target-input" autocomplete="off">
+			<button class="address-clear btn btn-danger" id="start-add-control" type="button">X</button>
+		</div>
+		<div class="alert alert-danger hidden" id="start-add-alert"></div>
+		<button id="locate" class="btn btn-primary col-xs-12 col-sm-12 col-md-12 col-lg-12" type="button" onclick="showPosition();">Use My Location</button>
+	</div>
+	<div class="form-group">
+		<label for="dest_add" class="sr-only">Destination Address</label>
+		<input type="text" name="dest_add_id" id="dest_add_id" class="hidden dest-add-control" aria-hidden="true">
+		<div class="dest-add-container">
+			<input name="dest_add" id="dest_add" type="text" placeholder="To" class="form-control dest-add-control pac-target-input" autocomplete="off">
+			<button class="address-clear btn btn-danger" id="dest-add-control" type="button">X</button>
+		</div>
+		<div class="alert alert-danger hidden" id="dest-add-alert"></div>
+	</div>
 </div>

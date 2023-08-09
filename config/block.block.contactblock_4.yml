@@ -5,14 +5,10 @@ dependencies:
   config:
     - contact.form.pace_car_pledge
   module:
-    - block_class
     - contact_block
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: contactblock_4
 theme: transit
 region: none

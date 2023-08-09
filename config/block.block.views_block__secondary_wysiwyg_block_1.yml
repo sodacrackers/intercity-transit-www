@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.secondary_wysiwyg
   module:
-    - block_class
     - system
     - views
   theme:

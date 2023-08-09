@@ -76,6 +76,13 @@ class Gtfs {
   protected $time;
 
   /**
+   * The zip files and configs.
+   *
+   * @var array;
+   */
+  private $items;
+
+  /**
    * Constructs a Gtfs object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -95,6 +102,7 @@ class Gtfs {
     $this->maxAge = $settings->get('max_age');
     $this->allowedTypes = $settings->get('allowed_types');
     $this->jsonFromFeedMessage = $settings->get('json_from_object');
+    $this->items = $settings->get('items');
 
     $this->httpClient = $http_client;
     $this->logger = $logger;
@@ -255,7 +263,7 @@ class Gtfs {
     // Fetch the data from the API endpoint.
     $query = ['Type' => $type];
     if ($format === 'json') {
-      $query['debug'] = 'true';
+//      $query['debug'] = 'true';
     }
     $url = Url::fromUri($this->baseUrl, ['query' => $query]);
     try {
@@ -312,6 +320,207 @@ class Gtfs {
     $this->cache->set($cid, $json, $expire);
 
     return $json;
+  }
+
+  public function getActiveConfiguration() {
+    $now = time();
+    return array_reduce($this->items ?: [], function ($carry, $item) use ($now) {
+      $from = strtotime($item['detail']['date_from']);
+      $to = strtotime($item['detail']['date_to']);
+      return $from <= $now && $to >= $now ? $item : $carry;
+    });
+  }
+
+  public function getActiveConfigurationPath() {
+    $active_zip = $this->getActiveConfiguration();
+    if ($active_zip) {
+      $folder_name = $active_zip['detail']['date_from'] . '-' . $active_zip['detail']['date_to'] . '/';
+      return \Drupal::service('file_system')->realpath('private://avail/' . $folder_name);
+    }
+  }
+
+  public function getStaticData(string $data_type) {
+    $path = $this->getActiveConfigurationPath();
+    if ($path) {
+      $filepath = $path . '/'. $data_type . '.txt';
+      $file_to_read = file_get_contents($filepath);
+      $file_to_read = str_replace("\r\n", "\n", $file_to_read);
+      $rows_to_parse = explode("\n", $file_to_read);
+      return array_map('str_getcsv', $rows_to_parse);
+    }
+    return [];
+  }
+
+  public function getTripsByRouteAndDirection(string $route_id, string $direction, string $service_type) {
+    $trips = $this->getStaticData('trips');
+    return array_filter($trips, function ($item) use ($route_id, $direction, $service_type) {
+      return $item[0] === $route_id && $item[4] === $direction && $item[1] == $service_type;
+    });
+  }
+
+  public function getStopTimes(string $route_id, string $direction, string $service_type) {
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction, $service_type));
+    $trip_ids = array_map(function ($item) {
+      return $item[2];
+    }, $trips);
+    $keyed_trips = [];
+    foreach ($trips as $trip) {
+      $keyed_trips[$trip[2]] = [
+        'route_id' => $trip[0],
+        'service_id' => $trip[1],
+        'trip_id' => $trip[2],
+        'trip_headsign' => $trip[3],
+        'direction_id' => $trip[4],
+        'block_id' => $trip[5],
+        'shape_id' => $trip[6],
+        'wheelchair_accessible' => $trip[7],
+        'bikes_allowed' => $trip[8],
+      ];
+    }
+    $stop_times = $this->getStaticData('stop_times');
+    $stop_times = array_filter($stop_times, function ($item) use ($trip_ids) {
+      return in_array($item[0], $trip_ids);
+    });
+    usort($stop_times, function ($item, $comp) {
+      return (int) $item[4] - (int) $comp[4];
+    });
+    $stops = $this->getStaticData('stops');
+    $built_stops = [];
+    foreach ($stops as $stop) {
+      if ($stop[0]) {
+        $built_stops[$stop[0]] = [
+          'name' => $stop[2],
+          'lat' => $stop[4],
+          'lon' => $stop[5],
+        ];
+      }
+    }
+
+    $built_stop_times = [];
+    foreach ($stop_times as $stop_time) {
+      $built_stop_times[] = [
+        'trip_id' => $stop_time[0],
+        'arrival_time' => $stop_time[1],
+        'departure_time' => $stop_time[2],
+        'stop_id' => $stop_time[3],
+        'stop_sequence' => $stop_time[4],
+        'stop_headsign' => $stop_time[5],
+        'pickup_type' => $stop_time[6],
+        'drop_off_type' => $stop_time[7],
+        'shape_dist_traveled' => $stop_time[8],
+        'timepoint' => $stop_time[9],
+        'name' => $built_stops[$stop_time[3]]['name'],
+        'lat' => $built_stops[$stop_time[3]]['lat'],
+        'lon' => $built_stops[$stop_time[3]]['lon'],
+        'shape_id' => $keyed_trips[$stop_time[0]]['shape_id']
+      ];
+    }
+
+    return $built_stop_times;
+
+  }
+
+  public function getShapes($route_id, $direction, $service_type) {
+    $shapes = $this->getStaticData('shapes');
+    $lat_index = array_search('shape_pt_lat', $shapes[0]);
+    $lon_index = array_search('shape_pt_lon', $shapes[0]);
+    $trips = array_values($this->getTripsByRouteAndDirection($route_id, $direction, $service_type));
+    $trip_shapes = array_unique(array_map(function ($item) {
+      return $item[6];
+    }, $trips));
+    $ret_shapes = [];
+    foreach ($trip_shapes as $trip_shape) {
+      $filtered_shapes = array_filter($shapes, function ($item) use ($trip_shape, $lat_index, $lon_index) {
+        return $item[0] == $trip_shape;
+      });
+      $ret_shapes[] = array_map(function ($item) use ($lat_index, $lon_index) {
+        return [
+          'lat' => $item[$lat_index],
+          'lng' => $item[$lon_index],
+        ];
+      }, $filtered_shapes);
+    }
+    return $ret_shapes;
+
+  }
+
+  public function getStopTimeUpdates($json_data, $trip_list) {
+    $stop_time_updates = array();
+    foreach ($json_data['entity'] as $entity) {
+      if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
+        $vehicle_id =
+        $vehicle_label =
+        $arrival_time =
+        $arrival_delay =
+        $departure_delay =
+        $departure_time = NULL;
+        if (!empty($entity['tripUpdate']['vehicle'])) {
+          $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
+          $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
+        }
+        foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
+          $stop_id = intval($stop_time_update['stopId']);
+          if (isset($stop_time_update['arrival']) && $stop_time_update['arrival'] != NULL) {
+            $arrival_delay = $stop_time_update['arrival']['delay'] ?? NULL;
+            $arrival_time = $stop_time_update['arrival']['time'];
+          }
+          if (isset($stop_time_update['departure']) && $stop_time_update['departure'] != NULL) {
+            $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
+            $departure_time = $stop_time_update['departure']['time'];
+          }
+          $stop_time_updates[] = [
+            'stop_id' => $stop_id,
+            'vehicle_id' => $vehicle_id,
+            'vehicle_label' => $vehicle_label,
+            'arrival_time' => $arrival_time,
+            'arrival_delay' => $arrival_delay,
+            'departure_delay' => $departure_delay,
+            'departure_time' => $departure_time,
+          ];
+        }
+      }
+    }
+    return $stop_time_updates;
+  }
+
+  public function getVehiclePositions($json_data, $trip_list) {
+    $vehicle_positions = array();
+
+    foreach ($json_data['entity'] as $entity) {
+      if ($entity['vehicle'] != NULL) {
+        if (!empty($entity['vehicle']['trip'])) {
+          if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
+            $vehicle_id = $entity['vehicle']['vehicle']['id'];
+            $latitude = $entity['vehicle']['position']['latitude'];
+            $longitude = $entity['vehicle']['position']['longitude'];
+            $bearing = $entity['vehicle']['position']['bearing'] ?? '';
+            $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
+          }
+        }
+      }
+    }
+    return $vehicle_positions;
+  }
+
+  public function getRealTimeByStopId($stop_id, $stop_updates) {
+    return array_filter($stop_updates, function ($item) use ($stop_id) {
+      return $item['stop_id'] === $stop_id;
+    });
+  }
+
+  public function getCurrentServiceType() {
+    $calendar_dates = $this->getStaticData('calendar_dates');
+    $calendar_structured = [];
+    foreach ($calendar_dates as $calendar_date) {
+      if (isset($calendar_date[1])) {
+        $calendar_structured[$calendar_date[1]] = $calendar_date[0];
+      }
+    }
+    $today = (int) date('Ymd');
+    if (isset($calendar_structured[$today])) {
+      return $calendar_structured[$today];
+    }
+    return (int) date('N', strtotime('now')) >= 6 ? '3' : '2';
   }
 
 }

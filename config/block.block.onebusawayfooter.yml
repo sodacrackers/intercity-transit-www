@@ -5,13 +5,9 @@ dependencies:
   content:
     - 'block_content:hard_coded_block:819030ff-bd13-4ac7-8675-71687e727333'
   module:
-    - block_class
     - block_content
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: onebusawayfooter
 theme: transit
 region: none

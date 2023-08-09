@@ -52,6 +52,8 @@ html body .nav-outer-wrapper {
   width: 100%;
   display: block;
   overflow: visible;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 @media screen and (max-width: 991px) {
   html body .nav-outer-wrapper {
@@ -146,6 +148,12 @@ html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .regio
 html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .region-we-mega-menu .navbar-we-mega-menu.navbar {
   margin-bottom: 0;
 }
+/* @media screen and (min-width: 992px) {
+  html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .region-we-mega-menu .navbar-we-mega-menu.navbar {
+    padding-left: 30px !important;
+  }
+} */
+
 @media screen and (max-width: 991px) {
   html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .region-we-mega-menu .navbar-we-mega-menu.navbar.we-mobile-megamenu-active {
     left: 25%;

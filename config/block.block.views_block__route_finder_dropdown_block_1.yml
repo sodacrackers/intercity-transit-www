@@ -5,13 +5,9 @@ dependencies:
   config:
     - views.view.route_finder_dropdown
   module:
-    - block_class
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__route_finder_dropdown_block_1
 theme: transit
 region: none

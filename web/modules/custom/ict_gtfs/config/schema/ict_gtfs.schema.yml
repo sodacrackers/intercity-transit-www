@@ -1,0 +1,8 @@
+# Schema for the configuration files of the GTFS Import module.
+ict_gtfs.settings:
+  type: config_object
+  label: 'GTFS Import settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

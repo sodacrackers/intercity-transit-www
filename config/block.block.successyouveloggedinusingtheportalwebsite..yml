@@ -5,14 +5,10 @@ dependencies:
   content:
     - 'block_content:basic:94f17c58-dae6-444a-a9e1-1eb177b2e65a'
   module:
-    - block_class
     - block_content
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: successyouveloggedinusingtheportalwebsite.
 theme: transit
 region: content

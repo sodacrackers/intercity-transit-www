@@ -1,0 +1,25 @@
+uuid: 198f825a-c93e-4752-9e8c-3f6214307ec9
+langcode: en
+status: true
+dependencies:
+  module:
+    - it_route_trip_tools
+    - system
+  theme:
+    - transit
+id: routesheader
+theme: transit
+region: header_mid
+weight: -49
+provider: null
+plugin: it_route_trip_tools_routes_header
+settings:
+  id: it_route_trip_tools_routes_header
+  label: 'Routes Header'
+  label_display: '0'
+  provider: it_route_trip_tools
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /plan-your-trip/routes

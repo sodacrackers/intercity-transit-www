@@ -5,14 +5,10 @@ dependencies:
   config:
     - views.view.event_files_for_sidebar
   module:
-    - block_class
     - node
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__event_files_for_sidebar_block_1
 theme: transit
 region: sidebar_second

@@ -7,18 +7,22 @@
     var startErrorDiv = document.getElementById('start-add-alert');
     var destErrorDiv = document.getElementById('dest-add-alert');
 
-    start_add_input.addEventListener('change', function() { 
-        if (start_add_id_input.value == '') {        
+    if (start_add_input) {
+      start_add_input.addEventListener('change', function() {
+        if (start_add_id_input.value == '') {
           startErrorDiv.classList.remove('hidden');
           startErrorDiv.innerHTML = 'Please enter a valid start address';
         }
-    });
-    dest_add_input.addEventListener('change', function() {
+      });
+    }
+    if (dest_add_input) {
+      dest_add_input.addEventListener('change', function() {
         if (dest_add_id_input.value == '') {
           destErrorDiv.classList.remove('hidden');
           destErrorDiv.innerHTML = 'Please enter a valid destination address';
         }
-    });
+      });      
+    }
   });
 
 })(jQuery);

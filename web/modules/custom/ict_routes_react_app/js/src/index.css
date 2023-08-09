@@ -1,0 +1,24 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#mapAccordionHeader, #mapAccordionHeader .card-header, #mapAccordionHeader .card-header button {
+  border: none !important;
+  outline: none;
+  border-radius: 3px !important;
+}
+
+#mapAccordionHeader .card-header {
+  background-color: #F1F3F6;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 165%;
+  color: #003087;
+  padding: 0 !important;
+  height: 53px;
+  text-align: left;
+}
+
+#mapAccordionHeader .card-header:hover {
+  outline: 1px solid #347960;
+}

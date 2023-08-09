@@ -3,17 +3,13 @@ langcode: en
 status: true
 dependencies:
   module:
-    - block_class
     - sidr
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: sidrtriggerbuttonblock
 theme: transit
 region: header_top
-weight: 0
+weight: -48
 provider: null
 plugin: sidr_trigger
 settings:

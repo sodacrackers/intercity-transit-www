@@ -5,14 +5,10 @@ dependencies:
   content:
     - 'block_content:hard_coded_block:f8b02398-4a0b-41cf-b252-33dfc4dd211e'
   module:
-    - block_class
     - block_content
     - user
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: rideralertsheader
 theme: transit
 region: none

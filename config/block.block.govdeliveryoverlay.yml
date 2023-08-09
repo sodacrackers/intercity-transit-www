@@ -5,13 +5,9 @@ dependencies:
   content:
     - 'block_content:basic:140ae927-9812-45c8-a6da-efdc42a07cd4'
   module:
-    - block_class
     - block_content
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: govdeliveryoverlay
 theme: transit
 region: footer_bottom

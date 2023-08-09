@@ -5,15 +5,11 @@ dependencies:
   config:
     - webform.webform.bike_mechanic_volunteer_program
   module:
-    - block_class
     - system
     - user
     - webform
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: webform_4
 theme: transit
 region: content

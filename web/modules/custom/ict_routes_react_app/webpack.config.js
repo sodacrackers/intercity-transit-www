@@ -21,7 +21,22 @@ const config = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 include: path.join(__dirname, 'js/src'),
-            }
+            },
+            {
+              test: /\.(sass|less|css)$/,
+              use: ["style-loader", "css-loader", 'sass-loader'],
+            },
+            {
+              test: /\.svg$/,
+              use: [
+                {
+                  loader: 'svg-url-loader',
+                  options: {
+                    limit: 10000,
+                  },
+                },
+              ],
+            },
         ],
     },
 };

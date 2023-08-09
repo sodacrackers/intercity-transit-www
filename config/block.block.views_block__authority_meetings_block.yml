@@ -5,14 +5,10 @@ dependencies:
   config:
     - views.view.authority_cac_meetings
   module:
-    - block_class
     - system
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__authority_meetings_block
 theme: transit
 region: sidebar_second
