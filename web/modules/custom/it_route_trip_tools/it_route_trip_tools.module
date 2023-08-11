@@ -364,14 +364,14 @@ function it_route_trip_tools_get_stop_options() {
   $lon_index = array_search('stop_lon', $headers);
   $organized_stops = array_map(function ($item) use ($id_index, $name_index, $lat_index, $lon_index){
     return [
-      'stop_id' => $item[$id_index],
-      'stop_name' => $item[$name_index],
-      'stop_lat' => $item[$lat_index],
-      'stop_lon' => $item[$lon_index],
+      'stop_id' => empty($item[$id_index]) ? '' : $item[$id_index],
+      'stop_name' => empty($item[$name_index]) ? '' : $item[$name_index],
+      'stop_lat' => empty($item[$lat_index]) ? '' : $item[$lat_index],
+      'stop_lon' => empty($item[$lon_index]) ? '' : $item[$lon_index],
     ];
   }, $stops);
   usort($organized_stops, function ($a, $b) {
-    return (int) $a['stop_id'] > (int) $b['stop_id'];
+    return (int) $a['stop_id'] - (int) $b['stop_id'];
   });
   return $organized_stops;
 }
