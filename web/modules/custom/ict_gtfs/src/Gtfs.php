@@ -444,7 +444,7 @@ class Gtfs {
 
   }
 
-  public function getStopTimeUpdates($json_data, $trip_list) {
+  public function getStopTimeUpdates($json_data, $trip_list, &$vehicle_list) {
     $stop_time_updates = array();
     foreach ($json_data['entity'] as $entity) {
       if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
@@ -456,6 +456,7 @@ class Gtfs {
         $departure_time = NULL;
         if (!empty($entity['tripUpdate']['vehicle'])) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
+          $vehicle_list[$vehicle_id] = $vehicle_id;
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
         }
         foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
@@ -480,23 +481,20 @@ class Gtfs {
         }
       }
     }
+    $vehicle_list = array_values($vehicle_list);
     return $stop_time_updates;
   }
 
-  public function getVehiclePositions($json_data, $trip_list) {
+  public function getVehiclePositions($json_data, $vehicle_list) {
     $vehicle_positions = array();
 
     foreach ($json_data['entity'] as $entity) {
-      if ($entity['vehicle'] != NULL) {
-        if (!empty($entity['vehicle']['trip'])) {
-          if ($entity['vehicle']['trip']['tripId'] != NULL && in_array($entity['vehicle']['trip']['tripId'], $trip_list)) {
-            $vehicle_id = $entity['vehicle']['vehicle']['id'];
-            $latitude = $entity['vehicle']['position']['latitude'];
-            $longitude = $entity['vehicle']['position']['longitude'];
-            $bearing = $entity['vehicle']['position']['bearing'] ?? '';
-            $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
-          }
-        }
+      if (isset($entity['vehicle']['vehicle']['id']) && in_array($entity['vehicle']['vehicle']['id'], $vehicle_list)) {
+        $vehicle_id = $entity['vehicle']['vehicle']['id'];
+        $latitude = $entity['vehicle']['position']['latitude'];
+        $longitude = $entity['vehicle']['position']['longitude'];
+        $bearing = $entity['vehicle']['position']['bearing'] ?? '';
+        $vehicle_positions[] = ['vehicle_id' => $vehicle_id, 'latitude' => $latitude, 'longitude' => $longitude, 'bearing' => $bearing];
       }
     }
     return $vehicle_positions;
