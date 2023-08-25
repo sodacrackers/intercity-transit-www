@@ -1,8 +1,11 @@
 {% set url = url('<current>') %}
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<form id="stops-form" action="{{ stops_path }}" method="POST">
-		<label class="sr-only">Select a Stop</label>
+		<label for="edit-stop" class="control-label js-form-required form-required">Select a Stop</label>
 		<select required name="edit-stop" id="edit-stop" class="form-control chosen-select" data-placeholder="Select a stop">
+			<option selected="1">Select a stop</option>
+			<option value="2">Stop 2</option>
+			<option value="3">Stop 3</option>
 		{% if stop_options %}
 			<option
 			{% if stops_path in url|render|render %}
