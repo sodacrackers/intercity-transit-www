@@ -70,8 +70,3 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
 }
 
 ini_set('memory_limit', '1024M');
-
-if (empty($databases['default']['default']['init_commands'])) {
-  $databases['default']['default']['init_commands'] = [];
-}
-$databases['default']['default']['init_commands'][] = 'SET GLOBAL max_allowed_packet=1073741824;';
