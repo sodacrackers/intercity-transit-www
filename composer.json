@@ -146,7 +146,8 @@
         "drupal/google_tag": "^1.6",
         "google/protobuf": "3.22.0 as 3.10.0",
         "drupal/config_ignore": "^2.4",
-        "drupal/cacheexclude": "^2.0"
+        "drupal/cacheexclude": "^2.0",
+        "drupal/redis": "^1.7"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"
