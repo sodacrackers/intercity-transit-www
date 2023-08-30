@@ -1,4 +1,4 @@
-cacheexclude_list: "/plan-your-trip/routes/*\r\n/plan-your-trip/routes"
+cacheexclude_list: ''
 cacheexclude_node_types:
   blog_page: '0'
   calendar_event: '0'

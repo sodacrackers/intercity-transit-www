@@ -378,6 +378,13 @@ class Gtfs {
       ];
     }
     $stop_times = $this->getStaticData('stop_times');
+    $stop_times_headers = array_shift($stop_times);
+    $trip_id_index = array_search('trip_id', $stop_times_headers);
+    $arrival_time_index = array_search('arrival_time', $stop_times_headers);
+    $departure_time_index = array_search('departure_time', $stop_times_headers);
+    $stop_id_index = array_search('stop_id', $stop_times_headers);
+    $stop_sequence_index = array_search('stop_sequence', $stop_times_headers);
+    $timepoint_index = array_search('timepoint', $stop_times_headers);
     $stop_times = array_filter($stop_times, function ($item) use ($trip_ids) {
       return in_array($item[0], $trip_ids);
     });
@@ -399,20 +406,16 @@ class Gtfs {
     $built_stop_times = [];
     foreach ($stop_times as $stop_time) {
       $built_stop_times[] = [
-        'trip_id' => $stop_time[0],
-        'arrival_time' => $stop_time[1],
-        'departure_time' => $stop_time[2],
-        'stop_id' => $stop_time[3],
-        'stop_sequence' => $stop_time[4],
-        'stop_headsign' => $stop_time[5],
-        'pickup_type' => $stop_time[6],
-        'drop_off_type' => $stop_time[7],
-        'shape_dist_traveled' => $stop_time[8],
-        'timepoint' => $stop_time[9],
-        'name' => $built_stops[$stop_time[3]]['name'],
-        'lat' => $built_stops[$stop_time[3]]['lat'],
-        'lon' => $built_stops[$stop_time[3]]['lon'],
-        'shape_id' => $keyed_trips[$stop_time[0]]['shape_id']
+        'trip_id' => $stop_time[$trip_id_index],
+        'arrival_time' => $stop_time[$arrival_time_index],
+        'departure_time' => $stop_time[$departure_time_index],
+        'stop_id' => $stop_time[$stop_id_index],
+        'stop_sequence' => $stop_time[$stop_sequence_index],
+        'timepoint' => $stop_time[$timepoint_index],
+        'name' => $built_stops[$stop_time[$stop_id_index]]['name'],
+        'lat' => $built_stops[$stop_time[$stop_id_index]]['lat'],
+        'lon' => $built_stops[$stop_time[$stop_id_index]]['lon'],
+        'shape_id' => $keyed_trips[$stop_time[$trip_id_index]]['shape_id']
       ];
     }
 

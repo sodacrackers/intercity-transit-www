@@ -151,6 +151,18 @@
 				}
 			});
 			$('input[name="direction"]').once().click(function() {
+				//  Grab the options
+				const customizeViewListContainer = $('#customize-dropdown ul');
+				console.log(customizeViewListContainer);
+				var customizeViewListItems = customizeViewListContainer.find('li');
+				// turn the nodelist into an array and reverse it
+				customizeViewListItems = [].slice.call(customizeViewListItems).reverse();
+				// empty the select
+				customizeViewListContainer.empty();
+				// add each option back
+				$.each(customizeViewListItems, function (i, el) {
+					customizeViewListContainer.append($(el));
+				});
 				const choice = $(this).val();
 				const opposite = choice === 'inbound' ? 'outbound' : 'inbound';
 				$('button#direction').addClass(choice);
