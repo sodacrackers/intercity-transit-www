@@ -808,12 +808,13 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
   }
   $id_index = array_search('route_id', $headers);
   $name_index = array_search('route_long_name', $headers);
+  $short_name_index = array_search('route_short_name', $headers);
   $sort_index = array_search('route_sort_order', $headers);
   $res = [];
   foreach ($routes as $id => $route) {
     if (count($route) > 1) {
       $sort_key = (int) $route[$sort_index];
-      $res[$sort_key][$route[$id_index]] = $route[$name_index];
+      $res[$sort_key][$route[$id_index]] = $route[$short_name_index] . '-' . $route[$name_index];
     }
   }
   $final = [];
