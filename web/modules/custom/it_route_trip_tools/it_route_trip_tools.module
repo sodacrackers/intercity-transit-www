@@ -114,7 +114,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 				'stops_path' => '',
 				'current_page' => '',
 				'route_id' => ''
-			],	
+			],
 		],
         /** new templates */
         'routes_header_block' => [
@@ -193,11 +193,11 @@ function it_route_trip_tools_get_api_data($data, $apiId) {
 	$json = &drupal_static(__FUNCTION__);
 	$hash = md5($data);
 	$cid = $apiId . '_' . $hash . ':' . \Drupal::languageManager()->getCurrentLanguage()->getId();
-	
+
 	//Check if the cache exists
 	if ($cache = \Drupal::cache()->get($cid)):
 		$json = $cache->data;
-	
+
 	//If not, build it
 	else:
 		$api_data = file_get_contents($data);
@@ -548,7 +548,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
       'outbound' => it_route_trip_get_trips($stop_times_outbound),
     ],
   ];
-	
+
 }
 
 
