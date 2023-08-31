@@ -3,9 +3,6 @@
 	<form id="stops-form" action="{{ stops_path }}" method="POST">
 		<label for="edit-stop" class="control-label js-form-required form-required">Select a Stop</label>
 		<select required name="edit-stop" id="edit-stop" class="form-control chosen-select" data-placeholder="Select a stop">
-			<option selected="1">Select a stop</option>
-			<option value="2">Stop 2</option>
-			<option value="3">Stop 3</option>
 		{% if stop_options %}
 			<option
 			{% if stops_path in url|render|render %}
@@ -14,7 +11,7 @@
 			 	{% endif %}
 		 	{% else %}
 		 		selected
-	 		{% endif %} disabled>Select a stop</option>
+	 		{% endif %}>Select a stop</option>
 			{% for stop_item in stop_options %}
 				<option value="{{ stop_item.stop_id }}"
 				{% if stops_path in url|render|render %}
@@ -27,6 +24,6 @@
 			{% endfor %}
 		{% endif %}
 		</select>
-		<button data-drupal-selector="edit-find-stop-button" class="button js-form-submit form-submit btn-default btn" type="submit" id="find-stop" name="op" value="View Stop">View Stop</button>
+		<button disabled data-drupal-selector="edit-find-stop-button" class="button js-form-submit form-submit btn-default btn" type="submit" id="find-stop" name="op" value="View Stop">View Stop</button>
 	</form>
 </div>

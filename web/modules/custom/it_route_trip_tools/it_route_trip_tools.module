@@ -357,7 +357,7 @@ function it_route_trip_tools_get_center($boundaries) {
 
 function it_route_trip_tools_get_stop_options() {
   $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
-  $headers = [];;// array_shift($stops);
+  $headers = array_shift($stops);
   $id_index = array_search('stop_id', $headers);
   $name_index = array_search('stop_name', $headers);
   $lat_index = array_search('stop_lat', $headers);
