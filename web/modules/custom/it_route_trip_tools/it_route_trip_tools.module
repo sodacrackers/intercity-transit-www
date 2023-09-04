@@ -403,7 +403,7 @@ function it_route_trip_tools_get_stop_details($stop_id) {
   $arrival_time_index = array_search('arrival_time', $headers);
   $trip_ids = [];
   $filtered_stop_times = array_filter($stop_times, function ($item) use ($stop_id_index, $stop_id) {
-    return $item[$stop_id_index] == $stop_id;
+    return isset($item[$stop_id_index]) && $item[$stop_id_index] == $stop_id;
   });
   // Filter trip ids and use them to collect routes.
   foreach ($filtered_stop_times as $filtered_stop_time) {
@@ -420,7 +420,7 @@ function it_route_trip_tools_get_stop_details($stop_id) {
   $shape_id_index = array_search('shape_id', $headers);
   $route_ids = [];
   $filtered_trips = array_filter($trips, function ($item) use ($trip_ids, $trip_id_index) {
-    return array_key_exists($item[$trip_id_index], $trip_ids);
+    return isset($item[$trip_id_index]) && array_key_exists($item[$trip_id_index], $trip_ids);
   });
   $all_routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
   $headers = array_shift($all_routes);
