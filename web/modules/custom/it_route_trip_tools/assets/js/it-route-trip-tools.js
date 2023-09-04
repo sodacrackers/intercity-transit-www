@@ -169,6 +169,8 @@
 				$('button#direction').removeClass(opposite);
 				$('.dir-heading-' + choice).removeClass('hidden');
 				$('.dir-heading-' + opposite).addClass('hidden');
+				$('.customize-view-' + choice).removeClass('hidden');
+				$('.customize-view-' + opposite).addClass('hidden');
 				$('.dir-tables-' + choice).removeClass('hidden');
 				$('.dir-tables-' + opposite).addClass('hidden');
 				$('.dir-lists-' + choice).removeClass('hidden');
