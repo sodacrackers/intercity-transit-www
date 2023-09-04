@@ -230,7 +230,8 @@ class RoutesPage extends ControllerBase {
       ];
       $routes_table_weekdays = [
         '#theme' => 'routes_table',
-        '#route_data' => $route_data_weekdays
+        '#route_data' => $route_data_weekdays,
+        '#valid_for' => 'weekdays',
       ];
       $routes_map_weekend = [
         '#theme' => 'routes_map',
@@ -238,7 +239,8 @@ class RoutesPage extends ControllerBase {
       ];
       $routes_table_weekend = [
         '#theme' => 'routes_table',
-        '#route_data' => $route_data_weekend
+        '#route_data' => $route_data_weekend,
+        '#valid_for' => 'weekends',
       ];
       $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
         'bundle' => 'route_pdfs',

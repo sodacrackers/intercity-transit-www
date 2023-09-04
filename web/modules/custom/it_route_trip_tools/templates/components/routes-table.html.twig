@@ -11,7 +11,7 @@
 		<div id="{{ dir }}-tables" class="{{ dir_class }} dir-tables dir-tables-{{ dir }}">
 			<div id="{{ dir }}--navigation-buttons" class="table-navigation-buttons">
 		    </div>
-			<div id="{{ dir }}-large-screen-route-table" class="large-screen-route-table table-responsive {{ dir }}-large-screen-route-table">
+			<div id="{{ dir }}-{{ valid_for }}-large-screen-route-table" class="large-screen-route-table table-responsive {{ dir }}-{{ valid_for }}-large-screen-route-table {{ dir }}-large-screen-route-table">
 				<div class="table-header">
 					<div class="btn-group btn-stops-toggle" data-toggle="buttons">
 						<label class="btn btn-primary active">
@@ -22,11 +22,11 @@
 						</label>
 					</div>
 					<div style="display: flex; float: right;">
-						<button id="{{ dir }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-back" style="order: 1;" disabled><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-left.svg" /><span class="sr-only">{{ dir }} Back</span></button>
-						<button id="{{ dir }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-forward" style="order: 2; margin-left: 15px;"><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-right.svg" /><span class="sr-only">{{ dir }} Forward</span></button>
+						<button id="{{ dir }}-{{ valid_for }}-back" role="button" class=" right-table-button btn btn-default {{ dir }}-{{ valid_for }}-back {{ dir }}-back" style="order: 1;" disabled><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-left.svg" /><span class="sr-only">{{ dir }} Back</span></button>
+						<button id="{{ dir }}-{{ valid_for }}-forward" role="button" class="right-table-button btn btn-default {{ dir }}-{{ valid_for }}-forward {{ dir }}-forward" style="order: 2; margin-left: 15px;"><img src="/modules/custom/it_route_trip_tools/assets/images/arrow-right.svg" /><span class="sr-only">{{ dir }} Forward</span></button>
 					</div>
 				</div>
-				<table class="table table-hover table-condensed">
+				<table class="table table-hover table-condensed {{ valid_for }}">
 					<tbody>
 						{% for stop_id, stop_data in dir_data.stops %}
 							{% for timepoint, stop_names in stop_data %}

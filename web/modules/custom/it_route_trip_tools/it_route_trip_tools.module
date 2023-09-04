@@ -61,7 +61,8 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 		],
 		'routes_table' => [
 			'variables' => array (
-				'route_data' => array()
+				'route_data' => array(),
+        'valid_for' => NULL,
 			),
 			'template' => 'components/routes-table'
 		],

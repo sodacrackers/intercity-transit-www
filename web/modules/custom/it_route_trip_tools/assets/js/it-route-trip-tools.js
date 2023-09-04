@@ -19,96 +19,136 @@
 					}
 				}
 			}
-			$('.inbound-forward').once().on('touch, click', function(){
+
+			$('.inbound-weekdays-forward').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('.inbound-large-screen-route-table table');
+				var table = $('.inbound-weekdays-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos + 400
 				}, 400);
-				$('.inbound-back').attr('disabled', false);
+				$('.inbound-weekdays-back').attr('disabled', false);
 			});
-			$('.inbound-back').once().on('touch, click', function(){
+			$('.inbound-weekdays-back').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('.inbound-large-screen-route-table table');
+				var table = $('.inbound-weekdays-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos - 400
 				}, 400);
-				$('.inbound-forward').attr('disabled', false);
+				$('.inbound-weekdays-forward').attr('disabled', false);
 			});
-			$('.outbound-forward').once().on('touch, click', function(){
+			$('.outbound-weekdays-forward').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('.outbound-large-screen-route-table table');
+				var table = $('.outbound-weekdays-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos + 400
 				}, 400);
-				$('.outbound-back').attr('disabled', false);
+				$('.outbound-weekdays-back').attr('disabled', false);
 			});
-			$('.outbound-back').once().on('touch, click', function(){
+			$('.outbound-weekdays-back').once().on('touch, click', function(){
 				event.preventDefault();
-				var table = $('.outbound-large-screen-route-table table');
+				var table = $('.outbound-weekdays-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
 				$(table).animate({
 					scrollLeft: leftPos - 400
 				}, 400);
-				$('.outbound-forward').attr('disabled', false);
+				$('.outbound-weekdays-forward').attr('disabled', false);
 			});
-			const $outbound = $('#outbound-large-screen-route-table table');
-			const $inbound = $('#outbound-large-screen-route-table table');
-			let outbound_last_left = $outbound.scrollLeft();
-			let inbound_last_left = $inbound.scrollLeft();
-			$outbound.on('scroll', function() {
-				const outbound_curr_left = $outbound.scrollLeft();
-				if(outbound_curr_left > outbound_last_left) {
-					$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
-				}
-				if (outbound_curr_left < outbound_last_left) {
-					$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
-				}
-				outbound_last_left = outbound_curr_left;
+
+
+
+			$('.inbound-weekends-forward').once().on('touch, click', function(){
+				event.preventDefault();
+				var table = $('.inbound-weekends-large-screen-route-table table');
+				var leftPos = $(table).scrollLeft();
+				$(table).animate({
+					scrollLeft: leftPos + 400
+				}, 400);
+				$('.inbound-weekends-back').attr('disabled', false);
 			});
-			$inbound.on('scroll', function() {
-				const inbound_curr_left = $inbound.scrollLeft();
-				if(inbound_curr_left > inbound_last_left) {
-					$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
-				}
-				if (inbound_curr_left < inbound_last_left) {
-					$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
-				}
-				inbound_last_left = inbound_curr_left;
+			$('.inbound-weekends-back').once().on('touch, click', function(){
+				event.preventDefault();
+				var table = $('.inbound-weekends-large-screen-route-table table');
+				var leftPos = $(table).scrollLeft();
+				$(table).animate({
+					scrollLeft: leftPos - 400
+				}, 400);
+				$('.inbound-weekends-forward').attr('disabled', false);
 			});
-			$(function () {
-				const $outbound_table = $('#outbound-large-screen-route-table table');
-				const $inbound_table = $('#inbound-large-screen-route-table table');
-				$outbound_table.on('scroll', function () {
-					var new_scroll_left = $outbound_table.scrollLeft(),
-							width = $outbound_table.outerWidth(),
-							scroll_width = $outbound_table.get(0).scrollWidth,
-							right_width_floor = Math.floor(scroll_width - new_scroll_left),
-							width_floor = Math.floor(width);
-					if (right_width_floor - 1 == width_floor || right_width_floor + 1 == width_floor || right_width_floor == width_floor) {
-						$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
-					}
-					if (new_scroll_left === 0) {
-						$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
-					}
-				});
-				$inbound_table.on('scroll', function () {
-					var new_scroll_left = $inbound_table.scrollLeft(),
-							width = $inbound_table.outerWidth(),
-							scroll_width = $inbound_table.get(0).scrollWidth,
-							left_width_check = Math.floor(scroll_width)-Math.floor(new_scroll_left),
-							width_floor = Math.floor(width);
-					if ((left_width_floor - 1 == width_floor) || (left_width_floor + 1 == width_floor) || (left_width_floor == width_floor)) {
-						$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
-					}
-					if (new_scroll_left === 0) {
-						$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
-					}
-				});
+			$('.outbound-weekends-forward').once().on('touch, click', function(){
+				event.preventDefault();
+				var table = $('.outbound-weekends-large-screen-route-table table');
+				var leftPos = $(table).scrollLeft();
+				$(table).animate({
+					scrollLeft: leftPos + 400
+				}, 400);
+				$('.outbound-weekends-back').attr('disabled', false);
 			});
+			$('.outbound-weekends-back').once().on('touch, click', function(){
+				event.preventDefault();
+				var table = $('.outbound-weekends-large-screen-route-table table');
+				var leftPos = $(table).scrollLeft();
+				$(table).animate({
+					scrollLeft: leftPos - 400
+				}, 400);
+				$('.outbound-weekends-forward').attr('disabled', false);
+			});
+			// const $outbound = $('#outbound-large-screen-route-table table');
+			// const $inbound = $('#inbound-large-screen-route-table table');
+			// let outbound_last_left = $outbound.scrollLeft();
+			// let inbound_last_left = $inbound.scrollLeft();
+			// $outbound.on('scroll', function() {
+			// 	const outbound_curr_left = $outbound.scrollLeft();
+			// 	if(outbound_curr_left > outbound_last_left) {
+			// 		$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
+			// 	}
+			// 	if (outbound_curr_left < outbound_last_left) {
+			// 		$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
+			// 	}
+			// 	outbound_last_left = outbound_curr_left;
+			// });
+			// $inbound.on('scroll', function() {
+			// 	const inbound_curr_left = $inbound.scrollLeft();
+			// 	if(inbound_curr_left > inbound_last_left) {
+			// 		$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', false);
+			// 	}
+			// 	if (inbound_curr_left < inbound_last_left) {
+			// 		$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', false);
+			// 	}
+			// 	inbound_last_left = inbound_curr_left;
+			// });
+			// $(function () {
+			// 	const $outbound_table = $('#outbound-large-screen-route-table table');
+			// 	const $inbound_table = $('#inbound-large-screen-route-table table');
+			// 	$outbound_table.on('scroll', function () {
+			// 		var new_scroll_left = $outbound_table.scrollLeft(),
+			// 				width = $outbound_table.outerWidth(),
+			// 				scroll_width = $outbound_table.get(0).scrollWidth,
+			// 				right_width_floor = Math.floor(scroll_width - new_scroll_left),
+			// 				width_floor = Math.floor(width);
+			// 		if (right_width_floor - 1 == width_floor || right_width_floor + 1 == width_floor || right_width_floor == width_floor) {
+			// 			$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
+			// 		}
+			// 		if (new_scroll_left === 0) {
+			// 			$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
+			// 		}
+			// 	});
+			// 	$inbound_table.on('scroll', function () {
+			// 		var new_scroll_left = $inbound_table.scrollLeft(),
+			// 				width = $inbound_table.outerWidth(),
+			// 				scroll_width = $inbound_table.get(0).scrollWidth,
+			// 				left_width_check = Math.floor(scroll_width)-Math.floor(new_scroll_left),
+			// 				width_floor = Math.floor(width);
+			// 		if ((left_width_floor - 1 == width_floor) || (left_width_floor + 1 == width_floor) || (left_width_floor == width_floor)) {
+			// 			$(this).parent().prev('.table-navigation-buttons').find('.right-table-button').attr('disabled', true);
+			// 		}
+			// 		if (new_scroll_left === 0) {
+			// 			$(this).parent().prev('.table-navigation-buttons').find('.left-table-button').attr('disabled', true);
+			// 		}
+			// 	});
+			// });
 
 
 			$('#edit-routes--2').change(function(){
@@ -130,10 +170,10 @@
 				$('input#stop').toggleClass('active');
 				$('input#stop').toggleClass('timepoints-hide');
 				$('input#stop').toggleClass('timepoints-hide');
-				$('#outbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#inbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#outbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#inbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+				$('#outbound-weekdays-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+				$('#inbound-weekdays-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+				$('#outbound-weekends-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+				$('#inbound-weekends-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
 			});
 			$('button#direction').once().click(function() {
 				$('button#direction').toggleClass('inbound');
