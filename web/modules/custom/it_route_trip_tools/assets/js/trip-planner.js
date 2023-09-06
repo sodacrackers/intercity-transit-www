@@ -29,7 +29,7 @@
         var ob = new MutationObserver(function(m) {
             var inner_ob = new MutationObserver(function(subm) {
                 const content = $(subm[0].target).find('.chosen-single span').first().html();
-                  $('#stops-form button[type="submit"]').prop('disabled', content === 'Select a stop');
+                  $('#stops-form button[type="submit"]').prop('disabled', content.trim() === '-');
             });
             inner_ob.observe(m[0].addedNodes[0], { attributes: true, characterData: true, childList: true });
         });
