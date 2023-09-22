@@ -180,17 +180,16 @@ label.form-check-label {
   padding: 0 11px;
 }
 
-#outbound-weekend-map-heading {
+#outbound-weekends-map-heading {
   margin-top: 2rem;
 }
 
-#inbound-weekend-map-heading {
+#inbound-weekends-map-heading {
   margin-top: 2rem;
 }
 #outbound-weekdays-map-heading {
   margin-top: 2rem;
 }
-
 #inbound-weekdays-map-heading {
   margin-top: 2rem;
 }
@@ -992,4 +991,27 @@ header.navbar.navbar-default {
   .alerts {
     display: none !important;
   }
+}
+
+#route-map-frame-inbound-weekends,
+#route-map-frame-inbound-weekdays,
+#route-map-frame-outbound-weekends,
+#route-map-frame-outbound-weekdays {
+  min-height: 400px !important;
+}
+#route-map-frame-inbound-weekends h3,
+#route-map-frame-inbound-weekdays h3,
+#route-map-frame-outbound-weekends h3,
+#route-map-frame-outbound-weekdays h3 {
+  font-size: 18px !important;
+  line-height: 19px !important;
+  margin-top: 0 !important;
+}
+#route-map-frame-inbound-weekends p,
+#route-map-frame-inbound-weekdays p,
+#route-map-frame-outbound-weekends p,
+#route-map-frame-outbound-weekdays p {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
 }
