@@ -391,9 +391,9 @@
 				}
 			});
 			$('.inbound-weekends-panel').once().on('click', function () {
-				let currentTitle = $('.inbound-weekend-route-map-toggle').html();
-				$('.inbound-weekend-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-				$('#inbound-weekend-map-body').toggleClass('hide').toggleClass('show');
+				let currentTitle = $('.inbound-weekends-route-map-toggle').html();
+				$('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
+				$('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
 				if (!$(this).hasClass('already-opened')) {
 					console.log('initMap_inbound_weekends()!');
 					initMap_inbound_weekends();
