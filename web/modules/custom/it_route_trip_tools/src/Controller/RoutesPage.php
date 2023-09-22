@@ -224,18 +224,31 @@ class RoutesPage extends ControllerBase {
         $route->setDefault('_title', $new_title);
       }
 
-      $routes_map_weekdays = [
+      $routes_map_weekdays_inbound = [
         '#theme' => 'routes_map',
-        '#route_data' => $route_data_weekdays
+        '#route_data' => $route_data_weekdays,
+        '#days' => 'weekdays',
+      ];
+      $routes_map_weekend_inbound = [
+        '#theme' => 'routes_map',
+        '#route_data' => $route_data_weekend,
+        '#days' => 'weekends',
+      ];
+
+      $routes_map_weekdays_outbound = [
+        '#theme' => 'routes_map',
+        '#route_data' => $route_data_weekdays,
+        '#days' => 'weekdays',
+      ];
+      $routes_map_weekend_outbound = [
+        '#theme' => 'routes_map',
+        '#route_data' => $route_data_weekend,
+        '#days' => 'weekends',
       ];
       $routes_table_weekdays = [
         '#theme' => 'routes_table',
         '#route_data' => $route_data_weekdays,
         '#valid_for' => 'weekdays',
-      ];
-      $routes_map_weekend = [
-        '#theme' => 'routes_map',
-        '#route_data' => $route_data_weekend
       ];
       $routes_table_weekend = [
         '#theme' => 'routes_table',
@@ -253,8 +266,10 @@ class RoutesPage extends ControllerBase {
         '#route_id' => $routeId,
         '#route_short_name' => $route_data_weekdays['short_name'],
         '#routes_options' => $routes_options,
-        '#routes_map_weekdays' => $routes_map_weekdays,
-        '#routes_map_weekend' => $routes_map_weekend,
+        '#routes_map_weekdays_inbound' => $routes_map_weekdays_inbound,
+        '#routes_map_weekend_inbound' => $routes_map_weekend_inbound,
+        '#routes_map_weekdays_outbound' => $routes_map_weekdays_outbound,
+        '#routes_map_weekend_outbound' => $routes_map_weekend_outbound,
         '#routes_table_weekdays' => $routes_table_weekdays,
         '#routes_table_weekend' => $routes_table_weekend,
         '#route_data_weekdays' => $route_data_weekdays,

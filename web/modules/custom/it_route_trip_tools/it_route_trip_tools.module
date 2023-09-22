@@ -36,12 +36,14 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 				'route_short_name' => NULL,
 				'routes_options' => array(),
 				'route_list' => array(),
-				'routes_map_weekdays' => array(),
-				'routes_table_weekdays' => array(),
-				'route_data_weekdays' => array(),
-				'routes_map_weekend' => array(),
-				'routes_table_weekend' => array(),
-				'route_data_weekend' => array(),
+				'routes_map_weekdays_inbound' => array(),
+        'routes_map_weekend_inbound' => array(),
+				'routes_map_weekdays_outbound' => array(),
+        'routes_map_weekend_outbound' => array(),
+        'routes_table_weekdays' => array(),
+        'routes_table_weekend' => array(),
+        'route_data_weekdays' => array(),
+        'route_data_weekend' => array(),
 				'all_routes_map_data' => '',
         'download_url' => '',
 			],
@@ -55,7 +57,8 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 		],
 		'routes_map' => [
 			'variables' => array (
-				'route_data' => array()
+				'route_data' => array(),
+        'days' => NULL,
 			),
 			'template' => 'components/routes-map'
 		],

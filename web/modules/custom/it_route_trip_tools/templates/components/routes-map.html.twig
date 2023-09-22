@@ -2,17 +2,13 @@
 {{ attach_library('it_route_trip_tools/maps-autocomplete') }}
 {{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
 <div class="map-frame">
-	<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 	<script>
     function buildMaps() {
-{% for dir, stop_ids in route_data.stop_markers %}
-			initMap_{{ dir }}();
-{% endfor %}
-		}
+		{% for dir, stop_ids in route_data.stop_markers %}
+		initMap_{{ dir }}_{{ days }}();
+		{% endfor %}
+	}
 	</script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places" defer>
-  </script>
 	<script>
 
     var it_bounds = {
@@ -22,13 +18,13 @@
 		  east: {{ route_data.bounding.max.lng }},
 		};
 {% for dir, stop_ids in route_data.stop_markers %}
-		var {{ dir }}_markers = [];
-		function initMap_{{ dir }}() {
-			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}"), {
+		var {{ dir }}_{{ days }}_markers = [];
+		function initMap_{{ dir }}_{{ days }}() {
+			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}-{{ days }}"), {
 		   	center: {lat:{{ route_data.center.lat }}, lng:{{ route_data.center.lng }}},
 		    mapTypeId: "{{ route_data.map_type }}",
 			});
-			{{dir}}MapBoundary(map);
+			{{dir}}{{ days }}MapBoundary(map);
 			var start = {
 		    path: 'M -4 -2, h 8, v 4, h -8, Z',
 		    strokeColor: '#fff',
@@ -63,7 +59,7 @@
       const events = ['mousedown', 'mousemove', 'mouseover', 'mouseout', 'mouseup',
       'mousewheel', 'DOMMouseScroll', 'touchstart', 'touchend', 'touchmove',
       'dblclick', 'contextmenu', 'click'];
-      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}").addEventListener(event, (e) => {
+      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}-{{ days }}").addEventListener(event, (e) => {
         e.preventDefault();
         e.stopPropagation();
       }))
@@ -112,12 +108,12 @@
 		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
 		    description: content
 	  	});
-	  	{{ dir }}_markers.push(stop_marker);
+	  	{{ dir }}_{{ days }}_markers.push(stop_marker);
 	{% endfor %}
 	  	//Create and open InfoWindow.
   		var infoWindow = new google.maps.InfoWindow();
-  		for (var i = 0; i < {{ dir }}_markers.length; i++) {
-	      var data = {{ dir }}_markers[i];
+  		for (var i = 0; i < {{ dir }}_{{ days }}_markers.length; i++) {
+	      var data = {{ dir }}_{{ days }}_markers[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
 	      var marker = new google.maps.Marker({
           position: markerLatLng,
@@ -137,39 +133,39 @@
       }
       {% if dir == 'inbound' %}
 				{% for key,inbound_shapes in route_data.inbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ key }} = [
+					const routePathCoordinates_{{ dir }}_{{ days }}_{{ key }} = [
 						{% for inbound_shape in inbound_shapes %}
 						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
 						{% endfor %}
 					];
-					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ key }},
+					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#217b03',
 				    strokeOpacity: .75,
 				    strokeWeight: 4,
 					});
-					routePath_{{ dir }}_{{ key }}.setMap(map);
+					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
 				{% endfor %}
 			{% else %}
 				{% for key,outbound_shapes in route_data.outbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ key }} = [
+					const routePathCoordinates_{{ dir }}_{{ days }}_{{ key }} = [
 						{% for outbound_shape in outbound_shapes %}
 						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
 						{% endfor %}
 					];
-					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ key }},
+					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#217b03',
 				    strokeOpacity: .75,
 				    strokeWeight: 4,
 					});
-					routePath_{{ dir }}_{{ key }}.setMap(map);
+					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
 				{% endfor %}
 			{% endif %}
 		}
-		function {{dir}}MapBoundary(map) {
+		function {{dir}}{{ days }}MapBoundary(map) {
 			var latlng = [
 				new google.maps.LatLng({{ route_data.bounding.min.lat }}, {{ route_data.bounding.min.lng }}),
 				new google.maps.LatLng({{ route_data.bounding.max.lat }}, {{ route_data.bounding.max.lng }}),
@@ -188,10 +184,10 @@
 	{% else %}
 		{% set dir_class = 'hide-dir hidden' %}
 	{% endif %}
-	<div id="{{ dir }}-map" class="maps {{ dir_class }}">
-  	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-			<div class="panel panel-default {{ dir }}-panel">
-	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
+	<div id="{{ dir }}-{{ days }}-map" class="maps {{ dir_class }}">
+  	<div class="panel-group" id="accordion-{{ dir }}-{{ days }}" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default {{ dir }}-{{ days }}-panel" style="border: none !important;">
+	    	<div class="panel-heading" role="tab" id="{{ dir }}-{{ days }}-map-heading">
       		<a id="map-title" class="panel-title" style="position: relative;" role="button" data-route-id="{{ route_data.short_name }}"
             onclick="querySelector('#map-chevron span').style.transform === 'rotate(180deg)' 
                         ? querySelector('#map-chevron span').style.transform = 'rotate(0deg)' 
@@ -199,14 +195,14 @@
 				    <span id="map-chevron" class="chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 53px; align-items: center; display: flex; justify-content: center; color: white; border-radius: 3px;">
               <span></span>
             </span>
-        		<h4 class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
+        		<h4 class="{{ dir }}-{{ days }}-route-map-toggle" style="margin-left: 50px">
       	  		Open Route {{ route_data.short_name }} Map
 		        </h4>
       		</a>
 	    	</div>
-	    	<div id="{{ dir }}-map-body" class="panel-collapse hide">
+	    	<div id="{{ dir }}-{{ days }}-map-body" class="panel-collapse hide">
       		<div id="route-map" class=" panel-body">
-						<div tabindex="1" id="route-map-frame-{{ dir }}"></div>
+						<div tabindex="1" id="route-map-frame-{{ dir }}-{{ days }}"></div>
 					</div>
 	    	</div>
 			</div>
