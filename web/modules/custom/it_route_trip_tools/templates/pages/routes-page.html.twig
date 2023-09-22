@@ -17,24 +17,20 @@
 			{% if route_data_weekdays %}
 				<div id="route-map" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div id="route-map-weekdays-outbound" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info outbound-info">
-						{{ 'routes_map_weekdays_outbound' }}
 						{{ routes_map_weekdays_outbound }}
 					</div>
 					{% if routes_map_weekend_outbound %}
 						<div id="route-map-weekend-outbound" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info outbound-info hide">
-							{{ 'routes_map_weekend_outbound' }}
 							{{ routes_map_weekend_outbound }}
 						</div>
 					{% endif %}
 					{% if routes_map_weekdays_inbound %}
 						<div id="route-map-weekdays-inbound" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info inbound-info hide">
-							{{ 'routes_map_weekdays_inbound' }}
 							{{ routes_map_weekdays_inbound }}
 						</div>
 					{% endif %}
 					{% if routes_map_weekend_inbound %}
 						<div id="route-map-weekend-inbound" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info inbound-info hide">
-							{{ 'routes_map_weekend_inbound' }}
 							{{ routes_map_weekend_inbound }}
 						</div>
 					{% endif %}

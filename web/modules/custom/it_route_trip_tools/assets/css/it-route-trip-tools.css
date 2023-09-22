@@ -316,18 +316,24 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
     width: 95%;
   }
 }
-#route-map .map-frame #route-map-frame-inbound,
-#route-map .map-frame #route-map-frame-outbound {
+#route-map .map-frame #route-map-frame-inbound-weekend,
+#route-map .map-frame #route-map-frame-inbound-weekdays,
+#route-map .map-frame #route-map-frame-outbound-weekend,
+#route-map .map-frame #route-map-frame-outbound-weekdays {
   min-height: 400px;
 }
-#route-map .map-frame #route-map-frame-inbound h3,
-#route-map .map-frame #route-map-frame-outbound h3 {
+#route-map .map-frame #route-map-frame-inbound-weekend h3,
+#route-map .map-frame #route-map-frame-inbound-weekdays h3,
+#route-map .map-frame #route-map-frame-outbound-weekend h3,
+#route-map .map-frame #route-map-frame-outbound-weekdays h3 {
   font-size: 18px;
   line-height: 19px;
   margin-top: 0;
 }
-#route-map .map-frame #route-map-frame-inbound p,
-#route-map .map-frame #route-map-frame-outbound p {
+#route-map .map-frame #route-map-frame-inbound-weekend p,
+#route-map .map-frame #route-map-frame-inbound-weekdays p,
+#route-map .map-frame #route-map-frame-outbound-weekend p,
+#route-map .map-frame #route-map-frame-outbound-weekdays p {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

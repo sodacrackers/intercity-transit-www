@@ -180,22 +180,44 @@ label.form-check-label {
   padding: 0 11px;
 }
 
-#outbound-map-heading {
+#outbound-weekend-map-heading {
   margin-top: 2rem;
 }
 
-#inbound-map-heading {
+#inbound-weekend-map-heading {
+  margin-top: 2rem;
+}
+#outbound-weekdays-map-heading {
   margin-top: 2rem;
 }
 
-#route-map-weekdays {
+#inbound-weekdays-map-heading {
+  margin-top: 2rem;
+}
+
+#route-map-inbound-weekdays {
+  padding: 0;
+}
+#route-map-inbound-weekends {
+  padding: 0;
+}
+#route-map-outbound-weekdays {
+  padding: 0;
+}
+#route-map-outbound-weekends {
   padding: 0;
 }
 
-#outbound-map .outbound-panel {
+#outbound-weekdays-map .outbound-weekdays-panel {
   border: none;
 }
-#inbound-map .inbound-panel {
+#inbound-weekdays-map .inbound-weekdays-panel {
+  border: none;
+}
+#outbound-weekend-map .outbound-weekend-panel {
+  border: none;
+}
+#inbound-weekend-map .inbound-weekend-panel {
   border: none;
 }
 
