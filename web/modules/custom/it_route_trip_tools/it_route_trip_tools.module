@@ -258,9 +258,13 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
   if (in_array($half_top, $counts)) {
     $top = $half_top;
   }
+  $stops_elaborated_by_trip = [];
   foreach ($stop_times as $stop_time) {
     $index = $ideal_trip[$stop_time['name']];
     if (isset($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && $top == count($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && isset($ideal_trip[$stop_time['name'] . ' '])) {
+      $index = $ideal_trip[$stop_time['name'] . ' '];
+    }
+    if (in_array($stop_time['name'], $stops_elaborated_by_trip[$stop_time['trip_id']] ?? [])) {
       $index = $ideal_trip[$stop_time['name'] . ' '];
     }
     $formatted = str_pad(substr($stop_time['arrival_time'], 0, strlen($stop_time['arrival_time']) - 3), 5, '0', STR_PAD_LEFT);
@@ -277,6 +281,11 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
       usort($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']], function ($a, $b) {
         return strtotime($a) - strtotime($b);
       });
+    }
+    if (isset($stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name']])) {
+      $stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name'] . ' '] = $stop_time['name'] . ' ';
+    } else {
+      $stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name']] = $stop_time['name'];
     }
   }
   foreach ($res['stops'] as &$stop) {
