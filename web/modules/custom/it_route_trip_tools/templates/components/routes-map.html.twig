@@ -79,9 +79,10 @@
 			{% set start_end_check = 0 %}
 		{% endif %}
 		{% set times_array = [] %}
-		{% for time in stop_dataset.stop_times %}
+		{% set sorted_times = stop_dataset.stop_times|sort %}
+		{% for time in sorted_times %}
 		    {% if time != '' %}
-		        {% set times_array = times_array|merge([time]) %}
+		        {% set times_array = times_array|merge([time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'})]) %}
 		    {% endif %}
 		{% endfor %}
 		{% set times = times_array|join(', ') %}
