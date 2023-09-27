@@ -317,12 +317,10 @@
         window.location.href = '/plan-your-trip/routes/' + $(this).val();
       });
       $('.outbound-weekdays-panel').once().on('click', function () {
-        console.log($(this));
         let currentTitle = $('.outbound-weekdays-route-map-toggle').html();
         $('.outbound-weekdays-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
         $('#outbound-weekdays-map-body').toggleClass('hide').toggleClass('show');
         if (!$(this).hasClass('already-opened')) {
-          console.log('initMap_outbound_weekdays()!');
           initMap_outbound_weekdays();
           $(this).addClass('already-opened');
         }
@@ -332,7 +330,6 @@
         $('.outbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
         $('#outbound-weekends-map-body').toggleClass('hide').toggleClass('show');
         if (!$(this).hasClass('already-opened')) {
-          console.log('initMap_outbound_weekends()!');
           initMap_outbound_weekends();
           $(this).addClass('already-opened');
         }
@@ -342,7 +339,6 @@
         $('.inbound-weekdays-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
         $('#inbound-weekdays-map-body').toggleClass('hide').toggleClass('show');
         if (!$(this).hasClass('already-opened')) {
-          console.log('initMap_inbound_weekdays()!');
           initMap_inbound_weekdays();
           $(this).addClass('already-opened');
         }
@@ -352,7 +348,6 @@
         $('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
         $('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
         if (!$(this).hasClass('already-opened')) {
-          console.log('initMap_inbound_weekends()!');
           initMap_inbound_weekends();
           $(this).addClass('already-opened');
         }
