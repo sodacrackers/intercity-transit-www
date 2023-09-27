@@ -247,6 +247,11 @@
         $(this).find('.btn').toggleClass('active');
         $(this).find('.btn').toggleClass('btn-primary');
         $(this).find('.btn').toggleClass('btn-default');
+        $('.btn-stops-toggle').not($(this)).each(function () {
+          $(this).find('.btn').toggleClass('active');
+          $(this).find('.btn').toggleClass('btn-primary');
+          $(this).find('.btn').toggleClass('btn-default');
+        });
       });
       $('input[name="display_stops_options"]').once().change(function () {
         const show_rows = $(this).val();
