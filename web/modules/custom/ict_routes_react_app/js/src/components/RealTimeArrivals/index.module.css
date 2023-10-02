@@ -56,9 +56,9 @@
 
 .arrivalTag {
   height: 30px;
-  border: 1px solid rgba(0,123, 95, 1);
-  color: rgba(0,123, 95, 1);
-  margin-left: 12px;
+  border: 1px solid rgba(0, 123, 95, 1);
+  color: rgba(0, 123, 95, 1);
+  margin-left: 10px;
   padding: 6px;
   border-radius: 4px;
   font-weight: 800;
@@ -71,7 +71,7 @@
   height: 30px;
   border: 1px solid rgba(215, 61, 9, 1);
   color: rgba(215, 61, 9, 1);
-  margin-left: 12px;
+  margin-left: 10px;
   padding: 6px;
   border-radius: 4px;
   font-weight: 800;
@@ -84,7 +84,7 @@
   height: 30px;
   border: 1px solid #005EB8;
   color: #005EB8;
-  margin-left: 12px;
+  margin-left: 10px;
   padding: 6px;
   border-radius: 4px;
   font-weight: 800;
@@ -101,15 +101,15 @@
   justify-content: space-between;
 }
 
-.arrivalTag > *,
-.lateArrivalTag > *,
-.earlyArrivalTag > * {
+.arrivalTag>*,
+.lateArrivalTag>*,
+.earlyArrivalTag>* {
   display: inline-flex;
 }
 
-.arrivalTag > span,
-.lateArrivalTag > span,
-.earlyArrivalTag > span {
+.arrivalTag>span,
+.lateArrivalTag>span,
+.earlyArrivalTag>span {
   min-width: 40px;
   margin-left: 0;
 }
@@ -161,14 +161,15 @@
   height: 12px;
   width: 12px;
   border-radius: 100%;
-  background: #003087;;
+  background: #003087;
+  ;
   position: absolute;
   top: 19px;
   left: -7px
 }
 
 .timepointMarker {
-  background-color:rgba(0,123, 95, 1);
+  background-color: rgba(0, 123, 95, 1);
   color: #fff;
   transform: rotate(-90deg);
   border-radius: 4px 4px 0px 0px;
@@ -202,14 +203,18 @@
 }
 
 @media screen and (max-width: 768px) {
-  .right, .timepointRight {
+
+  .right,
+  .timepointRight {
     height: auto !important;
     flex-flow: wrap !important;
     justify-content: space-between !important;
   }
+
   .timepoint {
     height: auto !important;
   }
+
   .timepointRight {
     padding-left: 30px !important;
     padding: 0 24px !important;
@@ -236,7 +241,8 @@
   display: none;
 }
 
-.hide, .show {
+.hide,
+.show {
   border-radius: 37px;
   width: 270px;
   background-color: #FFFFFF;
@@ -250,12 +256,14 @@
   cursor: pointer;
 }
 
-.hide:hover, .show:hover {
+.hide:hover,
+.show:hover {
   background-color: #003087 !important;
   color: #FFFFFF !important;
 }
 
-.hide .dot, .show .dot {
+.hide .dot,
+.show .dot {
   position: relative;
   margin-left: -31px;
   top: 0;
@@ -381,10 +389,10 @@
 }
 
 .legendText {
- color: rgba(13, 26, 41, 1);
- font-weight: 400;
- font-size: 17px;
- line-height: 25.5px;
+  color: rgba(13, 26, 41, 1);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 25.5px;
 }
 
 .indicator {
@@ -467,7 +475,7 @@
 
 .datapointOnTime {
   font-weight: 600;
-  color: rgba(0,123, 95, 1);
+  color: rgba(0, 123, 95, 1);
 }
 
 .infoIcon {
@@ -558,7 +566,8 @@
     width: 100% !important;
   }
 
-  .timepointSwitch, .infoIcon {
+  .timepointSwitch,
+  .infoIcon {
     display: none;
   }
 
@@ -573,14 +582,16 @@
     margin-left: 0 !important;
     margin-top: -10px;
   }
-  
+
   .formCheckLeft {
     padding-left: 28px !important;
   }
 }
 
 @media (max-width: 433px) {
-  .timepointRight, .right {
+
+  .timepointRight,
+  .right {
     justify-content: start !important;
     padding-right: 0 !important;
     padding-left: 24px !important;
@@ -606,6 +617,7 @@
   .strong {
     font-size: 17px !important;
   }
+
   .spinner {
     margin-top: 150px;
   }
@@ -627,18 +639,20 @@
     margin-right: 2px !important;
   }
 
-  .hide, .show {
+  .hide,
+  .show {
     margin-left: -6px !important;
   }
 
-  .hide .dot, .show .dot {
+  .hide .dot,
+  .show .dot {
     margin-left: -39px;
   }
 
   .notification {
     display: block;
   }
-  
+
   .formCheckRow {
     margin-left: 40px;
   }
@@ -647,7 +661,8 @@
     padding-left: 0 !important;
   }
 
-  .stopInfo, .empty {
+  .stopInfo,
+  .empty {
     margin-left: 20px !important;
   }
 
@@ -673,8 +688,10 @@
     top: 37px;
     left: -36px;
   }
-  
-  .arrivalTag, .lateArrivalTag, .earlyArrivalTag {
+
+  .arrivalTag,
+  .lateArrivalTag,
+  .earlyArrivalTag {
     text-align: left;
     margin-bottom: 16px !important;
     margin-left: 8px !important;
@@ -695,7 +712,7 @@
 
 .closeButton {
   font-size: 25px;
-  color: rgba(16,24,40,1);
+  color: rgba(16, 24, 40, 1);
   text-decoration: none;
   background: none;
   border: none;
@@ -706,6 +723,7 @@
   0% {
     display: none;
   }
+
   100% {
     display: block;
   }
@@ -715,6 +733,7 @@
   0% {
     display: block;
   }
+
   100% {
     display: none;
   }
