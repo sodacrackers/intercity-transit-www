@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import RealTimeArrivals from './components/RealTimeArrivals';
+import RealTimeArrivals from './components/RealTimeArrivals/index-new';
 import './index.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
