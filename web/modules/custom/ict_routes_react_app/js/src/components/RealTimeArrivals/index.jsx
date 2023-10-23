@@ -430,7 +430,7 @@ const RealTimeDepartures = () => {
                       return nextDepartureTime() + (Number(delayAmount) * 1000);
                     }
                     const isTimepoint = Number(data.stop_markers[direction][stopId].stop_data.timepoint) > 0;
-                    const firstItemIndex = Object.values(data.stop_markers[direction][stopId]?.real_time).findIndex((item) => item?.departure_time && DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromMillis(item?.departure_time).toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis() - item.departure_delay);
+                    const firstItemIndex = Object.values(data.stop_markers[direction][stopId]?.real_time).findIndex((item) => item?.departure_time && DateTime.fromSQL(`${DateTime.now().toFormat('yyyy-MM-dd')} ${DateTime.fromMillis(Number(item?.departure_time)).toFormat('HH:mm')}`).toMillis() > DateTime.now().toMillis() - item.departure_delay);
                     const delay = Number(data.stop_markers[direction][stopId]?.real_time[0]?.departure_delay) | 0;
                     const delayNext = Number(data.stop_markers[direction][stopId]?.real_time[1]?.departure_delay) | 0;
                     const delayLast = Number(data.stop_markers[direction][stopId]?.real_time[2]?.departure_delay) | 0;
@@ -458,11 +458,11 @@ const RealTimeDepartures = () => {
                     return (
                       <div className={(!isTimepoint && nonTimepointsHidden) ? styles.unmountedStyle : styles.mountedStyle} >
                         <Row className={isTimepoint ? styles.timepoint : styles.stopInfo}>
-                          <Col md={isTimepoint && "6"} lg="6" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
+                          <Col md={isTimepoint && "5"} lg="5" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
                             {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
                             <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
                           </Col>
-                          <Col md={isTimepoint && "6"} lg="6" className={isTimepoint ? styles.timepointRight : styles.right}>
+                          <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
                             {waitTime && (
                               <div className={
                                 delay >= 60
