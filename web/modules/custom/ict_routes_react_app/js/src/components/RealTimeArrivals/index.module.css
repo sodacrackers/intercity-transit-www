@@ -405,15 +405,22 @@
 }
 
 .estimated {
-  float: right;
   font-weight: 400;
   font-size: 15px;
   line-height: 20.25px;
 }
 
+@media (min-width: 768px) {
+  .estimated {
+    position: absolute;
+    right: -10px;
+    top: 20px;
+  }
+}
+
 @media (max-width: 767px) {
   .estimated {
-    margin-right: 16px;
+    float: right;
   }
 }
 
