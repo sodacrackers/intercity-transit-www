@@ -40,6 +40,7 @@ const RealTimeDepartures = () => {
   const [mapVisible, setMapVisible] = React.useState(false);
   const [mapVisibleMemo, setMapVisibleMemo] = React.useState(false);
   const [keys, setKeys] = React.useState([]);
+  const [orderedStops, setOrderedStops] = React.useState([]);
 
   const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () => {
@@ -78,6 +79,9 @@ const RealTimeDepartures = () => {
           clean[st.stopId] = clean[st.stopId] ? [...clean[st.stopId], st.stopSequence] : [st.stopSequence];
         })
       })
+      const tripOrder = Object.values(json.times_alt[direction].stops).map((item) => item.stop_id);
+      let reordered = Object.entries(json.stop_markers[direction]).sort((a, b) => tripOrder.indexOf(a[1].stop_data.stopId) - tripOrder.indexOf(b[1].stop_data.stopId));
+      setOrderedStops(reordered);
       const mappedData = Object.entries(clean).sort((a, b) => Number(a[1][0]) - Number(b[1][0]));
       const sortedData = new Map();
       let sortingIndex = 0;
@@ -170,15 +174,13 @@ const RealTimeDepartures = () => {
   }
 
   const getDatapoint = (stopKey, isClass = false) => {
-    const newValues = Object.values(data?.stop_markers[direction]).sort((item, nextItem) => {
-      return Number(item.stop_data.stopSequence) - Number(nextItem.stop_data.stopSequence);
-    });
-    if (JSON.stringify(data?.stop_markers[direction][keys[stopKey]]) === JSON.stringify(newValues[0])) {
+    const newValues = Object.fromEntries(orderedStops);
+    if (JSON.stringify(data?.stop_markers[direction][orderedStops[stopKey[0]]]) === JSON.stringify(newValues[0])) {
       return isClass ? styles.startPoint : 'Start';
-    } else if (JSON.stringify(data?.stop_markers[direction][keys[stopKey]]) === JSON.stringify(newValues[newValues.length - 1])) {
+    } else if (JSON.stringify(data?.stop_markers[direction][orderedStops[stopKey[0]]]) === JSON.stringify(newValues[newValues.length - 1])) {
       return isClass ? styles.endPoint : 'End';
     } else {
-      if (data?.stop_markers[direction][keys[stopKey]].stop_data.timepoint === '1') {
+      if (data?.stop_markers[direction][orderedStops[stopKey[0]]].stop_data.timepoint === '1') {
         return isClass ? styles.dataTimepoint : '';
       }
       return isClass ? styles.datapoint : '';
@@ -246,20 +248,20 @@ const RealTimeDepartures = () => {
                     </OverlayTrigger>
                   )
                 })}
-                {Object.keys(data?.stop_markers[direction]).map((_, markersIndex) => {
-                  return keys.length && data?.stop_markers[direction][keys[markersIndex]] && (
+                {orderedStops.map((stop, markersIndex) => {
+                  return keys.length && data?.stop_markers[direction][stop[0]] && (
                     <OverlayTrigger
                       placement="top"
                       delay={{ show: 150, hide: 300 }}
-                      lat={Number(data?.stop_markers[direction][keys[markersIndex]]?.stop_data?.stopLat)}
-                      lng={Number(data?.stop_markers[direction][keys[markersIndex]]?.stop_data?.stopLon)}
+                      lat={Number(data?.stop_markers[direction][stop[0]]?.stop_data?.stopLat)}
+                      lng={Number(data?.stop_markers[direction][stop[0]]?.stop_data?.stopLon)}
                       overlay={
                         <Tooltip className={styles.toolTipMap}>
                           <button className={styles.closeButton}>x</button>
                           <div>
-                            <h4>{data?.stop_markers[direction][keys[markersIndex]].stop_data?.stopName} - Stop {data?.stop_markers[direction][keys[markersIndex]].stop_data?.stopId}</h4>
-                            {getNextStop(data?.stop_markers[direction][keys[markersIndex]].stop_data) && <div><strong>Headed to {getNextStop(data?.stop_markers[direction][keys[markersIndex]].stop_data)}</strong></div>}
-                            {data?.stop_markers[direction][keys[markersIndex]]?.real_time[0]?.vehicle_label ?
+                            <h4>{data?.stop_markers[direction][stop[0]].stop_data?.stopName} - Stop {data?.stop_markers[direction][stop[0]].stop_data?.stopId}</h4>
+                            {getNextStop(data?.stop_markers[direction][stop[0]].stop_data) && <div><strong>Headed to {getNextStop(data?.stop_markers[direction][stop[0]].stop_data)}</strong></div>}
+                            {data?.stop_markers[direction][stop[0]]?.real_time[0]?.vehicle_label ?
                               <Table className="d-table" striped bordered hover responsive>
                                 <thead>
                                   <tr>
@@ -270,14 +272,14 @@ const RealTimeDepartures = () => {
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td className="col-2">{data?.stop_markers[direction][keys[markersIndex]]?.real_time[0]?.vehicle_label}</td>
-                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[0]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                    <td className="col-2">{data?.stop_markers[direction][stop[0]]?.real_time[0]?.vehicle_label}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stop[0]]?.real_time[0]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                     <td className="col-7">{
-                                      Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[0]]?.departure_delay) > 60 ? (
+                                      Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[0]]?.departure_delay) > 60 ? (
                                         <div className={styles.datapointLate}>
                                           Late
                                         </div>
-                                      ) : Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[0]]?.departure_delay) < -60
+                                      ) : Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[0]]?.departure_delay) < -60
                                         ? (
                                           <div className={styles.datapointEarly}>
                                             Early
@@ -289,16 +291,16 @@ const RealTimeDepartures = () => {
                                         )
                                     }</td>
                                   </tr>
-                                  {data?.stop_markers[direction][keys[markersIndex]]?.real_time[1] && (
+                                  {data?.stop_markers[direction][stop[0]]?.real_time[1] && (
                                     <tr>
-                                      <td className="col-2">{data?.stop_markers[direction][keys[markersIndex]]?.real_time[1]?.vehicle_label}</td>
-                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[1]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                      <td className="col-2">{data?.stop_markers[direction][stop[0]]?.real_time[1]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stop[0]]?.real_time[1]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                       <td className="col-7">{
-                                        Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[1]]?.departure_delay) > 60 ? (
+                                        Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[1]]?.departure_delay) > 60 ? (
                                           <div className={styles.datapointLate}>
                                             Late
                                           </div>
-                                        ) : Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[1]]?.departure_delay) < -60
+                                        ) : Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[1]]?.departure_delay) < -60
                                           ? (
                                             <div className={styles.datapointEarly}>
                                               Early
@@ -311,16 +313,16 @@ const RealTimeDepartures = () => {
                                       }</td>
                                     </tr>
                                   )}
-                                  {data?.stop_markers[direction][keys[markersIndex]]?.real_time[2] && (
+                                  {data?.stop_markers[direction][stop[0]]?.real_time[2] && (
                                     <tr>
-                                      <td className="col-2">{data?.stop_markers[direction][keys[markersIndex]]?.real_time[2]?.vehicle_label}</td>
-                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[2]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                      <td className="col-2">{data?.stop_markers[direction][stop[0]]?.real_time[2]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(data?.stop_markers[direction][stop[0]]?.real_time[2]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                       <td className="col-7">{
-                                        Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[2]]?.departure_delay) > 60 ? (
+                                        Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[2]]?.departure_delay) > 60 ? (
                                           <div className={styles.datapointLate}>
                                             Late
                                           </div>
-                                        ) : Number(data?.stop_markers[direction][keys[markersIndex]]?.real_time[Object.keys(data?.stop_markers[direction][keys[markersIndex]]?.real_time)[2]]?.departure_delay) < -60
+                                        ) : Number(data?.stop_markers[direction][stop[0]]?.real_time[Object.keys(data?.stop_markers[direction][stop[0]]?.real_time)[2]]?.departure_delay) < -60
                                           ? (
                                             <div className={styles.datapointEarly}>
                                               Early
@@ -335,7 +337,7 @@ const RealTimeDepartures = () => {
                                   )}
                                 </tbody>
                               </Table>
-                              : !getNextStop(data?.stop_markers[direction][keys[markersIndex]].stop_data) && <h4 className="text-center">End of the Line</h4>}
+                              : !getNextStop(data?.stop_markers[direction][stop[0]].stop_data) && <h4 className="text-center">End of the Line</h4>}
                           </div>
                         </Tooltip>
                       }
@@ -425,14 +427,14 @@ const RealTimeDepartures = () => {
               </Row>
               <div className={styles.notification}>Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
               <Col xs="12">
-                {Object.keys(sanitizedData).map((_, stopIndex) => {
-                  if (data.stop_markers[direction][keys[stopIndex]]) {
-                    const stopObj = data.stop_markers[direction][keys[stopIndex]];
+                {orderedStops.map((stopKey, stopIndex) => {
+                  if (data?.stop_markers[direction][stopKey[0]]) {
+                    const stopObj = data?.stop_markers[direction][stopKey[0]];
                     const now = DateTime.now().toMillis();
                     if (stopObj && Object.keys(stopObj).length > 0) {
-                      const isTimepoint = Number(data.stop_markers[direction][keys[stopIndex]].stop_data.timepoint) > 0;
-                      const rtData = data.stop_markers[direction][keys[stopIndex]]?.real_time;
-                      const rtObjKeys = Object.keys(data.stop_markers[direction][keys[stopIndex]]?.real_time);
+                      const isTimepoint = Number(data?.stop_markers[direction][stopKey[0]].stop_data.timepoint) > 0;
+                      const rtData = data?.stop_markers[direction][stopKey[0]]?.real_time;
+                      const rtObjKeys = Object.keys(data?.stop_markers[direction][stopKey[0]]?.real_time);
                       let sortedTimes = [];
                       rtObjKeys.forEach((key) => {
                         if (rtData[key]?.departure_time * 1000 > now) {
@@ -443,7 +445,7 @@ const RealTimeDepartures = () => {
                         Number(rtData[a]?.departure_time) - Number(rtData[b]?.departure_time);
                       });
                       let sortedStopTimes = [];
-                      const stopTimesCollection = data.stop_markers[direction][keys[stopIndex]]?.stop_times.sort((a, b) => new DateTime(a) - new DateTime(b));
+                      const stopTimesCollection = data?.stop_markers[direction][stopKey[0]]?.stop_times.sort((a, b) => new DateTime(a) - new DateTime(b));
                       stopTimesCollection.forEach((item) => {
                         const exploded = item.split(':')
                         const newDate = new Date();
@@ -516,7 +518,7 @@ const RealTimeDepartures = () => {
                               )}
                             </Col>
                           </Row>
-                          {isTimepoint && Object.keys(sanitizedData)[stopIndex + 1]
+                          {isTimepoint && orderedStops[stopIndex + 1]
                             ? (
                               <>
                                 <div class={styles.empty} />
