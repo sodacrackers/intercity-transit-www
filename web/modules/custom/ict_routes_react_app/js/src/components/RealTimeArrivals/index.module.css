@@ -413,7 +413,7 @@
 @media (min-width: 768px) {
   .estimated {
     position: absolute;
-    right: -20px;
+    right: -35px;
     top: 20px;
   }
 }
