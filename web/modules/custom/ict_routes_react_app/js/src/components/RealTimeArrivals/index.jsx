@@ -440,7 +440,7 @@ const RealTimeDepartures = () => {
                         }
                       })
                       sortedTimes.sort((a, b) => {
-                        Number(rtData[a]?.departure_time) - Number(rtData[b]?.departure_time);
+                        return Number(rtData[a]?.departure_time) - Number(rtData[b]?.departure_time);
                       });
                       let sortedStopTimes = [];
                       const stopTimesCollection = data?.stop_markers[direction][stopKey[0]]?.stop_times.sort((a, b) => new DateTime(a) - new DateTime(b));
@@ -450,7 +450,7 @@ const RealTimeDepartures = () => {
                         newDate.setHours(exploded[0]);
                         newDate.setMinutes(exploded[1]);
                         newDate.setSeconds(exploded[2]);
-                        if (newDate > now) {
+                        if (newDate.getTime() > now) {
                           sortedStopTimes.push(newDate.getTime());
                         }
                       })
@@ -462,11 +462,12 @@ const RealTimeDepartures = () => {
                           newDate.setHours(exploded[0]);
                           newDate.setMinutes(exploded[1]);
                           newDate.setSeconds(exploded[2]);
-                          if (newDate > now) {
+                          if (newDate.getTime() > now) {
                             sortedStopTimes.push(newDate.getTime());
                           }
                         })
                       }
+                      sortedStopTimes.sort((a, b) => a - b);
                       const delay = sortedTimes.length ? Number(rtData[sortedTimes[0]]?.departure_delay) * 1000 : sortedStopTimes[0];
                       const delayNext = sortedTimes.length && sortedTimes[1] ? Number(rtData[sortedTimes[1]]?.departure_delay) * 1000 : sortedStopTimes[1];
                       const delayLast = sortedTimes.length && sortedTimes[2] ? Number(rtData[sortedTimes[2]]?.departure_delay) * 1000 : sortedStopTimes[2];
