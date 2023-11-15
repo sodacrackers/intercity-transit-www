@@ -31,7 +31,7 @@ import styles from './index.module.css';
 const RealTimeDepartures = () => {
   const [data, setData] = React.useState({});
   const [sanitizedData, setSanitizedData] = React.useState({});
-  const [direction, setDirection] = React.useState('inbound');
+  const [direction, setDirection] = React.useState('outbound');
   const [view, setView] = React.useState('wait');
   const [loading, setLoading] = React.useState(true);
   const [nonTimepointsHidden, setNonTimepointsHidden] = React.useState(false);
@@ -381,21 +381,21 @@ const RealTimeDepartures = () => {
                   <Row className={styles.formCheckRow}>
                     <Form.Check
                       type="radio"
-                      label="Inbound"
-                      aria-label="Inbound"
-                      value="inbound"
-                      onClick={() => setDirection('inbound')}
-                      checked={direction === 'inbound'}
-                      className={styles.formCheckLeft}
-                    />
-                    <Form.Check
-                      type="radio"
                       label="Outbound"
                       aria-label="Outbound"
                       value="outbound"
                       onClick={() => setDirection('outbound')}
                       checked={direction === 'outbound'}
                       className={styles.formCheck}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Inbound"
+                      aria-label="Inbound"
+                      value="inbound"
+                      onClick={() => setDirection('inbound')}
+                      checked={direction === 'inbound'}
+                      className={styles.formCheckLeft}
                     />
                   </Row>
                 </Col>
