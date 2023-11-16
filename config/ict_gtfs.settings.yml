@@ -1,5 +1,5 @@
 base_url: 'https://its.rideralerts.com/InfoPoint/GTFS-realtime.ashx'
-max_age: '60'
+max_age: '20'
 allowed_types:
   - Alert
   - TripUpdate

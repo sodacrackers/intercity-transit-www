@@ -505,63 +505,69 @@ function it_route_trip_tools_get_stop_details($stop_id) {
 
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
-  $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0, $serv);
-  $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1, $serv);
-  $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0, $serv);
-  $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1, $serv);
-  $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
-  $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
-  $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
-
-  $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
-  $headers = array_shift($routes);
-  $short_name_index = array_search('route_short_name', $headers);
-  $short_name = $routeId;
-  foreach ($routes as $route) {
-    if ($route[0] == $routeId) {
-      $short_name = $route[$short_name_index];
-    }
+  $cache = \Drupal::cache()->get("route_table_map_data:$routeId:$serv");
+  if ($cache !== FALSE) {
+    $data = $cache->data;
   }
+  else {
+    $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0, $serv);
+    $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1, $serv);
+    $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0, $serv);
+    $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1, $serv);
+    $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
+    $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
+    $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
 
+    $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
+    $headers = array_shift($routes);
+    $short_name_index = array_search('route_short_name', $headers);
+    $short_name = $routeId;
+    foreach ($routes as $route) {
+      if ($route[0] == $routeId) {
+        $short_name = $route[$short_name_index];
+      }
+    }
 
-  $bounding = [
-    'min' => [
-      'lat' => it_route_trip_tools_get_min($shapes_inbound, 'lat'),
-      'lng' => it_route_trip_tools_get_min($shapes_inbound, 'lng'),
-    ],
-    'max' => [
-      'lat' => it_route_trip_tools_get_max($shapes_inbound, 'lat'),
-      'lng' => it_route_trip_tools_get_max($shapes_inbound, 'lng'),
-    ],
-  ];
+    $bounding = [
+      'min' => [
+        'lat' => it_route_trip_tools_get_min($shapes_inbound, 'lat'),
+        'lng' => it_route_trip_tools_get_min($shapes_inbound, 'lng'),
+      ],
+      'max' => [
+        'lat' => it_route_trip_tools_get_max($shapes_inbound, 'lat'),
+        'lng' => it_route_trip_tools_get_max($shapes_inbound, 'lng'),
+      ],
+    ];
+    $data = [
+      'short_name' => $short_name,
+      'long_name' => it_route_trip_tools_build_route_title($routeId),
+      'service_id' => $serv,
+      'effective_from' => $active_config['detail']['date_from'],
+      'effective_until' => $active_config['detail']['date_to'],
+      'map_type' => 'roadmap',
+      'bounding' => $bounding,
+      'center' => it_route_trip_tools_get_center($bounding),
+      'inbound_shapes' => $shapes_inbound,
+      'outbound_shapes' => $shapes_outbound,
+      'stop_markers' => [
+        'inbound' => it_route_trip_get_stop_markers($stop_times_inbound),
+        'outbound' => it_route_trip_get_stop_markers($stop_times_outbound),
+      ]
+      ,
+      'times_alt' => [
+        'inbound' => it_route_trip_get_times_alt($stop_times_inbound, $trips_inbound),
+        'outbound' => it_route_trip_get_times_alt($stop_times_outbound, $trips_outbound),
+      ],
+      //    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv)
+      'trips' => [
+        'inbound' => it_route_trip_get_trips($stop_times_inbound),
+        'outbound' => it_route_trip_get_trips($stop_times_outbound),
+      ],
+    ];
+    \Drupal::cache()->set("route_table_map_data:$routeId:$serv", $data, strtotime($active_config['detail']['date_to']));
 
-
-  return [
-    'short_name' => $short_name,
-    'long_name' => it_route_trip_tools_build_route_title($routeId),
-    'service_id' => $serv,
-    'effective_from' => $active_config['detail']['date_from'],
-    'effective_until' => $active_config['detail']['date_to'],
-    'map_type' => 'roadmap',
-    'bounding' => $bounding,
-    'center' => it_route_trip_tools_get_center($bounding),
-    'inbound_shapes' => $shapes_inbound,
-    'outbound_shapes' => $shapes_outbound,
-    'stop_markers' => [
-      'inbound' => it_route_trip_get_stop_markers($stop_times_inbound),
-      'outbound' => it_route_trip_get_stop_markers($stop_times_outbound),
-    ]
-    ,
-    'times_alt' => [
-      'inbound' => it_route_trip_get_times_alt($stop_times_inbound, $trips_inbound),
-      'outbound' => it_route_trip_get_times_alt($stop_times_outbound, $trips_outbound),
-    ],
-//    'trips' => it_route_trip_tools_get_fake_trips($routeId, $serv)
-    'trips' => [
-      'inbound' => it_route_trip_get_trips($stop_times_inbound),
-      'outbound' => it_route_trip_get_trips($stop_times_outbound),
-    ],
-  ];
+  }
+  return $data;
 
 }
 
