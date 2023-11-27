@@ -657,6 +657,7 @@ display:
       defaults:
         fields: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

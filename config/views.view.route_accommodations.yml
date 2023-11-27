@@ -262,7 +262,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 142
+            - 6dce3800-1cfa-4615-8be8-5b1fdead9c5a
           group: 1
           exposed: false
           expose:
@@ -336,6 +336,7 @@ display:
     display_options:
       display_extenders: {  }
       block_description: 'Travel Training Accommodations'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

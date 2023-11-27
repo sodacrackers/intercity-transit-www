@@ -1532,6 +1532,7 @@ display:
       display_description: ''
       display_extenders: {  }
       block_description: 'News Slider'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2133,6 +2134,7 @@ display:
           tokenize: false
       display_extenders: {  }
       block_description: 'News Slider'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

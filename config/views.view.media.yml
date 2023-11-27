@@ -1633,6 +1633,7 @@ display:
         menu_name: main
         parent: ''
         context: '0'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -531,6 +531,7 @@ display:
         menu_name: admin
         parent: block.admin_display
         context: '0'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

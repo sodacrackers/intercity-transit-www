@@ -1502,6 +1502,7 @@ display:
         filter_groups: true
       display_description: 'Display submissions.'
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

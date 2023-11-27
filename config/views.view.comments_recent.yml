@@ -264,6 +264,7 @@ display:
       block_category: 'Lists (Views)'
       allow:
         items_per_page: true
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

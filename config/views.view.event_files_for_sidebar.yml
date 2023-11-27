@@ -242,6 +242,7 @@ display:
       display_extenders: {  }
       block_description: 'Calendar Event Files for Sidebar'
       block_hide_empty: false
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

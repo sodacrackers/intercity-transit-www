@@ -216,7 +216,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 141
+            - 6580d3f6-6856-4fc9-8e7f-edc4701a82ff
           group: 1
           exposed: false
           expose:
@@ -487,6 +487,7 @@ display:
       displays:
         block_1: block_1
       attachment_position: after
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -504,6 +505,7 @@ display:
     display_options:
       display_extenders: {  }
       block_description: 'Press releases for media'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -605,6 +607,7 @@ display:
         fields: false
       display_extenders: {  }
       path: media-center/archives
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -866,6 +869,7 @@ display:
         arguments: false
       display_extenders: {  }
       path: media-center/archives/%
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

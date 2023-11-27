@@ -701,6 +701,7 @@ display:
     display_options:
       display_extenders: {  }
       path: admin/reports/dblog
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

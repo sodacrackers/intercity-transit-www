@@ -343,6 +343,7 @@ display:
     display_options:
       display_extenders: {  }
       path: node/%/moderation-history
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

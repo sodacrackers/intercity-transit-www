@@ -1030,6 +1030,7 @@ display:
       use_ajax: true
       display_extenders: {  }
       block_description: 'News Block2'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1341,6 +1342,7 @@ display:
       use_more_text: 'View all »'
       display_extenders: {  }
       path: news
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

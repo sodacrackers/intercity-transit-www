@@ -622,6 +622,7 @@ display:
             format: rich_text
           tokenize: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -707,6 +708,7 @@ display:
             format: rich_text
           tokenize: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -749,6 +751,7 @@ display:
         style: false
         row: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -896,6 +899,7 @@ display:
         fields: false
       css_class: col-xs-12
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2089,6 +2093,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/all
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2736,6 +2741,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/%
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -3345,6 +3351,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/all/%
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -11,7 +11,8 @@ archive: true
 id: service_change_feedback
 title: 'Service Change Feedback'
 description: 'This form is for the general public to submit feedback on the 2018 Service Changes.'
-category: Planning
+categories:
+  - Planning
 elements: |
   name:
     '#type': webform_name
@@ -138,6 +139,8 @@ settings:
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

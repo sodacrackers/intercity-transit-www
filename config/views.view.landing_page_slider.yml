@@ -849,6 +849,7 @@ display:
     display_options:
       display_extenders: {  }
       block_description: 'News Slider'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -923,7 +924,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 11
+            - 4c8275e3-eed8-4426-b4f9-93218b8205b7
           group: 1
           exposed: false
           expose:

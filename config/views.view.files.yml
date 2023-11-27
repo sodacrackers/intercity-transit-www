@@ -784,6 +784,7 @@ display:
         weight: 0
         menu_name: admin
         context: ''
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -185,6 +185,7 @@ display:
             title: title
       display_description: ''
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

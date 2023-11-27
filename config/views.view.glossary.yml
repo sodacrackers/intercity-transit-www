@@ -434,6 +434,7 @@ display:
         default: default
         page_1: page_1
       inherit_arguments: false
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -461,6 +462,7 @@ display:
         weight: 0
         menu_name: main
         parent: ''
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

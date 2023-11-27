@@ -191,6 +191,7 @@ display:
       display_extenders: {  }
       block_description: 'Who''s new'
       block_category: User
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

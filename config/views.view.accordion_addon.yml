@@ -19,6 +19,7 @@ dependencies:
     - 'taxonomy_term:tags:fbb3781c-ee18-4070-8775-3b107413e8ea'
   module:
     - node
+    - smart_date
     - taxonomy
     - text
     - user
@@ -324,7 +325,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 114
+            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
           group: 1
           exposed: false
           expose:
@@ -516,7 +517,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 134
+            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
           group: 1
           exposed: false
           expose:
@@ -626,6 +627,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       defaults:
         header: false
       header:
@@ -727,7 +729,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 134
+            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
           group: 1
           exposed: false
           expose:
@@ -942,7 +944,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 320
+            - 11253489-ac05-4759-842a-15f942280865
           group: 1
           exposed: false
           expose:
@@ -1880,7 +1882,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 134
+            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
           group: 1
           exposed: false
           expose:
@@ -2012,7 +2014,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 320
+            - 11253489-ac05-4759-842a-15f942280865
           group: 1
           exposed: false
           expose:

@@ -333,6 +333,7 @@ display:
     display_options:
       display_extenders: {  }
       path: all-media
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

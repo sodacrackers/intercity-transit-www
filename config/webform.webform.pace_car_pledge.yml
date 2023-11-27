@@ -11,7 +11,8 @@ archive: false
 id: pace_car_pledge
 title: 'Safe Streets Ambassador'
 description: 'For Thurston County residents who want to be Safe Streets Ambassasadors. Block will be placed on /safe-streets-ambassador page.'
-category: 'Walk N Roll'
+categories:
+  - 'Walk N Roll'
 elements: |-
   pacecar_name:
     '#type': textfield
@@ -154,6 +155,8 @@ settings:
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

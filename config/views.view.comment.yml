@@ -884,6 +884,7 @@ display:
         menu_name: admin
         parent: ''
         context: '0'
+      filters: {  }
     cache_metadata:
       max-age: 0
       contexts:

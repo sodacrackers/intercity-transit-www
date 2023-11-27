@@ -321,6 +321,7 @@ display:
       displays:
         page_1: page_1
         default: ''
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -343,6 +344,7 @@ display:
         pager: false
       display_extenders: {  }
       path: node
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

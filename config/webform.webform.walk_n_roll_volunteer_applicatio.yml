@@ -11,7 +11,8 @@ archive: false
 id: walk_n_roll_volunteer_applicatio
 title: 'Walk N Roll Volunteer Application'
 description: 'Walk N Roll Volunteer Application'
-category: 'Walk N Roll'
+categories:
+  - 'Walk N Roll'
 elements: |-
   about_you:
     '#type': webform_wizard_page
@@ -341,6 +342,8 @@ settings:
   wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

@@ -716,6 +716,7 @@ display:
           tokenize: false
       display_extenders: {  }
       block_description: 'Current Vanpools'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1072,6 +1073,7 @@ display:
     position: 3
     display_options:
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

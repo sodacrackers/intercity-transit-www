@@ -774,6 +774,7 @@ display:
       header: {  }
       display_extenders: {  }
       block_description: 'Related Pages (4 Col)'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1490,6 +1491,7 @@ display:
         fields: false
       display_extenders: {  }
       block_description: 'Related Pages (3 Col)'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

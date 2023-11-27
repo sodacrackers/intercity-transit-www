@@ -5100,6 +5100,7 @@ display:
         sorts: false
       display_extenders: {  }
       path: employment/rates_2
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

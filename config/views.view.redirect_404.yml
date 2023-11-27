@@ -581,6 +581,7 @@ display:
       display_description: 'Lists 404 error paths with no redirect assigned yet.'
       display_extenders: {  }
       path: admin/config/search/redirect/404
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

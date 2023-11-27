@@ -870,6 +870,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -3965,6 +3966,7 @@ display:
       footer: {  }
       display_extenders: {  }
       path: employment/active-recruitments/%
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

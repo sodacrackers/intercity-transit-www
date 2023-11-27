@@ -151,7 +151,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 74
+            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
           group: 1
           exposed: false
           expose:
@@ -760,7 +760,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 74
+            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
           group: 1
           exposed: false
           expose:
@@ -1569,7 +1569,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 73
+            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
           group: 1
           exposed: false
           expose:
@@ -2374,7 +2374,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 73
+            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
           group: 1
           exposed: false
           expose:
@@ -2895,7 +2895,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 73
+            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
           group: 1
           exposed: false
           expose:
@@ -3348,7 +3348,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 74
+            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
           group: 1
           exposed: false
           expose:
@@ -4004,7 +4004,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 74
+            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
           group: 1
           exposed: false
           expose:
@@ -4629,7 +4629,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 73
+            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
           group: 1
           exposed: false
           expose:
@@ -5111,7 +5111,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 74
+            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
           group: 1
           exposed: false
           expose:

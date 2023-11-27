@@ -568,6 +568,7 @@ display:
             format: rich_text
           tokenize: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -863,6 +864,7 @@ display:
           inherit_arguments: true
       display_extenders: {  }
       block_description: 'Rider Alerts Effective Dates'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

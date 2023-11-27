@@ -643,6 +643,7 @@ display:
     display_options:
       display_extenders: {  }
       path: all-content
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

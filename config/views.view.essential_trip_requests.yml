@@ -1792,6 +1792,7 @@ display:
     display_options:
       display_extenders: {  }
       path: bus/essential-trip/data
+      filters: {  }
     cache_metadata:
       max-age: 0
       contexts:

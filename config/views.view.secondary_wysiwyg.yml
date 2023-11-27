@@ -225,6 +225,7 @@ display:
       display_extenders: {  }
       block_description: 'Secondary WYSIWYG'
       block_hide_empty: true
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

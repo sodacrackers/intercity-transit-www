@@ -731,6 +731,7 @@ display:
         menu_name: admin
         parent: system.admin_content
         context: '0'
+      filters: {  }
     cache_metadata:
       max-age: 0
       contexts:

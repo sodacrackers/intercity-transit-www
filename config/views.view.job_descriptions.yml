@@ -1150,6 +1150,7 @@ display:
     display_options:
       display_extenders: {  }
       path: employment/job-descriptions
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

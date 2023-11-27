@@ -287,7 +287,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 156
+            - 1518cfc6-a384-45a7-9eb8-b2458d9095bd
           group: 1
           exposed: false
           expose:
@@ -435,6 +435,7 @@ display:
         fields: false
       display_description: ''
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -730,6 +731,7 @@ display:
           view_to_insert: 'zero_fare_faq:attachment_1'
           inherit_arguments: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

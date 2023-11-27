@@ -11,7 +11,8 @@ archive: false
 id: bus_schedules_order_form
 title: 'Bus Schedule Order Form'
 description: 'Webform to request email or printouts of bus schedule.&nbsp;'
-category: Planning
+categories:
+  - Planning
 elements: |-
   title_desc:
     '#type': processed_text
@@ -177,6 +178,8 @@ settings:
   wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

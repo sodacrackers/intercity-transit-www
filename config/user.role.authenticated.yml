@@ -2,8 +2,11 @@ uuid: 167f6777-de2c-4309-9263-bd2a07d62225
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.webform_default
   module:
     - contact
+    - filter
     - fontawesome
     - google_analytics
     - media
@@ -27,6 +30,7 @@ permissions:
   - 'opt-in or out of google analytics tracking'
   - 'search content'
   - 'use advanced search'
+  - 'use text format webform_default'
   - 'view media'
   - 'view paragraph content job_duties'
   - 'view search api pages'

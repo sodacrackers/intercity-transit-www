@@ -96,7 +96,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 113
+            - cb707ae2-e954-4eb9-a2dc-bc2af8943afc
           group: 1
           exposed: false
           expose:
@@ -198,6 +198,7 @@ display:
       link_url: images/113
       display_extenders: {  }
       block_description: 'Walk N Roll Pictures'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -253,7 +254,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 114
+            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
           group: 1
           exposed: false
           expose:
@@ -367,6 +368,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: youth/pictures
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -423,7 +425,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 114
+            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
           group: 1
           exposed: false
           expose:

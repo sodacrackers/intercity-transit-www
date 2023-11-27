@@ -1087,6 +1087,7 @@ display:
       display_description: ''
       display_extenders: {  }
       block_description: 'Procurement Items'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

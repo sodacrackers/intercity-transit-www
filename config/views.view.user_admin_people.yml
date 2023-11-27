@@ -920,6 +920,7 @@ display:
         description: 'Manage user accounts, roles, and permissions.'
         weight: 0
         menu_name: admin
+      filters: {  }
     cache_metadata:
       max-age: 0
       contexts:

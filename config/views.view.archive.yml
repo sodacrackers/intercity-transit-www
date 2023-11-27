@@ -216,6 +216,7 @@ display:
       defaults:
         arguments: false
       display_extenders: {  }
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -236,6 +237,7 @@ display:
         options: {  }
       display_extenders: {  }
       path: archive
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

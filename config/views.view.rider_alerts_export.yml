@@ -371,6 +371,7 @@ display:
               raw_output: false
       display_extenders: {  }
       path: rest/rider-alerts
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
