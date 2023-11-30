@@ -41,4 +41,4 @@ visibility:
     id: request_path
     negate: true
     context_mapping: {  }
-    pages: "/plan-your-trip/routes\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/stops\r\n/vanpool/current/*"
+    pages: "/plan-your-trip/routes\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/stops\r\n/vanpool/current/*\r\n/services/walknroll/calendar"

@@ -3,15 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_event_date
+    - field.storage.node.field_smart_event_date
     - node.type.calendar_event
     - taxonomy.vocabulary.calendar_event_type
   content:
     - 'taxonomy_term:calendar_event_type:10c284fb-434e-4379-bd72-3448652c0813'
   module:
-    - datetime
     - fullcalendar_view
     - node
+    - smart_date
     - taxonomy
     - user
 id: calendar_events
@@ -77,10 +77,10 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_event_date:
-          id: field_event_date
-          table: node__field_event_date
-          field: field_event_date
+        field_smart_event_date:
+          id: field_smart_event_date
+          table: node__field_smart_event_date
+          field: field_smart_event_date
           relationship: none
           group_type: group
           admin_label: ''
@@ -127,10 +127,23 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: datetime_default
+          type: smartdate_default
           settings:
             timezone_override: ''
-            format_type: medium
+            format: default
+            force_chronological: false
+            add_classes: false
+            time_wrapper: true
+            localize: false
+            parts:
+              start: start
+              end: end
+              duration: '0'
+            duration:
+              separator: ' | '
+              unit: ''
+              decimals: 2
+              suffix: h
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -279,15 +292,13 @@ display:
         options:
           default_date_source: now
           defaultDate: ''
-          start: field_event_date
-          end: field_event_date
+          start: field_smart_event_date
+          end: field_smart_event_date
           title: title
           left_buttons: 'prev,next today'
           right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
           default_view: dayGridMonth
-          firstDay: '0'
-          minTime: '00:00:00'
-          maxTime: '23:59:59'
+          firstDay: '1'
           nav_links: 1
           timeFormat: 'hh:mm a'
           allowEventOverlap: 1
@@ -295,12 +306,10 @@ display:
           updateConfirm: 1
           defaultLanguage: en
           languageSelector: 0
-          dialogWindow: 0
+          dialogWindow: 1
           openEntityInNewTab: 1
-          dialogModal: 0
-          createEventLink: 0
-          eventLimit: '2'
-          slotDuration: '00:30:00'
+          createEventLink: 1
+          eventLimit: '5'
           tax_field: ''
           vocabularies: ''
           color_bundle:
@@ -323,8 +332,12 @@ display:
             vanpool: '#3a87ad'
           rrule: ''
           duration: ''
-          bundle_type: ''
+          bundle_type: calendar_event
           classes: ''
+          minTime: '00:00:00'
+          maxTime: '23:59:59'
+          dialogModal: 1
+          slotDuration: '00:15:00'
       row:
         type: fields
       query:
@@ -349,7 +362,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_event_date'
+        - 'config:field.storage.node.field_smart_event_date'
   page_calendar_events:
     id: page_calendar_events
     display_title: Page
@@ -357,7 +370,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: calendar-events
+      path: services/walknroll/calendar
     cache_metadata:
       max-age: -1
       contexts:
@@ -368,4 +381,4 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:field.storage.node.field_event_date'
+        - 'config:field.storage.node.field_smart_event_date'

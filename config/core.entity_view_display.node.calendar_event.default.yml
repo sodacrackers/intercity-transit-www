@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.calendar_event.field_smart_event_date
     - node.type.calendar_event
   module:
-    - datetime
     - smart_date
     - text
     - user
@@ -49,6 +48,15 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_live_nid:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_location:
     type: string
     label: inline
@@ -59,7 +67,7 @@ content:
     region: content
   field_smart_event_date:
     type: smartdate_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
       format_type: medium
@@ -77,11 +85,12 @@ content:
         decimals: 2
         suffix: h
     third_party_settings: {  }
-    weight: 5
+    weight: 0
     region: content
 hidden:
   feeds_item: true
   field_cancelled: true
+  field_event_date: true
   field_event_type: true
   field_file: true
   field_google_maps_url: true

@@ -39,3 +39,6 @@ libraries-override:
   we_megamenu/form.we-mega-menu-frontend:
     js:
       assets/js/we_megamenu_frontend.js: js/we-megamenu-frontend-custom.js
+  fullcalendar_view/fullcalendar:
+    js:
+      js/fullcalendar_view.js: js/fullcalendar_view.js

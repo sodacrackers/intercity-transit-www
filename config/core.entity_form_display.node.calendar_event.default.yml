@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.calendar_event.field_smart_event_date
     - node.type.calendar_event
   module:
-    - datetime
     - file
     - path
     - smart_date
@@ -29,7 +28,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 6
     region: content
     settings:
       rows: 9
@@ -45,7 +44,7 @@ content:
     third_party_settings: {  }
   field_address:
     type: string_textfield
-    weight: 28
+    weight: 13
     region: content
     settings:
       size: 60
@@ -53,13 +52,7 @@ content:
     third_party_settings: {  }
   field_cancelled:
     type: options_buttons
-    weight: 29
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_event_date:
-    type: datetime_default
-    weight: 6
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -78,7 +71,7 @@ content:
     third_party_settings: {  }
   field_google_maps_url:
     type: string_textfield
-    weight: 26
+    weight: 12
     region: content
     settings:
       size: 60
@@ -86,14 +79,14 @@ content:
     third_party_settings: {  }
   field_live_nid:
     type: number
-    weight: 17
+    weight: 11
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_location:
     type: string_textfield
-    weight: 12
+    weight: 10
     region: content
     settings:
       size: 60
@@ -133,7 +126,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 121
+    weight: 16
     region: content
     settings:
       display_label: true
@@ -164,9 +157,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   feeds_item: true
+  field_event_date: true

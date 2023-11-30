@@ -2030,3 +2030,97 @@ p.slide-caption a {
     margin-top: -6px;
     margin-bottom: 6px;
 }
+
+.walk-n-roll-calendar button[type=button], #calendar-add-event {
+    height: 100%;
+    padding: 8px 15px !important;
+    background-color: #002F87;
+    border: 1px solid #002F87;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    color: #ffffff;
+    cursor: pointer;
+    vertical-align: top;
+    border-radius: 0 !important;
+}
+
+.walk-n-roll-calendar .bottom-buttons {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.walk-n-roll-calendar .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 0 !important;
+}
+
+.walk-n-roll-calendar .fc .fc-row .fc-content-skeleton table, .walk-n-roll-calendar .fc .fc-row .fc-content-skeleton td, .walk-n-roll-calendar  .fc .fc-row .fc-mirror-skeleton td {
+    padding: 0 !important;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.walk-n-roll-calendar div.fc-view-container div.fc-content-skeleton table tbody tr td {
+    background-color: #f2f4f5 !important;
+}
+
+.walk-n-roll-calendar .fc .fc-row .fc-content-skeleton table, .walk-n-roll-calendar .fc .fc-row .fc-content-skeleton td.fc-day-top, .walk-n-roll-calendar .fc .fc-row .fc-mirror-skeleton td.fc-day-top {
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+
+.walk-n-roll-calendar .table {
+    margin-bottom: 0 !important;
+}
+
+.walk-n-roll-calendar .fc-content {
+    background-color: #002F87;
+    border: 1px solid #002F87;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    color: #ffffff;
+    border-radius: 0 !important;
+}
+.walk-n-roll-calendar .fc-day-grid-event {
+    background-color: #002F87 !important;
+    border: 0 !important;
+}
+.walk-n-roll-calendar .fc-day {
+    background-color: #f2f4f5 !important;
+}
+.walk-n-roll-calendar .fc-day-number {
+    color: #666 !important;
+}
+
+.walk-n-roll-calendar table {
+    display: table !important;
+}
+.walk-n-roll-calendar .fc-center {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+@media all and (max-width: 768px) {
+    .fc-button-group {
+        display: grid;
+        grid-template-areas: "button1 button2"
+                         "button3 button4";
+        grid-gap: 5px;
+    }
+    .fc-dayGridMonth-button {
+        grid-area: button1;
+    }
+    .fc-timeGridWeek-button {
+        grid-area: button2;
+    }
+    .fc-timeGridDay-button {
+        grid-area: button3;
+    }
+    .fc-listYear-button  {
+        grid-area: button4;
+    }
+}
+
+.sr-only {
+    display: none !important;
+}
