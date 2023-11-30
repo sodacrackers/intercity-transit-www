@@ -273,6 +273,7 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
     $formatted = str_pad(substr($stop_time['arrival_time'], 0, strlen($stop_time['arrival_time']) - 3), 5, '0', STR_PAD_LEFT);
     if (isset($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && $top == count($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']])) {
       $res['stops'][$index + 1]['stop_id'] = $stop_time['stop_id'];
+      $res['stops'][$index + 1]['stop_sequence'] = $stop_time['stop_sequence'];
       $res['stops'][$index + 1][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = $formatted;
       usort($res['stops'][$index + 1][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']], function ($a, $b) {
         return strtotime($a) - strtotime($b);
@@ -280,6 +281,7 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
     }
     else {
       $res['stops'][$index]['stop_id'] = $stop_time['stop_id'];
+      $res['stops'][$index]['stop_sequence'] = $stop_time['stop_sequence'];
       $res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = $formatted;
       usort($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']], function ($a, $b) {
         return strtotime($a) - strtotime($b);
@@ -292,7 +294,7 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
     }
   }
   foreach ($res['stops'] as &$stop) {
-    $type = array_keys($stop)[1];
+    $type = array_keys($stop)[2]; 
     $name = array_keys($stop[$type])[0];
     if (count($stop[$type][$name]) < $top) {
       $stop[$type][$name] = array_pad($stop[$type][$name], -($top), NULL);
