@@ -2089,7 +2089,7 @@ p.slide-caption a {
     color: #666 !important;
 }
 
-.walk-n-roll-calendar table {
+.walk-n-roll-calendar table, #block-blocklegend table {
     display: table !important;
 }
 .walk-n-roll-calendar .fc-center {
@@ -2124,5 +2124,9 @@ p.slide-caption a {
 }
 
 .ui-dialog {
+  z-index: 999 !important;
+}
 
+#block-blocklegend > table > tbody > tr > td:nth-child(1) {
+    padding: 2px !important;
 }
