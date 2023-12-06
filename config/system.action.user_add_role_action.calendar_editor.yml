@@ -1,0 +1,14 @@
+uuid: 944f718b-99c5-4ce9-8234-a93d7cc45556
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.calendar_editor
+  module:
+    - user
+id: user_add_role_action.calendar_editor
+label: 'Add the Calendar editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: calendar_editor

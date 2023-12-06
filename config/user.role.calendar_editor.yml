@@ -1,0 +1,16 @@
+uuid: 476e04ba-6e0f-4c34-a92f-06bdec95eb13
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.calendar_event
+  module:
+    - node
+id: calendar_editor
+label: 'Calendar editor'
+weight: 2
+is_admin: null
+permissions:
+  - 'create calendar_event content'
+  - 'delete own calendar_event content'
+  - 'edit own calendar_event content'
