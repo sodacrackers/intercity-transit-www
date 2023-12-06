@@ -355,15 +355,14 @@
               if (
                   slotDate &&
                   viewSettings.eventBundleType &&
-                  viewSettings.dblClickToCreate &&
-                  viewSettings.addForm !== ""
+                  viewSettings.dblClickToCreate
               ) {
                 // Open a new window to create a new event (content).
 
                 const ckeditorAjaxDialog = Drupal.ajax({
                   dialog: {width: '800px'},
                   dialogType: 'modal',
-                  url: '/' + viewSettings.addForm,
+                  url: '/fullcalendar-view-event-add?entity=node&bundle=calendar_event&start_field=' + viewSettings.startField + '&destination=' + window.location.pathname,
                 });
                 ckeditorAjaxDialog.execute();
                 //

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.calendar_event.body
     - field.field.node.calendar_event.feeds_item
     - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_calendar
     - field.field.node.calendar_event.field_cancelled
     - field.field.node.calendar_event.field_event_date
     - field.field.node.calendar_event.field_event_type
@@ -40,6 +41,7 @@ content:
 hidden:
   feeds_item: true
   field_address: true
+  field_calendar: true
   field_cancelled: true
   field_event_date: true
   field_event_type: true

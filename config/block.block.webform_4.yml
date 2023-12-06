@@ -28,6 +28,7 @@ settings:
   webform_id: bike_mechanic_volunteer_program
   default_data: ''
   redirect: false
+  lazy: false
 visibility:
   user_role:
     id: user_role

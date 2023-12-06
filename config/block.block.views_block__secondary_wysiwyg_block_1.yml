@@ -13,7 +13,7 @@ dependencies:
 id: views_block__secondary_wysiwyg_block_1
 theme: transit
 region: sidebar_second
-weight: -35
+weight: -47
 provider: null
 plugin: 'views_block:secondary_wysiwyg-block_1'
 settings:

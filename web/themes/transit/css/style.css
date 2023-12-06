@@ -2073,15 +2073,13 @@ p.slide-caption a {
 }
 
 .walk-n-roll-calendar .fc-content {
-    background-color: #002F87;
-    border: 1px solid #002F87;
+    border: 0 !important;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     color: #ffffff;
     border-radius: 0 !important;
 }
 .walk-n-roll-calendar .fc-day-grid-event {
-    background-color: #002F87 !important;
     border: 0 !important;
 }
 .walk-n-roll-calendar .fc-day {
@@ -2123,4 +2121,8 @@ p.slide-caption a {
 
 .sr-only {
     display: none !important;
+}
+
+.ui-dialog {
+
 }

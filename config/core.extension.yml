@@ -19,6 +19,7 @@ module:
   ckeditor5: 0
   colorbox: 0
   comment: 0
+  conditional_fields: 0
   config: 0
   contact: 0
   contact_block: 0

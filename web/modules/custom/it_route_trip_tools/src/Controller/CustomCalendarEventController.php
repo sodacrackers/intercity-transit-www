@@ -42,7 +42,8 @@ class CustomCalendarEventController extends CalendarEventController {
           $terms = $this->entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['uuid' => '10c284fb-434e-4379-bd72-3448652c0813']);
           $term = reset($terms);
           $form['field_event_type']['widget']['#value'] = $term->id();
-          $form['field_event_type']['#access'] = FALSE;
+          $form['field_event_type']['#attributes']['disabled'] = 'disabled';
+          $form['field_event_type']['widget']['#attributes']['disabled'] = 'disabled';
           // Hide preview button.
           if (isset($form['actions']['preview'])) {
             $form['actions']['preview']['#access'] = FALSE;

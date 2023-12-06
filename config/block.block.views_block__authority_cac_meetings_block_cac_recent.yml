@@ -16,7 +16,7 @@ third_party_settings:
 id: views_block__authority_cac_meetings_block_cac_recent
 theme: transit
 region: sidebar_second
-weight: -27
+weight: -39
 provider: null
 plugin: 'views_block:authority_cac_meetings-block_cac_recent'
 settings:

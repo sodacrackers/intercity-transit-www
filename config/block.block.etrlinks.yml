@@ -16,7 +16,7 @@ third_party_settings:
 id: etrlinks
 theme: transit
 region: sidebar_second
-weight: 0
+weight: -34
 provider: null
 plugin: 'block_content:8e596211-dc85-4828-b7d3-c329fac197fc'
 settings:
