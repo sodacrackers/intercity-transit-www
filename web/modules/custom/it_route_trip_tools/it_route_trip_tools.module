@@ -215,7 +215,7 @@ function it_route_trip_tools_get_api_data($data, $apiId) {
 function it_route_trip_get_stop_markers($stop_times) {
   $res = [];
   foreach ($stop_times as $stop_time) {
-    $res[$stop_time['stop_id']]['stop_data'] = [
+    $res[$stop_time['stop_id'].'-'.$stop_time['stop_sequence']]['stop_data'] = [
       'stopSequence' => $stop_time['stop_sequence'],
       'stopId' => $stop_time['stop_id'],
       'stopName' => $stop_time['name'],
@@ -223,7 +223,7 @@ function it_route_trip_get_stop_markers($stop_times) {
       'stopLon' => $stop_time['lon'],
       'timepoint' => $stop_time['timepoint']
     ];
-    $res[$stop_time['stop_id']]['stop_times'][] = $stop_time['arrival_time'];
+    $res[$stop_time['stop_id'].'-'.$stop_time['stop_sequence']]['stop_times'][] = $stop_time['arrival_time'];
   }
   uasort($res, function ($a, $b) {
     return (int) $a['stop_data']['stopSequence'] - (int) $b['stop_data']['stopSequence'];

@@ -515,9 +515,9 @@ class Gtfs {
     return $vehicle_positions;
   }
 
-  public function getRealTimeByStopId($stop_id, $stop_updates) {
-    return array_filter($stop_updates, function ($item) use ($stop_id) {
-      return $item['stop_id'] === $stop_id;
+  public function getRealTimeByStopId($stop_id, $stop_sequence, $stop_updates) {
+    return array_filter($stop_updates, function ($item) use ($stop_id, $stop_sequence) {
+      return $item['stop_id'] == $stop_id && $item['stop_sequence'] == $stop_sequence;
     });
   }
 

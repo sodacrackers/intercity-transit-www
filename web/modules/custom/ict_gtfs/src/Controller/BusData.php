@@ -75,7 +75,7 @@ class BusData extends ControllerBase {
         $stop_updates = $this->gtfs->getStopTimeUpdates($trip_updates, $trip_ids, $vehicle_list);
         $route_data['vehicle_position'][$direction_name] = $this->gtfs->getVehiclePositions($vehicle_position, $vehicle_list);
         foreach ($direction as $stop_id => &$stop_data) {
-          $stop_data['real_time'] = $this->gtfs->getRealTimeByStopId($stop_id, $stop_updates);
+          $stop_data['real_time'] = $this->gtfs->getRealTimeByStopId($stop_id, $stop_data['stop_data']['stopSequence'], $stop_updates);
         }
       }
       $context = new RenderContext();
