@@ -81,6 +81,25 @@ const RealTimeDepartures = () => {
       })
       const tripOrder = Object.values(json.times_alt[direction].stops).map((item) => item.stop_id);
       let reordered = Object.entries(json.stop_markers[direction]).sort((a, b) => tripOrder.indexOf(a[1].stop_data.stopId) - tripOrder.indexOf(b[1].stop_data.stopId));
+      const spliceIndices = [];
+      reordered.forEach((item, index) => {
+        if (reordered[index + 1] && !spliceIndices.includes(index)) {
+          if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && (item[1].stop_times.length < reordered[index + 1][1].stop_times.length || item[1].stop_times.length > reordered[index + 1][1].stop_times.length)) {
+            item[1].stop_times = [...item[1].stop_times, ...reordered[index + 1][1].stop_times];
+            item[1].real_time = { ...item[1].real_time, ...reordered[index + 1][1].real_time };
+            spliceIndices.push(index + 1);
+          } else if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && Object.keys(item[1].real_time).length === 0) {
+            reordered[index + 1][1].stop_times = [...item[1].stop_times, ...reordered[index + 1][1].stop_times];
+            reordered[index + 1][1].real_time = { ...item[1].real_time, ...reordered[index + 1][1].real_time };
+            spliceIndices.push(index);
+          }
+        }
+      })
+      spliceIndices.sort((a, b) => b - a)
+      spliceIndices.forEach((val) => {
+        reordered.splice(val, 1);
+      })
+      reordered.sort((a, b) => Object.values(a[1].real_time)[0]?.stop_sequence - Object.values(b[1].real_time)[0]?.stop_sequence);
       setOrderedStops(reordered);
       const mappedData = Object.entries(clean).sort((a, b) => Number(a[1][0]) - Number(b[1][0]));
       const sortedData = new Map();
@@ -90,10 +109,10 @@ const RealTimeDepartures = () => {
         sortingIndex++;
       }
       const finalData = Object.fromEntries(sortedData);
-      Object.keys(json[`${direction}_shapes`][0]).forEach((stopMarkerKey) => {
+      Object.keys(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1]).forEach((stopMarkerKey) => {
         coords.push({
-          lat: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lat),
-          lng: Number(json[`${direction}_shapes`][0][stopMarkerKey]?.lng),
+          lat: Number(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1][stopMarkerKey]?.lat),
+          lng: Number(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1][stopMarkerKey]?.lng),
         })
       })
       const { center, zoom } = fitBounds({
@@ -111,7 +130,7 @@ const RealTimeDepartures = () => {
       });
       const saneData = Object.keys(json.stop_markers[direction]).filter((marker) => {
         return Object.values(finalData).find((entry) => {
-          return entry[0] === marker
+          return `${entry[0]}-${entry[1][0]}` === marker
         });
       });
       let cleanedData = [];
@@ -126,9 +145,9 @@ const RealTimeDepartures = () => {
       setCoordinates(coords);
       setSanitizedData(cleanedData);
       let keysList = [];
-      Object.keys(json?.stop_markers[direction]).forEach((key, index) => {
+      Object.keys(json?.stop_markers[direction]).forEach((key) => {
         Object.keys(cleanedData).forEach((item) => {
-          if (item === key) {
+          if (item === key.slice(0, 3)) {
             keysList.push(item);
           }
         })
@@ -222,7 +241,7 @@ const RealTimeDepartures = () => {
             </Card.Header>
             <Accordion.Collapse className={styles.mapAccordionBody} eventKey={0}>
               <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI" }} // TODO: add to .env with prod creds
+                bootstrapURLKeys={{ key: "AIzaSyC-X7W8qAAeZP-dG3qZzlqrTJG6l8tddf8" }} // TODO: add to .env with prod creds
                 defaultCenter={centerAndZoom[0]}
                 defaultZoom={centerAndZoom.length > 1 && centerAndZoom[1] || 12}
                 onGoogleApiLoaded={({ map, maps }) => renderPolylines(map, maps)}
@@ -425,40 +444,30 @@ const RealTimeDepartures = () => {
               </Row>
               <div className={styles.notification}>Buses do not leave <strong>Timepoints</strong> ahead of the published scheduled time.</div>
               <Col xs="12">
-                {orderedStops.map((stopKey, stopIndex) => {
-                  if (data?.stop_markers[direction][stopKey[0]]) {
-                    const stopObj = data?.stop_markers[direction][stopKey[0]];
-                    const now = DateTime.now().toMillis();
-                    if (stopObj && Object.keys(stopObj).length > 0) {
-                      const isTimepoint = Number(data?.stop_markers[direction][stopKey[0]].stop_data.timepoint) > 0;
-                      const rtData = data?.stop_markers[direction][stopKey[0]]?.real_time;
-                      const rtObjKeys = Object.keys(data?.stop_markers[direction][stopKey[0]]?.real_time);
-                      let sortedTimes = [];
-                      rtObjKeys.forEach((key) => {
-                        if (rtData[key]?.departure_time * 1000 > now) {
-                          sortedTimes.push(key);
-                        }
-                      })
-                      sortedTimes.sort((a, b) => {
-                        return Number(rtData[a]?.departure_time) - Number(rtData[b]?.departure_time);
-                      });
-                      let sortedStopTimes = [];
-                      const stopTimesCollection = data?.stop_markers[direction][stopKey[0]]?.stop_times.sort((a, b) => new DateTime(a) - new DateTime(b));
-                      stopTimesCollection.forEach((item) => {
-                        const exploded = item.split(':')
-                        const newDate = new Date();
-                        newDate.setHours(exploded[0]);
-                        newDate.setMinutes(exploded[1]);
-                        newDate.setSeconds(exploded[2]);
-                        if (newDate.getTime() > now) {
-                          sortedStopTimes.push(newDate.getTime());
-                        }
-                      })
-                      if (sortedStopTimes.length === 0) {
+                {new Date().getDay() === (0 || 6) && data.short_name === '42'
+                  ? (<h3 style={{ textAlign: 'center' }}>Route 42 does not run on weekends.</h3>)
+                  : orderedStops.map((stopKey, stopIndex) => {
+                    if (data?.stop_markers[direction][stopKey[0]]) {
+                      const stopObj = data?.stop_markers[direction][stopKey[0]];
+                      const now = DateTime.now().toMillis();
+                      if (stopObj && Object.keys(stopObj).length > 0) {
+                        const isTimepoint = Number(data?.stop_markers[direction][stopKey[0]].stop_data.timepoint) > 0;
+                        const rtData = data?.stop_markers[direction][stopKey[0]]?.real_time;
+                        const rtObjKeys = Object.keys(data?.stop_markers[direction][stopKey[0]]?.real_time);
+                        let sortedTimes = [];
+                        rtObjKeys.forEach((key) => {
+                          if (rtData[key]?.departure_time * 1000 > now) {
+                            sortedTimes.push(key);
+                          }
+                        })
+                        sortedTimes.sort((a, b) => {
+                          return Number(rtData[a]?.departure_time) - Number(rtData[b]?.departure_time);
+                        });
+                        let sortedStopTimes = [];
+                        const stopTimesCollection = data?.stop_markers[direction][stopKey[0]]?.stop_times.sort((a, b) => new DateTime(a) - new DateTime(b));
                         stopTimesCollection.forEach((item) => {
                           const exploded = item.split(':')
                           const newDate = new Date();
-                          newDate.setDate(currentTime.getDate() + 1);
                           newDate.setHours(exploded[0]);
                           newDate.setMinutes(exploded[1]);
                           newDate.setSeconds(exploded[2]);
@@ -466,76 +475,89 @@ const RealTimeDepartures = () => {
                             sortedStopTimes.push(newDate.getTime());
                           }
                         })
+                        if (sortedStopTimes.length === 0) {
+                          stopTimesCollection.forEach((item) => {
+                            const currentTime = new Date();
+                            const exploded = item.split(':')
+                            const newDate = new Date();
+                            newDate.setDate(currentTime.getDate() + 1);
+                            newDate.setHours(exploded[0]);
+                            newDate.setMinutes(exploded[1]);
+                            newDate.setSeconds(exploded[2]);
+                            if (newDate.getTime() > now) {
+                              sortedStopTimes.push(newDate.getTime());
+                            }
+                          })
+                        }
+                        sortedStopTimes.sort((a, b) => a - b);
+                        const delay = sortedTimes.length ? Number(rtData[sortedTimes[0]]?.departure_delay) * 1000 : 0;
+                        const delayNext = sortedTimes.length && sortedTimes[1] ? Number(rtData[sortedTimes[1]]?.departure_delay) * 1000 : 0;
+                        const delayLast = sortedTimes.length && sortedTimes[2] ? Number(rtData[sortedTimes[2]]?.departure_delay) * 1000 : 0;
+                        const departureTimeFormatted = sortedTimes.length ? Number(rtData[sortedTimes[0]]?.departure_time) * 1000 : sortedStopTimes[0];
+                        const departureTimeFormattedNext = sortedTimes.length && sortedTimes[1] ? Number(rtData[sortedTimes[1]]?.departure_time) * 1000 : sortedStopTimes[1];
+                        const departureTimeFormattedLast = sortedTimes.length && sortedTimes[2] ? Number(rtData[sortedTimes[2]]?.departure_time) * 1000 : sortedStopTimes[2];
+                        const waitTime = departureTimeFormatted && ((departureTimeFormatted - DateTime.now().toMillis()) / 60000);
+                        const waitTimeNext = departureTimeFormattedNext && ((departureTimeFormattedNext - DateTime.now().toMillis()) / 60000);
+                        const waitTimeLast = departureTimeFormattedLast && ((departureTimeFormattedLast - DateTime.now().toMillis()) / 60000);
+                        const waitTimeString = (waitTime < 60 && waitTime > -60) ? `${Math.floor(waitTime)} min` : `${Math.floor(waitTime / 60)} hr ${Math.floor(waitTime % 60)} min`;
+                        const waitTimeStringNext = (waitTimeNext < 60 && waitTimeNext > -60) ? `${Math.floor(waitTimeNext)} min` : `${Math.floor(waitTimeNext / 60)} hr ${Math.floor(waitTimeNext % 60)} min`;
+                        const waitTimeStringLast = (waitTimeLast < 60 && waitTimeLast > -60) ? `${Math.floor(waitTimeLast)} min` : `${Math.floor(waitTimeLast / 60)} hr ${Math.floor(waitTimeLast % 60)} min`;
+                        return (
+                          <div className={(!isTimepoint && nonTimepointsHidden) ? styles.unmountedStyle : styles.mountedStyle} >
+                            <Row className={isTimepoint ? styles.timepoint : styles.stopInfo}>
+                              <Col md={isTimepoint && "5"} lg="5" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
+                                {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
+                                <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
+                              </Col>
+                              <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
+                                {waitTime && (
+                                  <div className={
+                                    delay >= 60
+                                      ? styles.lateArrivalTag
+                                      : delay <= -60
+                                        ? styles.earlyArrivalTag
+                                        : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormatted).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  </div>
+                                )}
+                                {waitTimeNext && (
+                                  <div className={
+                                    delayNext >= 60
+                                      ? styles.lateArrivalTag
+                                      : delayNext <= -60
+                                        ? styles.earlyArrivalTag
+                                        : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedNext).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  </div>
+                                )}
+                                {waitTimeLast && (
+                                  <div className={
+                                    delayLast >= 60
+                                      ? styles.lateArrivalTag
+                                      : delayLast <= -60
+                                        ? styles.earlyArrivalTag
+                                        : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedLast).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
+                                  </div>
+                                )}
+                              </Col>
+                            </Row>
+                            {isTimepoint && orderedStops[stopIndex + 1]
+                              ? (
+                                <>
+                                  <div class={styles.empty} />
+                                  <div className={nonTimepointsHidden ? styles.show : styles.hide} onClick={(e) => {
+                                    e.preventDefault();
+                                    setNonTimepointsHidden(!nonTimepointsHidden);
+                                  }}>
+                                    <div class={styles.dot} />
+                                    <div class="d-inline-block">{nonTimepointsHidden ? 'Show' : 'Hide'} Non-Timepoint Stops</div>
+                                  </div>
+                                  {nonTimepointsHidden && <div class={styles.empty} />}
+                                </>
+                              ) : null}
+                          </div>
+                        )
                       }
-                      sortedStopTimes.sort((a, b) => a - b);
-                      const delay = sortedTimes.length ? Number(rtData[sortedTimes[0]]?.departure_delay) * 1000 : sortedStopTimes[0];
-                      const delayNext = sortedTimes.length && sortedTimes[1] ? Number(rtData[sortedTimes[1]]?.departure_delay) * 1000 : sortedStopTimes[1];
-                      const delayLast = sortedTimes.length && sortedTimes[2] ? Number(rtData[sortedTimes[2]]?.departure_delay) * 1000 : sortedStopTimes[2];
-                      const departureTimeFormatted = sortedTimes.length ? Number(rtData[sortedTimes[0]]?.departure_time) * 1000 : sortedStopTimes[0];
-                      const departureTimeFormattedNext = sortedTimes.length && sortedTimes[1] ? Number(rtData[sortedTimes[1]]?.departure_time) * 1000 : sortedStopTimes[1];
-                      const departureTimeFormattedLast = sortedTimes.length && sortedTimes[2] ? Number(rtData[sortedTimes[2]]?.departure_time) * 1000 : sortedStopTimes[2];
-                      const waitTime = departureTimeFormatted && ((departureTimeFormatted - DateTime.now().toMillis()) / 60000);
-                      const waitTimeNext = departureTimeFormattedNext && ((departureTimeFormattedNext - DateTime.now().toMillis()) / 60000);
-                      const waitTimeLast = departureTimeFormattedLast && ((departureTimeFormattedLast - DateTime.now().toMillis()) / 60000);
-                      const waitTimeString = (waitTime < 60 && waitTime > -60) ? `${Math.floor(waitTime)} min` : `${Math.floor(waitTime / 60)} hr ${Math.floor(waitTime % 60)} min`;
-                      const waitTimeStringNext = (waitTimeNext < 60 && waitTimeNext > -60) ? `${Math.floor(waitTimeNext)} min` : `${Math.floor(waitTimeNext / 60)} hr ${Math.floor(waitTimeNext % 60)} min`;
-                      const waitTimeStringLast = (waitTimeLast < 60 && waitTimeLast > -60) ? `${Math.floor(waitTimeLast)} min` : `${Math.floor(waitTimeLast / 60)} hr ${Math.floor(waitTimeLast % 60)} min`;
-                      return (
-                        <div className={(!isTimepoint && nonTimepointsHidden) ? styles.unmountedStyle : styles.mountedStyle} >
-                          <Row className={isTimepoint ? styles.timepoint : styles.stopInfo}>
-                            <Col md={isTimepoint && "5"} lg="5" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
-                              {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
-                              <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
-                            </Col>
-                            <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
-                              {waitTime && (
-                                <div className={
-                                  delay >= 60
-                                    ? styles.lateArrivalTag
-                                    : delay <= -60
-                                      ? styles.earlyArrivalTag
-                                      : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{waitTimeString}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delay >= 60 ? circleExclamation : delay <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormatted).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delay >= 60 ? symbolRed : delay <= -60 ? symbolPurple : symbolGreen} /></>}
-                                </div>
-                              )}
-                              {waitTimeNext && (
-                                <div className={
-                                  delayNext >= 60
-                                    ? styles.lateArrivalTag
-                                    : delayNext <= -60
-                                      ? styles.earlyArrivalTag
-                                      : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringNext}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayNext >= 60 ? circleExclamation : delayNext <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedNext).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayNext >= 60 ? symbolRed : delayNext <= -60 ? symbolPurple : symbolGreen} /></>}
-                                </div>
-                              )}
-                              {waitTimeLast && (
-                                <div className={
-                                  delayLast >= 60
-                                    ? styles.lateArrivalTag
-                                    : delayLast <= -60
-                                      ? styles.earlyArrivalTag
-                                      : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedLast).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
-                                </div>
-                              )}
-                            </Col>
-                          </Row>
-                          {isTimepoint && orderedStops[stopIndex + 1]
-                            ? (
-                              <>
-                                <div class={styles.empty} />
-                                <div className={nonTimepointsHidden ? styles.show : styles.hide} onClick={(e) => {
-                                  e.preventDefault();
-                                  setNonTimepointsHidden(!nonTimepointsHidden);
-                                }}>
-                                  <div class={styles.dot} />
-                                  <div class="d-inline-block">{nonTimepointsHidden ? 'Show' : 'Hide'} Non-Timepoint Stops</div>
-                                </div>
-                                {nonTimepointsHidden && <div class={styles.empty} />}
-                              </>
-                            ) : null}
-                        </div>
-                      )
                     }
-                  }
-                })}
+                  })}
               </Col>
             </Row>
           </Col>
