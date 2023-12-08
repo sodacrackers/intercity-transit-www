@@ -362,20 +362,9 @@
                 const ckeditorAjaxDialog = Drupal.ajax({
                   dialog: {width: '800px'},
                   dialogType: 'modal',
-                  url: '/fullcalendar-view-event-add?entity=node&bundle=calendar_event&start_field=' + viewSettings.startField + '&destination=' + window.location.pathname,
+                  url: '/fullcalendar-view-event-add?entity=node&bundle=calendar_event&start=' + slotDate + '&destination=' + window.location.pathname,
                 });
                 ckeditorAjaxDialog.execute();
-                //
-                // window.open(
-                //     drupalSettings.path.baseUrl +
-                //     viewSettings.addForm +
-                //     "?start=" +
-                //     slotDate +
-                //     "&start_field=" +
-                //     viewSettings.startField +
-                //     "&destination=" + window.location.pathname,
-                //     "_blank"
-                // );
               }
 
             });
