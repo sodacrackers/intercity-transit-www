@@ -83,8 +83,16 @@ const RealTimeDepartures = () => {
       let reordered = Object.entries(json.stop_markers[direction]).sort((a, b) => tripOrder.indexOf(a[1].stop_data.stopId) - tripOrder.indexOf(b[1].stop_data.stopId));
       const spliceIndices = [];
       reordered.forEach((item, index) => {
-        if (reordered[index + 1] && !spliceIndices.includes(index)) {
-          if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && (item[1].stop_times.length < reordered[index + 1][1].stop_times.length || item[1].stop_times.length > reordered[index + 1][1].stop_times.length)) {
+        if (reordered[index + 1]) {
+          if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && (!!item[1].real_time && Object.keys(item[1].real_time)?.length) && (!!reordered[index + 1].real_time && !Object.keys(reordered[index + 1].real_time)?.length)) {
+            item[1].stop_times = [...item[1].stop_times, ...reordered[index + 1][1].stop_times];
+            item[1].real_time = { ...item[1].real_time, ...reordered[index + 1][1].real_time };
+            spliceIndices.push(index + 1);
+          } else if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && (!!item[1].real_time && !Object.keys(item[1].real_time)?.length) && (!!reordered[index + 1].real_time && Object.keys(reordered[index + 1].real_time)?.length)) {
+            reordered[index + 1][1].stop_times = [...item[1].stop_times, ...reordered[index + 1][1].stop_times];
+            reordered[index + 1][1].real_time = { ...item[1].real_time, ...reordered[index + 1][1].real_time };
+            spliceIndices.push(index);
+          } else if (reordered[index + 1][1].stop_data.stopId === item[1].stop_data.stopId && (item[1].stop_times.length < reordered[index + 1][1].stop_times.length || item[1].stop_times.length > reordered[index + 1][1].stop_times.length)) {
             item[1].stop_times = [...item[1].stop_times, ...reordered[index + 1][1].stop_times];
             item[1].real_time = { ...item[1].real_time, ...reordered[index + 1][1].real_time };
             spliceIndices.push(index + 1);
@@ -100,6 +108,12 @@ const RealTimeDepartures = () => {
         reordered.splice(val, 1);
       })
       reordered.sort((a, b) => Object.values(a[1].real_time)[0]?.stop_sequence - Object.values(b[1].real_time)[0]?.stop_sequence);
+      const realTimeIndex = reordered.findIndex(item => (!!item[1].real_time && Object.keys(item[1].real_time)?.length > 0));
+      if (realTimeIndex > -1) {
+        reordered = reordered.filter((item) => {
+          return !!item[1].real_time && Object.keys(item[1].real_time)?.length > 0;
+        })
+      }
       setOrderedStops(reordered);
       const mappedData = Object.entries(clean).sort((a, b) => Number(a[1][0]) - Number(b[1][0]));
       const sortedData = new Map();
