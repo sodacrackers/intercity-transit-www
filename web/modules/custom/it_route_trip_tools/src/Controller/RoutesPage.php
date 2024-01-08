@@ -219,6 +219,9 @@ class RoutesPage extends ControllerBase {
       if (empty($route_data_weekdays)) {
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
       }
+      if ($route_data_weekend['bounding']['min']['lat'] == 999 && $route_data_weekend['bounding']['max']['lat'] == -999) {
+        $route_data_weekend['bounding'] = $route_data_weekdays['bounding'];
+      }
       if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
         $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];
         $route->setDefault('_title', $new_title);

@@ -226,7 +226,7 @@ function it_route_trip_get_stop_markers($stop_times) {
     $res[$stop_time['stop_id'].'-'.$stop_time['stop_sequence']]['stop_times'][] = $stop_time['arrival_time'];
   }
   uasort($res, function ($a, $b) {
-    return (int) $a['stop_data']['stopSequence'] - (int) $b['stop_data']['stopSequence'];
+    return $a['stop_data']['stopSequence'] != $b['stop_data']['stopSequence'] ? (int) $a['stop_data']['stopSequence'] - (int) $b['stop_data']['stopSequence'] : (int) $a['stop_data']['stopId'] - (int) $b['stop_data']['stopId'];
   });
   return $res;
 }
