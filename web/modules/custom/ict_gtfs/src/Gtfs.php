@@ -539,7 +539,7 @@ class Gtfs {
 
   public function getRealTimeByStopId($stop_id, $stop_sequence, $stop_updates) {
     return array_filter($stop_updates, function ($item) use ($stop_id, $stop_sequence) {
-      return $item['stop_id'] == $stop_id && $item['stop_sequence'] == $stop_sequence;
+      return $item['stop_sequence'] === NULL ? $item['stop_id'] == $stop_id : $item['stop_id'] == $stop_id && $item['stop_sequence'] == $stop_sequence;
     });
   }
 
