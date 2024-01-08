@@ -51,6 +51,27 @@
         });
       }
     }
+    $('.fc-day').mouseenter(function() {
+      console.log()
+      const cell = $(this);
+      if (cell.find('span.double-click-suggestion').length < 1) {
+        const span = $('<span class="double-click-suggestion" data-date="' + cell.data('date') + '">double click to add event</span>');
+        // span.dblclick(function (event) {
+        //   const target = $(event.target);
+        //   const ckeditorAjaxDialog = Drupal.ajax({
+        //     dialog: {width: window.innerWidth < 800 ? window.innerWidth + 'px' : '800px'},
+        //     dialogType: 'modal',
+        //     url: '/fullcalendar-view-event-add?entity=node&bundle=walk_n_roll_event&start=' + target.data('date') + '&destination=' + window.location.pathname,
+        //   });
+        //   ckeditorAjaxDialog.execute();
+        // })
+        $(this).append(span);
+      }
+    });
+    $('.fc-day').mouseleave(function() {
+      const cell = $(this);
+      cell.find('span.double-click-suggestion').remove();
+    });
   }
   /**
    * Event resize handler
@@ -360,9 +381,9 @@
                 // Open a new window to create a new event (content).
 
                 const ckeditorAjaxDialog = Drupal.ajax({
-                  dialog: {width: '800px'},
+                  dialog: {width: window.innerWidth < 800 ? window.innerWidth + 'px' : '800px'},
                   dialogType: 'modal',
-                  url: '/fullcalendar-view-event-add?entity=node&bundle=calendar_event&start=' + slotDate + '&destination=' + window.location.pathname,
+                  url: '/fullcalendar-view-event-add?entity=node&bundle=walk_n_roll_event&start=' + slotDate + '&destination=' + window.location.pathname,
                 });
                 ckeditorAjaxDialog.execute();
               }

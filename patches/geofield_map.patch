@@ -1,0 +1,33 @@
+diff --git a/js/geofield_map_widget.js b/js/geofield_map_widget.js
+index 894f388..e7647fc 100644
+--- a/js/geofield_map_widget.js
++++ b/js/geofield_map_widget.js
+@@ -18,7 +18,7 @@
+           Drupal.geoFieldMap.firstMapId = mapid;
+         }
+         // Check if the Map container really exists and hasn't been yet initialized.
+-        if ($('#' + mapid, context).length > 0 && !Drupal.geoFieldMap.map_data[mapid]) {
++        if ($('#' + mapid, context).length > 0 && $('#' + options.mapid, context).length > 0 && !Drupal.geoFieldMap.map_data[mapid]) {
+ 
+           // Set the map_data[mapid] settings.
+           Drupal.geoFieldMap.map_data[mapid] = options;
+@@ -43,6 +43,9 @@
+             });
+           }
+         }
++        if ($('#' + mapid).length === 0 && $('#' + options.mapid).length === 0) {
++          delete Drupal.geoFieldMap.map_data[mapid];
++        }
+       });
+ 
+     }
+@@ -498,6 +524,9 @@
+     // Init Geofield Map and its functions.
+     map_initialize: function (params, context) {
+       let self = this;
++      if (!self.map_data[params.mapid]) {
++        return;
++      }
+       $.noConflict();
+ 
+       if (params.searchid !== null) {

@@ -1,0 +1,33 @@
+uuid: 4cbd19ea-a904-4f15-b5b4-d7f9d38ca55f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dates
+    - node.type.walk_n_roll_event
+  module:
+    - smart_date
+    - smart_date_recur
+third_party_settings:
+  smart_date_recur:
+    allow_recurring: true
+    month_limit: 12
+id: node.walk_n_roll_event.field_dates
+field_name: field_dates
+entity_type: node
+bundle: walk_n_roll_event
+label: Date(s)
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_duration: 0
+    default_duration_increments: custom
+    default_date_type: ''
+    default_date: ''
+    min: ''
+    max: ''
+default_value_callback: ''
+settings: {  }
+field_type: smartdate

@@ -1,0 +1,23 @@
+uuid: 329e0610-4e0d-4ade-b8bc-93495dd9b089
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.walk_n_roll_event
+  module:
+    - text
+id: node.walk_n_roll_event.body
+field_name: body
+entity_type: node
+bundle: walk_n_roll_event
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

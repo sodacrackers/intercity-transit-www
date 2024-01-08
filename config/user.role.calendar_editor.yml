@@ -3,14 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - node.type.calendar_event
+    - node.type.walk_n_roll_event
   module:
     - node
 id: calendar_editor
-label: 'Calendar editor'
+label: 'Walk''n''roll calendar editor'
 weight: 2
 is_admin: null
 permissions:
-  - 'create calendar_event content'
-  - 'delete own calendar_event content'
-  - 'edit own calendar_event content'
+  - 'create walk_n_roll_event content'
+  - 'delete any walk_n_roll_event content'
+  - 'delete own walk_n_roll_event content'
+  - 'edit any walk_n_roll_event content'
+  - 'edit own walk_n_roll_event content'

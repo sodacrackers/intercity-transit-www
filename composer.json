@@ -61,10 +61,10 @@
         "drupal/fontawesome": "^2.12",
         "drupal/fontawesome_menu_icons": "^1.5",
         "drupal/formblock": "^2@beta",
-        "drupal/geocoder": "^3.25",
+        "drupal/geocoder": "^3.40",
         "drupal/geocoder_autocomplete": "^2.0",
         "drupal/geofield": "^1.11",
-        "drupal/geofield_map": "^2.61",
+        "drupal/geofield_map": "^3.0",
         "drupal/google_analytics": "^4.0",
         "drupal/govdelivery_signup-govdelivery_signup": "^2.0@RC",
         "drupal/http_client_manager": "^2.4",
@@ -201,6 +201,9 @@
             "drupal/we_megamenu": {
                 "Fixing duplicate column issue, https://www.drupal.org/project/we_megamenu/issues/2988381": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch",
                 "3239043: Deprecated error /PHP. 8.0 Drupal 9": "patches/we_megamenu_deprecated.patch"
+            },
+            "drupal/geofield_map": {
+                "Fix wrong initiaization of map": "patches/geofield_map.patch"
             }
         },
         "composer-exit-on-patch-failure": true,
@@ -232,7 +235,8 @@
             "rvtraveller/qs-composer-installer": true,
             "wikimedia/composer-merge-plugin": true,
             "drupal/console-extend-plugin": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true
         }
     }
 }

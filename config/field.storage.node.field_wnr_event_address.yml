@@ -1,0 +1,19 @@
+uuid: 8e8203a6-34c9-460a-8851-4aa2feab054a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_wnr_event_address
+field_name: field_wnr_event_address
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

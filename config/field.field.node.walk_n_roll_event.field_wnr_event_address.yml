@@ -1,0 +1,19 @@
+uuid: 1736fa9f-6ad3-4ee4-bc81-e9392afca263
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_wnr_event_address
+    - node.type.walk_n_roll_event
+id: node.walk_n_roll_event.field_wnr_event_address
+field_name: field_wnr_event_address
+entity_type: node
+bundle: walk_n_roll_event
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

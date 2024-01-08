@@ -2130,3 +2130,31 @@ p.slide-caption a {
 #block-blocklegend > table > tbody > tr > td:nth-child(1) {
     padding: 2px !important;
 }
+
+.table-display-as-table {
+    display: table !important;
+}
+
+.fc-content-skeleton {
+    pointer-events: none !important;
+}
+
+.double-click-suggestion {
+    width: 50%;
+    display: table;
+    margin-left: 25%;
+    height: 50%;
+    margin-top: 25%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 13px;
+    color: #666;
+}
+
+.walk-n-roll-calendar .table-striped>tbody>tr:nth-of-type(odd), .walk-n-roll-calendar div.fc-view-container div.fc-content-skeleton > table > tbody > tr > td:not(.fc-event-container) {
+    background-color: transparent !important;
+}
+
+table.fc-list-table > tbody > tr > td {
+    padding: 5px !important;
+}

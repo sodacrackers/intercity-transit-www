@@ -2,6 +2,7 @@
 
 namespace Drupal\it_route_trip_tools\Controller;
 
+use Drupal\Core\Render\Element;
 use Drupal\fullcalendar_view\Controller\CalendarEventController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +24,7 @@ class CustomCalendarEventController extends CalendarEventController {
   public function addEvent(Request $request) {
     $entity_type_id = $request->get('entity', '');
     $bundle = $request->get('bundle', '');
-    $start_date = $request->request->get('start', '');
-
+    $start_date = $request->get('start', '');
     if (!empty($bundle) && !empty($entity_type_id)) {
       $access_control_handler = $this->entityTypeManager()->getAccessControlHandler($entity_type_id);
       // Check the user permission.
@@ -38,22 +38,14 @@ class CustomCalendarEventController extends CalendarEventController {
           ->create($data);
 
         if (!empty($entity)) {
-          // Add form.
-          $terms = $this->entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['uuid' => '10c284fb-434e-4379-bd72-3448652c0813']);
-          $term = reset($terms);
-
-          $entity->set('field_event_type', $term->id());
-          $entity->set('field_smart_event_date', [
+          $entity->set('field_dates', [
             'value' => strtotime($start_date),
           ]);
           $form = $this->entityFormBuilder()->getForm($entity);
-//          $form['field_event_type']['widget']['#value'] = $term->id();
-//          $form['field_event_type']['widget']['#default_value'] = $term->id();
-          $form['field_event_type']['#attributes']['disabled'] = 'disabled';
-          $form['field_event_type']['widget']['#attributes']['disabled'] = 'disabled';
-          // Hide preview button.
-          if (isset($form['actions']['preview'])) {
-            $form['actions']['preview']['#access'] = FALSE;
+          $widget_keys = Element::children($form['field_dates']['widget']);
+          $disposable_keys = array_splice($widget_keys, 1);
+          foreach ($disposable_keys as $disposable_key) {
+            $form['field_dates']['widget'][$disposable_key]['#access'] = FALSE;
           }
           // Move the Save button to the bottom of this form.
           $form['actions']['#weight'] = 10000;
