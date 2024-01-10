@@ -51,19 +51,6 @@
         });
       }
     }
-    if ($('#calendar-add-event').length) {
-      $('.fc-day').mouseenter(function() {
-        const cell = $(this);
-        if (cell.find('span.double-click-suggestion').length < 1) {
-          const span = $('<span class="double-click-suggestion" data-date="' + cell.data('date') + '">double click to add event</span>');
-          $(this).append(span);
-        }
-      });
-      $('.fc-day').mouseleave(function() {
-        const cell = $(this);
-        cell.find('span.double-click-suggestion').remove();
-      });
-    }
   }
   /**
    * Event resize handler
@@ -284,6 +271,20 @@
 
   function datesRender (info) {
     Drupal.attachBehaviors(info.el);
+
+    if ($('#calendar-add-event').length) {
+      $('.fc-day').mouseenter(function() {
+        const cell = $(this);
+        if (cell.find('span.double-click-suggestion').length < 1) {
+          const span = $('<span class="double-click-suggestion" data-date="' + cell.data('date') + '">double click to add event</span>');
+          $(this).append(span);
+        }
+      });
+      $('.fc-day').mouseleave(function() {
+        const cell = $(this);
+        cell.find('span.double-click-suggestion').remove();
+      });
+    }
   }
   function datesDestroy (info) {
     Drupal.detachBehaviors(info.el);

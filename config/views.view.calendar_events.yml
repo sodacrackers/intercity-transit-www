@@ -464,7 +464,7 @@ display:
           right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
           default_view: dayGridMonth
           firstDay: '1'
-          nav_links: 1
+          nav_links: 0
           timeFormat: 'hh:mm a'
           allowEventOverlap: 1
           updateAllowed: 1
