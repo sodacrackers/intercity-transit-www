@@ -25,7 +25,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Calendar Events'
+      title: 'Walk''n''roll Events Calendar'
       fields:
         field_dates:
           id: field_dates
