@@ -12,7 +12,7 @@
   var dialogs = [];
   // Date entry clicked.
   var slotDate;
-
+  var tapTimestamps = {};
   /**
    * Event render handler
    */
@@ -133,6 +133,21 @@
   // Day entry click call back function.
   function dayClickCallback(info) {
     slotDate = info.dateStr;
+    if (tapTimestamps[slotDate]) {
+      const event = new MouseEvent('dblclick', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true
+      });
+      info.view.el.dispatchEvent(event);
+      delete tapTimestamps[slotDate];
+    }
+    else {
+      tapTimestamps[slotDate] = slotDate;
+      setTimeout(function () {
+        delete tapTimestamps[slotDate];
+      }, 700);
+    }
   }
 
   // Event click call back function.
