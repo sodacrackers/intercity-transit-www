@@ -2158,3 +2158,12 @@ p.slide-caption a {
 table.fc-list-table > tbody > tr > td {
     padding: 5px !important;
 }
+
+.ui-dialog-titlebar-close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 24px;
+    line-height: 18px;
+    vertical-align: top;
+    margin-top: -1px;
+ }
