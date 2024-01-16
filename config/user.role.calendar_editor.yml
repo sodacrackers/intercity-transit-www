@@ -6,6 +6,7 @@ dependencies:
     - node.type.walk_n_roll_event
   module:
     - node
+    - system
 id: calendar_editor
 label: 'Walk''n''roll calendar editor'
 weight: 2
@@ -16,3 +17,4 @@ permissions:
   - 'delete own walk_n_roll_event content'
   - 'edit any walk_n_roll_event content'
   - 'edit own walk_n_roll_event content'
+  - 'view the administration theme'
