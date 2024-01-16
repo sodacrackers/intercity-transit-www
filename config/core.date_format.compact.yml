@@ -1,0 +1,8 @@
+uuid: 41bc0a5d-d099-4804-aba4-d9ff61daf893
+langcode: en
+status: true
+dependencies: {  }
+id: compact
+label: Compact
+locked: false
+pattern: 'd-m-Y H:i a'
