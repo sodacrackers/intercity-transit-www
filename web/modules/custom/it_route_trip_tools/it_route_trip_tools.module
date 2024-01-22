@@ -141,6 +141,17 @@ function it_route_trip_tools_theme_suggestions_alter(array &$suggestions, array 
 	return $suggestions;
 }
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function it_route_trip_tools_theme_registry_alter(&$theme_registry) {
+  if (isset($theme_registry['node_add_list'])) {
+    $theme_registry['node_add_list']['template'] = 'node-add-list--ict';
+    $theme_registry['node_add_list']['theme path'] = 'modules/custom/it_route_trip_tools';
+    $theme_registry['node_add_list']['path'] = 'modules/custom/it_route_trip_tools/templates';
+  }
+}
+
 /*
 	Only used for basic request
 	Mostly the route form select list

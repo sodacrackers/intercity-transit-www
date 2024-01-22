@@ -6,15 +6,24 @@ dependencies:
     - node.type.walk_n_roll_event
   module:
     - node
+    - quickedit
+    - smart_date_recur
     - system
+    - toolbar
 id: calendar_editor
 label: 'Walk''n''roll calendar editor'
 weight: 2
 is_admin: null
 permissions:
+  - 'access content overview'
+  - 'access in-place editing'
+  - 'access toolbar'
+  - 'cancel smart date recur instances'
   - 'create walk_n_roll_event content'
   - 'delete any walk_n_roll_event content'
   - 'delete own walk_n_roll_event content'
   - 'edit any walk_n_roll_event content'
   - 'edit own walk_n_roll_event content'
+  - 'make smart dates recur'
+  - 'reschedule smart date recur instances'
   - 'view the administration theme'

@@ -11,7 +11,7 @@ third_party_settings:
     parent: 'main:'
 name: 'Calendar Event'
 type: calendar_event
-description: ''
+description: 'A content type to create an event for the <ahref="https://intercity-transit.ddev.site/agency/community-advisory-committee/meetings">Community Advisory Committee Meetings</a>'
 help: ''
 new_revision: true
 preview_mode: 1

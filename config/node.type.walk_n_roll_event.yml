@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Walk ''n'' Roll Event'
 type: walk_n_roll_event
-description: 'A content type to show events on the walk ''n'' roll calendar'
+description: 'A content type to show events on the <a href="/service/walknroll/calendar">walk ''n'' roll calendar</a>'
 help: ''
 new_revision: false
 preview_mode: 0
