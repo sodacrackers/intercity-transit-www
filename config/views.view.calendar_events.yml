@@ -507,12 +507,12 @@ display:
           dialogModal: 1
           slotDuration: '00:30:00'
           color_taxonomies:
-            333: '#39ac5c'
-            330: '#e5e16c'
-            335: '#3a87ad'
-            331: '#7e39ac'
-            332: '#ac3939'
-            334: '#969696'
+            316: '#3c8711'
+            315: '#003087'
+            317: '#b95e04'
+            318: '#e00000'
+            319: '#11025a'
+            320: '#3a87ad'
       row:
         type: fields
       query:
