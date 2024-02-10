@@ -2167,3 +2167,10 @@ table.fc-list-table > tbody > tr > td {
     vertical-align: top;
     margin-top: -1px;
  }
+
+.fullcalendar-bottom-btn {
+    margin-bottom: 20px;
+}
+.fullcalendar-block.fc {
+    margin-bottom: 20px;
+}
