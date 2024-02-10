@@ -1,0 +1,55 @@
+uuid: c4a87a80-c6e4-461e-867c-ea318b8272bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - fullcalendar_block
+    - system
+  theme:
+    - transit
+third_party_settings:
+  block_class:
+    classes: walk-n-roll-calendar
+id: fullcalendarblock
+theme: transit
+region: content
+weight: 0
+provider: null
+plugin: fullcalendar_block
+settings:
+  id: fullcalendar_block
+  label: 'FullCalendar block'
+  label_display: '0'
+  provider: fullcalendar_block
+  event_source: /api/events
+  use_token: false
+  initial_view: dayGridMonth
+  header_start: 'prev,next today'
+  header_center: title
+  header_end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+  open_dialog: 1
+  dialog_width: 800
+  plugins: {  }
+  advanced: |-
+    eventTimeFormat:
+      hour: 'numeric'
+      minute: '2-digit'
+      hour12: true
+    eventDisplay: 'block'
+  advanced_drupal: |-
+    ---
+    event_background:
+      field_name: type
+      color_map:
+        - '316 #3c8711'
+        - '315 #003087'
+        - '317 #b95e04'
+        - '318 #e00000'
+        - '319 #11025a'
+        - '320 #3a87ad'
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /services/walknroll/calendar
