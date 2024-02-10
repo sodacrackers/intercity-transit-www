@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.walk_n_roll_event.body
-    - field.field.node.walk_n_roll_event.field_cancelled
     - field.field.node.walk_n_roll_event.field_dates
     - field.field.node.walk_n_roll_event.field_wnr_event_address
     - field.field.node.walk_n_roll_event.field_wnr_event_location
@@ -30,13 +29,6 @@ content:
       summary_rows: 3
       placeholder: ''
       show_summary: false
-    third_party_settings: {  }
-  field_cancelled:
-    type: boolean_checkbox
-    weight: 26
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   field_dates:
     type: smartdate_default

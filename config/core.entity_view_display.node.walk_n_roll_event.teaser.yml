@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.walk_n_roll_event.body
-    - field.field.node.walk_n_roll_event.field_cancelled
     - field.field.node.walk_n_roll_event.field_dates
     - field.field.node.walk_n_roll_event.field_wnr_event_address
     - field.field.node.walk_n_roll_event.field_wnr_event_location
@@ -33,7 +32,6 @@ content:
     weight: 100
     region: content
 hidden:
-  field_cancelled: true
   field_dates: true
   field_wnr_event_address: true
   field_wnr_event_location: true

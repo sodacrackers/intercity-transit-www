@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.walk_n_roll_event.body
-    - field.field.node.walk_n_roll_event.field_cancelled
     - field.field.node.walk_n_roll_event.field_dates
     - field.field.node.walk_n_roll_event.field_wnr_event_address
     - field.field.node.walk_n_roll_event.field_wnr_event_location
