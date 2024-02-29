@@ -2174,3 +2174,12 @@ table.fc-list-table > tbody > tr > td {
 .fullcalendar-block.fc {
     margin-bottom: 20px;
 }
+
+.walk-n-roll-calendar .fc-dayGridMonth-view .fc-event-main-frame .fc-event-time, .walk-n-roll-calendar .fc-dayGridMonth-view .fc-event-main-frame .fc-event-title {
+    word-wrap: normal;
+    white-space: break-spaces;
+}
+
+.walk-n-roll-calendar .fc-dayGridMonth-view .fc-event-main-frame .fc-event-time {
+    width: 66%;
+}
