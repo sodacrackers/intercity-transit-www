@@ -231,7 +231,7 @@ class LegendCalendarBlock extends BlockBase implements ContainerFactoryPluginInt
 
     // We get an array with all active views.
     $views = Views::getEnabledViews();
-
+    $lViews = [];
     // We iterate the list of views.
     foreach ($views as $view) {
       if ($view->get('display') != NULL) {

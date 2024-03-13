@@ -48,6 +48,7 @@ settings:
         - '318 #e00000'
         - '319 #11025a'
         - '320 #3a87ad'
+        - '321 #e3d344'
 visibility:
   request_path:
     id: request_path
