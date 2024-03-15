@@ -110,8 +110,8 @@ const RealTimeDepartures = () => {
       reordered.sort((a, b) => Object.values(a[1].real_time)[0]?.stop_sequence - Object.values(b[1].real_time)[0]?.stop_sequence);
       const realTimeIndex = reordered.findIndex(item => (!!item[1].real_time && Object.keys(item[1].real_time)?.length > 0));
       if (realTimeIndex > -1) {
-        reordered = reordered.filter((item) => {
-          return !!item[1].real_time && Object.keys(item[1].real_time)?.length > 0;
+        reordered = reordered.filter((item, index) => {
+          return (index + 1) === reordered.length ? true : !!item[1].real_time && Object.keys(item[1].real_time)?.length > 0;
         })
       }
       setOrderedStops(reordered);
@@ -468,6 +468,7 @@ const RealTimeDepartures = () => {
                         const isTimepoint = Number(data?.stop_markers[direction][stopKey[0]].stop_data.timepoint) > 0;
                         const rtData = data?.stop_markers[direction][stopKey[0]]?.real_time;
                         const rtObjKeys = Object.keys(data?.stop_markers[direction][stopKey[0]]?.real_time);
+                        const isLastEmptyStop = rtObjKeys.length === 0;
                         let sortedTimes = [];
                         rtObjKeys.forEach((key) => {
                           if (rtData[key]?.departure_time * 1000 > now) {
@@ -523,7 +524,7 @@ const RealTimeDepartures = () => {
                                 {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
                                 <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
                               </Col>
-                              <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
+                              {!isLastEmptyStop ? <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
                                 {waitTime && (
                                   <div className={
                                     delay >= 60
@@ -551,7 +552,7 @@ const RealTimeDepartures = () => {
                                         : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedLast).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
                                   </div>
                                 )}
-                              </Col>
+                            </Col> : <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>Trip continues in {direction === 'inbound' ? 'outbound' : 'inbound'}</Col>}
                             </Row>
                             {isTimepoint && orderedStops[stopIndex + 1]
                               ? (
