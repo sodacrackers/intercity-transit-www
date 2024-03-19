@@ -368,7 +368,7 @@ const RealTimeDepartures = () => {
                                   )}
                                 </tbody>
                               </Table>
-                              : !getNextStop(data?.stop_markers[direction][stop[0]].stop_data) && <h4 className="text-center">End of the Line</h4>}
+                              : !getNextStop(data?.stop_markers[direction][stop[0]].stop_data) && <h4 className="text-center">End of Service</h4>}
                           </div>
                         </Tooltip>
                       }
@@ -522,7 +522,7 @@ const RealTimeDepartures = () => {
                             <Row className={isTimepoint ? styles.timepoint : styles.stopInfo}>
                               <Col md={isTimepoint && "5"} lg="5" className={!isTimepoint ? styles.stopCol : ''} key={`stopName-${stopIndex}`}>
                                 {isTimepoint ? <div className={styles.timepointMarker}>Timepoint</div> : <div class={styles.dot} />}
-                                <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && <span className={styles.estimated}>Estimated</span>}</div>
+                                <div className={isTimepoint ? styles.timepointInfo : styles.nonTimepointInfo}><span className={!isTimepoint ? styles.stopText : ''}>{stopObj?.stop_data.stopName}</span> {isTimepoint && !isLastEmptyStop ? <span className={styles.estimated}>Estimated</span> : <span></span>}</div>
                               </Col>
                               {!isLastEmptyStop ? <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>
                                 {waitTime && (
@@ -552,7 +552,7 @@ const RealTimeDepartures = () => {
                                         : styles.arrivalTag}>{view === 'wait' ? <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{waitTimeStringLast}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></> : <><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.indicator} src={delayLast >= 60 ? circleExclamation : delayLast <= -60 ? alarmClock : circleCheck} /><span>{DateTime.fromMillis(departureTimeFormattedLast).toFormat('h:mm a').replace('AM', 'a.m.').replace('PM', 'p.m.')}</span><Image alt={delay >= 60 ? 'Late' : delay <= -60 ? 'Early' : 'OnTime'} className={styles.shape} src={delayLast >= 60 ? symbolRed : delayLast <= -60 ? symbolPurple : symbolGreen} /></>}
                                   </div>
                                 )}
-                            </Col> : <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>Continues {direction === 'inbound' ? 'outbound' : 'inbound'}</Col>}
+                            </Col> : <Col md={isTimepoint && "7"} lg="7" className={isTimepoint ? styles.timepointRight : styles.right}>Continues {direction === 'inbound' ? 'Outbound' : 'Inbound'}</Col>}
                             </Row>
                             {isTimepoint && orderedStops[stopIndex + 1]
                               ? (
