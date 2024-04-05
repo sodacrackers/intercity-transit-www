@@ -123,12 +123,14 @@ const RealTimeDepartures = () => {
         sortingIndex++;
       }
       const finalData = Object.fromEntries(sortedData);
-      Object.keys(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1]).forEach((stopMarkerKey) => {
-        coords.push({
-          lat: Number(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1][stopMarkerKey]?.lat),
-          lng: Number(json[`${direction}_shapes`][json[`${direction}_shapes`].length - 1][stopMarkerKey]?.lng),
+      json[`${direction}_shapes`].forEach((shape) => {
+        Object.values(shape).forEach((stopMarkerKey) => {
+          coords.push({
+            lat: Number(stopMarkerKey.lat),
+            lng: Number(stopMarkerKey.lng),
+          })
         })
-      })
+      });
       const { center, zoom } = fitBounds({
         ne: {
           lat: json.bounding?.max?.lat,
