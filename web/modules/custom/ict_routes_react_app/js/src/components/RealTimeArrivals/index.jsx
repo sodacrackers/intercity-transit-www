@@ -123,9 +123,10 @@ const RealTimeDepartures = () => {
         sortingIndex++;
       }
       const finalData = Object.fromEntries(sortedData);
-      json[`${direction}_shapes`].forEach((shape) => {
+      json[`${direction}_shapes`].forEach((shape, shape_key) => {
+        coords[shape_key] = [];
         Object.values(shape).forEach((stopMarkerKey) => {
-          coords.push({
+          coords[shape_key].push({
             lat: Number(stopMarkerKey.lat),
             lng: Number(stopMarkerKey.lng),
           })
@@ -191,13 +192,15 @@ const RealTimeDepartures = () => {
   }, [keys])
 
   const renderPolylines = async (map, maps) => {
-    let geodesicPolyline = new maps.Polyline({
-      path: coordinates,
-      strokeColor: "#007B5F",
-      strokeOpacity: 1.0,
-      strokeWeight: 2,
-    })
-    geodesicPolyline.setMap(map)
+    coordinates.forEach((shape) => {
+      let geodesicPolyline = new maps.Polyline({
+        path: shape,
+        strokeColor: "#007B5F",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+      })
+      geodesicPolyline.setMap(map);
+    });
   }
 
   const getNextStop = (stopData) => {
