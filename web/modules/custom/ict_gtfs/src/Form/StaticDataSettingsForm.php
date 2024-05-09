@@ -199,11 +199,11 @@ class StaticDataSettingsForm extends ConfigFormBase {
         }
       }
     }
-
     $this->config('ict_gtfs.settings')
       ->set('items', $items)
       ->set('disable_routes', $disable_routes)
       ->save();
+    drupal_flush_all_caches();
     parent::submitForm($form, $form_state);
   }
 
