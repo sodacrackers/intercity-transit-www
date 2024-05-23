@@ -105,6 +105,9 @@ const RealTimeDepartures = () => {
       })
       spliceIndices.sort((a, b) => b - a)
       spliceIndices.forEach((val) => {
+        if (reordered[val - 1] && reordered[val][1].stop_data.stopId === reordered[val - 1][1].stop_data.stopId) {
+          reordered[val - 1][1].real_time = {...reordered[val][1].real_time, ...reordered[val-1][1].real_time};
+        }
         reordered.splice(val, 1);
       })
       reordered.sort((a, b) => Object.values(a[1].real_time)[0]?.stop_sequence - Object.values(b[1].real_time)[0]?.stop_sequence);
