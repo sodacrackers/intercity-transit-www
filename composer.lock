@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42060aad06f85937d67d05267f3dd508",
+    "content-hash": "e86444a628495274cdec52bc4fb0c157",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6915,31 +6915,32 @@
         },
         {
             "name": "drupal/scheduled_updates",
-            "version": "dev-1.x",
+            "version": "dev-2.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/scheduled_updates.git",
-                "reference": "a5b52a35e3674ac38900fc9e13a6013c50d88290"
+                "reference": "21eaac1859e71cd801395dd3b3ec69ebe2a7bc84"
             },
             "require": {
-                "drupal/core": "^8.7|^9.0",
-                "drupal/inline_entity_form": "*",
-                "php": "> 7.2"
-            },
-            "require-dev": {
-                "roave/security-advisories": "dev-master"
+                "drupal/core": ">=8",
+                "drupal/inline_entity_form": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-1.x": "1.x-dev"
+                    "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha7+16-dev",
-                    "datestamp": "1614889879",
+                    "version": "2.x-dev",
+                    "datestamp": "1697213468",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11 || ^12"
                     }
                 }
             },
@@ -7521,24 +7522,26 @@
         },
         {
             "name": "drupal/sidr",
-            "version": "dev-3.x",
+            "version": "dev-4.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/sidr.git",
-                "reference": "9fbce641b5631b2040532b32865ca6db03890759"
+                "reference": "370749fe6dd2cb03ab398b37f534af9ac7e00cb0"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
-                "npm-asset/sidr": "2.2.1"
+                "drupal/core": "^9 || ^10"
+            },
+            "suggest": {
+                "wikimedia/composer-merge-plugin": "Helps with easier installation of jQuery Sidr JS libraries."
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-3.x": "3.x-dev"
+                    "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.1+3-dev",
-                    "datestamp": "1606158750",
+                    "version": "8.x-4.x-dev",
+                    "datestamp": "1684088933",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -11366,33 +11369,6 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
             },
             "time": "2024-03-05T20:51:40+00:00"
-        },
-        {
-            "name": "npm-asset/jquery",
-            "version": "3.7.1",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "npm-asset/sidr",
-            "version": "2.2.1",
-            "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sidr/-/sidr-2.2.1.tgz"
-            },
-            "require": {
-                "npm-asset/jquery": ">=1.4.3"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
         },
         {
             "name": "onelogin/php-saml",
@@ -20392,5 +20368,5 @@
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

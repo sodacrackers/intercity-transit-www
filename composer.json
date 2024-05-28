@@ -82,14 +82,14 @@
         "drupal/recaptcha": "^3",
         "drupal/redirect": "^1.5",
         "drupal/saml_sp": "^4",
-        "drupal/scheduled_updates": "1.x-dev#scheduled_updates-3172330",
+        "drupal/scheduled_updates": "2.x-dev",
         "drupal/scheduler": "^1.1",
         "drupal/search_api": "^1.2",
         "drupal/search_api_attachments": "^9.0",
         "drupal/search_api_page": "^1.0-beta2",
         "drupal/search_api_pantheon": "^8.0@beta",
         "drupal/search_api_solr": "^4.2",
-        "drupal/sidr": "3.x-dev@dev",
+        "drupal/sidr": "4.x-dev",
         "drupal/simplify": "^2.1",
         "drupal/slick": "^2",
         "drupal/slick_views": "^2",
@@ -181,8 +181,11 @@
                 "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
                 "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch"
             },
-            "drupal/scheduled_updates": {
-                "D9 patches https://www.drupal.org/project/scheduled_updates/issues/3172330": "https://www.drupal.org/files/issues/2021-12-21/3172330-46.patch"
+            "drupal/adminimal_admin_toolbar": {
+                "Automated Drupal 10 compatibility fixes - https://www.drupal.org/project/adminimal_admin_toolbar/issues/3285987": "https://www.drupal.org/files/issues/2022-06-15/adminimal_admin_toolbar.1.x-dev.rector.patch"
+            },
+            "drupal/captcha": {
+                "Automated Drupal 10 compatibility fixes": "https://www.drupal.org/files/issues/2023-12-09/captcha.2.0.5.rector.patch"
             },
             "drupal/we_megamenu": {
                 "Fixing duplicate column issue, https://www.drupal.org/project/we_megamenu/issues/2988381": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch"
