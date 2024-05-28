@@ -11,7 +11,7 @@ archive: false
 id: essential_trip_request
 title: 'Essential Trip Request'
 description: ''
-category: ''
+categories: {  }
 elements: ''
 css: ''
 javascript: ''

@@ -11,7 +11,7 @@ archive: false
 id: dal_application
 title: 'DAL Application'
 description: ''
-category: ''
+categories: {  }
 elements: |
   introduction:
     '#type': webform_wizard_page

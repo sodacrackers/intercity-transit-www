@@ -11,7 +11,7 @@ archive: false
 id: discrimination_complaint_form
 title: 'Discrimination Complaint Form'
 description: 'Discrimination Complaint Form'
-category: ''
+categories: {  }
 elements: |-
   disc_complaint_form_title_desc:
     '#type': processed_text

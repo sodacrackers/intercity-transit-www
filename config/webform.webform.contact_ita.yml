@@ -16,7 +16,7 @@ archive: false
 id: contact_ita
 title: Contact_ITA
 description: 'Basic email contact webform.'
-category: ''
+categories: {  }
 elements: |
   name:
     '#title': 'Your Name'

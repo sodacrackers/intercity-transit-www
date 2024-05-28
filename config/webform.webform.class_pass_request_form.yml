@@ -11,7 +11,7 @@ archive: false
 id: class_pass_request_form
 title: 'Class Pass Request Form'
 description: ''
-category: 'Walk N Roll'
+categories: {  }
 elements: |
   class_information:
     '#type': webform_wizard_page
