@@ -3,7 +3,7 @@ description: Provides tools for the GTFS API, Route Trip Planner tools.
 package: IT GTFS and Trip Planner
 type: module
 version: 1.0.1
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 configure: it_route_trip_tools.settings
 
 dependencies:

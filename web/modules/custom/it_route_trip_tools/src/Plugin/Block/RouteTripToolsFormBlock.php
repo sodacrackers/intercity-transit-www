@@ -30,7 +30,7 @@ class RouteTripToolsFormBlock extends BlockBase {
       $config = [];
       $plugin_block = $block_manager->createInstance($bid, $config);
       $render = $plugin_block->build();
-      return render($render);
+      return \Drupal::service('renderer')->render($render);
     }
     $route_id = \Drupal::routeMatch()->getParameter('routeId');
     if (($route_id != 'all') && ($route_id != NULL)):
