@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "96d2be19b321851d5f46a633735d3c81",
+=======
+    "content-hash": "e0503df5bc06a4cd1090c8a500662140",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2494,28 +2498,38 @@
         },
         {
             "name": "drupal/captcha",
-            "version": "dev-1.x",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/captcha.git",
-                "reference": "be964157a598251ac3d44da834caee45d1b015ba"
+                "reference": "2.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/captcha-2.0.5.zip",
+                "reference": "2.0.5",
+                "shasum": "0c39d27a99b53f6517ef25ceef1ac5e333964547"
             },
             "require": {
-                "drupal/core": "^8.9 || ^9"
+                "drupal/core": ">=9.4 <11"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev",
-                    "dev-8.x-1.x": "1.x-dev"
-                },
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-1.10+1-dev",
                     "datestamp": "1719851855",
+=======
+                    "version": "2.0.5",
+                    "datestamp": "1691598525",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "branch-alias": {
+                    "dev-8.x-1.x": "1.x-dev"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5756,6 +5770,75 @@
             }
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "drupal/jquery_ui_autocomplete",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_autocomplete.git",
+                "reference": "2.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui_autocomplete-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "ecf9500d8bff6c3673e92019a09dcce87ac81fc6"
+            },
+            "require": {
+                "drupal/core": "^9.2 || ^10 || ^11",
+                "drupal/jquery_ui": "^1.7",
+                "drupal/jquery_ui_menu": "^2.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.0",
+                    "datestamp": "1717035046",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bnjmnm",
+                    "homepage": "https://www.drupal.org/user/2369194"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                },
+                {
+                    "name": "nod_",
+                    "homepage": "https://www.drupal.org/user/598310"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
+                    "name": "Wim Leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                },
+                {
+                    "name": "zrpnr",
+                    "homepage": "https://www.drupal.org/user/1448368"
+                }
+            ],
+            "description": "Provides jQuery UI Autocomplete library.",
+            "homepage": "https://www.drupal.org/project/jquery_ui_autocomplete",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jquery_ui_autocomplete"
+            }
+        },
+        {
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
             "name": "drupal/jquery_ui_datepicker",
             "version": "1.4.0",
             "source": {
@@ -5823,18 +5906,32 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/jquery_ui_draggable",
             "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/jquery_ui_draggable.git",
+=======
+            "name": "drupal/jquery_ui_menu",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_menu.git",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                 "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://ftp.drupal.org/files/projects/jquery_ui_draggable-2.1.0.zip",
                 "reference": "2.1.0",
                 "shasum": "0d014cfff20993d8051efb8f6c9093a4fe5136f3"
+=======
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui_menu-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "9aa6958e52ea12c1cdedd7908c5aeb5309b8b4ea"
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
             },
             "require": {
                 "drupal/core": "^9.2 || ^10 || ^11",
@@ -5844,6 +5941,7 @@
             "extra": {
                 "drupal": {
                     "version": "2.1.0",
+<<<<<<< HEAD
                     "datestamp": "1717015492",
                     "security-coverage": {
                         "status": "covered",
@@ -5897,6 +5995,8 @@
             "extra": {
                 "drupal": {
                     "version": "2.1.0",
+=======
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                     "datestamp": "1717031358",
                     "security-coverage": {
                         "status": "covered",
@@ -8554,6 +8654,7 @@
         },
         {
             "name": "drupal/upgrade_status",
+<<<<<<< HEAD
             "version": "4.3.6",
             "source": {
                 "type": "git",
@@ -8569,6 +8670,23 @@
             "require": {
                 "dekor/php-array-table": "^2.0",
                 "drupal/core": "^9 || ^10 || ^11",
+=======
+            "version": "4.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/upgrade_status.git",
+                "reference": "4.3.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/upgrade_status-4.3.2.zip",
+                "reference": "4.3.2",
+                "shasum": "4e8cbeb7632933105fb2e16c639a9ecf026bc141"
+            },
+            "require": {
+                "dekor/php-array-table": "^2.0",
+                "drupal/core": "^9 || ^10",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                 "mglaman/phpstan-drupal": "^1.2.11",
                 "nikic/php-parser": "^4.0.0|^5.0.0",
                 "phpstan/phpstan-deprecation-rules": "^1.0.0",
@@ -8581,8 +8699,13 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
+<<<<<<< HEAD
                     "version": "4.3.6",
                     "datestamp": "1729173427",
+=======
+                    "version": "4.3.2",
+                    "datestamp": "1717069210",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -18932,6 +19055,7 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
+<<<<<<< HEAD
             "version": "1.33.0",
             "source": {
                 "type": "git",
@@ -18942,6 +19066,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/82a311fd3690fb2bf7b64d5c98f912b3dd746140",
                 "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140",
+=======
+            "version": "1.29.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpdoc-parser.git",
+                "reference": "fcaefacf2d5c417e928405b71b400d4ce10daaf4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/fcaefacf2d5c417e928405b71b400d4ce10daaf4",
+                "reference": "fcaefacf2d5c417e928405b71b400d4ce10daaf4",
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
                 "shasum": ""
             },
             "require": {
@@ -18973,9 +19109,15 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/phpstan/phpdoc-parser/tree/1.33.0"
             },
             "time": "2024-10-13T11:25:22+00:00"
+=======
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.29.1"
+            },
+            "time": "2024-05-31T08:52:43+00:00"
+>>>>>>> 500487a91c (ICTSD-68: Update captcha)
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -21038,7 +21180,9 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/auto_entitylabel": 20,
-        "drupal/captcha": 20,
+        "drupal/embed": 5,
+        "drupal/entity": 5,
+        "drupal/entity_embed": 10,
         "drupal/feeds": 15,
         "drupal/feeds_ex": 10,
         "drupal/feeds_tamper": 10,
@@ -21065,5 +21209,5 @@
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }
