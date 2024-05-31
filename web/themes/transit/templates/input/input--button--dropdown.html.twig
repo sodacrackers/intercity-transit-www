@@ -22,10 +22,10 @@
  * @ingroup templates
  */
 #}
-{% spaceless %}
-  {% block input %}
-    <a href="#" data-target="dropdown-button">{{ label }}</a>
-    <button{{ attributes.addClass('hidden') }}>{{ label }}</button>
-    {{ children }}
-  {% endblock %}
-{% endspaceless %}
+{% block input %}
+    {% apply spaceless %}
+        <a href="#" data-target="dropdown-button">{{ label }}</a>
+        <button{{ attributes.addClass('hidden') }}>{{ label }}</button>
+        {{ children }}
+    {% endapply %}
+{% endblock %}

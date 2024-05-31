@@ -20,13 +20,11 @@
  * @ingroup templates
  */
 #}
-{% spaceless %}
-  {%
-    set classes = [
-      'form-control',
-    ]
-  %}
-  {% block input %}
-    <input{{ attributes.addClass(classes) }} />
-  {% endblock %}
-{% endspaceless %}
+{% block input %}
+    {% apply spaceless %}
+        {% set classes = [
+            'form-control',
+        ] %}
+        <input{{ attributes.addClass(classes) }} />
+    {% endapply %}
+{% endblock %}
