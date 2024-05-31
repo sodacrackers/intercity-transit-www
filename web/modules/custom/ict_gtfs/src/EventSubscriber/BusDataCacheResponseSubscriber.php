@@ -61,10 +61,6 @@ class BusDataCacheResponseSubscriber implements EventSubscriberInterface {
    *   arguments passed in.
    */
   public function onResponse(ResponseEvent $event) {
-    // Don't bother proceeding on sub-requests.
-    if (!$event->isMasterRequest()) {
-      return;
-    }
     $response = $event->getResponse();
 
     // Nothing to do here if there isn't cacheable metadata available.
