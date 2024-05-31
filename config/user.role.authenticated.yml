@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - contact
+    - file
     - fontawesome
     - google_analytics
     - media
@@ -24,6 +25,7 @@ permissions:
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'access user contact forms'
+  - 'delete own files'
   - 'opt-in or out of google analytics tracking'
   - 'search content'
   - 'use advanced search'

@@ -27,8 +27,11 @@ dependencies:
     - taxonomy.vocabulary.site_sections
   module:
     - block
+    - block_content
     - field_ui
+    - file
     - filter
+    - help
     - image
     - media
     - node
@@ -50,11 +53,15 @@ weight: -6
 is_admin: null
 permissions:
   - 'access administration pages'
+  - 'access block library'
   - 'access content'
   - 'access content overview'
+  - 'access help pages'
   - 'access site reports'
   - 'access user profiles'
   - 'access webform overview'
+  - 'administer block content'
+  - 'administer block types'
   - 'administer blocks'
   - 'administer image styles'
   - 'administer menu'
@@ -123,6 +130,7 @@ permissions:
   - 'delete own blog_page content'
   - 'delete own bus_route_scheduler scheduled updates'
   - 'delete own calendar_event content'
+  - 'delete own files'
   - 'delete own interagency_agreement content'
   - 'delete own jobs content'
   - 'delete own multiple_node_embargo scheduled updates'

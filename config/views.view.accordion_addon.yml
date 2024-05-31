@@ -7,7 +7,7 @@ dependencies:
     - node.type.blog_page
     - taxonomy.vocabulary.tags
   content:
-    - 'taxonomy_term:tags:11253489-ac05-4759-842a-15f942280865'
+    - 'taxonomy_term:pay_grades:b20e692e-1de8-4221-9dfb-f4f70df333ee'
     - 'taxonomy_term:tags:81b5c7ad-2b7e-4cd7-a788-d208d2b217db'
     - 'taxonomy_term:tags:db1dd7e1-596e-42a1-bb98-0bc736b55dbf'
   module:
@@ -382,7 +382,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -421,7 +420,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -602,7 +600,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
@@ -635,7 +632,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -850,7 +846,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1003,7 +998,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1035,7 +1029,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1169,7 +1162,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1307,7 +1299,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

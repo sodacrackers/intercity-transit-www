@@ -65,3 +65,4 @@ hidden:
   field_tab_5: true
   field_tab_6: true
   publish_draft_on: true
+  search_api_excerpt: true

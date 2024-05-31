@@ -155,7 +155,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.roles
       tags: {  }
   block_1:
@@ -202,7 +201,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.roles
       tags: {  }
   block_2:
@@ -329,7 +327,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.roles
       tags: {  }
   page_1:
@@ -339,7 +336,7 @@ display:
     position: 5
     display_options:
       enabled: false
-      title: 'Walk ''N Roll Pictures'
+      title: "Walk 'N Roll Pictures"
       pager:
         type: some
         options:
@@ -371,7 +368,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.roles
       tags: {  }
   page_2:
@@ -381,7 +377,7 @@ display:
     position: 6
     display_options:
       enabled: false
-      title: 'Walk ''N Roll Pictures'
+      title: "Walk 'N Roll Pictures"
       pager:
         type: some
         options:
@@ -491,7 +487,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.roles
       tags: {  }
   page_3:
@@ -659,7 +654,6 @@ display:
             limit: false
             vids: {  }
             anyall: ','
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

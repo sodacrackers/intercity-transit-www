@@ -10,15 +10,37 @@ name: 'HR Job Descriptions'
 format: text_and_bullets
 weight: 0
 filters:
-  filter_responsive_image_style:
-    id: filter_responsive_image_style
-    provider: inline_responsive_images
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
     status: false
-    weight: 0
+    weight: 3
     settings:
-      responsive_style_default_responsive: '0'
-      responsive_style_responsive_grid_image: '0'
-      responsive_style_responsive_narrow_banner: '0'
+      filter_tags:
+        img: img
+        iframe: iframe
+      media_switch: ''
+      box_style: ''
+      box_media_style: ''
+      hybrid_style: ''
+      use_data_uri: '0'
+      box_caption: ''
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang> <ul type> <ol start type> <li> <em> <p><em> <strong> <cite> <blockquote cite> <code> <li role class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center> <div class="">'
+      allowed_html_automatic_tag: 0
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
   filter_imagestyle:
     id: filter_imagestyle
     provider: inline_responsive_images
@@ -35,36 +57,15 @@ filters:
       image_style_thumbnail: '0'
       image_style_tile_300_200_: '0'
       image_style_tile_300_300_: '0'
-  filter_html:
-    id: filter_html
-    provider: filter
-    status: true
-    weight: -10
-    settings:
-      allowed_html: '<a href hreflang> <ul type> <ol start type> <li> <em> <p><em> <strong> <cite> <blockquote cite> <code> <li role class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center> <div class="">'
-      filter_html_help: true
-      filter_html_nofollow: false
-      allowed_html_automatic_tag: 0
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: true
-    weight: 10
-    settings: {  }
-  blazy_filter:
-    id: blazy_filter
-    provider: blazy
+  filter_responsive_image_style:
+    id: filter_responsive_image_style
+    provider: inline_responsive_images
     status: false
-    weight: 3
+    weight: 0
     settings:
-      media_switch: ''
-      hybrid_style: ''
-      box_style: ''
-      box_caption: ''
-      filter_tags:
-        img: img
-        iframe: iframe
-      use_data_uri: '0'
+      responsive_style_default_responsive: '0'
+      responsive_style_responsive_grid_image: '0'
+      responsive_style_responsive_narrow_banner: '0'
   slick_filter:
     id: slick_filter
     provider: slick
@@ -72,6 +73,7 @@ filters:
     weight: 4
     settings:
       optionset: default
+      media_switch: ''
       layout: ''
       skin: ''
       background: false
@@ -81,7 +83,6 @@ filters:
       responsive_image_style: ''
       box_style: ''
       image_style: ''
-      media_switch: ''
       ratio: ''
       thumbnail_style: ''
       overridables:

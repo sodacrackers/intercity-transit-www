@@ -22,6 +22,7 @@ permissions:
   - 'access toolbar'
   - 'create media'
   - 'delete media'
+  - 'delete own files'
   - 'edit own page content'
   - 'update media'
   - 'use draft_draft transition'

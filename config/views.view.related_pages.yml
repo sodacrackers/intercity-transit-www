@@ -217,6 +217,8 @@ display:
           settings:
             responsive_image_style: responsive_grid_image
             image_link: content
+            image_loading:
+              attribute: eager
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -334,7 +336,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -978,6 +979,8 @@ display:
           settings:
             responsive_image_style: responsive_grid_image
             image_link: content
+            image_loading:
+              attribute: eager
           group_column: ''
           group_columns: {  }
           group_rows: true

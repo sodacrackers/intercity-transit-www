@@ -13,6 +13,7 @@ dependencies:
     - taxonomy.vocabulary.pay_grades
   module:
     - field_ui
+    - file
     - filter
     - node
     - paragraphs_type_permissions
@@ -35,6 +36,7 @@ permissions:
   - 'delete any jobs content'
   - 'delete any recruitment content'
   - 'delete jobs revisions'
+  - 'delete own files'
   - 'delete own jobs content'
   - 'delete own recruitment content'
   - 'delete paragraph content job_duties'

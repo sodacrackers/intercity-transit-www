@@ -7,6 +7,7 @@ dependencies:
     - node.type.rider_alerts
     - node.type.route
   module:
+    - file
     - filter
     - node
 id: planning_user
@@ -15,6 +16,7 @@ weight: -2
 is_admin: null
 permissions:
   - 'create rider_alerts content'
+  - 'delete own files'
   - 'edit any rider_alerts content'
   - 'edit any route content'
   - 'edit own rider_alerts content'

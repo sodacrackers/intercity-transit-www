@@ -347,7 +347,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -439,7 +438,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.roles
       tags: {  }
@@ -735,7 +733,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

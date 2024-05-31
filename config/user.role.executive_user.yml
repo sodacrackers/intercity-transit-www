@@ -8,6 +8,7 @@ dependencies:
     - node.type.interagency_agreement
     - node.type.news
   module:
+    - file
     - filter
     - node
     - workbench_moderation
@@ -21,6 +22,7 @@ permissions:
   - 'create news content'
   - 'delete any interagency_agreement content'
   - 'delete interagency_agreement revisions'
+  - 'delete own files'
   - 'delete own interagency_agreement content'
   - 'edit any calendar_event content'
   - 'edit any interagency_agreement content'

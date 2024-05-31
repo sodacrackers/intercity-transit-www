@@ -12,15 +12,85 @@ name: 'Unrestricted HTML'
 format: unrestricted_html
 weight: -8
 filters:
-  filter_responsive_image_style:
-    id: filter_responsive_image_style
-    provider: inline_responsive_images
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
     status: false
-    weight: -41
+    weight: 3
     settings:
-      responsive_style_default_responsive: '0'
-      responsive_style_responsive_grid_image: '0'
-      responsive_style_responsive_narrow_banner: '0'
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_media_style: ''
+      box_caption: ''
+      filter_tags:
+        img: img
+        iframe: iframe
+      use_data_uri: '0'
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: false
+    weight: -47
+    settings: {  }
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: -50
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: false
+    weight: -46
+    settings: {  }
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: false
+    weight: -45
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: false
+    weight: -44
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -49
+    settings:
+      allowed_html: '<a href hreflang class=""> <em> <strong> <cite> <blockquote cite> <code> <ul data-blazy class=""> <ol start type> <li role class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption class=""> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button alt="" title=""> <div class=""> <iframe width height frameborder allowfullscreen src> <button type data-toggle data-target id aria-haspopup aria-expanded class=""> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center>'
+      filter_html_help: true
+      filter_html_nofollow: false
+      allowed_html_automatic_tag: 0
+  filter_html_escape:
+    id: filter_html_escape
+    provider: filter
+    status: false
+    weight: -48
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: false
+    weight: -40
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: false
+    weight: -39
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -46
+    settings: {  }
   filter_imagestyle:
     id: filter_imagestyle
     provider: inline_responsive_images
@@ -37,64 +107,15 @@ filters:
       image_style_thumbnail: '0'
       image_style_tile_300_200_: '0'
       image_style_tile_300_300_: '0'
-  filter_html:
-    id: filter_html
-    provider: filter
-    status: true
-    weight: -49
+  filter_responsive_image_style:
+    id: filter_responsive_image_style
+    provider: inline_responsive_images
+    status: false
+    weight: -41
     settings:
-      allowed_html: '<a href hreflang class=""> <em> <strong> <cite> <blockquote cite> <code> <ul data-blazy class=""> <ol start type> <li role class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption class=""> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button alt="" title=""> <div class=""> <iframe width height frameborder allowfullscreen src> <button type data-toggle data-target id aria-haspopup aria-expanded class=""> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center>'
-      filter_html_help: true
-      filter_html_nofollow: false
-      allowed_html_automatic_tag: 0
-  entity_embed:
-    id: entity_embed
-    provider: entity_embed
-    status: true
-    weight: -50
-    settings: {  }
-  editor_file_reference:
-    id: editor_file_reference
-    provider: editor
-    status: false
-    weight: -47
-    settings: {  }
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: false
-    weight: -39
-    settings: {  }
-  filter_html_escape:
-    id: filter_html_escape
-    provider: filter
-    status: false
-    weight: -48
-    settings: {  }
-  filter_align:
-    id: filter_align
-    provider: filter
-    status: false
-    weight: -46
-    settings: {  }
-  filter_html_image_secure:
-    id: filter_html_image_secure
-    provider: filter
-    status: false
-    weight: -40
-    settings: {  }
-  filter_caption:
-    id: filter_caption
-    provider: filter
-    status: false
-    weight: -44
-    settings: {  }
-  filter_autop:
-    id: filter_autop
-    provider: filter
-    status: false
-    weight: -45
-    settings: {  }
+      responsive_style_default_responsive: '0'
+      responsive_style_responsive_grid_image: '0'
+      responsive_style_responsive_narrow_banner: '0'
   filter_url:
     id: filter_url
     provider: filter
@@ -102,20 +123,6 @@ filters:
     weight: -43
     settings:
       filter_url_length: 72
-  blazy_filter:
-    id: blazy_filter
-    provider: blazy
-    status: false
-    weight: 3
-    settings:
-      media_switch: ''
-      hybrid_style: ''
-      box_style: ''
-      box_caption: ''
-      filter_tags:
-        img: img
-        iframe: iframe
-      use_data_uri: '0'
   slick_filter:
     id: slick_filter
     provider: slick
@@ -124,7 +131,6 @@ filters:
     settings:
       optionset: default
       layout: ''
-      skin: ''
       background: false
       box_media_style: ''
       loading: ''
@@ -135,6 +141,7 @@ filters:
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
+      skin: ''
       overridables:
         arrows: '0'
         autoplay: '0'
