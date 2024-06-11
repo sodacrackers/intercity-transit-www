@@ -81,12 +81,7 @@ class BusData extends ControllerBase {
       $context = new RenderContext();
       /** @var \Drupal\Core\Cache\CacheableJsonResponse $response */
       $response = $this->renderer->executeInRenderContext($context, function () use ($route_data) {
-        //        $response->addCacheableDependency(CacheableMetadata::createFromRenderArray([
-//          '#cache' => [
-//            'max-age' => 30,
-//          ],
-//        ]));
-        return JsonResponse::create($route_data);
+        return new JsonResponse($route_data);
       });
       return $response;
     }

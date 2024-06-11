@@ -1,4 +1,4 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal) {
   'use strict';
   let has_loaded= false;
   Drupal.behaviors.route_tabs = {
@@ -14,16 +14,19 @@
         has_loaded = true;
       }
       $('#real-time-container').hide();
-      $('#realtime-tab', context).once('route-tab').click(function () {
-        $('#schedule').hide();
-        $('#real-time-container').show();
-
+      once('route-tab', '#realtime-tab', context).forEach(function (element) {
+        $(element).click(function () {
+          $('#schedule').hide();
+          $('#real-time-container').show();
+        });
       });
-      $('#schedule-tab', context).once('schedule-tab').click(function () {
-        $('#schedule').show();
-        $('#real-time-container').hide();
+      once('schedule-tab', '#schedule-tab', context).forEach(function (element) {
+        $(element).click(function () {
+          $('#schedule').show();
+          $('#real-time-container').hide();
+        });
       });
     }
   };
 
-})(jQuery, Drupal, drupalSettings, document, window);
+})(jQuery, Drupal);

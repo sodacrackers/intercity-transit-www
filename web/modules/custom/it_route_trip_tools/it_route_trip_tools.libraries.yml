@@ -3,15 +3,16 @@ global:
   css:
     theme:
       assets/css/it-route-trip-tools.css: {}
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - jquery_ui_datepicker/datepicker
   js:
     assets/js/it-route-trip-tools.js: {}
     assets/js/toggle-direction.js: {}
     assets/js/geo.js: {}
     //cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js: {type: external}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - jquery_ui_datepicker/datepicker
 all-routes-map:
   js:
     assets/js/all-routes-map.js: {}
@@ -89,3 +90,7 @@ route:
       assets/css/route.css: {}
   js:
     assets/js/route.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
