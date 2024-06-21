@@ -844,6 +844,7 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
       $res[$sort_key][$route[$id_index]] = str_contains($long_name, '-') ? $long_name : $short_name . '-' . $long_name;
     }
   }
+  ksort($res);
   $final = [];
   foreach ($res as $sort => $route) {
     $route_id = array_keys($route)[0];
