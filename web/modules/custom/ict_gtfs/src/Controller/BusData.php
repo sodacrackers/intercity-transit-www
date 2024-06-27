@@ -66,7 +66,7 @@ class BusData extends ControllerBase {
       $vehicle_position = $this->gtfs->getArray('VehiclePosition');
       $route_data['alerts'] = $this->getRouteAlerts($routeId);
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
-        $direction_id = $direction_name == 'inbound' ? '0' : '1';
+        $direction_id = $direction_name == 'inbound' ? '1' : '0';
         $trips = $this->gtfs->getTripsByRouteAndDirection($routeId, $direction_id, $service_type);
         $trip_ids = array_map(function ($item) {
           return $item[2];
