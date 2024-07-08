@@ -300,7 +300,7 @@ const RealTimeDepartures = () => {
                           <div>
                             <h4>{stopData.stop_data?.stopName} - Stop {stopData.stop_data?.stopId}</h4>
                             {getNextStop(stopData?.stop_data) && <div><strong>Headed to {getNextStop(stopData?.stop_data)}</strong></div>}
-                            {stopData?.real_time[0]?.vehicle_label ?
+                            {Object.values(stopData?.real_time)[0]?.vehicle_label ?
                               <Table className="d-table" striped bordered hover responsive>
                                 <thead>
                                   <tr>
@@ -311,8 +311,8 @@ const RealTimeDepartures = () => {
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td className="col-2">{stopData?.real_time[Object.keys(stopData?.real_time)[0]]?.vehicle_label}</td>
-                                    <td className="col-3">{DateTime.fromMillis(Number(stopData?.real_time[Object.keys(stopData?.real_time)[0]]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                    <td className="col-2">{Object.values(stopData?.real_time)[0]?.vehicle_label}</td>
+                                    <td className="col-3">{DateTime.fromMillis(Number(Object.values(stopData?.real_time)[0]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                     <td className="col-7">{
                                       Number(stopData?.real_time[0]?.departure_delay) > 60 ? (
                                         <div className={styles.datapointLate}>
@@ -332,14 +332,14 @@ const RealTimeDepartures = () => {
                                   </tr>
                                   {Object.keys(stopData?.real_time)[1] && (
                                     <tr>
-                                      <td className="col-2">{stopData?.real_time[Object.keys(stopData?.real_time)[1]]?.vehicle_label}</td>
-                                      <td className="col-3">{DateTime.fromMillis(Number(stopData?.real_time[Object.keys(stopData?.real_time)[1]]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                      <td className="col-2">{Object.values(stopData?.real_time)[1]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(Object.values(stopData?.real_time)[1]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                       <td className="col-7">{
-                                        Number(stopData?.real_time[Object.keys(stopData?.real_time)[1]]?.departure_delay) > 60 ? (
+                                        Number(Object.values(stopData?.real_time)[1]?.departure_delay) > 60 ? (
                                           <div className={styles.datapointLate}>
                                             Late
                                           </div>
-                                        ) : Number(stopData?.real_time[Object.keys(stopData?.real_time)[1]]?.departure_delay) < -60
+                                        ) : Number(Object.values(stopData?.real_time)[1]?.departure_delay) < -60
                                           ? (
                                             <div className={styles.datapointEarly}>
                                               Early
@@ -354,14 +354,14 @@ const RealTimeDepartures = () => {
                                   )}
                                   {Object.keys(stopData?.real_time)[2] && (
                                     <tr>
-                                      <td className="col-2">{stopData?.real_time[Object.keys(stopData?.real_time)[2]]?.vehicle_label}</td>
-                                      <td className="col-3">{DateTime.fromMillis(Number(stopData?.real_time[Object.keys(stopData?.real_time)[2]]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
+                                      <td className="col-2">{Object.values(stopData?.real_time)[2]?.vehicle_label}</td>
+                                      <td className="col-3">{DateTime.fromMillis(Number(Object.values(stopData?.real_time)[2]?.departure_time) * 1000).toLocal().toFormat('h:mm a').replace(' AM', ' a.m.').replace(' PM', ' p.m.')}</td>
                                       <td className="col-7">{
-                                        Number(stopData?.real_time[Object.keys(stopData?.real_time)[2]]?.departure_delay) > 60 ? (
+                                        Number(Object.values(stopData?.real_time)[2]?.departure_delay) > 60 ? (
                                           <div className={styles.datapointLate}>
                                             Late
                                           </div>
-                                        ) : Number(stopData?.real_time[Object.keys(stopData?.real_time)[2]]?.departure_delay) < -60
+                                        ) : Number(Object.values(stopData?.real_time)[2]?.departure_delay) < -60
                                           ? (
                                             <div className={styles.datapointEarly}>
                                               Early
