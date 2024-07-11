@@ -513,10 +513,13 @@ class Gtfs {
     if (count($trip_timestamps) > 3) {
       $trip_timestamps = array_splice($trip_timestamps, 0, 3);
     }
-    $vehicle_list = array_intersect_key($vehicle_list, $trip_timestamps);
-    foreach ($vehicle_list as $tripId => $vehicle_id) {
-      if (isset($other_trips[$vehicle_id]) && $other_trips[$vehicle_id] != -1 && $trip_timestamps[$tripId] > $other_trips[$vehicle_id]) {
-        unset($vehicle_list[$tripId]);
+    
+    if (count(array_unique($vehicle_list)) > 1) {
+      $vehicle_list = array_intersect_key($vehicle_list, $trip_timestamps);
+      foreach ($vehicle_list as $tripId => $vehicle_id) {
+        if (isset($other_trips[$vehicle_id]) && $other_trips[$vehicle_id] != -1 && $trip_timestamps[$tripId] > $other_trips[$vehicle_id]) {
+          unset($vehicle_list[$tripId]);
+        }
       }
     }
     $vehicle_list = array_values($vehicle_list);
