@@ -513,7 +513,8 @@ class Gtfs {
     if (count($trip_timestamps) > 3) {
       $trip_timestamps = array_splice($trip_timestamps, 0, 3);
     }
-    
+
+    $vehicle_list_backup = $vehicle_list;
     if (count(array_unique($vehicle_list)) > 1) {
       $vehicle_list = array_intersect_key($vehicle_list, $trip_timestamps);
       foreach ($vehicle_list as $tripId => $vehicle_id) {
@@ -521,6 +522,10 @@ class Gtfs {
           unset($vehicle_list[$tripId]);
         }
       }
+    }
+    if (empty($vehicle_list_backup)) {
+      $vehicle_list = array_intersect_key($vehicle_list, $trip_timestamps);
+      $vehicle_list = array_splice($vehicle_list, 0, 1) ;
     }
     $vehicle_list = array_values($vehicle_list);
     return $stop_time_updates;
