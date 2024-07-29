@@ -64,6 +64,31 @@ const RealTimeDepartures = () => {
     );
   }
 
+  const isCurrentOutsideLimit = (tripStartTime, operator) => {
+    // Get the current time in Washington, D.C.
+    const currentTimeInSeattle = new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+    const currentTime = new Date(currentTimeInSeattle);
+  
+    // Parse the trip start time
+    const [time, modifier] = tripStartTime.split(' ');
+    let [hours, minutes] = time.split(':');
+  
+    if (hours === '12') {
+      hours = '00';
+    }
+    if (modifier === 'pm') {
+      hours = parseInt(hours, 10) + 12;
+    }
+  
+    const tripDate = new Date(currentTime);
+    tripDate.setHours(hours);
+    tripDate.setMinutes(minutes);
+    tripDate.setSeconds(0);
+  
+    // Compare the times
+    return operator === '<' ? currentTime < tripDate : currentTime > tripDate;
+  }
+
   const getData = async (apiUrl) => {
     try {
       const data = await fetch(`${window.location.origin}${apiUrl}`, {
@@ -468,7 +493,7 @@ const RealTimeDepartures = () => {
               <Col xs="12">
                 {new Date().getDay() === (0 || 6) && data.short_name === '42'
                   ? (<h3 style={{ textAlign: 'center' }}>Route 42 does not run on weekends.</h3>)
-                  : orderedStops.map((stopKey, stopIndex) => {
+                  : isCurrentOutsideLimit(data.trips[direction][0].tripStartTime, '<') || isCurrentOutsideLimit(data.trips[direction][(data.trips[direction].length - 1)].tripEndTime, '>') ? (<h3 style={{ textAlign: 'center' }}>Not in service. Please see schedule for hours of operation.</h3>) : orderedStops.map((stopKey, stopIndex) => {
                     if (data?.stop_markers[direction][stopKey[0]]) {
                       const stopObj = data?.stop_markers[direction][stopKey[0]];
                       const now = DateTime.now().toMillis();
