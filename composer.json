@@ -148,7 +148,8 @@
         "drupal/config_ignore": "^3.3",
         "drupal/cacheexclude": "^2.0",
         "drupal/redis": "^1.7",
-        "drupal/config_filter": "^2.6"
+        "drupal/config_filter": "^2.6",
+        "drupal/warmer": "^2.0"
     },
     "require-dev": {
         "drupal/core-dev": "^9.2"

@@ -1,0 +1,45 @@
+_core:
+  default_config_hash: wLhhL58IKPWkAbhxcI6gpCna7d431Q7kM0y-Om92BUQ
+warmers:
+  cdn:
+    id: cdn
+    frequency: 300
+    batchSize: 50
+    urls:
+      - /plan-your-trip/routes/12
+      - /plan-your-trip/routes/13
+      - /plan-your-trip/routes/21
+      - /plan-your-trip/routes/41
+      - /plan-your-trip/routes/42
+      - /plan-your-trip/routes/45
+      - /plan-your-trip/routes/47
+      - /plan-your-trip/routes/48
+      - /plan-your-trip/routes/60
+      - /plan-your-trip/routes/64
+      - /plan-your-trip/routes/65
+      - /plan-your-trip/routes/66
+      - /plan-your-trip/routes/67
+      - /plan-your-trip/routes/68
+      - /plan-your-trip/routes/94
+      - /plan-your-trip/routes/620
+      - /plan-your-trip/routes/62A
+      - /plan-your-trip/routes/62B
+      - /plan-your-trip/routes/1
+    headers: {  }
+    verify: false
+    maxConcurrentRequests: 10
+  sitemap:
+    id: sitemap
+    frequency: 300
+    batchSize: 50
+    minPriority: !!float 0
+    sitemaps: {  }
+    headers: {  }
+    verify: true
+    maxConcurrentRequests: 10
+  entity:
+    id: entity
+    frequency: 300
+    batchSize: 50
+    entity_types: {  }
+    published_only: false
