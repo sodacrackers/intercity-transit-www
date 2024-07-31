@@ -15,6 +15,9 @@ workflows:
         description: Deploy with drush
         script: private/scripts/deploy.php
       - type: webphp
+        description: Warm routes
+        script: private/scripts/warm.php
+      - type: webphp
         description: Notify slack
         script: private/scripts/notify_slack.php
   sync_code:
@@ -22,6 +25,9 @@ workflows:
       - type: webphp
         description: Deploy with drush
         script: private/scripts/deploy.php
+      - type: webphp
+        description: Warm routes
+        script: private/scripts/warm.php
       - type: webphp
         description: Notify slack
         script: private/scripts/notify_slack.php
