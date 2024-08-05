@@ -306,7 +306,7 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
   return $res;
 }
 
-function it_route_trip_get_trips($stop_times) {
+function it_route_trip_get_trips($stop_times, $replace_id = TRUE) {
   $res = [];
   foreach ($stop_times as $stop_time) {
     if (empty($res[$stop_time['trip_id']])) {
@@ -327,9 +327,14 @@ function it_route_trip_get_trips($stop_times) {
     ];
     $res[$stop_time['trip_id']]['tripEndTime'] = it_route_trip_format_time($stop_time['departure_time']);
   }
-  $trips = array_values($res);
-  foreach ($trips as $delta => &$trip) {
-    $trip['tripId'] = $delta;
+  if ($replace_id) {
+    $trips = array_values($res);
+    foreach ($trips as $delta => &$trip) {
+      $trip['tripId'] = $delta;
+    }
+  }
+  else {
+    $trips = $res;
   }
   return $trips;
 }

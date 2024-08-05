@@ -67,13 +67,11 @@ class BusData extends ControllerBase {
       $route_data['alerts'] = $this->getRouteAlerts($routeId);
       foreach ($route_data['stop_markers'] as $direction_name => &$direction) {
         $direction_id = $direction_name == 'inbound' ? '1' : '0';
-        $trips = $this->gtfs->getTripsByRouteAndDirection($routeId, $direction_id, $service_type);
-        $trip_ids = array_map(function ($item) {
-          return $item[2];
-        }, $trips);
+        $stop_times = \Drupal::service('ict.gtfs')->getStopTimes($routeId, $direction_id, $service_type);
+        $trips = it_route_trip_get_trips($stop_times, FALSE);
         $vehicle_list = [];
-        $stop_updates = $this->gtfs->getStopTimeUpdates($trip_updates, $trip_ids, $vehicle_list);
-        $route_data['vehicle_position'][$direction_name] = $this->gtfs->getVehiclePositions($vehicle_position, $vehicle_list);
+        $stop_updates = $this->gtfs->getStopTimeUpdates($trip_updates, $trips, $vehicle_list);
+        $route_data['vehicle_position'][$direction_name] = $this->gtfs->getVehiclePositions($vehicle_position, $vehicle_list, $routeId);
         foreach ($direction as $stop_id => &$stop_data) {
           $stop_data['real_time'] = $this->gtfs->getRealTimeByStopId($stop_data['stop_data']['stopId'], $stop_data['stop_data']['stopSequence'], $stop_updates);
         }
