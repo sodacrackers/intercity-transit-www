@@ -18,7 +18,7 @@
 		  east: {{ route_data.bounding.max.lng }},
 		};
 {% for dir, stop_ids in route_data.stop_markers %}
-		var {{ dir }}_{{ days }}_markers = [];
+		var {{ dir }}_{{ days }}_markers = {};
 		function initMap_{{ dir }}_{{ days }}() {
 			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}-{{ days }}"), {
 		   	center: {lat:{{ route_data.center.lat }}, lng:{{ route_data.center.lng }}},
@@ -45,7 +45,7 @@
 		    scale: 4,
 		    strokeWeight: 1,
 		    strokeColor: "#fff",
-		    fillColor: "#007B5F",
+		    fillColor: "#003087",
 		    fillOpacity: 1,
   		};
   		var stop = {
@@ -54,7 +54,7 @@
   			fillColor: '#fff',
   			fillOpacity: 1,
   			strokeWeight: 1,
-  			strokeColor:'#007B5F'
+  			strokeColor:'#003087'
   		};
       const events = ['mousedown', 'mousemove', 'mouseover', 'mouseout', 'mouseup',
       'mousewheel', 'DOMMouseScroll', 'touchstart', 'touchend', 'touchmove',
@@ -64,20 +64,7 @@
         e.stopPropagation();
       }))
 	{% for stop_id, stop_dataset in stop_ids %}
-		{% if loop.first %}
-			var icon_val = start;
-			{% set start_end_check = 1 %}
-		{% elseif loop.last %}
-			var icon_val = end;
-			{% set start_end_check = 2 %}
-		{% else %}
-			{% if stop_dataset.stop_data.timepoint == 1 %}
-			var icon_val = timepoint;
-			{% else %}
-			var icon_val = stop;
-			{% endif %}
-			{% set start_end_check = 0 %}
-		{% endif %}
+	    var stop_id = '{{ stop_id|split('-')[0] }}';
 		{% set times_array = [] %}
 		{% set sorted_times = stop_dataset.stop_times|sort %}
 		{% for time in sorted_times %}
@@ -86,36 +73,52 @@
 		    {% endif %}
 		{% endfor %}
 		{% set times = times_array|join(', ') %}
-	  	var content = '<h3>{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}</h3><p>{{ times }}</p>';
-			var stop_marker = new google.maps.Marker({
-		    icon: icon_val,
-    {% if start_end_check != 0 %}
-	    	label: {
-  		{% if start_end_check == 1 %}
-					text: 'Start',
-			{% elseif start_end_check == 2 %}
-					text: 'End',
-			{% endif %}
-					fontWeight: 'bold',
-					color: '#fff'
-		    },
-    {% endif %}
-		    map,
+
+		 stop_marker = {{ dir }}_{{ days }}_markers[stop_id] ?? {
+		    map: map,
 		    lat: {{ stop_dataset.stop_data.stopLat }},
 		    lng: {{ stop_dataset.stop_data.stopLon }},
 		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
-		    description: content
-	  	});
-	  	{{ dir }}_{{ days }}_markers.push(stop_marker);
+		    times: ''
+	  	};
+		{% if loop.first %}
+			stop_marker.icon = start;
+			{% set start_end_check = 1 %}
+		{% elseif loop.last %}
+			stop_marker.icon = end;
+			{% set start_end_check = 2 %}
+		{% else %}
+			{% if stop_dataset.stop_data.timepoint == 1 %}
+			stop_marker.icon = timepoint;
+			{% else %}
+			stop_marker.icon = stop;
+			{% endif %}
+			{% set start_end_check = 0 %}
+		{% endif %}
+		{% if start_end_check != 0 %}
+			stop_marker.label = stop_marker.label ?? {
+			{% if start_end_check == 1 %}
+				text: 'Start',
+			{% elseif start_end_check == 2 %}
+				text: 'End',
+			{% endif %}
+				fontWeight: 'bold',
+				color: '#fff'
+			},
+		{% endif %}
+		stop_marker.times = stop_marker.times === '' ? '{{ times }}' : stop_marker.times + ', ' + '{{ times }}';
+	  	{{ dir }}_{{ days }}_markers[stop_id] = stop_marker;
 	{% endfor %}
 	  	//Create and open InfoWindow.
   		var infoWindow = new google.maps.InfoWindow();
-  		for (var i = 0; i < {{ dir }}_{{ days }}_markers.length; i++) {
-	      var data = {{ dir }}_{{ days }}_markers[i];
+		var markers_array = Object.values({{ dir }}_{{ days }}_markers);
+  		for (var i = 0; i < markers_array.length; i++) {
+	      var data = markers_array[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
+		  data.description = '<h3>' + data.title + '</h3><p>' + data.times + '</p>';
 	      var marker = new google.maps.Marker({
           position: markerLatLng,
-          map: map,
+          map: data.map,
           title: data.title,
           icon: data.icon,
           label: data.label
@@ -139,7 +142,7 @@
 					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
-				    strokeColor: '#217b03',
+				    strokeColor: '#003087',
 				    strokeOpacity: .75,
 				    strokeWeight: 4,
 					});
@@ -155,7 +158,7 @@
 					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
-				    strokeColor: '#217b03',
+				    strokeColor: '#003087',
 				    strokeOpacity: .75,
 				    strokeWeight: 4,
 					});
