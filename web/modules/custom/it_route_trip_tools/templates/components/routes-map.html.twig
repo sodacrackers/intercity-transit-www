@@ -63,8 +63,17 @@
         e.preventDefault();
         e.stopPropagation();
       }))
+	  var sequence_max = -1;
+	  var id_max = -1;
+	  var count_max = -1;
+      var sequence_min = 9999999;
+      var id_min = 9999999;
+      var count_min = -1;
 	{% for stop_id, stop_dataset in stop_ids %}
 	    var stop_id = '{{ stop_id|split('-')[0] }}';
+	    var stop_id_int = parseInt(stop_id);
+		var stop_sequence = parseInt('{{ stop_id|split('-')[1] }}');
+		var stop_count = {{ stop_dataset.stop_times|length }};
 		{% set times_array = [] %}
 		{% set sorted_times = stop_dataset.stop_times|sort %}
 		{% for time in sorted_times %}
@@ -72,15 +81,27 @@
 		        {% set times_array = times_array|merge([time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'})]) %}
 		    {% endif %}
 		{% endfor %}
-		{% set times = times_array|join(', ') %}
 
 		 stop_marker = {{ dir }}_{{ days }}_markers[stop_id] ?? {
 		    map: map,
 		    lat: {{ stop_dataset.stop_data.stopLat }},
 		    lng: {{ stop_dataset.stop_data.stopLon }},
 		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
-		    times: ''
+		    times: [],
+			stop_sequence: [stop_sequence],
+			stop_id: stop_id_int,
 	  	};
+		stop_marker.stop_sequence.push(stop_sequence);
+		sequence_max = Math.max(sequence_max, stop_sequence);
+		if (sequence_max == stop_sequence && count_max < stop_count) {
+			count_max = stop_count;
+			id_max = stop_id_int;
+		}
+		sequence_min = Math.min(sequence_min, stop_sequence);
+		if (sequence_min == stop_sequence && count_min < stop_count) {
+			count_min = stop_count;
+			id_min = stop_id_int;
+		}
 		{% if loop.first %}
 			stop_marker.icon = start;
 			{% set start_end_check = 1 %}
@@ -106,7 +127,7 @@
 				color: '#fff'
 			},
 		{% endif %}
-		stop_marker.times = stop_marker.times === '' ? '{{ times }}' : stop_marker.times + ', ' + '{{ times }}';
+		stop_marker.times.push.apply(stop_marker.times, {{ times_array|json_encode|raw }});
 	  	{{ dir }}_{{ days }}_markers[stop_id] = stop_marker;
 	{% endfor %}
 	  	//Create and open InfoWindow.
@@ -115,13 +136,16 @@
   		for (var i = 0; i < markers_array.length; i++) {
 	      var data = markers_array[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
-		  data.description = '<h3>' + data.title + '</h3><p>' + data.times + '</p>';
+		  var times = data.times.sort(function(a, b) {
+			  return new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b);
+		  });
+		  data.description = '<h3>' + data.title + '</h3><p>' + times.join(', ') + '</p>';
 	      var marker = new google.maps.Marker({
           position: markerLatLng,
           map: data.map,
           title: data.title,
-          icon: data.icon,
-          label: data.label
+          icon: data.stop_sequence.includes(sequence_max) && data.stop_id == id_max ? end : data.stop_sequence.includes(sequence_min) && data.stop_id == id_min ? start : data.icon,
+          label: data.stop_sequence.includes(sequence_max) && data.stop_id == id_max ? {text: 'End', fontWeight: 'bold', color: '#fff'} : data.stop_sequence.includes(sequence_min) && data.stop_id == id_min ? { text: 'Start', fontWeight: 'bold', color: '#fff'} : data.label,
 	      });
     		//Attach click event to the marker.
         (function (marker, data) {
