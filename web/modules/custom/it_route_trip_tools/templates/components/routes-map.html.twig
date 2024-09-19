@@ -163,11 +163,19 @@
 						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
 						{% endfor %}
 					];
+					const routePath_{{ dir }}_{{ days }}_{{ key }}_stroker = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+				    geodesic: true,
+				    strokeColor: '#003087',
+				    strokeOpacity: 1,
+				    strokeWeight: 7,
+					});
+					routePath_{{ dir }}_{{ days }}_{{ key }}_stroker.setMap(map);
 					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#FEE134',
-				    strokeOpacity: .75,
+				    strokeOpacity: 1,
 				    strokeWeight: 4,
 					});
 					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
@@ -179,11 +187,19 @@
 						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
 						{% endfor %}
 					];
+					const routePath_{{ dir }}_{{ days }}_{{ key }}_stroker = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+				    geodesic: true,
+				    strokeColor: '#003087',
+				    strokeOpacity: 1,
+				    strokeWeight: 7,
+					});
+					routePath_{{ dir }}_{{ days }}_{{ key }}_stroker.setMap(map);
 					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
 				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#FEE134',
-				    strokeOpacity: .75,
+				    strokeOpacity: 1,
 				    strokeWeight: 4,
 					});
 					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
