@@ -223,11 +223,18 @@ const RealTimeDepartures = () => {
     coordinates.forEach((shape) => {
       let geodesicPolyline = new maps.Polyline({
         path: shape,
-        strokeColor: "#007B5F",
+        strokeColor: "#003087",
         strokeOpacity: 1.0,
-        strokeWeight: 2,
+        strokeWeight: 7,
       })
       geodesicPolyline.setMap(map);
+      let geodesicPolylineStroke = new maps.Polyline({
+        path: shape,
+        strokeColor: "#FEE134",
+        strokeOpacity: 1.0,
+        strokeWeight: 4,
+      })
+      geodesicPolylineStroke.setMap(map);
     });
   }
 
