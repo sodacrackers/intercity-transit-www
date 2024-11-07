@@ -1,0 +1,30 @@
+uuid: d0e89a0d-7dc1-4bbd-9353-18f1d36e75cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bus_stops_data
+  module:
+    - system
+    - views
+  theme:
+    - transit
+id: views_block__bus_stops_data_block_1
+theme: transit
+region: content
+weight: -16
+provider: null
+plugin: 'views_block:bus_stops_data-block_1'
+settings:
+  id: 'views_block:bus_stops_data-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/plan-your-trip/stops/*'

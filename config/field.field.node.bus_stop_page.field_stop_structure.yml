@@ -1,0 +1,29 @@
+uuid: f252aed2-3f31-45bd-bf7a-c101c9929554
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_structure
+    - node.type.bus_stop_page
+    - taxonomy.vocabulary.stop_structure
+id: node.bus_stop_page.field_stop_structure
+field_name: field_stop_structure
+entity_type: node
+bundle: bus_stop_page
+label: 'Stop structure'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      stop_structure: stop_structure
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

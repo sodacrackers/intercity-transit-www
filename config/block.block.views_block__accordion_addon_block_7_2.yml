@@ -1,0 +1,29 @@
+uuid: 27ec3721-72f0-45af-a532-51f351f2972a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.accordion_addon
+  module:
+    - system
+    - views
+  theme:
+    - transit
+id: views_block__accordion_addon_block_7_2
+theme: transit
+region: content
+weight: -18
+provider: null
+plugin: 'views_block:accordion_addon-block_7'
+settings:
+  id: 'views_block:accordion_addon-block_7'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /how-to-ride/bus-buddy-program

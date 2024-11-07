@@ -14,7 +14,7 @@ third_party_settings:
 id: routeandtripformsblock
 theme: transit
 region: content
-weight: -45
+weight: -50
 provider: null
 plugin: route_trip_tools_form_block
 settings:

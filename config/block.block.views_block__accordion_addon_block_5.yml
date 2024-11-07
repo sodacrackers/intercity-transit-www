@@ -1,0 +1,29 @@
+uuid: 0ec87197-ceb9-4e65-a72a-9dfee6a8faa0
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.accordion_addon
+  module:
+    - system
+    - views
+  theme:
+    - transit
+id: views_block__accordion_addon_block_5
+theme: transit
+region: content
+weight: -21
+provider: null
+plugin: 'views_block:accordion_addon-block_5'
+settings:
+  id: 'views_block:accordion_addon-block_5'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /Construction/OTC-NorthSite

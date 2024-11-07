@@ -1,0 +1,23 @@
+uuid: d6ce59e5-e6a8-4f80-b3ac-cd7eae08279a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.bus_stop_page
+  module:
+    - text
+id: node.bus_stop_page.body
+field_name: body
+entity_type: node
+bundle: bus_stop_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -27,7 +27,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 10
     region: content
     settings:
       rows: 9
@@ -43,7 +43,7 @@ content:
     third_party_settings: {  }
   field_address:
     type: string_textfield
-    weight: 28
+    weight: 7
     region: content
     settings:
       size: 60
@@ -51,7 +51,7 @@ content:
     third_party_settings: {  }
   field_cancelled:
     type: options_buttons
-    weight: 29
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -63,20 +63,20 @@ content:
     third_party_settings: {  }
   field_event_type:
     type: options_select
-    weight: 8
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_file:
     type: file_generic
-    weight: 9
+    weight: 12
     region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
   field_google_maps_url:
     type: string_textfield
-    weight: 26
+    weight: 13
     region: content
     settings:
       size: 60
@@ -84,14 +84,14 @@ content:
     third_party_settings: {  }
   field_live_nid:
     type: number
-    weight: 122
+    weight: 17
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_location:
     type: string_textfield
-    weight: 27
+    weight: 8
     region: content
     settings:
       size: 60
@@ -112,7 +112,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 121
+    weight: 16
     region: content
     settings:
       display_label: true
@@ -143,7 +143,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }

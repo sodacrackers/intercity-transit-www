@@ -1,0 +1,22 @@
+uuid: 38cd0527-ddf9-4ff8-b92b-432b9cc059de
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: bus_stops_pattern
+label: 'bus stops pattern'
+type: 'canonical_entities:node'
+pattern: '/bus-stops/[node:field_stop_id]'
+selection_criteria:
+  099d46f7-c281-4781-85c5-2be34034add0:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 099d46f7-c281-4781-85c5-2be34034add0
+    context_mapping:
+      node: node
+    bundles:
+      bus_stop_page: bus_stop_page
+selection_logic: and
+weight: -5
+relationships: {  }

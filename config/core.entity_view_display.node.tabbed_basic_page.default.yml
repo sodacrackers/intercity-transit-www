@@ -4,6 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_external_link
+    - field.field.node.tabbed_basic_page.field_image
+    - field.field.node.tabbed_basic_page.field_images
+    - field.field.node.tabbed_basic_page.field_slider_body_hide
+    - field.field.node.tabbed_basic_page.field_slider_text
+    - field.field.node.tabbed_basic_page.field_slider_title
     - field.field.node.tabbed_basic_page.field_tab1_title
     - field.field.node.tabbed_basic_page.field_tab2_title
     - field.field.node.tabbed_basic_page.field_tab3_title
@@ -34,7 +40,7 @@ third_party_settings:
         - group_tab_5_title
         - group_tab_6_title
       label: Tabs
-      parent_name: ''
+      parent_name: group_div_class_container_
       region: content
       weight: 3
       format_type: html_element
@@ -73,7 +79,6 @@ third_party_settings:
       weight: 21
       format_type: html_element
       format_settings:
-        label: 'Tab2 Title'
         classes: ''
         id: ''
         element: li
@@ -101,18 +106,21 @@ third_party_settings:
         speed: fast
     group_div_class_container_:
       children:
-        - body
+        - group_tabs
+        - group_tab_content
       label: 'Div Class="container"'
       parent_name: ''
       region: content
-      weight: 2
+      weight: 3
       format_type: html_element
       format_settings:
-        classes: 'container  mrg20T'
+        classes: mrg20T
+        show_empty_fields: false
         id: ''
         element: div
         show_label: false
         label_element: h3
+        label_element_classes: ''
         attributes: ''
         effect: none
         speed: fast
@@ -125,7 +133,6 @@ third_party_settings:
       weight: 20
       format_type: html_element
       format_settings:
-        label: 'Tab4 Title Text'
         classes: ''
         id: tab4
         element: a
@@ -194,7 +201,6 @@ third_party_settings:
       weight: 20
       format_type: html_element
       format_settings:
-        label: 'Tab3 Title text'
         classes: ''
         id: Tab3
         element: a
@@ -212,9 +218,9 @@ third_party_settings:
         - group_tab_5_pane
         - group_tab_6_pane
       label: 'Tab Content'
-      parent_name: ''
+      parent_name: group_div_class_container_
       region: content
-      weight: 5
+      weight: 4
       format_type: html_element
       format_settings:
         classes: tab-content
@@ -234,7 +240,6 @@ third_party_settings:
       weight: 20
       format_type: html_element
       format_settings:
-        label: 'Tab 1 pane'
         classes: 'tab-pane fade in active table-responsive'
         id: panel1
         element: div
@@ -252,7 +257,6 @@ third_party_settings:
       weight: 21
       format_type: html_element
       format_settings:
-        label: 'tab2 pane'
         classes: 'tab-pane fade table-responsive'
         id: panel2
         element: div
@@ -270,7 +274,6 @@ third_party_settings:
       weight: 22
       format_type: html_element
       format_settings:
-        label: 'tab3 pane'
         classes: 'tab-pane fade table-responsive'
         id: panel3
         element: div
@@ -288,7 +291,6 @@ third_party_settings:
       weight: 23
       format_type: html_element
       format_settings:
-        label: 'tab4 pane'
         classes: 'tab-pane fade table-responsive'
         id: panel4
         element: div
@@ -374,7 +376,6 @@ third_party_settings:
       weight: 25
       format_type: html_element
       format_settings:
-        label: 'Tab 6 Pane'
         classes: 'tab-pane fade table-responsive'
         id: panel6
         element: div
@@ -410,7 +411,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 2
     region: content
   field_tab1_title:
     type: string
@@ -502,14 +503,6 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
-  field_tabbed_basic_page_type:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 28
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -521,5 +514,12 @@ content:
     weight: 0
     region: content
 hidden:
+  field_external_link: true
+  field_image: true
+  field_images: true
+  field_slider_body_hide: true
+  field_slider_text: true
+  field_slider_title: true
+  field_tabbed_basic_page_type: true
   scheduled_update: true
   search_api_excerpt: true

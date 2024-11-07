@@ -1,0 +1,19 @@
+uuid: 3d777da9-77b8-4df3-8f46-652709e6abb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_link
+    - node.type.tabbed_basic_page
+id: node.tabbed_basic_page.field_external_link
+field_name: field_external_link
+entity_type: node
+bundle: tabbed_basic_page
+label: 'External Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

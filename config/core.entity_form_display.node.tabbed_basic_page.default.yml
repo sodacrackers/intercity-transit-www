@@ -4,6 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_external_link
+    - field.field.node.tabbed_basic_page.field_image
+    - field.field.node.tabbed_basic_page.field_images
+    - field.field.node.tabbed_basic_page.field_slider_body_hide
+    - field.field.node.tabbed_basic_page.field_slider_text
+    - field.field.node.tabbed_basic_page.field_slider_title
     - field.field.node.tabbed_basic_page.field_tab1_title
     - field.field.node.tabbed_basic_page.field_tab2_title
     - field.field.node.tabbed_basic_page.field_tab3_title
@@ -18,9 +24,11 @@ dependencies:
     - field.field.node.tabbed_basic_page.field_tab_6
     - field.field.node.tabbed_basic_page.field_tabbed_basic_page_type
     - field.field.node.tabbed_basic_page.scheduled_update
+    - image.style.thumbnail
     - node.type.tabbed_basic_page
   module:
     - field_group
+    - image
     - inline_entity_form
     - path
     - text
@@ -168,6 +176,45 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_external_link:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_images:
+    type: image_image
+    weight: 15
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_slider_body_hide:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_slider_text:
+    type: text_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slider_title:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_tab1_title:
     type: string_textfield
     weight: 15
@@ -299,6 +346,7 @@ content:
       collapsible: false
       collapsed: false
       revision: false
+      removed_reference: optional
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
@@ -331,4 +379,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_image: true
   status: true

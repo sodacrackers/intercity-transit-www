@@ -16,7 +16,7 @@ third_party_settings:
 id: homepagefrequenttasksheader
 theme: transit
 region: content
-weight: -23
+weight: -29
 provider: null
 plugin: 'block_content:60323168-59e0-48f5-a2e2-e1ebe3703288'
 settings:

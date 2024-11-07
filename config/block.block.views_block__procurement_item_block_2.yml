@@ -12,7 +12,7 @@ dependencies:
 id: views_block__procurement_item_block_2
 theme: transit
 region: content
-weight: -36
+weight: -41
 provider: null
 plugin: 'views_block:procurement_item-block_2'
 settings:

@@ -12,7 +12,7 @@ dependencies:
 id: views_block__news_block_2
 theme: transit
 region: content
-weight: -39
+weight: -44
 provider: null
 plugin: 'views_block:news-block_2'
 settings:
@@ -27,4 +27,4 @@ visibility:
     id: request_path
     negate: false
     context_mapping: {  }
-    pages: "/news\r\n/node/1116"
+    pages: "/news\r\n/about-us/news-and-alerts"

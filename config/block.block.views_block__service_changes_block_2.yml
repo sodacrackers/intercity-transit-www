@@ -12,7 +12,7 @@ dependencies:
 id: views_block__service_changes_block_2
 theme: transit
 region: content_bottom
-weight: -45
+weight: -52
 provider: null
 plugin: 'views_block:service_changes-block_2'
 settings:

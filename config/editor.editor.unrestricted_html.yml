@@ -40,6 +40,10 @@ settings:
             - Source
             - ShowBlocks
             - Maximize
+            - Outdent
+            - Indent
+            - Undo
+            - Redo
   plugins:
     stylescombo:
       styles: ''

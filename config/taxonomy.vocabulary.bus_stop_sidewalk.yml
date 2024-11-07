@@ -1,0 +1,8 @@
+uuid: 2836208f-4b7e-4ff3-ba68-e44beee906f8
+langcode: en
+status: true
+dependencies: {  }
+name: 'Bus Stop Sidewalk'
+vid: bus_stop_sidewalk
+description: ''
+weight: 0

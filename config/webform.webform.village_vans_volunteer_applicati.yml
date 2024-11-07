@@ -267,9 +267,12 @@ elements: |-
       '#required': true
     flexbox_12:
       '#type': webform_flexbox
+      applicant_training_program_description_link:
+        '#type': webform_markup
+        '#markup': 'Please read the&nbsp;<a href="https://www.intercitytransit.com/sites/default/files/2023-09/2023%20Online_App_Village%20Vans%20Training%20Program%20Description.pdf">Village Vans Training Program Description</a>.'
       applicant_perform_checklist_requirements_yes_no:
         '#type': radios
-        '#title': 'Can you perform all the requirements of operating the Village Vans vehicle as explained in the Intercity Transit Village Van Volunteer Checklist?'
+        '#title': 'Can you perform all the requirements as explained in the Intercity Transit Village Van Volunteer Program Description?'
         '#options': yes_no
       applicant_perform_checklist_requirements_please_explain:
         '#type': textarea
