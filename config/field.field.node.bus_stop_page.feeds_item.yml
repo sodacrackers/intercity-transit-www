@@ -1,0 +1,23 @@
+uuid: 57f4ab98-80b6-4863-977b-1bf917299f6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.feeds_item
+    - node.type.bus_stop_page
+  module:
+    - feeds
+id: node.bus_stop_page.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: bus_stop_page
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings: {  }
+field_type: feeds_item

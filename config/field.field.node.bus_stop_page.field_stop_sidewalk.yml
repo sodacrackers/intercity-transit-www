@@ -1,0 +1,29 @@
+uuid: 0a248539-4a86-4e30-8e06-286882c7a2a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_sidewalk
+    - node.type.bus_stop_page
+    - taxonomy.vocabulary.bus_stop_sidewalk
+id: node.bus_stop_page.field_stop_sidewalk
+field_name: field_stop_sidewalk
+entity_type: node
+bundle: bus_stop_page
+label: 'stop sidewalk'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      bus_stop_sidewalk: bus_stop_sidewalk
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

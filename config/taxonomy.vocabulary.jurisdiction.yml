@@ -1,0 +1,8 @@
+uuid: 228179cf-a548-4715-a03e-15489cfd02e9
+langcode: en
+status: true
+dependencies: {  }
+name: Jurisdiction
+vid: jurisdiction
+description: ''
+weight: 0

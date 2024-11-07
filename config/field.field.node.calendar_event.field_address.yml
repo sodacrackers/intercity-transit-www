@@ -10,12 +10,12 @@ field_name: field_address
 entity_type: node
 bundle: calendar_event
 label: Address
-description: 'The address of the event, such as "526 Pattison St SE, Olympia"'
+description: "The address of the event, such as \"51 Pattison St SE, Olympia, WA 98501\"\r\nThe address of the Olympia Transit Center is \"205 Franklin Street NE Olympia, WA 98501\""
 required: false
 translatable: false
 default_value:
   -
-    value: '526 Pattison St SE, Olympia'
+    value: '510 Pattison St SE, Olympia, WA 98501'
 default_value_callback: ''
 settings: {  }
 field_type: string

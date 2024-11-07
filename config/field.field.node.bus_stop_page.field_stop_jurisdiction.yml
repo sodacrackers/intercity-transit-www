@@ -1,0 +1,29 @@
+uuid: 9b7adc68-cb96-4e5a-bddf-35620c154c39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_jurisdiction
+    - node.type.bus_stop_page
+    - taxonomy.vocabulary.jurisdiction
+id: node.bus_stop_page.field_stop_jurisdiction
+field_name: field_stop_jurisdiction
+entity_type: node
+bundle: bus_stop_page
+label: 'stop jurisdiction'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      jurisdiction: jurisdiction
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

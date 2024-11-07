@@ -1,0 +1,19 @@
+uuid: 85225bd1-f2df-4a77-b5c5-8ad0ebe1aee7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_name
+    - node.type.bus_stop_page
+id: node.bus_stop_page.field_stop_name
+field_name: field_stop_name
+entity_type: node
+bundle: bus_stop_page
+label: 'Stop name'
+description: 'the name of the stop, such as "Capitol Way at 4th Ave [sb]"'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

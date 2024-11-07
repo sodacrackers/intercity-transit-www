@@ -16,7 +16,7 @@ third_party_settings:
 id: views_block__related_pages_block_3
 theme: transit
 region: content
-weight: -46
+weight: -51
 provider: null
 plugin: 'views_block:related_pages-block_3'
 settings:

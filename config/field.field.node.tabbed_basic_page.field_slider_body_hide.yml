@@ -1,0 +1,23 @@
+uuid: 65cca658-e59c-4352-a90f-befccd88fe8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_body_hide
+    - node.type.tabbed_basic_page
+id: node.tabbed_basic_page.field_slider_body_hide
+field_name: field_slider_body_hide
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Hide Body and slider text'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'True'
+  off_label: 'False'
+field_type: boolean

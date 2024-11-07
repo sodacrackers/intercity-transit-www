@@ -1,0 +1,50 @@
+uuid: a58ed260-69ca-42bf-9069-48d261345d13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.bus_stop_photo.field_bus_stop_no
+    - field.field.media.bus_stop_photo.field_bus_stop_photo_status
+    - field.field.media.bus_stop_photo.image
+    - image.style.large
+    - media.type.bus_stop_photo
+  module:
+    - image
+    - options
+id: media.bus_stop_photo.default
+targetEntityType: media
+bundle: bus_stop_photo
+mode: default
+content:
+  field_bus_stop_no:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_bus_stop_photo_status:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

@@ -17,7 +17,7 @@ third_party_settings:
 id: views_block__directory_block_1
 theme: transit
 region: content
-weight: -29
+weight: -35
 provider: null
 plugin: 'views_block:directory-block_1'
 settings:

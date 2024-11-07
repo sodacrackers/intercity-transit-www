@@ -17,7 +17,7 @@ third_party_settings:
 id: routesviz
 theme: transit
 region: content
-weight: -24
+weight: -30
 provider: null
 plugin: 'block_content:9e369a94-eded-4bf0-8571-74414c351221'
 settings:

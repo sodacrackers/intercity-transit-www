@@ -1,0 +1,77 @@
+uuid: d8e3da3f-03e4-415a-81df-2a681744cde8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.bus_stop_photo.field_bus_stop_no
+    - field.field.media.bus_stop_photo.field_bus_stop_photo_status
+    - field.field.media.bus_stop_photo.image
+    - image.style.thumbnail
+    - media.type.bus_stop_photo
+  module:
+    - image
+    - path
+    - workbench_moderation
+id: media.bus_stop_photo.default
+targetEntityType: media
+bundle: bus_stop_photo
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_bus_stop_no:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_bus_stop_photo_status:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  image:
+    type: image_image
+    weight: 3
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

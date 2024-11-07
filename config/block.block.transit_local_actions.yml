@@ -14,7 +14,7 @@ _core:
 id: transit_local_actions
 theme: transit
 region: content
-weight: -48
+weight: -53
 provider: null
 plugin: local_actions_block
 settings:

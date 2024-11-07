@@ -12,7 +12,7 @@ dependencies:
 id: views_block__accordion_addon_block_3
 theme: transit
 region: content
-weight: 0
+weight: -22
 provider: null
 plugin: 'views_block:accordion_addon-block_3'
 settings:

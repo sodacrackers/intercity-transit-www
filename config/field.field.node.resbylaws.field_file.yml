@@ -1,0 +1,27 @@
+uuid: eacce6c9-c0f7-48c9-b686-18ac3a5e0b71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_file
+    - node.type.resbylaws
+  module:
+    - file
+id: node.resbylaws.field_file
+field_name: field_file
+entity_type: node
+bundle: resbylaws
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: '20'
+  description_field: false
+field_type: file

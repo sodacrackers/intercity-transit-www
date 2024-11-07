@@ -1,0 +1,25 @@
+uuid: b4d65b43-6785-4279-b69d-b84faf89bde1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.resbylaws.field_date
+    - field.field.node.resbylaws.field_file
+    - node.type.resbylaws
+  module:
+    - user
+id: node.resbylaws.teaser
+targetEntityType: node
+bundle: resbylaws
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_date: true
+  field_file: true
+  search_api_excerpt: true

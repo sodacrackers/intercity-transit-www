@@ -5,6 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.tabbed_basic_page.body
+    - field.field.node.tabbed_basic_page.field_external_link
+    - field.field.node.tabbed_basic_page.field_image
+    - field.field.node.tabbed_basic_page.field_images
+    - field.field.node.tabbed_basic_page.field_slider_body_hide
+    - field.field.node.tabbed_basic_page.field_slider_text
+    - field.field.node.tabbed_basic_page.field_slider_title
     - field.field.node.tabbed_basic_page.field_tab1_title
     - field.field.node.tabbed_basic_page.field_tab2_title
     - field.field.node.tabbed_basic_page.field_tab3_title
@@ -47,6 +53,12 @@ content:
     weight: -20
     region: content
 hidden:
+  field_external_link: true
+  field_image: true
+  field_images: true
+  field_slider_body_hide: true
+  field_slider_text: true
+  field_slider_title: true
   field_tab1_title: true
   field_tab2_title: true
   field_tab3_title: true

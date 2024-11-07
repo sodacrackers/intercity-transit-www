@@ -1,0 +1,9 @@
+status: 1
+pattern: '[media:field_bus_stop_no:value]-[media:field_bus_stop_photo_status]-[current-date:html_datetime]'
+escape: false
+preserve_titles: false
+save: false
+chunk: 50
+dependencies:
+  config:
+    - media.type.bus_stop_photo

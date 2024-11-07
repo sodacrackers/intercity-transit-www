@@ -16,7 +16,7 @@ third_party_settings:
 id: views_block__route_accommodations_block_1
 theme: transit
 region: content
-weight: -27
+weight: -33
 provider: null
 plugin: 'views_block:route_accommodations-block_1'
 settings:

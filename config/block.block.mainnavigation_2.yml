@@ -19,7 +19,7 @@ third_party_settings:
 id: mainnavigation_2
 theme: transit
 region: sidebar_first
-weight: -45
+weight: -53
 provider: null
 plugin: 'menu_block:main'
 settings:

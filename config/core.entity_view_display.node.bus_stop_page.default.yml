@@ -1,0 +1,88 @@
+uuid: cb36af3f-48fc-4a3b-b3b0-129f0021e1f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bus_stop_page.body
+    - field.field.node.bus_stop_page.feeds_item
+    - field.field.node.bus_stop_page.field_stop_active
+    - field.field.node.bus_stop_page.field_stop_id
+    - field.field.node.bus_stop_page.field_stop_jurisdiction
+    - field.field.node.bus_stop_page.field_stop_name
+    - field.field.node.bus_stop_page.field_stop_sidewalk
+    - field.field.node.bus_stop_page.field_stop_structure
+    - node.type.bus_stop_page
+  module:
+    - text
+    - user
+id: node.bus_stop_page.default
+targetEntityType: node
+bundle: bus_stop_page
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_stop_active:
+    type: boolean
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_stop_id:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_stop_jurisdiction:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_stop_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_stop_sidewalk:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_stop_structure:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  feeds_item: true
+  search_api_excerpt: true

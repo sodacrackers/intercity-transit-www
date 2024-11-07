@@ -469,7 +469,7 @@ handlers:
       bcc_options: {  }
       cc_mail: ''
       cc_options: {  }
-      from_mail: '[webform_submission:values:dal_ride_request_contact_email:raw]'
+      from_mail: _default
       from_options: {  }
       from_name: '[webform_submission:values:dal_ride_request_contact_lastname], [webform_submission:values:dal_ride_request_contact_firstname]'
       reply_to: ''
