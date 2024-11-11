@@ -3358,7 +3358,8 @@ display:
           admin_label: ''
           plugin_id: taxonomy_index_tid
           operator: or
-          value: '159'
+          value:
+           - '159'
           group: 1
           exposed: false
           expose:
@@ -6019,7 +6020,8 @@ display:
           admin_label: ''
           plugin_id: taxonomy_index_tid
           operator: or
-          value: '329'
+          value:
+           - '329'
           group: 1
           exposed: false
           expose:
