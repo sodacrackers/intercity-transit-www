@@ -22,6 +22,6 @@ security:
   lowercaseUrlencoding: false
 key_location: ''
 cert_location: ''
-strict: 1
+strict: true
 entity_id: ''
 valid_until: ''

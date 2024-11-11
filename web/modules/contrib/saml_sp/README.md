@@ -1,5 +1,7 @@
-SAML Service Provider
-=====================
+## SAML Service Provider
+
+
+# Introduction
 
 This package provides two modules:
 - SAML Service Provider API
@@ -17,21 +19,24 @@ Version 8.x-3.x of this module relies on version 3 of OneLogin's SAML PHP
 Toolkit, which is a significant restructuring of that library.
 
 
-Dependencies
-============
+## Dependencies
+
 Requires the OneLogin SAML-PHP toolkit which is managed by Composer.
 
 
-Installation
-============
+## Installation
+
 Option 1 (strongly recommended): You can require the module with Composer:
+```
     composer config repositories.drupal composer https://packages.drupal.org/8
     composer require drupal/saml_sp
+```
 to have composer download the module and the dependent libraries.
 
 Option 2: You can download the module manually, but you will still need to
 modify the core composer.json for Composer to install the OneLogin SAML PHP
 Toolkit. Change this section:
+```
     {
       "extra": {
         "_readme": [
@@ -49,13 +54,13 @@ Toolkit. Change this section:
         }
       },
     }
+```
 to add the modules/saml_sp/composer.json line and run
-    composer update
+`composer update`
 this will download the library and add it to your composer autoload.php.
 
 
-Configuring an IdP
-==================
+## Configuring an IdP
 
 You must specify the remote IdP server in order to use it for authentication.
 Typically, you will need to exchange metadata in advance; some systems may
@@ -95,8 +100,7 @@ IdP logout URL: e.g. https:///idp.example.com/saml2/idp/SLOService.php
 X.509 certificates: the public certificate of the IdP server.
 
 
-Usage
-=====
+## Usage
 
 When everything is set and ready to go, the process begins from
 http://www.yoursite.com/saml/drupal_login
@@ -110,9 +114,24 @@ The login block and user login form will show a link with
 user to the profile page and the login block will return the user to the same
 page where the login process was started from.
 
+## Security kit
+[The Security kit](https://drupal.org/project/seckit) module contains protection for [Cross-Site Request Forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) attacks. This protection will prevent SAML login from occurring. A new feature has been added to automatically add the login protocol/domain to the Security Kit CSRF Whitelist to prevent the CSRF protection from causing issues.
 
-TODO
-====
+## TODO
+
 For the 8.x-3.x version, these items are incomplete:
 - Single Log Out (SLO)
 - updating Drupal account with attributes from the IdP
+
+
+## MAINTAINERS
+
+ - James Glasgow (jrglasgow) - https://www.drupal.org/u/jrglasgow
+ - Jae Proctor (jproctor) - https://www.drupal.org/u/jproctor
+ - Luke Meier (Lukey) - https://www.drupal.org/u/lukey
+ - Marcus Deglos (manarth) - https://www.drupal.org/u/manarth
+ - Joonas Meriläinen (mErilainen) - https://www.drupal.org/u/merilainen
+ - Joël Pittet (joelpittet) - https://www.drupal.org/u/joelpittet
+ - Rune Schjellerup Philosof (RunePhilosof) - https://www.drupal.org/u/runephilosof
+ - Matthew Cowgur (safetypin) - https://www.drupal.org/u/safetypin
+ - Jake Lake (lakesta) - https://www.drupal.org/u/lakesta

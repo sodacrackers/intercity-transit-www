@@ -101,7 +101,7 @@ abstract class ProviderUsingHandlerBase extends ProviderBase {
     if ($this->handlerWrapper === NULL) {
       $this->handlerWrapper = new StatefulGeocoder(
         $this->getHandler(),
-        $this->languageManager->getCurrentLanguage()->getId()
+        $this->getLocale()
       );
     }
 

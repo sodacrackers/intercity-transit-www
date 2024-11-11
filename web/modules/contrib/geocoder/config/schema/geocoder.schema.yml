@@ -41,6 +41,13 @@ geocoder_provider_configuration:
       type: geocoder_throttle_configuration
       label: 'Throttle'
       nullable: true
+    geocoder:
+      type: mapping
+      label: 'Geocoder Additional Options'
+      mapping:
+        locale:
+          type: string
+          label: 'Locale'
 
 geocoder_throttle_configuration:
   type: mapping
@@ -353,3 +360,16 @@ geocoder_provider.configuration.yandex:
       nullable: true
       label: 'Toponym'
       description: 'Only for reverse geocoding (optional)'
+
+geocoder_provider.configuration.azuremaps:
+  type: geocoder_provider_configuration
+  label: 'AzureMaps arguments'
+  mapping:
+    subscriptionKey:
+      type: string
+      label: 'Azure subscriptionKey'
+      description: '<a href="https://learn.microsoft.com/en-us/azure/api-management/api-management-subscriptions" target="blank">Subscriptions in Azure API Management</a>'
+
+geocoder_provider.configuration.banfrance:
+  type: geocoder_provider_configuration
+  label: 'BAN France arguments'

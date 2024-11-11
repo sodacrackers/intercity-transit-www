@@ -57,6 +57,8 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   protected function setUp($import_test_views = TRUE, $modules = []): void {
     parent::setUp($import_test_views, $modules);
@@ -78,7 +80,7 @@ class TaxonomyIndexTidUiTest extends UITestBase {
     // - term 1.1
     // term 2.0
     // - term 2.1
-    // - term 2.2
+    // - term 2.2.
     for ($i = 0; $i < 3; $i++) {
       for ($j = 0; $j <= $i; $j++) {
         $this->terms[$i][$j] = $term = Term::create([
@@ -99,7 +101,11 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
   /**
    * Tests the filter UI.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
+  // @codingStandardsIgnoreLine
   public function testFilterUI() {
     $this->drupalGet('admin/structure/views/nojs/handler/test_filter_taxonomy_index_tid/default/filter/tid');
 
@@ -132,9 +138,6 @@ class TaxonomyIndexTidUiTest extends UITestBase {
       'config' => [
         'taxonomy.vocabulary.tags',
       ],
-      'content' => [
-        'taxonomy_term:tags:' . Term::load(2)->uuid(),
-      ],
       'module' => [
         'node',
         'taxonomy',
@@ -146,6 +149,10 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
   /**
    * Tests exposed taxonomy filters.
+   *
+   * @throws \Behat\Mink\Exception\ResponseTextException
+   * @throws \Behat\Mink\Exception\ExpectationException
+   * @throws \Drupal\Core\Entity\EntityMalformedException
    */
   public function testExposedFilter() {
     $node_type = $this->drupalCreateContentType(['type' => 'page']);
@@ -166,6 +173,12 @@ class TaxonomyIndexTidUiTest extends UITestBase {
     $node4 = $this->drupalCreateNode([
       $field_name => [['target_id' => $this->terms[2][0]->id()]],
     ]);
+
+    // Set the selected term to Term 1.0.
+    $this->drupalGet('admin/structure/views/nojs/handler/test_filter_taxonomy_index_tid/default/filter/tid');
+    $this->submitForm(['options[value][]' => [2]], 'Apply');
+    // Save the view.
+    $this->submitForm([], 'Save');
 
     // Only the nodes with the selected term should be shown.
     $this->drupalGet('test-filter-taxonomy-index-tid');
@@ -277,6 +290,8 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
   /**
    * Tests exposed grouped taxonomy filters.
+   *
+   * @throws \Behat\Mink\Exception\ResponseTextException
    */
   public function testExposedGroupedFilter() {
     // Create a content type with a taxonomy field.
@@ -294,9 +309,18 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
     $this->drupalGet('/admin/structure/views/nojs/handler/test_taxonomy_exposed_grouped_filter/page_1/filter/field_views_testing_tags_target_id');
     $edit = [
-      'options[group_info][group_items][1][value][]' => [$this->terms[0][0]->id(), $this->terms[1][0]->id()],
-      'options[group_info][group_items][2][value][]' => [$this->terms[1][0]->id(), $this->terms[2][0]->id()],
-      'options[group_info][group_items][3][value][]' => [$this->terms[2][0]->id(), $this->terms[0][0]->id()],
+      'options[group_info][group_items][1][value][]' => [
+        $this->terms[0][0]->id(),
+        $this->terms[1][0]->id(),
+      ],
+      'options[group_info][group_items][2][value][]' => [
+        $this->terms[1][0]->id(),
+        $this->terms[2][0]->id(),
+      ],
+      'options[group_info][group_items][3][value][]' => [
+        $this->terms[2][0]->id(),
+        $this->terms[0][0]->id(),
+      ],
     ];
     $this->submitForm($edit, 'Apply');
     $this->submitForm([], 'Save');
@@ -321,6 +345,8 @@ class TaxonomyIndexTidUiTest extends UITestBase {
 
   /**
    * Tests that an exposed taxonomy filter doesn't show unpublished terms.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function testExposedUnpublishedFilterOptions() {
     $this->terms[1][0]->setUnpublished()->save();

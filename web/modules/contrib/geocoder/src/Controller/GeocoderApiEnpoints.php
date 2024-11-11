@@ -5,6 +5,7 @@ namespace Drupal\geocoder\Controller;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\geocoder\DumperPluginManager;
 use Drupal\geocoder\FormatterPluginManager;
 use Geocoder\Model\Address;
@@ -18,7 +19,7 @@ use Drupal\Core\Cache\CacheableJsonResponse;
 use Drupal\Core\Cache\CacheableMetadata;
 
 /**
- * Class GeocoderApiEnpoints.
+ * Define a GeocoderApiEnpoints object.
  */
 class GeocoderApiEnpoints extends ControllerBase {
 
@@ -89,10 +90,8 @@ class GeocoderApiEnpoints extends ControllerBase {
     // Get possible query string specific geocoders options.
     $geocoders_options = $request->get('options') ?: [];
 
-    // Merge geocoders options.
-    $options = NestedArray::mergeDeep($geocoders_configs, $geocoders_options);
-
-    return $options;
+    // Return merged geocoders options.
+    return NestedArray::mergeDeep($geocoders_configs, $geocoders_options);
   }
 
   /**
@@ -105,7 +104,6 @@ class GeocoderApiEnpoints extends ControllerBase {
    *   The Address Geometry Property.
    */
   protected function addGeometryProperty(Address $address) {
-    /** @var array $address_array */
     $address_array = $address->toArray();
 
     return [
@@ -154,7 +152,7 @@ class GeocoderApiEnpoints extends ControllerBase {
               ->format($geo_address);
           }
           catch (\Exception $e) {
-            watchdog_exception('geocoder', $e);
+            $this->getLogger('geocoder')->error($e->getMessage());
           }
         }
         // If a geometry property is not defined
@@ -184,7 +182,7 @@ class GeocoderApiEnpoints extends ControllerBase {
         $dumper = $this->dumperPluginManager->createInstance($format);
       }
       catch (\Exception $e) {
-        $dumper = NULL;
+        $this->getLogger('geocoder')->error($e->getMessage());
       }
     }
     return $dumper;
@@ -248,7 +246,7 @@ class GeocoderApiEnpoints extends ControllerBase {
         ->loadMultiple(explode(',', str_replace(' ', '', $geocoders_ids)));
     }
     catch (\Exception $e) {
-      watchdog_exception('geocoder', $e);
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
 
     $address_format = $request->get('address_format');
@@ -280,7 +278,7 @@ class GeocoderApiEnpoints extends ControllerBase {
         ->loadMultiple(explode(',', $geocoders_ids));
     }
     catch (\Exception $e) {
-      watchdog_exception('geocoder', $e);
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
 
     if (isset($latlng)) {

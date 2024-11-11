@@ -327,29 +327,33 @@ class SamlSpConfig extends ConfigFormBase {
       '#tree'           => TRUE,
     ];
     $form['security']['offered'] = [
-      '#markup'         => t('Signatures and Encryptions Offered:'),
+      '#markup'         => $this->t('Signatures and Encryptions Offered:'),
     ];
     $form['security']['nameIdEncrypted'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('NameID Encrypted'),
+      '#description'    => $this->t('Offering encryption will require you to provide a certificate and key.'),
       '#default_value'  => $this->overriddenValue('security.nameIdEncrypted'),
       '#disabled'       => $this->isOverridden('security.nameIdEncrypted'),
     ];
     $form['security']['authnRequestsSigned'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Authn Requests Signed'),
+      '#description'    => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
       '#default_value'  => $this->overriddenValue('security.authnRequestsSigned'),
       '#disabled'       => $this->isOverridden('security.authnRequestsSigned'),
     ];
     $form['security']['logoutRequestSigned'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Logout Requests Signed'),
+      '#description'    => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
       '#default_value'  => $this->overriddenValue('security.logoutRequestSigned'),
       '#disabled'       => $this->isOverridden('security.logoutRequestSigned'),
     ];
     $form['security']['logoutResponseSigned'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Logout Response Signed'),
+      '#description'    => $this->t('Offering to sign responses will require you to provide a certificate and key.'),
       '#default_value'  => $this->overriddenValue('security.logoutResponseSigned'),
       '#disabled'       => $this->isOverridden('security.logoutResponseSigned'),
     ];
@@ -360,18 +364,21 @@ class SamlSpConfig extends ConfigFormBase {
     $form['security']['wantMessagesSigned'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Want Messages Signed'),
+      '#description'    => $this->t('Requiring messages to be signed will require the IdP configuration to have a certificate.'),
       '#default_value'  => $this->overriddenValue('security.wantMessagesSigned'),
       '#disabled'       => $this->isOverridden('security.wantMessagesSigned'),
     ];
     $form['security']['wantAssertionsSigned'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Want Assertions Signed'),
+      '#description'    => $this->t('Requiring assertions to be signed will require the IdP configuration to have a certificate.'),
       '#default_value'  => $this->overriddenValue('security.wantAssertionsSigned'),
       '#disabled'       => $this->isOverridden('security.wantAssertionsSigned'),
     ];
     $form['security']['wantNameIdEncrypted'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Want NameID Encrypted'),
+      '#description'    => $this->t('Requiring the NameId to be encrypted will require the IdP configuration to have a certificate.'),
       '#default_value'  => $this->overriddenValue('security.wantNameIdEncrypted'),
       '#disabled'       => $this->isOverridden('security.wantNameIdEncrypted'),
     ];
@@ -382,6 +389,7 @@ class SamlSpConfig extends ConfigFormBase {
     $form['security']['signMetaData'] = [
       '#type'           => 'checkbox',
       '#title'          => $this->t('Sign Meta Data'),
+      '#description'    => $this->t('Signing your metadata will require you to provide a certificate and key.'),
       '#default_value'  => $this->overriddenValue('security.signMetaData'),
       '#disabled'       => $this->isOverridden('security.signMetaData'),
     ];

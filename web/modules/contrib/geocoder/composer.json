@@ -35,6 +35,7 @@
         "geo6/geocoder-php-geopunt-provider": "^1.0",
         "geo6/geocoder-php-spw-provider":  "^1.0",
         "geocoder-php/arcgis-online-provider": "^4.0",
+        "geocoder-php/azure-maps-provider": "^1.2",
         "geocoder-php/bing-maps-provider": "^4.0",
         "geocoder-php/free-geoip-provider": "^4.1",
         "geocoder-php/geoips-provider": "^4.1",
@@ -55,6 +56,7 @@
         "geocoder-php/photon-provider": "^0.1.0",
         "geocoder-php/tomtom-provider": "^4.0",
         "geocoder-php/yandex-provider": "^4.0",
-        "geo6/geocoder-php-bpost-provider":  "^1.3.0"
+        "geo6/geocoder-php-bpost-provider":  "^1.3.0",
+        "systonic/ban-france-provider": "^1.0"
     }
 }

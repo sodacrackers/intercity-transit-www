@@ -38,7 +38,7 @@ function geocoder_post_update_convert_simple_config_to_entities(): void {
       ])->save();
     }
     catch (EntityStorageException $e) {
-      watchdog_exception('geocoder_provider', $e);
+      \Drupal::service('logger.channel.geocoder')->error($e->getMessage());
     }
   }
   $config->clear('plugins_options');

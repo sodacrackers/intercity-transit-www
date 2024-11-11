@@ -13,6 +13,8 @@ saml_sp.consume:
     _controller: '\Drupal\saml_sp\Controller\SamlSPController::consume'
   requirements:
     _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
 
 saml_sp.logout:
   path: '/saml/logout'

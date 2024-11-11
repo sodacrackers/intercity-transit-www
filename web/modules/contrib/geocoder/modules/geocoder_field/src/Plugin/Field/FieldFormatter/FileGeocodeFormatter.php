@@ -12,7 +12,6 @@ use Drupal\geocoder\ProviderPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\geocoder_field\Plugin\Field\GeocodeFormatterBase;
 use Drupal\geocoder_field\PreprocessorPluginManager;
 use Drupal\geocoder\Entity\GeocoderProvider;
@@ -74,8 +73,6 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
    *   The renderer.
    * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
    *   The Link Generator service.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
-   *   The logger factory.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\geocoder_field\PreprocessorPluginManager $preprocessor_manager
@@ -94,7 +91,6 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
     DumperPluginManager $dumper_plugin_manager,
     RendererInterface $renderer,
     LinkGeneratorInterface $link_generator,
-    LoggerChannelFactoryInterface $logger_factory,
     EntityTypeManagerInterface $entity_type_manager,
     PreprocessorPluginManager $preprocessor_manager
   ) {
@@ -111,7 +107,6 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
       $dumper_plugin_manager,
       $renderer,
       $link_generator,
-      $logger_factory,
       $entity_type_manager
     );
     $this->preprocessorManager = $preprocessor_manager;
@@ -134,7 +129,6 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
       $container->get('plugin.manager.geocoder.dumper'),
       $container->get('renderer'),
       $container->get('link_generator'),
-      $container->get('logger.factory'),
       $container->get('entity_type.manager'),
       $container->get('plugin.manager.geocoder.preprocessor')
     );
@@ -208,7 +202,7 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
       }
     }
     catch (\Exception $e) {
-      watchdog_exception('geocoder', $e);
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
 
     return $elements;

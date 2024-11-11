@@ -13,6 +13,9 @@ saml_sp_drupal_login.login:
     _controller: \Drupal\saml_sp_drupal_login\Controller\SamlSPDrupalLoginController::initiate
   requirements:
     _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+
 saml_sp_drupal_login.register:
   path: '/user/saml_sp_drupal_login_register'
   defaults:

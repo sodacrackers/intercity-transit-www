@@ -27,29 +27,28 @@ class ReverseGeocodeGeofieldFormatter extends GeocodeFormatter {
     $elements = [];
     try {
       $dumper = $this->dumperPluginManager->createInstance($this->getSetting('dumper'));
-    }
-    catch (PluginException $e) {
-      $this->loggerFactory->get('geocoder')->error('No Dumper has been set');
-    }
-    $providers = $this->getEnabledGeocoderProviders();
+      $providers = $this->getEnabledGeocoderProviders();
 
-    /** @var \Drupal\geofield\GeoPHP\GeoPHPInterface $geophp */
-    $geophp = \Drupal::service('geofield.geophp');
+      /** @var \Drupal\geofield\GeoPHP\GeoPHPInterface $geophp */
+      $geophp = \Drupal::service('geofield.geophp');
 
-    foreach ($items as $delta => $item) {
-      /** @var \Geometry $geom */
-      $geom = $geophp->load($item->value);
+      foreach ($items as $delta => $item) {
+        /** @var \Geometry $geom */
+        $geom = $geophp->load($item->value);
 
-      /** @var \Point $centroid */
-      $centroid = $geom->getCentroid();
+        /** @var \Point $centroid */
+        $centroid = $geom->getCentroid();
 
-      if ($address_collection = $this->geocoder->reverse($centroid->y(), $centroid->x(), $providers)) {
-        $elements[$delta] = [
-          '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() ? $dumper->dump($address_collection->first()) : "",
-        ];
+        if ($address_collection = $this->geocoder->reverse($centroid->y(), $centroid->x(), $providers)) {
+          $elements[$delta] = [
+            '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() ? $dumper->dump($address_collection->first()) : "",
+          ];
+        }
       }
     }
-
+    catch (PluginException $e) {
+      $this->getLogger('geocoder')->error($e->getMessage());
+    }
     return $elements;
   }
 

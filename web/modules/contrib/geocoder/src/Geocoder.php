@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\geocoder;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Geocoder\Model\AddressCollection;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\geocoder\Entity\GeocoderProvider;
@@ -13,6 +14,8 @@ use Drupal\geocoder\Entity\GeocoderProvider;
  * Provides a geocoder factory class.
  */
 class Geocoder implements GeocoderInterface {
+
+  use LoggerChannelTrait;
 
   /**
    * The config factory service.
@@ -78,7 +81,7 @@ class Geocoder implements GeocoderInterface {
         return $result;
       }
       catch (\Exception $e) {
-        static::log($e->getMessage());
+        $this->getLogger('geocoder')->warning($e->getMessage());
       }
     }
     return NULL;
@@ -111,20 +114,10 @@ class Geocoder implements GeocoderInterface {
         return $result;
       }
       catch (\Exception $e) {
-        static::log($e->getMessage());
+        $this->getLogger('geocoder')->warning($e->getMessage());
       }
     }
     return NULL;
-  }
-
-  /**
-   * Log a message in the Drupal watchdog and on screen.
-   *
-   * @param string $message
-   *   The message.
-   */
-  public static function log($message) {
-    \Drupal::logger('geocoder')->error($message);
   }
 
 }

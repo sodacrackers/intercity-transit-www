@@ -36,8 +36,7 @@ function menu_block_title_block_view_alter(array &$build, BlockPluginInterface $
 function _menu_block_title_needs_modifying($build, BlockPluginInterface $block) {
   $configuration = $block->getConfiguration();
 
-  if (isset($configuration['level'])) {
-    $block_config = Block::load($build['#id']);
+  if (isset($configuration['level']) && $block_config = Block::load($build['#id'])) {
     $modify_title = $block_config->getThirdPartySetting('menu_block_title', 'modify_title');
 
     return empty($modify_title) ? FALSE : $modify_title;

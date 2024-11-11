@@ -9,6 +9,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\geocoder\DumperPluginManager;
 use Drupal\geocoder\Entity\GeocoderProvider;
@@ -17,7 +18,6 @@ use Drupal\geocoder\ProviderPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Geocoder\Model\AddressCollection;
 use Drupal\Component\Plugin\Exception\PluginException;
 
@@ -25,6 +25,8 @@ use Drupal\Component\Plugin\Exception\PluginException;
  * Base Plugin implementation of the Geocode formatter.
  */
 abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFactoryPluginInterface {
+
+  use LoggerChannelTrait;
 
   /**
    * The geocoder service.
@@ -60,13 +62,6 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
    * @var \Drupal\Core\Utility\LinkGeneratorInterface
    */
   protected $link;
-
-  /**
-   * The logger factory.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
-   */
-  protected $loggerFactory;
 
   /**
    * The entity type manager.
@@ -109,8 +104,6 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
    *   The renderer.
    * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
    *   The Link Generator service.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
-   *   The logger factory.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
@@ -127,7 +120,6 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
     DumperPluginManager $dumper_plugin_manager,
     RendererInterface $renderer,
     LinkGeneratorInterface $link_generator,
-    LoggerChannelFactoryInterface $logger_factory,
     EntityTypeManagerInterface $entity_type_manager
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
@@ -136,14 +128,13 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
     $this->dumperPluginManager = $dumper_plugin_manager;
     $this->renderer = $renderer;
     $this->link = $link_generator;
-    $this->loggerFactory = $logger_factory;
     $this->entityTypeManager = $entity_type_manager;
     try {
       $this->geocoderProviders = $this->entityTypeManager->getStorage('geocoder_provider')
         ->loadMultiple();
     }
     catch (\Exception $e) {
-      watchdog_exception('geocoder', $e);
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
   }
 
@@ -164,7 +155,6 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
       $container->get('plugin.manager.geocoder.dumper'),
       $container->get('renderer'),
       $container->get('link_generator'),
-      $container->get('logger.factory'),
       $container->get('entity_type.manager')
     );
   }
@@ -202,8 +192,13 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
     // Generates the Draggable Table of Selectable Geocoder providers.
     $element['providers'] = $this->providerPluginManager->providersPluginsTableList($enabled_providers);
 
-    // Set a validation for the providers selection.
-    $element['providers']['#element_validate'] = [[get_class($this), 'validateProvidersSettingsForm']];
+    // Set a validation for the providers' selection.
+    $element['providers']['#element_validate'] = [
+      [
+        get_class($this),
+        'validateProvidersSettingsForm',
+      ],
+    ];
 
     $element['dumper'] = [
       '#type' => 'select',
@@ -211,7 +206,7 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
       '#title' => 'Output format',
       '#default_value' => $this->getSetting('dumper'),
       '#options' => $this->dumperPluginManager->getPluginsAsOptions(),
-      '#description' => t('Set the output format of the value. Ex, for a geofield, the format must be set to WKT.'),
+      '#description' => $this->t('Set the output format of the value. Ex, for a geofield, the format must be set to WKT.'),
     ];
 
     return $element;
@@ -249,7 +244,7 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
       $dumper = $this->dumperPluginManager->createInstance($this->getSetting('dumper'));
     }
     catch (PluginException $e) {
-      $this->loggerFactory->get('geocoder')->error('No Dumper has been set');
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
     $providers = $this->getEnabledGeocoderProviders();
 
@@ -300,7 +295,7 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
   }
 
   /**
-   * Validates the providers selection.
+   * Validates the providers' selection.
    *
    * @param array $element
    *   The form API form element.

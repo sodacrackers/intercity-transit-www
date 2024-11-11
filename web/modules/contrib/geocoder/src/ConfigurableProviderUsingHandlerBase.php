@@ -55,7 +55,7 @@ abstract class ConfigurableProviderUsingHandlerBase extends ProviderUsingHandler
       parent::__construct($configuration, $plugin_id, $plugin_definition, $config_factory, $cache_backend, $language_manager);
     }
     catch (InvalidPluginDefinitionException $e) {
-      watchdog_exception('geocoder', $e);
+      $this->getLogger('geocoder')->error($e->getMessage());
     }
   }
 

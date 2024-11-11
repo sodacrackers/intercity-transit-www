@@ -13,3 +13,7 @@ Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3
 Source: https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch
 
 
+Have Views' taxonomy term filters use UUIDs instead of entity IDs
+Source: https://www.drupal.org/files/issues/2023-09-18/2761157-90-10.1.x.patch
+
+
