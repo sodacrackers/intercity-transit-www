@@ -29,6 +29,8 @@ class ClusterStatus extends ResponseParser
     {
         $data = $result->getData();
 
+        $data = $this->addHeaderInfo($data, $data);
+
         return $data;
     }
 }

@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\geocoder\Entity;
 
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\LazyPluginCollection;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
 use Drupal\geocoder\GeocoderProviderInterface;
 use Drupal\geocoder\Plugin\GeocoderProviderPluginCollection;
 use Drupal\geocoder\ProviderInterface;
-use Drupal\Component\Plugin\ConfigurableInterface;
 
 /**
  * Defines the Geocoder provider entity type.

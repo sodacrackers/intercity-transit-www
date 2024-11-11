@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\redirect\FunctionalJavascript;
 
 use Drupal\Core\Url;
@@ -13,16 +15,22 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 class RedirectJavascriptTest extends WebDriverTestBase {
 
   /**
+   * The admin user.
+   *
    * @var \Drupal\Core\Session\AccountInterface
    */
   protected $adminUser;
 
   /**
+   * The redirect repository.
+   *
    * @var \Drupal\redirect\RedirectRepository
    */
   protected $repository;
 
   /**
+   * The Sql conntent entity storage.
+   *
    * @var \Drupal\Core\Entity\Sql\SqlContentEntityStorage
    */
   protected $storage;
@@ -70,13 +78,13 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     // Test populating the redirect form with predefined values.
     $this->drupalGet(
       'admin/config/search/redirect/add', [
-      'query' => [
-        'source' => 'non-existing',
-        'source_query' => ['key' => 'val', 'key1' => 'val1'],
-        'redirect' => 'node',
-        'redirect_options' => ['query' => ['key' => 'val', 'key1' => 'val1']],
+        'query' => [
+          'source' => 'non-existing',
+          'source_query' => ['key' => 'val', 'key1' => 'val1'],
+          'redirect' => 'node',
+          'redirect_options' => ['query' => ['key' => 'val', 'key1' => 'val1']],
+        ],
       ]
-    ]
     );
     $this->assertSession()->fieldValueEquals('redirect_source[0][path]', 'non-existing?key=val&key1=val1');
     $this->assertSession()->fieldValueEquals('redirect_redirect[0][uri]', '/node?key=val&key1=val1');
@@ -98,7 +106,6 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     $this->assertSession()->addressEquals('admin/config/search/redirect');
     $this->assertSession()->pageTextContains('non-existing');
     $this->assertSession()->linkExists(Url::fromUri('base:node')->toString());
-    $this->assertSession()->pageTextContains('Not specified');
 
     // Test the edit form and update action.
     $this->clickLink('Edit');
@@ -183,7 +190,7 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     $page->pressButton('Save');
     $this->assertSession()->responseContains('The anchor fragments are not allowed.');
 
-    // Adding path that starts with /
+    // Adding path that starts with /.
     $this->drupalGet('admin/config/search/redirect/add');
     $page = $this->getSession()->getPage();
     $page->fillField('redirect_source[0][path]', '/page-to-redirect');
@@ -205,10 +212,10 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     // Filter with non existing value.
     $this->drupalGet(
       'admin/config/search/redirect', [
-      'query' => [
-        'status_code' => '3',
-      ],
-    ]
+        'query' => [
+          'status_code' => '3',
+        ],
+      ]
     );
 
     $rows = $this->xpath('//tbody/tr');
@@ -218,11 +225,11 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     // Filter with existing values.
     $this->drupalGet(
       'admin/config/search/redirect', [
-      'query' => [
-        'redirect_source__path' => 'test',
-        'status_code' => '2',
-      ],
-    ]
+        'query' => [
+          'redirect_source__path' => 'test',
+          'status_code' => '2',
+        ],
+      ]
     );
 
     $rows = $this->xpath('//tbody/tr');
@@ -231,10 +238,10 @@ class RedirectJavascriptTest extends WebDriverTestBase {
 
     $this->drupalGet(
       'admin/config/search/redirect', [
-      'query' => [
-        'redirect_redirect__uri' => 'nod',
-      ],
-    ]
+        'query' => [
+          'redirect_redirect__uri' => 'nod',
+        ],
+      ]
     );
 
     $rows = $this->xpath('//tbody/tr');
@@ -247,11 +254,12 @@ class RedirectJavascriptTest extends WebDriverTestBase {
       'redirect_bulk_form[0]' => TRUE,
       'redirect_bulk_form[1]' => TRUE,
     ];
+    $this->getSession()->getPage()->selectFieldOption("action", "redirect_delete_action", TRUE);
     $this->submitForm($edit, 'Apply to selected items');
     $this->assertSession()->pageTextContains('Are you sure you want to delete these redirects?');
-    $this->clickLink('Cancel');
 
     // Test the delete action.
+    $this->drupalGet('admin/config/search/redirect');
     $page->find('css', '.dropbutton-toggle button')->press();
     $this->clickLink('Delete');
     $this->assertSession()->responseContains(
@@ -261,6 +269,7 @@ class RedirectJavascriptTest extends WebDriverTestBase {
     $this->assertSession()->addressEquals('admin/config/search/redirect');
 
     // Test the bulk delete action.
+    $this->getSession()->getPage()->selectFieldOption("action", "redirect_delete_action", TRUE);
     $this->submitForm(['redirect_bulk_form[0]' => TRUE], 'Apply to selected items');
     $this->assertSession()->pageTextContains('Are you sure you want to delete this redirect?');
     $this->assertSession()->pageTextContains('test27');

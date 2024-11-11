@@ -11,9 +11,6 @@ dependencies:
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__press_releases_block_1
 theme: transit
 region: content

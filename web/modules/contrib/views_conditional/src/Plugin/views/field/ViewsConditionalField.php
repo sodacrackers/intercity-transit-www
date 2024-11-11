@@ -2,12 +2,15 @@
 
 namespace Drupal\views_conditional\Plugin\views\field;
 
+use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Datetime\DateFormatter;
-use Drupal\Component\Datetime\TimeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,32 +24,44 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
 
   /**
    * The date formatter.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatter
    */
-  protected $dateFormatter;
+  protected DateFormatter $dateFormatter;
 
   /**
    * The time.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
    */
-  protected $dateTime;
+  protected TimeInterface $dateTime;
+
+  /**
+   * The renderer.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, DateFormatter $dateFormatter, TimeInterface $dateTime) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, DateFormatter $dateFormatter, TimeInterface $dateTime, RendererInterface $renderer) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->dateFormatter = $dateFormatter;
     $this->dateTime = $dateTime;
+    $this->renderer = $renderer;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static($configuration, $plugin_id, $plugin_definition, $container->get('date.formatter'), $container->get('datetime.time'));
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('date.formatter'),
+      $container->get('datetime.time'),
+      $container->get('renderer')
+    );
+
   }
 
   /**
@@ -60,9 +75,9 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
   /**
    * Conditional operators.
    *
-   * @var array
+   * @var string[]
    */
-  public $conditions = [
+  public array $conditions = [
     'eq' => 'Equal to',
     'neq' => 'NOT equal to',
     'gt' => 'Greater than',
@@ -82,10 +97,10 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
   /**
    * Define the available options.
    *
-   * @return array
+   * @return string[]
    *   Returns the available options.
    */
-  protected function defineOptions() {
+  protected function defineOptions(): array {
     $options = parent::defineOptions();
     $options['label']['default'] = NULL;
 
@@ -109,8 +124,10 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
 
   /**
    * Provide the options form.
+   *
+   * {@inheritdoc}
    */
-  public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+  public function buildOptionsForm(&$form, FormStateInterface $form_state): void {
     $form['relationship']['#access'] = FALSE;
     $previous = $this->getPreviousFieldLabels();
     $fields = ['- ' . $this->t('no field selected') . ' -'];
@@ -221,26 +238,34 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
 
   /**
    * Cleans a variable for handling later.
+   *
+   * @param object $var
+   *   The string to be cleaned of html.
+   *
+   * @return string
+   *   The trimmed and cleaned string.
    */
-  public function cleanVar($var) {
-    $unparsed = isset($var->last_render) ? $var->last_render : '';
+  public function cleanVar($var): string {
+    $unparsed = $var->last_render ?? '';
     return $this->options['strip_tags'] ? trim(strip_tags($unparsed)) : trim($unparsed);
   }
 
   /**
    * Create renderable markup for field values.
    *
-   * @param $value
+   * @param string $value
    *   The value to be displayed.
    *
-   * @return
-   *   The rendered value.
+   * @return \Drupal\Component\Render\MarkupInterface|string
+   *   The rendered HTML.
+   *
+   * @throws \Exception
    */
-  private function markup($value) {
+  private function markup(string $value): MarkupInterface|string {
     $value = [
-      '#markup' => $value,
+      '#markup' => Markup::create($value),
     ];
-    return \Drupal::service('renderer')->render($value);
+    return $this->renderer->render($value);
   }
 
   /**
@@ -260,10 +285,12 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
     // Translate prior to replacements, otherwise the dynamic replacement
     // content results in endless translations:
     if ($this->options['then_translate']) {
-      $then = $this->t($then, ['context' => $translation_context]);
+      // phpcs:ignore
+      $then = $this->t($then, [], ['context' => $translation_context]);
     }
     if ($this->options['or_translate']) {
-      $or = $this->t($or, ['context' => $translation_context]);
+      // phpcs:ignore
+      $or = $this->t($or, [], ['context' => $translation_context]);
     }
 
     // Gather field information.
@@ -308,7 +335,7 @@ class ViewsConditionalField extends FieldPluginBase implements ContainerFactoryP
       $or = str_replace('DATE_UNIX', $this->dateTime->getRequestTime(), $or);
     }
 
-    // Strip tags on the "if" field. Otherwise it appears to output as
+    // Strip tags on the "if" field. Otherwise, it appears to output as
     // <div class="xxx">Field data</div>...
     // ...which of course makes it difficult to compare.
     $r = isset($fields["$if"]->last_render) ? trim(strip_tags($fields["$if"]->last_render, '<img><video><iframe><audio>')) : NULL;

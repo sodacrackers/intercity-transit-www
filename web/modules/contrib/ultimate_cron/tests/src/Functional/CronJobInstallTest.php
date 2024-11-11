@@ -19,7 +19,7 @@ class CronJobInstallTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = array('ultimate_cron');
+  protected static $modules = array('ultimate_cron');
 
   /**
    * A user with permission to create and edit books and to administer blocks.
@@ -98,9 +98,10 @@ class CronJobInstallTest extends BrowserTestBase {
 
     $element = ultimate_cron_requirements('runtime')['cron_jobs'];
     $this->assertEquals($element['value'], '1 job is behind schedule', '"1 job is behind schedule." is displayed');
-    $this->assertEquals($element['description']['#markup'], 'Some jobs are behind their schedule. Please check if <a href="' .
+    $actual = 'Some jobs are behind their schedule. Please check if <a href="' .
       Url::fromRoute('system.cron', ['key' => \Drupal::state()->get('system.cron_key')])->toString() .
-      '">Cron</a> is running properly.', 'Description is correct.');
+      '">Cron</a> is running properly.';
+    $this->assertEquals($actual, (string) $element['description']['#markup'], 'Description is correct.');
     $this->assertEquals($element['severity'], REQUIREMENT_WARNING, 'Severity is of level "Error"');
   }
 

@@ -84,7 +84,7 @@ class ExtractFileValidator {
       }
       else {
         $file_size_bytes = $file->getSize();
-        $configured_size_bytes = Bytes::toInt($configured_size);
+        $configured_size_bytes = Bytes::toNumber($configured_size);
         if ($file_size_bytes > $configured_size_bytes) {
           return FALSE;
         }

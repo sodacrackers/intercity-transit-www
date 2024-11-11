@@ -3,12 +3,12 @@
 namespace Drupal\Tests\workbench_moderation\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\workbench_moderation\Entity\ModerationState;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\workbench_moderation\Entity\ModerationState;
 
 /**
- * Class EntityOperationsTest.
+ * Tests EntityOperations.
  *
  * @coversDefaultClass \Drupal\workbench_moderation\EntityOperations
  * @group workbench_moderation

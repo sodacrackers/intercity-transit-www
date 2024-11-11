@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\workbench_moderation\Unit;
 
-use Prophecy\PhpUnit\ProphecyTrait;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -11,6 +10,7 @@ use Drupal\workbench_moderation\ModerationStateInterface;
 use Drupal\workbench_moderation\ModerationStateTransitionInterface;
 use Drupal\workbench_moderation\StateTransitionValidation;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @coversDefaultClass \Drupal\workbench_moderation\StateTransitionValidation
@@ -19,6 +19,7 @@ use Prophecy\Argument;
 class StateTransitionValidationTest extends UnitTestCase {
 
   use ProphecyTrait;
+
   /**
    * Builds a mock storage object for Transitions.
    *
@@ -211,7 +212,7 @@ class StateTransitionValidationTest extends UnitTestCase {
    * @return array
    *   Returns an array.
    */
-  public function userTransitionsProvider() {
+  public static function userTransitionsProvider() {
     // The user has the right permission, so let it through.
     $ret[] = ['draft', 'draft', 'use draft__draft transition', TRUE, TRUE];
 

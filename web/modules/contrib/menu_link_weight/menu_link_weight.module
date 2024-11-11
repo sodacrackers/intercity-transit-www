@@ -13,7 +13,32 @@ use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
 use Drupal\system\Entity\Menu;
+use Drupal\Core\Routing\RouteMatchInterface;
 
+/**
+ * Implements hook_help().
+ */
+function menu_link_weight_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the menu_link_weight module.
+    case 'help.page.menu_link_weight':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module replaces the standard numeric weight
+      dropdown widget for menu links in the node form with a tabledrag widget
+      that lists all children for the selected parent.') . '</p>';
+      $output .= '<h3>' . t('Functionality') . '</h3>';
+      $output .= '<p>' . t('Upon selection of a parent, a tabledrag widget is
+      loaded via AJAX. This lets us reorder the weight of the menu link for the
+      node we are editing relative to its sibling links, as well as reorder the
+      sibling links themselves. This means we can now ignore any numerical
+      weight values and instead see the position of a menu link relative to
+      other links in the tabledrag widget itself.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
 /**
  * Include functionality related to reordering of options by other modules.
  */
@@ -124,7 +149,7 @@ function _menu_link_weight_get_options($menu_name, $parent_id, $current_mlid, $n
     '#type' => 'inline_template',
     '#template' => '<strong><span class="menu-link-weight-link-current">{{ current_title }}</span></strong> ({% trans %}provided menu link{% endtrans %})',
     '#context' => [
-      'current_title' => Unicode::truncate($new_item_title, 30, TRUE, FALSE),
+      'current_title' => $new_item_title === NULL ? '' : Unicode::truncate($new_item_title, 30, TRUE, FALSE),
     ],
   ];
 

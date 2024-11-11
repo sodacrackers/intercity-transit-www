@@ -14,8 +14,6 @@ dependencies:
 third_party_settings:
   menu_block_title:
     modify_title: true
-  block_class:
-    classes: null
 id: mainnavigation_2
 theme: transit
 region: sidebar_first

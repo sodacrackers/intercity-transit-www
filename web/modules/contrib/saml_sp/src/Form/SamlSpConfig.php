@@ -2,17 +2,49 @@
 
 namespace Drupal\saml_sp\Form;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use OneLogin\Saml2\Utils;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the configuration form.
  */
 class SamlSpConfig extends ConfigFormBase {
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('config.typed'),
+      $container->get('messenger')
+    );
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   */
+  public function __construct(ConfigFactoryInterface $configFactory, TypedConfigManagerInterface|null $typedConfigManager, MessengerInterface $messenger,) {
+    parent::__construct($configFactory, $typedConfigManager);
+    $this->messenger = $messenger;
+  }
 
   /**
    * {@inheritdoc}
@@ -50,7 +82,8 @@ class SamlSpConfig extends ConfigFormBase {
     }
     else {
       // Return the value in the database.
-      $value = $this->configFactory->getEditable('saml_sp.settings')->get($name);
+      $value = $this->configFactory->getEditable('saml_sp.settings')
+        ->get($name);
     }
     return $value;
   }
@@ -143,8 +176,7 @@ class SamlSpConfig extends ConfigFormBase {
     if (!empty($values['valid_until']) && strtolower($values['valid_until']) !== '<certificate>') {
       try {
         $dti = new \DateTimeImmutable($values['valid_until']);
-      }
-      catch (\Throwable $e) {
+      } catch (\Throwable $e) {
         // PHP 8 throws a ValueError, but handle it the same as PHP 7.
         $dti = FALSE;
       }
@@ -166,7 +198,7 @@ class SamlSpConfig extends ConfigFormBase {
         $v = $var;
       }
       if (!is_array($value) &&
-      // don't save the value if it is overridden,.
+        // don't save the value if it is overridden,.
         !$this->isOverridden($v)
         // It is pointless.
       ) {
@@ -190,14 +222,15 @@ class SamlSpConfig extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['entity_id'] = [
-      '#type'           => 'textfield',
-      '#title'          => $this->t('Entity ID'),
-      '#description'    => $this->t(
+      '#type' => 'textfield',
+      '#title' => $this->t('Entity ID'),
+      '#description' => $this->t(
         'This is the unique name that the Identity Providers will know your site as. Defaults to the login page %login_url',
         [
-          '%login_url' => Url::fromRoute('user.page', [], ['absolute' => TRUE])->toString(),
+          '%login_url' => Url::fromRoute('user.page', [], ['absolute' => TRUE])
+            ->toString(),
         ]),
-      '#default_value'  => $this->overriddenValue('entity_id'),
+      '#default_value' => $this->overriddenValue('entity_id'),
     ];
 
     $endpoint_url = Url::fromRoute('saml_sp.consume', [], [
@@ -214,74 +247,74 @@ class SamlSpConfig extends ConfigFormBase {
     ];
 
     $form['contact'] = [
-      '#type'           => 'fieldset',
-      '#title'          => $this->t('Contact Information'),
-      '#description'    => $this->t('Information to be included in the federation metadata.'),
-      '#tree'           => TRUE,
+      '#type' => 'fieldset',
+      '#title' => $this->t('Contact Information'),
+      '#description' => $this->t('Information to be included in the federation metadata.'),
+      '#tree' => TRUE,
     ];
     $form['contact']['technical'] = [
-      '#type'           => 'fieldset',
-      '#title'          => $this->t('Technical'),
+      '#type' => 'fieldset',
+      '#title' => $this->t('Technical'),
     ];
     $form['contact']['technical']['name'] = [
-      '#type'           => 'textfield',
-      '#title'          => $this->t('Name'),
-      '#default_value'  => $this->overriddenValue('contact.technical.name'),
-      '#disabled'       => $this->isOverridden('contact.technical.name'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Name'),
+      '#default_value' => $this->overriddenValue('contact.technical.name'),
+      '#disabled' => $this->isOverridden('contact.technical.name'),
     ];
     $form['contact']['technical']['email'] = [
-      '#type'           => 'email',
-      '#title'          => $this->t('Email'),
-      '#default_value'  => $this->overriddenValue('contact.technical.email'),
-      '#disabled'       => $this->isOverridden('contact.technical.email'),
+      '#type' => 'email',
+      '#title' => $this->t('Email'),
+      '#default_value' => $this->overriddenValue('contact.technical.email'),
+      '#disabled' => $this->isOverridden('contact.technical.email'),
     ];
     $form['contact']['support'] = [
-      '#type'           => 'fieldset',
-      '#title'          => $this->t('Support'),
+      '#type' => 'fieldset',
+      '#title' => $this->t('Support'),
     ];
     $form['contact']['support']['name'] = [
-      '#type'           => 'textfield',
-      '#title'          => $this->t('Name'),
-      '#default_value'  => $this->overriddenValue('contact.support.name'),
-      '#disabled'       => $this->isOverridden('contact.support.name'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Name'),
+      '#default_value' => $this->overriddenValue('contact.support.name'),
+      '#disabled' => $this->isOverridden('contact.support.name'),
     ];
     $form['contact']['support']['email'] = [
-      '#type'           => 'email',
-      '#title'          => $this->t('Email'),
-      '#default_value'  => $this->overriddenValue('contact.support.email'),
-      '#disabled'       => $this->isOverridden('contact.support.email'),
+      '#type' => 'email',
+      '#title' => $this->t('Email'),
+      '#default_value' => $this->overriddenValue('contact.support.email'),
+      '#disabled' => $this->isOverridden('contact.support.email'),
     ];
 
     $form['organization'] = [
-      '#type'           => 'fieldset',
-      '#title'          => $this->t('Organization'),
-      '#description'    => $this->t('Organization information for the federation metadata. If you provide any values you must provide all values.'),
-      '#tree'           => TRUE,
+      '#type' => 'fieldset',
+      '#title' => $this->t('Organization'),
+      '#description' => $this->t('Organization information for the federation metadata. If you provide any values you must provide all values.'),
+      '#tree' => TRUE,
     ];
     $form['organization']['name'] = [
-      '#type'           => 'textfield',
-      '#title'          => $this->t('Name'),
-      '#description'    => $this->t('This is a short name for the organization'),
-      '#default_value'  => $this->overriddenValue('organization.name'),
-      '#disabled'       => $this->isOverridden('organization.name'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Name'),
+      '#description' => $this->t('This is a short name for the organization'),
+      '#default_value' => $this->overriddenValue('organization.name'),
+      '#disabled' => $this->isOverridden('organization.name'),
       '#states' => [
         'required' => [
           [
             ':input[name="organization[display_name]"]' => ['filled' => TRUE],
           ],
           'or',
-           [
-             ':input[name="organization[url]"]' => ['filled' => TRUE],
-           ],
+          [
+            ':input[name="organization[url]"]' => ['filled' => TRUE],
+          ],
         ],
       ],
     ];
     $form['organization']['display_name'] = [
-      '#type'           => 'textfield',
-      '#title'          => $this->t('Display Name'),
-      '#description'    => $this->t('This is a long name for the organization'),
-      '#default_value'  => $this->overriddenValue('organization.display_name'),
-      '#disabled'       => $this->isOverridden('organization.display_name'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Display Name'),
+      '#description' => $this->t('This is a long name for the organization'),
+      '#default_value' => $this->overriddenValue('organization.display_name'),
+      '#disabled' => $this->isOverridden('organization.display_name'),
       '#states' => [
         'required' => [
           [
@@ -295,11 +328,11 @@ class SamlSpConfig extends ConfigFormBase {
       ],
     ];
     $form['organization']['url'] = [
-      '#type'           => 'url',
-      '#title'          => $this->t('URL'),
-      '#description'    => $this->t('This is a URL for the organization'),
-      '#default_value'  => $this->overriddenValue('organization.url'),
-      '#disabled'       => $this->isOverridden('organization.url'),
+      '#type' => 'url',
+      '#title' => $this->t('URL'),
+      '#description' => $this->t('This is a URL for the organization'),
+      '#default_value' => $this->overriddenValue('organization.url'),
+      '#disabled' => $this->isOverridden('organization.url'),
       '#states' => [
         'required' => [
           [
@@ -314,90 +347,90 @@ class SamlSpConfig extends ConfigFormBase {
     ];
 
     $form['strict'] = [
-      '#type'           => 'checkbox',
-      '#title'          => t('Strict Protocol'),
-      '#description'    => t('SAML 2 Strict protocol will be used.'),
-      '#default_value'  => $this->overriddenValue('strict'),
-      '#disabled'       => $this->isOverridden('strict'),
+      '#type' => 'checkbox',
+      '#title' => t('Strict Protocol'),
+      '#description' => t('SAML 2 Strict protocol will be used.'),
+      '#default_value' => $this->overriddenValue('strict'),
+      '#disabled' => $this->isOverridden('strict'),
     ];
 
     $form['security'] = [
-      '#type'           => 'fieldset',
-      '#title'          => $this->t('Security'),
-      '#tree'           => TRUE,
+      '#type' => 'fieldset',
+      '#title' => $this->t('Security'),
+      '#tree' => TRUE,
     ];
     $form['security']['offered'] = [
-      '#markup'         => $this->t('Signatures and Encryptions Offered:'),
+      '#markup' => $this->t('Signatures and Encryptions Offered:'),
     ];
     $form['security']['nameIdEncrypted'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('NameID Encrypted'),
-      '#description'    => $this->t('Offering encryption will require you to provide a certificate and key.'),
-      '#default_value'  => $this->overriddenValue('security.nameIdEncrypted'),
-      '#disabled'       => $this->isOverridden('security.nameIdEncrypted'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('NameID Encrypted'),
+      '#description' => $this->t('Offering encryption will require you to provide a certificate and key.'),
+      '#default_value' => $this->overriddenValue('security.nameIdEncrypted'),
+      '#disabled' => $this->isOverridden('security.nameIdEncrypted'),
     ];
     $form['security']['authnRequestsSigned'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Authn Requests Signed'),
-      '#description'    => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
-      '#default_value'  => $this->overriddenValue('security.authnRequestsSigned'),
-      '#disabled'       => $this->isOverridden('security.authnRequestsSigned'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Authn Requests Signed'),
+      '#description' => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
+      '#default_value' => $this->overriddenValue('security.authnRequestsSigned'),
+      '#disabled' => $this->isOverridden('security.authnRequestsSigned'),
     ];
     $form['security']['logoutRequestSigned'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Logout Requests Signed'),
-      '#description'    => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
-      '#default_value'  => $this->overriddenValue('security.logoutRequestSigned'),
-      '#disabled'       => $this->isOverridden('security.logoutRequestSigned'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Logout Requests Signed'),
+      '#description' => $this->t('Offering to sign requests will require you to provide a certificate and key.'),
+      '#default_value' => $this->overriddenValue('security.logoutRequestSigned'),
+      '#disabled' => $this->isOverridden('security.logoutRequestSigned'),
     ];
     $form['security']['logoutResponseSigned'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Logout Response Signed'),
-      '#description'    => $this->t('Offering to sign responses will require you to provide a certificate and key.'),
-      '#default_value'  => $this->overriddenValue('security.logoutResponseSigned'),
-      '#disabled'       => $this->isOverridden('security.logoutResponseSigned'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Logout Response Signed'),
+      '#description' => $this->t('Offering to sign responses will require you to provide a certificate and key.'),
+      '#default_value' => $this->overriddenValue('security.logoutResponseSigned'),
+      '#disabled' => $this->isOverridden('security.logoutResponseSigned'),
     ];
 
     $form['security']['required'] = [
-      '#markup'         => $this->t('Signatures and Encryptions Required:'),
+      '#markup' => $this->t('Signatures and Encryptions Required:'),
     ];
     $form['security']['wantMessagesSigned'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Want Messages Signed'),
-      '#description'    => $this->t('Requiring messages to be signed will require the IdP configuration to have a certificate.'),
-      '#default_value'  => $this->overriddenValue('security.wantMessagesSigned'),
-      '#disabled'       => $this->isOverridden('security.wantMessagesSigned'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Want Messages Signed'),
+      '#description' => $this->t('Requiring messages to be signed will require the IdP configuration to have a certificate.'),
+      '#default_value' => $this->overriddenValue('security.wantMessagesSigned'),
+      '#disabled' => $this->isOverridden('security.wantMessagesSigned'),
     ];
     $form['security']['wantAssertionsSigned'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Want Assertions Signed'),
-      '#description'    => $this->t('Requiring assertions to be signed will require the IdP configuration to have a certificate.'),
-      '#default_value'  => $this->overriddenValue('security.wantAssertionsSigned'),
-      '#disabled'       => $this->isOverridden('security.wantAssertionsSigned'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Want Assertions Signed'),
+      '#description' => $this->t('Requiring assertions to be signed will require the IdP configuration to have a certificate.'),
+      '#default_value' => $this->overriddenValue('security.wantAssertionsSigned'),
+      '#disabled' => $this->isOverridden('security.wantAssertionsSigned'),
     ];
     $form['security']['wantNameIdEncrypted'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Want NameID Encrypted'),
-      '#description'    => $this->t('Requiring the NameId to be encrypted will require the IdP configuration to have a certificate.'),
-      '#default_value'  => $this->overriddenValue('security.wantNameIdEncrypted'),
-      '#disabled'       => $this->isOverridden('security.wantNameIdEncrypted'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Want NameID Encrypted'),
+      '#description' => $this->t('Requiring the NameId to be encrypted will require the IdP configuration to have a certificate.'),
+      '#default_value' => $this->overriddenValue('security.wantNameIdEncrypted'),
+      '#disabled' => $this->isOverridden('security.wantNameIdEncrypted'),
     ];
     $form['security']['metadata'] = [
-      '#markup'         => $this->t('Metadata:'),
+      '#markup' => $this->t('Metadata:'),
     ];
 
     $form['security']['signMetaData'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Sign Meta Data'),
-      '#description'    => $this->t('Signing your metadata will require you to provide a certificate and key.'),
-      '#default_value'  => $this->overriddenValue('security.signMetaData'),
-      '#disabled'       => $this->isOverridden('security.signMetaData'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Sign Meta Data'),
+      '#description' => $this->t('Signing your metadata will require you to provide a certificate and key.'),
+      '#default_value' => $this->overriddenValue('security.signMetaData'),
+      '#disabled' => $this->isOverridden('security.signMetaData'),
     ];
     $form['security']['signatureAlgorithm'] = [
-      '#type'           => 'select',
-      '#title'          => $this->t('Signature Algorithm'),
-      '#description'    => $this->t('What algorithm do you want used for messages signatures?'),
-      '#options'        => [
+      '#type' => 'select',
+      '#title' => $this->t('Signature Algorithm'),
+      '#description' => $this->t('What algorithm do you want used for messages signatures?'),
+      '#options' => [
         /*
         XMLSecurityKey::DSA_SHA1 => 'DSA SHA-1',
         XMLSecurityKey::HMAC_SHA1 => 'HMAC SHA-1',
@@ -407,25 +440,25 @@ class SamlSpConfig extends ConfigFormBase {
         XMLSecurityKey::RSA_SHA384 => 'SHA-384',
         XMLSecurityKey::RSA_SHA512 => 'SHA-512',
       ],
-      '#default_value'   => $this->overriddenValue('security.signatureAlgorithm'),
-      '#disabled'        => $this->isOverridden('security.signatureAlgorithm'),
+      '#default_value' => $this->overriddenValue('security.signatureAlgorithm'),
+      '#disabled' => $this->isOverridden('security.signatureAlgorithm'),
     ];
     $form['security']['lowercaseUrlencoding'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Lowercase Url Encoding'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Lowercase Url Encoding'),
       /*
       '#description'    => $this->t(""),
       /**/
-      '#default_value'  => $this->overriddenValue('security.lowercaseUrlencoding'),
-      '#disabled'       => $this->isOverridden('security.lowercaseUrlencoding'),
+      '#default_value' => $this->overriddenValue('security.lowercaseUrlencoding'),
+      '#disabled' => $this->isOverridden('security.lowercaseUrlencoding'),
     ];
 
     $form['cert_location'] = [
-      '#type'   => 'textfield',
-      '#title'  => $this->t('Certificate Location'),
-      '#description'  => $this->t('The location of the X.509 certificate file on the server. This must be a location that PHP can read.'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Certificate Location'),
+      '#description' => $this->t('The location of the X.509 certificate file on the server. This must be a location that PHP can read.'),
       '#default_value' => $this->overriddenValue('cert_location'),
-      '#disabled'      => $this->isOverridden('cert_location'),
+      '#disabled' => $this->isOverridden('cert_location'),
       '#states' => [
         'required' => [
           ['input[name="security[authnRequestsSigned]"' => ['checked' => TRUE]],
@@ -439,11 +472,11 @@ class SamlSpConfig extends ConfigFormBase {
     ];
 
     $form['key_location'] = [
-      '#type'   => 'textfield',
-      '#title'  => $this->t('Key Location'),
-      '#description'  => $this->t('The location of the X.509 key file on the server. This must be a location that PHP can read.'),
+      '#type' => 'textfield',
+      '#title' => $this->t('Key Location'),
+      '#description' => $this->t('The location of the X.509 key file on the server. This must be a location that PHP can read.'),
       '#default_value' => $this->overriddenValue('key_location'),
-      '#disabled'      => $this->isOverridden('key_location'),
+      '#disabled' => $this->isOverridden('key_location'),
       '#states' => [
         'required' => [
           ['input[name="security[authnRequestsSigned]"' => ['checked' => TRUE]],
@@ -456,11 +489,11 @@ class SamlSpConfig extends ConfigFormBase {
     ];
 
     $form['new_cert_location'] = [
-      '#type'   => 'textfield',
-      '#title'  => $this->t('New Certificate Location'),
-      '#description'  => $this->t('The location of the x.509 certificate file on the server. If the certificate above is about to expire add your new certificate here after you have obtained it. This will add the new certificate to the metadata to let the IdP know of the new certificate. This must be a location that PHP can read.'),
+      '#type' => 'textfield',
+      '#title' => $this->t('New Certificate Location'),
+      '#description' => $this->t('The location of the x.509 certificate file on the server. If the certificate above is about to expire add your new certificate here after you have obtained it. This will add the new certificate to the metadata to let the IdP know of the new certificate. This must be a location that PHP can read.'),
       '#default_value' => $this->overriddenValue('new_cert_location'),
-      '#disabled'      => $this->isOverridden('new_cert_location'),
+      '#disabled' => $this->isOverridden('new_cert_location'),
       '#suffix' => $this->certInfo($this->overriddenValue('new_cert_location')),
     ];
 
@@ -473,11 +506,11 @@ class SamlSpConfig extends ConfigFormBase {
     ];
 
     $form['metadata'] = [
-      '#type'         => 'fieldset',
-      '#collapsed'    => TRUE,
-      '#collapsible'  => TRUE,
-      '#title'        => $this->t('Metadata'),
-      '#description'  => $this->t('This is the Federation Metadata for this SP, please provide this to the IdP to create a Relying Party Trust (RPT)'),
+      '#type' => 'fieldset',
+      '#collapsed' => TRUE,
+      '#collapsible' => TRUE,
+      '#title' => $this->t('Metadata'),
+      '#description' => $this->t('This is the Federation Metadata for this SP, please provide this to the IdP to create a Relying Party Trust (RPT)'),
     ];
 
     $error = FALSE;
@@ -489,9 +522,8 @@ class SamlSpConfig extends ConfigFormBase {
         }
         $metadata = $metadata[0];
       }
-    }
-    catch (\Exception $e) {
-      \Drupal::messenger()->addMessage($this->t('Attempt to create metadata failed: %message.', [
+    } catch (\Exception $e) {
+      $this->messenger->addMessage($this->t('Attempt to create metadata failed: %message.', [
         '%message' => $e->getMessage(),
       ]), MessengerInterface::TYPE_ERROR);
       $metadata = '';
@@ -502,24 +534,24 @@ class SamlSpConfig extends ConfigFormBase {
 
     if ($metadata) {
       $form['metadata']['data'] = [
-        '#type'           => 'textarea',
-        '#title'          => $this->t('XML Metadata'),
-        '#description'    => $this->t(
+        '#type' => 'textarea',
+        '#title' => $this->t('XML Metadata'),
+        '#description' => $this->t(
           'This metadata can also be accessed <a href="@url" target="_blank">here</a>',
           [
             '@url' => Url::fromRoute('saml_sp.metadata')->toString(),
           ]),
-        '#disabled'       => TRUE,
-        '#rows'           => 20,
-        '#default_value'  => trim($metadata),
+        '#disabled' => TRUE,
+        '#rows' => 20,
+        '#default_value' => trim($metadata),
       ];
     }
 
     $form['debug'] = [
-      '#type'           => 'checkbox',
-      '#title'          => $this->t('Turn on debugging'),
-      '#description'    => $this->t('Some debugging messages will be shown.'),
-      '#default_value'  => $this->overriddenValue('debug'),
+      '#type' => 'checkbox',
+      '#title' => $this->t('Turn on debugging'),
+      '#description' => $this->t('Some debugging messages will be shown.'),
+      '#default_value' => $this->overriddenValue('debug'),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -542,13 +574,13 @@ class SamlSpConfig extends ConfigFormBase {
       if (!empty($cert['issuer'])) {
         foreach ($cert['issuer'] as $key => &$value) {
           if (is_array($value)) {
-            $value = implode("/", $value);
+            $value = implode('/', $value);
           }
         }
       }
 
       if ($cert) {
-        $info = t('Name: %cert-name<br/>Issued by: %issuer<br/>Valid: %valid-from - %valid-to', [
+        $info = $this->t('Name: %cert-name<br/>Issued by: %issuer<br/>Valid: %valid-from - %valid-to', [
           '%cert-name' => $cert['name'] ?? '',
           '%issuer' => isset($cert['issuer']) && is_array($cert['issuer']) ? implode('/', $cert['issuer']) : '',
           '%valid-from' => isset($cert['validFrom_time_t']) ? date('c', $cert['validFrom_time_t']) : '',

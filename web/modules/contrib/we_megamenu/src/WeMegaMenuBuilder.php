@@ -8,6 +8,7 @@ use Drupal;
 use Drupal\Core\Menu\MenuTreeParameters;
 
 class WeMegaMenuBuilder {
+
   /**
    * Get menu tree we_megamenu.
    *
@@ -24,13 +25,17 @@ class WeMegaMenuBuilder {
   public static function getMenuTree($menu_name, $backend = TRUE, $items = [], $level = 0) {
     $result = [];
     if ($level == 0) {
-      $menu_active_trail = Drupal::service('menu.active_trail')->getActiveTrailIds($menu_name);
+      $menu_active_trail = \Drupal::service('menu.active_trail')->getActiveTrailIds($menu_name);
       $menu_tree_parameters = (new MenuTreeParameters)->setActiveTrail($menu_active_trail)->onlyEnabledLinks();
       $menu_tree = \Drupal::menuTree();
       $tree = $menu_tree->load($menu_name, $menu_tree_parameters);
       $manipulators = [
         ['callable' => 'menu.default_tree_manipulators:checkAccess'],
       ];
+
+      // Invoke hook_megamenu_manipulators_alter().
+      // Allow modules and themes to alter the menu link tree manipulators.
+      \Drupal::moduleHandler()->alter('megamenu_manipulators', $manipulators, $menu_name);
       $tree = $menu_tree->transform($tree, $manipulators);
 
       foreach ($tree as $item) {
@@ -255,7 +260,7 @@ class WeMegaMenuBuilder {
         $html .= '<div class="type-of-block">';
         $html .= '<div class="block-inner">';
         $html .= $title_enable ? '<h2>' . $title . '</h2>' : '';
-        $html .= render($block_content);
+        $html .= \Drupal::service('renderer')->render($block_content);
         $html .= '</div>';
         $html .= '</div>';
       }
@@ -303,6 +308,7 @@ class WeMegaMenuBuilder {
       $query = Drupal::database()->select('we_megamenu', 'km');
       $query->addField('km', 'data_config');
       $query->condition('km.menu_name', $menu_name);
+      $query->condition('km.theme', $theme);
       $query->range(0, 1);
       $result = $query->execute()->fetchField();
       return json_decode($result);
@@ -324,15 +330,17 @@ class WeMegaMenuBuilder {
    *   Public static function saveConfig string.
    */
   public static function saveConfig($menu_name, $theme, $data_config) {
-    $result = Drupal::service('database')
+    $result = \Drupal::service('database')
       ->merge('we_megamenu')
       ->key([
         'menu_name' => $menu_name,
-        'theme' => $theme
+        'theme' => $theme,
       ])
       ->fields([
         'data_config' => $data_config,
-      ])->execute();
+      ])
+      ->execute();
+
     return $data_config;
   }
 
@@ -492,7 +500,7 @@ class WeMegaMenuBuilder {
                 }
               }
 
-              if (!count($positions)) {
+              if (empty($positions)) {
                 continue;
               }
 
@@ -531,174 +539,6 @@ class WeMegaMenuBuilder {
           }
         }
       }
-    }
-  }
-
-  /**
-   * Drag-Drop menu item insert.
-   *
-   * @param string $menu_name
-   *   Public static function menuItemInsert menu_name.
-   * @param object $menu_config
-   *   Public static function menuItemInsert menu_config.
-   * @param object $child_item
-   *   Public static function menuItemInsert child_item.
-   * @param string $theme_name
-   *   Public static function menuItemInsert theme_name.
-   */
-  public static function dragDropMenuItems($menu_name, $menu_config, $child_item, $theme_name = '') {
-    $list_menu_items = WeMegaMenuBuilder::getMenuItems($menu_name);
-    if (isset($child_item['col_content']) && isset($child_item['col_cfg']) && isset($menu_config->menu_config)) {
-      $tmp_col_content = $child_item['col_content'];
-      $tmp_col_cfg = $child_item['col_cfg'];
-      $menu_items = $menu_config->menu_config;
-      foreach ($list_menu_items as $uuid => $childs) {
-        $uuid = ($uuid == 'standard.front_page') ? base_path() : $uuid;
-        foreach ($menu_items as $key_menu => $menu_item) {
-          if (isset($menu_item->rows_content)) {
-            $rows_content = $menu_item->rows_content;
-            if (count($rows_content)) {
-              foreach ($rows_content as $key_rows => $rows) {
-                if ($key_menu == $uuid) {
-                  if (is_array($rows)) {
-                    $list_mega_items = [];
-                    $row_count = 0;
-                    $col_count = 0;
-                    foreach ($rows as $key_row_col => $row) {
-                      if (isset($row->col_content)) {
-                        $cols = $row->col_content;
-                        if (is_array($cols)) {
-                          foreach ($cols as $key_col => $col) {
-                            if (isset($col->mlid)) {
-                              $row_count = $key_rows;
-                              $col_count = $key_row_col;
-
-                              if (!in_array($col->mlid, $childs)) {
-                                unset($menu_config->menu_config->{$key_menu}->rows_content[$key_rows][$key_row_col]->col_content[$key_col]);
-                                if (!count($menu_config->menu_config->{$key_menu}->rows_content[$key_rows][$key_row_col]->col_content)) {
-                                  unset($menu_config->menu_config->{$key_menu}->rows_content[$key_rows][$key_row_col]);
-                                  if (!count($menu_config->menu_config->{$key_menu}->rows_content[$key_rows])) {
-                                    unset($menu_config->menu_config->{$key_menu}->rows_content[$key_rows]);
-                                  }
-                                }
-                              } else {
-                                $list_mega_items[] = $col->mlid;
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-
-                    foreach ($childs as $key_child => $child_uuid) {
-                      $child_uuid = ($child_uuid == 'standard.front_page') ? base_path() : $child_uuid;
-                      if (!in_array($child_uuid, $list_mega_items)) {
-                        $tmp_col_content->mlid = $child_uuid;
-                        $list_mega_items[] = $child_uuid;
-                        if (is_object($menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_content)) {
-                          $tmp = clone $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count];
-                          unset($menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]);
-                          $menu_config->menu_config->{$key_menu}->rows_content[$row_count + 1][$col_count] = $tmp;
-                        }
-                        $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_content[] = $tmp_col_content;
-                        $items_validate_serialize = array_map('serialize', $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_content);
-                        $items_validate_unique = array_unique($items_validate_serialize);
-                        $items_validate = array_map('unserialize', $items_validate_unique);
-                        $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_content = $items_validate;
-                        if (!isset($menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_config)) {
-                          $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_config = $tmp_col_cfg;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            } else {
-              if ($key_menu == $uuid) {
-                foreach ($childs as $key_child => $child_uuid) {
-                  $tmp_col_content->mlid = $child_uuid;
-                  $menu_config->menu_config->{$key_menu}->rows_content[0][0]->col_content[] = $tmp_col_content;
-                  $items_validate_serialize = array_map("serialize", $menu_config->menu_config->{$key_menu}->rows_content[0][0]->col_content);
-                  $items_validate_unique = array_unique($items_validate_serialize);
-                  $items_validate = array_map("unserialize", $items_validate_unique);
-                  $menu_config->menu_config->{$key_menu}->rows_content[0][0]->col_content = $items_validate;
-                  if (!isset($menu_config->menu_config->{$key_menu}->rows_content[0][0]->col_config)) {
-                    $menu_config->menu_config->{$key_menu}->rows_content[0][0]->col_config = $tmp_col_cfg;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      // Remove duplicate items
-      foreach ($menu_items as $key_menu => $menu_item) {
-        if (isset($menu_item->rows_content)) {
-          $rows_content = $menu_item->rows_content;
-          if (count($rows_content)) {
-            foreach ($rows_content as $key_rows => $rows) {
-              if (is_array($rows)) {
-                $list_mega_items = [];
-                $row_count = 0;
-                $col_count = 0;
-                $flag = [];
-                foreach ($rows as $key_row_col => $row) {
-                  if (isset($row->col_content)) {
-                    $cols = $row->col_content;
-                    if (is_array($cols)) {
-                      foreach ($cols as $key_col => $col) {
-                        if (isset($col->mlid)) {
-                          $row_count = $key_rows;
-                          $col_count = $key_row_col;
-                          if (isset($flag[$col->mlid])) {
-                            $flag[$col->mlid] ++;
-                            if ($flag[$col->mlid] > 0) {
-                              if (isset($menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count])) {
-                                $col_items_content = $menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count];
-                                if (isset($col_items_content) && count($col_items_content->col_content)) {
-                                  foreach ($col_items_content->col_content as $key_col_content => $c_content) {
-                                    if (isset($c_content->mlid) && $c_content->mlid == $col->mlid) {
-                                      unset($menu_config->menu_config->{$key_menu}->rows_content[$row_count][$col_count]->col_content[$key_col_content]);
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          } else {
-                            $flag[$col->mlid] = 0;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  /**
-   * Reposition menu items based on what changed.
-   *
-   * @param string $menu_name
-   *   Public static function menuItemInsert menu_name.
-   * @param object $menu_config
-   *   Public static function menuItemInsert menu_config.
-   * @param object $child_item
-   *   Public static function menuItemInsert child_item.
-   * @param string $theme_name
-   *   Public static function menuItemInsert theme_name.
-   */
-  public static function repositionMenuItems($menu_name, $menu_config, $child_item, $theme_name = '') {
-    $list_menu_items = WeMegaMenuBuilder::getMenuItems($menu_name);
-
-    
-    \Drupal::logger('megamenu')->warning(print_r(json_encode($list_menu_items), TRUE));
-    foreach ($list_menu_items as $uuid => $childs) {
     }
   }
 
@@ -770,11 +610,11 @@ class WeMegaMenuBuilder {
 
   public static function getMegamenuSubIds($item) {
     $ids = [];
-    foreach($item['rows_content'] as $i => $cols) {
-      foreach($cols as $j => $col) {
+    foreach ($item['rows_content'] as $i => $cols) {
+      foreach ($cols as $j => $col) {
         $col_content = isset($col['col_content']) ? $col['col_content'] : [];
-        foreach($col_content as $k => $sub_item) {
-          if($sub_item['type'] == 'we-mega-menu-li') {
+        foreach ($col_content as $k => $sub_item) {
+          if ($sub_item && $sub_item['type'] == 'we-mega-menu-li') {
             $ids[] = $sub_item['mlid'];
           }
         }
@@ -892,15 +732,16 @@ class WeMegaMenuBuilder {
       $jj = -1;
       $i = -1;
       $j = -1;
-      foreach($megamenu_item['rows_content'] as $i => $row) {
-        foreach($row as $j => $col) {
+
+      foreach ($megamenu_item['rows_content'] as $i => $row) {
+        foreach ($row as $j => $col) {
           $col_content = isset($col['col_content']) ? $col['col_content'] : [];
-          foreach($col_content as $k => $sub_item) {
-            if($sub_item['type'] == 'we-mega-menu-li') {
+          foreach ($col_content as $k => $sub_item) {
+            if (isset($sub_item['type']) && $sub_item['type'] == 'we-mega-menu-li') {
               $ii = $i;
               $jj = $j;
 
-              if($pos_item < $menu_sub_count) {
+              if ($pos_item < $menu_sub_count) {
                 $menu_item = $item['subtree'][$pos_item];
                 $megamenu_mlid = $sub_item['mlid'];
                 $menu_id = $menu_item['derivativeId'];

@@ -2,14 +2,14 @@
 
 namespace Drupal\geocoder_address;
 
-use Drupal\Core\DependencyInjection\ServiceProviderBase;
+use CommerceGuys\Addressing\Address as AddressingAddress;
 use CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface;
 use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
-use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
-use Drupal\address\Element\Address as ElementAddress;
-use CommerceGuys\Addressing\Address as AddressingAddress;
 use CommerceGuys\Addressing\Formatter\DefaultFormatter;
 use CommerceGuys\Addressing\Formatter\PostalLabelFormatter;
+use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
+use Drupal\address\Element\Address as ElementAddress;
+use Drupal\Core\DependencyInjection\ServiceProviderBase;
 
 /**
  * Generate an AddressService.
@@ -151,11 +151,12 @@ class AddressService extends ServiceProviderBase {
     $address_string = strip_tags($address_string);
 
     // In case of a country-only address, use the full country name.
-    if (empty($address_string) && !empty($countrycode)) {
+    if (strlen($address_string) === 0 && strlen($countrycode) !== 0) {
       $address_string = $this->countryRepository->get($countrycode)->getName();
-    } elseif (isset($countrycode)) {
+    }
+    elseif (strlen($countrycode) !== 0) {
       // Otherwise add Country code suffix, if defined.
-      $address_string .= !empty($countrycode) ? ' ' . $countrycode : '';
+      $address_string .= ' ' . $countrycode;
     }
 
     return $address_string;

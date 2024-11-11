@@ -100,7 +100,7 @@ class ModerationInformation implements ModerationInformationInterface {
    * {@inheritdoc}
    */
   public function selectRevisionableEntities(array $entity_types) {
-    return array_filter($entity_types, function (EntityTypeInterface $type) use ($entity_types) {
+    return array_filter($entity_types, function (EntityTypeInterface $type) {
       return ($type instanceof ContentEntityTypeInterface)
       && $type->isRevisionable()
       && $type->getBundleEntityType();
@@ -148,8 +148,11 @@ class ModerationInformation implements ModerationInformationInterface {
    */
   public function getLatestRevision($entity_type_id, $entity_id) {
     if ($latest_revision_id = $this->getLatestRevisionId($entity_type_id, $entity_id)) {
-      return $this->entityTypeManager->getStorage($entity_type_id)->loadRevision($latest_revision_id);
+      /** @var \Drupal\Core\Entity\RevisionableStorageInterface $entityStorage */
+      $entityStorage = $this->entityTypeManager->getStorage($entity_type_id);
+      return $entityStorage->loadRevision($latest_revision_id);
     }
+    return NULL;
   }
 
   /**
@@ -169,6 +172,7 @@ class ModerationInformation implements ModerationInformationInterface {
         return $revision_id;
       }
     }
+    return NULL;
   }
 
   /**
@@ -187,6 +191,7 @@ class ModerationInformation implements ModerationInformationInterface {
         return $revision_id;
       }
     }
+    return NULL;
   }
 
   /**

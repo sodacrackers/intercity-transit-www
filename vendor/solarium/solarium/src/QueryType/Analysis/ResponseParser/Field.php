@@ -39,7 +39,7 @@ class Field extends ResponseParserAbstract implements ResponseParserInterface
             $items = $this->parseAnalysis($result, $data['analysis']);
         }
 
-        return ['items' => $items];
+        return $this->addHeaderInfo($data, ['items' => $items]);
     }
 
     /**

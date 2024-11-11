@@ -16,6 +16,7 @@ namespace League\Csv;
 use DOMDocument;
 use DOMElement;
 use DOMException;
+
 use function preg_match;
 
 /**
@@ -37,8 +38,9 @@ class HTMLConverter
     /**
      * DEPRECATION WARNING! This method will be removed in the next major point release.
      *
-     * @deprecated since version 9.7.0
+     * @throws DOMException
      * @see HTMLConverterTest::create()
+     * @deprecated since version 9.7.0
      */
     public function __construct()
     {
@@ -84,6 +86,8 @@ class HTMLConverter
 
     /**
      * Creates a DOMElement representing an HTML table heading section.
+     *
+     * @throws DOMException
      */
     protected function appendHeaderSection(string $node_name, array $record, DOMElement $table): void
     {
@@ -124,9 +128,8 @@ class HTMLConverter
      */
     public function table(string $class_name, string $id_value = ''): self
     {
-        if (1 === preg_match(",\s,", $id_value)) {
-            throw new DOMException("The id attribute's value must not contain whitespace (spaces, tabs etc.)");
-        }
+        1 !== preg_match(",\s,", $id_value) || throw new DOMException("The id attribute's value must not contain whitespace (spaces, tabs etc.)");
+
         $clone = clone $this;
         $clone->class_name = $class_name;
         $clone->id_value = $id_value;

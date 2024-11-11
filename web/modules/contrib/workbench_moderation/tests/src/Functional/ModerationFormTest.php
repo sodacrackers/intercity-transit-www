@@ -39,7 +39,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     $this->submitForm([
       'title[0][value]' => 'Some moderated content',
       'body[0][value]' => 'First version of the content.',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
 
     $node = $this->drupalGetNodeByTitle('Some moderated content');
     $canonical_path = sprintf('node/%d', $node->id());
@@ -63,7 +63,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     // Update the draft.
     $this->submitForm([
       'body[0][value]' => 'Second version of the content.',
-    ], t('Save and Request Review'));
+    ], 'Save and Request Review');
 
     // The canonical view should have a moderation form, because it is not the
     // live revision.
@@ -80,7 +80,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     // Publish the draft.
     $this->submitForm([
       'body[0][value]' => 'Third version of the content.',
-    ], t('Save and Publish'));
+    ], 'Save and Publish');
 
     // The published view should not have a moderation form, because it is the
     // live revision.
@@ -97,7 +97,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     // Make a forward revision.
     $this->submitForm([
       'body[0][value]' => 'Fourth version of the content.',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
 
     // The published view should not have a moderation form, because it is the
     // live revision.
@@ -116,7 +116,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     // Submit the moderation form to change status to needs review.
     $this->submitForm([
       'new_state' => 'needs_review',
-    ], t('Apply'));
+    ], 'Apply');
 
     // The latest version page should show the moderation form and have "Needs
     // Review" status, because the forward revision is in "Needs Review".
@@ -142,7 +142,7 @@ class ModerationFormTest extends ModerationStateTestBase {
     $this->drupalGet(sprintf('node/%d/latest', $node->id()));
     $this->submitForm([
       'new_state' => 'needs_review',
-    ], t('Apply'));
+    ], 'Apply');
 
     $this->drupalGet(sprintf('node/%d/revisions', $node->id()));
     $this->assertSession()->pageTextContains('by ' . $another_user->getAccountName());

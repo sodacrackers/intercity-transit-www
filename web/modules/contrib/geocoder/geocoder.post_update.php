@@ -7,8 +7,8 @@
 
 declare(strict_types = 1);
 
-use Drupal\geocoder\Entity\GeocoderProvider;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\geocoder\Entity\GeocoderProvider;
 
 /**
  * Convert simple provider configuration to provider entities.

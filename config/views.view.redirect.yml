@@ -545,9 +545,9 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: admin/config/search/redirect
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

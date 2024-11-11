@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class ModerationStateTransitionForm.
+ * Form for editing transitions.
  *
  * @package Drupal\workbench_moderation\Form
  */
@@ -44,7 +44,7 @@ class ModerationStateTransitionForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    /* @var \Drupal\workbench_moderation\ModerationStateTransitionInterface $moderation_state_transition */
+    /** @var \Drupal\workbench_moderation\ModerationStateTransitionInterface $moderation_state_transition */
     $moderation_state_transition = $this->entity;
     $form['label'] = [
       '#type' => 'textfield',
@@ -97,7 +97,7 @@ class ModerationStateTransitionForm extends EntityForm {
     // Make sure there's always at least a wide enough delta on weight to cover
     // the current value or the total number of transitions. That way we
     // never end up forcing a transition to change its weight needlessly.
-    $num_transitions = $this->entityTypeManager->getStorage('moderation_state_transition')->getQuery()->count()->execute();
+    $num_transitions = $this->entityTypeManager->getStorage('moderation_state_transition')->getQuery()->count()->accessCheck(FALSE)->execute();
     $delta = max(abs($moderation_state_transition->getWeight() ?? 0), $num_transitions);
 
     $form['weight'] = [
@@ -132,6 +132,7 @@ class ModerationStateTransitionForm extends EntityForm {
         ]));
     }
     $form_state->setRedirectUrl($moderation_state_transition->toUrl('collection'));
+    return $status;
   }
 
 }

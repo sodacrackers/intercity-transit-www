@@ -59,9 +59,9 @@ trait JsonFacetTrait
      * @param string $query
      * @param array  $bind  Bind values for placeholders in the query string
      *
-     * @return self Provides fluent interface
+     * @return \Solarium\Component\FacetSetInterface
      */
-    public function setDomainFilterQuery(string $query, array $bind = null): self
+    public function setDomainFilterQuery(string $query, array $bind = null): FacetSetInterface
     {
         if (null !== $bind) {
             $helper = new Helper();
@@ -70,18 +70,14 @@ trait JsonFacetTrait
 
         $filter = $this->getDomainFilter();
         if (!$filter || \is_string($filter)) {
-            $this->setOption('domain', ['filter' => $query]);
-
-            return $this;
+            return $this->setOption('domain', ['filter' => $query]);
         }
 
         foreach ($filter as &$paramOrQuery) {
             if (\is_string($paramOrQuery)) {
                 $paramOrQuery = $query;
 
-                $this->setOption('domain', ['filter' => $filter]);
-
-                return $this;
+                return $this->setOption('domain', ['filter' => $filter]);
             }
         }
         unset($paramOrQuery);
@@ -89,9 +85,7 @@ trait JsonFacetTrait
         /* @noinspection UnsupportedStringOffsetOperationsInspection */
         $filter[] = $query;
 
-        $this->setOption('domain', ['filter' => $filter]);
-
-        return $this;
+        return $this->setOption('domain', ['filter' => $filter]);
     }
 
     /**
@@ -101,19 +95,15 @@ trait JsonFacetTrait
      *
      * @return self Provides fluent interface
      */
-    public function addDomainFilterParameter(string $param): self
+    public function addDomainFilterParameter(string $param): FacetSetInterface
     {
         $filter = $this->getDomainFilter();
         if (!$filter) {
-            $this->setOption('domain', ['filter' => ['param' => $param]]);
-
-            return $this;
+            return $this->setOption('domain', ['filter' => ['param' => $param]]);
         }
 
         if (\is_string($filter) || 1 === \count($filter)) {
-            $this->setOption('domain', ['filter' => [$filter, ['param' => $param]]]);
-
-            return $this;
+            return $this->setOption('domain', ['filter' => [$filter, ['param' => $param]]]);
         }
 
         foreach ($filter as &$paramOrQuery) {
@@ -126,9 +116,7 @@ trait JsonFacetTrait
         /* @noinspection UnsupportedStringOffsetOperationsInspection */
         $filter[] = ['param' => $param];
 
-        $this->setOption('domain', ['filter' => $filter]);
-
-        return $this;
+        return $this->setOption('domain', ['filter' => $filter]);
     }
 
     /**
@@ -167,7 +155,7 @@ trait JsonFacetTrait
      *
      * @return self Provides fluent interface
      */
-    public function addFacet($facet): self
+    public function addFacet($facet): FacetSetInterface
     {
         if ($facet instanceof JsonFacetInterface) {
             $this->facetSetAddFacet($facet);
@@ -188,7 +176,7 @@ trait JsonFacetTrait
      *
      * @return self Provides fluent interface
      */
-    public function removeFacet($facet): self
+    public function removeFacet($facet): FacetSetInterface
     {
         $this->facetSetRemoveFacet($facet);
         $this->serialize();
@@ -201,7 +189,7 @@ trait JsonFacetTrait
      *
      * @return self Provides fluent interface
      */
-    public function clearFacets(): self
+    public function clearFacets(): FacetSetInterface
     {
         $this->facetSetClearFacets();
         $this->serialize();

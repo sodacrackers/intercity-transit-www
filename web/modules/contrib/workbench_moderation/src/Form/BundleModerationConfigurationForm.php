@@ -3,7 +3,6 @@
 namespace Drupal\workbench_moderation\Form;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
-use Drupal\Core\Config\Entity\ConfigEntityTypeInterface;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -51,7 +50,7 @@ class BundleModerationConfigurationForm extends EntityForm {
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state) {
-    /* @var ConfigEntityTypeInterface $bundle */
+    /** @var ConfigEntityTypeInterface $bundle */
     $bundle = $form_state->getFormObject()->getEntity();
     $form['enable_moderation_state'] = [
       '#type' => 'checkbox',
@@ -183,7 +182,7 @@ class BundleModerationConfigurationForm extends EntityForm {
     // If moderation is enabled, revisions MUST be enabled as well.
     // Otherwise we can't have forward revisions.
     if ($form_state->getValue('enable_moderation_state')) {
-      /* @var $bundle ConfigEntityTypeInterface */
+      /** @var ConfigEntityTypeInterface $bundle */
       $bundle = $form_state->getFormObject()->getEntity();
 
       $this->entityTypeManager->getHandler($bundle->getEntityType()->getBundleOf(), 'moderation')->onBundleModerationConfigurationFormSubmit($bundle);

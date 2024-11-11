@@ -4,11 +4,11 @@ namespace Drupal\workbench_moderation\ParamConverter;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\ParamConverter\EntityConverter;
 use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\workbench_moderation\ModerationInformationInterface;
 use Symfony\Component\Routing\Route;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Defines a class for making sure the edit-route loads the current draft.
@@ -80,6 +80,7 @@ class EntityRevisionConverter extends EntityConverter {
       $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
       return $operation == 'edit' && $entity_type && $entity_type->isRevisionable();
     }
+    return FALSE;
   }
 
   /**

@@ -3359,7 +3359,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-           - '159'
+            - '159'
           group: 1
           exposed: false
           expose:
@@ -6021,7 +6021,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-           - '329'
+            - '329'
           group: 1
           exposed: false
           expose:
@@ -8748,7 +8748,7 @@ display:
           plugin_id: taxonomy_index_tid_depth
           operator: or
           value:
-            - 160
+            - '160'
           group: 1
           exposed: false
           expose:

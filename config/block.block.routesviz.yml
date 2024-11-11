@@ -11,9 +11,6 @@ dependencies:
     - user
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: routesviz
 theme: transit
 region: content

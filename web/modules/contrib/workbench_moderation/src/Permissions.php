@@ -22,9 +22,9 @@ class Permissions {
   public function transitionPermissions() {
     // @todo write a test for this.
     $perms = [];
-    /* @var \Drupal\workbench_moderation\ModerationStateInterface[] $states */
+    /** @var \Drupal\workbench_moderation\ModerationStateInterface[] $states */
     $states = ModerationState::loadMultiple();
-    /* @var \Drupal\workbench_moderation\ModerationStateTransitionInterface $transition */
+    /** @var \Drupal\workbench_moderation\ModerationStateTransitionInterface $transition */
     foreach (ModerationStateTransition::loadMultiple() as $id => $transition) {
       $perms['use ' . $id . ' transition'] = [
         'title' => $this->t('Use the %transition_name transition', [

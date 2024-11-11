@@ -2,19 +2,27 @@
 
 namespace Drupal\we_megamenu\Controller;
 
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\we_megamenu\WeMegaMenuBuilder;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\State\State;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\system\Entity\Menu;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Controller routines for block example routes.
  */
 class WeMegaMenuAdminController extends ControllerBase {
-    /**
+
+  /**
    * The config factory.
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
@@ -22,23 +30,73 @@ class WeMegaMenuAdminController extends ControllerBase {
   protected $configFactory;
 
   /**
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface
-   *   The module handler.
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The Request Stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The state store.
+   *
+   * @var Drupal\Core\State\State
+   */
+  protected $state;
+
+  /**
+   * Drupal\Core\Render\RendererInterface definition.
+   *
+   * @var Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
+   * The database connection.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  protected $database;
 
   /**
    * Constructs the WeMegaMenuAdminController.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
-   * 
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+   *   Request Stack.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
+   * @param \Drupal\Core\State\State $state
+   *   The state manager.
+   * @param Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer.
+   * @param \Drupal\Core\Database\Connection $database
+   *   The database connection.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, ModuleHandlerInterface $module_handler) {
+  public function __construct(ConfigFactoryInterface $config_factory, ModuleHandlerInterface $module_handler, RequestStack $requestStack, EntityTypeManagerInterface $entityTypeManager, State $state, RendererInterface $renderer, Connection $database) {
     $this->configFactory = $config_factory;
     $this->moduleHandler = $module_handler;
+    $this->requestStack = $requestStack;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->state = $state;
+    $this->renderer = $renderer;
+    $this->database = $database;
   }
 
   /**
@@ -47,8 +105,37 @@ class WeMegaMenuAdminController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('module_handler')
+      $container->get('module_handler'),
+      $container->get('request_stack'),
+      $container->get('entity_type.manager'),
+      $container->get('state'),
+      $container->get('renderer'),
+      $container->get('database')
     );
+  }
+
+  /**
+   * A method to clear cache based on menu tags.
+   *
+   * @param string $menu_name
+   *   The name of the menu.
+   */
+  public function invalidateMenusCache($menu_name) {
+    Cache::invalidateTags(['config:system.menu.' . $menu_name]);
+  }
+
+  /**
+   * Returns the page title for megamenu config page.
+   *
+   * @param string $menu_name
+   *   The name of menu.
+   *
+   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+   *   The title of matching config page.
+   */
+  public function getConfigPageTitle($menu_name) {
+    $menu = Menu::load($menu_name);
+    return $this->t('Mega Menu: @menu', ['@menu' => $menu->label()]);
   }
 
   /**
@@ -61,8 +148,7 @@ class WeMegaMenuAdminController extends ControllerBase {
    *   Public function configWeMegaMenu string.
    */
   public function configWeMegaMenu($menu_name) {
-    // $tree = WeMegaMenuBuilder::getMenuTreeOrder($menu_name);
-
+    // $tree = WeMegaMenuBuilder::getMenuTreeOrder($menu_name).
     $build = [];
     $build['we_megamenu'] = [
       '#theme' => 'we_megamenu_backend',
@@ -73,9 +159,21 @@ class WeMegaMenuAdminController extends ControllerBase {
     ];
 
     $build['we_megamenu']['#attached']['library'][] = 'we_megamenu/form.we-mega-menu-backend';
-    $abs_url_save_config = Url::fromRoute('we_megamenu.admin.save', [], ['absolute' => TRUE])->toString();
-    $abs_url_reset_config = Url::fromRoute('we_megamenu.admin.reset', [], ['absolute' => TRUE])->toString();
-    $abs_url_icons_config = Url::fromRoute('we_megamenu.geticons', [], ['absolute' => TRUE])->toString();
+
+    // Check if using HTTPS for paths.
+    $opts = ['absolute' => TRUE];
+    if (
+      (isset($_SERVER['HTTP_REFERER']) && str_contains($_SERVER['HTTP_REFERER'], 'https://')) ||
+      (
+        (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ||
+        (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+      )) {
+      $opts['https'] = TRUE;
+    }
+    $abs_url_save_config = Url::fromRoute('we_megamenu.admin.save', [], $opts)->toString();
+    $abs_url_reset_config = Url::fromRoute('we_megamenu.admin.reset', [], $opts)->toString();
+    $abs_url_icons_config = Url::fromRoute('we_megamenu.geticons', [], $opts)->toString();
+
     $build['#attached']['drupalSettings']['WeMegaMenu']['saveConfigWeMegaMenuURL'] = $abs_url_save_config;
     $build['#attached']['drupalSettings']['WeMegaMenu']['resetConfigWeMegaMenuURL'] = $abs_url_reset_config;
     $build['#attached']['drupalSettings']['WeMegaMenu']['iconsWeMegaMenuURL'] = $abs_url_icons_config;
@@ -86,12 +184,13 @@ class WeMegaMenuAdminController extends ControllerBase {
    * A function ajax save menu config.
    */
   public function saveConfigWeMegaMenu() {
-    if (isset($_POST['action']) && $_POST['action'] == 'save') {
-      $data_config = $_POST['data_config'];
-      $theme = $_POST['theme'];
-      $menu_name = $_POST['menu_name'];
+    $action = $this->requestStack->getCurrentRequest()->request->get('action');
+    if (isset($action) && $action == 'save') {
+      $data_config = $this->requestStack->getCurrentRequest()->request->get('data_config');
+      $theme = $this->requestStack->getCurrentRequest()->request->get('theme');
+      $menu_name = Xss::filter($this->requestStack->getCurrentRequest()->request->get('menu_name'));
       WeMegaMenuBuilder::saveConfig($menu_name, $theme, $data_config);
-      we_megamenu_flush_render_cache();
+      $this->invalidateMenusCache($menu_name);
     }
     exit;
   }
@@ -100,24 +199,27 @@ class WeMegaMenuAdminController extends ControllerBase {
    * A function reset menu config.
    */
   public function resetConfigWeMegaMenu() {
-    if (isset($_POST['action']) && $_POST['action'] == 'reset' && isset($_POST['menu_name']) && isset($_POST['theme'])) {
-      $theme_array = WeMegaMenuBuilder::renderWeMegaMenuBlock($_POST['menu_name'], $_POST['theme']);
-      $markup = render($theme_array);
+    $action = $this->requestStack->getCurrentRequest()->request->get('action');
+    $menu_name = $this->requestStack->getCurrentRequest()->request->get('menu_name');
+    $theme = $this->requestStack->getCurrentRequest()->request->get('theme');
+    if (isset($action) && $action == 'reset' && isset($menu_name) && isset($theme)) {
+      $theme_array = WeMegaMenuBuilder::renderWeMegaMenuBlock($menu_name, $theme);
+      $markup = $this->renderer->render($theme_array);
       echo $markup;
-      we_megamenu_flush_render_cache();
+      $this->invalidateMenusCache(Xss::filter($menu_name));
       exit;
     }
 
-    if (isset($_POST['action']) && $_POST['action'] == 'reset-to-default' && isset($_POST['menu_name']) && isset($_POST['theme'])) {
-      $query = \Drupal::database()->delete('we_megamenu');
-      $query->condition('menu_name', $_POST['menu_name']);
-      $query->condition('theme', $_POST['theme']);
-      $result = $query->execute();
-      WeMegaMenuBuilder::initMegamenu($_POST['menu_name'], $_POST['theme']);
-      $theme_array = WeMegaMenuBuilder::renderWeMegaMenuBlock($_POST['menu_name'], $_POST['theme']);
-      $markup = render($theme_array);
+    if (isset($action) && $action == 'reset-to-default' && isset($menu_name) && isset($theme)) {
+      $query = $this->database->delete('we_megamenu');
+      $query->condition('menu_name', $menu_name);
+      $query->condition('theme', $theme);
+      $query->execute();
+      WeMegaMenuBuilder::initMegamenu($menu_name, $theme);
+      $theme_array = WeMegaMenuBuilder::renderWeMegaMenuBlock($menu_name, $theme);
+      $markup = $this->renderer->render($theme_array);
       echo $markup;
-      we_megamenu_flush_render_cache();
+      $this->invalidateMenusCache(Xss::filter($menu_name));
       exit;
     }
     exit;
@@ -127,9 +229,11 @@ class WeMegaMenuAdminController extends ControllerBase {
    * A function set style backend.
    */
   public function styleOfBackendWeMegaMenu() {
-    if (isset($_POST['type'])) {
-      \Drupal::state()->set('we_megamenu_backend_style', $_POST['type']);
-      we_megamenu_flush_render_cache();
+    $type = $this->requestStack->getCurrentRequest()->request->get('type');
+    $menu_name = $this->requestStack->getCurrentRequest()->request->get('menu_name');
+    if (isset($type)) {
+      $this->state->set('we_megamenu_backend_style', $type);
+      $this->invalidateMenusCache(Xss::filter($menu_name));
     }
     exit;
   }
@@ -138,14 +242,18 @@ class WeMegaMenuAdminController extends ControllerBase {
    * Render block from post variable ajax.
    */
   public function renderBlock() {
+    $bid = $this->requestStack->getCurrentRequest()->request->get('bid');
+    $section = $this->requestStack->getCurrentRequest()->request->get('section');
+    $postTitle = $this->requestStack->getCurrentRequest()->request->get('title');
     $title = TRUE;
-    if ($_POST['title'] == 0) {
+    if ($postTitle == 0) {
       $title = FALSE;
     }
 
-    if (isset($_POST['bid']) && isset($_POST['section']) && !empty($_POST['bid'])) {
-      echo WeMegaMenuBuilder::renderBlock($_POST['bid'], $title, isset($_POST['section']));
-    } else {
+    if (isset($bid) && isset($section) && !empty($bid)) {
+      echo WeMegaMenuBuilder::renderBlock($bid, $title, isset($section));
+    }
+    else {
       echo '';
     }
     exit;
@@ -155,23 +263,23 @@ class WeMegaMenuAdminController extends ControllerBase {
    * Render page list menu backend.
    */
   public function listWeMegaMenus() {
-    $menus = menu_ui_get_menus();
+    $menus = $this->entityTypeManager->getStorage('menu')->loadMultiple();
     $rows = [];
-    foreach ($menus as $name => $title) {
+    foreach ($menus as $menu) {
       $row = [
-        'menu-name' => $name,
-        'menu-title' => $title,
+        'menu-name' => $menu->id(),
+        'menu-title' => $menu->label(),
       ];
 
       $dropbuttons = [
         '#type' => 'operations',
         '#links' => [
           'config' => [
-            'url' => new Url('we_megamenu.admin.configure', ['menu_name' => $name]),
+            'url' => new Url('we_megamenu.admin.configure', ['menu_name' => $menu->id()]),
             'title' => 'Config',
           ],
           'edit' => [
-            'url' => new Url('entity.menu.edit_form', ['menu' => $name]),
+            'url' => new Url('entity.menu.edit_form', ['menu' => $menu->id()]),
             'title' => 'Edit links',
           ],
         ],
@@ -180,16 +288,16 @@ class WeMegaMenuAdminController extends ControllerBase {
       $rows[] = $row;
     }
     $header = [
-      'menu-machine-name' => t('Machine Name'),
-      'menu-name' => t('Menu Name'),
-      'menu-options' => t('Options'),
+      'menu-machine-name' => $this->t('Machine Name'),
+      'menu-name' => $this->t('Menu Name'),
+      'menu-options' => $this->t('Options'),
     ];
 
     return [
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
-      '#empty' => t('No Drupal 8 Mega Menu block available. <a href="@link">Add Menu</a>.', ['@link' => Url::fromRoute('entity.menu.add_form')->toString()]),
+      '#empty' => $this->t('No Mega Menu block available. <a href="@link">Add Menu</a>.', ['@link' => Url::fromRoute('entity.menu.add_form')->toString()]),
       '#attributes' => ['id' => 'we_megamenu'],
     ];
   }
@@ -208,4 +316,5 @@ class WeMegaMenuAdminController extends ControllerBase {
     echo json_encode($result);
     exit;
   }
+
 }

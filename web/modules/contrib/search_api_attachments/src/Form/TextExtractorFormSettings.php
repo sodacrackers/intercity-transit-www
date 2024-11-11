@@ -50,7 +50,7 @@ class TextExtractorFormSettings extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-        $container->get('config.factory'), $container->get('plugin.manager.search_api_attachments.text_extractor'), $container->get('entity_type.manager')
+      $container->get('config.factory'), $container->get('plugin.manager.search_api_attachments.text_extractor'), $container->get('entity_type.manager')
     );
   }
 
@@ -122,6 +122,9 @@ class TextExtractorFormSettings extends ConfigFormBase {
     $extractor_plugin_id = $form_state->getValue('extraction_method');
     if ($extractor_plugin_id) {
       $configuration = $config->get($extractor_plugin_id . '_configuration');
+      if (is_null($configuration)) {
+        $configuration = [];
+      }
       $extractor_plugin = $this->getTextExtractorPluginManager()->createInstance($extractor_plugin_id, $configuration);
 
       // Validate the text_extractor_config part of the form only if it
@@ -142,6 +145,9 @@ class TextExtractorFormSettings extends ConfigFormBase {
     $extractor_plugin_id = $form_state->getValue('extraction_method');
     if ($extractor_plugin_id) {
       $configuration = $config->get($extractor_plugin_id . '_configuration');
+      if (is_null($configuration)) {
+        $configuration = [];
+      }
       $extractor_plugin = $this->getTextExtractorPluginManager()->createInstance($extractor_plugin_id, $configuration);
       $extractor_plugin->submitConfigurationForm($form, $form_state);
     }
@@ -247,6 +253,9 @@ class TextExtractorFormSettings extends ConfigFormBase {
     }
     else {
       $configuration = $config->get($extractor_plugin_id . '_configuration');
+      if (is_null($configuration)) {
+        $configuration = [];
+      }
       $extractor_plugin = $this->getTextExtractorPluginManager()->createInstance($extractor_plugin_id, $configuration);
       $form['text_extractor_config']['#title'] = $this->t('@extractor_plugin_label configuration', ['@extractor_plugin_label' => $this->getExtractionPluginInformations()['labels'][$extractor_plugin_id]]);
       $text_extractor_form = $extractor_plugin->buildConfigurationForm([], $form_state);
@@ -332,10 +341,12 @@ class TextExtractorFormSettings extends ConfigFormBase {
       $source .= '/data/search_api_attachments_test_extraction.pdf';
       copy($source, $filepath);
       // Create the file object.
-      $file = File::create([
-        'uri' => $filepath,
-        'uid' => $this->currentUser()->id(),
-      ]);
+        $file = File::create([
+          'uri'      => $filepath,
+          'uid'      => $this->currentUser()->id(),
+          'status'   => 0,
+          'filename' => 'search_api_attachments_test_extraction.pdf',
+        ]);
       $file->save();
     }
     else {

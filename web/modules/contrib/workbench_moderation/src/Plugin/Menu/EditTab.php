@@ -19,7 +19,7 @@ class EditTab extends LocalTaskDefault implements ContainerFactoryPluginInterfac
   use StringTranslationTrait;
 
   /**
-   * The moderatio information service.
+   * The moderation information service.
    *
    * @var \Drupal\workbench_moderation\ModerationInformation
    */

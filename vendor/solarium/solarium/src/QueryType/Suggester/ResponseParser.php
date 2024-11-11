@@ -48,10 +48,13 @@ class ResponseParser extends ResponseParserAbstract implements ResponseParserInt
             }
         }
 
-        return [
-            'results' => $dictionaries,
-            'all' => $allSuggestions,
-        ];
+        return $this->addHeaderInfo(
+            $data,
+            [
+                'results' => $dictionaries,
+                'all' => $allSuggestions,
+            ]
+        );
     }
 
     /**

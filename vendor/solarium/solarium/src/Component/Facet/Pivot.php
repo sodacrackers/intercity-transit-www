@@ -158,11 +158,9 @@ class Pivot extends AbstractFacet
      *
      * @return self Provides fluent interface
      */
-    public function setOverrequestCount(int $count): self
+    public function setOverrequestCount($count): self
     {
-        $this->setOption('overrequest.count', $count);
-
-        return $this;
+        return $this->setOption('overrequest.count', $count);
     }
 
     /**
@@ -182,11 +180,9 @@ class Pivot extends AbstractFacet
      *
      * @return self Provides fluent interface
      */
-    public function setOverrequestRatio(float $ratio): self
+    public function setOverrequestRatio($ratio): self
     {
-        $this->setOption('overrequest.ratio', $ratio);
-
-        return $this;
+        return $this->setOption('overrequest.ratio', $ratio);
     }
 
     /**
@@ -409,9 +405,6 @@ class Pivot extends AbstractFacet
 
     /**
      * Initialize options.
-     *
-     * {@internal Options that set a list of fields need additional setup work
-     *            because they can be an array or a comma separated string.}
      */
     protected function init()
     {

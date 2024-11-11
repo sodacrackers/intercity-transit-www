@@ -8,11 +8,40 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the configuration form.
  */
 class SamlSpDrupalLoginConfig extends ConfigFormBase {
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+
+  /**
+   * Constructor.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->configFactory = $config_factory;
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -128,7 +157,7 @@ class SamlSpDrupalLoginConfig extends ConfigFormBase {
       '#title'          => $this->t('Allow authenticated users without an account to request an account'),
       '#description'    => $this->t('If the <a href="@account_settings_url">account settings</a> specify that only Administrators can create new accounts (currently %require_admin), this overrides that setting and allows users who passed SAML authentication to request an account.', [
         '@account_settings_url' => $account_settings_url,
-        '%require_admin' => \Drupal::config('user.settings')->get('register') == UserInterface::REGISTER_ADMINISTRATORS_ONLY ? 'TRUE' : 'FALSE',
+        '%require_admin' => $this->configFactory->get('user.settings')->get('register') == UserInterface::REGISTER_ADMINISTRATORS_ONLY ? 'TRUE' : 'FALSE',
       ]),
       '#default_value'  => $config->get('account_request_request_account'),
     ];

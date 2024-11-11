@@ -50,6 +50,6 @@ class ResponseParser extends ResponseParserAbstract implements ResponseParserInt
             }
         }
 
-        return ['results' => $termResults];
+        return $this->addHeaderInfo($data, ['results' => $termResults]);
     }
 }

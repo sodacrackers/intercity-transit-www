@@ -92,7 +92,7 @@ class Schema extends DrushCommands {
       $this->schemaPoster->postSchema($server_id, $files);
     }
     catch (\Exception $e) {
-      $this->logger()->error((string) $e);
+      $this->logger->error((string) $e);
     }
   }
 
@@ -112,7 +112,7 @@ class Schema extends DrushCommands {
    */
   public function viewSchema(string $filename = 'schema.xml') {
     $currentSchema = $this->schemaPoster->viewSchema($filename);
-    $this->logger()->notice($currentSchema);
+    $this->logger->notice($currentSchema);
   }
 
 }

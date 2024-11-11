@@ -20,7 +20,7 @@ class LoggerWebTest extends BrowserTestBase {
    *
    * @var array
    */
-  public static $modules = ['ultimate_cron', 'ultimate_cron_logger_test'];
+  protected static $modules = ['ultimate_cron', 'ultimate_cron_logger_test'];
 
   /**
    * A user with permissions to administer and run cron jobs.

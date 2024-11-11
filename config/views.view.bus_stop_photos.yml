@@ -260,7 +260,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            322: 322
+            322: '322'
           group: 1
           exposed: false
           expose:
@@ -1028,7 +1028,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            322: 322
+            322: '322'
           group: 1
           exposed: false
           expose:

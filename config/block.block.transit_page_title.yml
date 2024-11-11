@@ -7,9 +7,6 @@ dependencies:
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 _core:
   default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
 id: transit_page_title

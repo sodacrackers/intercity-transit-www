@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\workbench_moderation\Unit;
 
-use Prophecy\PhpUnit\ProphecyTrait;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\Core\Access\AccessResultAllowed;
 use Drupal\Core\Access\AccessResultForbidden;
@@ -11,6 +10,7 @@ use Drupal\node\Entity\Node;
 use Drupal\Tests\UnitTestCase;
 use Drupal\workbench_moderation\Access\LatestRevisionCheck;
 use Drupal\workbench_moderation\ModerationInformation;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Route;
 class LatestRevisionCheckTest extends UnitTestCase {
 
   use ProphecyTrait;
+
   /**
    * Test the access check of the LatestRevisionCheck service.
    *
@@ -69,7 +70,7 @@ class LatestRevisionCheckTest extends UnitTestCase {
    * @return array
    *   Array with node access and block content access.
    */
-  public function accessSituationProvider() {
+  public static function accessSituationProvider() {
     return [
       [Node::class, 'node', TRUE, AccessResultAllowed::class],
       [Node::class, 'node', FALSE, AccessResultForbidden::class],

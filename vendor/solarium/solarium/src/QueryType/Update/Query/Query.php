@@ -108,7 +108,7 @@ class Query extends BaseQuery
      */
     protected $options = [
         'handler' => 'update',
-        'requestformat' => self::REQUEST_FORMAT_JSON,
+        'requestformat' => self::REQUEST_FORMAT_XML,
         'resultclass' => Result::class,
         'documentclass' => Document::class,
         'omitheader' => false,
@@ -579,8 +579,8 @@ class Query extends BaseQuery
     /**
      * Initialize options.
      *
-     * {@internal Several options need some extra checks or setup work,
-     *            for these options the setters are called.}
+     * Several options need some extra checks or setup work, for these options
+     * the setters are called.
      *
      * @throws InvalidArgumentException
      * @throws RuntimeException

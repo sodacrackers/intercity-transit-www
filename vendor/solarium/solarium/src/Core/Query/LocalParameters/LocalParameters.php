@@ -329,24 +329,10 @@ class LocalParameters implements \ArrayAccess
      * @throws OutOfBoundsException
      *
      * @return $this
-     *
-     * @deprecated Will be removed in Solarium 8. Use {@see removeTerm()} instead.
      */
     public function removeTerms(string $terms): self
     {
-        return $this->removeTerm($terms);
-    }
-
-    /**
-     * @param string $term
-     *
-     * @throws OutOfBoundsException
-     *
-     * @return $this
-     */
-    public function removeTerm(string $term): self
-    {
-        return $this->removeValue(LocalParameter::TYPE_TERM, $term);
+        return $this->removeValue(LocalParameter::TYPE_TERM, $terms);
     }
 
     /**

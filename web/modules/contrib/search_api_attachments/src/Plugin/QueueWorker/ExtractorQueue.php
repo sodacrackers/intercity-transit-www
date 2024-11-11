@@ -173,8 +173,9 @@ class ExtractorQueue extends QueueWorkerBase implements ContainerFactoryPluginIn
           '@file_id' => $data->fid,
           '@entity_id' => $data->entity_id,
           '@entity_type' => $data->entity_type,
+          '@message' => $exception->getMessage(),
         ];
-        $this->logger->log(LogLevel::ERROR, 'Text extraction failed after 5 attempts @file_id for @entity_type @entity_id.', $message_params);
+        $this->logger->log(LogLevel::ERROR, 'Text extraction failed after 5 attempts @file_id for @entity_type @entity_id: @message.', $message_params);
       }
     }
   }

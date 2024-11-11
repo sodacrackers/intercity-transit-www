@@ -19,7 +19,7 @@ function workbench_moderation_install() {
 
   $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
 
-  $revisionable_entity_defintions = $moderation_info->selectRevisionableEntities((\Drupal::entityTypeManager()->getDefinitions()));
+  $revisionable_entity_definitions = $moderation_info->selectRevisionableEntities((\Drupal::entityTypeManager()->getDefinitions()));
 
   // Some modules, such as Entity Pilot, seem to have a weirdness with their
   // base field definition such that an entity may end up in this list that
@@ -30,12 +30,12 @@ function workbench_moderation_install() {
   // here to filter out such broken entities.
   // @todo Remove when the underlying bug is fixed.
   // @see https://www.drupal.org/node/2674446
-  $revisionable_entity_defintions = array_filter($revisionable_entity_defintions, function (ContentEntityTypeInterface $type) use ($field_manager) {
+  $revisionable_entity_definitions = array_filter($revisionable_entity_definitions, function (ContentEntityTypeInterface $type) use ($field_manager) {
     return !empty($field_manager->getFieldStorageDefinitions($type->id())['moderation_state']);
   });
 
   /** @var \Drupal\Core\Entity\ContentEntityTypeInterface $type */
-  foreach ($revisionable_entity_defintions as $type) {
+  foreach ($revisionable_entity_definitions as $type) {
     $workbench_moderation_definition = $field_manager->getFieldStorageDefinitions($type->id())['moderation_state'];
     $entity_definition_update_manager->installFieldStorageDefinition('moderation_state', $type->id(), 'moderation_state', $workbench_moderation_definition);
   }

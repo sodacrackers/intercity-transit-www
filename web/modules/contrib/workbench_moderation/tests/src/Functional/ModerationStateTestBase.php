@@ -97,7 +97,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
       'name' => $content_type_name,
       'type' => $content_type_id,
     ];
-    $this->submitForm($edit, t('Save content type'));
+    $this->submitForm($edit, 'Save');
 
     if ($moderated) {
       $this->enableModerationThroughUi($content_type_id, $allowed_states, $default_state);
@@ -129,7 +129,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
 
     $edit['default_moderation_state'] = $default_state;
 
-    $this->submitForm($edit, t('Save'));
+    $this->submitForm($edit, 'Save');
   }
 
   /**
@@ -142,7 +142,7 @@ abstract class ModerationStateTestBase extends BrowserTestBase {
    */
   protected function grantUserPermissionToCreateContentOfType(AccountInterface $account, $content_type_id) {
     $role_ids = $account->getRoles(TRUE);
-    /* @var \Drupal\user\RoleInterface $role */
+    /** @var \Drupal\user\RoleInterface $role */
     $role_id = reset($role_ids);
     $role = Role::load($role_id);
     $role->grantPermission(sprintf('create %s content', $content_type_id));

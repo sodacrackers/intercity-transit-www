@@ -22,7 +22,7 @@ class NodeModerationHandler extends ModerationHandler {
    * {@inheritdoc}
    */
   public function enforceRevisionsBundleFormAlter(array &$form, FormStateInterface $form_state, $form_id) {
-    /* @var \Drupal\node\Entity\NodeType $entity */
+    /** @var \Drupal\node\Entity\NodeType $entity */
     $entity = $form_state->getFormObject()->getEntity();
 
     if ($entity->getThirdPartySetting('workbench_moderation', 'enabled', FALSE)) {

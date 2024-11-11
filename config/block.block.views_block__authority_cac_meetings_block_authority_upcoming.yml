@@ -10,9 +10,6 @@ dependencies:
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__authority_cac_meetings_block_authority_upcoming
 theme: transit
 region: sidebar_second

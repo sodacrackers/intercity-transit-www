@@ -171,7 +171,7 @@ class EntityOperations {
       // revision.
       $latest_revision = $this->moderationInfo->getLatestRevision($entity->getEntityTypeId(), $entity->id());
       $state_before = !empty($latest_revision) ? $latest_revision->moderation_state->target_id : NULL;
-      // @todo: Revert to this simpler version when https://www.drupal.org/node/2700747 is fixed.
+      // @todo Revert to this simpler version when https://www.drupal.org/node/2700747 is fixed.
       // $state_before = isset($entity->original) ?
       // $entity->original->moderation_state->target_id : NULL;
       $state_after = $entity->moderation_state->target_id;

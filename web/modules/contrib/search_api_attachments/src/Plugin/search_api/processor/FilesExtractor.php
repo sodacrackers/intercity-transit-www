@@ -180,7 +180,6 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
    * {@inheritdoc}
    */
   public function addFieldValues(ItemInterface $item) {
-    $files = [];
     $config = $this->configFactory->get(static::CONFIGNAME);
     $extractor_plugin_id = $config->get('extraction_method');
     // Get the config option to read text files directly.
@@ -190,8 +189,12 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
       $extractor_plugin = $this->textExtractorPluginManager->createInstance($extractor_plugin_id, $configuration);
       // Get the entity.
       $entity = $item->getOriginalObject()->getValue();
+      if (!$entity instanceof EntityInterface) {
+        return;
+      }
       $is_entity_type_file = $entity->getEntityTypeId() == 'file';
       foreach ($this->getFileFieldsAndFileEntityItems() as $field_name => $label) {
+        $files = [];
         // If the parent entity is not a file, no need to parse the
         // saa static::SAA_FILE_ENTITY item.
         if (!$is_entity_type_file && $field_name == static::SAA_FILE_ENTITY) {
@@ -239,11 +242,13 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
               }
             }
 
-            $fids = $this->limitToAllowedNumber($all_fids);
-            // Retrieve the files.
-            $files = $this->entityTypeManager
-              ->getStorage('file')
-              ->loadMultiple($fids);
+            if (!empty($all_fids)) {
+              $fids = $this->limitToAllowedNumber($all_fids);
+              // Retrieve the files.
+              $files = $this->entityTypeManager
+                ->getStorage('file')
+                ->loadMultiple($fids);
+            }
           }
           if (!empty($files)) {
             $extraction = '';
@@ -253,7 +258,10 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
                 $extraction .= $this->extractOrGetFromCache($entity, $file, $extractor_plugin);
               }
             }
-            $field->addValue($extraction);
+
+            if (!empty($extraction)) {
+              $field->addValue($extraction);
+            }
           }
         }
       }
@@ -409,7 +417,7 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
       return $extracted_text;
     }
     else {
-      $extracted_text = mb_strcut($extracted_text, 0, $bytes);
+      $extracted_text = mb_strcut($extracted_text ?? '', 0, $bytes);
     }
     return $extracted_text;
   }

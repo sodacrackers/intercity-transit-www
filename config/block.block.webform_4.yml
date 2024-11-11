@@ -11,9 +11,6 @@ dependencies:
     - webform
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: webform_4
 theme: transit
 region: content

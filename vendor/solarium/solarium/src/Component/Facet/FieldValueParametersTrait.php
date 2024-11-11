@@ -267,7 +267,7 @@ trait FieldValueParametersTrait
      *
      * @return self Provides fluent interface
      */
-    public function setEnumCacheMinimumDocumentFrequency(int $frequency): self
+    public function setEnumCacheMinimumDocumentFrequency($frequency): self
     {
         $this->setOption('enum.cache.minDf', $frequency);
 
@@ -287,7 +287,7 @@ trait FieldValueParametersTrait
     /**
      * Set to true to cap facet counts by 1.
      *
-     * @param bool $exists
+     * @param int $exists
      *
      * @return self Provides fluent interface
      */
@@ -341,11 +341,9 @@ trait FieldValueParametersTrait
      *
      * @return self Provides fluent interface
      */
-    public function setOverrequestCount(int $count): self
+    public function setOverrequestCount($count): self
     {
-        $this->setOption('overrequest.count', $count);
-
-        return $this;
+        return $this->setOption('overrequest.count', $count);
     }
 
     /**
@@ -365,11 +363,9 @@ trait FieldValueParametersTrait
      *
      * @return self Provides fluent interface
      */
-    public function setOverrequestRatio(float $ratio): self
+    public function setOverrequestRatio($ratio): self
     {
-        $this->setOption('overrequest.ratio', $ratio);
-
-        return $this;
+        return $this->setOption('overrequest.ratio', $ratio);
     }
 
     /**

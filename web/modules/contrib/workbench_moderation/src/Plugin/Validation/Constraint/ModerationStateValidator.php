@@ -102,10 +102,17 @@ class ModerationStateValidator extends ConstraintValidator implements ContainerI
     $original_moderation_state = ModerationState::load($original_entity && !$original_entity->moderation_state->isEmpty() ? $original_entity->moderation_state->target_id : $default_state);
 
     if (!$this->validation->isTransitionAllowed($original_moderation_state->id(), $next_moderation_state->id())) {
-      $this->context->addViolation($constraint->message, ['%from' => $original_moderation_state->label(), '%to' => $next_moderation_state->label()]);
+      $this->context->addViolation($constraint->message, [
+        '%from' => $original_moderation_state->label(),
+        '%to' => $next_moderation_state->label(),
+      ]);
+      return;
     }
-    elseif (!$this->validation->userMayTransition($original_moderation_state->id(), $next_moderation_state->id(), $this->currentUser)) {
-      $this->context->addViolation($constraint->accessDeniedMessage, ['%from' => $original_moderation_state->label(), '%to' => $next_moderation_state->label()]);
+    if (!$this->validation->userMayTransition($original_moderation_state->id(), $next_moderation_state->id(), $this->currentUser)) {
+      $this->context->addViolation($constraint->accessDeniedMessage, [
+        '%from' => $original_moderation_state->label(),
+        '%to' => $next_moderation_state->label(),
+      ]);
     }
   }
 

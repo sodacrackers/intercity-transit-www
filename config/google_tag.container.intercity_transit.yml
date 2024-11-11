@@ -1,15 +1,12 @@
 uuid: 9e50cdbd-ba09-4b0b-98ed-6f07de45c1c9
 langcode: en
 status: true
-dependencies:
-  module:
-    - node
-    - taxonomy
-    - webform
+dependencies: {  }
 id: intercity_transit
 label: 'Intercity Transit'
 weight: 0
 container_id: GTM-MGSNSGD
+hostname: www.googletagmanager.com
 data_layer: dataLayer
 include_classes: false
 whitelist_classes: |-

@@ -74,7 +74,8 @@ interface ModerationInformationInterface {
   /**
    * Filters an entity list to just the definitions for moderatable entities.
    *
-   * An entity type is moderatable only if it is both revisionable and bundable.
+   * An entity type is moderatable only if it is both revisionable and
+   *  bundleable.
    *
    * @param \Drupal\Core\Entity\EntityTypeInterface[] $entity_types
    *   The master entity type list filter.
@@ -151,7 +152,7 @@ interface ModerationInformationInterface {
    * @param int $entity_id
    *   The entity ID.
    *
-   * @return int
+   * @return int|null
    *   The revision ID of the latest revision for the specified entity, or
    *   NULL if there is no such entity.
    */
@@ -165,7 +166,7 @@ interface ModerationInformationInterface {
    * @param int $entity_id
    *   The entity ID.
    *
-   * @return int
+   * @return int|null
    *   The revision ID of the default revision, or NULL if the entity was
    *   not found.
    */

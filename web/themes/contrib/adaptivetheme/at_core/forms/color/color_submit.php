@@ -48,7 +48,7 @@ function at_color_scheme_form_submit($form, FormStateInterface $form_state) {
   // Make sure enough memory is available.
   if (isset($info['base_image'])) {
     // Fetch source image dimensions.
-    $source = drupal_get_path('theme', $theme) . '/' . $info['base_image'];
+    $source = \Drupal::service('extension.list.theme')->getPath($theme) . '/' . $info['base_image'];
     list($width, $height) = getimagesize($source);
 
     // We need at least a copy of the source and a target buffer of the same
@@ -60,9 +60,9 @@ function at_color_scheme_form_submit($form, FormStateInterface $form_state) {
     // scheme change based on a faulty memory calculation.
     $usage = memory_get_usage(TRUE);
     $memory_limit = ini_get('memory_limit');
-    $size = Bytes::toInt($memory_limit);
+    $size = Bytes::toNumber($memory_limit);
     if (!Environment::checkMemoryLimit($usage + $required, $memory_limit)) {
-      \Drupal::messenger()->addMessage(t('There is not enough memory available to PHP to change this theme\'s color scheme. You need at least %size more. Check the <a href=":php_url">PHP documentation</a> for more information.', [':php_url' => 'http://php.net/manual/ini.core.php#ini.sect.resource-limits', '%size' => format_size($usage + $required - $size)]), 'error');
+      \Drupal::messenger()->addMessage(t('There is not enough memory available to PHP to change this theme\'s color scheme. You need at least %size more. Check the <a href=":php_url">PHP documentation</a> for more information.', [':php_url' => 'http://php.net/manual/ini.core.php#ini.sect.resource-limits', '%size' => \Drupal\Component\Utility\DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.2.0', fn() => \Drupal\Core\StringTranslation\ByteSizeMarkup::create($usage + $required - $size), fn() => format_size($usage + $required - $size))]), 'error');
       return;
     }
   }
@@ -95,7 +95,7 @@ function at_color_scheme_form_submit($form, FormStateInterface $form_state) {
   }
   $paths['target'] = $paths['target'] . '/';
   $paths['id'] = $id;
-  $paths['source'] = drupal_get_path('theme', $theme) . '/';
+  $paths['source'] = \Drupal::service('extension.list.theme')->getPath($theme);
   $paths['files'] = $paths['map'] = [];
 
   // Save palette and logo location.

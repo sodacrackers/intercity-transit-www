@@ -12,6 +12,7 @@ namespace Solarium\QueryType\Spellcheck;
 use Solarium\Core\Query\AbstractResponseParser as ResponseParserAbstract;
 use Solarium\Core\Query\ResponseParserInterface;
 use Solarium\Core\Query\Result\ResultInterface;
+use Solarium\QueryType\Spellcheck\Result\Result;
 
 /**
  * Parse Spellcheck response data.
@@ -61,11 +62,14 @@ class ResponseParser extends ResponseParserAbstract implements ResponseParserInt
             }
         }
 
-        return [
-            'results' => $suggestions,
-            'all' => $allSuggestions,
-            'collation' => $collation,
-        ];
+        return $this->addHeaderInfo(
+            $data,
+            [
+                'results' => $suggestions,
+                'all' => $allSuggestions,
+                'collation' => $collation,
+            ]
+        );
     }
 
     /**

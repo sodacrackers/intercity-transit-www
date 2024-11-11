@@ -6,7 +6,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\workbench_moderation\Entity\ModerationState;
 
 /**
- * Class ModerationStateEntityTest.
+ * Tests ModerationState.
  *
  * @coversDefaultClass \Drupal\workbench_moderation\Entity\ModerationState
  *
@@ -54,7 +54,7 @@ class ModerationStateEntityTest extends KernelTestBase {
   /**
    * Data provider for ::testModerationStateProperties.
    */
-  public function moderationStateProvider() {
+  public static function moderationStateProvider() {
     return [
       // Draft, Needs review; should not touch the default revision.
       [FALSE, FALSE, FALSE, FALSE],

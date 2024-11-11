@@ -19,7 +19,7 @@ use Solarium\Core\Client\Client as CoreClient;
 class Client extends CoreClient
 {
     /**
-     * Returns the version string.
+     * Version number of the Solarium library.
      *
      * The version is built up in this format: major.minor.mini
      *
@@ -39,6 +39,15 @@ class Client extends CoreClient
      *
      * @see checkExact()
      * @see checkMinimal()
+     *
+     * @var string
+     *
+     * @deprecated This class constant will be removed in Solarium 6.3.0. Use Client::getVersion() instead.
+     */
+    const VERSION = '6.2.7-deprecated';
+
+    /**
+     * Returns the version string.
      *
      * @return string
      */

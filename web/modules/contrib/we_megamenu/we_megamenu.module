@@ -8,9 +8,10 @@ use Drupal\Component\Utility\UrlHelper;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Block\BlockPluginInterface;
-use Drupal\we_megamenu\WeMegaMenuBuilder;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\system\Entity\Menu;
+use Drupal\we_megamenu\WeMegaMenuBuilder;
 
 /**
  * Implements hook_theme().
@@ -277,11 +278,12 @@ function template_preprocess_we_megamenu_ul(array &$vars, $backend = FALSE) {
 
     $vars['href'] = '';
     if ($li['url'] == '<front>') {
-      $vars['attributes']['data-id'] = 'home';
+      $vars['attributes']['data-id'] = '';
       $vars['href'] = Url::fromRoute('<front>')->toString();
     }
     else {
-      $vars['attributes']['data-id'] = !empty($li['derivativeId']) ? $li['derivativeId'] : $li['url'];
+      // $vars['attributes']['data-id'] = !empty($li['derivativeId']) ? $li['derivativeId'] : $li['url'];
+      $vars['attributes']['data-id'] = '';
       $current_user = \Drupal::currentUser();
       if (WeMegaMenuBuilder::routeExists($li['url'])) {
         $vars['href'] = Url::fromRoute($li['url'])->toString();
@@ -334,7 +336,7 @@ function template_preprocess_we_megamenu_li(&$vars) {
   $block_theme = $vars['block_theme'];
   $data_config = WeMegaMenuBuilder::loadConfig($menu_name, $block_theme);
   $menu_config = isset($data_config->menu_config) ? $data_config->menu_config : [];
-  
+
   $vars['attributes'] = new Attribute();
   $vars['attributes']['class'] = [];
   $vars['attributes']['class'][] = 'we-mega-menu-li';
@@ -343,17 +345,18 @@ function template_preprocess_we_megamenu_li(&$vars) {
   $vars['attributes']['data-element-type'] = 'we-mega-menu-li';
   $vars['attributes']['description'] = isset($vars['item']['description']) ? $vars['item']['description'] : '';
   $vars['href'] = '';
+
   if ($vars['item']['url'] == '<front>') {
-    $vars['attributes']['data-id'] = 'home';
+    $vars['attributes']['data-id'] = !empty($vars['item']['derivativeId']) ? $vars['item']['derivativeId'] : "";
     $vars['href'] = Url::fromRoute('<front>')->toString();
   }
   else {
-    $vars['attributes']['data-id'] = !empty($vars['item']['derivativeId']) ? $vars['item']['derivativeId'] : $vars['item']['url'];
+    $vars['attributes']['data-id'] = !empty($vars['item']['derivativeId']) ? $vars['item']['derivativeId'] : "";
     $vars['href'] = $vars['item']['url'];
   }
 
   $vars['attributes']['data-submenu'] = 0;
-  $vars['attributes']['hide-sub-when-collapse'] = 0;
+  $vars['attributes']['data-hide-sub-when-collapse'] = 0;
   if (isset($menu_config->{$vars['attributes']['data-id']})) {
     $item_config = $menu_config->{$vars['attributes']['data-id']};
     $vars['attributes']['class'][] = !empty($item_config->item_config->group) ? 'we-mega-menu-group' : '';
@@ -364,7 +367,7 @@ function template_preprocess_we_megamenu_li(&$vars) {
     $vars['attributes']['data-class'] = !empty($item_config->item_config->class) ? $item_config->item_config->class : '';
     $vars['attributes']['data-icon'] = !empty($item_config->item_config->{'data-icon'}) ? $item_config->item_config->{'data-icon'} : '';
     $vars['attributes']['data-caption'] = !empty($item_config->item_config->{'data-caption'}) ? $item_config->item_config->{'data-caption'} : '';
-    $vars['attributes']['hide-sub-when-collapse'] = !empty($item_config->item_config->{'hide_sub_when_collapse'}) ? $item_config->item_config->{'hide_sub_when_collapse'} : '';
+    $vars['attributes']['data-hide-sub-when-collapse'] = !empty($item_config->item_config->{'hide_sub_when_collapse'}) ? $item_config->item_config->{'hide_sub_when_collapse'} : '';
     $vars['attributes']['data-alignsub'] = !empty($item_config->item_config->{'data-alignsub'}) ? $item_config->item_config->{'data-alignsub'} : '';
     $vars['attributes']['data-target'] = !empty($item_config->item_config->{'data-target'}) ? $item_config->item_config->{'data-target'} : '';
   }
@@ -465,7 +468,7 @@ function template_preprocess_we_megamenu_row(array &$vars) {
   $vars['attributes']['class'] = [];
   $vars['attributes']['class'][] = 'we-mega-menu-row';
   $vars['attributes']['data-element-type'] = 'we-mega-menu-row';
-  
+
   if ($vars['item_config']) {
     foreach ($vars['item_config'] as $key_col => $col) {
       $vars['col'][] = [
@@ -477,7 +480,9 @@ function template_preprocess_we_megamenu_row(array &$vars) {
         '#menu_name' => $vars['menu_name'],
         '#trail' => $vars['trail'],
       ];
-      $vars['attributes']['data-custom-row'] = isset(reset($col->col_content)->mlid) ? 0 : 1;
+      $col_content = $col->col_content;
+      $has_mlid = is_array($col_content) && isset($col_content[0]->mlid);
+      $vars['attributes']['data-custom-row'] = $has_mlid ? 0 : 1;
     }
   }
   else {
@@ -611,10 +616,10 @@ function template_preprocess_we_megamenu_block(array &$vars) {
 /**
  * Implements hook_block_view_BASE_BLOCK_ID_alter().
  *
- * Config Contextual link of Drupal 8 Mega Menu blocks.
+ * Config Contextual link of Mega Menu blocks.
  */
 function we_megamenu_block_view_we_megamenu_block_alter(array &$build, BlockPluginInterface $block) {
-  $menus = menu_list_system_menus();
+  $menus = Menu::loadMultiple();
   $menu_name = $block->getDerivativeId();
   if (isset($menus[$menu_name])) {
     $build['#contextual_links']['menu'] = [

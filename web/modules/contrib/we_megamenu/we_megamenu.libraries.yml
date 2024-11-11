@@ -18,7 +18,7 @@ form.we-mega-menu-backend:
     - core/jquery
     - core/drupal
     - core/drupalSettings
-    - core/jquery.once
+    - core/once
 
 form.we-mega-menu-frontend:
   version: 1.0
@@ -33,4 +33,4 @@ form.we-mega-menu-frontend:
     - core/jquery
     - core/drupal
     - core/drupalSettings
-    - core/jquery.once
+    - core/once

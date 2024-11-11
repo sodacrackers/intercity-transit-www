@@ -14,7 +14,7 @@ class SamlSPMetadata extends Metadata {
   /**
    * {@inheritdoc}
    */
-  public static function builder($sp, $authnsign = FALSE, $wsign = FALSE, $validUntil = NULL, $cacheDuration = NULL, $contacts = [], $organization = [], $attributes = []) {
+  public static function builder($sp, $authnsign = FALSE, $wsign = FALSE, $validUntil = NULL, $cacheDuration = NULL, $contacts = [], $organization = [], $attributes = [], $ignoreValidUntil = false) {
 
     if (!isset($validUntil)) {
       $validUntil = time() + self::TIME_VALID;

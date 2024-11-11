@@ -17,6 +17,37 @@ use Drupal\Core\Extension\ThemeExtensionList;
 class LayoutSubmit {
 
   /**
+   * The layout configuration.
+   *
+   * @var array
+   */
+  public $layoutConfig;
+  /**
+   * The CSS configuration.
+   *
+   * @var array
+   */
+  public $cssConfig;
+  /**
+   * The layout name.
+   *
+   * @var string
+   */
+  public $layoutName;
+  /**
+   * The layout path.
+   *
+   * @var string
+   */
+  public $layoutPath;
+  /**
+   * The form values.
+   *
+   * @var array
+   */
+  public $formValues;
+
+  /**
    * The active theme name.
    */
   protected $theme_name;

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\geocoder_field\Plugin\Field;
 
+use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -11,15 +12,15 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Utility\LinkGeneratorInterface;
+use Drupal\geocoder\DumperInterface;
 use Drupal\geocoder\DumperPluginManager;
 use Drupal\geocoder\Entity\GeocoderProvider;
 use Drupal\geocoder\GeocoderInterface;
 use Drupal\geocoder\ProviderPluginManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Utility\LinkGeneratorInterface;
 use Geocoder\Model\AddressCollection;
-use Drupal\Component\Plugin\Exception\PluginException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base Plugin implementation of the Geocode formatter.
@@ -242,20 +243,19 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
     $elements = [];
     try {
       $dumper = $this->dumperPluginManager->createInstance($this->getSetting('dumper'));
+      $providers = $this->getEnabledGeocoderProviders();
+
+      foreach ($items as $delta => $item) {
+        if ($address_collection = $this->geocoder->geocode($item->value, $providers)) {
+          $elements[$delta] = [
+            '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() && $dumper instanceof DumperInterface ? $dumper->dump($address_collection->first()) : "",
+          ];
+        }
+      }
     }
     catch (PluginException $e) {
       $this->getLogger('geocoder')->error($e->getMessage());
     }
-    $providers = $this->getEnabledGeocoderProviders();
-
-    foreach ($items as $delta => $item) {
-      if ($address_collection = $this->geocoder->geocode($item->value, $providers)) {
-        $elements[$delta] = [
-          '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() ? $dumper->dump($address_collection->first()) : "",
-        ];
-      }
-    }
-
     return $elements;
   }
 
@@ -302,7 +302,7 @@ abstract class GeocodeFormatterBase extends FormatterBase implements ContainerFa
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state object.
    */
-  public static function validateProvidersSettingsForm(array $element, FormStateInterface &$form_state) {
+  public static function validateProvidersSettingsForm(array $element, FormStateInterface $form_state) {
     $providers = !empty($element['#value']) ? array_filter($element['#value'], function ($value) {
       return isset($value['checked']) && TRUE == $value['checked'];
     }) : [];

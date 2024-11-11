@@ -33,7 +33,7 @@ class NodeAccessTest extends ModerationStateTestBase {
     // Create a node to test with.
     $this->submitForm([
       'title[0][value]' => 'moderated content',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
     $nodes = \Drupal::entityTypeManager()
       ->getStorage('node')
       ->loadByProperties([
@@ -54,9 +54,9 @@ class NodeAccessTest extends ModerationStateTestBase {
     $this->drupalGet($edit_path);
 
     // Publish the node.
-    $this->submitForm([], t('Save and Request Review'));
+    $this->submitForm([], 'Save and Request Review');
     $this->drupalGet($edit_path);
-    $this->submitForm([], t('Save and Publish'));
+    $this->submitForm([], 'Save and Publish');
 
     // Ensure access works correctly for anonymous users.
     $this->drupalLogout();
@@ -74,7 +74,7 @@ class NodeAccessTest extends ModerationStateTestBase {
     $this->drupalGet($edit_path);
     $this->submitForm([
       'title[0][value]' => 'moderated content revised',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
 
     // Now make a new user and verify that the new user's access is correct.
     $user = $this->createUser([

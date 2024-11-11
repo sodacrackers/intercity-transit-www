@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [2.3.0]
+### Added
+  * [#241](https://github.com/jhedstrom/DrupalDriver/pull/241) - Allow Entity Reference Field Handler to Reference by ID
+  * [#261](https://github.com/jhedstrom/DrupalDriver/pull/261) - Broaden compatibility with symfony/process
+  * [#265](https://github.com/jhedstrom/DrupalDriver/pull/265) - PHP 8.2 testing
+  * [#275](https://github.com/jhedstrom/DrupalDriver/pull/275) - Initial Drupal 11 support
+  * [#276](https://github.com/jhedstrom/DrupalDriver/pull/276) - Drupal 11 support
 ## [2.2.2]
 ### Added
   * [#258](https://github.com/jhedstrom/DrupalDriver/pull/258) Document testing of the Drupal Driver locally for contributors.
@@ -27,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   * [#232](https://github.com/jhedstrom/DrupalDriver/pull/232) Fix type in ImageHandler.
 ## [2.1.0]
 ### Added
-  * [#186](https://github.com/jhedstrom/DrupalDriver/issues/168) Provide a method to directly authenticate on Drupal 8.
+  * [#186](https://github.com/jhedstrom/DrupalDriver/issues/186) Provide a method to directly authenticate on Drupal 8.
 ### Changed
   * Remove testing on PHP 5.6, added testing on PHP 7.3 and 7.4.
   * [#214](https://github.com/jhedstrom/DrupalDriver/pull/214) Fix D8 deprectations.

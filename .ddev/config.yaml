@@ -1,4 +1,4 @@
-name: intercity-transit
+name: ict-pantheon
 type: drupal9
 docroot: web
 php_version: "8.1"

@@ -14,6 +14,8 @@ class Layout {
   protected $layout_markup;
   protected $layout_css;
   protected $layout_name;
+  protected $layout_path;
+  protected $layout_cid;
 
   /**
    * Layout constructor.

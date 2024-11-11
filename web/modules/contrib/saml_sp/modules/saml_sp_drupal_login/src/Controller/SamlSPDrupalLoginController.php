@@ -8,11 +8,39 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\saml_sp\Entity\Idp;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides route responses for the SAML SP module.
  */
 class SamlSPDrupalLoginController extends ControllerBase {
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->configFactory = $config_factory;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory')
+    );
+  }
 
   /**
    * Initiate a SAML login for the given IdP.
@@ -63,7 +91,7 @@ class SamlSPDrupalLoginController extends ControllerBase {
 
     //get the url for the idp
     $login_url = parse_url($idp->getLoginUrl());
-    $seckit_config = \Drupal::config('seckit.settings');
+    $seckit_config = $this->configFactory->get('seckit.settings');
     $csrf_url = $login_url['scheme'] . '://' . $login_url['host'];
     if (!str_contains($seckit_config->get('seckit_csrf.origin_whitelist'), $csrf_url)) {
       // the csrf whitelist doesn't contain the login host

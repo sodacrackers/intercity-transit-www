@@ -21,6 +21,10 @@ class LayoutLoad extends Layout {
    * The active regions on page load.
    */
   protected $active_regions;
+    /**
+     * The layout config on page load.
+     */
+  protected $layout_config;
 
   /**
    * LayoutInterface constructor.

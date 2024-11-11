@@ -62,7 +62,6 @@ class LatestRevisionViewsFilterTest extends BrowserTestBase {
     $node_type->save();
 
     // Make a node that is only ever in Draft.
-
     /** @var \Drupal\node\Entity\Node $node_1 */
     $node_1 = Node::create([
       'type' => 'test',
@@ -73,7 +72,6 @@ class LatestRevisionViewsFilterTest extends BrowserTestBase {
     $node_1->save();
 
     // Make a node that is in Draft, then Published.
-
     /** @var \Drupal\node\Entity\Node $node_2 */
     $node_2 = Node::create([
       'type' => 'test',
@@ -88,7 +86,6 @@ class LatestRevisionViewsFilterTest extends BrowserTestBase {
     $node_2->save();
 
     // Make a node that is in Draft, then Published, then Draft.
-
     /** @var \Drupal\node\Entity\Node $node_3 */
     $node_3 = Node::create([
       'type' => 'test',

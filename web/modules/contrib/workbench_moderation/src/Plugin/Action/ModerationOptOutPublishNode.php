@@ -11,7 +11,7 @@ use Drupal\workbench_moderation\ModerationInformationInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Alternate action plugin that knows to opt-out of modifying moderated entites.
+ * Alternate action plugin that opts-out of modifying moderated entities.
  *
  * @see PublishAction
  */

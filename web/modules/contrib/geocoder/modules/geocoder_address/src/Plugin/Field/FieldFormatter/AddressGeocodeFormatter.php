@@ -2,20 +2,19 @@
 
 namespace Drupal\geocoder_address\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Logger\LoggerChannelTrait;
-use Drupal\geocoder_field\Plugin\Field\FieldFormatter\GeocodeFormatter;
-use Geocoder\Model\AddressCollection;
 use Drupal\Component\Plugin\Exception\PluginException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\geocoder\GeocoderInterface;
-use Drupal\geocoder\ProviderPluginManager;
-use Drupal\geocoder\DumperPluginManager;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\geocoder\DumperPluginManager;
+use Drupal\geocoder\GeocoderInterface;
+use Drupal\geocoder\ProviderPluginManager;
 use Drupal\geocoder_address\AddressService;
+use Drupal\geocoder_field\Plugin\Field\FieldFormatter\GeocodeFormatter;
+use Geocoder\Model\AddressCollection;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the Geocode formatter.
@@ -55,7 +54,7 @@ class AddressGeocodeFormatter extends GeocodeFormatter {
    * @param array $third_party_settings
    *   Any third party settings.
    * @param \Drupal\geocoder\GeocoderInterface $geocoder
-   *   The gecoder service.
+   *   The Geocoder service.
    * @param \Drupal\geocoder\ProviderPluginManager $provider_plugin_manager
    *   The provider plugin manager service.
    * @param \Drupal\geocoder\DumperPluginManager $dumper_plugin_manager
@@ -117,24 +116,22 @@ class AddressGeocodeFormatter extends GeocodeFormatter {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     try {
+      $providers = $this->getEnabledGeocoderProviders();
       $dumper = $this->dumperPluginManager->createInstance($this->getSetting('dumper'));
+      foreach ($items as $delta => $item) {
+        $value = $item->getValue();
+        $address_string = $this->addressService->addressArrayToGeoString($value);
+        if ($address_collection = $this->geocoder->geocode($address_string, $providers)) {
+          $elements[$delta] = [
+            '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() ? $dumper->dump($address_collection->first()) : "",
+          ];
+        }
+      }
     }
     catch (PluginException $e) {
       $this->getLogger('geocoder')->error($e->getMessage());
 
     }
-    $providers = $this->getEnabledGeocoderProviders();
-
-    foreach ($items as $delta => $item) {
-      $value = $item->getValue();
-      $address_string = $this->addressService->addressArrayToGeoString($value);
-      if ($address_collection = $this->geocoder->geocode($address_string, $providers)) {
-        $elements[$delta] = [
-          '#markup' => $address_collection instanceof AddressCollection && !$address_collection->isEmpty() ? $dumper->dump($address_collection->first()) : "",
-        ];
-      }
-    }
-
     return $elements;
   }
 

@@ -10,9 +10,6 @@ dependencies:
     - views
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: views_block__service_changes_next_event_block_1
 theme: transit
 region: sidebar_second

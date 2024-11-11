@@ -590,6 +590,7 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
+      filters: {  }
       defaults:
         css_class: false
         relationships: false
@@ -622,7 +623,6 @@ display:
             format: rich_text
           tokenize: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -676,6 +676,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       defaults:
         css_class: false
         relationships: false
@@ -708,7 +709,6 @@ display:
             format: rich_text
           tokenize: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -733,6 +733,7 @@ display:
         options:
           offset: 0
           items_per_page: 1
+      filters: {  }
       style:
         type: default
         options:
@@ -751,7 +752,6 @@ display:
         style: false
         row: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -879,6 +879,7 @@ display:
         options:
           offset: 0
           items_per_page: 1
+      filters: {  }
       style:
         type: default
         options:
@@ -899,7 +900,6 @@ display:
         fields: false
       css_class: col-xs-12
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1535,7 +1535,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: not
           value:
-            332: 332
+            332: '332'
           group: 1
           exposed: false
           expose:
@@ -2074,6 +2074,7 @@ display:
           exposed: false
           granularity: second
       arguments: {  }
+      filters: {  }
       defaults:
         title: false
         relationships: false
@@ -2093,7 +2094,6 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/all
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2701,6 +2701,7 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
+      filters: {  }
       style:
         type: views_bootstrap_list_group
         options:
@@ -2741,7 +2742,6 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/%
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -3313,6 +3313,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       style:
         type: views_bootstrap_list_group
         options:
@@ -3351,7 +3352,6 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/all/%
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

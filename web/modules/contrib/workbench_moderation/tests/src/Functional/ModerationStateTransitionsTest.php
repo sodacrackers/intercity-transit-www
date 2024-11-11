@@ -51,14 +51,14 @@ class ModerationStateTransitionsTest extends ModerationStateTestBase {
     $this->assertSession()->fieldValueEquals('stateTo', 'needs_review');
     $this->submitForm([
       'label' => 'Draft to Needs review',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Saved the Draft to Needs review Moderation state transition.');
     $this->drupalGet('admin/structure/workbench-moderation/transitions/draft_needs_review');
     $this->assertSession()->fieldValueEquals('label', 'Draft to Needs review');
     // Now set it back.
     $this->submitForm([
       'label' => 'Request Review',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Saved the Request Review Moderation state transition.');
 
     // Add a new state.
@@ -66,25 +66,25 @@ class ModerationStateTransitionsTest extends ModerationStateTestBase {
     $this->submitForm([
       'label' => 'Expired',
       'id' => 'expired',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Created the Expired Moderation state.');
 
     // Add a new transition.
     $this->drupalGet('admin/structure/workbench-moderation/transitions');
-    $this->clickLink(t('Add Moderation state transition'));
+    $this->clickLink('Add Moderation state transition');
     $this->submitForm([
       'label' => 'Published » Expired',
       'id' => 'published_expired',
       'stateFrom' => 'published',
       'stateTo' => 'expired',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Created the Published » Expired Moderation state transition.');
 
     // Delete the new transition.
     $this->drupalGet('admin/structure/workbench-moderation/transitions/published_expired');
     $this->clickLink('Delete');
     $this->assertSession()->pageTextContains('Are you sure you want to delete Published » Expired?');
-    $this->submitForm([], t('Delete'));
+    $this->submitForm([], 'Delete');
     $this->assertSession()->pageTextContains('Moderation transition Published » Expired deleted');
   }
 

@@ -51,24 +51,24 @@ class ModerationStateStatesTest extends ModerationStateTestBase {
     $this->assertSession()->checkboxNotChecked('edit-published');
     $this->submitForm([
       'label' => 'Drafty',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Saved the Drafty Moderation state.');
     $this->drupalGet('admin/structure/workbench-moderation/states/draft');
     $this->assertSession()->fieldValueEquals('label', 'Drafty');
     $this->submitForm([
       'label' => 'Draft',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Saved the Draft Moderation state.');
-    $this->clickLink(t('Add Moderation state'));
+    $this->clickLink('Add Moderation state');
     $this->submitForm([
       'label' => 'Expired',
       'id' => 'expired',
-    ], t('Save'));
+    ], 'Save');
     $this->assertSession()->pageTextContains('Created the Expired Moderation state.');
     $this->drupalGet('admin/structure/workbench-moderation/states/expired');
     $this->clickLink('Delete');
     $this->assertSession()->pageTextContains('Are you sure you want to delete Expired?');
-    $this->submitForm([], t('Delete'));
+    $this->submitForm([], 'Delete');
     $this->assertSession()->pageTextContains('Moderation state Expired deleted');
   }
 

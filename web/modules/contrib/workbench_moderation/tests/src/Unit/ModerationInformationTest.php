@@ -2,7 +2,6 @@
 
 namespace Drupal\Tests\workbench_moderation\Unit;
 
-use Prophecy\PhpUnit\ProphecyTrait;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\ContentEntityFormInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -13,6 +12,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Tests\UnitTestCase;
 use Drupal\workbench_moderation\ModerationInformation;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @coversDefaultClass \Drupal\workbench_moderation\ModerationInformation
@@ -21,6 +21,7 @@ use Drupal\workbench_moderation\ModerationInformation;
 class ModerationInformationTest extends UnitTestCase {
 
   use ProphecyTrait;
+
   /**
    * Builds a mock user.
    *
@@ -151,7 +152,7 @@ class ModerationInformationTest extends UnitTestCase {
   /**
    * Provides array with boolean values.
    */
-  public function providerBoolean() {
+  public static function providerBoolean() {
     return [
       [FALSE],
       [TRUE],

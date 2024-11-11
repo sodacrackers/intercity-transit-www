@@ -4,14 +4,43 @@ namespace Drupal\saml_sp\Form;
 
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\saml_sp\IdpInterface;
 use OneLogin\Saml2\Constants;
 use OneLogin\Saml2\Utils;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides the form to configure the IdP.
  */
 class IdpForm extends EntityForm {
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('messenger')
+    );
+  }
+
+  /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   */
+  public function __construct(MessengerInterface $messenger) {
+    $this->messenger = $messenger;
+  }
+
 
   /**
    * {@inheritdoc}
@@ -24,8 +53,8 @@ class IdpForm extends EntityForm {
 
     $form['idp_metadata'] = [
       '#type' => 'textarea',
-      '#title'  => t('XML Metadata'),
-      '#description' => t('Paste in the metadata provided by the Identity Provider here and the form will be automatically filled out, or you can manually enter the information.'),
+      '#title'  => $this->t('XML Metadata'),
+      '#description' => $this->t('Paste in the metadata provided by the Identity Provider here and the form will be automatically filled out, or you can manually enter the information.'),
     ];
     $form['#attached']['library'][] = 'saml_sp/idp_form';
 
@@ -36,9 +65,9 @@ class IdpForm extends EntityForm {
 
     $form['idp']['label'] = [
       '#type' => 'textfield',
-      '#title' => t('Name'),
+      '#title' => $this->t('Name'),
       '#default_value' => $idp->label(),
-      '#description' => t('The human-readable name of this IdP. This text will be displayed to administrators who can configure SAML.'),
+      '#description' => $this->t('The human-readable name of this IdP. This text will be displayed to administrators who can configure SAML.'),
       '#required' => TRUE,
       '#size' => 30,
       '#maxlength' => 30,
@@ -52,26 +81,26 @@ class IdpForm extends EntityForm {
         'exists' => 'saml_sp_idp_load',
         'source' => ['idp', 'label'],
       ],
-      '#description' => t('A unique machine-readable name for this IdP. It must only contain lowercase letters, numbers, and underscores.'),
+      '#description' => $this->t('A unique machine-readable name for this IdP. It must only contain lowercase letters, numbers, and underscores.'),
     ];
 
     $form['idp']['entity_id'] = [
       '#type' => 'textfield',
-      '#title' => t('Entity ID'),
-      '#description' => t('The entityID identifier which the Identity Provider will use to identiy itself by, this may sometimes be a URL.'),
+      '#title' => $this->t('Entity ID'),
+      '#description' => $this->t('The entityID identifier which the Identity Provider will use to identiy itself by, this may sometimes be a URL.'),
       '#default_value' => $idp->getEntityId(),
       '#maxlength' => 255,
     ];
 
     $form['idp']['app_name'] = [
       '#type' => 'textfield',
-      '#title' => t('App name'),
-      '#description' => t('The app name is provided to the Identiy Provider, to identify the origin of the request.'),
+      '#title' => $this->t('App name'),
+      '#description' => $this->t('The app name is provided to the Identiy Provider, to identify the origin of the request.'),
       '#default_value' => $idp->getAppName(),
       '#maxlength' => 255,
     ];
 
-    $fields = ['mail' => t('Email')];
+    $fields = ['mail' => $this->t('Email')];
     // @todo Add extra fields to config.
     /*
     // @codingStandardsIgnoreStart
@@ -85,8 +114,8 @@ class IdpForm extends EntityForm {
 
     $form['idp']['nameid_field'] = [
       '#type' => 'select',
-      '#title' => t('NameID field'),
-      '#description' => t('Mail is usually used between IdP and SP, but if you want to let users change the email address in IdP, you need to use a custom field to store the ID.'),
+      '#title' => $this->t('NameID field'),
+      '#description' => $this->t('Mail is usually used between IdP and SP, but if you want to let users change the email address in IdP, you need to use a custom field to store the ID.'),
       '#options' => $fields,
       '#default_value' => $idp->getNameIdField(),
     ];
@@ -95,8 +124,8 @@ class IdpForm extends EntityForm {
     // by the IdP.
     $form['idp']['login_url'] = [
       '#type' => 'textfield',
-      '#title' => t('IdP login URL'),
-      '#description' => t('Login URL of the Identity Provider server.'),
+      '#title' => $this->t('IdP login URL'),
+      '#description' => $this->t('Login URL of the Identity Provider server.'),
       '#default_value' => $idp->getLoginUrl(),
       '#required' => TRUE,
       '#max_length' => 255,
@@ -104,8 +133,8 @@ class IdpForm extends EntityForm {
 
     $form['idp']['logout_url'] = [
       '#type' => 'textfield',
-      '#title' => t('IdP logout URL'),
-      '#description' => t('Logout URL of the Identity Provider server.'),
+      '#title' => $this->t('IdP logout URL'),
+      '#description' => $this->t('Logout URL of the Identity Provider server.'),
       '#default_value' => $idp->getLogoutUrl(),
       '#required' => TRUE,
       '#max_length' => 255,
@@ -117,12 +146,12 @@ class IdpForm extends EntityForm {
 
     $refs = saml_sp_authn_context_class_refs();
     $authn_context_class_ref_options = [
-      $refs[Constants::AC_PASSWORD]           => t('User Name and Password'),
-      $refs[Constants::AC_PASSWORD_PROTECTED] => t('Password Protected Transport'),
-      $refs[Constants::AC_TLS]                => t('Transport Layer Security (TLS) Client'),
-      $refs[Constants::AC_X509]               => t('X.509 Certificate'),
-      $refs[Constants::AC_WINDOWS]            => t('Integrated Windows Authentication'),
-      $refs[Constants::AC_KERBEROS]           => t('Kerberos'),
+      $refs[Constants::AC_PASSWORD]           => $this->t('User Name and Password'),
+      $refs[Constants::AC_PASSWORD_PROTECTED] => $this->t('Password Protected Transport'),
+      $refs[Constants::AC_TLS]                => $this->t('Transport Layer Security (TLS) Client'),
+      $refs[Constants::AC_X509]               => $this->t('X.509 Certificate'),
+      $refs[Constants::AC_WINDOWS]            => $this->t('Integrated Windows Authentication'),
+      $refs[Constants::AC_KERBEROS]           => $this->t('Kerberos'),
     ];
     $default_auth = [];
     foreach ($refs as $key => $value) {
@@ -131,8 +160,8 @@ class IdpForm extends EntityForm {
 
     $form['idp']['authn_context_class_ref'] = [
       '#type'           => 'checkboxes',
-      '#title'          => t('Authentication methods'),
-      '#description'    => t('What authentication methods would you like to use with this IdP? If left empty all methods from the provider will be allowed.'),
+      '#title'          => $this->t('Authentication methods'),
+      '#description'    => $this->t('What authentication methods would you like to use with this IdP? If left empty all methods from the provider will be allowed.'),
       '#default_value'  => $idp->id() ? $idp->getAuthnContextClassRef() : $default_auth,
       '#options'        => $authn_context_class_ref_options,
       '#required' => FALSE,
@@ -166,7 +195,7 @@ class IdpForm extends EntityForm {
     $form = [
       '#type' => 'fieldset',
       '#title' => $this->t('X.509 certificates'),
-      '#description' => t('Enter the application certificate(s) provided by the IdP.'),
+      '#description' => $this->t('Enter the application certificate(s) provided by the IdP.'),
       '#prefix' => '<div id="certs-fieldset-wrapper">',
       '#suffix' => '</div>',
     ];
@@ -193,7 +222,7 @@ class IdpForm extends EntityForm {
         ];
         continue;
       }
-      $title = t('Certificate');
+      $title = $this->t('Certificate');
       if (function_exists('openssl_x509_parse')) {
         $cert = openssl_x509_parse(Utils::formatCert($encoded_cert));
         if ($cert) {
@@ -203,7 +232,7 @@ class IdpForm extends EntityForm {
               $value = implode("/", $value);
             }
           }
-          $title = t('Name: %cert-name<br/>Issued by: %issuer<br/>Valid: %valid-from - %valid-to', [
+          $title = $this->t('Name: %cert-name<br/>Issued by: %issuer<br/>Valid: %valid-from - %valid-to', [
             '%cert-name'  => $cert['name'],
             '%issuer'     => implode('/', $cert['issuer']),
             '%valid-from' => date('c', $cert['validFrom_time_t']),
@@ -224,7 +253,7 @@ class IdpForm extends EntityForm {
     ];
     $form['actions']['add_cert'] = [
       '#type' => 'submit',
-      '#value' => t('Add one more'),
+      '#value' => $this->t('Add one more'),
       '#submit' => ['::addCertCallback'],
       '#ajax' => [
         'callback' => '::addMoreCertsCallback',
@@ -235,7 +264,7 @@ class IdpForm extends EntityForm {
     if ($num_certs > 1) {
       $form['actions']['remove_cert'] = [
         '#type' => 'submit',
-        '#value' => t('Remove one'),
+        '#value' => $this->t('Remove one'),
         '#submit' => ['::removeCertCallback'],
         '#ajax' => [
           'callback' => '::addMoreCertsCallback',
@@ -300,12 +329,12 @@ class IdpForm extends EntityForm {
     $status = $idp->save();
 
     if ($status) {
-      \Drupal::messenger()->addMessage($this->t('Saved the %label Identity Provider.', [
+      $this->messenger->addMessage($this->t('Saved the %label Identity Provider.', [
         '%label' => $idp->label(),
       ]));
     }
     else {
-      \Drupal::messenger()->addMessage($this->t('The %label Identity Provider was not saved.', [
+      $this->messenger->addMessage($this->t('The %label Identity Provider was not saved.', [
         '%label' => $idp->label(),
       ]));
     }

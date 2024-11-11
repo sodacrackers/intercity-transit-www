@@ -2,14 +2,14 @@
 
 namespace Drupal\Tests\workbench_moderation\Unit;
 
-use Prophecy\PhpUnit\ProphecyTrait;
-use Drupal\Tests\UnitTestCase;
-use Drupal\workbench_moderation\WorkbenchPreprocess;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\node\Entity\Node;
+use Drupal\Tests\UnitTestCase;
+use Drupal\workbench_moderation\WorkbenchPreprocess;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
- * Class WorkbenchPreprocessTest.
+ * Tests WorkbenchPreprocess.
  *
  * @coversDefaultClass \Drupal\workbench_moderation\WorkbenchPreprocess
  * @group workbench_moderation
@@ -17,6 +17,7 @@ use Drupal\node\Entity\Node;
 class WorkbenchPreprocessTest extends UnitTestCase {
 
   use ProphecyTrait;
+
   /**
    * @covers ::isLatestVersionPage
    * @dataProvider routeNodeProvider
@@ -30,9 +31,9 @@ class WorkbenchPreprocessTest extends UnitTestCase {
   /**
    * Route node provider.
    */
-  public function routeNodeProvider() {
+  public static function routeNodeProvider() {
     return [
-      ['entity.node.cannonical', 1, 1, FALSE,
+      ['entity.node.canonical', 1, 1, FALSE,
         'Not on the latest version tab route.',
       ],
       ['entity.node.latest_version', 1, 1, TRUE,
@@ -53,7 +54,7 @@ class WorkbenchPreprocessTest extends UnitTestCase {
    *   Node id.
    *
    * @return \Drupal\Core\Routing\CurrentRouteMatch
-   *   Returns cuurent route.
+   *   Returns current route.
    */
   protected function setupCurrentRouteMatch($routeName, $nid) {
     $route_match = $this->prophesize(CurrentRouteMatch::class);

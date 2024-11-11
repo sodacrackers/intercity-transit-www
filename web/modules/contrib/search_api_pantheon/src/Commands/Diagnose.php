@@ -102,86 +102,88 @@ class Diagnose extends DrushCommands {
       if ($pantheon_yml['search']['version'] != '8') {
         throw new \Exception('Unsupported search.version in pantheon.yml or pantheon.upstream.yml');
       }
-      $this->logger()->notice('Pantheon.yml file looks ok ✅');
+      $this->logger->notice('Pantheon.yml file looks ok ✅');
 
-      $this->logger()->notice('Index SCHEME Value: {var}', [
+      $this->logger->notice('Index SCHEME Value: {var}', [
             'var' => $this->endpoint->getScheme(),
         ]);
-      $this->logger()->notice('Index HOST Value:   {var}', [
+      $this->logger->notice('Index HOST Value:   {var}', [
             'var' => $this->endpoint->getHost(),
         ]);
-      $this->logger()->notice('Index PORT Value:   {var}', [
+      $this->logger->notice('Index PORT Value:   {var}', [
             'var' => $this->endpoint->getPort(),
         ]);
-      $this->logger()->notice('Index CORE Value:   {var}', [
+      $this->logger->notice('Index CORE Value:   {var}', [
             'var' => $this->endpoint->getCore(),
         ]);
-      $this->logger()->notice('Index PATH Value:   {var}', [
+      $this->logger->notice('Index PATH Value:   {var}', [
             'var' => $this->endpoint->getPath(),
         ]);
-      $this->logger()->notice('Testing bare Connection...');
+      $this->logger->notice('Testing bare Connection...');
       $response = $this->pingSolrHost();
-      $this->logger()->notice('Ping Received Response? {var}', [
+      $this->logger->notice('Ping Received Response? {var}', [
             'var' => $response instanceof ResultInterface ? '✅' : '❌',
         ]);
-      $this->logger()->notice('Response http status == 200? {var}', [
+      $this->logger->notice('Response http status == 200? {var}', [
             'var' => $response->getResponse()->getStatusCode() === 200 ? '✅' : '❌',
         ]);
       if ($response->getResponse()->getStatusCode() !== 200) {
         throw new \Exception('Cannot contact solr server.');
       }
-      $this->logger()->notice('Drupal Integration...');
+      $this->logger->notice('Drupal Integration...');
             // @codingStandardsIgnoreLine
             $manager = \Drupal::getContainer()->get(
             'plugin.manager.search_api_solr.connector'
         );
       $connectors = array_keys($manager->getDefinitions() ?? []);
-      $this->logger()->notice('Pantheon Connector Plugin Exists? {var}', [
+      $this->logger->notice('Pantheon Connector Plugin Exists? {var}', [
             'var' => in_array('pantheon', $connectors) ? '✅' : '❌',
         ]);
       $connectorPlugin = $manager->createInstance('pantheon');
-      $this->logger()->notice('Connector Plugin Instance created {var}', [
+      $this->logger->notice('Connector Plugin Instance created {var}', [
             'var' => $connectorPlugin instanceof SolrConnectorInterface ? '✅' : '❌',
         ]);
       if (!$connectorPlugin instanceof SolrConnectorInterface) {
         throw new \Exception('Cannot instantiate solr connector.');
       }
-      $this->logger()->notice('Adding Logger to connector...');
+      $this->logger->notice('Adding Logger to connector...');
       $connectorPlugin->setLogger($this->logger);
-      $this->logger()->notice('Using connector plugin to get server Info...');
+      $this->logger->notice('Using connector plugin to get server Info...');
       $info = $connectorPlugin->getServerInfo();
       if ($this->output()->isVerbose()) {
-        $this->logger()->notice(print_r($info, TRUE));
+        $this->logger->notice(print_r($info, TRUE));
       }
-      $this->logger()->notice('Solr Server Version {var}', [
+      $this->logger->notice('Solr Server Version {var}', [
             'var' => $info['lucene']['solr-spec-version'] ?? '❌',
         ]);
 
       $indexedStats = $this->pantheonGuzzle->getQueryResult('admin/luke', [
             'query' => [
                 'stats' => 'true',
+                'wt' => 'json',
             ],
         ]);
       if ($this->output()->isVerbose()) {
-        $this->logger()->notice('Solr Index Stats: {stats}', [
+        $this->logger->notice('Solr Index Stats: {stats}', [
               'stats' => print_r($indexedStats['index'], TRUE),
           ]);
       }
       else {
-        $this->logger()->notice('We got Solr stats ✅');
+        $this->logger->notice('We got Solr stats ✅');
       }
       $beans = $this->pantheonGuzzle->getQueryResult('admin/mbeans', [
             'query' => [
                 'stats' => 'true',
+                'wt' => 'json',
             ],
         ]);
       if ($this->output()->isVerbose()) {
-        $this->logger()->notice('Mbeans Stats: {stats}', [
+        $this->logger->notice('Mbeans Stats: {stats}', [
               'stats' => print_r($beans['solr-mbeans'], TRUE),
           ]);
       }
       else {
-        $this->logger()->notice('We got Mbeans stats ✅');
+        $this->logger->notice('We got Mbeans stats ✅');
       }
     }
     catch (\Exception $e) {
@@ -194,7 +196,7 @@ class Diagnose extends DrushCommands {
       $this->logger->emergency("There's a problem somewhere...");
       exit(1);
     }
-    $this->logger()->notice(
+    $this->logger->notice(
           "If there's an issue with the connection, it would have shown up here. You should be good to go!"
       );
   }

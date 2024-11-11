@@ -33,7 +33,7 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     $this->drupalGet('node/add/moderated_content');
     $this->submitForm([
       'title[0][value]' => 'moderated content',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
     $nodes = \Drupal::entityTypeManager()
       ->getStorage('node')
       ->loadByProperties([
@@ -50,12 +50,12 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     $path = 'node/' . $node->id() . '/edit';
     $this->drupalGet($path);
     // Set up needs review revision.
-    $this->submitForm([], t('Save and Request Review'));
+    $this->submitForm([], 'Save and Request Review');
     $this->drupalGet($path);
     // Set up published revision.
-    $this->submitForm([], t('Save and Publish'));
+    $this->submitForm([], 'Save and Publish');
     \Drupal::entityTypeManager()->getStorage('node')->resetCache([$node->id()]);
-    /* @var \Drupal\node\NodeInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($node->id());
     $this->assertTrue($node->isPublished());
 
@@ -64,8 +64,8 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     $this->drupalGet('node/' . $node->id() . '/delete');
 
     // Delete the node.
-    $this->submitForm([], t('Delete'));
-    $this->assertSession()->pageTextContains(t('The Moderated content moderated content has been deleted.'));
+    $this->submitForm([], 'Delete');
+    $this->assertSession()->pageTextContains('The Moderated content moderated content has been deleted.');
   }
 
   /**
@@ -77,7 +77,7 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     $this->submitForm([
       'title[0][value]' => 'Some moderated content',
       'body[0][value]' => 'First version of the content.',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
 
     $node = $this->drupalGetNodeByTitle('Some moderated content');
     $edit_path = sprintf('node/%d/edit', $node->id());
@@ -92,7 +92,7 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     // canonical URL, but viewing the second revision.
     $this->submitForm([
       'body[0][value]' => 'Second version of the content.',
-    ], t('Save and Request Review'));
+    ], 'Save and Request Review');
     $this->assertSession()->addressEquals(Url::fromRoute('entity.node.canonical', ['node' => $node->id()]));
     $this->assertSession()->pageTextContains('Second version of the content.');
     $this->drupalGet($edit_path);
@@ -101,7 +101,7 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     // canonical URL.
     $this->submitForm([
       'body[0][value]' => 'Third version of the content.',
-    ], t('Save and Publish'));
+    ], 'Save and Publish');
     $this->assertSession()->addressEquals(Url::fromRoute('entity.node.canonical', ['node' => $node->id()]));
     $this->assertSession()->pageTextContains('Third version of the content.');
     $this->drupalGet($edit_path);
@@ -110,7 +110,7 @@ class ModerationStateNodeTest extends ModerationStateTestBase {
     // version" tab.
     $this->submitForm([
       'body[0][value]' => 'Fourth version of the content.',
-    ], t('Save and Create New Draft'));
+    ], 'Save and Create New Draft');
     $this->assertSession()->addressEquals(Url::fromRoute('entity.node.latest_version', ['node' => $node->id()]));
     $this->assertSession()->pageTextContains('Fourth version of the content.');
   }

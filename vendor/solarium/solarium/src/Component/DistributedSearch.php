@@ -377,8 +377,8 @@ class DistributedSearch extends AbstractComponent
     /**
      * Initialize options.
      *
-     * {@internal Several options need some extra checks or setup work,
-     *            for these options the setters are called.}
+     * Several options need some extra checks or setup work, for these options
+     * the setters are called.
      */
     protected function init()
     {

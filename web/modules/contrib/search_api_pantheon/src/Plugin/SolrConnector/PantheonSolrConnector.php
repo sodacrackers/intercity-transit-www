@@ -423,6 +423,7 @@ class PantheonSolrConnector extends SolrConnectorPluginBase implements
     }
     return $this->pantheonGuzzle->get('admin/file', [
       'query' => $query,
+      'wt' => 'json',
     ]);
   }
 

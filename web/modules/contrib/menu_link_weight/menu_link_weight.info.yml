@@ -12,7 +12,7 @@ test_dependencies:
   - cshs
 configure: menu_link_weight.settings
 
-# Information added by Drupal.org packaging script on 2023-02-07
-version: '8.x-2.0-alpha5'
+# Information added by Drupal.org packaging script on 2024-06-20
+version: '8.x-2.0-alpha6'
 project: 'menu_link_weight'
-datestamp: 1675778332
+datestamp: 1718881776

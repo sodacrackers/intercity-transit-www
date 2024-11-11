@@ -15,6 +15,7 @@ use Solarium\Core\Query\DocumentInterface;
 use Solarium\Core\Query\RequestBuilderInterface;
 use Solarium\Core\Query\ResponseParserInterface;
 use Solarium\QueryType\Update\Query\Document;
+use Solarium\QueryType\Update\ResponseParser as UpdateResponseParser;
 
 /**
  * Extract query.
@@ -58,13 +59,6 @@ class Query extends BaseQuery
     protected $fieldMappings = [];
 
     /**
-     * Resource name that was added to the request.
-     *
-     * @var string
-     */
-    protected $resourceName;
-
-    /**
      * Get type for this query.
      *
      * @return string
@@ -87,11 +81,11 @@ class Query extends BaseQuery
     /**
      * Get a response parser for this query.
      *
-     * @return ResponseParser
+     * @return UpdateResponseParser
      */
     public function getResponseParser(): ResponseParserInterface
     {
-        return new ResponseParser();
+        return new UpdateResponseParser();
     }
 
     /**
@@ -124,13 +118,13 @@ class Query extends BaseQuery
     /**
      * Set the file to upload and index.
      *
-     * @param string|resource $file
+     * @param string $filename
      *
      * @return self
      */
-    public function setFile($file): self
+    public function setFile(string $filename): self
     {
-        $this->setOption('file', $file);
+        $this->setOption('file', $filename);
 
         return $this;
     }
@@ -138,9 +132,9 @@ class Query extends BaseQuery
     /**
      * Get the file to upload and index.
      *
-     * @return string|resource|null
+     * @return string|null
      */
-    public function getFile()
+    public function getFile(): ?string
     {
         return $this->getOption('file');
     }
@@ -454,37 +448,10 @@ class Query extends BaseQuery
     }
 
     /**
-     * Set the resource name that was added to the request.
-     *
-     * Will be called by the {@see RequestBuilder} after it determines the resource name.
-     *
-     * @param string $resourceName
-     *
-     * @return self Provides fluent interface
-     */
-    public function setResourceName(string $resourceName): self
-    {
-        $this->resourceName = $resourceName;
-
-        return $this;
-    }
-
-    /**
-     * Get the resource name that was added to the request.
-     *
-     * Will return null if the {@see RequestBuilder} hasn't determined the resource name yet.
-     *
-     * @return string|null
-     */
-    public function getResourceName(): ?string
-    {
-        return $this->resourceName;
-    }
-
-    /**
      * Initialize options.
      *
-     * {@internal The 'fmap' option needs additional setup work.}
+     * Several options need some extra checks or setup work, for these options
+     * the setters are called.
      */
     protected function init()
     {

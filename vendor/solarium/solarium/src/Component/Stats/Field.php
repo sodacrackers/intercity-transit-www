@@ -144,8 +144,8 @@ class Field extends Configurable
     /**
      * Initialize options.
      *
-     * {@internal Options that set a list of facet names need additional setup work
-     *            because they can be an array or a comma separated string.}
+     * Several options need some extra checks or setup work, for these options
+     * the setters are called.
      */
     protected function init()
     {

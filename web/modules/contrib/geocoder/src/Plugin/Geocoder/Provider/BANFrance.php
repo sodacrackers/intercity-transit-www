@@ -18,5 +18,4 @@ use Drupal\geocoder\ConfigurableProviderUsingHandlerWithAdapterBase;
  *   }
  * )
  */
-
 class BANFrance extends ConfigurableProviderUsingHandlerWithAdapterBase {}

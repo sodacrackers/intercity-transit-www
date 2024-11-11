@@ -3,7 +3,6 @@
 namespace Drupal\ultimate_cron\Commands;
 
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\ultimate_cron\CronPlugin;
 use Drupal\ultimate_cron\Entity\CronJob;
 use Drush\Commands\DrushCommands;
@@ -14,16 +13,6 @@ use Drush\Commands\DrushCommands;
  * @package Drupal\ultimate_cron\Commands
  */
 class UltimateCronCommands extends DrushCommands {
-
-  /**
-   * Constructs an UltimateCronCommands object.
-   *
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
-   *   Logger factory object.
-   */
-  public function __construct(LoggerChannelFactoryInterface $logger) {
-    $this->logger = $logger->get('ultimate_cron');
-  }
 
   /**
    * Show a cron jobs logs.

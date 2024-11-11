@@ -11,9 +11,6 @@ dependencies:
     - system
   theme:
     - transit
-third_party_settings:
-  block_class:
-    classes: null
 id: googletripplanner
 theme: transit
 region: content

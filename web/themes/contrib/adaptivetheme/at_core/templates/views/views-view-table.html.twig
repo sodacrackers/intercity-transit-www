@@ -42,9 +42,8 @@
 %}
 <table{{ attributes.addClass(classes) }}>
   {% if caption_needed %}
-    <caption class="table__caption caption">{{ caption }}</caption>
     {% if caption %}
-      {{ caption }}
+	  <caption class="table__caption caption">{{ caption }}</caption>
     {% else %}
       {{ title }}
     {% endif %}

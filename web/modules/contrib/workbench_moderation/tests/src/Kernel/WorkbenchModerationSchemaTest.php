@@ -3,9 +3,9 @@
 namespace Drupal\Tests\workbench_moderation\Kernel;
 
 use Drupal\block_content\Entity\BlockContentType;
-use Drupal\Tests\SchemaCheckTestTrait;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\NodeType;
+use Drupal\Tests\SchemaCheckTestTrait;
 use Drupal\workbench_moderation\Entity\ModerationState;
 use Drupal\workbench_moderation\Entity\ModerationStateTransition;
 

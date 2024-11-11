@@ -21,7 +21,7 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
     $this->assertSession()->responseContains('Save as unpublished');
     $this->submitForm([
       'title[0][value]' => 'Test',
-    ], t('Save and publish'));
+    ], 'Save and publish');
     $this->assertSession()->pageTextContains('Not moderated Test has been created.');
   }
 
@@ -43,7 +43,7 @@ class ModerationStateNodeTypeTest extends ModerationStateTestBase {
     $this->drupalGet('node/add/not_moderated');
     $this->submitForm([
       'title[0][value]' => 'Test',
-    ], t('Save and publish'));
+    ], 'Save and publish');
     $this->assertSession()->pageTextContains('Not moderated Test has been created.');
 
     // Now enable moderation state.

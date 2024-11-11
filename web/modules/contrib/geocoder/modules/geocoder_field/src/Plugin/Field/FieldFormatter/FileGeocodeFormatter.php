@@ -6,15 +6,15 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\geocoder\DumperPluginManager;
-use Drupal\geocoder\GeocoderInterface;
-use Drupal\geocoder\ProviderPluginManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Utility\LinkGeneratorInterface;
+use Drupal\geocoder\DumperPluginManager;
+use Drupal\geocoder\Entity\GeocoderProvider;
+use Drupal\geocoder\GeocoderInterface;
+use Drupal\geocoder\ProviderPluginManager;
 use Drupal\geocoder_field\Plugin\Field\GeocodeFormatterBase;
 use Drupal\geocoder_field\PreprocessorPluginManager;
-use Drupal\geocoder\Entity\GeocoderProvider;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the Geocode formatter for File and Image fields.
@@ -64,7 +64,7 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
    * @param array $third_party_settings
    *   Any third party settings.
    * @param \Drupal\geocoder\GeocoderInterface $geocoder
-   *   The gecoder service.
+   *   The Geocoder service.
    * @param \Drupal\geocoder\ProviderPluginManager $provider_plugin_manager
    *   The provider plugin manager service.
    * @param \Drupal\geocoder\DumperPluginManager $dumper_plugin_manager
@@ -149,8 +149,8 @@ class FileGeocodeFormatter extends GeocodeFormatterBase {
     // Formatter action.
     $compatible_providers = array_filter($element['providers'], function ($e) {
       $geocoder_providers = $this->geocoderProviders;
-      /** @var \Drupal\geocoder\Entity\GeocoderProvider $geocoder_provider */
       if (isset($geocoder_providers[$e]) && $geocoder_provider = $geocoder_providers[$e]) {
+        /** @var \Drupal\geocoder\Entity\GeocoderProvider $geocoder_provider */
         /** @var \Drupal\Component\Plugin\PluginBase $plugin */
         $plugin = $geocoder_provider->getPlugin();
         return $plugin->getPluginId() == $this->formatterPlugin;

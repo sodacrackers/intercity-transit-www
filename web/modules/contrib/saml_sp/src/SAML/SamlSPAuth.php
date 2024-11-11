@@ -9,11 +9,14 @@ use OneLogin\Saml2\Auth;
 use OneLogin\Saml2\Settings;
 use OneLogin\Saml2\Utils;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Handles the authentication.
  */
 class SamlSPAuth extends Auth {
+
+  use StringTranslationTrait;
   /**
    * Callback function for after the response is returned.
    *
@@ -95,7 +98,7 @@ class SamlSPAuth extends Auth {
       }
     }
     if (!isset($idp)) {
-      \Drupal::messenger()->addMessage(t('Could not find a valid Identity Provider server.'), MessengerInterface::TYPE_ERROR);
+      \Drupal::messenger()->addMessage($this->t('Could not find a valid Identity Provider server.'), MessengerInterface::TYPE_ERROR);
       return $this->redirectTo($parameters['RelayState']);
     }
 
@@ -114,9 +117,9 @@ class SamlSPAuth extends Auth {
       $url = Url::fromUri($this->getSSOurl(), ['query' => $parameters]);
       return [
         'message' => [
-          '#markup' => t('This is a debug page, you can proceed by clicking the following link (this might not work, because "/" chars are encoded differently when the link is made by Drupal as opposed to redirected, as it is when debugging is turned off).') . ' ',
+          '#markup' => $this->t('This is a debug page, you can proceed by clicking the following link (this might not work, because "/" chars are encoded differently when the link is made by Drupal as opposed to redirected, as it is when debugging is turned off).') . ' ',
         ],
-        'link' => Link::fromTextAndUrl(t('test link'), $url)->toRenderable(),
+        'link' => Link::fromTextAndUrl($this->t('test link'), $url)->toRenderable(),
       ];
     }
     return $this->redirectTo($this->getSSOurl(), $parameters);

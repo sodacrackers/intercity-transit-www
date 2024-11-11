@@ -161,6 +161,20 @@ body.we-mega-menu-backend {
 			@include flex-width-col-xs(33.3333%);
 		}
 	}
+
+	@media (min-width: $tablet-ht) {
+		.we-mega-menu-ul {
+			.dropdown-menu.open {
+				.we-mega-menu-group {
+					>.we-mega-menu-submenu {
+						display: block;
+						@include opacity(1);
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
 }
 
 // Front End
@@ -236,7 +250,7 @@ body:not(.we-mega-menu-backend) {
 
 	.we-mega-menu-caption {
 		display: block;
-		white-space: nowrap;
+		// white-space: nowrap;
 	}
 }
 
@@ -305,6 +319,14 @@ body:not(.we-mega-menu-backend) {
 					display: block;
 					@include opacity(1);
 					visibility: visible;
+				}
+
+				.we-mega-menu-group {
+					>.we-mega-menu-submenu {
+						display: block;
+						@include opacity(1);
+						visibility: visible;
+					}
 				}
 			}
 

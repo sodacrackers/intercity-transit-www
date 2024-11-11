@@ -12,11 +12,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Psr\Log\LoggerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Provides route responses for the SAML SP module.
  */
 class SamlSPController extends ControllerBase {
+
+  use StringTranslationTrait;
 
   /**
    * The request stack.
@@ -24,13 +29,38 @@ class SamlSPController extends ControllerBase {
    * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   protected $requestStack;
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * The logger.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('request_stack')
+      $container->get('request_stack'),
+      $container->get('messenger'),
+      $container->get('logger.factory')->get('saml_sp'),
+      $container->get('config.factory')
     );
   }
 
@@ -39,9 +69,18 @@ class SamlSPController extends ControllerBase {
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   The logger.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
    */
-  public function __construct(RequestStack $request_stack) {
+  public function __construct(RequestStack $request_stack, MessengerInterface $messenger, LoggerInterface $logger, ConfigFactoryInterface $config_factory) {
     $this->requestStack = $request_stack;
+    $this->messenger = $messenger;
+    $this->logger = $logger;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -106,7 +145,7 @@ class SamlSPController extends ControllerBase {
         }
         catch (\Exception $e) {
           // @todo Inspect the Exceptions, and log a meaningful error condition.
-          \Drupal::logger('saml_sp')->error('Invalid response, %exception', ['%exception' => $e->getMessage()]);
+          $this->logger->error('Invalid response, %exception', ['%exception' => $e->getMessage()]);
           $is_valid = FALSE;
         }
         // Remove the now-expired tracked request.
@@ -116,34 +155,34 @@ class SamlSPController extends ControllerBase {
         if (!$is_valid) {
           $exception = $saml_response->getErrorException();
           $exception_vars = Error::decodeException($exception);
-          \Drupal::logger('saml_sp')->error('%type: @message in %function (line %line of %file).', $exception_vars);
+          $this->logger->error('%type: @message in %function (line %line of %file).', $exception_vars);
           $error = $saml_response->getError();
           [$problem] = array_reverse(explode(' ', $error));
 
           switch ($problem) {
             case 'Responder':
-              $message = t('There was a problem with the response from @idp_name. Please try again later.', [
+              $message = $this->t('There was a problem with the response from @idp_name. Please try again later.', [
                 '@idp_name' => $idp->label(),
               ]);
               break;
 
             case 'Requester':
-              $message = t('There was an issue with the request made to @idp_name. Please try again later.', [
+              $message = $this->t('There was an issue with the request made to @idp_name. Please try again later.', [
                 '@idp_name' => $idp->label(),
               ]);
               break;
 
             case 'VersionMismatch':
-              $message = t('SAML VersionMismatch between @idp_name and @site_name. Please try again later.', [
+              $message = $this->t('SAML VersionMismatch between @idp_name and @site_name. Please try again later.', [
                 '@idp_name' => $idp->label(),
-                '@site_name' => \Drupal::config('system.site')->get('name'),
+                '@site_name' => $this->configFactory->get('system.site')->get('name'),
               ]);
               break;
           }
           if (!empty($message)) {
-            \Drupal::messenger()->addMessage($message, MessengerInterface::TYPE_ERROR);
+            $this->messenger->addMessage($message, MessengerInterface::TYPE_ERROR);
           }
-          \Drupal::logger('saml_sp')->error('Invalid response, @error: <pre>@response</pre>', [
+          $this->logger->error('Invalid response, @error: <pre>@response</pre>', [
             '@error' => $error,
             '@response' => print_r($saml_response->response, TRUE),
           ]);
@@ -163,11 +202,11 @@ class SamlSPController extends ControllerBase {
         }
       }
       else {
-        \Drupal::logger('saml_sp')->error('Request with inbound ID @id not found.', ['@id' => $inbound_id]);
+        $this->logger->error('Request with inbound ID @id not found.', ['@id' => $inbound_id]);
       }
     }
     // Failover: redirect to the homepage.
-    \Drupal::logger('saml_sp')->warning('Failover: redirect to the homepage. No inbound ID or something.');
+    $this->logger->warning('Failover: redirect to the homepage. No inbound ID or something.');
     return new RedirectResponse(Url::fromRoute('<front>')->toString());
   }
 
@@ -182,7 +221,7 @@ class SamlSPController extends ControllerBase {
    */
   private function validAuthenticationResponse($request = NULL) {
     if (is_null($request)) {
-      \Drupal::logger('saml_sp')->warning('SamlSPController::validAuthenticationResponse() requires an argument as of version 4.2.0 and will fail without it in version 5.0.0');
+      $this->logger->warning('SamlSPController::validAuthenticationResponse() requires an argument as of version 4.2.0 and will fail without it in version 5.0.0');
       $request = $this->requestStack->getCurrentRequest();
     }
     $method = $request->server->get('REQUEST_METHOD');

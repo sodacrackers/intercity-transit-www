@@ -11,8 +11,7 @@ archive: false
 id: bike_mechanic_volunteer_program
 title: 'Bike Mechanic Volunteer Program'
 description: ''
-categories:
-  - 'Walk N Roll'
+categories: {  }
 elements: |
   markup:
     '#type': webform_markup
@@ -299,3 +298,4 @@ handlers:
       parameters: {  }
       debug: false
 variants: {  }
+category: null

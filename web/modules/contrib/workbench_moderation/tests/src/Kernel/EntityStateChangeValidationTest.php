@@ -97,7 +97,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
     $violations = $node->validate();
     $this->assertCount(1, $violations);
 
-    $this->assertEquals('Invalid state transition from <em class="placeholder">Draft</em> to <em class="placeholder">Archived</em>', $violations->get(0)->getMessage());
+    $this->assertEquals('Invalid state transition from <em class="placeholder">Draft</em> to <em class="placeholder">Archived</em>', (string) $violations->get(0)->getMessage());
   }
 
   /**
@@ -110,7 +110,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
       'type' => 'example',
     ]);
     $node_type->save();
-    /** @var \Drupal\node\Entity\NodeInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
       'type' => 'example',
       'title' => 'Test title',
@@ -151,7 +151,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
       'type' => 'example',
     ]);
     $node_type->save();
-    /** @var \Drupal\node\Entity\NodeInterface $node */
+    /** @var \Drupal\node\NodeInterface $node */
     $node = Node::create([
       'type' => 'example',
       'title' => 'Test title',
@@ -182,13 +182,13 @@ class EntityStateChangeValidationTest extends KernelTestBase {
     $node = Node::load($nid);
     $node_fr = $node->getTranslation('fr');
 
-    /** @var \Drupal\node\Entity\NodeInterface $node_fr */
+    /** @var \Drupal\node\NodeInterface $node_fr */
     $node_fr->setTitle('Nouveau');
     $node_fr->save();
   }
 
   /**
-   * Test transistion access validation on new entity creation.
+   * Test transition access validation on new entity creation.
    *
    * @dataProvider transitionAccessValidationTestCases
    */
@@ -207,7 +207,7 @@ class EntityStateChangeValidationTest extends KernelTestBase {
     $violations = $node->validate();
     $this->assertCount(count($messages), $violations);
     foreach ($messages as $i => $message) {
-      $this->assertEquals($message, $violations->get($i)->getMessage());
+      $this->assertEquals($message, (string) $violations->get($i)->getMessage());
     }
   }
 
@@ -233,14 +233,14 @@ class EntityStateChangeValidationTest extends KernelTestBase {
     $violations = $node->validate();
     $this->assertCount(count($messages), $violations);
     foreach ($messages as $i => $message) {
-      $this->assertEquals($message, $violations->get($i)->getMessage());
+      $this->assertEquals($message, (string) $violations->get($i)->getMessage());
     }
   }
 
   /**
    * Test cases for access validation.
    */
-  public function transitionAccessValidationTestCases() {
+  public static function transitionAccessValidationTestCases() {
     return [
       'Invalid transition, no permissions validated' => [
         [],

@@ -4,9 +4,9 @@ description: 'Reintroduces dynamic default views.'
 dependencies:
   - drupal:views
 package: Views
-core_version_requirement: ^9.3 || ^10
+core_version_requirement: ^10.1
 
-# Information added by Drupal.org packaging script on 2023-06-27
-version: '8.x-1.2'
+# Information added by Drupal.org packaging script on 2024-03-01
+version: '8.x-1.4'
 project: 'views_templates'
-datestamp: 1687898809
+datestamp: 1709308086

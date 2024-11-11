@@ -43,7 +43,7 @@ class IdpDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function getDescription() {
-    return t('Only do this if you are sure!');
+    return $this->t('Only do this if you are sure!');
   }
 
   /**

@@ -70,7 +70,7 @@ class DynamicLocalTasks extends DeriverBase implements ContainerDeriverInterface
       $this->derivatives["$entity_type_id.moderation_tab"] = [
         'route_name' => "entity.$entity_type_id.moderation",
         'title' => $this->t('Manage moderation'),
-          // @todo - are we sure they all have an edit_form?
+          // @todo are we sure they all have an edit_form?
         'base_route' => "entity.$entity_type_id.edit_form",
         'weight' => 30,
       ] + $base_plugin_definition;

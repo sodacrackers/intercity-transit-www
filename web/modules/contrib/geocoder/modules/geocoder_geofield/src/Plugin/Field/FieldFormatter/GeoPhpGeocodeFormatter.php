@@ -6,27 +6,20 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\geocoder\DumperPluginManager;
 use Drupal\geocoder\GeocoderInterface;
 use Drupal\geocoder\ProviderPluginManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\geocoder_field\Plugin\Field\FieldFormatter\FileGeocodeFormatter;
 use Drupal\geocoder_field\PreprocessorPluginManager;
 use Drupal\geofield\GeoPHP\GeoPHPInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Abstract implementation of the GeoPhp Wrapper formatter for File fields.
  */
 abstract class GeoPhpGeocodeFormatter extends FileGeocodeFormatter {
-
-  /**
-   * Unique Geocoder Plugin used by this formatter.
-   *
-   * @var string
-   */
-  protected $formatterPlugin = '';
 
   /**
    * The geoPhpWrapper service.
@@ -53,7 +46,7 @@ abstract class GeoPhpGeocodeFormatter extends FileGeocodeFormatter {
    * @param array $third_party_settings
    *   Any third party settings.
    * @param \Drupal\geocoder\GeocoderInterface $geocoder
-   *   The gecoder service.
+   *   The Geocoder service.
    * @param \Drupal\geocoder\ProviderPluginManager $provider_plugin_manager
    *   The provider plugin manager service.
    * @param \Drupal\geocoder\DumperPluginManager $dumper_plugin_manager

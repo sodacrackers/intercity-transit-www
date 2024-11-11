@@ -75,10 +75,10 @@ class TestIndexAndQuery extends DrushCommands {
       $drupal_root = \DRUPAL_ROOT;
 
       $response = $this->pingSolrHost();
-      $this->logger()->notice('Ping Received Response? {var}', [
+      $this->logger->notice('Ping Received Response? {var}', [
         'var' => $response instanceof ResultInterface ? '✅' : '❌',
       ]);
-      $this->logger()->notice('Response http status == 200? {var}', [
+      $this->logger->notice('Response http status == 200? {var}', [
         'var' => $response->getResponse()->getStatusCode() === 200 ? '✅' : '❌',
       ]);
       if ($response->getResponse()->getStatusCode() !== 200) {
@@ -86,7 +86,7 @@ class TestIndexAndQuery extends DrushCommands {
       }
 
       // Create a new random index.
-      $this->logger()->notice("Creating temporary index...");
+      $this->logger->notice("Creating temporary index...");
       $module_root = \Drupal::service('extension.list.module')->getPath('search_api_pantheon');
       $value = Yaml::parseFile($module_root . '/.ci/config/search_api.index.solr_index.yml');
 
@@ -113,10 +113,10 @@ class TestIndexAndQuery extends DrushCommands {
       \Drupal::service('config.installer')->installOptionalConfig($config_source);
       $index = Index::load($index_id);
       $index->save();
-      $this->logger()->notice("Temporary index created.");
+      $this->logger->notice("Temporary index created.");
 
       $indexSingleItemQuery = $this->indexSingleItem($index->id());
-      $this->logger()->notice('Solr Update index with one document Response: {code} {reason}', [
+      $this->logger->notice('Solr Update index with one document Response: {code} {reason}', [
         'code' => $indexSingleItemQuery->getResponse()->getStatusCode(),
         'reason' => $indexSingleItemQuery->getResponse()->getStatusMessage(),
       ]);
@@ -125,18 +125,19 @@ class TestIndexAndQuery extends DrushCommands {
         throw new \Exception('Cannot unable to index simple item. Have you created an index for the server?');
       }
 
-      $this->logger()->notice("Querying Solr for the indexed item...");
+      $this->logger->notice("Querying Solr for the indexed item...");
       $result = $this->pantheonGuzzle->getQueryResult('select', [
         'query' => [
           'q' => 'index_id:' . $index->id(),
           'fields' => ['id', 'index_id', 'name'],
+          'wt' => 'json',
         ],
       ]);
       if ($result['response']['numFound'] === 1) {
-        $this->logger()->notice('We got exactly 1 result ✅');
+        $this->logger->notice('We got exactly 1 result ✅');
       }
       else {
-        $this->logger()->notice('We did not get exactly 1 result ❌ (numFound = {numFound})', [
+        $this->logger->notice('We did not get exactly 1 result ❌ (numFound = {numFound})', [
           'numFound' => $result['response']['numFound'],
         ]);
       }
@@ -153,7 +154,7 @@ class TestIndexAndQuery extends DrushCommands {
     }
     finally {
       if ($index) {
-        $this->logger()->notice('Removing content and index {index_id}', [
+        $this->logger->notice('Removing content and index {index_id}', [
           'index_id' => $index->id(),
         ]);
 
@@ -161,7 +162,7 @@ class TestIndexAndQuery extends DrushCommands {
         $index->delete();
       }
     }
-    $this->logger()->notice(
+    $this->logger->notice(
       "If there's an issue with Solr, it would have shown up here. You should be good to go!"
     );
   }

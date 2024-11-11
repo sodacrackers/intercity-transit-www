@@ -55,7 +55,12 @@ class PantheonSolrAdminForm extends FormBase {
         ServerInterface $search_api_server = NULL
     ): array {
     $file_list = $this->pantheonGuzzle
-      ->getQueryResult('admin/file', ['query' => ['action' => 'VIEW']]);
+      ->getQueryResult('admin/file', [
+        'query' => [
+          'action' => 'VIEW',
+          'wt' => 'json',
+        ],
+      ]);
     $form['status'] = [
           '#type' => 'vertical_tabs',
           '#title' => $this->t('Pantheon Search Files'),

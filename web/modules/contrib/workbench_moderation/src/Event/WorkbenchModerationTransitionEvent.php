@@ -2,8 +2,8 @@
 
 namespace Drupal\workbench_moderation\Event;
 
-use Symfony\Contracts\EventDispatcher\Event;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Defines a class for transition events.

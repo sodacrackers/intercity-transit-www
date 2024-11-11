@@ -170,7 +170,7 @@ class StateTransitionValidation {
    * @param string $from
    *   The origin state machine name.
    * @param string $to
-   *   The desetination state machine name.
+   *   The destination state machine name.
    * @param \Drupal\Core\Session\AccountInterface $user
    *   The user to validate.
    *
@@ -236,7 +236,8 @@ class StateTransitionValidation {
    *   A transition state query.
    */
   protected function transitionStateQuery() {
-    return $this->entityTypeManager->getStorage('moderation_state_transition')->getQuery('AND');;
+    return $this->entityTypeManager->getStorage('moderation_state_transition')->getQuery('AND');
+    ;
   }
 
   /**

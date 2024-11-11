@@ -171,7 +171,7 @@ class EntityTypeInfo {
 
     if ($this->moderationInfo->isBundleForModeratableEntity($entity)) {
       $operations['manage-moderation'] = [
-        'title' => t('Manage moderation'),
+        'title' => $this->t('Manage moderation'),
         'weight' => 27,
         'url' => Url::fromRoute("entity.{$type->id()}.moderation", [$entity->getEntityTypeId() => $entity->id()]),
       ];
@@ -239,6 +239,7 @@ class EntityTypeInfo {
       $result = $this->entityTypeManager
         ->getStorage($type_name)
         ->getQuery()
+        ->accessCheck(FALSE)
         ->condition('third_party_settings.workbench_moderation.enabled', TRUE)
         ->execute();
 
@@ -266,8 +267,8 @@ class EntityTypeInfo {
     $fields = [];
     // @todo write a test for this.
     $fields['moderation_state'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Moderation state'))
-      ->setDescription(t('The moderation state of this piece of content.'))
+      ->setLabel($this->t('Moderation state'))
+      ->setDescription($this->t('The moderation state of this piece of content.'))
       ->setSetting('target_type', 'moderation_state')
       ->setTargetEntityTypeId($entity_type->id())
       ->setRevisionable(TRUE)
@@ -323,13 +324,13 @@ class EntityTypeInfo {
    */
   public function bundleFormAlter(array &$form, FormStateInterface $form_state, $form_id) {
     if ($this->moderationInfo->isRevisionableBundleForm($form_state->getFormObject())) {
-      /* @var ConfigEntityTypeInterface $bundle */
+      /** @var \Drupal\Core\Config\Entity\ConfigEntityTypeInterface $bundle */
       $bundle = $form_state->getFormObject()->getEntity();
 
       $this->entityTypeManager->getHandler($bundle->getEntityType()->getBundleOf(), 'moderation')->enforceRevisionsBundleFormAlter($form, $form_state, $form_id);
     }
     elseif ($this->moderationInfo->isModeratedEntityForm($form_state->getFormObject())) {
-      /* @var ContentEntityInterface $entity */
+      /** @var ContentEntityInterface $entity */
       $entity = $form_state->getFormObject()->getEntity();
 
       $this->entityTypeManager->getHandler($entity->getEntityTypeId(), 'moderation')->enforceRevisionsEntityFormAlter($form, $form_state, $form_id);
@@ -351,7 +352,7 @@ class EntityTypeInfo {
    *   Form state.
    */
   public static function bundleFormRedirect(array &$form, FormStateInterface $form_state) {
-    /* @var ContentEntityInterface $entity */
+    /** @var ContentEntityInterface $entity */
     $entity = $form_state->getFormObject()->getEntity();
 
     $moderation_info = \Drupal::getContainer()->get('workbench_moderation.moderation_information');
