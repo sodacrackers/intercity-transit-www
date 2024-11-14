@@ -42,13 +42,13 @@ settings:
     event_background:
       field_name: type
       color_map:
-        - '316 #3c8711'
-        - '315 #003087'
-        - '317 #b95e04'
-        - '318 #e00000'
-        - '319 #11025a'
-        - '320 #3a87ad'
-        - '321 #e3d344'
+        - '350 #3c8711'
+        - '349 #003087'
+        - '351 #b95e04'
+        - '352 #e00000'
+        - '356 #e3d344'
+        - '353 #11025a'
+        - '354 #3a87ad'
 visibility:
   request_path:
     id: request_path
