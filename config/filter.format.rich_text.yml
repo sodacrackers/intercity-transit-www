@@ -84,21 +84,23 @@ filters:
     status: false
     weight: -40
     settings:
-      image_style_banner_narrow: '0'
-      image_style_banner_narrow_m_: '0'
-      image_style_large: '0'
-      image_style_medium: '0'
-      image_style_medium_220_x_220_cropped: '0'
-      image_style_thumbnail: '0'
+      image_styles:
+        banner_narrow: '0'
+        banner_narrow_m_: '0'
+        large: '0'
+        medium: '0'
+        medium_220_x_220_cropped: '0'
+        thumbnail: '0'
   filter_responsive_image_style:
     id: filter_responsive_image_style
     provider: inline_responsive_images
     status: false
     weight: -39
     settings:
-      responsive_style_responsive_grid_image: '0'
-      responsive_style_responsive_narrow_banner: '0'
-      responsive_style_default_responsive: '0'
+      image_styles:
+        responsive_grid_image: '0'
+        responsive_narrow_banner: '0'
+        default_responsive: '0'
   filter_url:
     id: filter_url
     provider: filter

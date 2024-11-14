@@ -1406,6 +1406,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       empty:
         area:
           id: area
@@ -2684,6 +2685,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       arguments:
         created_year:
           id: created_year
@@ -3089,6 +3091,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+          pagination_heading_level: h4
       arguments:
         created_year:
           id: created_year

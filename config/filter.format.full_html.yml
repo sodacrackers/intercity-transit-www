@@ -16,30 +16,32 @@ filters:
     weight: -10
     settings:
       allowed_html: "<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type='1 A I'> <li> <dl> <dt> <dd> <h2 id='jump-*'> <h3 id> <h4 id> <h5 id> <h6 id><div class> <iframe>"
-      allowed_html_automatic_tag: false
       filter_html_help: true
       filter_html_nofollow: false
+      allowed_html_automatic_tag: false
   filter_imagestyle:
     id: filter_imagestyle
     provider: inline_responsive_images
     status: false
     weight: 0
     settings:
-      image_style_banner_narrow: '0'
-      image_style_banner_narrow_m_: '0'
-      image_style_large: '0'
-      image_style_medium: '0'
-      image_style_medium_220_x_220_cropped: '0'
-      image_style_thumbnail: '0'
+      image_styles:
+        banner_narrow: '0'
+        banner_narrow_m_: '0'
+        large: '0'
+        medium: '0'
+        medium_220_x_220_cropped: '0'
+        thumbnail: '0'
   filter_responsive_image_style:
     id: filter_responsive_image_style
     provider: inline_responsive_images
     status: false
     weight: 0
     settings:
-      responsive_style_default_responsive: '0'
-      responsive_style_responsive_grid_image: '0'
-      responsive_style_responsive_narrow_banner: '0'
+      image_styles:
+        default_responsive: '0'
+        responsive_grid_image: '0'
+        responsive_narrow_banner: '0'
   slick_filter:
     id: slick_filter
     provider: slick

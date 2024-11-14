@@ -1,5 +1,6 @@
 _core:
   default_config_hash: fP57Sd8RjnZMVH3p_R-Yt0tC8j7Z-BuzGMIp6pmrHAI
+langcode: en
 smtp_on: false
 smtp_host: email-smtp.us-west-2.amazonaws.com
 smtp_hostbackup: ''
@@ -13,9 +14,10 @@ smtp_from: noreply@intercitytransit.com
 smtp_fromname: 'Intercity Transit'
 smtp_client_hostname: ''
 smtp_client_helo: ''
-smtp_allowhtml: '1'
+smtp_allowhtml: true
 smtp_test_address: rkc@intercitytransit.com
 smtp_reroute_address: ''
 smtp_debugging: false
+smtp_debug_level: 1
 prev_mail_system: php_mail
 smtp_keepalive: false
