@@ -155,7 +155,7 @@
     "extra": {
         "installer-types": ["npm-asset"],
         "merge-plugin": {
-            "include": ["web/modules/contrib/webform/composer.libraries.json", "web/modules/contrib/sidr/composer.libraries.json"]
+            "include": ["web/modules/contrib/webform/composer.libraries.json", "web/modules/contrib/sidr/composer.libraries.json", "web/modules/contrib/fontawesome/composer.libraries.json"]
         },
         "drupal-scaffold": {
             "locations": {
