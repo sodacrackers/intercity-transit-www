@@ -17,7 +17,7 @@ provider: null
 plugin: 'block_content:94f17c58-dae6-444a-a9e1-1eb177b2e65a'
 settings:
   id: 'block_content:94f17c58-dae6-444a-a9e1-1eb177b2e65a'
-  label: 'Success! You''ve logged in using the Portal Website.'
+  label: "Success! You've logged in using the Portal Website."
   label_display: visible
   provider: block_content
   status: true

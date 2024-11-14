@@ -48,7 +48,7 @@ class RoutesPage extends ControllerBase {
   public function BuildTitle($routeId) {
     if ($routeId != 'all'):
       $request = \Drupal::request();
-      if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)):
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
         $title = it_route_trip_tools_build_route_title($routeId);
       endif;
     else:
@@ -88,6 +88,7 @@ class RoutesPage extends ControllerBase {
       // Load all published nodes of type "alert".
       $query = $node_storage->getQuery()
         ->condition('type', 'rider_alerts')
+        ->accessCheck()
         ->condition('field_start_date', date('Y-m-d'), '<')
         ->condition('field_end_date', date('Y-m-d'), '>')
         ->condition('status', 1);
@@ -97,6 +98,7 @@ class RoutesPage extends ControllerBase {
       // Load all published nodes of type "alert".
       $query = $node_storage->getQuery()
         ->condition('type', 'rider_alerts')
+        ->accessCheck()
         ->condition('field_start_date', date('Y-m-d'), '<')
         ->notExists('field_end_date')
         ->condition('field_end_date_until_further_not', TRUE)
@@ -221,7 +223,7 @@ class RoutesPage extends ControllerBase {
       if ($route_data_weekend['bounding']['min']['lat'] == 999 && $route_data_weekend['bounding']['max']['lat'] == -999) {
         $route_data_weekend['bounding'] = $route_data_weekdays['bounding'];
       }
-      if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
         $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];
         $route->setDefault('_title', $new_title);
       }

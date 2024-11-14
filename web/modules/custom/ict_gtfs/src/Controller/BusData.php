@@ -79,12 +79,7 @@ class BusData extends ControllerBase {
       $context = new RenderContext();
       /** @var \Drupal\Core\Cache\CacheableJsonResponse $response */
       $response = $this->renderer->executeInRenderContext($context, function () use ($route_data) {
-        //        $response->addCacheableDependency(CacheableMetadata::createFromRenderArray([
-//          '#cache' => [
-//            'max-age' => 30,
-//          ],
-//        ]));
-        return JsonResponse::create($route_data);
+        return new JsonResponse($route_data);
       });
       return $response;
     }
@@ -96,6 +91,7 @@ class BusData extends ControllerBase {
     $node_storage = \Drupal::entityTypeManager()->getStorage('node');
     // Load all published nodes of type "alert".
     $query = $node_storage->getQuery()
+      ->accessCheck()
       ->condition('type', 'rider_alerts')
       ->condition('field_affected_routes_new_.entity.name', $route_id)
       ->condition('field_start_date', date('Y-m-d'), '<')
@@ -107,6 +103,7 @@ class BusData extends ControllerBase {
     // Load all published nodes of type "alert".
     $query = $node_storage->getQuery()
       ->condition('type', 'rider_alerts')
+      ->accessCheck()
       ->condition('field_affected_routes_new_.entity.name', $route_id)
       ->condition('field_start_date', date('Y-m-d'), '<')
       ->notExists('field_end_date')

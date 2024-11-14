@@ -10,7 +10,7 @@ field_name: field_recruitment_custom_title
 entity_type: node
 bundle: recruitment
 label: 'Custom Job Title'
-description: 'For those special moments, when the default Job Title just isn''t enough.'
+description: "For those special moments, when the default Job Title just isn't enough."
 required: false
 translatable: false
 default_value: {  }

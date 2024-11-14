@@ -12,12 +12,12 @@ image_style_mappings:
   -
     image_mapping_type: image_style
     image_mapping: banner_narrow
-    breakpoint_id: bootstrap.screen-xs-max
+    breakpoint_id: bootstrap.screen-lg-min
     multiplier: 1x
   -
     image_mapping_type: image_style
     image_mapping: banner_narrow
-    breakpoint_id: bootstrap.screen-lg-min
+    breakpoint_id: bootstrap.screen-xs-max
     multiplier: 1x
 breakpoint_group: bootstrap
 fallback_image_style: '_empty image_'

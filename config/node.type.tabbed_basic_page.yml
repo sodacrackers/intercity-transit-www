@@ -21,7 +21,7 @@ third_party_settings:
 name: 'Tabbed basic page'
 type: tabbed_basic_page
 description: 'Use <em>tabbed basic pages</em> for static content with multiple tables or views needed.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

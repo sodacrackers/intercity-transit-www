@@ -7,3 +7,4 @@ chunk: 50
 dependencies:
   config:
     - node.type.bus_stop_page
+new_content_behavior: 1

@@ -11,7 +11,7 @@ archive: false
 id: vanpool_driver_application
 title: 'Vanpool Driver Application'
 description: ''
-category: ''
+categories: {  }
 elements: |
   signature:
     '#type': webform_signature

@@ -29,19 +29,20 @@ class RoutesMediaBlock extends BlockBase {
     $route_map_url = '';
     if (($route_id != 'all') && ($route_id != NULL)):
         $route_param = $route_id;
-        $query = \Drupal::entityQuery('media'); 
+        $query = \Drupal::entityQuery('media');
+        $query->accessCheck();
         $query->condition('bundle', 'route_pdfs');
         $query->condition('name', $route_param, '=');
         $media_ids = $query->execute();
         $media = \Drupal::entityTypeManager()->getStorage('media')->loadMultiple($media_ids);
         foreach($media as $item):
           if (!$item->get('field_document')->isEmpty() && $item->get('field_document')->entity->getFileUri() !== NULL ):
-            $route_table_url = file_create_url($item->get('field_document')->entity->getFileUri());
+            $route_table_url = \Drupal::service('file_url_generator')->generateString($item->get('field_document')->entity->getFileUri());
           else:
             $route_table_url = '';
           endif;
           if (!$item->get('field_map')->isEmpty() && $item->get('field_map')->entity->getFileUri() !== NULL ):
-            $route_map_url = file_create_url($item->get('field_map')->entity->getFileUri());
+            $route_map_url = \Drupal::service('file_url_generator')->generateString($item->get('field_map')->entity->getFileUri());
           else:
             $route_map_url = '';
           endif;

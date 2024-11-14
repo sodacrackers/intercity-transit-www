@@ -11,6 +11,7 @@ dependencies:
     - node.type.interagency_agreement
     - node.type.news
   module:
+    - file
     - filter
     - media
     - node
@@ -29,6 +30,7 @@ permissions:
   - 'delete any interagency_agreement content'
   - 'delete interagency_agreement revisions'
   - 'delete own document media'
+  - 'delete own files'
   - 'delete own interagency_agreement content'
   - 'edit any blog_page content'
   - 'edit any calendar_event content'

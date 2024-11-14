@@ -6,3 +6,4 @@ name: Tags
 vid: tags
 description: 'additional, generic tags for searching'
 weight: 0
+new_revision: false

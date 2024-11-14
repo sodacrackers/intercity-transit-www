@@ -33,7 +33,9 @@ settings:
   depth: 0
   expand_all_items: false
   parent: 'human-resources:'
+  render_parent: false
   suggestion: human_resources
+  hide_on_nonactive: false
 visibility:
   request_path:
     id: request_path

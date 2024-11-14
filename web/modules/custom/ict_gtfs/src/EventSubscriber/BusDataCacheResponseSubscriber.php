@@ -7,7 +7,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableResponseInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -53,18 +53,14 @@ class BusDataCacheResponseSubscriber implements EventSubscriberInterface {
   /**
    * Sets expires and max-age for bubbled-up max-age values that are > 0.
    *
-   * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
+   * @param \Symfony\Component\HttpKernel\Event\ResponseEvent $event
    *   The response event.
    *
    * @throws \Exception
    *   Thrown when \DateTime() cannot create a new date object from the
    *   arguments passed in.
    */
-  public function onResponse(FilterResponseEvent $event) {
-    // Don't bother proceeding on sub-requests.
-    if (!$event->isMasterRequest()) {
-      return;
-    }
+  public function onResponse(ResponseEvent $event) {
     $response = $event->getResponse();
 
     // Nothing to do here if there isn't cacheable metadata available.

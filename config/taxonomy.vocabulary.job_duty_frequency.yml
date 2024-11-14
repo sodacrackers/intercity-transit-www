@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Job Duty Frequency'
 vid: job_duty_frequency
-description: ''
+description: null
 weight: 0
+new_revision: false

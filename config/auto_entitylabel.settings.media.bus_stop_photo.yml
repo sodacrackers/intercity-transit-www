@@ -7,3 +7,4 @@ chunk: 50
 dependencies:
   config:
     - media.type.bus_stop_photo
+new_content_behavior: 1

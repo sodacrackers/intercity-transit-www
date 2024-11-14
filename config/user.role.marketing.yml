@@ -30,6 +30,7 @@ dependencies:
     - taxonomy.vocabulary.site_sections
   module:
     - feeds
+    - file
     - filter
     - media
     - node
@@ -114,6 +115,7 @@ permissions:
   - 'delete own bus_route_scheduler scheduled updates'
   - 'delete own bus_stop_page content'
   - 'delete own calendar_event content'
+  - 'delete own files'
   - 'delete own interagency_agreement content'
   - 'delete own jobs content'
   - 'delete own multiple_node_embargo scheduled updates'
