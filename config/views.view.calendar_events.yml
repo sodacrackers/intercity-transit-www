@@ -463,6 +463,8 @@ display:
           left_buttons: 'prev,next today'
           right_buttons: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
           default_view: dayGridMonth
+          default_mobile_view: listYear
+          mobile_width: '1'
           firstDay: '1'
           nav_links: 0
           timeFormat: 'hh:mm a'
@@ -478,8 +480,8 @@ display:
           tax_field: field_wnr_event_type
           vocabularies: calendar_type
           color_bundle:
-            walk_n_roll_event: '#3a87ad'
             blog_page: '#3a87ad'
+            bus_stop_page: '#3a87ad'
             calendar_event: '#3a87ad'
             directory_item: '#3a87ad'
             home_frequent_tasks: '#3a87ad'
@@ -491,29 +493,35 @@ display:
             page: '#3a87ad'
             procurement_bid_or_proposal: '#3a87ad'
             recruitment: '#3a87ad'
+            resbylaws: '#3a87ad'
             rider_alerts: '#3a87ad'
             route: '#3a87ad'
             tabbed_basic_page: '#3a87ad'
             travel_training_accomodation: '#3a87ad'
             vanpool: '#3a87ad'
+            walk_n_roll_event: '#3a87ad'
           rrule: ''
+          dialogModal: true
+          dialogCanvas: false
           duration: ''
-          bundle_type: walk_n_roll_event
-          classes: walk-n-roll-calendar
-          default_mobile_view: listYear
-          mobile_width: '1'
+          slotDuration: '00:30:00'
           minTime: '00:00:00'
           maxTime: '23:59:59'
-          dialogModal: 1
-          slotDuration: '00:30:00'
+          bundle_type: walk_n_roll_event
+          classes: walk-n-roll-calendar
+          fetchGoogleHolidays: 0
+          googleHolidaysSettings:
+            googleCalendarAPIKey: ''
+            googleCalendarGroup: ''
+            renderGoogleHolidaysAsBackground: 0
           color_taxonomies:
-            316: '#3c8711'
-            315: '#003087'
-            317: '#b95e04'
-            318: '#e00000'
-            319: '#11025a'
-            320: '#3a87ad'
-            321: '#e3d344'
+            350: '#3c8711'
+            349: '#003087'
+            351: '#b95e04'
+            352: '#e00000'
+            356: '#e3d344'
+            353: '#11025a'
+            354: '#3a87ad'
       row:
         type: fields
       query:
