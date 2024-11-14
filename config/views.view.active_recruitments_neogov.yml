@@ -876,6 +876,7 @@ display:
     position: 1
     display_options:
       enabled: false
+      filters: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -3284,6 +3285,7 @@ display:
           path_case: none
           transform_dash: true
           break_phrase: false
+      filters: {  }
       style:
         type: default
         options:

@@ -20,6 +20,7 @@ module:
   ckeditor5: 0
   colorbox: 0
   comment: 0
+  conditional_fields: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -50,6 +51,10 @@ module:
   filter: 0
   fontawesome: 0
   formblock: 0
+  fullcalendar_block: 0
+  fullcalendar_view: 0
+  geofield: 0
+  geofield_map: 0
   google_analytics: 0
   google_tag: 0
   help: 0
@@ -111,6 +116,8 @@ module:
   slick: 0
   slick_ui: 0
   slick_views: 0
+  smart_date: 0
+  smart_date_recur: 0
   smtp: 0
   system: 0
   tamper: 0
@@ -141,6 +148,7 @@ module:
   warmer_entity: 0
   we_megamenu: 0
   webform: 0
+  webform_jqueryui_datepicker: 0
   webform_location_geocomplete: 0
   webform_node: 0
   webform_ui: 0

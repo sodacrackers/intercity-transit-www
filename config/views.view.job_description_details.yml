@@ -1387,6 +1387,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 1
           total_pages: null
           id: 0
@@ -1401,7 +1402,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -2548,10 +2548,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_1 }}'
-          then_translate: 1
+          then_translate: true
           or: '{{ field_annual_rate_step_15 }}'
-          or_translate: 1
-          strip_tags: 0
+          or_translate: true
+          strip_tags: false
         field_jobs_paygrade:
           id: field_jobs_paygrade
           table: node__field_jobs_paygrade
@@ -3266,6 +3266,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       defaults:
         pager: false
         group_by: true
@@ -4936,6 +4937,7 @@ display:
           offset: 0
           items_per_page: 0
       arguments: {  }
+      filters: {  }
       style:
         type: data_export
         options:
@@ -7599,6 +7601,7 @@ display:
             multiple: 0
           break_phrase: false
           not: false
+      filters: {  }
       defaults:
         fields: false
         arguments: false

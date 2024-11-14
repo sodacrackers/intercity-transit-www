@@ -9,9 +9,6 @@ dependencies:
     - media.type.image
     - taxonomy.vocabulary.tags
     - user.role.authenticated
-  content:
-    - 'taxonomy_term:tags:81b5c7ad-2b7e-4cd7-a788-d208d2b217db'
-    - 'taxonomy_term:tags:cb707ae2-e954-4eb9-a2dc-bc2af8943afc'
   module:
     - blazy
     - colorbox
@@ -96,7 +93,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 113
+            - cb707ae2-e954-4eb9-a2dc-bc2af8943afc
           group: 1
           exposed: false
           expose:
@@ -168,13 +165,14 @@ display:
         options:
           offset: 0
           items_per_page: 3
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -251,7 +249,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 114
+            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
           group: 1
           exposed: false
           expose:
@@ -294,10 +292,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -342,13 +340,14 @@ display:
         options:
           offset: 0
           items_per_page: 20
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -419,7 +418,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 114
+            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
           group: 1
           exposed: false
           expose:
@@ -462,10 +461,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -612,13 +611,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: ''
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: ''
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -708,10 +707,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: fields
         options:

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.calendar_event.body
     - field.field.node.calendar_event.feeds_item
     - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_calendar
     - field.field.node.calendar_event.field_cancelled
     - field.field.node.calendar_event.field_event_date
     - field.field.node.calendar_event.field_event_type
@@ -14,6 +15,7 @@ dependencies:
     - field.field.node.calendar_event.field_google_maps_url
     - field.field.node.calendar_event.field_live_nid
     - field.field.node.calendar_event.field_location
+    - field.field.node.calendar_event.field_smart_event_date
     - node.type.calendar_event
   module:
     - text
@@ -39,6 +41,7 @@ content:
 hidden:
   feeds_item: true
   field_address: true
+  field_calendar: true
   field_cancelled: true
   field_event_date: true
   field_event_type: true
@@ -46,4 +49,5 @@ hidden:
   field_google_maps_url: true
   field_live_nid: true
   field_location: true
+  field_smart_event_date: true
   search_api_excerpt: true

@@ -196,6 +196,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 36
           total_pages: 0
           id: 0
@@ -210,7 +211,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -432,6 +432,7 @@ display:
           path_case: lower
           transform_dash: false
           break_phrase: false
+      filters: {  }
       query:
         type: views_query
         options: {  }
@@ -458,6 +459,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       query:
         type: views_query
         options: {  }

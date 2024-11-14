@@ -284,6 +284,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -298,7 +299,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -356,7 +356,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 118
+            - 5093cc76-ee04-4a7b-b124-5a0e21b1fa20
           group: 1
           exposed: false
           expose:
@@ -395,10 +395,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: fields
         options:
@@ -433,6 +433,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: vanpool/testimonials
     cache_metadata:

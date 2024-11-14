@@ -641,6 +641,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: all-content
     cache_metadata:

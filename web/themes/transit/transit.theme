@@ -36,3 +36,9 @@ function transit_preprocess_region(&$vars) {
 //    }
   }
 }
+
+function transit_preprocess_block(&$variables) {
+  if ($variables['base_plugin_id'] === 'fullcalendar_block') {
+    $variables['showAddEvent'] = (bool) \Drupal::entityTypeManager()->getAccessControlHandler('node')->createAccess('walk_n_roll_event');
+  }
+}

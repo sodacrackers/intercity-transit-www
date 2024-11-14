@@ -1,0 +1,29 @@
+uuid: 6cd07be7-aec4-4bba-8428-dd8305ef615b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_wnr_event_type
+    - node.type.walk_n_roll_event
+    - taxonomy.vocabulary.calendar_type
+id: node.walk_n_roll_event.field_wnr_event_type
+field_name: field_wnr_event_type
+entity_type: node
+bundle: walk_n_roll_event
+label: Type
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      calendar_type: calendar_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

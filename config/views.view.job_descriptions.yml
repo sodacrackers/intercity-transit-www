@@ -926,14 +926,15 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: 'Hourly: {{ field_hourly_rate_step_1 }}-{{ field_hourly_rate_step_15 }}'
-          then_translate: 1
+          then_translate: true
           or: '{{ field_annual_rate_step_15 }}'
-          or_translate: 1
-          strip_tags: 0
+          or_translate: true
+          strip_tags: false
       pager:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 0
           total_pages: null
           id: 0
@@ -948,7 +949,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -1149,6 +1149,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: employment/job-descriptions
     cache_metadata:

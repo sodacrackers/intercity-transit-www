@@ -173,6 +173,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -190,12 +191,11 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -546,6 +546,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: admin/config/search/redirect
     cache_metadata:

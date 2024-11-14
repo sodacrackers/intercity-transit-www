@@ -1,0 +1,132 @@
+uuid: 711d2176-8a55-48a0-8cfd-085b27ff6af0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.walk_n_roll_event.body
+    - field.field.node.walk_n_roll_event.field_dates
+    - field.field.node.walk_n_roll_event.field_wnr_event_address
+    - field.field.node.walk_n_roll_event.field_wnr_event_location
+    - field.field.node.walk_n_roll_event.field_wnr_event_type
+    - node.type.walk_n_roll_event
+  module:
+    - geofield_map
+    - smart_date
+    - smart_date_recur
+    - text
+    - workbench_moderation
+id: node.walk_n_roll_event.default
+targetEntityType: node
+bundle: walk_n_roll_event
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 3
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_dates:
+    type: smartdate_default
+    weight: 2
+    region: content
+    settings:
+      modal: false
+      default_duration: 60
+      default_duration_increments: |-
+        30
+        60|1 hour
+        90
+        120|2 hours
+        custom
+      show_extra: false
+      hide_date: true
+      allday: true
+      remove_seconds: true
+    third_party_settings:
+      smart_date_recur:
+        modal: true
+        allowed_recur_freq_values:
+          MINUTELY: '0'
+          HOURLY: '0'
+          DAILY: DAILY
+          WEEKLY: WEEKLY
+          MONTHLY: MONTHLY
+          YEARLY: YEARLY
+  field_wnr_event_address:
+    type: string_textarea
+    weight: 5
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_wnr_event_location:
+    type: geofield_map
+    weight: 4
+    region: content
+    settings:
+      html5_geolocation: true
+      default_value:
+        lat: 0.0
+        lon: 0.0
+      map_library: gmap
+      map_google_api_key: ''
+      map_google_places:
+        places_control: true
+        places_additional_options: ''
+      map_dimensions:
+        width: 100%
+        height: 250px
+      map_type_google: roadmap
+      map_type_leaflet: OpenStreetMap_Mapnik
+      map_type_selector: true
+      zoom_level: 5
+      zoom:
+        start: 6
+        focus: 12
+        min: 0
+        max: 22
+      click_to_find_marker: false
+      click_to_place_marker: false
+      click_to_remove_marker: false
+      hide_geocode_address: false
+      hide_coordinates: true
+      geoaddress_field:
+        field: field_wnr_event_address
+        hidden: true
+        disabled: true
+      map_geocoder:
+        control: 0
+        settings:
+          providers: {  }
+          min_terms: 4
+          delay: 800
+          options: ''
+    third_party_settings: {  }
+  field_wnr_event_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true
+  url_redirects: true

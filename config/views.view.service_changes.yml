@@ -24,6 +24,7 @@ dependencies:
   content:
     - 'taxonomy_term:accordian_block:3e9ff9f6-b275-49a5-b21d-80bab1485e3d'
     - 'taxonomy_term:accordian_block:9f230e58-e1d9-45de-a3dc-2ed84f522fc0'
+    - 'taxonomy_term:accordian_block:b6981f41-f529-49e7-9174-069017e57ec7'
     - 'taxonomy_term:calendar_event_type:43a4e52d-7160-426f-8c0a-fbe5a2706fae'
     - 'taxonomy_term:calendar_event_type:6438b5c6-86ec-4b73-a7bd-8bae0a02e743'
     - 'taxonomy_term:pay_grades:e8476667-163d-4ac3-b604-69601de19e8c'
@@ -1330,7 +1331,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 120
+            - 6438b5c6-86ec-4b73-a7bd-8bae0a02e743
           group: 1
           exposed: false
           expose:
@@ -1715,7 +1716,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 119
+            - 43a4e52d-7160-426f-8c0a-fbe5a2706fae
           group: 1
           exposed: false
           expose:
@@ -3082,7 +3083,7 @@ display:
             text: |-
               {% if field_tab1_title  %}
 
-              <ul class="nav nav-tabs">		  
+              <ul class="nav nav-tabs">
               	<li class="active">
               		<a data-toggle="tab" href="#panel1-{{ nid }}" aria-controls="panel1-{{ nid }}" role="tab" id="tab1-{{ nid }}">  
               			<div class="field field--name-field-tab1-title field--type-string field--label-hidden field--item quickedit-field">{{ field_tab1_title }}</div>		  
@@ -3356,7 +3357,8 @@ display:
           admin_label: ''
           plugin_id: taxonomy_index_tid
           operator: or
-          value: '159'
+          value:
+            - '159'
           group: 1
           exposed: false
           expose:
@@ -3466,6 +3468,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -4721,7 +4724,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 160
+            - 9f230e58-e1d9-45de-a3dc-2ed84f522fc0
           group: 1
           exposed: false
           expose:
@@ -8741,7 +8744,7 @@ display:
           plugin_id: taxonomy_index_tid_depth
           operator: or
           value:
-            - 160
+            - '160'
           group: 1
           exposed: false
           expose:

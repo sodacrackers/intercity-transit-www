@@ -5080,6 +5080,7 @@ display:
           offset: 0
           items_per_page: 1
       sorts: {  }
+      filters: {  }
       style:
         type: default
         options:

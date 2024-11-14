@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - blazy
     - editor
     - entity_embed
     - inline_responsive_images
@@ -14,6 +15,21 @@ name: 'Rich Text'
 format: rich_text
 weight: -10
 filters:
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_media_style: ''
+      box_caption: ''
+      filter_tags:
+        img: img
+        iframe: iframe
+      use_data_uri: '0'
   editor_file_reference:
     id: editor_file_reference
     provider: editor
@@ -53,7 +69,7 @@ filters:
       allowed_html: '<a data-toggle href hreflang class target id > <em> <strong> <cite> <blockquote cite> <code> <ul type class> <ol start type> <li class> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <s> <sup> <sub> <img src alt data-entity-type data-entity-uuid data-align data-caption> <table class> <caption> <tbody> <thead> <tfoot> <th scope colspan title class=""> <td class colspan scope title> <tr class=""> <hr> <p style> <br> <h1> <pre> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button alt title data-*> <iframe frameborder height marginheight marginwidth scrolling src width> <button type data-toggle data-target class="" id aria-haspopup aria-expanded> <p class=""> <div class=""> <span class=""> <i class=""> <colgroup scope=""> <td class="">'
       filter_html_help: true
       filter_html_nofollow: false
-      allowed_html_automatic_tag: false
+      allowed_html_automatic_tag: 0
   filter_html_escape:
     id: filter_html_escape
     provider: filter

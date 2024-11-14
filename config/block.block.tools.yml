@@ -16,7 +16,7 @@ third_party_settings:
 id: tools
 theme: transit
 region: sidebar_second
-weight: -23
+weight: -35
 provider: null
 plugin: 'menu_block:tools'
 settings:

@@ -13,8 +13,6 @@ dependencies:
     - node.type.news
     - node.type.page
     - taxonomy.vocabulary.site_sections
-  content:
-    - 'taxonomy_term:site_sections:4c8275e3-eed8-4426-b4f9-93218b8205b7'
   module:
     - image
     - node
@@ -781,7 +779,6 @@ display:
             field_slider_title: '0'
           optionset: transit_slider
           class: ''
-          id: ''
           image: ''
           link: ''
           overlay: field_images
@@ -789,11 +786,12 @@ display:
           vanilla: false
           layout: ''
           cache: 0
-          current_view_mode: embed_1
-          skin: default
           grid: '1'
           grid_medium: null
           grid_small: null
+          current_view_mode: embed_1
+          id: ''
+          skin: default
           overridables:
             arrows: '0'
             autoplay: '0'
@@ -847,6 +845,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'News Slider'
     cache_metadata:
@@ -923,7 +922,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 11
+            - 4c8275e3-eed8-4426-b4f9-93218b8205b7
           group: 1
           exposed: false
           expose:

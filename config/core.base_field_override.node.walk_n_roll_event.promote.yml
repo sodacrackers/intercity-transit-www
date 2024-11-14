@@ -1,0 +1,22 @@
+uuid: 63fdcc0e-9c70-41f8-b442-591b1a95e4a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.walk_n_roll_event
+id: node.walk_n_roll_event.promote
+field_name: promote
+entity_type: node
+bundle: walk_n_roll_event
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

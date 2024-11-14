@@ -12,7 +12,7 @@ dependencies:
 id: wnrsocialmediaicons
 theme: transit
 region: sidebar_second
-weight: -25
+weight: -37
 provider: null
 plugin: 'block_content:2c90788a-190c-4e75-b9f5-2995d328f412'
 settings:

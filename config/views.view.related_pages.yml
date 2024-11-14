@@ -749,13 +749,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '2'
           grid_medium: '2'
           grid_small: null
+          style: grid
       row:
         type: fields
         options:
@@ -1471,13 +1472,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: blazy
         options:
-          style: column
           grid: '3'
           grid_medium: ''
           grid_small: ''
+          style: column
       row:
         type: fields
         options:

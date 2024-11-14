@@ -3,3 +3,7 @@ services:
     class: Drupal\it_route_trip_tools\ItTwigExtensions
     tags:
       - { name: twig.extension }
+  it_route_trip_tools.route_subscriber:
+    class: Drupal\it_route_trip_tools\EventSubscriber\ItRouteTripToolsRouteSubscriber
+    tags:
+      - { name: event_subscriber }

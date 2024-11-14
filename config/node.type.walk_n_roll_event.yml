@@ -1,0 +1,17 @@
+uuid: 6fe9957a-9bc2-4a3a-bae7-6d828a605425
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: "Walk 'n' Roll Event"
+type: walk_n_roll_event
+description: 'A content type to show events on the <a href="/service/walknroll/calendar">walk ''n'' roll calendar</a>'
+help: null
+new_revision: false
+preview_mode: 0
+display_submitted: false

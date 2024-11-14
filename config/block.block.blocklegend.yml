@@ -1,0 +1,26 @@
+uuid: a161f4b7-0c5b-4936-90c2-270396de31d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - it_route_trip_tools
+    - system
+  theme:
+    - transit
+id: blocklegend
+theme: transit
+region: sidebar_second
+weight: -51
+provider: null
+plugin: it_route_trip_tools_block_legend
+settings:
+  id: it_route_trip_tools_block_legend
+  label: 'Color legend'
+  label_display: '0'
+  provider: it_route_trip_tools
+  it_route_trip_tools_source_legend_calendar: 'calendar_events&default'
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /services/walknroll/calendar

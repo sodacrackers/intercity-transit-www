@@ -1,0 +1,9 @@
+uuid: 2ca9f4b9-2848-41aa-ad1d-65e36984bfba
+langcode: en
+status: true
+dependencies: {  }
+name: 'Calendar type'
+vid: calendar_type
+description: null
+weight: 0
+new_revision: false

@@ -5408,6 +5408,7 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+      filters: {  }
       defaults:
         relationships: false
         fields: false
@@ -5546,6 +5547,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       style:
         type: default
         options:

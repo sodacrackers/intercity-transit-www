@@ -11,7 +11,14 @@ use Drupal\Core\Form\ConfigFormBase;
  * Implements hook_theme().
  */
 function it_route_trip_tools_theme($existing, $type, $theme, $path) {
-	return [
+  return [
+    'it_route_trip_tools_legend_calendar_block_table' => [
+      'variables' => [
+        'headers' => NULL,
+        'rows' => NULL,
+      ],
+      'template' => 'legend-calendar-block-table',
+    ],
 		'admin_form' => [
 			'render element' => 'form',
 			'template' => 'forms/admin-form'
@@ -184,6 +191,17 @@ function it_route_trip_tools_theme_suggestions_alter(array &$suggestions, array 
 		$suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#id']);
 	}
 	return $suggestions;
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function it_route_trip_tools_theme_registry_alter(&$theme_registry) {
+  if (isset($theme_registry['node_add_list'])) {
+    $theme_registry['node_add_list']['template'] = 'node-add-list--ict';
+    $theme_registry['node_add_list']['theme path'] = 'modules/custom/it_route_trip_tools';
+    $theme_registry['node_add_list']['path'] = 'modules/custom/it_route_trip_tools/templates';
+  }
 }
 
 /*

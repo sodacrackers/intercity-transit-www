@@ -221,6 +221,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Secondary WYSIWYG'
       block_hide_empty: true

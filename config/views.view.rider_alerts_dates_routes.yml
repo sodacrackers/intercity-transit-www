@@ -527,6 +527,7 @@ display:
         type: none
         options:
           offset: 0
+      filters: {  }
       defaults:
         group_by: false
         relationships: false
@@ -853,6 +854,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       defaults:
         fields: false
         footer: false

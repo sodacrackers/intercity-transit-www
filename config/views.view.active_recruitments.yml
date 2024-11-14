@@ -869,6 +869,7 @@ display:
     display_plugin: embed
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -1698,10 +1699,10 @@ display:
           condition: eq
           equalto: 'Yes'
           then: Continuous
-          then_translate: 1
+          then_translate: true
           or: '{{ field_recruitment_closing_date }}'
-          or_translate: 1
-          strip_tags: 0
+          or_translate: true
+          strip_tags: false
         title:
           id: title
           table: node_field_data
@@ -2534,10 +2535,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_15 }}'
-          then_translate: 1
+          then_translate: true
           or: '{{ field_annual_rate_step_15 }}'
-          or_translate: 1
-          strip_tags: 0
+          or_translate: true
+          strip_tags: false
         field_recruitment_link_1:
           id: field_recruitment_link_1
           table: node__field_recruitment_link
@@ -2718,10 +2719,10 @@ display:
           condition: eq
           equalto: 'True'
           then: Continuous
-          then_translate: 1
+          then_translate: true
           or: '{{ field_recruitment_closing_date_1 }}'
-          or_translate: 1
-          strip_tags: 0
+          or_translate: true
+          strip_tags: false
         nothing:
           id: nothing
           table: views
@@ -3942,6 +3943,7 @@ display:
           path_case: none
           transform_dash: true
           break_phrase: false
+      filters: {  }
       style:
         type: default
         options:

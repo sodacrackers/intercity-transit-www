@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.calendar_event.body
     - field.field.node.calendar_event.feeds_item
     - field.field.node.calendar_event.field_address
+    - field.field.node.calendar_event.field_calendar
     - field.field.node.calendar_event.field_cancelled
     - field.field.node.calendar_event.field_event_date
     - field.field.node.calendar_event.field_event_type
@@ -13,11 +14,12 @@ dependencies:
     - field.field.node.calendar_event.field_google_maps_url
     - field.field.node.calendar_event.field_live_nid
     - field.field.node.calendar_event.field_location
+    - field.field.node.calendar_event.field_smart_event_date
     - node.type.calendar_event
   module:
-    - datetime
     - file
     - path
+    - smart_date
     - text
     - workbench_moderation
 id: node.calendar_event.default
@@ -27,7 +29,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 10
+    weight: 6
     region: content
     settings:
       rows: 9
@@ -43,21 +45,40 @@ content:
     third_party_settings: {  }
   field_address:
     type: string_textfield
-    weight: 7
+    weight: 14
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_cancelled:
-    type: options_buttons
-    weight: 14
+  field_calendar:
+    type: options_select
+    weight: 9
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_event_date:
-    type: datetime_default
-    weight: 6
+    third_party_settings:
+      conditional_fields:
+        5bf340dd-c85a-484b-8431-dbf191843a17:
+          entity_type: node
+          bundle: calendar_event
+          dependee: field_event_type
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '327'
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_cancelled:
+    type: options_buttons
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -69,7 +90,7 @@ content:
     third_party_settings: {  }
   field_file:
     type: file_generic
-    weight: 12
+    weight: 10
     region: content
     settings:
       progress_indicator: throbber
@@ -84,18 +105,36 @@ content:
     third_party_settings: {  }
   field_live_nid:
     type: number
-    weight: 17
+    weight: 12
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_location:
     type: string_textfield
-    weight: 8
+    weight: 11
     region: content
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_smart_event_date:
+    type: smartdate_default
+    weight: 7
+    region: content
+    settings:
+      modal: false
+      default_duration: 60
+      default_duration_increments: |-
+        30
+        60|1 hour
+        90
+        120|2 hours
+        custom
+      show_extra: false
+      hide_date: false
+      allday: true
+      remove_seconds: true
     third_party_settings: {  }
   path:
     type: path
@@ -112,7 +151,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 16
+    weight: 17
     region: content
     settings:
       display_label: true
@@ -143,9 +182,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 15
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   feeds_item: true
+  field_event_date: true

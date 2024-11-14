@@ -1526,6 +1526,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+      filters: {  }
       defaults:
         fields: false
       display_description: ''
@@ -2101,6 +2102,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+      filters: {  }
       style:
         type: views_bootstrap_accordion
         options:

@@ -6,8 +6,6 @@ dependencies:
     - field.storage.node.body
     - node.type.news
     - taxonomy.vocabulary.tags
-  content:
-    - 'taxonomy_term:tags:6580d3f6-6856-4fc9-8e7f-edc4701a82ff'
   module:
     - node
     - taxonomy
@@ -216,7 +214,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 141
+            - 6580d3f6-6856-4fc9-8e7f-edc4701a82ff
           group: 1
           exposed: false
           expose:
@@ -459,6 +457,7 @@ display:
             field_identifier: created
           exposed: false
           granularity: year
+      filters: {  }
       style:
         type: default
         options:
@@ -509,6 +508,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Press releases for media'
     cache_metadata:
@@ -604,6 +604,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: default
         options:
@@ -872,6 +873,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       style:
         type: default
         options:

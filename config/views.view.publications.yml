@@ -9,8 +9,6 @@ dependencies:
     - field.storage.media.field_publication_year
     - media.type.document
     - taxonomy.vocabulary.publication_types
-  content:
-    - 'taxonomy_term:pay_grades:df31f8ec-2166-435b-b602-d04068aeb3fd'
   module:
     - datetime
     - file
@@ -293,6 +291,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -307,7 +306,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -589,6 +587,7 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
+      filters: {  }
       defaults:
         css_class: false
         relationships: false
@@ -672,6 +671,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       defaults:
         css_class: false
         relationships: false
@@ -727,6 +727,7 @@ display:
         options:
           offset: 0
           items_per_page: 1
+      filters: {  }
       style:
         type: default
         options:
@@ -871,6 +872,7 @@ display:
         options:
           offset: 0
           items_per_page: 1
+      filters: {  }
       style:
         type: default
         options:
@@ -1344,6 +1346,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 3
           total_pages: null
           id: 0
@@ -1361,7 +1364,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       sorts:
         field_publication_year_value_1:
           id: field_publication_year_value_1
@@ -1526,7 +1528,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: not
           value:
-            332: 332
+            - df31f8ec-2166-435b-b602-d04068aeb3fd
           group: 1
           exposed: false
           expose:
@@ -2073,6 +2075,7 @@ display:
           exposed: false
           granularity: second
       arguments: {  }
+      filters: {  }
       defaults:
         title: false
         relationships: false
@@ -2715,6 +2718,7 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
+      filters: {  }
       style:
         type: views_bootstrap_list_group
         options:
@@ -3342,6 +3346,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       style:
         type: views_bootstrap_list_group
         options:
@@ -4094,6 +4099,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: 'about-us/publications/Resolutions and Bylaws'
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -4986,6 +4992,7 @@ display:
       display_description: ''
       display_extenders: {  }
       path: about-us/publications/Resolutions
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

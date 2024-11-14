@@ -12,7 +12,7 @@ dependencies:
 id: views_block__bike_mechanic_volunteer_results_block_2
 theme: transit
 region: sidebar_second
-weight: -24
+weight: -36
 provider: null
 plugin: 'views_block:bike_mechanic_volunteer_results-block_2'
 settings:
