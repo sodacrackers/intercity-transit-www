@@ -441,7 +441,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #inbound-large-screen-route-table table.table tbody tr th,
 #outbound-large-screen-route-table table.table tbody tr th {
   /*border-left: 35px solid #80D80E;*/
-  padding-left: 35px;
+  padding-left: 35px !important;
 }
 #inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
