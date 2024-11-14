@@ -29,14 +29,9 @@ dependencies:
     - taxonomy.vocabulary.pay_grades
     - taxonomy.vocabulary.site_sections
   module:
-    - block
-    - block_content
-    - field_ui
+    - feeds
     - file
     - filter
-    - help
-    - image
-    - feeds
     - media
     - node
     - paragraphs_type_permissions
@@ -55,26 +50,10 @@ label: 'Marketing User'
 weight: -6
 is_admin: null
 permissions:
-<<<<<<< HEAD
-  - 'access administration pages'
-  - 'access block library'
-  - 'access content'
-  - 'access content overview'
-  - 'access help pages'
-  - 'access site reports'
-  - 'access user profiles'
-  - 'access webform overview'
-  - 'administer block content'
-  - 'administer block types'
-  - 'administer blocks'
-  - 'administer image styles'
-  - 'administer menu'
-=======
   - 'access content'
   - 'access content overview'
   - 'access user profiles'
   - 'access webform overview'
->>>>>>> master
   - 'administer nodes'
   - 'administer redirect settings'
   - 'administer redirects'

@@ -10,8 +10,8 @@ dependencies:
     - node.type.rider_alerts
     - node.type.route
   module:
-    - file
     - feeds
+    - file
     - filter
     - media
     - node
@@ -25,13 +25,13 @@ permissions:
   - 'create bus_stop_page content'
   - 'create bus_stop_photo media'
   - 'create rider_alerts content'
-  - 'delete own files'
   - 'create stops_data feeds'
   - 'delete any bus_stop_page content'
   - 'delete any bus_stop_photo media'
   - 'delete bus_stop_page revisions'
   - 'delete own bus_stop_page content'
   - 'delete own bus_stop_photo media'
+  - 'delete own files'
   - 'delete own stops_data feeds'
   - 'delete stops_data feeds'
   - 'edit any bus_stop_page content'

@@ -914,7 +914,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_stop_active'
@@ -1505,7 +1504,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1677,7 +1675,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1715,7 +1712,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_stop_active'
@@ -2229,7 +2225,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.field_stop_active'

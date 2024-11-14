@@ -11,7 +11,7 @@ dependencies:
     - user.role.marketing
     - user.role.planning_user
   content:
-    - 'taxonomy_term:bus_stop_photos:04a95a82-6eaf-459e-836f-c9be4a02d0e0'
+    - 'taxonomy_term:pay_grades:48363136-826e-48db-b0d2-1c2cbd688630'
   module:
     - blazy
     - colorbox
@@ -345,7 +345,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_bus_stop_no'
@@ -453,7 +452,6 @@ display:
           default_argument_options:
             index: 1
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -483,7 +481,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.image'
@@ -642,7 +639,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - user.roles
       tags:
         - 'config:field.storage.media.field_bus_stop_no'
@@ -742,7 +738,6 @@ display:
           default_argument_options:
             index: 1
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -771,7 +766,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.image'
@@ -1157,7 +1151,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_bus_stop_no'

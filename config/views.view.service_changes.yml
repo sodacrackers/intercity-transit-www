@@ -24,9 +24,9 @@ dependencies:
   content:
     - 'taxonomy_term:accordian_block:3e9ff9f6-b275-49a5-b21d-80bab1485e3d'
     - 'taxonomy_term:accordian_block:9f230e58-e1d9-45de-a3dc-2ed84f522fc0'
-    - 'taxonomy_term:accordian_block:b6981f41-f529-49e7-9174-069017e57ec7'
     - 'taxonomy_term:calendar_event_type:43a4e52d-7160-426f-8c0a-fbe5a2706fae'
     - 'taxonomy_term:calendar_event_type:6438b5c6-86ec-4b73-a7bd-8bae0a02e743'
+    - 'taxonomy_term:pay_grades:e8476667-163d-4ac3-b604-69601de19e8c'
   module:
     - datetime
     - node
@@ -3466,7 +3466,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -6126,7 +6125,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
