@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a20a5d7625c9610858061bf160b4a6df",
+    "content-hash": "bee929e8f950030ecfb47ebbbfcdd6bc",
     "packages": [
         {
             "name": "algolia/places",
@@ -9945,6 +9945,21 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "fontawesome/fontawesome",
+            "version": "6.4.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://use.fontawesome.com/releases/v6.4.0/fontawesome-free-6.4.0-web.zip"
+            },
+            "require": {
+                "composer/installers": "^1.2.0"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "fontawesome"
+            }
         },
         {
             "name": "google/protobuf",
