@@ -1,0 +1,38 @@
+uuid: 14eb1faa-5478-4c48-8be4-6d7cd880385a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bus_stop_photos
+  module:
+    - system
+    - user
+    - views
+  theme:
+    - transit
+id: views_block__bus_stop_photos_block_1
+theme: transit
+region: content
+weight: -17
+provider: null
+plugin: 'views_block:bus_stop_photos-block_1'
+settings:
+  id: 'views_block:bus_stop_photos-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/bus-stops/*'
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      authenticated: authenticated

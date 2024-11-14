@@ -1,0 +1,23 @@
+uuid: 8092a09d-51c2-4aac-817b-a856f89f51f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_id
+    - node.type.bus_stop_page
+id: node.bus_stop_page.field_stop_id
+field_name: field_stop_id
+entity_type: node
+bundle: bus_stop_page
+label: 'Stop Id'
+description: 'the stop id, such as 167 for the Olympia Transit Center'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 9999
+  prefix: ''
+  suffix: ''
+field_type: integer

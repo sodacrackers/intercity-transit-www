@@ -406,9 +406,9 @@ handlers:
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
-      cc_mail: kwilson@intercitytransit.com
+      cc_mail: 'kwilson@intercitytransit.com, ddudek@intercitytransit.com'
       cc_options: {  }
-      from_mail: '[webform_submission:values:school_contact:email]'
+      from_mail: _default
       from_options: {  }
       from_name: '[webform_submission:values:school_contact:name]'
       reply_to: ''

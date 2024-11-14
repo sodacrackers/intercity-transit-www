@@ -1,0 +1,8 @@
+uuid: e8dbee4d-c919-46ac-b47e-37ec7f3cc846
+langcode: en
+status: true
+dependencies: {  }
+name: 'Bus Stop Structure'
+vid: stop_structure
+description: ''
+weight: 0

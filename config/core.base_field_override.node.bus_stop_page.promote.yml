@@ -1,0 +1,22 @@
+uuid: 44d46f79-5af4-43e0-9c5c-f610819264dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bus_stop_page
+id: node.bus_stop_page.promote
+field_name: promote
+entity_type: node
+bundle: bus_stop_page
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

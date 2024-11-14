@@ -12,7 +12,7 @@ dependencies:
 id: views_block__interlocal_agreements_block_2
 theme: transit
 region: content
-weight: -20
+weight: -26
 provider: null
 plugin: 'views_block:interlocal_agreements-block_2'
 settings:

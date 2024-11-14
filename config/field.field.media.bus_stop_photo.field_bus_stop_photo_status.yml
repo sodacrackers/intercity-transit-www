@@ -1,0 +1,29 @@
+uuid: 6db8a720-4fb5-4eab-b996-8b654ae34e9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_bus_stop_photo_status
+    - media.type.bus_stop_photo
+    - taxonomy.vocabulary.bus_stop_photos
+id: media.bus_stop_photo.field_bus_stop_photo_status
+field_name: field_bus_stop_photo_status
+entity_type: media
+bundle: bus_stop_photo
+label: 'Photo Status'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      bus_stop_photos: bus_stop_photos
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

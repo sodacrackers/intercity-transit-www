@@ -1,0 +1,23 @@
+uuid: 7f8487d5-5246-42b5-ae79-17c09d1e4f72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_stop_active
+    - node.type.bus_stop_page
+id: node.bus_stop_page.field_stop_active
+field_name: field_stop_active
+entity_type: node
+bundle: bus_stop_page
+label: 'Stop active'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Active
+  off_label: Inactive
+field_type: boolean

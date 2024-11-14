@@ -1,0 +1,8 @@
+uuid: 4463ccc2-1ee3-4ff5-80c6-d3c63c9ede86
+langcode: en
+status: true
+dependencies: {  }
+name: 'Bus Stop Photos'
+vid: bus_stop_photos
+description: ''
+weight: 0

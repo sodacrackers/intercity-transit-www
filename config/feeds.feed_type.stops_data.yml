@@ -1,0 +1,140 @@
+uuid: 533219b0-eb68-4c05-9e46-0f9720991db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bus_stop_page.field_stop_active
+    - field.field.node.bus_stop_page.field_stop_id
+    - field.field.node.bus_stop_page.field_stop_jurisdiction
+    - field.field.node.bus_stop_page.field_stop_name
+    - field.field.node.bus_stop_page.field_stop_sidewalk
+    - field.field.node.bus_stop_page.field_stop_structure
+    - node.type.bus_stop_page
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      060342e5-15a6-48a6-9f43-1858fec2f0d4:
+        true_value: Active
+        false_value: Inactive
+        match_case: false
+        no_match_value: false
+        uuid: 060342e5-15a6-48a6-9f43-1858fec2f0d4
+        plugin: convert_boolean
+        source: active
+        weight: 0
+        label: 'Convert to Boolean'
+label: 'Stops data'
+id: stops_data
+description: ''
+help: ''
+import_period: 3600
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: bus_stop_page
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: 'entity:unpublish_action:node'
+  skip_hash_check: false
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  stopid:
+    value: StopID
+    label: StopID
+    machine_name: stopid
+    type: csv
+  stopname:
+    value: StopName
+    label: StopName
+    machine_name: stopname
+    type: csv
+  jurisdiction:
+    value: Jurisdiction
+    label: Jurisdiction
+    machine_name: jurisdiction
+    type: csv
+  structure:
+    value: Structure
+    label: Structure
+    machine_name: structure
+    type: csv
+  sidewalk:
+    value: Sidewalk
+    label: Sidewalk
+    machine_name: sidewalk
+    type: csv
+  active:
+    value: Active
+    label: Active
+    machine_name: active
+    type: csv
+mappings:
+  -
+    target: field_stop_id
+    map:
+      value: stopid
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_stop_name
+    map:
+      value: stopname
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_stop_jurisdiction
+    map:
+      target_id: jurisdiction
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+      autocreate_bundle: jurisdiction
+      feeds_item: false
+  -
+    target: field_stop_structure
+    map:
+      target_id: structure
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+      autocreate_bundle: stop_structure
+      feeds_item: false
+  -
+    target: field_stop_sidewalk
+    map:
+      target_id: sidewalk
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+      autocreate_bundle: bus_stop_sidewalk
+      feeds_item: false
+  -
+    target: field_stop_active
+    map:
+      value: active
+    settings:
+      language: null

@@ -396,31 +396,45 @@ access:
     users: {  }
     permissions: {  }
   view_any:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   update_any:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   delete_any:
-    roles: {  }
+    roles:
+      - marketing
+      - planning_user
     users: {  }
     permissions: {  }
   purge_any:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   view_own:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   update_own:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   delete_own:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   administer:
@@ -428,7 +442,9 @@ access:
     users: {  }
     permissions: {  }
   test:
-    roles: {  }
+    roles:
+      - marketing
+      - youth_outreach_user
     users: {  }
     permissions: {  }
   configuration:

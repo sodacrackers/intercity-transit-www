@@ -187,13 +187,12 @@ class RoutesPage extends ControllerBase {
     $routes_options = it_route_trip_tools_build_routes_options(TRUE);
     $routes_options = $this->customizeOptions($routes_options);
 
-    $all_routes_map_data_array = $this->getAllRoutesData();
-
     /*Need to grab the Routes form*/
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
     $routes_path = $config->get('route_page_path');
 
     if (empty($routeId) || $routeId === 'all') {
+      $all_routes_map_data_array = $this->getAllRoutesData();
       $alerts = $this->getAllAlerts();
       return [
         '#theme' => 'routes_new_page',
@@ -271,9 +270,6 @@ class RoutesPage extends ControllerBase {
         '#attached' => [
           'drupalSettings' => [
             'it_route_trip_tools' => [
-              'all_routes_map_data_array' => [
-                $all_routes_map_data_array
-              ],
               'routes_path' => $routes_path
             ]
           ]

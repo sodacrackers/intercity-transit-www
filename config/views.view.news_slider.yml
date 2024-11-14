@@ -12,6 +12,7 @@ dependencies:
     - image.style.banner_narrow
     - node.type.news
     - node.type.page
+    - node.type.tabbed_basic_page
     - taxonomy.vocabulary.schedule
   module:
     - image
@@ -655,6 +656,7 @@ display:
           value:
             page: page
             news: news
+            tabbed_basic_page: tabbed_basic_page
           group: 1
           exposed: false
           expose:

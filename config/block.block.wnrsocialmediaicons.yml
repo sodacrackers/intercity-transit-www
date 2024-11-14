@@ -28,4 +28,4 @@ visibility:
     id: request_path
     negate: false
     context_mapping: {  }
-    pages: "/walknroll\r\n/walknroll/earn-a-bike\r\n/walknroll/class-pass\r\n/walknroll/rolling-classrooms\r\n/walknroll/pace-car-pledge\r\n/safe-streets-ambassador\r\n/walknroll/school-events-and-activities\r\n/walknroll/school-bike-challenge\r\n/walknroll/MVP\r\n/walknroll/bike-rides\r\n/walknroll/bike-rodeo\r\n/walknroll/bike-shop\r\n/yard-signs\r\n/walknroll/educational-resources"
+    pages: "/walknroll\r\n/walknroll/earn-a-bike\r\n/walknroll/class-pass\r\n/walknroll/rolling-classrooms\r\n/walknroll/pace-car-pledge\r\n/safe-streets-ambassador\r\n/walknroll/school-events-and-activities\r\n/walknroll/school-bike-challenge\r\n/walknroll/MVP\r\n/walknroll/bike-rides\r\n/walknroll/bike-rodeo\r\n/walknroll/bike-shop\r\n/yard-signs\r\n/walknroll/educational-resources\r\n/services/walknroll/*\r\n/walknroll/volunteer"

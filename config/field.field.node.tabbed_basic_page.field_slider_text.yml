@@ -1,0 +1,21 @@
+uuid: 1dbe2f3b-736d-40c3-b8e1-90692b00d032
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_text
+    - node.type.tabbed_basic_page
+  module:
+    - text
+id: node.tabbed_basic_page.field_slider_text
+field_name: field_slider_text
+entity_type: node
+bundle: tabbed_basic_page
+label: 'Slider Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

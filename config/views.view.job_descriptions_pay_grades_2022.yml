@@ -2808,7 +2808,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: I
+          label: 'I / A'
           exclude: false
           alter:
             alter_text: false
@@ -2874,7 +2874,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: II
+          label: 'II / B'
           exclude: false
           alter:
             alter_text: false
@@ -2940,7 +2940,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: III
+          label: 'III / C'
           exclude: false
           alter:
             alter_text: false
@@ -3006,7 +3006,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: IV
+          label: 'IV / D'
           exclude: false
           alter:
             alter_text: false
@@ -3072,7 +3072,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: V
+          label: 'V / E'
           exclude: false
           alter:
             alter_text: false
@@ -3138,7 +3138,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: VI
+          label: 'VI / F'
           exclude: false
           alter:
             alter_text: false

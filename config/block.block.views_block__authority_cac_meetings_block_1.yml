@@ -12,7 +12,7 @@ dependencies:
 id: views_block__authority_cac_meetings_block_1
 theme: transit
 region: content
-weight: -43
+weight: -48
 provider: null
 plugin: 'views_block:authority_cac_meetings-block_1'
 settings:

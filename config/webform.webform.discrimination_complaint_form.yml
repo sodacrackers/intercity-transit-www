@@ -17,8 +17,15 @@ elements: |-
     '#type': processed_text
     '#display_on': both
     '#text': |
-      <p>Intercity Transit is committed to providing you with safe and reliable transportation services and we want your feedback. Please use this form for discrimination complaints only. You may also call as at 360-786-1881, visit our Customer Service office at the Olympia Transit Center, or contact us by email or U.S. postal mail at the address below.</p>
-      
+      <p><span><span><span><span><span><span>Intercity Transit provides equal access to its transportation services, employment, and contracting opportunities pursuant to federal laws (Title VI of the Civil Rights Act of 1964, Title II of the Americans with Disabilities Act, Equal Employment Opportunities laws) and in accordance with applicable state and local laws.&nbsp;</span></span></span></span></span></span></p>
+
+      <div>
+      <div>
+      <div class="msocomtxt">
+      <p class="MsoCommentText">Please use this form to file a discrimination complaint within 180 days of the incident. You can also call us at 360-786-1881, visit Customer Service at the Olympia Transit Center, contact us by email, or by U.S. Postal Service at the address below.</p>
+      </div>
+      </div>
+      </div>
     '#format': rich_text
   disc_complaint_form_section1:
     '#type': webform_section
@@ -30,12 +37,12 @@ elements: |-
         '#type': webform_radios_other
         '#title': 'I believe that I have been discriminated against on the basis of:'
         '#options':
-          'Race / Color National Origin': 'Race / Color National Origin'
+          'Race, color or national origin': 'Race, color or national origin'
           Disability: Disability
           'Not applicable': 'Not applicable'
         '#other__option_label': 'Other ... (Please specify)'
-        '#wrapper_type': form_element
         '#required': true
+        '#wrapper_type': form_element
       disc_complaint_form_comply_fail:
         '#type': radios
         '#title': 'I believe that Intercity Transit has failed to comply with the following program:'
@@ -366,7 +373,7 @@ handlers:
       bcc_options: {  }
       cc_mail: ''
       cc_options: {  }
-      from_mail: '[webform_submission:values:disc_complaint_form_email_address:raw]'
+      from_mail: _default
       from_options: {  }
       from_name: '[webform_submission:values:disc_complaint_form_name:value]'
       reply_to: ''

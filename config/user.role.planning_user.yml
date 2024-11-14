@@ -3,26 +3,59 @@ langcode: en
 status: true
 dependencies:
   config:
+    - feeds.feed_type.stops_data
     - filter.format.rich_text
+    - media.type.bus_stop_photo
+    - node.type.bus_stop_page
     - node.type.rider_alerts
     - node.type.route
   module:
     - file
+    - feeds
     - filter
+    - media
     - node
 id: planning_user
 label: 'Planning User'
 weight: -2
 is_admin: null
 permissions:
+  - 'clear own stops_data feeds'
+  - 'clear stops_data feeds'
+  - 'create bus_stop_page content'
+  - 'create bus_stop_photo media'
   - 'create rider_alerts content'
   - 'delete own files'
+  - 'create stops_data feeds'
+  - 'delete any bus_stop_page content'
+  - 'delete any bus_stop_photo media'
+  - 'delete bus_stop_page revisions'
+  - 'delete own bus_stop_page content'
+  - 'delete own bus_stop_photo media'
+  - 'delete own stops_data feeds'
+  - 'delete stops_data feeds'
+  - 'edit any bus_stop_page content'
+  - 'edit any bus_stop_photo media'
   - 'edit any rider_alerts content'
   - 'edit any route content'
+  - 'edit own bus_stop_page content'
+  - 'edit own bus_stop_photo media'
   - 'edit own rider_alerts content'
   - 'edit own route content'
+  - 'import own stops_data feeds'
+  - 'import stops_data feeds'
+  - 'revert bus_stop_page revisions'
   - 'revert rider_alerts revisions'
   - 'revert route revisions'
+  - 'schedule_import own stops_data feeds'
+  - 'schedule_import stops_data feeds'
+  - 'unlock own stops_data feeds'
+  - 'unlock stops_data feeds'
+  - 'update own stops_data feeds'
+  - 'update stops_data feeds'
   - 'use text format rich_text'
+  - 'view bus_stop_page revisions'
+  - 'view own stops_data feeds'
   - 'view rider_alerts revisions'
   - 'view route revisions'
+  - 'view stops_data feeds'

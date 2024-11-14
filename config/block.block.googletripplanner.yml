@@ -13,7 +13,7 @@ dependencies:
 id: googletripplanner
 theme: transit
 region: content
-weight: -42
+weight: -47
 provider: null
 plugin: 'block_content:003328f6-1288-4d6c-8c22-cfb83b035fdc'
 settings:

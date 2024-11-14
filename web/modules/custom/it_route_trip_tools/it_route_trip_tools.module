@@ -306,7 +306,7 @@ function it_route_trip_get_times_alt($stop_times, $trips) {
   return $res;
 }
 
-function it_route_trip_get_trips($stop_times) {
+function it_route_trip_get_trips($stop_times, $replace_id = TRUE) {
   $res = [];
   foreach ($stop_times as $stop_time) {
     if (empty($res[$stop_time['trip_id']])) {
@@ -327,9 +327,14 @@ function it_route_trip_get_trips($stop_times) {
     ];
     $res[$stop_time['trip_id']]['tripEndTime'] = it_route_trip_format_time($stop_time['departure_time']);
   }
-  $trips = array_values($res);
-  foreach ($trips as $delta => &$trip) {
-    $trip['tripId'] = $delta;
+  if ($replace_id) {
+    $trips = array_values($res);
+    foreach ($trips as $delta => &$trip) {
+      $trip['tripId'] = $delta;
+    }
+  }
+  else {
+    $trips = $res;
   }
   return $trips;
 }
@@ -374,6 +379,9 @@ function it_route_trip_tools_get_center($boundaries) {
 function it_route_trip_tools_get_stop_options() {
   $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
   $headers = array_shift($stops);
+  if (empty($headers)) {
+    return [];
+  }
   $id_index = array_search('stop_id', $headers);
   $name_index = array_search('stop_name', $headers);
   $lat_index = array_search('stop_lat', $headers);
@@ -512,12 +520,12 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
     $data = $cache->data;
   }
   else {
-    $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0, $serv);
-    $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1, $serv);
-    $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0, $serv);
-    $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1, $serv);
-    $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
-    $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
+    $stop_times_inbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 1, $serv);
+    $stop_times_outbound = \Drupal::service('ict.gtfs')->getStopTimes($routeId, 0, $serv);
+    $shapes_inbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 1, $serv);
+    $shapes_outbound = \Drupal::service('ict.gtfs')->getShapes($routeId, 0, $serv);
+    $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
+    $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
     $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
 
     $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
@@ -841,6 +849,7 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
       $res[$sort_key][$route[$id_index]] = str_contains($long_name, '-') ? $long_name : $short_name . '-' . $long_name;
     }
   }
+  ksort($res);
   $final = [];
   foreach ($res as $sort => $route) {
     $route_id = array_keys($route)[0];

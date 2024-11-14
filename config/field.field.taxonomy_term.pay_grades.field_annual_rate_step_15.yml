@@ -16,8 +16,8 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  min: 20000.0
-  max: 200000.0
+  min: !!float 20000
+  max: !!float 300000
   prefix: $
   suffix: ''
 field_type: decimal

@@ -3,10 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - feeds.feed_type.rider_updates
+    - feeds.feed_type.stops_data
     - filter.format.iframe
     - filter.format.rich_text
     - filter.format.text_and_bullets
     - node.type.blog_page
+    - node.type.bus_stop_page
     - node.type.calendar_event
     - node.type.interagency_agreement
     - node.type.jobs
@@ -33,12 +36,12 @@ dependencies:
     - filter
     - help
     - image
+    - feeds
     - media
     - node
     - paragraphs_type_permissions
     - path
     - redirect
-    - responsive_image
     - scheduled_updates
     - search
     - shortcut
@@ -52,6 +55,7 @@ label: 'Marketing User'
 weight: -6
 is_admin: null
 permissions:
+<<<<<<< HEAD
   - 'access administration pages'
   - 'access block library'
   - 'access content'
@@ -65,19 +69,22 @@ permissions:
   - 'administer blocks'
   - 'administer image styles'
   - 'administer menu'
+=======
+  - 'access content'
+  - 'access content overview'
+  - 'access user profiles'
+  - 'access webform overview'
+>>>>>>> master
   - 'administer nodes'
   - 'administer redirect settings'
   - 'administer redirects'
-  - 'administer responsive images'
   - 'administer scheduled update types'
   - 'administer shortcuts'
-  - 'administer site configuration'
   - 'administer taxonomy'
-  - 'administer taxonomy_term display'
   - 'administer url aliases'
-  - 'administer users'
   - 'administer webform'
   - 'administer webform submission'
+  - 'clear own rider_updates feeds'
   - 'create blog_page content'
   - 'create bus_route_scheduler scheduled updates'
   - 'create calendar_event content'
@@ -92,7 +99,6 @@ permissions:
   - 'create procurement_bid_or_proposal content'
   - 'create recruitment content'
   - 'create rider_alerts content'
-  - 'create route content'
   - 'create tabbed_basic_page content'
   - 'create terms in department_divisions'
   - 'create terms in flsa_status'
@@ -104,6 +110,7 @@ permissions:
   - 'customize shortcut links'
   - 'delete any blog_page content'
   - 'delete any bus_route_scheduler scheduled updates'
+  - 'delete any bus_stop_page content'
   - 'delete any calendar_event content'
   - 'delete any interagency_agreement content'
   - 'delete any jobs content'
@@ -116,12 +123,10 @@ permissions:
   - 'delete any procurement_bid_or_proposal content'
   - 'delete any recruitment content'
   - 'delete any rider_alerts content'
-  - 'delete any route content'
   - 'delete any tabbed_basic_page content'
   - 'delete any vanpool content'
-  - 'delete any webform'
-  - 'delete any webform submission'
   - 'delete blog_page revisions'
+  - 'delete bus_stop_page revisions'
   - 'delete calendar_event revisions'
   - 'delete interagency_agreement revisions'
   - 'delete jobs revisions'
@@ -129,6 +134,7 @@ permissions:
   - 'delete news revisions'
   - 'delete own blog_page content'
   - 'delete own bus_route_scheduler scheduled updates'
+  - 'delete own bus_stop_page content'
   - 'delete own calendar_event content'
   - 'delete own files'
   - 'delete own interagency_agreement content'
@@ -144,8 +150,6 @@ permissions:
   - 'delete own route content'
   - 'delete own tabbed_basic_page content'
   - 'delete own vanpool content'
-  - 'delete own webform'
-  - 'delete own webform submission'
   - 'delete page revisions'
   - 'delete paragraph content job_duties'
   - 'delete procurement_bid_or_proposal revisions'
@@ -162,6 +166,7 @@ permissions:
   - 'delete vanpool revisions'
   - 'edit any blog_page content'
   - 'edit any bus_route_scheduler scheduled updates'
+  - 'edit any bus_stop_page content'
   - 'edit any calendar_event content'
   - 'edit any interagency_agreement content'
   - 'edit any jobs content'
@@ -180,6 +185,7 @@ permissions:
   - 'edit any webform submission'
   - 'edit own blog_page content'
   - 'edit own bus_route_scheduler scheduled updates'
+  - 'edit own bus_stop_page content'
   - 'edit own calendar_event content'
   - 'edit own interagency_agreement content'
   - 'edit own jobs content'
@@ -206,6 +212,7 @@ permissions:
   - 'edit webform twig'
   - 'revert all revisions'
   - 'revert blog_page revisions'
+  - 'revert bus_stop_page revisions'
   - 'revert calendar_event revisions'
   - 'revert interagency_agreement revisions'
   - 'revert jobs revisions'
@@ -219,6 +226,7 @@ permissions:
   - 'revert vanpool revisions'
   - 'search content'
   - 'switch shortcut sets'
+  - 'unlock own stops_data feeds'
   - 'update any media'
   - 'update media'
   - 'update paragraph content job_duties'
@@ -236,6 +244,7 @@ permissions:
   - 'view any unpublished content'
   - 'view any webform submission'
   - 'view blog_page revisions'
+  - 'view bus_stop_page revisions'
   - 'view calendar_event revisions'
   - 'view interagency_agreement revisions'
   - 'view jobs revisions'
@@ -251,6 +260,5 @@ permissions:
   - 'view route revisions'
   - 'view scheduled update entities'
   - 'view tabbed_basic_page revisions'
-  - 'view the administration theme'
   - 'view update notifications'
   - 'view vanpool revisions'

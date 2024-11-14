@@ -136,6 +136,9 @@ module:
   views_slideshow_cycle: 0
   views_templates: 0
   views_ui: 0
+  warmer: 0
+  warmer_cdn: 0
+  warmer_entity: 0
   we_megamenu: 0
   webform: 0
   webform_location_geocomplete: 0

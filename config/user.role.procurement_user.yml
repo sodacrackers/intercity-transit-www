@@ -6,7 +6,6 @@ dependencies:
     - filter.format.rich_text
     - node.type.blog_page
     - node.type.procurement_bid_or_proposal
-    - node.type.route
   module:
     - file
     - filter
@@ -18,7 +17,6 @@ is_admin: null
 permissions:
   - 'create blog_page content'
   - 'create procurement_bid_or_proposal content'
-  - 'create route content'
   - 'delete any blog_page content'
   - 'delete blog_page revisions'
   - 'delete own blog_page content'

@@ -1,0 +1,21 @@
+uuid: bc43cbaa-7bf8-4474-b101-96765da06578
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_bus_stop_no
+    - media.type.bus_stop_photo
+  module:
+    - options
+id: media.bus_stop_photo.field_bus_stop_no
+field_name: field_bus_stop_no
+entity_type: media
+bundle: bus_stop_photo
+label: 'Stop ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

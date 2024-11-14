@@ -12,7 +12,7 @@ dependencies:
 id: views_block__rider_alerts_block_2
 theme: transit
 region: content
-weight: -38
+weight: -43
 provider: null
 plugin: 'views_block:rider_alerts-block_2'
 settings:

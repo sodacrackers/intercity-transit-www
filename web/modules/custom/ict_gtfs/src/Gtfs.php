@@ -449,22 +449,38 @@ class Gtfs {
 
   public function getStopTimeUpdates($json_data, $trip_list, &$vehicle_list) {
     $stop_time_updates = [];
-    $trip_timestamps = [];
-    $other_trips = [];
+    $trip_ids = array_keys($trip_list);
+    $busses_timestamp_map = [];
+    $now = (int) date('U');
     foreach ($json_data['entity'] as $entity) {
-      if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_list)) {
+      if (!empty($entity['tripUpdate']['vehicle'])) {
+        $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
+        if (empty($busses_timestamp_map[$vehicle_id])) {
+          $busses_timestamp_map[$vehicle_id] = [
+            'timestamp' => NULL,
+            'trip' => NULL,
+          ];
+        }
+
+        foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
+          if (isset($stop_time_update['departure']['time']) && (int) $stop_time_update['departure']['time'] > $now && (empty($busses_timestamp_map[$vehicle_id]['timestamp']) || $busses_timestamp_map[$vehicle_id]['timestamp'] > (int) $stop_time_update['departure']['time'])) {
+            $busses_timestamp_map[$vehicle_id]['timestamp'] = (int) $stop_time_update['departure']['time'];
+            $busses_timestamp_map[$vehicle_id]['trip'] = $entity['tripUpdate']['trip']['tripId'];
+          }
+        }
+      }
+    }
+    ksort($busses_timestamp_map);
+    foreach ($json_data['entity'] as $entity) {
+      if (in_array($entity['tripUpdate']['trip']['tripId'], $trip_ids)) {
         $vehicle_id =
         $vehicle_label =
         $arrival_time =
         $arrival_delay =
         $departure_delay =
         $departure_time = NULL;
-        if (!isset($trip_timestamps[$entity['tripUpdate']['trip']['tripId']])) {
-          $trip_timestamps[$entity['tripUpdate']['trip']['tripId']] = -1;
-        }
         if (!empty($entity['tripUpdate']['vehicle'])) {
           $vehicle_id = $entity['tripUpdate']['vehicle']['id'];
-          $vehicle_list[$entity['tripUpdate']['trip']['tripId']] = $vehicle_id;
           $vehicle_label = $entity['tripUpdate']['vehicle']['label'];
         }
         foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
@@ -478,9 +494,6 @@ class Gtfs {
             $departure_delay = $stop_time_update['departure']['delay'] ?? NULL;
             $departure_time = $stop_time_update['departure']['time'];
           }
-          if ($arrival_time && ($trip_timestamps[$entity['tripUpdate']['trip']['tripId']] === -1 || $arrival_time < $trip_timestamps[$entity['tripUpdate']['trip']['tripId']])) {
-            $trip_timestamps[$entity['tripUpdate']['trip']['tripId']] = (int) $arrival_time;
-          }
           $stop_time_updates[] = [
             'stop_id' => $stop_id,
             'stop_sequence' => $stop_sequence,
@@ -493,37 +506,21 @@ class Gtfs {
           ];
         }
       }
-      else {
-        if (!empty($entity['tripUpdate']['vehicle'])) {
-          if (!isset($other_trips[$entity['tripUpdate']['vehicle']['id']])) {
-            $other_trips[$entity['tripUpdate']['vehicle']['id']] = -1;
-          }
-          foreach ($entity['tripUpdate']['stopTimeUpdate'] ?? [] as $stop_time_update) {
-            if (isset($stop_time_update['arrival']) && $stop_time_update['arrival'] != NULL) {
-              $arrival_time = $stop_time_update['arrival']['time'];
-              if ($other_trips[$entity['tripUpdate']['vehicle']['id']] === -1 || $arrival_time < $other_trips[$entity['tripUpdate']['vehicle']['id']]) {
-                $other_trips[$entity['tripUpdate']['vehicle']['id']] = (int) $arrival_time;
-              }
-            }
-          }
-        }
+    }
+
+    $common_trips = array_intersect_key($json_data['entity'], $trip_list);
+    $common_trips = array_slice($common_trips, 0, 3);
+    // dump($common_trips);
+    foreach ($common_trips as $common_trip) {
+      if (!empty($common_trip['tripUpdate']['vehicle']) && $busses_timestamp_map[$common_trip['tripUpdate']['vehicle']['id']]['trip'] === $common_trip['tripUpdate']['trip']['tripId']) {
+        $vehicle_list[$common_trip['tripUpdate']['trip']['tripId']] = $common_trip['tripUpdate']['vehicle']['id'];
       }
     }
-    asort($trip_timestamps);
-    if (count($trip_timestamps) > 3) {
-      $trip_timestamps = array_splice($trip_timestamps, 0, 3);
-    }
-    $vehicle_list = array_intersect_key($vehicle_list, $trip_timestamps);
-    foreach ($vehicle_list as $tripId => $vehicle_id) {
-      if (isset($other_trips[$vehicle_id]) && $other_trips[$vehicle_id] != -1 && $trip_timestamps[$tripId] > $other_trips[$vehicle_id]) {
-        unset($vehicle_list[$tripId]);
-      }
-    }
-    $vehicle_list = array_values($vehicle_list);
+
     return $stop_time_updates;
   }
 
-  public function getVehiclePositions($json_data, $vehicle_list) {
+  public function getVehiclePositions($json_data, $vehicle_list, $route_id) {
     $vehicle_positions = array();
     foreach ($json_data['entity'] as $entity) {
       if (isset($entity['vehicle']['vehicle']['id']) && in_array($entity['vehicle']['vehicle']['id'], $vehicle_list)) {

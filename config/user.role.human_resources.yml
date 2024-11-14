@@ -17,7 +17,6 @@ dependencies:
     - filter
     - node
     - paragraphs_type_permissions
-    - system
     - taxonomy
     - workbench_moderation
 id: human_resources
@@ -63,4 +62,3 @@ permissions:
   - 'use text format text_and_bullets'
   - 'view jobs revisions'
   - 'view recruitment revisions'
-  - 'view the administration theme'
