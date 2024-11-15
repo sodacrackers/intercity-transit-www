@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bee929e8f950030ecfb47ebbbfcdd6bc",
+    "content-hash": "1370adb8e521e806f8319cd1f59aacde",
     "packages": [
         {
             "name": "algolia/places",
@@ -21988,8 +21988,6 @@
     "stability-flags": {
         "drupal/adminimal_admin_toolbar": 20,
         "drupal/auto_entitylabel": 20,
-        "drupal/better_exposed_filters": 10,
-        "drupal/captcha": 20,
         "drupal/conditional_fields": 15,
         "drupal/feeds": 15,
         "drupal/feeds_ex": 10,
