@@ -5,7 +5,6 @@ dependencies:
   config:
     - contact.form.vanpool_waitlist
   module:
-    - block_class
     - contact_block
     - system
   theme:

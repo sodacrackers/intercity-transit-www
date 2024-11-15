@@ -5,7 +5,6 @@ dependencies:
   config:
     - contact.form.customer_service
   module:
-    - block_class
     - contact_block
     - system
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: contactblock
 theme: transit
 region: sidebar_second
-weight: -48
+weight: -50
 provider: null
 plugin: contact_block
 settings:

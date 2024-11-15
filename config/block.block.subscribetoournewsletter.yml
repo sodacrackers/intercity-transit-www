@@ -5,7 +5,6 @@ dependencies:
   content:
     - 'block_content:basic:5cf9132d-0f30-4f46-b648-63310bdcaeae'
   module:
-    - block_class
     - block_content
     - system
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: subscribetoournewsletter
 theme: transit
 region: sidebar_second
-weight: -50
+weight: -52
 provider: null
 plugin: 'block_content:5cf9132d-0f30-4f46-b648-63310bdcaeae'
 settings:

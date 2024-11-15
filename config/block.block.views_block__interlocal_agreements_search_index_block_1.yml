@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.interlocal_agreements_search_index
   module:
-    - block_class
     - system
     - user
     - views

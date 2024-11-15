@@ -1,0 +1,30 @@
+uuid: b88a4b55-c3d2-4ef3-99bc-44b24b7e3a5d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ab074c72-a16d-4e31-99cf-423d4b9e10cd'
+  module:
+    - block_content
+    - system
+  theme:
+    - transit
+id: viewwnrcalendar
+theme: transit
+region: sidebar_second
+weight: -53
+provider: null
+plugin: 'block_content:ab074c72-a16d-4e31-99cf-423d4b9e10cd'
+settings:
+  id: 'block_content:ab074c72-a16d-4e31-99cf-423d4b9e10cd'
+  label: 'View WNR Calendar'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /walknroll

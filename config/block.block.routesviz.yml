@@ -5,7 +5,6 @@ dependencies:
   content:
     - 'block_content:basic:9e369a94-eded-4bf0-8571-74414c351221'
   module:
-    - block_class
     - block_content
     - system
     - user

@@ -5,7 +5,6 @@ dependencies:
   config:
     - webform.webform.pace_car_pledge
   module:
-    - block_class
     - system
     - webform
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: webform
 theme: transit
 region: sidebar_second
-weight: -40
+weight: -42
 provider: null
 plugin: webform_block
 settings:

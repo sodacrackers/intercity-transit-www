@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.media_images
   module:
-    - block_class
     - system
     - views
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: views_block__media_images_block_2
 theme: transit
 region: sidebar_second
-weight: -42
+weight: -44
 provider: null
 plugin: 'views_block:media_images-block_2'
 settings:

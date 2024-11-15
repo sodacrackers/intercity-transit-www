@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.authority_cac_meetings
   module:
-    - block_class
     - system
     - views
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: views_block__authority_meetings_block
 theme: transit
 region: sidebar_second
-weight: -45
+weight: -47
 provider: null
 plugin: 'views_block:authority_cac_meetings-block_2'
 settings:

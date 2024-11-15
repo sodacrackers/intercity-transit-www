@@ -5,7 +5,6 @@ dependencies:
   config:
     - views.view.event_files_for_sidebar
   module:
-    - block_class
     - node
     - views
   theme:
@@ -13,7 +12,7 @@ dependencies:
 id: views_block__event_files_for_sidebar_block_1
 theme: transit
 region: sidebar_second
-weight: -43
+weight: -45
 provider: null
 plugin: 'views_block:event_files_for_sidebar-block_1'
 settings:

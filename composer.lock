@@ -22932,6 +22932,7 @@
         "drupal/auto_entitylabel": 20,
         "drupal/better_exposed_filters": 10,
         "drupal/captcha": 20,
+        "drupal/conditional_fields": 15,
         "drupal/feeds": 15,
         "drupal/feeds_ex": 10,
         "drupal/feeds_tamper": 10,
@@ -22943,20 +22944,19 @@
         "drupal/scheduled_updates": 20,
         "drupal/search_api_pantheon": 10,
         "drupal/sidr": 20,
+        "drupal/smart_date": 10,
         "drupal/tamper": 15,
         "drupal/webform_views": 15,
-        "pantheon-upstreams/upstream-configuration": 20,
-        "drupal/smart_date": 10,
-        "drupal/conditional_fields": 15
+        "pantheon-upstreams/upstream-configuration": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.8"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }

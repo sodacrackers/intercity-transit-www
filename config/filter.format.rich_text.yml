@@ -124,12 +124,12 @@ filters:
       media_switch: ''
       hybrid_style: ''
       box_style: ''
+      box_media_style: ''
       box_caption: ''
       filter_tags:
         img: img
         iframe: iframe
       use_data_uri: '0'
-      box_media_style: ''
   slick_filter:
     id: slick_filter
     provider: slick
@@ -141,8 +141,6 @@ filters:
         title: '0'
       optionset: default
       layout: ''
-      skin: ''
-      style: ''
       background: false
       box_caption: ''
       box_caption_custom: ''
@@ -157,6 +155,8 @@ filters:
       grid: ''
       grid_medium: ''
       grid_small: ''
+      style: ''
+      skin: ''
       overridables:
         arrows: '0'
         autoplay: '0'
