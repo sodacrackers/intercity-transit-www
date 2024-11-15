@@ -16,7 +16,7 @@ third_party_settings:
 id: tools
 theme: transit
 region: sidebar_second
-weight: -35
+weight: -37
 provider: null
 plugin: 'menu_block:tools'
 settings:
@@ -32,7 +32,9 @@ settings:
   depth: 0
   expand_all_items: false
   parent: 'tools:'
+  render_parent: false
   suggestion: tools
+  hide_on_nonactive: false
 visibility:
   user_role:
     id: user_role

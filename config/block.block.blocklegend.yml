@@ -10,7 +10,7 @@ dependencies:
 id: blocklegend
 theme: transit
 region: sidebar_second
-weight: -51
+weight: -54
 provider: null
 plugin: it_route_trip_tools_block_legend
 settings:

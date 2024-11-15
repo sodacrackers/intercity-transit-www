@@ -34,5 +34,7 @@ settings:
   depth: 3
   expand_all_items: false
   parent: 'main:'
+  render_parent: false
   suggestion: main
+  hide_on_nonactive: false
 visibility: {  }

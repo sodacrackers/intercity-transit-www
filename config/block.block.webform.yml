@@ -12,7 +12,7 @@ dependencies:
 id: webform
 theme: transit
 region: sidebar_second
-weight: -40
+weight: -42
 provider: null
 plugin: webform_block
 settings:

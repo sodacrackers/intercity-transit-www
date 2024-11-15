@@ -21988,6 +21988,8 @@
     "stability-flags": {
         "drupal/adminimal_admin_toolbar": 20,
         "drupal/auto_entitylabel": 20,
+        "drupal/better_exposed_filters": 10,
+        "drupal/captcha": 20,
         "drupal/conditional_fields": 15,
         "drupal/feeds": 15,
         "drupal/feeds_ex": 10,
