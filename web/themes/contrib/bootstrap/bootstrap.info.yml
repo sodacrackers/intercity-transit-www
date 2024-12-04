@@ -1,7 +1,6 @@
 type: theme
 base theme: false
-core_version_requirement: ^9.5 || ^10
-php: 8.1
+core_version_requirement: ^10.3 || ^11
 
 name: 'Bootstrap'
 description: 'Built to use Bootstrap, a sleek, intuitive, and powerful front-end framework for faster and easier web development.'
@@ -26,6 +25,7 @@ regions:
   page_bottom: 'Page bottom'
 
 libraries:
+  - 'bootstrap/bootstrap_pre_init'
   - 'bootstrap/theme'
 
 libraries-extend:
@@ -45,8 +45,6 @@ libraries-extend:
     - bootstrap/drupal.states
   core/drupal.tabledrag:
     - bootstrap/drupal.tabledrag
-  core/drupal.tableheader:
-  - bootstrap/drupal.tableheader
   image_widget_crop/cropper.integration:
     - bootstrap/image_widget_crop
   views/views.ajax:
@@ -64,9 +62,9 @@ libraries-override:
   system/base:
     css:
       component:
-        css/components/ajax-progress.module.css: false
-        css/components/autocomplete-loading.module.css: false
-        css/components/tabledrag.module.css: false
+        misc/components/ajax-progress.module.css: false
+        misc/components/autocomplete-loading.module.css: false
+        misc/components/tabledrag.module.css: false
 
   file/drupal.file:
     css:
@@ -83,7 +81,7 @@ libraries-override:
       theme:
         css/node.preview.css: false
 
-# Information added by Drupal.org packaging script on 2024-08-07
-version: '8.x-3.32'
+# Information added by Drupal.org packaging script on 2024-12-02
+version: '8.x-3.34'
 project: 'bootstrap'
-datestamp: 1723065855
+datestamp: 1733116161
