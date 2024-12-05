@@ -6,7 +6,7 @@ package: Search
 dependencies:
   - search_api_pantheon:search_api_pantheon
 
-# Information added by Drupal.org packaging script on 2024-09-10
-version: '8.1.10'
+# Information added by Drupal.org packaging script on 2024-11-19
+version: '8.2.2'
 project: 'search_api_pantheon'
-datestamp: 1725941370
+datestamp: 1732037991

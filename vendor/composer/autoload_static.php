@@ -84,7 +84,6 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         ),
         'W' => 
         array (
-            'Wikimedia\\Composer\\Merge\\V2\\' => 28,
             'Webmozart\\PathUtil\\' => 19,
             'Webmozart\\Assert\\' => 17,
         ),
@@ -311,8 +310,8 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'mglaman\\PHPStanDrupal\\' => 
         array (
@@ -329,10 +328,6 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         'ZipStream\\' => 
         array (
             0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
-        ),
-        'Wikimedia\\Composer\\Merge\\V2\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
         ),
         'Webmozart\\PathUtil\\' => 
         array (
