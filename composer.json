@@ -573,16 +573,7 @@
             "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
         "patches": {
-            "drupal/core": {
-                "Grouped date exposed filter notice: https://www.drupal.org/project/drupal/issues/2825860": "https://www.drupal.org/files/issues/2020-06-04/2825860-exposed-filter-notice-38.patch",
-                "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
-                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch"
-            },
-            "drupal/adminimal_admin_toolbar": {
-                "Automated Drupal 10 compatibility fixes - https://www.drupal.org/project/adminimal_admin_toolbar/issues/3285987": "https://www.drupal.org/files/issues/2022-06-15/adminimal_admin_toolbar.1.x-dev.rector.patch"
-            },
             "drupal/captcha": {
-                "Automated Drupal 10 compatibility fixes": "https://www.drupal.org/files/issues/2023-12-09/captcha.2.0.5.rector.patch",
                 "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch"
             },
             "drupal/we_megamenu": {
