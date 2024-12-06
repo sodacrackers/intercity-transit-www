@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8c522cc2161d1a94852fddf98ba34f2",
+    "content-hash": "56cc9fade35b183ff01e779754b40b31",
     "packages": [
         {
             "name": "algolia/places",
@@ -7445,17 +7445,17 @@
         },
         {
             "name": "drupal/search_api_pantheon",
-            "version": "8.2.2",
+            "version": "8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_api_pantheon.git",
-                "reference": "8.2.2"
+                "reference": "8.1.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_pantheon-8.2.2.zip",
-                "reference": "8.2.2",
-                "shasum": "d850a1c64460301b715533bdeea2c464c4454090"
+                "url": "https://ftp.drupal.org/files/projects/search_api_pantheon-8.1.10.zip",
+                "reference": "8.1.10",
+                "shasum": "1e329dc270b7a97ccdb411efef747caf40c4c433"
             },
             "require": {
                 "drupal/core": "^9.4 || ^10",
@@ -7490,8 +7490,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.2.2",
-                    "datestamp": "1732037989",
+                    "version": "8.1.10",
+                    "datestamp": "1725941367",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -21809,6 +21809,7 @@
     "stability-flags": {
         "drupal/adminimal_admin_toolbar": 20,
         "drupal/auto_entitylabel": 20,
+        "drupal/conditional_fields": 15,
         "drupal/feeds": 15,
         "drupal/feeds_ex": 10,
         "drupal/feeds_tamper": 10,
@@ -21818,22 +21819,20 @@
         "drupal/menu_link_weight": 15,
         "drupal/profile_switcher": 15,
         "drupal/scheduled_updates": 20,
-        "drupal/search_api_pantheon": 10,
         "drupal/sidr": 20,
+        "drupal/smart_date": 10,
         "drupal/tamper": 15,
         "drupal/webform_views": 15,
-        "pantheon-upstreams/upstream-configuration": 20,
-        "drupal/smart_date": 10,
-        "drupal/conditional_fields": 15
+        "pantheon-upstreams/upstream-configuration": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.0.8"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }

@@ -458,7 +458,7 @@
         "drupal/search_api": "^1.2",
         "drupal/search_api_attachments": "^9.0",
         "drupal/search_api_page": "^1.0-beta2",
-        "drupal/search_api_pantheon": "^8.0@beta",
+        "drupal/search_api_pantheon": "8.1.*",
         "drupal/search_api_solr": "^4.2",
         "drupal/sidr": "4.x-dev",
         "drupal/simplify": "^2.1",
@@ -576,8 +576,7 @@
             "drupal/core": {
                 "Grouped date exposed filter notice: https://www.drupal.org/project/drupal/issues/2825860": "https://www.drupal.org/files/issues/2020-06-04/2825860-exposed-filter-notice-38.patch",
                 "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch",
-                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch",
-                "Have Views' taxonomy term filters use UUIDs instead of entity IDs": "https://www.drupal.org/files/issues/2023-09-18/2761157-90-10.1.x.patch"
+                "Empty p tag with media embeds fix https://www.drupal.org/project/drupal/issues/3131055": "https://www.drupal.org/files/issues/2022-12-07/3131055-47.patch"
             },
             "drupal/adminimal_admin_toolbar": {
                 "Automated Drupal 10 compatibility fixes - https://www.drupal.org/project/adminimal_admin_toolbar/issues/3285987": "https://www.drupal.org/files/issues/2022-06-15/adminimal_admin_toolbar.1.x-dev.rector.patch"
