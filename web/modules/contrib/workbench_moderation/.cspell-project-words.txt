@@ -1,8 +1,0 @@
-andif
-bundleable
-entitiy's
-entitytype
-everytime
-moderateable
-moderations
-quickedit

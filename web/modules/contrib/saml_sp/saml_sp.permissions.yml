@@ -1,3 +1,0 @@
-configure saml sp:
-  title: 'Configure SAML SP'
-  description: 'Configure the SAML Service Provider integration.'

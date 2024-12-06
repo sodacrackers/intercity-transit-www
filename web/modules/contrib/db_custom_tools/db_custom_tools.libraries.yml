@@ -1,8 +1,0 @@
-global:
-  version: VERSION
-  css:
-    theme:
-      css/styles.css: {}
-fullcalendar-fix:
-  js:
-    js/fullcalendar-fix.js: {}
