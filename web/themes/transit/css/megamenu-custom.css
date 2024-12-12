@@ -1636,6 +1636,12 @@ body:not(.we-mega-menu-backend) .navbar-we-mega-menu[data-alwayshowsubmenu="0"] 
     white-space: nowrap
 }
 
+@media (min-width: 1200px) {
+  .navbar-we-mega-menu>.container-fluid {
+    max-width: 1160px;
+    margin: 0 auto !important;
+  }
+}
 @media (min-width: 992px) {
     .navbar-we-mega-menu {
         background-color: #eff0f1;
@@ -1648,7 +1654,7 @@ body:not(.we-mega-menu-backend) .navbar-we-mega-menu[data-alwayshowsubmenu="0"] 
     }
     .navbar-we-mega-menu>.container-fluid {
         padding-left: 0;
-        padding-right: 0
+        padding-right: 0;
     }
     .navbar-we-mega-menu[data-autoarrow="0"]:not(.admin) .dropdown-menu>a,
     .navbar-we-mega-menu[data-autoarrow="0"]:not(.admin) .dropdown-menu>span {

@@ -19,7 +19,7 @@
 					}
 				}
 			}
-			$('#inbound-forward').once().on('touch, click', function(){
+			once('inbound-forward', '#inbound-forward').on('touch, click', function(){
 				event.preventDefault();
 				var table = $('#inbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
@@ -28,7 +28,7 @@
 				}, 400);
 				$('#inbound-back').attr('disabled', false);
 			});
-			$('#inbound-back').once().on('touch, click', function(){
+			once('inbound-back', '#inbound-back').on('touch, click', function(){
 				event.preventDefault();
 				var table = $('#inbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
@@ -37,7 +37,7 @@
 				}, 400);
 				$('#inbound-forward').attr('disabled', false);
 			});
-			$('#outbound-forward').once().on('touch, click', function(){
+			once('outbound-forward', '#outbound-forward').on('touch, click', function(){
 				event.preventDefault();
 				var table = $('#outbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
@@ -46,7 +46,7 @@
 				}, 400);
 				$('#outbound-back').attr('disabled', false);
 			});
-			$('#outbound-back').once().on('touch, click', function(){
+			once('outbound-back', '#outbound-back').on('touch, click', function(){
 				event.preventDefault();
 				var table = $('#outbound-large-screen-route-table table');
 				var leftPos = $(table).scrollLeft();
@@ -121,12 +121,12 @@
 				var cur_action = $('form#routes-form').prop('action');
 				$('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
 			});
-			$('select#edit-stop').once().change(function(){
+			once('select-edit-stop', 'select#edit-stop').change(function(){
 				var route = $('#edit-stop').val();
 				var cur_action = $('form#stops-form').prop('action');
 				$('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
 			});
-			$('input#stop').once().click(function() {
+			once('input-stop', 'input#stop').click(function() {
 				$('input#stop').toggleClass('active');
 				$('input#stop').toggleClass('timepoints-hide');
 				$('input#stop').toggleClass('timepoints-hide');
@@ -135,7 +135,7 @@
 				$('#outbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
 				$('#inbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
 			});
-			$('button#direction').once().click(function() {
+			once('button-direction', 'button#direction').click(function() {
 				$('button#direction').toggleClass('inbound');
 				$('button#direction').toggleClass('outbound');
 				$('.dir-heading').toggleClass('hidden');
