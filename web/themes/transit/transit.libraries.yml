@@ -37,8 +37,6 @@ search_form_control:
   css:
     theme:
       css/search-form-control.css: {}
-  js:
-    js/search-form-control.js: {}
 timepicker:
     css:
         theme:
