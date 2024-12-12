@@ -446,7 +446,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
   content: '\f219';
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   color: #fff;
   position: absolute;
   left: 0;
@@ -465,7 +465,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {
   content: '\f111';
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   color: #fff;
   position: absolute;
   left: 0;
@@ -794,13 +794,13 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   float: left;
 }
 .stop-table th:after {
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   content: '\f078';
   float: right;
   font-weight: 400;
 }
 .stop-table th[aria-expanded="true"]:after {
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   content: '\f077';
   float: right;
   font-weight: 400;

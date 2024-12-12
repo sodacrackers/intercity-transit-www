@@ -57,7 +57,7 @@
 .icon-remove:before {
     content: "\f00d";
     display: inline-block;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 5 Free";
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -808,7 +808,7 @@
     .navbar-we-mega-menu .flex-next:before {
         content: '';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
+        font-family: "Font Awesome 5 Free";
         font-size: inherit;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
@@ -2715,7 +2715,7 @@ nav[data-animation="Elastic"]:not(.admin) .we-mega-menu-ul .dropdown-menu:not(.c
     .navbar-we-mega-menu.navbar .dropdown-menu>.we-megamenu-nolink:after {
         content: '\f107';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
+        font-family: "Font Awesome 5 Free";
         font-weight: 400;
         font-size: inherit;
         text-rendering: auto;
