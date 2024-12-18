@@ -1331,7 +1331,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 6438b5c6-86ec-4b73-a7bd-8bae0a02e743
+            - 6438
           group: 1
           exposed: false
           expose:
@@ -1716,7 +1716,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 43a4e52d-7160-426f-8c0a-fbe5a2706fae
+            - 43
           group: 1
           exposed: false
           expose:
@@ -3358,7 +3358,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - '159'
+            - 159
           group: 1
           exposed: false
           expose:
@@ -4724,7 +4724,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9f230e58-e1d9-45de-a3dc-2ed84f522fc0
+            - 9
           group: 1
           exposed: false
           expose:
@@ -8744,7 +8744,7 @@ display:
           plugin_id: taxonomy_index_tid_depth
           operator: or
           value:
-            - '160'
+            - 160
           group: 1
           exposed: false
           expose:

@@ -214,7 +214,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 6580d3f6-6856-4fc9-8e7f-edc4701a82ff
+            - 6580
           group: 1
           exposed: false
           expose:

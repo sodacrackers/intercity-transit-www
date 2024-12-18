@@ -922,7 +922,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 4c8275e3-eed8-4426-b4f9-93218b8205b7
+            - 4
           group: 1
           exposed: false
           expose:

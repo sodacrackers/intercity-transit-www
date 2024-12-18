@@ -287,7 +287,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 1518cfc6-a384-45a7-9eb8-b2458d9095bd
+            - 1518
           group: 1
           exposed: false
           expose:

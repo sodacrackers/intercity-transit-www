@@ -93,7 +93,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - cb707ae2-e954-4eb9-a2dc-bc2af8943afc
+            - 0
           group: 1
           exposed: false
           expose:
@@ -249,7 +249,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
+            - 81
           group: 1
           exposed: false
           expose:
@@ -418,7 +418,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
+            - 81
           group: 1
           exposed: false
           expose:

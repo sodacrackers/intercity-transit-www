@@ -316,7 +316,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
+            - 81
           group: 1
           exposed: false
           expose:
@@ -506,7 +506,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
+            - 0
           group: 1
           exposed: false
           expose:
@@ -716,7 +716,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
+            - 0
           group: 1
           exposed: false
           expose:
@@ -930,7 +930,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 11253489-ac05-4759-842a-15f942280865
+            - 11253489
           group: 1
           exposed: false
           expose:
@@ -1082,7 +1082,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 703e49da-391d-43bb-b3f6-53dae46a9937
+            - 9223372036854775807
           group: 1
           exposed: false
           expose:
@@ -1233,7 +1233,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - b5e3cca6-805c-416e-9e52-0e7e436b8bc4
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1381,7 +1381,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - e8476667-163d-4ac3-b604-69601de19e8c
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1530,7 +1530,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 76db3e3e-dacc-49bd-b6cf-d0040a6828cc
+            - 76
           group: 1
           exposed: false
           expose:
@@ -1860,7 +1860,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - db1dd7e1-596e-42a1-bb98-0bc736b55dbf
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1991,7 +1991,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 11253489-ac05-4759-842a-15f942280865
+            - 11253489
           group: 1
           exposed: false
           expose:
@@ -2061,11 +2061,11 @@ display:
     position: 8
     display_options:
       title: 'OTC North Site Construction Accordian'
+      filters: {  }
       defaults:
         title: false
       display_extenders: {  }
       path: Construction/OTC-NorthSite/%
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

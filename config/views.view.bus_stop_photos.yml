@@ -259,7 +259,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 48363136-826e-48db-b0d2-1c2cbd688630
+            - 48363136
           group: 1
           exposed: false
           expose:
@@ -469,12 +469,12 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       defaults:
         fields: false
         arguments: false
       display_extenders: {  }
       block_description: 'bus stop photos for bus data'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -616,6 +616,7 @@ display:
             administrator: administrator
             marketing: marketing
             planning_user: planning_user
+      filters: {  }
       style:
         type: default
         options:
@@ -636,7 +637,6 @@ display:
         row: false
         fields: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -759,11 +759,11 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       defaults:
         fields: false
         arguments: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1029,7 +1029,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 48363136-826e-48db-b0d2-1c2cbd688630
+            - 48363136
           group: 1
           exposed: false
           expose:

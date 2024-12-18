@@ -40,8 +40,8 @@ third_party_settings:
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
-      specific_languages: {  }
       use_language_undefined_as_fallback_language: false
+      specific_languages: {  }
       use_universal_collation: false
 id: content_and_documents
 name: 'Content and Documents'
@@ -88,7 +88,7 @@ field_settings:
     type: text
     configuration:
       roles:
-        anonymous: anonymous
+        - anonymous
       view_mode:
         'entity:node':
           blog_page: search_result

@@ -325,7 +325,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - d5854ef7-f75f-4bee-82c4-f4b8ad4e8d33
+            - 0
           group: 1
           exposed: false
           expose:
@@ -564,13 +564,13 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0668a60c-f258-4883-8461-f03279c5c825
-            - a081ec1d-5601-495d-8d1c-6518e35fa162
-            - 654015a4-6498-4325-8121-63e8cb9cc0a1
-            - d5854ef7-f75f-4bee-82c4-f4b8ad4e8d33
-            - ca8f37bb-1927-42f5-8933-727120e7411b
-            - 95e17d83-8a4b-4478-8127-a612a0640696
-            - fb96ea5f-8847-49ef-972e-609c4ba6f439
+            - 668
+            - 0
+            - 654015
+            - 0
+            - 0
+            - 9223372036854775807
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1027,13 +1027,13 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0668a60c-f258-4883-8461-f03279c5c825
-            - a081ec1d-5601-495d-8d1c-6518e35fa162
-            - 654015a4-6498-4325-8121-63e8cb9cc0a1
-            - d5854ef7-f75f-4bee-82c4-f4b8ad4e8d33
-            - ca8f37bb-1927-42f5-8933-727120e7411b
-            - 95e17d83-8a4b-4478-8127-a612a0640696
-            - fb96ea5f-8847-49ef-972e-609c4ba6f439
+            - 668
+            - 0
+            - 654015
+            - 0
+            - 0
+            - 9223372036854775807
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1345,13 +1345,13 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0668a60c-f258-4883-8461-f03279c5c825
-            - a081ec1d-5601-495d-8d1c-6518e35fa162
-            - 654015a4-6498-4325-8121-63e8cb9cc0a1
-            - d5854ef7-f75f-4bee-82c4-f4b8ad4e8d33
-            - ca8f37bb-1927-42f5-8933-727120e7411b
-            - 95e17d83-8a4b-4478-8127-a612a0640696
-            - fb96ea5f-8847-49ef-972e-609c4ba6f439
+            - 668
+            - 0
+            - 654015
+            - 0
+            - 0
+            - 9223372036854775807
+            - 0
           group: 1
           exposed: false
           expose:
