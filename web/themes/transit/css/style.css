@@ -1749,6 +1749,7 @@ table.route-table {
         overflow-x: auto;
         border-collapse: collapse;
         display: table;
+        /* changed from block to table */
     }
     .navbar-collapse.in {
         overflow-y: hidden;
