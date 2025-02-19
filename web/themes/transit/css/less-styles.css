@@ -50,7 +50,8 @@ html body .dialog-off-canvas-main-canvas {
 }
 @media screen and (min-width: 1200px) {
   html body .container {
-    width: 1200px;      
+    width: 1256px !important;
+    margin: 0 auto !important;
   }
 }
 @media screen and (max-width: 1199px) {
@@ -605,7 +606,7 @@ html body footer .transit-footer--bottom p {
       display: none;
     }
   }
-  
+
   html body .transit-header-top .search-form-block-control.mobile-hide button.search-toggle[aria-expanded="true"] {
     display: none;
   }
