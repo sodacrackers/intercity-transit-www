@@ -680,6 +680,9 @@ html body footer .transit-footer--bottom p {
   html body .js-form-type-search input#edit-keys {
     width: 180px!important;
   }
+  html body.path-frontpage .home-content-left-right .region-content-left {
+  border-right: none;
+}
 }
 @media screen and (max-width: 375px) {
   html body .transit-header-top {
