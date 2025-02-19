@@ -41,4 +41,6 @@ ul.nav-tabs {
     margin-bottom: 0 !important;
 }
 
-
+#views-bootstrap-home-featured-tasks-block-1 .row-1 {
+  padding-top: 10px;
+}
