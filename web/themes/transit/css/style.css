@@ -1985,7 +1985,8 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
     position: relative;
 }
 
-section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions {
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2 {
     position: absolute;
     top: 0;
     right: 10px;
