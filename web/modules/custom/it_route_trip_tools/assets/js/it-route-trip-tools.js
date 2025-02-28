@@ -19,41 +19,49 @@
 					}
 				}
 			}
-			once('inbound-forward', '#inbound-forward').on('touch, click', function(){
-				event.preventDefault();
-				var table = $('#inbound-large-screen-route-table table');
-				var leftPos = $(table).scrollLeft();
-				$(table).animate({
-					scrollLeft: leftPos + 400
-				}, 400);
-				$('#inbound-back').attr('disabled', false);
+			once('inbound-forward', '#inbound-forward').forEach(function(element) {
+				$(element).on('touch click', function(event){
+					event.preventDefault();
+					var table = $('#inbound-large-screen-route-table table');
+					var leftPos = $(table).scrollLeft();
+					$(table).animate({
+						scrollLeft: leftPos + 400
+					}, 400);
+					$('#inbound-back').attr('disabled', false);
+				});
 			});
-			once('inbound-back', '#inbound-back').on('touch, click', function(){
-				event.preventDefault();
-				var table = $('#inbound-large-screen-route-table table');
-				var leftPos = $(table).scrollLeft();
-				$(table).animate({
-					scrollLeft: leftPos - 400
-				}, 400);
-				$('#inbound-forward').attr('disabled', false);
+			once('inbound-back', '#inbound-back').forEach(function(element) {
+				$(element).on('touch click', function(event){
+					event.preventDefault();
+					var table = $('#inbound-large-screen-route-table table');
+					var leftPos = $(table).scrollLeft();
+					$(table).animate({
+						scrollLeft: leftPos - 400
+					}, 400);
+					$('#inbound-forward').attr('disabled', false);
+				});
 			});
-			once('outbound-forward', '#outbound-forward').on('touch, click', function(){
-				event.preventDefault();
-				var table = $('#outbound-large-screen-route-table table');
-				var leftPos = $(table).scrollLeft();
-				$(table).animate({
-					scrollLeft: leftPos + 400
-				}, 400);
-				$('#outbound-back').attr('disabled', false);
+			once('outbound-forward', '#outbound-forward').forEach(function(element) {
+				$(element).on('touch click', function(event){
+					event.preventDefault();
+					var table = $('#outbound-large-screen-route-table table');
+					var leftPos = $(table).scrollLeft();
+					$(table).animate({
+						scrollLeft: leftPos + 400
+					}, 400);
+					$('#outbound-back').attr('disabled', false);
+				});
 			});
-			once('outbound-back', '#outbound-back').on('touch, click', function(){
-				event.preventDefault();
-				var table = $('#outbound-large-screen-route-table table');
-				var leftPos = $(table).scrollLeft();
-				$(table).animate({
-					scrollLeft: leftPos - 400
-				}, 400);
-				$('#outbound-forward').attr('disabled', false);
+			once('outbound-back', '#outbound-back').forEach(function(element) {
+				$(element).on('touch click', function(event){
+					event.preventDefault();
+					var table = $('#outbound-large-screen-route-table table');
+					var leftPos = $(table).scrollLeft();
+					$(table).animate({
+						scrollLeft: leftPos - 400
+					}, 400);
+					$('#outbound-forward').attr('disabled', false);
+				});
 			});
 			const $outbound = $('#outbound-large-screen-route-table table');	
 			const $inbound = $('#outbound-large-screen-route-table table');	
@@ -121,34 +129,40 @@
 				var cur_action = $('form#routes-form').prop('action');
 				$('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
 			});
-			once('select-edit-stop', 'select#edit-stop').change(function(){
-				var route = $('#edit-stop').val();
-				var cur_action = $('form#stops-form').prop('action');
-				$('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
+			once('select-edit-stop', 'select#edit-stop').forEach(function(element) {
+				$(element).change(function(){
+					var route = $('#edit-stop').val();
+					var cur_action = $('form#stops-form').prop('action');
+					$('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
+				});
 			});
-			once('input-stop', 'input#stop').click(function() {
-				$('input#stop').toggleClass('active');
-				$('input#stop').toggleClass('timepoints-hide');
-				$('input#stop').toggleClass('timepoints-hide');
-				$('#outbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#inbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#outbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-				$('#inbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+			once('input-stop', 'input#stop').forEach(function(element) {
+				$(element).click(function() {
+					$('input#stop').toggleClass('active');
+					$('input#stop').toggleClass('timepoints-hide');
+					$('input#stop').toggleClass('timepoints-hide');
+					$('#outbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+					$('#inbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+					$('#outbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+					$('#inbound-small-screen-route-table table').find('.hide-stop').toggleClass('hidden');
+				});
 			});
-			once('button-direction', 'button#direction').click(function() {
-				$('button#direction').toggleClass('inbound');
-				$('button#direction').toggleClass('outbound');
-				$('.dir-heading').toggleClass('hidden');
-				$('.dir-tables').toggleClass('hidden');
-				$('.map-frame .maps').toggleClass('hidden').toggleClass('show-dir').toggleClass('hide-dir');
-				if ($('#outbound-tables').length) {
-					var outbound_width = $('#outbound-tables').width();
-					var outbound_table_width = $('#outbound-tables table thead').width();
-				}
-				if ($('#inbound-tables').length) {
-					var inbound_width = $('#inbound-tables').width();
-					var inbound_table_width = $('#inbound-tables table theah').width();
-				}
+			once('button-direction', 'button#direction').forEach(function(element) {
+				$(element).click(function() {
+					$('button#direction').toggleClass('inbound');
+					$('button#direction').toggleClass('outbound');
+					$('.dir-heading').toggleClass('hidden');
+					$('.dir-tables').toggleClass('hidden');
+					$('.map-frame .maps').toggleClass('hidden').toggleClass('show-dir').toggleClass('hide-dir');
+					if ($('#outbound-tables').length) {
+						var outbound_width = $('#outbound-tables').width();
+						var outbound_table_width = $('#outbound-tables table thead').width();
+					}
+					if ($('#inbound-tables').length) {
+						var inbound_width = $('#inbound-tables').width();
+						var inbound_table_width = $('#inbound-tables table theah').width();
+					}
+				});
 			});
 			$('.outbound-panel').on('hide.bs.collapse', function () {
 				$('.outbound-route-map-toggle').html('Show Route Map');

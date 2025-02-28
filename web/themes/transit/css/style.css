@@ -1996,6 +1996,7 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
     border-radius: 5px 0 0 5px;
 }
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2,
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 div#edit-actions--2 {
     display: table-cell!important;
     float: left;
@@ -2003,6 +2004,7 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
     margin-top: 10px !important;
 }
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions button,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2 button,
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 div#edit-actions--2 button {
     border-radius: 0 5px 5px 0;
 }

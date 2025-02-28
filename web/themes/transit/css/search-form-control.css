@@ -44,9 +44,6 @@
   .search-form-block-control.desktop-show #search-form {
     display: block;
   }
-  .search-form-block-control.desktop-show #search-form div {
-    display: block;
-  }
 }
 @media screen and (max-width: 991px) {
   .search-form-block-control.mobile-hide {
