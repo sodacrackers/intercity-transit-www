@@ -492,10 +492,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #all-routes-container {
   margin-top: 40px;
 }
-#all-routes-container #all-routes-map,
-#all-routes-container #all-routes-map div {
-  min-height: 600px !important;
-}
+
 #all-routes-container #all-routes-map h3 {
   font-size: 1.8rem;
   padding: 0;
