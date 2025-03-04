@@ -865,7 +865,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
   content: '\f219';
-  font-family: "Font Awesome";
+  font-family: "FontAwesome";
   color: #fff;
   position: absolute;
   left: 0;
@@ -884,7 +884,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {
   content: '\f111';
-  font-family: "Font Awesome";
+  font-family: "FontAwesome";
   color: #fff;
   position: absolute;
   left: 0;
