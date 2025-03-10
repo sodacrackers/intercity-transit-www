@@ -1,0 +1,9 @@
+# Directories
+sidr
+web
+vendor
+
+# Files
+composer.lock
+.editorconfig
+.gitattributes

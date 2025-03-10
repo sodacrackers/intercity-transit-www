@@ -1,0 +1,25 @@
+{
+  "name": "drupal/sidr",
+  "description": "Sidr integration for Drupal for responsive menus and more.",
+  "type": "drupal-module",
+  "keywords": ["Drupal", "Menus", "Responsive", "Sidr"],
+  "homepage": "https://www.drupal.org/project/sidr",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Jigar Mehta (jigarius)",
+      "homepage": "https://jigarius.com/",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "drupal/core": "^9 || ^10"
+  },
+  "suggest": {
+      "wikimedia/composer-merge-plugin": "Helps with easier installation of jQuery Sidr JS libraries."
+  },
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/sidr",
+    "source": "http://cgit.drupalcode.org/sidr"
+  }
+}

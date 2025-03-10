@@ -1,0 +1,6 @@
+services:
+  scheduled_updates.command:
+    class: Drupal\scheduled_updates\Commands\RunUpdatesCommand
+    arguments: ['@scheduled_updates.update_runner']
+    tags:
+      -  { name: drush.command }

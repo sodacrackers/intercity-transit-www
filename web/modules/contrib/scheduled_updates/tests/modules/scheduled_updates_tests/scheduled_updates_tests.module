@@ -1,0 +1,15 @@
+<?php
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function scheduled_updates_tests_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() == 'node' && !empty($fields['title'])) {
+    // Add constraint to allow triggering a field violation that confirms the
+    // who is running the updates.
+    /* @var \Drupal\Core\Field\BaseFieldDefinition[] $fields  */
+    $fields['title']->addConstraint('UserId');
+  }
+}
