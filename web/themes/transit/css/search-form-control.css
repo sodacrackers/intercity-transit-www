@@ -65,7 +65,7 @@
     display: block;
   }
   .search-form-block-control.mobile-hide form .glyphicon-search:before {
-    font-family: 'Font Awesome 5 Pro';
+    font-family: 'FontAwesome';
     content: '\f061';
   }
 }

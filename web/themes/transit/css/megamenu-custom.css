@@ -57,7 +57,7 @@
 .icon-remove:before {
     content: "\f00d";
     display: inline-block;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "FontAwesome";
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -808,7 +808,7 @@
     .navbar-we-mega-menu .flex-next:before {
         content: '';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
+        font-family: "FontAwesome";
         font-size: inherit;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
@@ -1636,6 +1636,12 @@ body:not(.we-mega-menu-backend) .navbar-we-mega-menu[data-alwayshowsubmenu="0"] 
     white-space: nowrap
 }
 
+@media (min-width: 1200px) {
+  .navbar-we-mega-menu>.container-fluid {
+    max-width: 1160px;
+    margin: 0 auto !important;
+  }
+}
 @media (min-width: 992px) {
     .navbar-we-mega-menu {
         background-color: #eff0f1;
@@ -1648,7 +1654,7 @@ body:not(.we-mega-menu-backend) .navbar-we-mega-menu[data-alwayshowsubmenu="0"] 
     }
     .navbar-we-mega-menu>.container-fluid {
         padding-left: 0;
-        padding-right: 0
+        padding-right: 0;
     }
     .navbar-we-mega-menu[data-autoarrow="0"]:not(.admin) .dropdown-menu>a,
     .navbar-we-mega-menu[data-autoarrow="0"]:not(.admin) .dropdown-menu>span {
@@ -2709,7 +2715,7 @@ nav[data-animation="Elastic"]:not(.admin) .we-mega-menu-ul .dropdown-menu:not(.c
     .navbar-we-mega-menu.navbar .dropdown-menu>.we-megamenu-nolink:after {
         content: '\f107';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
+        font-family: "FontAwesome";
         font-weight: 400;
         font-size: inherit;
         text-rendering: auto;

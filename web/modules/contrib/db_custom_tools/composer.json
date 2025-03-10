@@ -1,6 +1,0 @@
-{
-  "name": "watech-web/db_custom_tools",
-  "description": "Customizations for the admin side of things",
-  "type": "drupal-module",
-  "license": "GPL-2.0"
-}

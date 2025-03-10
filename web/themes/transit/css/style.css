@@ -3,7 +3,7 @@ body {
     margin-top: 0;
 }
 a {
-color: #347AB7;	
+color: #347AB7;
 }
 .navbar-default {
     background-color: #fff;
@@ -1285,7 +1285,7 @@ ul.nav.navbar-nav.navbar-right {
 .transit-widget-wrap--title .transit-widget--link {
     color: #2B7051;
     font-size: 18.66px;
-    font-weight: 600; 
+    font-weight: 600;
 }
 .transit-widget .transit-widget--date {
     color: #2B7051;
@@ -1419,7 +1419,7 @@ ul.nav.navbar-nav.navbar-right {
 }
 .transit-footer .transit-footer--main ul {
     padding-left: 0;
-    list-style-type: none;    
+    list-style-type: none;
 }
 .transit-footer .transit-footer--main li {
     margin-bottom: 10px;
@@ -1748,7 +1748,8 @@ table.route-table {
         width: 100%;
         overflow-x: auto;
         border-collapse: collapse;
-        display: block;
+        display: table;
+        /* changed from block to table */
     }
     .navbar-collapse.in {
         overflow-y: hidden;
@@ -1813,7 +1814,7 @@ h2.block-title > a {
     font-weight: 600;
     text-align: right;
 }
-.fill { 
+.fill {
     min-height: 100%;
     height: 100%;
     box-sizing:border-box;
@@ -1979,11 +1980,24 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
     float: left;
     width: 80%; */
 }
+
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search {
+    position: relative;
+}
+
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2 {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 2;
+}
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search .form-item.js-form-item.form-type-search.js-form-type-search.form-item-keys.js-form-item-keys.form-no-label.form-group input,
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 .form-item.js-form-item.form-type-search.js-form-type-search.form-item-keys.js-form-item-keys.form-no-label.form-group input {
     border-radius: 5px 0 0 5px;
 }
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2,
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 div#edit-actions--2 {
     display: table-cell!important;
     float: left;
@@ -1991,6 +2005,7 @@ section#block-searchapipagesearchblockform form#search-api-page-block-form-searc
     margin-top: 10px !important;
 }
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions button,
+section#block-searchapipagesearchblockform form#search-api-page-block-form-search div#edit-actions--2 button,
 section#block-searchapipagesearchblockform form#search-api-page-block-form-search--2 div#edit-actions--2 button {
     border-radius: 0 5px 5px 0;
 }

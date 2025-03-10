@@ -1,6 +1,0 @@
-name: Scheduled Updates Tests
-type: module
-description: Testing functions.
-package: Testing
-dependencies:
-  - scheduled_updates

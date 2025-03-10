@@ -22,27 +22,25 @@
  * @ingroup templates
  */
 #}
-{% spaceless %}
-  {%
-    set classes = [
-      'btn',
-      type == 'submit' ? 'js-form-submit',
-      icon and icon_position and not icon_only ? 'icon-' ~ icon_position,
-    ]
-  %}
-  {% block input %}
-    {% if icon_only %}
-      <button{{ attributes.addClass(classes, 'icon-only') }}>
-        <span class="sr-only">{{ label }}</span>
-        {{ icon }}
-      </button>
-    {% else %}
-      {% if icon_position == 'after' %}
-        <button{{ attributes.addClass(classes) }}>{{ label }}{{ icon }}</button>{{ children }}
-      {% else %}
-        <button{{ attributes.addClass(classes) }}>{{ icon }}{{ label }}</button>{{ children }}
-      {% endif %}
-    {% endif %}
-    {{ children }}
-  {% endblock %}
-{% endspaceless %}
+{% block input %}
+    {% set classes = [
+        'btn',
+        type == 'submit' ? 'js-form-submit',
+        icon and icon_position and not icon_only ? 'icon-' ~ icon_position,
+    ] %}
+    {% apply spaceless %}
+        {% if icon_only %}
+            <button{{ attributes.addClass(classes, 'icon-only') }}>
+                <span class="sr-only">{{ label }}</span>
+                {{ icon }}
+            </button>
+        {% else %}
+            {% if icon_position == 'after' %}
+                <button{{ attributes.addClass(classes) }}>{{ label }}{{ icon }}</button>{{ children }}
+            {% else %}
+                <button{{ attributes.addClass(classes) }}>{{ icon }}{{ label }}</button>{{ children }}
+            {% endif %}
+        {% endif %}
+        {{ children }}
+    {% endapply %}
+{% endblock %}

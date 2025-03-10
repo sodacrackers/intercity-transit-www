@@ -19,7 +19,7 @@ class RoutesPage extends ControllerBase {
   public function BuildTitle($routeId) {
     if ($routeId != 'all'):
       $request = \Drupal::request();
-      if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)):
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
         $title = it_route_trip_tools_build_route_title($routeId);
       endif;
     else:
@@ -45,7 +45,7 @@ class RoutesPage extends ControllerBase {
       if (empty($route_data)):
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
       endif;
-      if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)):
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
         $new_title = $route_data['short_name'] . ' - ' . $route_data['long_name'];
         $route->setDefault('_title', $new_title);
       endif;

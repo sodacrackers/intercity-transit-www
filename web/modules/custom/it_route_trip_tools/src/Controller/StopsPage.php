@@ -21,7 +21,7 @@ class StopsPage extends ControllerBase {
   public function BuildTitle($stopId = NULL) {
     if ($stopId != 'all'):
       $request = \Drupal::request();
-      if ($route = $request->attributes->get(\Symfony\Cmf\Component\Routing\RouteObjectInterface::ROUTE_OBJECT)):
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
         $title = it_route_trip_tools_build_stop_title($stopId);
       endif;
     else:

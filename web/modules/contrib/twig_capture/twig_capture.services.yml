@@ -1,6 +1,0 @@
-services:
-  twig_capture.twig.translate_extension:
-    class: Drupal\twig_capture\TwigCaptureExtension
-    arguments: ['@twig']
-    tags:
-      - { name: twig.extension }
