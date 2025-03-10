@@ -1,0 +1,8 @@
+uuid: 4e056775-e2e8-4f05-b3fa-54c481182510
+langcode: en
+status: true
+dependencies: {  }
+name: 'System Redesign'
+vid: system_redesign
+description: ''
+weight: 0

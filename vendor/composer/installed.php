@@ -3,7 +3,7 @@
         'name' => 'intercity-transit/main',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'eabd33e1f60b048724aef82bc10350efa42cf03b',
+        'reference' => '875a83c5004bf6955d5b11bab88ae5b1f90fabfa',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1837,15 +1837,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'gtfs/realtime-php' => array(
-            'pretty_version' => 'v1.0.0',
-            'version' => '1.0.0.0',
-            'reference' => '83c8f777ce52b0061fc3a2e200832767a8fa8bb9',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../gtfs/realtime-php',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'guzzlehttp/command' => array(
             'pretty_version' => '1.0.0',
             'version' => '1.0.0.0',
@@ -1921,7 +1912,7 @@
         'intercity-transit/main' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'eabd33e1f60b048724aef82bc10350efa42cf03b',
+            'reference' => '875a83c5004bf6955d5b11bab88ae5b1f90fabfa',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -2596,8 +2587,8 @@
         'psr/container-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '^1.0',
             ),
         ),
         'psr/event-dispatcher' => array(
@@ -2642,8 +2633,8 @@
         'psr/http-factory-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '^1.0',
             ),
         ),
         'psr/http-message' => array(

@@ -31,9 +31,11 @@ filters:
       image_style_400x300: '0'
       image_style_banner_narrow: '0'
       image_style_banner_narrow_m_: '0'
+      image_style_geofield_map_default_icon_style: '0'
       image_style_large: '0'
       image_style_medium: '0'
       image_style_medium_220_x_220_cropped: '0'
+      image_style_person_thumbnail: '0'
       image_style_thumbnail: '0'
       image_style_tile_300_200_: '0'
       image_style_tile_300_300_: '0'
@@ -43,7 +45,7 @@ filters:
     status: true
     weight: -49
     settings:
-      allowed_html: '<a href hreflang class=""> <em> <strong> <cite> <blockquote cite> <code> <ul data-blazy class=""> <ol start type> <li role class=""> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption class=""> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button alt="" title=""> <div class=""> <iframe width height frameborder allowfullscreen src> <button type data-toggle data-target id aria-haspopup aria-expanded class=""> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center><p>'
+      allowed_html: '<a href hreflang class=""> <em> <strong> <cite> <blockquote cite> <code> <ul data-blazy class=""> <ol start type> <li role class=""> <dl> <dt> <dd> <h2 id style> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid data-align data-caption class=""> <drupal-entity data-entity-type data-entity-uuid data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button alt="" title=""> <div class=""> <iframe width height frameborder allowfullscreen src> <button type data-toggle data-target id aria-haspopup aria-expanded class=""> <p class="" style=""> <span class=""> <i class=""><script src=""><em><br><center><p>'
       filter_html_help: true
       filter_html_nofollow: false
       allowed_html_automatic_tag: 0
@@ -111,6 +113,7 @@ filters:
       media_switch: ''
       hybrid_style: ''
       box_style: ''
+      box_media_style: ''
       box_caption: ''
       filter_tags:
         img: img
@@ -122,19 +125,27 @@ filters:
     status: false
     weight: 4
     settings:
+      caption:
+        alt: '0'
+        title: '0'
       optionset: default
       layout: ''
-      skin: ''
       background: false
+      box_caption: ''
+      box_caption_custom: ''
       box_media_style: ''
       loading: ''
-      preload: false
       responsive_image_style: ''
       box_style: ''
       image_style: ''
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      style: ''
+      skin: ''
       overridables:
         arrows: '0'
         autoplay: '0'
@@ -150,3 +161,5 @@ filters:
       thumbnail_effect: ''
       thumbnail_position: ''
       override: false
+      preserve_keys: false
+      visible_items: null

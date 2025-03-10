@@ -227,10 +227,8 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
             'GuzzleHttp\\Command\\' => 19,
             'GuzzleHttp\\' => 11,
             'Grasmash\\Expander\\' => 18,
-            'Google\\Transit\\Realtime\\' => 24,
             'Google\\Protobuf\\' => 16,
             'Geocoder\\' => 9,
-            'GPBMetadata\\Src\\' => 16,
             'GPBMetadata\\Google\\Protobuf\\' => 28,
         ),
         'F' => 
@@ -310,9 +308,9 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
         ),
         'mglaman\\PHPStanDrupal\\' => 
         array (
@@ -748,10 +746,6 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         array (
             0 => __DIR__ . '/..' . '/grasmash/expander/src',
         ),
-        'Google\\Transit\\Realtime\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/gtfs/realtime-php/src/Google/Transit/Realtime',
-        ),
         'Google\\Protobuf\\' => 
         array (
             0 => __DIR__ . '/..' . '/google/protobuf/src/Google/Protobuf',
@@ -759,10 +753,6 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         'Geocoder\\' => 
         array (
             0 => __DIR__ . '/..' . '/willdurand/geocoder',
-        ),
-        'GPBMetadata\\Src\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/gtfs/realtime-php/src/GPBMetadata',
         ),
         'GPBMetadata\\Google\\Protobuf\\' => 
         array (
@@ -879,8 +869,8 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/event-manager/src',
             3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'Dflydev\\DotAccessData\\' => 
@@ -957,8 +947,8 @@ class ComposerStaticInit7af88cb9049689115a8b415aa6dbca9f
         ),
         'Behat\\Mink\\Driver\\' => 
         array (
-            0 => __DIR__ . '/..' . '/behat/mink-selenium2-driver/src',
-            1 => __DIR__ . '/..' . '/friends-of-behat/mink-browserkit-driver/src',
+            0 => __DIR__ . '/..' . '/friends-of-behat/mink-browserkit-driver/src',
+            1 => __DIR__ . '/..' . '/behat/mink-selenium2-driver/src',
         ),
         'Behat\\Mink\\' => 
         array (

@@ -1,0 +1,8 @@
+uuid: ae002d3a-3a63-44e3-bb67-dc6275e132fb
+langcode: en
+status: true
+dependencies: {  }
+name: 'ITA/CAC List'
+vid: ita_cac_list
+description: ''
+weight: 0

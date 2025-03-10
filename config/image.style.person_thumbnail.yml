@@ -1,0 +1,7 @@
+uuid: 8e07377e-60f3-4292-b92f-b413cde5569f
+langcode: en
+status: true
+dependencies: {  }
+name: person_thumbnail
+label: 'Person thumbnail'
+effects: {  }

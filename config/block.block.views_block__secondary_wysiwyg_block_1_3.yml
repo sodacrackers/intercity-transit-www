@@ -1,0 +1,30 @@
+uuid: f012f061-b11e-4f7a-a5ba-a7be5fd3ddc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.secondary_wysiwyg
+  module:
+    - system
+    - views
+  theme:
+    - transit
+id: views_block__secondary_wysiwyg_block_1_3
+theme: transit
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:secondary_wysiwyg-block_1'
+settings:
+  id: 'views_block:secondary_wysiwyg-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /bus-system-redesign

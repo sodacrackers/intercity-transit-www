@@ -5,9 +5,14 @@ dependencies:
   config:
     - system.menu.main
   module:
+    - menu_block_title
     - system
+    - user
   theme:
     - transit
+third_party_settings:
+  menu_block_title:
+    modify_title: false
 _core:
   default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: transit_main_menu
@@ -24,4 +29,11 @@ settings:
   level: 1
   depth: 3
   expand_all_items: false
-visibility: {  }
+visibility:
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      administrator: administrator
