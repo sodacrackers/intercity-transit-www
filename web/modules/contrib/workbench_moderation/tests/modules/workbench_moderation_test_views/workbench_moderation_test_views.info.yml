@@ -1,0 +1,12 @@
+name: 'Workbench moderation test views'
+type: module
+description: 'Provides default views for views Workbench moderation tests.'
+package: Testing
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+dependencies:
+  - workbench_moderation
+
+# Information added by Drupal.org packaging script on 2024-07-26
+version: '8.x-1.8'
+project: 'workbench_moderation'
+datestamp: 1721955914

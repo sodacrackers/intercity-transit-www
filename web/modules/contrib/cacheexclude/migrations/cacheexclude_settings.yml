@@ -1,0 +1,20 @@
+id: cacheexclude_settings
+label: Cache exclude configuration
+migration_tags:
+  - Drupal 7
+  - Configuration
+source:
+  plugin: cacheexclude
+  source_module: cacheexclude
+process:
+  cacheexclude_list:
+    plugin: cacheexclude_paths
+    source: 'cacheexclude_list'
+  cacheexclude_node_types:
+    plugin: cacheexclude_nodes
+destination:
+  plugin: config
+  config_name: cacheexclude.settings
+migration_dependencies:
+  optional:
+    - d7_node_type

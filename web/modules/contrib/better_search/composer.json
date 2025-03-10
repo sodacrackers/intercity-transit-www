@@ -1,0 +1,9 @@
+{
+    "name": "drupal/better_search",
+    "description": "Provides better looking theming for the Drupal search block.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "drupal/core": "^8 || ^9 || ^10"
+    }
+}

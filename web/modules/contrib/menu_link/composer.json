@@ -1,0 +1,15 @@
+{
+    "name": "drupal/menu_link",
+    "description": "Defines a menu link field type.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/menu_link",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/menu_link",
+        "documentation": "https://www.drupal.org/project/menu_link",
+        "source": "https://cgit.drupalcode.org/menu_link"
+    },
+    "license": "GPL-2.0-or-later",
+    "require-dev": {
+        "drupal/core": "^8.0 || ^9.0 || ^10.0"
+    }
+}

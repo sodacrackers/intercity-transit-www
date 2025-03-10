@@ -1,0 +1,13 @@
+name: GovDelivery Signup
+description: Places a Govdelivery signup box on the website based on the block selected.
+package: GovDelivery
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+type: module
+configure: govdelivery_signup.settings
+dependencies:
+  - drupal:block
+
+# Information added by Drupal.org packaging script on 2024-11-27
+version: '2.2.0'
+project: 'govdelivery_signup'
+datestamp: 1732727656

@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Better Search Install File.
+ */
+
+/**
+ * Implements hook_update_N().
+ */
+function better_search_update_8001(&$sandbox) {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('better_search.settings');
+  $config->set('searchpage_enable', TRUE);
+  $config->set('searchpage_submit_not_visible', TRUE);
+  $message = "Better Search Blocks enabled on search page and submit button is visually hidden";
+  $config->save(TRUE);
+  return $message;
+}
+
+function better_search_update_8002(&$sandbox) {
+    $config_factory = \Drupal::configFactory();
+    $config = $config_factory->getEditable('better_search.settings');
+    $config->set('input_name', 'keys');
+    $config->set('block_form_id', 'search_block_form');
+    $message = "Better Search Block advanced settings set to default values.";
+    $config->save(true);
+    return $message;
+}

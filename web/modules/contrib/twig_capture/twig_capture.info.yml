@@ -1,0 +1,9 @@
+name: 'Twig capture'
+type: module
+description: 'Capture Twig filter results'
+core_version_requirement: ^9 || ^10
+
+# Information added by Drupal.org packaging script on 2023-01-30
+version: '1.0.1'
+project: 'twig_capture'
+datestamp: 1675116432

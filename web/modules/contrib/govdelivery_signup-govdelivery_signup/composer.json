@@ -1,0 +1,10 @@
+{
+    "name": "drupal/govdelivery_signup",
+    "type": "drupal-module",
+    "description": "Adds a Government Delivery Signup box.",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "ext-json": "*",
+        "drupal/core": "^8.8 || ^9 || ^10 || ^11"
+    }
+}

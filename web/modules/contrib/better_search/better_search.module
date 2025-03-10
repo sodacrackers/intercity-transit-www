@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * This module enables basic Better Search functionality.
+ *
+ * Provides better looking theming for the Drupal search block.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_help().
+ */
+function better_search_help($path, $arg) {
+  switch ($path) {
+    case 'help.page.better_search':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('With just a couple clicks you can change your boring Drupal search box into a nice looking search box with icon animations.') . '</p>';
+      $output .= '<p>' . t('For more information, see the <a href="https://www.drupal.org/project/better_search">Better Search Block module</a>.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function better_search_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $block_form_id = \Drupal::config('better_search.settings')->get('block_form_id');
+  $input_name = \Drupal::config('better_search.settings')->get('input_name');
+
+  if ($form_id == $block_form_id || $form_id == 'search_form') {
+    $theme = \Drupal::config('better_search.settings')->get('theme');
+    switch ($theme) {
+      case 0:
+        $form['#attached']['library'][] = 'better_search/background_fade';
+        break;
+
+      case 1:
+        $form['#attached']['library'][] = 'better_search/expand_on_hover';
+        break;
+
+      case 2:
+        $form['#attached']['library'][] = 'better_search/increase_icon_size';
+        break;
+
+      case 3:
+        $form['#attached']['library'][] = 'better_search/on_hover_button';
+        break;
+
+    }
+
+    $key = ($form_id == $block_form_id) ? 'actions' : 'basic';
+
+    if ($form_id == $block_form_id) {
+
+      if ($theme == 3) {
+        $form[$input_name]['#suffix'] = '<div class="icon"><i class="better_search"></i></div>';
+      }
+      else {
+        $form[$input_name]['#prefix'] = '<div class="icon"><i class="better_search"></i></div>';
+      }
+      $placeholder_text = \Drupal::config('better_search.settings')->get('placeholder_text');
+      $form[$input_name]['#attributes']['placeholder'] = t('@placeholder', ['@placeholder' => $placeholder_text]);
+      $form['actions']['#attributes']['class'][] = 'visually-hidden';
+      $form[$input_name]['#size'] = \Drupal::config('better_search.settings')->get('size');
+    }
+
+    $altersearchpage = \Drupal::config('better_search.settings')->get('searchpage_enable');
+
+    if ($altersearchpage && $form_id == 'search_form') {
+      if ($theme == 3) {
+        $form[$key][$input_name]['#suffix'] = '<div class="icon"><i class="better_search"></i></div>';
+      }
+      else {
+        $form[$key][$input_name]['#prefix'] = '<div class="icon"><i class="better_search"></i></div>';
+      }
+
+      $placeholder_text = \Drupal::config('better_search.settings')->get('placeholder_text');
+      $form[$key][$input_name]['#attributes']['placeholder'] = t('@placeholder', ['@placeholder' => $placeholder_text]);
+
+      $submit_not_visible = \Drupal::config('better_search.settings')->get('searchpage_submit_not_visible');
+
+      if ($submit_not_visible) {
+
+        /*
+         * Works with Bartik
+         */
+
+        /** @var \Drupal\Core\Theme\ActiveTheme $theme */
+        $theme = \Drupal::service('theme.manager')->getActiveTheme();
+        $main_theme = $theme->getName();
+        $base_themes = $theme->getBaseThemeExtensions();
+
+        if ($main_theme == "bootstrap" || array_key_exists('bootstrap', $base_themes)){
+          /* Works with Bootstrap */
+
+          $form[$key]['submit']['#attributes'] = [
+            'class' => ['visually-hidden'],
+          ];
+
+        }else{
+          /* Works with other themes */
+          if (!isset($form[$key]['submit']['#attributes'])) {
+            $form[$key]['submit']['#attributes'] = new Attribute();
+          }
+          $form[$key]['submit']['#attributes']->addClass('visually-hidden');
+        }
+
+      }
+      $form[$key][$input_name]['#size'] = \Drupal::config('better_search.settings')->get('size');
+
+    }
+  }
+}
+
+/**
+ * Implements better_search_preprocess_form_element().
+ */
+function better_search_preprocess_form_element(&$variables) {
+  if (!empty($variables['element']['#type']) && $variables['element']['#type'] == 'search') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+}

@@ -1,0 +1,18 @@
+# Schemas for the configuration files of the Inline Styled Images module.
+
+filter_settings.filter_imagestyle:
+  type: inline_images_filters
+
+filter_settings.filter_responsive_image_style:
+  type: inline_images_filters
+
+inline_images_filters:
+  type: mapping
+  label: 'Display responsive image styles'
+  mapping:
+    image_styles:
+      type: sequence
+      label: 'Responsive image styles machine name'
+      sequence:
+        type: string
+        label: 'Responsive image style'
