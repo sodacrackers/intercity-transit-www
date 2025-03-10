@@ -3,7 +3,7 @@
         'name' => 'intercity-transit/main',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '9c34137a1c21b6a7a29e7483ea3b4fd0d5f70cd9',
+        'reference' => 'aa322c48ffc0453cf62199319bab9737bbcd1487',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1728,7 +1728,7 @@
         'intercity-transit/main' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '9c34137a1c21b6a7a29e7483ea3b4fd0d5f70cd9',
+            'reference' => 'aa322c48ffc0453cf62199319bab9737bbcd1487',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
