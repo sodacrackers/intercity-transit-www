@@ -447,48 +447,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 #outbound-large-screen-route-table table.table tbody td {
   text-align: right;
 }
-/*#inbound-large-screen-route-table table.table tbody tr th,*/
-/*#outbound-large-screen-route-table table.table tbody tr th {*/
-/*  !*border-left: 35px solid #80D80E;*!*/
-/*  padding-left: 35px;*/
-/*}*/
-/*#inbound-large-screen-route-table table.table tbody tr.timepoint th:before,*/
-/*#outbound-large-screen-route-table table.table tbody tr.timepoint th:before {*/
-/*  content: '\f219';*/
-/*  font-family: "Font Awesome 5 Pro";*/
-/*  color: #fff;*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  font-weight: 700;*/
-/*  font-size: 1.5rem;*/
-/*  margin-top: -7px;*/
-/*  padding-top: 5px;*/
-/*  padding-left: 2px;*/
-/*  background-color: #80D80E;*/
-/*  background-size: cover;*/
-/*  height: 103%;*/
-/*  margin-left: -2px;*/
-/*  padding-left: 4px;*/
-/*  width: 21px;*/
-/*}*/
-/*#inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,*/
-/*#outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {*/
-/*  content: '\f111';*/
-/*  font-family: "Font Awesome 5 Pro";*/
-/*  color: #fff;*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  font-weight: 700;*/
-/*  font-size: 1.1rem;*/
-/*  margin-top: -7px;*/
-/*  padding-top: 9px;*/
-/*  background-color: #80D80E;*/
-/*  background-size: cover;*/
-/*  height: 103%;*/
-/*  margin-left: -2px;*/
-/*  padding-left: 5px;*/
-/*  width: 21px;*/
-/*}*/
+
 #all-routes-container {
   margin-top: 40px;
 }
@@ -875,7 +834,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   padding-left: 2px;
   background-color: #80D80E;
   background-size: cover;
-  height: 103%;
+  height: 104%;
   margin-left: -2px;
   padding-left: 4px;
   width: 21px;
@@ -892,7 +851,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   padding-top: 2px;
   background-color: #80D80E;
   background-size: cover;
-  height: 103%;
+  height: 104%;
   margin-left: -2px;
   padding-left: 6px;
   width: 21px;
