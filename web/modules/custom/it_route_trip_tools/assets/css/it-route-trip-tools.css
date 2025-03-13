@@ -874,7 +874,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   left: 0;
   font-weight: 700;
   font-size: 1.5rem;
-  padding-top: 5px;
+  padding-top: 2px;
   padding-left: 2px;
   background-color: #80D80E;
   background-size: cover;
@@ -892,7 +892,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   left: 0;
   font-weight: 700;
   font-size: 1.1rem;
-  padding-top: 9px;
+  padding-top: 2px;
   background-color: #80D80E;
   background-size: cover;
   height: 103%;
