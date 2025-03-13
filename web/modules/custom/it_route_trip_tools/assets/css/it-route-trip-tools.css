@@ -867,7 +867,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 
 #inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
 #outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
-  content: '\f0c8';
+  content: '\f005';
   font-family: "FontAwesome";
   color: #fff;
   position: absolute;
