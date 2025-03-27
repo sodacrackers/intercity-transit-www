@@ -106,6 +106,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 1
           total_pages: null
           id: 0
@@ -151,7 +152,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
+            - 9223372036854775807
           group: 1
           exposed: false
           expose:
@@ -249,10 +250,10 @@ display:
       style:
         type: blazy
         options:
-          style: column
           grid: '1'
           grid_medium: null
           grid_small: null
+          style: column
       row:
         type: fields
         options:
@@ -281,7 +282,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -732,6 +732,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 12
           total_pages: null
           id: 0
@@ -760,7 +761,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
+            - 74
           group: 1
           exposed: false
           expose:
@@ -796,6 +797,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -1035,7 +1043,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1569,7 +1576,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
+            - 73
           group: 1
           exposed: false
           expose:
@@ -1605,6 +1612,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -1772,7 +1786,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2346,6 +2359,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -2374,7 +2388,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
+            - 73
           group: 1
           exposed: false
           expose:
@@ -2410,6 +2424,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -2667,7 +2688,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2895,7 +2915,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
+            - 73
           group: 1
           exposed: false
           expose:
@@ -2931,6 +2951,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -3076,10 +3103,10 @@ display:
       style:
         type: blazy
         options:
-          style: column
           grid: '1'
           grid_medium: null
           grid_small: null
+          style: column
       row:
         type: fields
         options:
@@ -3126,7 +3153,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -3348,7 +3374,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
+            - 74
           group: 1
           exposed: false
           expose:
@@ -3384,6 +3410,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -3526,7 +3559,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -4004,7 +4036,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
+            - 74
           group: 1
           exposed: false
           expose:
@@ -4040,6 +4072,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -4255,7 +4294,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -4603,7 +4641,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -4629,7 +4666,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0ae71619-a329-4acd-84fd-7ea85de93f4b
+            - 73
           group: 1
           exposed: false
           expose:
@@ -4665,6 +4702,13 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+          save_lineage: false
+          force_deepest: false
+          parent: null
+          level_labels: ''
+          hierarchy_depth: 0
+          required_depth: 0
+          none_label: '- Please select -'
         status:
           id: status
           table: node_field_data
@@ -4800,7 +4844,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -5085,7 +5128,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: false
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -5111,7 +5153,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9e90eb1d-807f-482e-ac60-f93db0399fb1
+            - 9223372036854775807
           group: 1
           exposed: false
           expose:
@@ -5282,7 +5324,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
