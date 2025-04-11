@@ -570,15 +570,8 @@
             "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
         "patches": {
-            "drupal/captcha": {
-                "https://www.drupal.org/project/drupal/issues/2710427": "https://www.drupal.org/files/issues/2022-08-03/3218499-17.patch"
-            },
             "drupal/we_megamenu": {
-                "Fixing duplicate column issue, https://www.drupal.org/project/we_megamenu/issues/2988381": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch",
-                "3239043: Deprecated error /PHP. 8.0 Drupal 9": "patches/we_megamenu_deprecated.patch"
-            },
-            "drupal/geofield_map": {
-                "Fix wrong initiaization of map": "patches/geofield_map.patch"
+                "#2988381 - Fixing duplicate column issue": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch"
             }
         },
         "composer-exit-on-patch-failure": false,
