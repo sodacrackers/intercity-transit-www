@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Bus Stop Sidewalk'
 vid: bus_stop_sidewalk
-description: ''
+description: null
 weight: 0
+new_revision: false

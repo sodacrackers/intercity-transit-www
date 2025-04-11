@@ -287,7 +287,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 1518cfc6-a384-45a7-9eb8-b2458d9095bd
+            - 1518
           group: 1
           exposed: false
           expose:
@@ -419,6 +419,7 @@ display:
           role:
             administrator: administrator
             marketing: marketing
+      filters: {  }
       style:
         type: default
         options:
@@ -435,7 +436,6 @@ display:
         fields: false
       display_description: ''
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -712,6 +712,7 @@ display:
             field_identifier: created
           exposed: false
           granularity: second
+      filters: {  }
       defaults:
         fields: false
         sorts: false
@@ -731,7 +732,6 @@ display:
           view_to_insert: 'zero_fare_faq:attachment_1'
           inherit_arguments: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

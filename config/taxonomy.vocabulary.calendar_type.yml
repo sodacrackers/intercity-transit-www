@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Calendar type'
 vid: calendar_type
-description: ''
+description: null
 weight: 0
+new_revision: false

@@ -6,3 +6,4 @@ name: 'Calendar Event Type'
 vid: calendar_event_type
 description: 'This vocabulary will define the types of events that can be filtered out on the calendar.'
 weight: 0
+new_revision: false

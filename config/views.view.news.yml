@@ -991,6 +991,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -1008,6 +1009,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      filters: {  }
       style:
         type: default
         options:
@@ -1030,7 +1032,6 @@ display:
       use_ajax: true
       display_extenders: {  }
       block_description: 'News Block2'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1299,6 +1300,15 @@ display:
             date_format: html_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1313,6 +1323,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -1330,6 +1341,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      filters: {  }
       defaults:
         title: false
         pager: false
@@ -1342,7 +1354,6 @@ display:
       use_more_text: 'View all »'
       display_extenders: {  }
       path: news
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

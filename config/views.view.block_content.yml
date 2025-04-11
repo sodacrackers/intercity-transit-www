@@ -209,6 +209,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
         operations:
           id: operations
           table: block_content
@@ -264,6 +273,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -521,6 +531,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: admin/structure/block/block-content
       menu:
@@ -531,7 +542,6 @@ display:
         menu_name: admin
         parent: block.admin_display
         context: '0'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

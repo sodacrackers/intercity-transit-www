@@ -147,7 +147,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -222,10 +221,10 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Secondary WYSIWYG'
       block_hide_empty: true
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

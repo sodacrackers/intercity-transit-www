@@ -330,6 +330,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -578,10 +579,10 @@ display:
     position: 1
     display_options:
       enabled: true
+      filters: {  }
       display_description: 'Lists 404 error paths with no redirect assigned yet.'
       display_extenders: {  }
       path: admin/config/search/redirect/404
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

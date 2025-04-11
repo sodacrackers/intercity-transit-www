@@ -217,6 +217,8 @@ display:
           settings:
             responsive_image_style: responsive_grid_image
             image_link: content
+            image_loading:
+              attribute: eager
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -334,7 +336,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -554,6 +555,59 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        view_node:
+          id: view_node
+          table: node
+          field: view_node
+          relationship: field_related_pages
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: entity_link
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: view
+          output_url_as_text: true
+          absolute: false
         field_image:
           id: field_image
           table: node__field_image
@@ -606,7 +660,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_link: ''
+            image_link: content
             image_style: 400x300
             image_loading:
               attribute: lazy
@@ -748,13 +802,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '2'
           grid_medium: '2'
           grid_small: null
+          style: grid
       row:
         type: fields
         options:
@@ -774,7 +829,6 @@ display:
       header: {  }
       display_extenders: {  }
       block_description: 'Related Pages (4 Col)'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -979,6 +1033,8 @@ display:
           settings:
             responsive_image_style: responsive_grid_image
             image_link: content
+            image_loading:
+              attribute: eager
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1469,13 +1525,14 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: blazy
         options:
-          style: column
           grid: '3'
           grid_medium: ''
           grid_small: ''
+          style: column
       row:
         type: fields
         options:
@@ -1491,7 +1548,6 @@ display:
         fields: false
       display_extenders: {  }
       block_description: 'Related Pages (3 Col)'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

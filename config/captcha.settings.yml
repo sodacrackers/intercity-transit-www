@@ -4,10 +4,10 @@ enable_globally: null
 enable_globally_on_admin_routes: false
 default_challenge: recaptcha/reCAPTCHA
 description: ''
+title: CAPTCHA
 administration_mode: false
 administration_mode_on_admin_routes: false
 default_validation: 1
 persistence: 1
 enable_stats: false
 log_wrong_responses: false
-title: CAPTCHA

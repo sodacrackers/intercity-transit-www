@@ -93,6 +93,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: 0
           id: 0
@@ -304,6 +305,7 @@ display:
         options:
           offset: 0
           items_per_page: 10
+      filters: {  }
       style:
         type: rss
         options:
@@ -321,7 +323,6 @@ display:
       displays:
         page_1: page_1
         default: ''
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -340,11 +341,11 @@ display:
         type: none
         options:
           offset: 0
+      filters: {  }
       defaults:
         pager: false
       display_extenders: {  }
       path: node
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

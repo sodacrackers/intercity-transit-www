@@ -29,6 +29,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: 0
           id: 0
@@ -210,13 +211,13 @@ display:
           summary:
             format: default_summary
           specify_validation: true
+      filters: {  }
       query:
         type: views_query
         options: {  }
       defaults:
         arguments: false
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -232,12 +233,12 @@ display:
     display_plugin: page
     position: 2
     display_options:
+      filters: {  }
       query:
         type: views_query
         options: {  }
       display_extenders: {  }
       path: archive
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -70,7 +70,7 @@ content:
         empty_behaviour: '1'
         empty_message: 'No coordinates provided.'
       map_center:
-        lat: !!float 42
+        lat: 42.0
         lon: 12.5
         center_force: false
         geocode: 'Find my location'

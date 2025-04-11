@@ -342,6 +342,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -451,6 +452,7 @@ display:
     display_plugin: data_export
     position: 1
     display_options:
+      filters: {  }
       style:
         type: data_export
         options:
@@ -473,7 +475,6 @@ display:
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

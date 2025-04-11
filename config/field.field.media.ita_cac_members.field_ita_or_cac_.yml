@@ -1,0 +1,29 @@
+uuid: 9154240f-2174-4764-a7e4-7b39b5974568
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_ita_or_cac_
+    - media.type.ita_cac_members
+    - taxonomy.vocabulary.ita_cac_list
+id: media.ita_cac_members.field_ita_or_cac_
+field_name: field_ita_or_cac_
+entity_type: media
+bundle: ita_cac_members
+label: 'ITA or CAC?'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ita_cac_list: ita_cac_list
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

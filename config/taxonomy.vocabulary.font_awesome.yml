@@ -6,3 +6,4 @@ name: 'Font Awesome'
 vid: font_awesome
 description: 'a list of Font Awesome Fonts Used on the site'
 weight: 0
+new_revision: false

@@ -421,6 +421,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 20
           total_pages: null
           id: 0
@@ -1505,7 +1506,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -1677,7 +1677,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true

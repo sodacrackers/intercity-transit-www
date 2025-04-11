@@ -490,6 +490,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -726,13 +727,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: medium
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: medium
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1145,11 +1146,11 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - b0b08139-66c5-49b0-be91-e8ce35f63685
-            - 353c7b0c-7b33-445f-85e0-55d5ee96ff64
-            - a580d792-1b76-4412-89f6-fa695277308b
-            - 32cfa707-a6c7-4364-a3d2-61d888f3c04b
-            - 753a3d24-cfc0-4d83-8e65-c2a8d3dbf163
+            - 0
+            - 353
+            - 0
+            - 32
+            - 753
           group: 1
           exposed: false
           expose:
