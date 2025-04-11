@@ -189,6 +189,15 @@ display:
             date_format: medium
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -827,6 +836,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 5
           total_pages: null
           id: 0
@@ -1074,6 +1084,7 @@ display:
         type: none
         options:
           offset: 0
+      filters: {  }
       style:
         type: default
         options:
@@ -1115,7 +1126,6 @@ display:
       displays:
         block_2: block_2
       attachment_position: before
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1292,6 +1302,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1529,6 +1548,7 @@ display:
         options:
           offset: 0
           items_per_page: 3
+      filters: {  }
       defaults:
         pager: false
         fields: false
@@ -1538,7 +1558,6 @@ display:
       footer: {  }
       display_extenders: {  }
       block_description: 'Bike Mechanic Volunteers'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1715,6 +1734,15 @@ display:
             date_format: medium
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2245,6 +2273,7 @@ display:
           webform_element_format: link
           webform_multiple_value: true
           webform_multiple_delta: 0
+      filters: {  }
       defaults:
         fields: false
         header: false
@@ -2253,7 +2282,6 @@ display:
       footer: {  }
       display_extenders: {  }
       path: walknroll/MVP/volunteers
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2431,6 +2459,15 @@ display:
             date_format: medium
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -3086,7 +3123,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -3103,6 +3139,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       style:
         type: default
         options:
@@ -3129,7 +3166,6 @@ display:
       footer: {  }
       display_extenders: {  }
       path: walknroll/MVP/volunteers/%
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

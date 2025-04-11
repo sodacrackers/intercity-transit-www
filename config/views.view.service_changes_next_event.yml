@@ -364,8 +364,8 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 6438b5c6-86ec-4b73-a7bd-8bae0a02e743
-            - 43a4e52d-7160-426f-8c0a-fbe5a2706fae
+            - 6438
+            - 43
           group: 1
           exposed: false
           expose:
@@ -493,9 +493,9 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Service Changes Next Event'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

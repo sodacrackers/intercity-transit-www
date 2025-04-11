@@ -216,7 +216,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 6580d3f6-6856-4fc9-8e7f-edc4701a82ff
+            - 6580
           group: 1
           exposed: false
           expose:
@@ -347,6 +347,15 @@ display:
             date_format: html_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: entity_id
           group_columns: {  }
           group_rows: true
@@ -451,6 +460,7 @@ display:
             field_identifier: created
           exposed: false
           granularity: year
+      filters: {  }
       style:
         type: default
         options:
@@ -487,7 +497,6 @@ display:
       displays:
         block_1: block_1
       attachment_position: after
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -503,9 +512,9 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Press releases for media'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -581,6 +590,15 @@ display:
             date_format: html_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -591,6 +609,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       style:
         type: default
         options:
@@ -607,7 +626,6 @@ display:
         fields: false
       display_extenders: {  }
       path: media-center/archives
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -807,6 +825,15 @@ display:
             date_format: html_year
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -838,7 +865,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: false
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -853,6 +879,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
+      filters: {  }
       style:
         type: default
         options:
@@ -869,7 +896,6 @@ display:
         arguments: false
       display_extenders: {  }
       path: media-center/archives/%
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

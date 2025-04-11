@@ -1172,6 +1172,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1359,13 +1368,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: medium_220_x_220_cropped
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: medium_220_x_220_cropped
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -1380,6 +1389,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 8
           total_pages: null
           id: 0
@@ -1937,13 +1947,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: thumbnail
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: thumbnail
+            colorbox_node_style_first: ''
           group_column: entity_id
           group_columns: {  }
           group_rows: true
@@ -2088,7 +2098,6 @@ display:
           default_argument_options:
             index: 2
             use_alias: true
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -2638,13 +2647,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: medium_220_x_220_cropped
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: medium_220_x_220_cropped
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -2659,6 +2668,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 8
           total_pages: null
           id: 0
@@ -2696,7 +2706,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: ''
-          default_argument_skip_url: false
           summary_options:
             base_path: rider-alerts/archive
             count: true
@@ -2819,10 +2828,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: null
           grid_small: null
+          style: grid
       row:
         type: fields
         options:
@@ -3044,13 +3053,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: medium
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: medium
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -3065,6 +3074,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0
@@ -3103,7 +3113,6 @@ display:
           default_argument_options:
             index: 1
             use_alias: false
-          default_argument_skip_url: false
           summary_options:
             base_path: riders-alerts
             count: true
@@ -3226,10 +3235,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: fields
         options: {  }

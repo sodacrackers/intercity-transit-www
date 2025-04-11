@@ -12,7 +12,7 @@ third_party_settings:
 name: 'Resolution and By laws'
 type: resbylaws
 description: 'might not be used, trying media publication file type first.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Accordian Block'
 vid: accordian_block
-description: ''
+description: null
 weight: 0
+new_revision: false

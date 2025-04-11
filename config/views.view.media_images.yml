@@ -96,7 +96,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - cb707ae2-e954-4eb9-a2dc-bc2af8943afc
+            - 0
           group: 1
           exposed: false
           expose:
@@ -169,13 +169,14 @@ display:
         options:
           offset: 0
           items_per_page: 3
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -198,7 +199,6 @@ display:
       link_url: images/113
       display_extenders: {  }
       block_description: 'Walk N Roll Pictures'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -254,7 +254,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
+            - 81
           group: 1
           exposed: false
           expose:
@@ -297,10 +297,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '1'
           grid_medium: '1'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -340,19 +340,20 @@ display:
     position: 5
     display_options:
       enabled: false
-      title: 'Walk ''N Roll Pictures'
+      title: "Walk 'N Roll Pictures"
       pager:
         type: some
         options:
           offset: 0
           items_per_page: 20
+      filters: {  }
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -368,7 +369,6 @@ display:
       display_description: ''
       display_extenders: {  }
       path: youth/pictures
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -383,7 +383,7 @@ display:
     position: 6
     display_options:
       enabled: false
-      title: 'Walk ''N Roll Pictures'
+      title: "Walk 'N Roll Pictures"
       pager:
         type: some
         options:
@@ -425,7 +425,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 81b5c7ad-2b7e-4cd7-a788-d208d2b217db
+            - 81
           group: 1
           exposed: false
           expose:
@@ -468,10 +468,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: 'entity:media'
         options:
@@ -619,13 +619,13 @@ display:
           click_sort_column: target_id
           type: colorbox
           settings:
-            colorbox_node_style: ''
-            colorbox_node_style_first: ''
             colorbox_image_style: ''
             colorbox_gallery: post
             colorbox_gallery_custom: ''
             colorbox_caption: auto
             colorbox_caption_custom: ''
+            colorbox_node_style: ''
+            colorbox_node_style_first: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -661,7 +661,6 @@ display:
             limit: false
             vids: {  }
             anyall: ','
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -716,10 +715,10 @@ display:
       style:
         type: blazy
         options:
-          style: grid
           grid: '4'
           grid_medium: '2'
           grid_small: '1'
+          style: grid
       row:
         type: fields
         options:

@@ -345,6 +345,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -658,7 +659,6 @@ display:
           default_argument_type: fixed
           default_argument_options:
             argument: '9999'
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -679,6 +679,7 @@ display:
           path_case: none
           transform_dash: false
           break_phrase: false
+      filters: {  }
       defaults:
         title: false
         pager: false
@@ -716,7 +717,6 @@ display:
           tokenize: false
       display_extenders: {  }
       block_description: 'Current Vanpools'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1072,8 +1072,8 @@ display:
     display_plugin: block
     position: 3
     display_options:
-      display_extenders: {  }
       filters: {  }
+      display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2933,6 +2933,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 10
           total_pages: null
           id: 0

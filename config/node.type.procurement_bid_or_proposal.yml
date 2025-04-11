@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Procurement Item'
 type: procurement_bid_or_proposal
 description: 'Use this to create a bid or proposal that will show under "/connect/business/procurement/currents-bid-and-proposals"'
-help: ''
+help: null
 new_revision: false
 preview_mode: 1
 display_submitted: false

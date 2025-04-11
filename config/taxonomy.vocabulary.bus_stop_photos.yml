@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Bus Stop Photos'
 vid: bus_stop_photos
-description: ''
+description: null
 weight: 0
+new_revision: false
