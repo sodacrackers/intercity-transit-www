@@ -1,0 +1,11 @@
+/*Specific to the Linkit Media Creation link*/
+.js-form-type-linkit a.imce-url-button {
+  display: none;
+}
+/*Fixes jQuery UI accordion arrows displayed as blocks*/
+html body.adminimal .field-group-accordion-wrapper h3.ui-accordion-header .ui-accordion-header-icon {
+  display: inline-block;
+}
+html body.adminimal .field-group-accordion-wrapper h3.ui-accordion-header a {
+  display: inline-block;
+}

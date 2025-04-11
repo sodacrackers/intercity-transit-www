@@ -446,7 +446,7 @@
         "drupal/menu_block_title": "^1.1",
         "drupal/menu_link_weight": "^2.0@alpha",
         "drupal/metatag": "^1.11",
-        "drupal/module_filter": "^5",
+        "drupal/module_filter": "^5.0",
         "drupal/paragraphs": "^1.11",
         "drupal/pathauto": "^1.6",
         "drupal/profile_switcher": "^1.0@alpha",
@@ -488,16 +488,12 @@
         "drupal/workbench_moderation": "^1.5",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "^12.5",
-        "gtfs/realtime-php": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/quicksilver-pushback": "^2",
         "pantheon-upstreams/upstream-configuration": "dev-main",
         "php": ">=7.0.8",
         "rvtraveller/qs-composer-installer": "^1.1",
-        "watech-web/ahoy-d8": "^1.0",
-        "watech-web/chosen": "^1.0",
-        "watech-web/db_custom_tools": "^2",
         "drupal/adaptivetheme": "^5.1",
         "drupal/google_tag": "^1.6",
         "drupal/fullcalendar_view": "^5.1",
@@ -534,7 +530,8 @@
         "drupal/redis": "^1.7",
         "drupal/config_filter": "^2.6",
         "drupal/quickedit": "*",
-        "drupal/rdf": "*"
+        "drupal/rdf": "*",
+        "drupal/jquery_ui_autocomplete": "^2.1"
     },
     "require-dev": {
         "drupal/core-dev": "^10"
