@@ -1,0 +1,65 @@
+<?php
+use Drupal\media\Entity\Media;
+use Drupal\file\Entity\File;
+use Drupal\Component\Render\FormattableMarkup;
+
+
+/*Adds style library to all forms*/
+function db_custom_tools_form_alter (&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$form['#attached']['library'][] = 'db_custom_tools/global';
+}
+
+/**
+* Overrides template_preprocess_search_api_page_result from Searh API Page module.
+*/
+function db_custom_tools_preprocess_search_api_page_result(&$variables) {
+	$entity = $variables['entity'];
+	$item = $variables['item'];
+	$variables['snippet'] = ['#markup' => $item->getExcerpt()];
+	$variables['title'] = $entity->label();
+	if ($entity instanceof \Drupal\file\Entity\File):
+		$variables['url'] = $entity->url();
+	elseif ($entity instanceof \Drupal\media\Entity\Media):
+		$mid = $entity->id();
+		$media = Media::load($mid);
+		$fid = $media->getSource()->getSourceFieldValue($media);
+		$file = File::load($fid);
+		$url = $file->createFileUrl();
+		/*added to display the file type before the media name*/
+		//$file_type = pathinfo($url, PATHINFO_EXTENSION);
+		//$variables['title'] = '(' . strtoupper($file_type) . ') ' . $entity->label();
+		
+		$variables['url'] = $url;
+	else:
+		$variables['url'] = $entity->toUrl()->toString();
+	endif;
+
+	$info = [];
+	if ($entity instanceof EntityOwnerInterface):
+		$info['user'] = is_object($entity->getOwner()) ? $entity->getOwner()->label() : '' ;
+	endif;
+	if (isset($entity->created)):
+		$info['date'] = \Drupal::service('date.formatter')->format($entity->created->value, 'short');
+	endif;
+	$variables['info_split'] = $info;
+	$variables['info'] = implode(' - ', $info);
+	if ($variables['snippet']['#markup']):
+		$no_shortcodes = preg_replace('/(?s)\[view:.*?\]/', '', $variables['snippet']['#markup']);
+		$variables['snippet']['#markup'] = $no_shortcodes;
+	endif;
+}
+function db_custom_tools_search_api_page_alter(&$build, $query_result, $search_api_page) {
+	if ($build['#form']['keys']['#value'] != ''):
+		$new_title = 'Search results for ' . $build['#form']['keys']['#value'];
+		$build['#title'] = $new_title;
+	endif;
+}
+function db_custom_tools_form_search_api_page_block_form_search_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$value = new FormattableMarkup('<span class="sr-only">Search</span>@text', [
+		'@text' => '',
+		]);
+	$form['actions']['submit']['#value'] = $value;
+}
+function db_custom_tools_form_editor_link_dialog_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$form['#attached']['library'][] = 'db_custom_tools/global';
+}
