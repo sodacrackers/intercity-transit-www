@@ -231,6 +231,7 @@ class PHP extends Tokenizer
                 T_CONTINUE => T_CONTINUE,
                 T_THROW    => T_THROW,
                 T_EXIT     => T_EXIT,
+                T_GOTO     => T_GOTO,
             ],
             'strict' => true,
             'shared' => true,
@@ -251,6 +252,7 @@ class PHP extends Tokenizer
                 T_CONTINUE => T_CONTINUE,
                 T_THROW    => T_THROW,
                 T_EXIT     => T_EXIT,
+                T_GOTO     => T_GOTO,
             ],
             'strict' => true,
             'shared' => true,
@@ -1494,6 +1496,12 @@ class PHP extends Tokenizer
                     ];
                     $newStackPtr++;
 
+                    // Also modify the original token stack so that
+                    // future checks (like looking for T_NULLABLE) can
+                    // detect the T_READONLY token more easily.
+                    $tokens[$stackPtr][0] = T_READONLY;
+                    $token[0] = T_READONLY;
+
                     if (PHP_CODESNIFFER_VERBOSITY > 1 && $type !== T_READONLY) {
                         echo "\t\t* token $stackPtr changed from $type to T_READONLY".PHP_EOL;
                     }
@@ -2142,6 +2150,7 @@ class PHP extends Tokenizer
                         || $tokenType === T_FN
                         || isset(Tokens::$methodPrefixes[$tokenType]) === true
                         || $tokenType === T_VAR
+                        || $tokenType === T_READONLY
                     ) {
                         if (PHP_CODESNIFFER_VERBOSITY > 1) {
                             echo "\t\t* token $stackPtr changed from ? to T_NULLABLE".PHP_EOL;
@@ -2817,7 +2826,10 @@ class PHP extends Tokenizer
                     }
                 }
 
-                if (isset($this->tokens[$x]) === true && $this->tokens[$x]['code'] === T_OPEN_PARENTHESIS) {
+                if (isset($this->tokens[$x]) === true
+                    && $this->tokens[$x]['code'] === T_OPEN_PARENTHESIS
+                    && isset($this->tokens[$x]['parenthesis_closer']) === true
+                ) {
                     $ignore  = Tokens::$emptyTokens;
                     $ignore += [
                         T_ARRAY                  => T_ARRAY,
@@ -2995,7 +3007,7 @@ class PHP extends Tokenizer
                     }//end if
                 }//end if
 
-                // If after all that, the extra tokens are not set, this is not an arrow function.
+                // If after all that, the extra tokens are not set, this is not a (valid) arrow function.
                 if (isset($this->tokens[$i]['scope_closer']) === false) {
                     if (PHP_CODESNIFFER_VERBOSITY > 1) {
                         $line = $this->tokens[$i]['line'];
@@ -3376,7 +3388,8 @@ class PHP extends Tokenizer
                         && (isset(Tokens::$scopeModifiers[$this->tokens[$x]['code']]) === true
                         || $this->tokens[$x]['code'] === T_VAR
                         || $this->tokens[$x]['code'] === T_STATIC
-                        || $this->tokens[$x]['code'] === T_READONLY)
+                        || $this->tokens[$x]['code'] === T_READONLY
+                        || $this->tokens[$x]['code'] === T_FINAL)
                     ) {
                         // This will also confirm constructor property promotion parameters, but that's fine.
                         $confirmed = true;

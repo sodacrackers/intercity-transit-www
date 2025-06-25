@@ -390,7 +390,6 @@
               // Remove the question mark and any Drupal path component,
               // existing fullcalendar search filters if any.
               const startParam = calendarOptions.startParam || 'start';
-              let initialDate;
               const specialParams = [
                 // Internal Drupal paths.
                 'q',
@@ -402,22 +401,32 @@
               ];
 
               const query = new URLSearchParams(queryString);
-              specialParams.forEach((specialParam) => {
-                if (specialParam === startParam) {
-                  initialDate = query.get(startParam);
+
+              // Specify the default view mode.
+              const initialViewParam =
+                calendarOptions.initialViewParam || 'viewMode';
+              if (query.get(initialViewParam)) {
+                calendarOptions.initialView = query.get(initialViewParam);
+              }
+
+              // Initial date from query parameter.
+              // The start parameter here is not the one
+              // fed to the event data source endpoint.
+              const initialDate = query.get('start');
+              if (initialDate) {
+                // Provide a default initial date if it's specified in the query string.
+                const date = new Date(initialDate);
+                if (date instanceof Date && !Number.isNaN(date.getTime())) {
+                  // Valid date string.
+                  calendarOptions.initialDate = date.toISOString();
                 }
+              }
+
+              // Remove all special parameters.
+              specialParams.forEach((specialParam) => {
                 query.delete(specialParam);
               });
               queryString = query.toString();
-
-              // Provide a default initial date if it's specified in the query string.
-              if (!calendarOptions.initialDate && initialDate) {
-                const date = new Date(initialDate);
-                if (date instanceof Date && !Number.isNaN(date)) {
-                  // Valid date string.
-                  calendarOptions.initialDate = initialDate;
-                }
-              }
 
               if (queryString !== '') {
                 // If there is a '?' in events URL, & should be used to add

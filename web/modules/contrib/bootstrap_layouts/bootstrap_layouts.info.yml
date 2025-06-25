@@ -6,7 +6,7 @@ package: Layout
 dependencies:
   - drupal:layout_discovery
 
-# Information added by Drupal.org packaging script on 2024-09-16
-version: '8.x-5.4'
+# Information added by Drupal.org packaging script on 2025-02-17
+version: '8.x-5.5'
 project: 'bootstrap_layouts'
-datestamp: 1726493469
+datestamp: 1739804296

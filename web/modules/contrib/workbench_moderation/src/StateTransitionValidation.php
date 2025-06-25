@@ -237,7 +237,6 @@ class StateTransitionValidation {
    */
   protected function transitionStateQuery() {
     return $this->entityTypeManager->getStorage('moderation_state_transition')->getQuery('AND');
-    ;
   }
 
   /**

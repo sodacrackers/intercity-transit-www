@@ -36,11 +36,20 @@ class ExtractBody extends UnitTestCase {
       // UTF-8.
       ["<?xml?><html><head><title>ÄΒℂ</title></head><body>body ⊂ xml</body></html>", "body ⊂ xml"],
       // Tags.
-      ["<?xml?><html><head><title>ABC</title></head><body><p>Text <em>with</em> Tags</p></body></html>", "<p>Text <em>with</em> Tags</p>"],
+      [
+        "<?xml?><html><head><title>ABC</title></head><body><p>Text <em>with</em> Tags</p></body></html>",
+        "<p>Text <em>with</em> Tags</p>",
+      ],
       // Body with attributes, and newlines.
-      ["<?xml?><html><head><title>ABC</title></head><body attribute=\"value\"><p>Text\n <em>with</em>\n Tags</p></body></html>", "<p>Text\n <em>with</em>\n Tags</p>"],
+      [
+        "<?xml?><html><head><title>ABC</title></head><body attribute=\"value\"><p>Text\n <em>with</em>\n Tags</p></body></html>",
+        "<p>Text\n <em>with</em>\n Tags</p>",
+      ],
       // Fall-back.
-      ["<?xml?><custom><tag>Just strip everything and leave text</tag></custom>", "Just strip everything and leave text"],
+      [
+        "<?xml?><custom><tag>Just strip everything and leave text</tag></custom>",
+        "Just strip everything and leave text",
+      ],
       // Actual example.
       [
         '<?xml version="1.0" encoding="UTF-8"?>

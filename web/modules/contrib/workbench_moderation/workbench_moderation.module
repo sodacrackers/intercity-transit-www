@@ -50,9 +50,11 @@ function workbench_moderation_entity_base_field_info(EntityTypeInterface $entity
  * Implements hook_module_implements_alter().
  */
 function workbench_moderation_module_implements_alter(&$implementations, $hook) {
-  /** @var \Drupal\workbench_moderation\InlineEditingDisabler $inline_editing_disabler */
-  $inline_editing_disabler = \Drupal::service('workbench_moderation.inline_editing_disabler');
-  $inline_editing_disabler->moduleImplementsAlter($implementations, $hook);
+  if ($hook == 'entity_view_alter') {
+    // Find the quickedit implementation and move workbench after it.
+    unset($implementations['workbench_moderation']);
+    $implementations['workbench_moderation'] = FALSE;
+  }
 }
 
 /**

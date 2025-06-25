@@ -1,11 +1,12 @@
 <?php
 
-use Drupal\search_api\Item\ItemInterface;
-use Drupal\Core\Entity\EntityInterface;
 /**
  * @file
  * Hooks provided by the "Search API attachments" module.
  */
+
+use Drupal\search_api\Item\ItemInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * @addtogroup hooks

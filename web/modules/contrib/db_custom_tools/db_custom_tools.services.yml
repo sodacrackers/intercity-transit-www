@@ -1,5 +1,0 @@
-services:
-  db_custom_tools.db_custom_tools_twig_extension:
-    class: Drupal\db_custom_tools\DbCustomToolsTwigExtension
-    tags:
-      - { name: twig.extension }

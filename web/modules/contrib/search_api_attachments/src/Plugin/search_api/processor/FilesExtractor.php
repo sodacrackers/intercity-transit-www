@@ -157,7 +157,7 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL) {
+  public function getPropertyDefinitions(?DatasourceInterface $datasource = NULL) {
     $properties = [];
 
     if (!$datasource) {
@@ -551,7 +551,7 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
     $form['number_indexed'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of files indexed per file field'),
-      '#default_value' => isset($this->configuration['number_indexed']) ? $this->configuration['number_indexed'] : '0',
+      '#default_value' => $this->configuration['number_indexed'] ?? '0',
       '#size' => 5,
       '#min' => 0,
       '#max' => 999999,
@@ -560,7 +560,7 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
     $form['number_first_bytes'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Limit size of the extracted string before indexing.'),
-      '#default_value' => isset($this->configuration['number_first_bytes']) ? $this->configuration['number_first_bytes'] : '1 MB',
+      '#default_value' => $this->configuration['number_first_bytes'] ?? '1 MB',
       '#size' => 5,
       '#min' => 0,
       '#max' => 99999,
@@ -569,14 +569,14 @@ class FilesExtractor extends ProcessorPluginBase implements PluginFormInterface 
     $form['max_filesize'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Maximum upload size'),
-      '#default_value' => isset($this->configuration['max_filesize']) ? $this->configuration['max_filesize'] : '0',
+      '#default_value' => $this->configuration['max_filesize'] ?? '0',
       '#description' => $this->t('Enter a value like "10 KB", "10 MB" or "10 GB" in order to restrict the max file size of files that should be indexed.<br /> Enter "0" for no limit restriction.'),
       '#size' => 10,
     ];
     $form['excluded_private'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Exclude private files'),
-      '#default_value' => isset($this->configuration['excluded_private']) ? $this->configuration['excluded_private'] : TRUE,
+      '#default_value' => $this->configuration['excluded_private'] ?? TRUE,
       '#description' => $this->t('Check this box if you want to exclude private files from being indexed.'),
     ];
     return $form;

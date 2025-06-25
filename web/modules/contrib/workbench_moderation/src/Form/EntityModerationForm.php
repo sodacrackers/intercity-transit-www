@@ -75,7 +75,7 @@ class EntityModerationForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, ContentEntityInterface $entity = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?ContentEntityInterface $entity = NULL) {
     /** @var \Drupal\workbench_moderation\Entity\ModerationState $current_state */
     $current_state = $entity->moderation_state->entity;
 

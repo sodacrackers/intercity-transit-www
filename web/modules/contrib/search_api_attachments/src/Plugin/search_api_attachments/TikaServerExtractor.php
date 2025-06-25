@@ -106,10 +106,10 @@ class TikaServerExtractor extends TextExtractorPluginBase {
       '#type' => 'select',
       '#title' => $this->t('HTTP protocol'),
       '#description' => $this->t('The HTTP protocol to use for sending queries.'),
-      '#default_value' => isset($this->configuration['scheme']) ? $this->configuration['scheme'] : 'http',
+      '#default_value' => $this->configuration['scheme'] ?? 'http',
       '#options' => [
-        'http' => 'http',
-        'https' => 'https',
+        'http' => $this->t('http'),
+        'https' => $this->t('https'),
       ],
     ];
 
@@ -117,7 +117,7 @@ class TikaServerExtractor extends TextExtractorPluginBase {
       '#type' => 'textfield',
       '#title' => $this->t('Tika server host'),
       '#description' => $this->t('The host name or IP of your Tika server, e.g. <code>localhost</code> or <code>www.example.com</code>.'),
-      '#default_value' => isset($this->configuration['host']) ? $this->configuration['host'] : 'localhost',
+      '#default_value' => $this->configuration['host'] ?? 'localhost',
       '#required' => TRUE,
     ];
 
@@ -125,7 +125,7 @@ class TikaServerExtractor extends TextExtractorPluginBase {
       '#type' => 'textfield',
       '#title' => $this->t('Tika server port'),
       '#description' => $this->t('The default port is 9998.'),
-      '#default_value' => isset($this->configuration['port']) ? $this->configuration['port'] : '9998',
+      '#default_value' => $this->configuration['port'] ?? '9998',
       '#required' => TRUE,
     ];
 
@@ -135,7 +135,7 @@ class TikaServerExtractor extends TextExtractorPluginBase {
       '#max' => 180,
       '#title' => $this->t('Query timeout'),
       '#description' => $this->t('The timeout in seconds for queries sent to the Tika server.'),
-      '#default_value' => isset($this->configuration['timeout']) ? $this->configuration['timeout'] : 5,
+      '#default_value' => $this->configuration['timeout'] ?? 5,
       '#required' => TRUE,
     ];
 

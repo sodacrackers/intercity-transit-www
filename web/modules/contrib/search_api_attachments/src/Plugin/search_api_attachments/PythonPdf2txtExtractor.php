@@ -105,7 +105,10 @@ class PythonPdf2txtExtractor extends TextExtractorPluginBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['python_path'] = $form_state->getValue(['text_extractor_config', 'python_path']);
-    $this->configuration['python_pdf2txt_script'] = $form_state->getValue(['text_extractor_config', 'python_pdf2txt_script']);
+    $this->configuration['python_pdf2txt_script'] = $form_state->getValue([
+      'text_extractor_config',
+      'python_pdf2txt_script',
+    ]);
     parent::submitConfigurationForm($form, $form_state);
   }
 

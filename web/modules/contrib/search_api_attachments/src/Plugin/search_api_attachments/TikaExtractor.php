@@ -55,8 +55,11 @@ class TikaExtractor extends TextExtractorPluginBase {
     }
     // Restore the locale.
     setlocale(LC_CTYPE, $backup_locale);
-    // Support UTF-8 encoded filenames
+    // Support UTF-8 encoded filenames.
     $cmd = 'export LANG=' . $new_locale . '; ' . $cmd;
+    if ($this->configuration['debug_mode']) {
+      $cmd .= ' 2>/dev/null';
+    }
     $output = shell_exec($cmd);
     if (is_null($output)) {
       throw new \Exception('Tika Extractor is not available.');
@@ -81,6 +84,12 @@ class TikaExtractor extends TextExtractorPluginBase {
       '#description' => $this->t('Enter the full path to tika executable jar file. Example: "/var/apache-tika/tika-app-1.8.jar".'),
       '#default_value' => $this->configuration['tika_path'],
       '#required' => TRUE,
+    ];
+    $form['debug_mode'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Debug mode'),
+      '#description' => $this->t('Enable debug mode to display Tika warnings.'),
+      '#default_value' => $this->configuration['debug_mode'],
     ];
     return $form;
   }
@@ -115,7 +124,7 @@ class TikaExtractor extends TextExtractorPluginBase {
       }
       else {
         $this->getMessenger()
-          ->addStatus(t('Tika can be reached and be executed'));
+          ->addStatus($this->t('Tika can be reached and be executed'));
       }
     }
   }
@@ -126,6 +135,7 @@ class TikaExtractor extends TextExtractorPluginBase {
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['java_path'] = $form_state->getValue(['text_extractor_config', 'java_path']);
     $this->configuration['tika_path'] = $form_state->getValue(['text_extractor_config', 'tika_path']);
+    $this->configuration['debug_mode'] = $form_state->getValue(['text_extractor_config', 'debug_mode']);
     parent::submitConfigurationForm($form, $form_state);
   }
 

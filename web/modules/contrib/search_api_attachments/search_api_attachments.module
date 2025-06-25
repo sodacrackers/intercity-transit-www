@@ -5,8 +5,11 @@
  * Implement hooks and help functions to delete extracted files cache content.
  */
 
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\file\Entity\File;
+use Drupal\search_api\Entity\Index;
 
 /**
  * Implements hook_ENTITY_TYPE_update().
@@ -80,4 +83,65 @@ function search_api_attachments_help($route_name, RouteMatchInterface $route_mat
       }
   }
   return NULL;
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function search_api_attachments_entity_extra_field_info() {
+  $extra = [];
+
+  $entity_types = \Drupal::entityTypeManager()->getDefinitions();
+  $bundle_info = \Drupal::getContainer()->get('entity_type.bundle.info');
+  foreach ($entity_types as $entity_type_id => $entity_type) {
+    if ($entity_type instanceof ContentEntityType) {
+      $bundles = $bundle_info->getBundleInfo($entity_type_id);
+      foreach ($bundles as $bundle => $data) {
+        $extra[$entity_type_id][$bundle]['display']['search_api_attachments'] = [
+          'label' => t('Search api attachments'),
+          'description' => t('An attachments field.'),
+          'weight' => 100,
+          'visible' => FALSE,
+        ];
+      }
+    }
+  }
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function search_api_attachments_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $attacments_component = $display->getComponent('search_api_attachments');
+  if ($attacments_component !== NULL) {
+    $indexes = Index::loadMultiple();
+    foreach ($indexes as $index) {
+      $index_fields = array_keys($index->getFields());
+
+      $fields = array_filter($index_fields, fn($element) =>
+        str_starts_with($element, 'saa_')
+        ? $element : NULL);
+
+      if ($fields) {
+        foreach ($fields as $field) {
+          ($query = \Drupal::entityTypeManager()
+            ->getStorage('search_api_index')
+            ->load($index->id())
+            ->query()
+          )
+            ->addCondition('nid', $entity->id());
+
+          $items = $query->execute()->getResultItems();
+
+          $item = reset($items);
+          $content = $item->getField($field)->getValues()[0];
+
+          $build[$field] = [
+            '#plain_text' => $content->getText(),
+          ];
+        }
+      }
+    }
+  }
 }

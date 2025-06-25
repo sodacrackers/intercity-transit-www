@@ -196,6 +196,7 @@ abstract class ApiProviderBase extends ProviderBase {
       $mapped['3.4.1'] = '3.4.0';
       $mapped['3.4.3'] = '3.4.0';
       $mapped['3.4.4'] = '3.4.0';
+      $mapped['3.4.5'] = '3.4.0';
       // This version doesn't exist.
       $mapped['3.1.1'] = '3.2.0';
     }
@@ -324,9 +325,9 @@ abstract class ApiProviderBase extends ProviderBase {
     else if (strpos($url, 'entreprise7pro-boot')) {
       // Force an upgrade for everyone using older versions of the bootstrap library.
       if (version_compare($version, '3.4.1', '<=')) {
-        // Fix CVE-2024-6485 see release https://github.com/entreprise7pro/bootstrap/releases/tag/v3.4.4.
-        // 3.4.4 is compatible with jQuery 1,2,3 and 4, good D10 and D11.
-        $version = '3.4.4';
+        // Fix CVE-2024-6485 see release https://github.com/entreprise7pro/bootstrap/releases/tag/v3.4.5.
+        // 3.4.5 is compatible with jQuery 1,2,3 and 4, good D10 and D11.
+        $version = '3.4.5';
       }
     }
 

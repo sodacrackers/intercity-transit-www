@@ -5,7 +5,7 @@ package: User interface
 core_version_requirement: ^9.1 || ^10 || ^11
 configure: simplify.admin
 
-# Information added by Drupal.org packaging script on 2024-10-08
-version: '2.2.0'
+# Information added by Drupal.org packaging script on 2025-04-10
+version: '2.2.1'
 project: 'simplify'
-datestamp: 1728390704
+datestamp: 1744274843

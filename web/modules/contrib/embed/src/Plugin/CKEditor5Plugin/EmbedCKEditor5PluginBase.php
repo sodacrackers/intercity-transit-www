@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\entity_embed\Plugin\CKEditor5Plugin;
 
@@ -81,7 +81,7 @@ abstract class EmbedCKEditor5PluginBase extends CKEditor5PluginDefault implement
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

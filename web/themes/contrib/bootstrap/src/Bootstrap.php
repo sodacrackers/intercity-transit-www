@@ -68,7 +68,7 @@ class Bootstrap {
    *
    * @var string
    */
-  const FRAMEWORK_VERSION = '3.4.4';
+  const FRAMEWORK_VERSION = '3.4.5';
 
   /**
    * The Bootstrap Framework documentation site.
@@ -1210,7 +1210,7 @@ class Bootstrap {
       $versions['3.3.7'] = $versions['3.3.6'];
       $versions['3.4.0'] = $versions['3.3.7'];
       $versions['3.4.1'] = $versions['3.4.0'];
-      $versions['3.4.4'] = $versions['3.4.1'];
+      $versions['3.4.5'] = $versions['3.4.1'];
     }
 
     // Return a specific versions icon set.

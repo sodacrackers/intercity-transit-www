@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\embed\Functional;
 
 use Drupal\editor\EditorInterface;
@@ -20,7 +22,6 @@ class EmbedButtonEditorAccessCheckTest extends EmbedTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'ckeditor',
     'ckeditor5',
   ];
 
@@ -43,18 +44,23 @@ class EmbedButtonEditorAccessCheckTest extends EmbedTestBase {
       case 'ckeditor':
         $editor->setSettings([
           'toolbar' => [
-            'rows' => [[[
-              'name' => 'Embed',
-              'items' => [
-                'embed_test_default',
+            'rows' => [
+              [
+                [
+                  'name' => 'Embed',
+                  'items' => [
+                    'embed_test_default',
+                  ],
+                ],
               ],
-            ]]],
+            ],
           ],
         ]);
         break;
 
       case 'ckeditor5':
         $editor->setSettings([
+          'plugins' => [],
           'toolbar' => [
             'items' => [
               'embed_test_default',
@@ -148,10 +154,10 @@ class EmbedButtonEditorAccessCheckTest extends EmbedTestBase {
   /**
    * Data provider for testEmbedbuttonEditorAccessCheck().
    */
-  public function providerEmbedbuttonEditorAccessCheck(): array {
+  public static function providerEmbedbuttonEditorAccessCheck(): array {
     return array_map(static function (string $editor_id) {
       return [$editor_id];
-    }, ['ckeditor', 'ckeditor5']);
+    }, ['ckeditor5']);
   }
 
   /**

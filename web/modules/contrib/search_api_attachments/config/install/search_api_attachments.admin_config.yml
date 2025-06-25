@@ -13,6 +13,7 @@ pdftotext_extractor_configuration:
 tika_extractor_configuration:
   java_path: 'java'
   tika_path: ''
+  debug_mode: false
 
 tika_server_extractor_configuration:
   scheme: 'http'

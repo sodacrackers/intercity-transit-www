@@ -254,7 +254,8 @@ SIMPLE USAGE EXAMPLE 3: PURE MEDIA FILE INDEX
    the File attachments processor.
 
 6. Go to admin/config/search/search-api/index/my_index/fields/add/nojs and:
-   - in the General section, add the "Search api attachments: Document (saa_field_media_document)" field.
+   - in the General section, add the "Search api attachments: Document
+   (saa_field_media_document)" field.
 
 
 7. Go to /admin/config/search/search-api/index/my_index/fields to configure

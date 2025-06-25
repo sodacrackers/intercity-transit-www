@@ -2,9 +2,9 @@
 
 namespace Drupal\blazy\Media;
 
-use Drupal\blazy\internals\Internals;
-use Drupal\blazy\Theme\Attributes;
 use Drupal\Core\Cache\Cache;
+use Drupal\blazy\Theme\Attributes;
+use Drupal\blazy\internals\Internals;
 
 /**
  * Provides responsive image utilities.
@@ -132,7 +132,7 @@ class BlazyResponsiveImage {
   public static function dimensions(
     array &$settings,
     $resimage = NULL,
-    $initial = FALSE
+    $initial = FALSE,
   ): void {
     $blazies    = $settings['blazies'];
     $dimensions = $blazies->get('resimage.dimensions', []);

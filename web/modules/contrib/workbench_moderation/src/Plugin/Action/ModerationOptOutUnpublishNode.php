@@ -58,7 +58,7 @@ class ModerationOptOutUnpublishNode extends UnpublishAction implements Container
   /**
    * {@inheritdoc}
    */
-  public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE) {
+  public function access($object, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
     $result = parent::access($object, $account, TRUE)
       ->andif(AccessResult::forbiddenIf($this->moderationInfo->isModeratableEntity($object))->addCacheableDependency($object));
 

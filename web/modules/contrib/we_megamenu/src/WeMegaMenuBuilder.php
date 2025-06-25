@@ -448,7 +448,7 @@ class WeMegaMenuBuilder {
             }
           }
         }
-      }
+      } 
     }
   }
 
@@ -658,7 +658,7 @@ class WeMegaMenuBuilder {
     $new_item->rows_content = $rows_content;
     $new_item->submenu_config = $submenu_config;
     $new_item->item_config = $item_config;
-    return $new_item;
+    return $new_item;   
   }
 
   public static function createNewMegamenuCellItem($menu_item, $menu_id) {
@@ -708,7 +708,7 @@ class WeMegaMenuBuilder {
                 $menu_id = $menu_item['derivativeId'];
                 if($megamenu_mlid != $menu_id) {
                   $new_megamenu_item = self::createNewMegamenuCellItem($menu_item, $menu_id);
-
+                  
                   if(!isset($menu_config[$derivativeId]['rows_content'][$i][$j]['col_config'])) {
                     $new_col_config = self::createNewMegamenuColConfig();
                     $megamenu_config->menu_config->{$derivativeId}->rows_content[$i][$j]->col_config = $new_col_config;
@@ -722,7 +722,7 @@ class WeMegaMenuBuilder {
               }
             }
           }
-        }
+        }        
       }
     }
     else {

@@ -10,7 +10,7 @@ dependencies:
 test_dependencies:
   - publishing_dropbutton:publishing_dropbutton
 
-# Information added by Drupal.org packaging script on 2024-07-26
-version: '8.x-1.8'
+# Information added by Drupal.org packaging script on 2025-02-18
+version: '8.x-1.9'
 project: 'workbench_moderation'
-datestamp: 1721955914
+datestamp: 1739858600

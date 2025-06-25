@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -37,12 +38,20 @@ class TextExtractorFormSettings extends ConfigFormBase {
   protected $entityTypeManager;
 
   /**
+   * Module extension list service.
+   *
+   * @var \Drupal\Core\Extension\ModuleExtensionList
+   */
+  protected $moduleExtensionList;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(ConfigFactoryInterface $config_factory, TextExtractorPluginManager $text_extractor_plugin_manager, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(ConfigFactoryInterface $config_factory, TextExtractorPluginManager $text_extractor_plugin_manager, EntityTypeManagerInterface $entity_type_manager, ModuleExtensionList $module_extension_list) {
     parent::__construct($config_factory);
     $this->textExtractorPluginManager = $text_extractor_plugin_manager;
     $this->entityTypeManager = $entity_type_manager;
+    $this->moduleExtensionList = $module_extension_list;
   }
 
   /**
@@ -50,7 +59,10 @@ class TextExtractorFormSettings extends ConfigFormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'), $container->get('plugin.manager.search_api_attachments.text_extractor'), $container->get('entity_type.manager')
+      $container->get('config.factory'),
+      $container->get('plugin.manager.search_api_attachments.text_extractor'),
+      $container->get('entity_type.manager'),
+      $container->get('extension.list.module'),
     );
   }
 
@@ -337,16 +349,16 @@ class TextExtractorFormSettings extends ConfigFormBase {
     $file = $this->entityTypeManager->getStorage('file')->loadByProperties($values);
     if (empty($file)) {
       // Copy the source file to public directory.
-      $source = \Drupal::service('extension.list.module')->getPath('search_api_attachments');
+      $source = $this->moduleExtensionList->getPath('search_api_attachments');
       $source .= '/data/search_api_attachments_test_extraction.pdf';
       copy($source, $filepath);
       // Create the file object.
-        $file = File::create([
-          'uri'      => $filepath,
-          'uid'      => $this->currentUser()->id(),
-          'status'   => 0,
-          'filename' => 'search_api_attachments_test_extraction.pdf',
-        ]);
+      $file = File::create([
+        'uri'      => $filepath,
+        'uid'      => $this->currentUser()->id(),
+        'status'   => 0,
+        'filename' => 'search_api_attachments_test_extraction.pdf',
+      ]);
       $file->save();
     }
     else {

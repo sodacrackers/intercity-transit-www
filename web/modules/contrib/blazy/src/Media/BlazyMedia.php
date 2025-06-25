@@ -2,13 +2,13 @@
 
 namespace Drupal\blazy\Media;
 
-use Drupal\blazy\BlazyManagerInterface;
-use Drupal\blazy\internals\Internals;
-use Drupal\blazy\Utility\CheckItem;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Url;
+use Drupal\blazy\BlazyManagerInterface;
+use Drupal\blazy\Utility\CheckItem;
+use Drupal\blazy\internals\Internals;
 use Drupal\media\IFrameUrlHelper;
 use Drupal\media\MediaInterface;
 use GuzzleHttp\Client;
@@ -62,7 +62,7 @@ class BlazyMedia implements BlazyMediaInterface {
   public function __construct(
     BlazyManagerInterface $manager,
     Client $http_client,
-    IFrameUrlHelper $iframe_url_helper
+    IFrameUrlHelper $iframe_url_helper,
   ) {
     $this->manager = $manager;
     $this->httpClient = $http_client;

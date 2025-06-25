@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\embed\FunctionalJavascript;
 
@@ -30,7 +30,7 @@ class EmbedButtonAdminTest extends WebDriverTestBase {
     'embed',
     'embed_test',
     'editor',
-    'ckeditor',
+    'ckeditor5',
   ];
 
   /**
@@ -61,18 +61,14 @@ class EmbedButtonAdminTest extends WebDriverTestBase {
     ]);
     $format->save();
 
-    $editor_group = [
-      'name' => 'Embed',
-      'items' => [
-        'embed_test_default',
-      ],
-    ];
     $editor = Editor::create([
       'format' => 'embed_test',
-      'editor' => 'ckeditor',
+      'editor' => 'ckeditor5',
       'settings' => [
         'toolbar' => [
-          'rows' => [[$editor_group]],
+          'items' => [
+            'embed_test_default',
+          ],
         ],
       ],
     ]);
@@ -202,7 +198,7 @@ class EmbedButtonAdminTest extends WebDriverTestBase {
       'type_id' => 'embed_test_default',
     ];
     $this->submitForm($edit, 'Save');
-    $assert_session->pageTextContains('A CKEditor button with ID DrupalImage already exists.');
+    $assert_session->pageTextContains("The embed button $button_label has been added.");
   }
 
 }

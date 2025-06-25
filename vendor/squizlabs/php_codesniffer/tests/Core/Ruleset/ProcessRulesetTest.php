@@ -72,6 +72,7 @@ final class ProcessRulesetTest extends TestCase
             "$std.SetProperty.AllowedViaStdClass"                    => "$sniffDir\SetProperty\AllowedViaStdClassSniff",
             "$std.SetProperty.NotAllowedViaAttribute"                => "$sniffDir\SetProperty\NotAllowedViaAttributeSniff",
             "$std.SetProperty.PropertyTypeHandling"                  => "$sniffDir\SetProperty\PropertyTypeHandlingSniff",
+            "$std.ValidSniffs.RegisterEmptyArray"                    => "$sniffDir\ValidSniffs\RegisterEmptyArraySniff",
         ];
 
         // Sort the value to make the tests stable as different OSes will read directories
@@ -242,7 +243,7 @@ final class ProcessRulesetTest extends TestCase
     /**
      * Test Helper.
      *
-     * @return \PHP_CodeSniffer\Sniffs\Sniff
+     * @return \PHP_CodeSniffer\Ruleset
      */
     private function getMiscRuleset()
     {

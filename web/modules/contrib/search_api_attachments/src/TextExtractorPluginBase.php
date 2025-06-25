@@ -53,7 +53,6 @@ abstract class TextExtractorPluginBase extends PluginBase implements TextExtract
    */
   protected $messenger;
 
-
   /**
    * {@inheritdoc}
    */
@@ -148,6 +147,11 @@ abstract class TextExtractorPluginBase extends PluginBase implements TextExtract
     $wrapper = $this->streamWrapperManager->getViaUri($uri);
     $scheme = $this->streamWrapperManager->getScheme($uri);
     $local_wrappers = $this->streamWrapperManager->getWrappers(StreamWrapperInterface::LOCAL);
+
+    if ($wrapper === FALSE) {
+      return NULL;
+    }
+
     if (in_array($scheme, array_keys($local_wrappers))) {
       return $wrapper->realpath();
     }

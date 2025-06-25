@@ -128,7 +128,8 @@ class ExtractedText extends FileFormatterBase implements ContainerFactoryPluginI
 
     $this->extractor = $this
       ->processorPluginManager
-      ->createInstance('file_attachments');;
+      ->createInstance('file_attachments');
+    ;
   }
 
   /**
