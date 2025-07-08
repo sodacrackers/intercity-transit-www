@@ -535,7 +535,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -569,13 +568,13 @@ display:
           default_argument_options:
             argument: ''
           summary_options:
-            base_path: about-us/publications/by-topic
+            base_path: ''
             count: true
             override: false
             items_per_page: 25
           summary:
             sort_order: asc
-            number_of_records: 0
+            number_of_records: 1
             format: default_summary
           specify_validation: false
           validate:
@@ -630,7 +629,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -715,7 +713,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -756,7 +753,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -903,7 +899,6 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - user
         - user.permissions
       tags: {  }
   page_1:
@@ -1656,7 +1651,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -2109,7 +2103,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -2775,7 +2768,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -3402,7 +3394,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -4117,7 +4108,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
@@ -5010,7 +5000,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:field.storage.media.field_description'
