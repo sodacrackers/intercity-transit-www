@@ -7,3 +7,5 @@ blazy:
   offset: 100
   saveViewportOffsetDelay: 50
 max_region_count: 0
+responsive_image: false
+

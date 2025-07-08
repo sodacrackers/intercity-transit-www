@@ -26,3 +26,35 @@ function transit_preprocess_block(&$variables) {
     $variables['showAddEvent'] = (bool) \Drupal::entityTypeManager()->getAccessControlHandler('node')->createAccess('walk_n_roll_event');
   }
 }
+
+/**
+ * Implements hook_preprocess_views_view_summary().
+ * 
+ * Fixes the publications view summary URLs to use proper taxonomy term names and years.
+ */
+function transit_preprocess_views_view_summary(&$variables) {
+  $view = $variables['view'];
+  
+  // Only process the publications view
+  if ($view->id() !== 'publications') {
+    return;
+  }
+  
+  // Process each row in the summary
+  foreach ($variables['rows'] as &$row) {
+    if (isset($row->link)) {
+      if ($view->current_display === 'embed_1') {
+        // Publications-ByTopic: /about-us/publications/[term-name]
+        $term_name = $row->link;
+        $url = \Drupal\Core\Url::fromUserInput('/about-us/publications/' . $term_name);
+        $row->url = $url;
+      }
+      elseif ($view->current_display === 'embed_2') {
+        // Publications-ByYear: /about-us/publications/all/[year]
+        $year = $row->link;
+        $url = \Drupal\Core\Url::fromUserInput('/about-us/publications/all/' . $year);
+        $row->url = $url;
+      }
+    }
+  }
+}
