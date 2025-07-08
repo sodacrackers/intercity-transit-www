@@ -98,3 +98,5 @@
 
 web/modules/custom/*/js/dist_dev/*
 web/modules/custom/*/node_modules/*
+
+*.sql.gz
