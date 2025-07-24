@@ -2198,3 +2198,18 @@ table.fc-list-table > tbody > tr > td {
 .walk-n-roll-calendar .fc-dayGridMonth-view .fc-event-main-frame .fc-event-time {
     width: 66%;
 }
+
+.view-service-changes .views-field.views-field-nothing table tr:nth-child(2) td {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    padding-top: 2px !important;
+    padding-bottom: 10px !important;
+    text-align: left;
+}
+
+.view-service-changes .views-field.views-field-nothing table td.invert, .view-service-changes .views-field.views-field-nothing table tr:nth-child(1) td {
+    background-color: #0070c0 !important;
+    color: #fff !important;
+}
