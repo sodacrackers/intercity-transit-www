@@ -2199,6 +2199,7 @@ table.fc-list-table > tbody > tr > td {
     width: 66%;
 }
 
+.view-service-changes .views-field.views-field-nothing table tr:nth-child(2) th,
 .view-service-changes .views-field.views-field-nothing table tr:nth-child(2) td {
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -2209,7 +2210,10 @@ table.fc-list-table > tbody > tr > td {
     text-align: left;
 }
 
-.view-service-changes .views-field.views-field-nothing table td.invert, .view-service-changes .views-field.views-field-nothing table tr:nth-child(1) td {
+.view-service-changes .views-field.views-field-nothing table td.invert,
+.view-service-changes .views-field.views-field-nothing table th.invert,
+.view-service-changes .views-field.views-field-nothing table tr:nth-child(1) td,
+.view-service-changes .views-field.views-field-nothing table tr:nth-child(1) th {
     background-color: #0070c0 !important;
     color: #fff !important;
 }
