@@ -99,7 +99,7 @@ elements: |-
         '#date_date_format': 'F Y'
       applicant_drivers_license:
         '#type': textfield
-        '#title': 'Washington State Driver''s License #'
+        '#title': "Washington State Driver's License #"
         '#minlength': 12
         '#maxlength': 12
         '#required': true
@@ -142,7 +142,7 @@ elements: |-
       '#type': webform_flexbox
       applicant_out_of_state_license_5years_yes_no:
         '#type': radios
-        '#title': 'Have you had a driver''s license from a different state in the last five years?'
+        '#title': "Have you had a driver's license from a different state in the last five years?"
         '#options': yes_no
         '#required': true
         '#default_value': 'No'
@@ -269,7 +269,7 @@ elements: |-
       '#type': webform_flexbox
       applicant_training_program_description_link:
         '#type': webform_markup
-        '#markup': 'Please read the&nbsp;<a href="https://www.intercitytransit.com/sites/default/files/2023-09/2023%20Online_App_Village%20Vans%20Training%20Program%20Description.pdf">Village Vans Training Program Description</a>.'
+        '#markup': '<p>Please read the&nbsp;<a href="https://www.intercitytransit.com/sites/default/files/2023-09/2023%20Online_App_Village%20Vans%20Training%20Program%20Description.pdf" target="_blank" rel="noopener noreferrer">Village Vans Training Program Description</a>.</p>'
       applicant_perform_checklist_requirements_yes_no:
         '#type': radios
         '#title': 'Can you perform all the requirements as explained in the Intercity Transit Village Van Volunteer Program Description?'
