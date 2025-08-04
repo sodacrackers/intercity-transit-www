@@ -9,7 +9,7 @@ uid: 1
 template: false
 archive: false
 id: september_system_redesign
-title: 'September System Redesign'
+title: 'Bus System Redesign'
 description: ''
 categories: {  }
 elements: |-
@@ -27,32 +27,8 @@ elements: |-
     '#type': select
     '#title': 'Select a Route'
     '#options':
-      '13 East Tumwater': '13 East Tumwater'
-      '14 Capitol Campus': '14 Capitol Campus'
-      '15 West Tumwater': '15 West Tumwater'
-      '16 Capitol Blvd': '16 Capitol Blvd'
-      '21 Friendly Grove': '21 Friendly Grove'
-      '22 Lions Park': '22 Lions Park'
-      '23 Deschutes Parkway': '23 Deschutes Parkway'
-      '30 Capital HS': '30 Capital HS'
-      '31 Decatur Woods': '31 Decatur Woods'
-      '32 Division St': '32 Division St'
-      '33 Black Lake Blvd': '33 Black Lake Blvd'
-      '34 Evergreen': '34 Evergreen'
-      '50 Pacific Ave': '50 Pacific Ave'
-      '51 18th Ave': '51 18th Ave'
-      '52 College St': '52 College St'
-      '70 Britton Parkway': '70 Britton Parkway'
-      '71 River Ridge HS': '71 River Ridge HS'
-      '72 Timberline HS': '72 Timberline HS'
-      '73 Golf Club Rd': '73 Golf Club Rd'
-      '74 Ruddell Rd': '74 Ruddell Rd'
-      '75 Boulevard Rd': '75 Boulevard Rd'
-      '76 Marvin Rd': '76 Marvin Rd'
-      '90 Yelm Ave': '90 Yelm Ave'
-      '99 High-frequency Corridor': '99 High-frequency Corridor'
-      '600 Olympia Express': '600 Olympia Express'
-      '610 Lacey Express': '610 Lacey Express'
+      '600 Lakewood Commuter': '600 Lakewood Commuter'
+      '610 Lacey Connector': '610 Lacey Connector'
   schedule_feedback:
     '#type': textarea
     '#title': Feedback
