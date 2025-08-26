@@ -2242,3 +2242,36 @@ table.fc-list-table > tbody > tr > td {
     background-color: #0070c0 !important;
     color: #fff !important;
 }
+
+/* iOS-specific fix for vertical text flipping issue */
+@supports (-webkit-touch-callout: none) {
+  /* iOS only styles */
+  .view-service-changes .views-field.views-field-nothing table tr:nth-child(2) th,
+  .view-service-changes .views-field.views-field-nothing table tr:nth-child(2) td,
+  .mrg20T table tr:nth-child(2) th,
+  .mrg20T table tr:nth-child(2) td {
+    /* Reset the writing-mode for iOS */
+    writing-mode: initial !important;
+    -webkit-writing-mode: initial !important;
+    text-orientation: initial !important;
+    
+    /* Use only transform for vertical text on iOS */
+    transform: rotate(-90deg) !important;
+    -webkit-transform: rotate(-90deg) !important;
+    
+    /* Adjust transform origin for proper positioning */
+    transform-origin: center center !important;
+    -webkit-transform-origin: center center !important;
+    
+    /* Ensure text doesn't wrap */
+    white-space: nowrap !important;
+    
+    /* Reset vertical alignment */
+    vertical-align: middle !important;
+    
+    /* Maintain padding */
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    text-align: center !important;
+  }
+}
