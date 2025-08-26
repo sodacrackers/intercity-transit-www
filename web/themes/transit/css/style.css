@@ -641,6 +641,12 @@ li > a.ms-core-listMenu-item.ms-core-listMenu-selected:hover,
     color: #563d7c;
 }
 @media (max-width: 768px) {
+
+    section.col-12 {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     .s4-breadcrumb {
         display: none;
     }
