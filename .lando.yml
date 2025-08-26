@@ -1,0 +1,13 @@
+name: intercitytransit
+recipe: drupal10
+config:
+  webroot: web
+  xdebug: debug
+  php: '8.3'
+  # ini:
+  #   xdebug.start_with_request: yes
+services:
+  appserver:
+    xdebug: debug
+    config:
+      php: .lando/php.ini
