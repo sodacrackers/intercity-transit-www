@@ -7,7 +7,6 @@ dependencies:
   module:
     - contextual
     - node
-    - quickedit
     - smart_date_recur
     - system
 id: calendar_editor
@@ -17,7 +16,6 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access contextual links'
-  - 'access in-place editing'
   - 'cancel smart date recur instances'
   - 'create walk_n_roll_event content'
   - 'delete any walk_n_roll_event content'

@@ -110,6 +110,9 @@ filters:
         350x350: 350x350
         400x300: 400x300
         450_x_600: 450_x_600
+        landscape: landscape
+        portrait: portrait
+        thumbnail: thumbnail
         banner_narrow: '0'
         banner_narrow_m_: '0'
         geofield_map_default_icon_style: '0'
@@ -118,7 +121,6 @@ filters:
         medium: '0'
         medium_220_x_220_cropped: '0'
         person_thumbnail: '0'
-        thumbnail: '0'
         tile_300_200_: '0'
         tile_300_300_: '0'
   filter_responsive_image_style:
@@ -163,7 +165,7 @@ filters:
         title: '0'
       optionset: default
       layout: ''
-      admin_uri: '/admin/config/content/formats/manage/rich_text?destination=/admin/config/content/formats&ajax_form=1&_wrapper_format=drupal_ajax'
+      admin_uri: '/admin/config/content/formats/manage/rich_text?destination=/admin/config/content/formats'
       background: false
       box_caption: ''
       box_caption_custom: ''
