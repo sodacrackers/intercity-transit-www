@@ -1,6 +1,6 @@
 {{ attach_library('it_route_trip_tools/route') }}
 <div class="container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
+    {# <ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
         <li class="nav-item active">
             <a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule"
                aria-selected="true"><span class="route-id">Route {{ route_short_name }}</span> Schedule</a>
@@ -10,7 +10,7 @@
                aria-controls="real-time" aria-selected="false"><span
                         class="route-id">Route {{ route_short_name }}</span> Real-Time <span class="hide-mobile">Departures</span></a>
         </li>
-    </ul>
+    </ul> #}
     <div class="tab-content" id="myTabContent">
         <div id="schedule">
             <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -20,11 +20,11 @@
             </script>
             {% if route_data_weekdays %}
             <div id="route-map" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+                <div id="route-map-weekdays" class="weekdays-info">
                     {{ routes_map_weekdays }}
                 </div>
                 {% if routes_map_weekend %}
-                    <div id="route-map-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
+                    <div id="route-map-weekend" class="weekend-info hide">
                         {{ routes_map_weekend }}
                     </div>
                 {% endif %}
@@ -171,8 +171,8 @@
             {% endif %}
         {% endif %}
     </div>
-    <div id="real-time-container">
+    {# <div id="real-time-container">
         {{ drupal_block('ict_routes_react_app_block') }}
-    </div>
+    </div> #}
 </div>
 </div>

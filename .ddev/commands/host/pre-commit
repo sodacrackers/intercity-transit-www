@@ -1,2 +1,0 @@
-ddev npm --prefix /var/www/html/web/modules/custom/ict_routes_react_app/ run build
-git add web/modules/custom/ict_routes_react_app/js/dist/
