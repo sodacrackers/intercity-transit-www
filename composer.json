@@ -532,10 +532,7 @@
         "drupal/quickedit": "*",
         "drupal/rdf": "*",
         "drupal/jquery_ui_autocomplete": "^2.1",
-        "drupal/slick_extras": "^2.0",
-        "npm-asset/chosen-js": "^1.8",
-        "npm-asset/jquery-colorbox": "^1.6",
-        "npm-asset/jquery.cycle2": "^2.1"
+        "drupal/slick_extras": "^2.0"
     },
     "require-dev": {
         "drupal/core-dev": "^10"
