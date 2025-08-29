@@ -7,6 +7,14 @@ html body #route-info-header h2.dir-heading.displaying-now {
   margin-bottom: 0;
   margin-top: 0;
 }
+.timepoint-paragraph {
+  display: inline-block;
+  font-size: 15px;
+  padding-left: 20px;
+  vertical-align: middle;
+  margin-bottom: 20px;
+}
+
 html body #route-info-header #icon-legend {
   margin: 20px 15px 0 15px;
 }
@@ -63,7 +71,6 @@ html body #block-routeandtripformsblock {
 }
 html body #block-routeandtripformsblock .nav-tabs {
   border-bottom: none;
-  margin-bottom: 0;
 }
 html body #block-routeandtripformsblock .nav-tabs li {
   padding-bottom: 0;
@@ -211,8 +218,12 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 @media screen and (min-width: 992px) {
   html body.path-plan-your-trip .routes-page-content-container {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .header-routes-all {
+    margin-left: -20px;
+    margin-right: -20px;
   }
 }
 #route-filter-control {
@@ -272,33 +283,30 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   margin: 0 0 15px 0;
   text-align: right;
 }
-#route-table {
+#route-table-weekdays, #route-table-weekend {
   margin-top: 10px;
+  padding: 0;
 }
-#route-table tr.bold td {
+#route-table-weekdays tr.bold td, #route-table-weekend tr.bold td {
   font-weight: bold;
 }
-#route-table tr td {
+#route-table-weekdays tr td, #route-table-weekend tr td {
   min-width: 90px;
 }
-#route-table .table-controls {
+#route-table-weekdays .table-controls, #route-table-weekend .table-controls {
   margin-bottom: 20px;
 }
-#route-table .table-controls .btn-primary.active {
+#route-table-weekdays .table-controls .btn-primary.active, #route-table-weekend .table-controls .btn-primary.active {
   background: #003087;
   color: #fff;
 }
-#route-table .table-controls .btn-primary.active:hover {
+#route-table-weekdays .table-controls .btn-primary.active:hover, #route-table-weekend .table-controls .btn-primary.active:hover {
   background-color: #424d51;
 }
 #route-map {
   padding: 0 !important;
   z-index: 100;
-}
-@media screen and (max-width: 991px) {
-  #route-map {
-    margin-left: 5px;
-  }
+  position: relative;
 }
 #route-map .map-frame {
   width: 100%;
@@ -308,18 +316,24 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
     width: 95%;
   }
 }
-#route-map .map-frame #route-map-frame-inbound,
-#route-map .map-frame #route-map-frame-outbound {
+#route-map .map-frame #route-map-frame-inbound-weekend,
+#route-map .map-frame #route-map-frame-inbound-weekdays,
+#route-map .map-frame #route-map-frame-outbound-weekend,
+#route-map .map-frame #route-map-frame-outbound-weekdays {
   min-height: 400px;
 }
-#route-map .map-frame #route-map-frame-inbound h3,
-#route-map .map-frame #route-map-frame-outbound h3 {
+#route-map .map-frame #route-map-frame-inbound-weekend h3,
+#route-map .map-frame #route-map-frame-inbound-weekdays h3,
+#route-map .map-frame #route-map-frame-outbound-weekend h3,
+#route-map .map-frame #route-map-frame-outbound-weekdays h3 {
   font-size: 18px;
   line-height: 19px;
   margin-top: 0;
 }
-#route-map .map-frame #route-map-frame-inbound p,
-#route-map .map-frame #route-map-frame-outbound p {
+#route-map .map-frame #route-map-frame-inbound-weekend p,
+#route-map .map-frame #route-map-frame-inbound-weekdays p,
+#route-map .map-frame #route-map-frame-outbound-weekend p,
+#route-map .map-frame #route-map-frame-outbound-weekdays p {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -382,13 +396,17 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 .table-navigation-buttons .right-table-button[disabled]:hover {
   display: none;
 }
-#inbound-large-screen-route-table,
-#outbound-large-screen-route-table {
+#inbound-weekends-large-screen-route-table,
+#outbound-weekends-large-screen-route-table,
+#inbound-weekdays-large-screen-route-table,
+#outbound-weekdays-large-screen-route-table {
   margin-top: 0;
   clear: both;
 }
-#inbound-large-screen-route-table table.table,
-#outbound-large-screen-route-table table.table {
+#inbound-weekends-large-screen-route-table table.table,
+#outbound-weekends-large-screen-route-table table.table,
+#inbound-weekdays-large-screen-route-table table.table,
+#outbound-weekdays-large-screen-route-table table.table {
   width: auto !important;
   border-collapse: collapse;
   border: none;
@@ -398,12 +416,16 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
       height: 90vh;
       */
 }
-#inbound-large-screen-route-table table.table thead tr th,
-#outbound-large-screen-route-table table.table thead tr th {
+#inbound-weekdays-large-screen-route-table table.table thead tr th,
+#outbound-weekdays-large-screen-route-table table.table thead tr th,
+#inbound-weekends-large-screen-route-table table.table thead tr th,
+#outbound-weekends-large-screen-route-table table.table thead tr th {
   text-align: center;
 }
-#inbound-large-screen-route-table table.table thead tr th h2,
-#outbound-large-screen-route-table table.table thead tr th h2 {
+#inbound-weekdays-large-screen-route-table table.table thead tr th h2,
+#outbound-weekdays-large-screen-route-table table.table thead tr th h2,
+#inbound-weekends-large-screen-route-table table.table thead tr th h2,
+#outbound-weekends-large-screen-route-table table.table thead tr th h2 {
   font-size: 1.8rem;
   color: #fff;
   font-weight: 700;
@@ -413,79 +435,91 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   width: 200px;
 }
 @media screen and (max-width: 991px) {
-  #inbound-large-screen-route-table table.table thead tr th h2,
-  #outbound-large-screen-route-table table.table thead tr th h2 {
+  #inbound-weekdays-large-screen-route-table table.table thead tr th h2,
+  #outbound-weekdays-large-screen-route-table table.table thead tr th h2,
+  #inbound-weekends-large-screen-route-table table.table thead tr th h2,
+  #outbound-weekends-large-screen-route-table table.table thead tr th h2 {
     width: 100px;
   }
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate,
-#outbound-large-screen-route-table table.table thead tr th.rotate {
+#inbound-weekdays-large-screen-route-table table.table thead tr th.rotate,
+#outbound-weekdays-large-screen-route-table table.table thead tr th.rotate,
+#inbound-weekends-large-screen-route-table table.table thead tr th.rotate,
+#outbound-weekends-large-screen-route-table table.table thead tr th.rotate {
   height: 100px;
   margin-bottom: 20px;
   border-left: 0;
   border-right: 0;
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate > div,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div {
+#inbound-weekdays-large-screen-route-table table.table thead tr th.rotate > div,
+#outbound-weekdays-large-screen-route-table table.table thead tr th.rotate > div,
+#inbound-weekends-large-screen-route-table table.table thead tr th.rotate > div,
+#outbound-weekends-large-screen-route-table table.table thead tr th.rotate > div {
   transform: translate(35px, -5px) rotate(315deg);
   width: 100px;
   margin-bottom: 20px;
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate > div > span,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div > span {
+#inbound-weekdays-large-screen-route-table table.table thead tr th.rotate > div > span,
+#outbound-weekdays-large-screen-route-table table.table thead tr th.rotate > div > span,
+#inbound-weekends-large-screen-route-table table.table thead tr th.rotate > div > span,
+#outbound-weekends-large-screen-route-table table.table thead tr th.rotate > div > span {
   padding: 0;
 }
-#inbound-large-screen-route-table table.table tbody td,
-#outbound-large-screen-route-table table.table tbody td {
+#inbound-weekdays-large-screen-route-table table.table tbody td,
+#outbound-weekdays-large-screen-route-table table.table tbody td,
+#inbound-weekends-large-screen-route-table table.table tbody td,
+#outbound-weekends-large-screen-route-table table.table tbody td {
   text-align: right;
 }
-#inbound-large-screen-route-table table.table tbody tr th,
-#outbound-large-screen-route-table table.table tbody tr th {
-  /*border-left: 35px solid #80D80E;*/
-  padding-left: 35px !important;
-}
-#inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
-#outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
-  content: '\f219';
-  font-family: "Font Awesome 5 Free";
-  color: #fff;
-  position: absolute;
-  left: 0;
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin-top: -7px;
-  padding-top: 5px;
-  padding-left: 2px;
-  background-color: #80D80E;
-  background-size: cover;
-  height: 103%;
-  margin-left: -2px;
-  padding-left: 4px;
-  width: 21px;
-}
-#inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,
-#outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {
-  content: '\f111';
-  font-family: "Font Awesome 5 Free";
-  color: #fff;
-  position: absolute;
-  left: 0;
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-top: -7px;
-  padding-top: 9px;
-  background-color: #80D80E;
-  background-size: cover;
-  height: 103%;
-  margin-left: -2px;
-  padding-left: 5px;
-  width: 21px;
-}
+/*#inbound-large-screen-route-table table.table tbody tr th,*/
+/*#outbound-large-screen-route-table table.table tbody tr th {*/
+/*  !*border-left: 35px solid #80D80E;*!*/
+/*  padding-left: 35px;*/
+/*}*/
+/*#inbound-large-screen-route-table table.table tbody tr.timepoint th:before,*/
+/*#outbound-large-screen-route-table table.table tbody tr.timepoint th:before {*/
+/*  content: '\f219';*/
+/*  font-family: "Font Awesome 5 Pro";*/
+/*  color: #fff;*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  font-weight: 700;*/
+/*  font-size: 1.5rem;*/
+/*  margin-top: -7px;*/
+/*  padding-top: 5px;*/
+/*  padding-left: 2px;*/
+/*  background-color: #80D80E;*/
+/*  background-size: cover;*/
+/*  height: 103%;*/
+/*  margin-left: -2px;*/
+/*  padding-left: 4px;*/
+/*  width: 21px;*/
+/*}*/
+/*#inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,*/
+/*#outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {*/
+/*  content: '\f111';*/
+/*  font-family: "Font Awesome 5 Pro";*/
+/*  color: #fff;*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  font-weight: 700;*/
+/*  font-size: 1.1rem;*/
+/*  margin-top: -7px;*/
+/*  padding-top: 9px;*/
+/*  background-color: #80D80E;*/
+/*  background-size: cover;*/
+/*  height: 103%;*/
+/*  margin-left: -2px;*/
+/*  padding-left: 5px;*/
+/*  width: 21px;*/
+/*}*/
 #all-routes-container {
   margin-top: 40px;
 }
-#all-routes-container #all-routes-map {
-  height: 600px;
+#all-routes-container #all-routes-map,
+#all-routes-container #all-routes-map div {
+  min-height: 600px !important;
+  position: relative !important;
 }
 #all-routes-container #all-routes-map h3 {
   font-size: 1.8rem;
@@ -724,16 +758,16 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   left: 50%;
   content: attr(data-checked);
 }
-#outbound-large-screen-route-table table,
-#outbound-small-screen-route-table table,
-#inbound-large-screen-route-table table,
-#inbound-small-screen-route-table table {
+#outbound-weekdays-large-screen-route-table table,
+#inbound-weekdays-large-screen-route-table table
+#outbound-weekends-large-screen-route-table table,
+#inbound-weekends-large-screen-route-table table {
   width: 100%;
 }
-#outbound-large-screen-route-table table thead tr th:first-child,
-#outbound-small-screen-route-table table thead tr th:first-child,
-#inbound-large-screen-route-table table thead tr th:first-child,
-#inbound-small-screen-route-table table thead tr th:first-child {
+#outbound-weekdays-large-screen-route-table table thead tr th:first-child,
+#inbound-weekdays-large-screen-route-table table thead tr th:first-child,
+#outbound-weekends-large-screen-route-table table thead tr th:first-child,
+#inbound-weekends-large-screen-route-table table thead tr th:first-child {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -742,23 +776,23 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   color: #fff;
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr:nth-of-type(odd),
-#outbound-small-screen-route-table table tbody tr:nth-of-type(odd),
-#inbound-large-screen-route-table table tbody tr:nth-of-type(odd),
-#inbound-small-screen-route-table table tbody tr:nth-of-type(odd) {
+#outbound-weekdays-large-screen-route-table table tbody tr:nth-of-type(odd),
+#inbound-weekdays-large-screen-route-table table tbody tr:nth-of-type(odd),
+#outbound-weekends-large-screen-route-table table tbody tr:nth-of-type(odd),
+#inbound-weekends-large-screen-route-table table tbody tr:nth-of-type(odd) {
   background-color: inherit;
 }
-#outbound-large-screen-route-table table tbody tr:hover,
-#outbound-small-screen-route-table table tbody tr:hover,
-#inbound-large-screen-route-table table tbody tr:hover,
-#inbound-small-screen-route-table table tbody tr:hover {
+#outbound-weekdays-large-screen-route-table table tbody tr:hover,
+#inbound-weekdays-large-screen-route-table table tbody tr:hover,
+#outbound-weekends-large-screen-route-table table tbody tr:hover,
+#inbound-weekends-large-screen-route-table table tbody tr:hover {
   background: #909090;
   color: #fff;
 }
-#outbound-large-screen-route-table table tbody tr th,
-#outbound-small-screen-route-table table tbody tr th,
-#inbound-large-screen-route-table table tbody tr th,
-#inbound-small-screen-route-table table tbody tr th {
+#outbound-weekdays-large-screen-route-table table tbody tr th,
+#inbound-weekdays-large-screen-route-table table tbody tr th,
+#outbound-weekends-large-screen-route-table table tbody tr th,
+#inbound-weekends-large-screen-route-table table tbody tr th {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -767,16 +801,16 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   color: #fff;
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr td,
-#outbound-small-screen-route-table table tbody tr td,
-#inbound-large-screen-route-table table tbody tr td,
-#inbound-small-screen-route-table table tbody tr td {
+#outbound-weekdays-large-screen-route-table table tbody tr td,
+#inbound-weekdays-large-screen-route-table table tbody tr td,
+#outbound-weekends-large-screen-route-table table tbody tr td,
+#inbound-weekends-large-screen-route-table table tbody tr td {
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr td:hover:after,
-#outbound-small-screen-route-table table tbody tr td:hover:after,
-#inbound-large-screen-route-table table tbody tr td:hover:after,
-#inbound-small-screen-route-table table tbody tr td:hover:after {
+#outbound-weekdays-large-screen-route-table table tbody tr td:hover:after,
+#inbound-weekdays-large-screen-route-table table tbody tr td:hover:after,
+#outbound-weekends-large-screen-route-table table tbody tr td:hover:after,
+#inbound-weekends-large-screen-route-table table tbody tr td:hover:after {
   content: "";
   position: absolute;
   background: #dedede !important;
@@ -795,13 +829,13 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   float: left;
 }
 .stop-table th:after {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   content: '\f078';
   float: right;
   font-weight: 400;
 }
 .stop-table th[aria-expanded="true"]:after {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   content: '\f077';
   float: right;
   font-weight: 400;
@@ -845,7 +879,13 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   background: #000;
 }
 @media only screen and (max-width: 991px) {
-  #route-table {
+  #route-table-weekdays, #route-table-weekend {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .routes-page-content-container #realtime-tab, .routes-page-content-container #schedule-tab {
+    font-size: 20px !important;
   }
 }
