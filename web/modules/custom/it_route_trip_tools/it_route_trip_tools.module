@@ -395,6 +395,8 @@ function it_route_trip_tools_get_center($boundaries) {
 }
 
 function it_route_trip_tools_get_stop_options() {
+  // ICTSD-129
+  return [];
   $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
   $headers = array_shift($stops);
   if (empty($headers)) {
@@ -420,6 +422,8 @@ function it_route_trip_tools_get_stop_options() {
 
 function it_route_trip_tools_get_stop_details($stop_id) {
   // Get the stop by ID.
+  // ICTSD-129
+  return [];
   $shapes = \Drupal::service('ict.gtfs')->getStaticData('shapes');
   $headers = array_shift($shapes);
   $shape_index = array_search('shape_id', $headers);
@@ -533,6 +537,8 @@ function it_route_trip_tools_get_stop_details($stop_id) {
 
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $serv) {
+  // ICTSD-129
+  return [];
   $cache = \Drupal::cache()->get("route_table_map_data:$routeId:$serv");
   if ($cache !== FALSE) {
     $data = $cache->data;
@@ -849,6 +855,8 @@ function it_route_trip_tools_get_stop_data($stopId) {
 	Uses it_route_trip_tools_get_api_data()
 */
 function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
+  // ICTSD-129
+  return [];
   $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
   $headers = array_shift($routes);
   if (empty($headers)) {
@@ -883,6 +891,8 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
 
 
 function it_route_trip_tools_build_route_title($routeId) {
+  // ICTSD-129
+  return [];
   $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
   foreach ($routes as $route) {
     if ($route[0] == $routeId) {
@@ -893,6 +903,8 @@ function it_route_trip_tools_build_route_title($routeId) {
 }
 
 function it_route_trip_tools_build_stop_title($stopId) {
+  // ICTSD-129
+  return [];
   $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
   foreach ($stops as $stop) {
     if ($stop[0] == $stopId) {

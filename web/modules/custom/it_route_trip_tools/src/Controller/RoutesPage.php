@@ -13,7 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class RoutesPage extends ControllerBase {
 
-  private Gtfs $gtfs;
+  // ICTSD-129
+  // private Gtfs $gtfs;
 
   /**
    * ModalFormContactController constructor.
@@ -21,8 +22,8 @@ class RoutesPage extends ControllerBase {
    * @param \Drupal\ict_gtfs\Gtfs $form_builder
    *   The form builder.
    */
-  public function __construct(Gtfs $form_builder) {
-      $this->gtfs = $form_builder;
+  public function __construct(/*Gtfs $form_builder*/) {// ICTSD-129
+      //$this->gtfs = $form_builder;
   }
 
   /**
@@ -33,9 +34,9 @@ class RoutesPage extends ControllerBase {
    *
    * @return static
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container) {// ICTSD-129
       return new static(
-          $container->get('ict.gtfs')
+          //$container->get('ict.gtfs')
       );
   }
   
