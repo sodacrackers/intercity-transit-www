@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "268afbd0467e8b026ff4f78fbfc0e8d0",
+    "content-hash": "f37a15fe46a8ff3df604aec8a0e62ccf",
     "packages": [
         {
             "name": "algolia/places",
@@ -76,6 +76,21 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.3.0"
             },
             "time": "2025-03-13T08:50:04+00:00"
+        },
+        {
+            "name": "bower-asset/jquery-cycle",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:malsup/cycle.git",
+                "reference": "ac38c7b63d3723860187c5168e1d945fca66e15a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malsup/cycle/zipball/ac38c7b63d3723860187c5168e1d945fca66e15a",
+                "reference": "ac38c7b63d3723860187c5168e1d945fca66e15a"
+            },
+            "type": "bower-asset"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -11654,6 +11669,96 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.6.1"
             },
             "time": "2025-08-13T20:13:15+00:00"
+        },
+        {
+            "name": "npm-asset/chosen-js",
+            "version": "1.8.7",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chosen-js/-/chosen-js-1.8.7.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery",
+            "version": "3.7.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery-colorbox",
+            "version": "1.6.4",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery-colorbox/-/jquery-colorbox-1.6.4.tgz"
+            },
+            "require": {
+                "npm-asset/jquery": ">=1.3.2"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery-hoverintent",
+            "version": "1.10.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery-hoverintent/-/jquery-hoverintent-1.10.2.tgz"
+            },
+            "require": {
+                "npm-asset/jquery": ">=1.7.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery.cycle2",
+            "version": "2.1.7",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery.cycle2/-/jquery.cycle2-2.1.7.tgz"
+            },
+            "require": {
+                "npm-asset/jquery": ">=1.7"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery.pause",
+            "version": "3.0.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery.pause/-/jquery.pause-3.0.3.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "GPL-2.0"
+            ]
+        },
+        {
+            "name": "npm-asset/json2",
+            "version": "0.01.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/json2/-/json2-0.01.0.tgz"
+            },
+            "type": "npm-asset"
         },
         {
             "name": "onelogin/php-saml",
