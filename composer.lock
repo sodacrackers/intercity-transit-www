@@ -10234,42 +10234,6 @@
             "time": "2024-11-07T06:15:48+00:00"
         },
         {
-            "name": "gtfs/realtime-php",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianknopf/gtfs-realtime-php.git",
-                "reference": "83c8f777ce52b0061fc3a2e200832767a8fa8bb9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianknopf/gtfs-realtime-php/zipball/83c8f777ce52b0061fc3a2e200832767a8fa8bb9",
-                "reference": "83c8f777ce52b0061fc3a2e200832767a8fa8bb9",
-                "shasum": ""
-            },
-            "require": {
-                "google/protobuf": "3.10.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "GPBMetadata\\Src\\": "src/GPBMetadata",
-                    "Google\\Transit\\Realtime\\": "src/Google/Transit/Realtime"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "The Unlicense"
-            ],
-            "description": "GTFS-Realtime library for PHP",
-            "support": {
-                "issues": "https://github.com/sebastianknopf/gtfs-realtime-php/issues",
-                "source": "https://github.com/sebastianknopf/gtfs-realtime-php/tree/v1.0.0"
-            },
-            "abandoned": true,
-            "time": "2019-10-20T19:17:36+00:00"
-        },
-        {
             "name": "guzzlehttp/guzzle",
             "version": "7.9.2",
             "source": {
