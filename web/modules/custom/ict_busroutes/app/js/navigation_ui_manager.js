@@ -22,40 +22,82 @@ class NavigationUIManager {
             const displayDateInput = document.getElementById('display_date');
             const dateInput = document.getElementById('date');
             const availableDates = Object.keys(this.data.calendarData.dates);
-            const currentDate = new Date();
-            const self = this; // Capture the class instance
+            const currentDate = new Date().toISOString().slice(0, 10);
+            const selectedDate = availableDates.includes(currentDate) ? currentDate : availableDates[0];
 
-            $(displayDateInput).datepicker({
-                beforeShowDay: (date) => {
-                    const dateString = $.datepicker.formatDate('yy-mm-dd', date);
-                    return [availableDates.includes(dateString)];
-                },
-                dateFormat: 'mm/dd/yy',
-                altFormat: 'yy-mm-dd',
-                altField: dateInput,
-                onSelect: function(dateText) {
-                    const selectedDate = $.datepicker.formatDate('yy-mm-dd', $(displayDateInput).datepicker('getDate'));
-                    const dateData = self.data.calendarData.dates[selectedDate];
-                    if (dateData) {
-                        self.scheduleId = dateData.schedule_id;
-                        self.serviceIds = dateData.service_ids;
-                    }
-                    self.renderRouteOptions(self.scheduleId);
-                    self.renderDirectionOptions(self.scheduleId, $('#route_id').val());
-                    if (typeof fetchStopTimes === 'function') fetchStopTimes();
-                    if (typeof fetchRealTimeData === 'function') fetchRealTimeData();
-                    $(displayDateInput).datepicker('hide');
-                    // --- Trigger the change event on the hidden input so the controller can react ---
-                    $('#date').val(selectedDate).trigger('change');
-                }
-            }).datepicker('setDate', currentDate);
+            // Set default values.
+            if (!displayDateInput.value) {
+              displayDateInput.value = selectedDate;
+            }
+            if (!dateInput.value) {
+              dateInput.value = displayDateInput.value;
+            }
 
-            const initialDateData = this.data.calendarData.dates[$.datepicker.formatDate('yy-mm-dd', currentDate)];
-            this.scheduleId = initialDateData.schedule_id;
-            this.serviceIds = initialDateData.service_ids;
-            this.renderRouteOptions(this.scheduleId);
-            this.renderDirectionOptions(this.scheduleId, $('#route_id').val());
-            console.log('Navigation UI initialized with schedule ID:', this.scheduleId, 'and service IDs:', this.serviceIds, 'for date:', initialDateData.date, 'route:', $('#route_id').val(), 'direction:', $('#direction_toggle').val());
+            // Add date-select change handler.
+            displayDateInput.addEventListener('change', () => {
+              dateInput.value = displayDateInput.value;
+              dateInput.dispatchEvent(new Event('change'));
+            });
+
+            // Add date change handler.
+            dateInput.addEventListener('change', () => {
+              const selectedDate = dateInput.value;
+              const dateData = this.data.calendarData.dates[selectedDate];
+
+              if (dateData) {
+                this.scheduleId = dateData.schedule_id;
+                this.serviceIds = dateData.service_ids;
+
+                // Re-render route and direction options for new schedule
+                this.renderRouteOptions(this.scheduleId);
+                this.renderDirectionOptions(this.scheduleId, document.getElementById('route_id').value);
+
+                // Call external functions if they exist
+                if (typeof fetchStopTimes === 'function') fetchStopTimes();
+                if (typeof fetchRealTimeData === 'function') fetchRealTimeData();
+
+                IctBusses.log('Date changed - updated to schedule ID:', this.scheduleId, 'service IDs:', this.serviceIds);
+              }
+            });
+
+            // const self = this; // Capture the class instance
+            // $(displayDateInput).datepicker({
+            //     beforeShowDay: (date) => {
+            //         const dateString = $.datepicker.formatDate('yy-mm-dd', date);
+            //         return [availableDates.includes(dateString)];
+            //     },
+            //     dateFormat: 'mm/dd/yy',
+            //     altFormat: 'yy-mm-dd',
+            //     altField: dateInput,
+            //     onSelect: function(dateText) {
+            //         const selectedDate = $.datepicker.formatDate('yy-mm-dd', $(displayDateInput).datepicker('getDate'));
+            //         const dateData = self.data.calendarData.dates[selectedDate];
+            //         if (dateData) {
+            //             self.scheduleId = dateData.schedule_id;
+            //             self.serviceIds = dateData.service_ids;
+            //         }
+            //         self.renderRouteOptions(self.scheduleId);
+            //         self.renderDirectionOptions(self.scheduleId, $('#route_id').val());
+            //         if (typeof fetchStopTimes === 'function') fetchStopTimes();
+            //         if (typeof fetchRealTimeData === 'function') fetchRealTimeData();
+            //         $(displayDateInput).datepicker('hide');
+            //         // --- Trigger the change event on the hidden input so the controller can react ---
+            //         $('#date').val(selectedDate).trigger('change');
+            //     }
+            // }).datepicker('setDate', currentDate);
+
+            // const data = this.data.calendarData.dates[selectedDate];
+            // this.scheduleId = data.schedule_id;
+            // this.serviceIds = data.service_ids;
+
+            // // Set route defaults.
+            // this.renderRouteOptions(this.scheduleId);
+
+            // // Set direction defaults.
+            // this.renderDirectionOptions(this.scheduleId, $('#route_id').val());
+
+            // Init the UI.
+            dateInput.dispatchEvent(new Event('change'));
             IctBusses.log('Navigation UI initialized.');
         } catch (error) {
             IctBusses.logError('Error initializing navigation UI:', error);
