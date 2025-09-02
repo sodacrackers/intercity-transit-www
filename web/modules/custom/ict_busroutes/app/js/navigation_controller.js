@@ -1,3 +1,4 @@
+import { IctBusses } from './IctBusses.js';
 import NavigationUIManager from "./navigation_ui_manager.js";
 import NavigationDataService from "./navigation_data_service.js";
 import GTFSDataService from "./gtfs_data_service.js";
@@ -30,11 +31,11 @@ class NavigationController {
         this.viewMode = 'schedule'; // 'schedule' | 'realtime'
     }
     async initialize() {
-        console.log('Initializing NavigationController...');
+        IctBusses.log('Initializing NavigationController...');
         this.data = new NavigationDataService();
-        try { await this.data.load(); } catch (error) { console.error('Error loading calendar data:', error); return; }
+        try { await this.data.load(); } catch (error) { IctBusses.errorMessage('Error loading calendar data:', error); return; }
         this.ui = new NavigationUIManager(this.data);
-        try { await this.ui.initialize(this.data); } catch (e) { console.error('Error initializing navigation controller:', e); }
+        try { await this.ui.initialize(this.data); } catch (e) { IctBusses.errorMessage('Error initializing navigation controller:', e); }
         this.map = await new MapManager('map');
         this.map.initMap('map');
 
@@ -184,7 +185,7 @@ class NavigationController {
     }
 
     setupEventHandlers() {
-        console.log('Setting up event handlers...');
+        IctBusses.log('Setting up event handlers...');
         $('#date').on('change', (event) => this.handleDateChange(event));
         $('#route_id').on('change', () => this.handleRouteChange());
         $('#direction_toggle').on('change', () => this.handleDirectionChange());
@@ -369,7 +370,7 @@ class NavigationController {
             const vehicles = vehiclePositionsStore.getVehiclesForRoute(route_id);
             this.map.setVehiclePositions(vehicles);
         } catch (e) {
-            console.warn('[Vehicles] fetch failed', e);
+            IctBusses.logWarning('[Vehicles] fetch failed', e);
         }
     }
 
@@ -393,7 +394,7 @@ class NavigationController {
             const candidates = window.vehiclePositionsStore.getVehiclesForRoute(routeId) || [];
             this.map.setVehiclePositions(candidates);
         } catch (e) {
-            console.warn('[NavigationController] vehicle positions refresh failed', e);
+            IctBusses.logWarning('[NavigationController] vehicle positions refresh failed', e);
         }
     }
 
@@ -401,22 +402,23 @@ class NavigationController {
      * Fetch stop times for a given schedule, route, and direction.
      * @param {Object} params - { date, route_id, schedule_id, service_ids, direction_id }
      * @returns {Promise<Object>}
-     */    
+     */
 
     async fetchStopTimes(params) {
-        console.log('Fetching stop times with params:', params);
+        IctBusses.log('Fetching stop times with params:', params);
         try {
+            IctBusses.showSpinner();
             const response = await this.gtfsDataService.getData(params);
-            console.log('Stop times fetched successfully:', response);
-            console.log(response.StopTimesTables);
+            IctBusses.log('Stop times fetched successfully:', response);
             $('#openMapButton').removeClass('d-none');
             $('#printButton').removeClass('d-none');
+            IctBusses.hideSpinner();
             return response;
         } catch (error) {
-            console.error('Error fetching stop times:', error);
+            IctBusses.errorMessage('Error fetching stop times:', error);
         }
     }
-    
+
     async updateTable() {
         try {
             const params = this.buildParams();
@@ -436,7 +438,7 @@ class NavigationController {
             // NEW: update header here (single responsibility)
             this._updateRouteHeader();
         } catch (error) {
-            console.error('Error initializing TableManager:', error);
+            IctBusses.logError('Error initializing TableManager:', error);
         }
 
     }
@@ -447,7 +449,7 @@ class NavigationController {
         if (this.map) {
             this.map.updateMap(this.data.mapInfo, params.route_id, params.direction_id);
         } else {
-            console.warn('MapManager is not initialized.');
+            IctBusses.logWarning('MapManager is not initialized.');
         }
     }
 
@@ -460,7 +462,7 @@ class NavigationController {
                 this.data.scheduleId = dateData.schedule_id;
                 this.data.serviceIds = dateData.service_ids;
             } else {
-                console.warn('No data found for selected date:', selectedDate);
+                IctBusses.logWarning('No data found for selected date:', selectedDate);
                 return null;
             }
         }
@@ -471,7 +473,7 @@ class NavigationController {
             service_ids: this.data.serviceIds,
             direction_id: $('#direction_toggle').val()
         };
-    }    
+    }
     async setViewMode(mode) {
         this.viewMode = mode;
         if (mode === 'realtime') {
@@ -621,7 +623,7 @@ class NavigationController {
         try {
             return this._buildRealtimeStopMapFromStore(routeId, directionId);
         } catch (e) {
-            console.warn('Realtime stop map build failed', e);
+            IctBusses.logWarning('Realtime stop map build failed', e);
             return {};
         }
     }

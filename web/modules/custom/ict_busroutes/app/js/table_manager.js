@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 class TableManager {
     constructor(tableElementId) {
         this.tableElementId = tableElementId;
@@ -19,13 +21,13 @@ class TableManager {
     async update(routeId, directionId, zoomLevel = null) {
         if (this.includeRealTime) {
             if (!window.tripUpdatesStore) {
-                console.warn('[TableManager] tripUpdatesStore not loaded yet');
+                IctBusses.logWarning('[TableManager] tripUpdatesStore not loaded yet');
             } else {
                 try {
                     await window.tripUpdatesStore.refresh();
-                    console.debug('[TableManager] RT refreshed: trips=', window.tripUpdatesStore.byTripId.size);
+                    IctBusses.log('[TableManager] RT refreshed: trips=', window.tripUpdatesStore.byTripId.size);
                 } catch(e) {
-                    console.warn('[TableManager] RT refresh failed', e);
+                    IctBusses.logWarning('[TableManager] RT refresh failed', e);
                 }
             }
         }
@@ -59,7 +61,7 @@ class TableManager {
             if (q.length) this.realTimeQueues[tripId] = q;
         }
         // Debug head of each queue
-        // console.debug('[buildRealTimeQueues]', Object.entries(this.realTimeQueues).map(([t,q]) => [t, q[0]]));
+        // IctBusses.log('[buildRealTimeQueues]', Object.entries(this.realTimeQueues).map(([t,q]) => [t, q[0]]));
     }
 
     // Convert epoch seconds to formatted string compatible with formatTime display style
@@ -160,13 +162,13 @@ class TableManager {
         tableElement.dataset.directionId = directionId;
 
         const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
+        // const headerRow = document.createElement('tr');
 
         // Stop info header
         const stopInfoTh = document.createElement('th');
         stopInfoTh.textContent = 'Stop Info';
         stopInfoTh.classList.add('header-cell');
-        headerRow.appendChild(stopInfoTh);
+        // headerRow.appendChild(stopInfoTh);
 
         // Trip headers with data-trip-id
         tripIdList.forEach(tripId => {
@@ -174,9 +176,9 @@ class TableManager {
             th.textContent = tripId;
             th.dataset.tripId = tripId;
             th.classList.add('header-cell');
-            headerRow.appendChild(th);
+            // headerRow.appendChild(th);
         });
-        thead.appendChild(headerRow);
+        // thead.appendChild(headerRow);
         tableElement.appendChild(thead);
 
         const tbody = document.createElement('tbody');

@@ -1,9 +1,12 @@
-import IctBusUtils from './IctBusUtils.js';
+import { IctBusses } from './IctBusses.js';
 import NavigationController from './navigation_controller.js';
 
 // Instantiate the new TableManager, MapManager, and NavigationController
 const navigationController = new NavigationController();
 document.addEventListener('DOMContentLoaded', async function() {
+
+    IctBusses.showSpinner();
+
     await navigationController.initialize();
     navigationController.setupEventHandlers();
     // Default to schedule view
@@ -24,6 +27,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         scheduleButton?.classList.remove('active');
         navigationController.setViewMode('realtime');
     });
+
+    // Trigger and load something on the page, even defaults.
+    IctBusses.hideSpinner();
+    $('#route_id').trigger('change');
 });
 
 // Update the map when show the map flyout when it is opened

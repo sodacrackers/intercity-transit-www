@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 export class TripUpdatesStore {
   constructor(endpoint) {
     this.endpoint = endpoint;
@@ -24,7 +26,7 @@ export class TripUpdatesStore {
       this._ingest(data);
       return data;
     } catch (e) {
-      if (e.name !== 'AbortError') console.error('[TripUpdatesStore] refresh failed', e);
+      if (e.name !== 'AbortError') IctBusses.logError('[TripUpdatesStore] refresh failed', e);
       throw e;
     }
   }

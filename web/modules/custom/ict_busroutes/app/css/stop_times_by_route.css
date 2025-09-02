@@ -8,7 +8,17 @@
     overflow: scroll;
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
-    background-color: #f8f9fa; /* Light gray background for debugging */
+    background-color: #fff;
+    margin: 3rem 0;
+}
+
+.table-responsive td,
+.table-responsive th {
+  display: table-cell;
+  vertical-align: middle !important;
+  text-align: center !important;
+  align-items: center !important;
+  height: 100%;
 }
 
 /* Custom scrollbar styles */
@@ -169,6 +179,14 @@ body.show-departures-only .infobox .static-arrival { display: none; }
 tr.timepoint th {
     background-color: #f1f3f6;
     z-index: 1; /* Adjust z-index to ensure it is below the calendar dropdown */
+}
+
+tr.timepoint th h3.timepoint {
+  display: none;
+}
+
+tr.timepoint th h3.timepoint::after {
+  content: "Stop";
 }
 
 #map, #realTimeMap {

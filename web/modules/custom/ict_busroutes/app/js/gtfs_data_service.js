@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 class GTFSDataService {
     constructor() {
         this.calendarData = {};
@@ -43,7 +45,7 @@ class GTFSDataService {
         const qs = this.buildQuery(data);
         const requestUrl = isStopTimes ? (qs ? `${url}?${qs}` : url) : url;
 
-        console.log('Fetching data from:', requestUrl, 'with data:', isStopTimes ? '(GET query params)' : data);
+        IctBusses.log('Fetching data from:', requestUrl, 'with data:', isStopTimes ? '(GET query params)' : data);
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: isStopTimes ? 'GET' : 'POST',

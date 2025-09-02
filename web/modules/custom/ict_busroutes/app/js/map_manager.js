@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 class MapManager {
     constructor(mapElementId) {
         this.mapElementId = mapElementId;
@@ -126,7 +128,7 @@ class MapManager {
             : flat;
 
         if (!filtered.length) {
-            console.warn('[MapManager] No stops after direction filter', { directionId, rawShape: raw });
+            IctBusses.logWarning('[MapManager] No stops after direction filter', { directionId, rawShape: raw });
         }
 
         // Deduplicate
@@ -267,7 +269,7 @@ class MapManager {
 
     /* ---- NEW / REPLACED: updateMap with direction filtering ---- */
     async updateMap(mapData, routeId, directionId, zoomLevel = null) {
-        console.log('updateMap called with', { routeId, directionId });
+        IctBusses.log('updateMap called with', { routeId, directionId });
 
         // Clear existing stop markers & polylines (keep vehicles if realtime)
         this.markers.forEach(m => { if (m.map) m.map = null; });

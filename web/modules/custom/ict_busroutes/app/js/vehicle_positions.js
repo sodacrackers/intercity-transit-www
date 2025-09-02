@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 /**
  * VehiclePositionsStore
  * Fetches & indexes GTFS-RT VehiclePosition feed.

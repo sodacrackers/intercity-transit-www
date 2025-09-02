@@ -1,14 +1,12 @@
-<div id="ict-busroutes-app" class="ict-busroutes-container">
-    <!-- // -->
+<div id="ict-busroutes-app" class="ict-busroutes-container container-fluid body">
     <link href="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <!-- // -->
-    <script src="/modules/custom/ict_busroutes/app/js/scripts.js" defer></script>
-    <link href="/modules/custom/ict_busroutes/app/css/styles.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="/modules/custom/ict_busroutes/app/css/stop_times_by_route.css">
+    <script src="/modules/custom/ict_busroutes/app/js/scripts.js?random=[[random_int]]" defer></script>
+    <link href="/modules/custom/ict_busroutes/app/css/styles.css?random=[[random_int]]" rel="stylesheet" crossorigin="anonymous">
+    <link href="/modules/custom/ict_busroutes/app/css/stop_times_by_route.css?random=[[random_int]]" rel="stylesheet">
   <!--
     <nav class="navbar navbar-expand-lg intercity fixed-top">
         <div class="container-fluid">
@@ -24,16 +22,17 @@
     </nav>
     -->
 
-    <div class="loading-spinner position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
+
+    <div class="loading-spinner position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center hidden" style="background-color: rgba(255, 255, 255, 0.8); z-index: 1000;">
       <div class="spinner-border spinner-border-lg text-primary" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
 
-    <div class='container-fluid body'>
+    <div class=''>
       <div class='row'>
         <div class='col'>
-          <div class="container">
+          <div class="">
               <form id="StopTimesByRoutesForm" class="mt-4">
                   <div class="row">
                       <div class="col" id="date-input-wrapper">
@@ -46,11 +45,11 @@
                       </div>
                       <div class="col">
                           <label for="route_id" class="mr-2">Select a Route:</label>
-                          <select id="route_id" name="route_id" class="form-select"></select>
+                          <select id="route_id" name="route_id" class="form-select" tabindex="-1"><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="21">21</option><option value="41">41</option><option value="42">42</option><option value="45">45</option><option value="47">47</option><option value="48">48</option><option value="60">60</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="94">94</option><option value="100">ONE</option><option value="620">620</option><option value="621">62A</option><option value="622">62B</option></select>
                       </div>
                       <div class="col">
                           <label for="direction_toggle" class="mr-2">Select Direction:</label>
-                          <select id="direction_toggle" name="direction_toggle" class="form-select"></select>
+                          <select id="direction_toggle" name="direction_toggle" class="form-select" tabindex="-1"><option value="0">Inbound</option><option value="1">Outbound</option></select>
                       </div>
                   </div>
               </form>
@@ -113,12 +112,10 @@
         </div>
       </div>
     </div>
-    <!-- // -->
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDgzWSot4NiqhlW2QyRYi1TtAM97nrrvq0&loading=async"></script>
-    <!-- // -->
     <script type="module" src="/modules/custom/ict_busroutes/app/js/init.js?random=[[random_int]]"></script>
 </div>

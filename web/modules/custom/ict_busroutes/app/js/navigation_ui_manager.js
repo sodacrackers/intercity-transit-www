@@ -1,3 +1,5 @@
+import { IctBusses } from './IctBusses.js';
+
 /**
  * Handles UI logic for navigation/calendar, routes, and directions.
  * Coordinates with NavigationDataService for data.
@@ -15,6 +17,7 @@ class NavigationUIManager {
      * @param {Object} data - Object to store selected navigation/service IDs.
      */
     async initialize() {
+      IctBusses.log("Initializing navigation UI...");
         try {
             const displayDateInput = document.getElementById('display_date');
             const dateInput = document.getElementById('date');
@@ -53,8 +56,9 @@ class NavigationUIManager {
             this.renderRouteOptions(this.scheduleId);
             this.renderDirectionOptions(this.scheduleId, $('#route_id').val());
             console.log('Navigation UI initialized with schedule ID:', this.scheduleId, 'and service IDs:', this.serviceIds, 'for date:', initialDateData.date, 'route:', $('#route_id').val(), 'direction:', $('#direction_toggle').val());
+            IctBusses.log('Navigation UI initialized.');
         } catch (error) {
-            console.error('Error initializing navigation UI:', error);
+            IctBusses.logError('Error initializing navigation UI:', error);
         }
 }
 

@@ -1,6 +1,11 @@
 div#ict-busroutes-app {
   min-height: 50rem;
   padding-bottom: 10rem;
+  position: relative;
+
+  .loading-spinner.hidden {
+      display: none !important;
+  }
 
 
   a,
