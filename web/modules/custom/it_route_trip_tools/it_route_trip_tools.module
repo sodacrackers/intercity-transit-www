@@ -198,31 +198,6 @@ function it_route_trip_tools_theme_registry_alter(&$theme_registry) {
   }
 }
 
-/*
-	Only used for basic request
-	Mostly the route form select list
-*/
-function it_route_trip_tools_get_api_data($data, $apiId) {
-	//Set the cache data
-	$json = &drupal_static(__FUNCTION__);
-	$hash = md5($data);
-	$cid = $apiId . '_' . $hash . ':' . \Drupal::languageManager()->getCurrentLanguage()->getId();
-
-	//Check if the cache exists
-	if ($cache = \Drupal::cache()->get($cid)):
-		$json = $cache->data;
-
-	//If not, build it
-	else:
-		$api_data = file_get_contents($data);
-		$json = json_decode($api_data, TRUE);
-    $expire = \Drupal::service('datetime.time')->getRequestTime() + (60 * 60 * 24); // 1 day cache.
-    \Drupal::cache()->set($cid, $json, $expire);
-	endif;
-	return $json;
-
-}
-
 
 function it_route_trip_get_stop_markers($stop_times) {
   $res = [];
@@ -424,9 +399,6 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
   $time_tables_outbound = $outbound_data['Route']['StopTimesTables'][OUTBOUND_DIRECTION];
   $inbound_label = $inbound_data['Route']['Directions'][INBOUND_DIRECTION];
   $outbound_label = $outbound_data['Route']['Directions'][OUTBOUND_DIRECTION];
-  // $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
-  // $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
-  // $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
 
   $short_name = $inbound_data['Route']['RouteInfo']['route_short_name'];
   $long_name = $inbound_data['Route']['RouteInfo']['route_long_name'];
@@ -487,8 +459,7 @@ function it_route_trip_tools_get_stop_data($stopId) {
 }
 
 /*
-	Build the select list for the routes form
-	Uses it_route_trip_tools_get_api_data()
+	Build the select list for the routes form.
 */
 function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
   // ICTSD-129
@@ -543,38 +514,6 @@ function it_route_trip_tools_build_stop_title($stopId) {
     }
   }
   return '';
-}
-
-/*
-	Builds the request data to pass to it_route_trip_tools_get_route_table_map_data
-	Requires $routeId, $serv and $dir to be set
-	All values try to pull from the routes form
-	The form requires all fields to have values
-	There are conditionals in place in case someone visits from a link
-*/
-function it_route_trip_tools_get_route_data($routeId = NULL) {
-
-	//Check if a service_option value was sent
-	if (\Drupal::request()->request->get('service_option')):
-		$serv = \Drupal::request()->request->get('service_option');
-	//If not, set it to 1
-	else:
-		$serv = '1';
-	endif;
-	//Check if a route_direction value was sent
-	if (\Drupal::request()->request->get('route_direction')):
-		$dir = 'Outbound';
-		//$dir = \Drupal::request()->request->get('route_direction');
-	//If not, set it to Inbound
-	else:
-		$dir = 'Outbound';
-	endif;
-	//Make sure $routeId is not empty or set to all
-	if ($routeId != '' && $routeId != 'all'):
-		//Set the route data using it_route_trip_tools_get_route_table_map_data()
-		$route_data = it_route_trip_tools_get_route_table_map_data($routeId, $serv, $dir);
-		return $route_data;
-	endif;
 }
 
 function it_route_trip_tools_preprocess_html(&$vars) {
@@ -652,8 +591,8 @@ function it_route_trip_tools_pics_get_alerts() {
     ]);
     
     // Decode the JSON response
-    $data = Json::decode($response->getBody()->getContents());
-    
+    $data = json_decode($response->getBody()->getContents(), TRUE);
+
     // Extract the Entities attribute
     $entities = $data['Entities'] ?? [];
     

@@ -10,33 +10,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class RoutesPage extends ControllerBase {
 
-  // ICTSD-129
-  // private Gtfs $gtfs;
-
-  /**
-   * ModalFormContactController constructor.
-   *
-   * @param \Drupal\ict_gtfs\Gtfs $form_builder
-   *   The form builder.
-   */
-  public function __construct(/*Gtfs $form_builder*/) {// ICTSD-129
-      //$this->gtfs = $form_builder;
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-   *   The Drupal service container.
-   *
-   * @return static
-   */
-  public static function create(ContainerInterface $container) {// ICTSD-129
-      return new static(
-          //$container->get('ict.gtfs')
-      );
-  }
-  
   protected function getEditableConfigNames() {
     return [
       'it_route_trip_tools.settings',
