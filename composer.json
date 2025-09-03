@@ -5,6 +5,18 @@
     "license": "MIT",
     "repositories": [
         {
+        "type": "package",
+        "package": {
+            "name": "jackmoore/colorbox",
+            "version": "1.6.4",
+            "type": "drupal-library",
+            "dist": {
+            "url": "https://github.com/jackmoore/colorbox/archive/1.6.4.zip",
+            "type": "zip"
+            }
+        }
+        },
+        {
             "type": "package",
             "package": {
             "name": "malsup/jquery.cycle",
@@ -584,7 +596,8 @@
         "briancherne/jquery.hover-intent": "^1.10",
         "douglascrockford/json2": "dev-master",
         "malsup/jquery.cycle": "^3.0@alpha",
-        "tobia/jquery.pause": "dev-master"
+        "tobia/jquery.pause": "dev-master",
+        "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
         "drupal/core-dev": "^10"

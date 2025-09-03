@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1c582f7378cdce2f1535c267dc4016a",
+    "content-hash": "ab3997d2e63d707d7feba152a474feeb",
     "packages": [
         {
             "name": "algolia/places",
@@ -10803,6 +10803,15 @@
             },
             "abandoned": true,
             "time": "2017-05-08T12:10:56+00:00"
+        },
+        {
+            "name": "jackmoore/colorbox",
+            "version": "1.6.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jackmoore/colorbox/archive/1.6.4.zip"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "jquery/chosen",
