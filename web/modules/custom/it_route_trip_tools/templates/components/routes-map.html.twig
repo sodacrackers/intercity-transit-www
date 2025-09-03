@@ -63,13 +63,8 @@
       events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}").addEventListener(event, (e) => {
         e.preventDefault();
         e.stopPropagation();
-      }))
-	  var sequence_max = -1;
-	  var id_max = -1;
-	  var count_max = -1;
-      var sequence_min = 9999999;
-      var id_min = 9999999;
-      var count_min = -1;
+      }));
+
 	{% for stop_id, stop_dataset in stop_ids %}
 	    var stop_id = {{ stop_id }};
 		var stop_count = {{ stop_dataset.stop_times|length }};
@@ -89,31 +84,13 @@
 		    times: {{ times_array|json_encode|raw }},
 			stop_id: stop_id,
 	  	};
-		{% if loop.first %}
-			stop_marker.icon = start;
-			{% set start_end_check = 1 %}
-		{% elseif loop.last %}
-			stop_marker.icon = end;
-			{% set start_end_check = 2 %}
-		{% else %}
-			{% if stop_dataset.stop_data.timepoint == 1 %}
+
+		{% if stop_dataset.timepoint == 1 %}
 			stop_marker.icon = timepoint;
-			{% else %}
+		{% else %}
 			stop_marker.icon = stop;
-			{% endif %}
-			{% set start_end_check = 0 %}
 		{% endif %}
-		{% if start_end_check != 0 %}
-			stop_marker.label = stop_marker.label ?? {
-			{% if start_end_check == 1 %}
-				text: 'Start',
-			{% elseif start_end_check == 2 %}
-				text: 'End',
-			{% endif %}
-				fontWeight: 'bold',
-				color: '#fff'
-			},
-		{% endif %}
+
 	  	{{ dir }}_markers[stop_id] = stop_marker;
 	{% endfor %}
 	  	//Create and open InfoWindow.
@@ -135,8 +112,8 @@
           position: markerLatLng,
           map: data.map,
           title: data.title,
-          icon: i == markers_array.length - 1 ? end : i == 0 ? start : data.icon,
-          label: i == markers_array.length - 1 ? {text: 'End', fontWeight: 'bold', color: '#fff'} : i == 0 ? { text: 'Start', fontWeight: 'bold', color: '#fff'} : data.label,
+          icon: data.icon,
+          label: data.label,
 	      });
     		//Attach click event to the marker.
         (function (marker, data) {

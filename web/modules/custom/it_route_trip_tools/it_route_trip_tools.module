@@ -815,6 +815,7 @@ function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direc
 
 function it_route_trip_tools_pics_get_all_routes_data() {
   $routes = it_route_trip_tools_pics_get_routes();
+  $all_routes_data = [];
   foreach ($routes as $id => $route) {
     $route_data = it_route_trip_tools_pics_get_route_data($id);
     $all_routes_data[$route['route_short_name']] = $route_data;
