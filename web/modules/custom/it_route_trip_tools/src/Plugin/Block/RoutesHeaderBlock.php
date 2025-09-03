@@ -88,7 +88,7 @@ class RoutesHeaderBlock extends BlockBase implements ContainerFactoryPluginInter
      * {@inheritdoc}
      */
     public function build() {
-        $routes_options = it_route_trip_tools_build_routes_options(TRUE);
+        $routes_options = it_route_trip_tools_pics_get_routes();
         $build['content'] = [
             '#theme' => 'routes_header_block',
             '#routes_options' => $routes_options,
