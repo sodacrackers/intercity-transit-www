@@ -1,9 +1,7 @@
 <?php
 namespace Drupal\it_route_trip_tools\Controller;
 
-use Drupal\ict_gtfs\Gtfs;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

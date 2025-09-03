@@ -1,11 +1,9 @@
 <?php
 
-use Drupal\Core\Form\FormStateInterface;
-use GuzzleHttp\Client;
 use Drupal\Component\Serialization\Json;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Form\ConfigFormBase;
 
+CONST INBOUND_DIRECTION = 0;
+CONST OUTBOUND_DIRECTION = 1;
 
 /**
  * Implements hook_theme().
@@ -245,120 +243,6 @@ function it_route_trip_get_stop_markers($stop_times) {
   return $res;
 }
 
-function it_route_trip_get_times_alt($stop_times, $trips) {
-  if (count($stop_times) == 0) {
-    return [];
-  }
-  $trips = array_values($trips);
-  $middle_index = floor((count($trips) - 1) / 2);
-  $central_trip = $trips[$middle_index];
-  $ideal_trip = [];
-  foreach ($stop_times as $stop_time) {
-    if (in_array($stop_time['trip_id'], $central_trip)) {
-      if (isset($ideal_trip[$stop_time['name']])) {
-        $last = end($ideal_trip);
-        $ideal_trip[$stop_time['name'] . ' '] = $last + 1;
-      }
-      else {
-        $ideal_trip[$stop_time['name']] = (int) $stop_time['stop_sequence'];
-      }
-    }
-  }
-  asort($ideal_trip);
-  $res = [];
-  $counts = [];
-  foreach ($stop_times as $stop_time) {
-    $counts[$stop_time['name']] = isset($counts[$stop_time['name']]) ? $counts[$stop_time['name']] + 1 : 1;
-  }
-  $top = max($counts);
-  $half_top = ($top / 2);
-  if (in_array($half_top, $counts)) {
-    $top = $half_top;
-  }
-  $stops_elaborated_by_trip = [];
-  foreach ($stop_times as $stop_time) {
-    $index = $ideal_trip[$stop_time['name']];
-    if (isset($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && $top == count($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && isset($ideal_trip[$stop_time['name'] . ' '])) {
-      $index = $ideal_trip[$stop_time['name'] . ' '];
-    }
-    if (in_array($stop_time['name'], $stops_elaborated_by_trip[$stop_time['trip_id']] ?? [])) {
-      $index = $ideal_trip[$stop_time['name'] . ' '];
-    }
-    $formatted = str_pad(substr($stop_time['arrival_time'], 0, strlen($stop_time['arrival_time']) - 3), 5, '0', STR_PAD_LEFT);
-    if (isset($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']]) && $top == count($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']])) {
-      $res['stops'][$index + 1]['stop_id'] = $stop_time['stop_id'];
-      $res['stops'][$index + 1]['stop_sequence'] = $stop_time['stop_sequence'];
-      $res['stops'][$index + 1][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = $formatted;
-      usort($res['stops'][$index + 1][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']], function ($a, $b) {
-        return strtotime($a) - strtotime($b);
-      });
-    }
-    else {
-      $res['stops'][$index]['stop_id'] = $stop_time['stop_id'];
-      $res['stops'][$index]['stop_sequence'] = $stop_time['stop_sequence'];
-      $res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']][] = $formatted;
-      usort($res['stops'][$index][$stop_time['timepoint'] == 1 ? 'timepoint' : 'not-timepoint'][$stop_time['name']], function ($a, $b) {
-        return strtotime($a) - strtotime($b);
-      });
-    }
-    if (isset($stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name']])) {
-      $stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name'] . ' '] = $stop_time['name'] . ' ';
-    } else {
-      $stops_elaborated_by_trip[$stop_time['trip_id']][$stop_time['name']] = $stop_time['name'];
-    }
-  }
-  foreach ($res['stops'] as &$stop) {
-    $type = array_keys($stop)[2]; 
-    $name = array_keys($stop[$type])[0];
-    if (count($stop[$type][$name]) < $top) {
-      $stop[$type][$name] = array_pad($stop[$type][$name], -($top), NULL);
-    }
-  }
-
-  ksort($res['stops']);
-  $res['trip_count'] = count($res['stops']);
-  return $res;
-}
-
-function it_route_trip_get_trips($stop_times, $replace_id = TRUE) {
-  $res = [];
-  foreach ($stop_times as $stop_time) {
-    if (empty($res[$stop_time['trip_id']])) {
-      $res[$stop_time['trip_id']] = [
-        'tripId' => $stop_time['trip_id'],
-        'tripStartTime' => it_route_trip_format_time($stop_time['departure_time']),
-        'tripEndTime' => '',
-        'shapeId' => (int) $stop_time['shape_id'],
-        'stopTimes' => [],
-      ];
-    }
-    $res[$stop_time['trip_id']]['stopTimes'][] = [
-      'stopSequence' =>  (int) $stop_time['stop_sequence'],
-      'stopId' =>  (int) $stop_time['stop_id'],
-      'stopName' => $stop_time['name'],
-      'departureTime' =>  it_route_trip_format_time($stop_time['departure_time']),
-      'timepoint' =>  (int) $stop_time['timepoint'],
-    ];
-    $res[$stop_time['trip_id']]['tripEndTime'] = it_route_trip_format_time($stop_time['departure_time']);
-  }
-  if ($replace_id) {
-    $trips = array_values($res);
-    foreach ($trips as $delta => &$trip) {
-      $trip['tripId'] = $delta;
-    }
-  }
-  else {
-    $trips = $res;
-  }
-  return $trips;
-}
-
-function it_route_trip_format_time($time) {
-  $time_no_sec = substr($time, 0, strlen($time) - 3);
-  $hours = (int) explode(':', $time_no_sec)[0];
-  return $time_no_sec . ($hours > 11 ? ' pm' : ' am');
-}
-
 function it_route_trip_tools_get_min($shapes, $key) {
   $val = 999;
   foreach ($shapes as $coord) {
@@ -530,16 +414,16 @@ function it_route_trip_tools_get_stop_details($stop_id) {
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
   $date = empty($date) ? date('Y-m-d') : $date;
-  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, 0);
-  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, 1);
-  $shapes_inbound = reset($inbound_data['Route']['MapInfo']['Shapes'][0]);
-  $shapes_outbound = reset($outbound_data['Route']['MapInfo']['Shapes'][1]);
-  $stop_markers_inbound = $inbound_data['Route']['MapInfo']['Stops'][0];
-  $stop_markers_outbound = $outbound_data['Route']['MapInfo']['Stops'][1];
-  $time_tables_inbound = $inbound_data['Route']['StopTimesTables'][0];
-  $time_tables_outbound = $outbound_data['Route']['StopTimesTables'][1];
-  $inbound_label = $inbound_data['Route']['Directions'][1];
-  $outbound_label = $outbound_data['Route']['Directions'][0];
+  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION);
+  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION);
+  $shapes_inbound = reset($inbound_data['Route']['MapInfo']['Shapes'][INBOUND_DIRECTION]);
+  $shapes_outbound = reset($outbound_data['Route']['MapInfo']['Shapes'][OUTBOUND_DIRECTION]);
+  $stop_markers_inbound = $inbound_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION];
+  $stop_markers_outbound = $outbound_data['Route']['MapInfo']['Stops'][OUTBOUND_DIRECTION];
+  $time_tables_inbound = $inbound_data['Route']['StopTimesTables'][1];
+  $time_tables_outbound = $outbound_data['Route']['StopTimesTables'][0];
+  $inbound_label = $inbound_data['Route']['Directions'][INBOUND_DIRECTION];
+  $outbound_label = $outbound_data['Route']['Directions'][OUTBOUND_DIRECTION];
   // $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
   // $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
   // $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
