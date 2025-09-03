@@ -16,15 +16,18 @@ class RoutesPage extends ControllerBase {
   }
 
   public function BuildTitle($routeId) {
-    if ($routeId != 'all'):
+    $title = '';
+    if ($routeId != 'all') {
       $request = \Drupal::request();
-      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
-        $title = it_route_trip_tools_build_route_title($routeId);
-      endif;
-    else:
-      $config = $this->config('it_route_trip_tools.settings');
-      $title = $config->get('route_page_title');
-    endif;
+      if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
+        $date = $request->query->get('date');
+        $date = $date ?? date('Y-m-d');
+        $title = it_route_trip_tools_build_route_title($routeId, $date);
+      } else {
+        $config = $this->config('it_route_trip_tools.settings');
+        $title = $config->get('route_page_title');
+      }
+    }
     return $title;
   }
 
