@@ -3,7 +3,6 @@ namespace Drupal\it_route_trip_tools\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\media\MediaInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides route responses for the Example module.
@@ -141,8 +140,8 @@ class RoutesPage extends ControllerBase {
     }, $alerts);
   }
 
-  public function getAllRoutesData() {
-    return it_route_trip_tools_pics_get_all_routes_data();
+  public function getAllRoutesData($date = NULL) {
+    return it_route_trip_tools_pics_get_all_routes_data($date);
   }
 
   public function BuildPage($routeId = NULL) {
@@ -161,7 +160,7 @@ class RoutesPage extends ControllerBase {
     if (empty($routeId) || $routeId === 'all') {
       $all_routes_map_data_array = $this->getAllRoutesData();
       $all_routes_map_data_array = array_map(function($route) {
-        $val = $route['Route']['MapInfo']['Shapes'][0] ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
+        $val = isset($route['Route']['MapInfo']['Shapes'][0]) ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
         return [
           'Shapes' => $val,
           'Color' => '#FFFFFF',

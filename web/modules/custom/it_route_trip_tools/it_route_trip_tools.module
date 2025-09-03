@@ -501,7 +501,7 @@ function it_route_trip_tools_build_route_title($routeId) {
   $routes = it_route_trip_tools_pics_get_route_data($routeId);
   $date = \Drupal::request()->query->get('date');
   $date = empty($date) ? date('Y-m-d') : $date;
-  return $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] . ' (' . $date . ')';
+  return isset($routes['Route']) ? $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] . ' (' . $date . ')' : '';
 }
 
 function it_route_trip_tools_build_stop_title($stopId) {
@@ -623,9 +623,9 @@ function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direc
   $schedule_id = $date_info['schedule_id'] ?? '101';
   $service_ids = $date_info['service_ids'] ?? [10];
   try {
-    $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.date('Y-m-d').'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id);
+    $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.$date.'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id);
     $data = Json::decode($response->getBody()->getContents());
-    $routes_data = $data['status'] == 'success' ? $data['data'] : [];
+    $routes_data = isset($data['status']) && $data['status'] == 'success' ? $data['data'] : [];
     // Cache for 24 hours.
     \Drupal::cache()->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
     return $routes_data;
@@ -635,11 +635,11 @@ function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direc
   }
 }
 
-function it_route_trip_tools_pics_get_all_routes_data() {
+function it_route_trip_tools_pics_get_all_routes_data($date = NULL) {
   $routes = it_route_trip_tools_pics_get_routes();
   $all_routes_data = [];
   foreach ($routes as $id => $route) {
-    $route_data = it_route_trip_tools_pics_get_route_data($id);
+    $route_data = it_route_trip_tools_pics_get_route_data($id, $date);
     $all_routes_data[$route['route_short_name']] = $route_data;
   }
   return $all_routes_data;
