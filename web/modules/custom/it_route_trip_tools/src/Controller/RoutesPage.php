@@ -171,8 +171,7 @@ class RoutesPage extends ControllerBase {
   }
 
   public function getAllRoutesData() {
-    $routes = it_route_trip_tools_pics_get_all_routes_data();
-    return $routes;
+    return it_route_trip_tools_pics_get_all_routes_data();
   }
 
   public function BuildPage($routeId = NULL) {

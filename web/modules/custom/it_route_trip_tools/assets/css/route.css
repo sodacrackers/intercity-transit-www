@@ -376,8 +376,9 @@ label.form-check-label {
 }
 
 #filters .form-check-label {
-  white-space: nowrap;
+  white-space: break-spaces;
   margin: 0;
+  display: inline;
 }
 
 #filters .dropdown-menu {
