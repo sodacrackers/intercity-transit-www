@@ -149,9 +149,15 @@
         $(element).datepicker({
           dateFormat: 'yy-mm-dd',
           defaultDate: currentDefaultDate,
-          // beforeShowDay: function (date) {
-          //   return true;
-          // },
+          beforeShowDay: function (date) {
+            const availableDays = drupalSettings.it_route_trip_tools.available_days;
+            const thisDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+            if (availableDays.hasOwnProperty(thisDate)) {
+                return [true, "","Service"];
+            } else{
+                return [false,"","No Service"];
+            }
+          },
           onSelect: function (dateText, inst) {
             // Handle the date selection
             const url = new URL(window.location.href);

@@ -258,7 +258,8 @@ class RoutesPage extends ControllerBase {
         '#attached' => [
           'drupalSettings' => [
             'it_route_trip_tools' => [
-              'routes_path' => $routes_path
+              'routes_path' => $routes_path,
+              'available_days' => it_route_trip_tools_pics_get_dates(),
             ]
           ]
         ]
