@@ -791,7 +791,7 @@ function it_route_trip_tools_pics_get_alerts() {
 function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direction_id = 0) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $date = empty($date) ? date('Y-m-d') : $date;
-  $cid = 'route_data:' . $date;
+  $cid = 'route_data:' . $date . ':' . $route_id;
   if ($cache = \Drupal::cache()->get($cid)) {
     return $cache->data;
   }

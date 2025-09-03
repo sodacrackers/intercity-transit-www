@@ -190,6 +190,7 @@ class RoutesPage extends ControllerBase {
 
     if (empty($routeId) || $routeId === 'all') {
       $all_routes_map_data_array = $this->getAllRoutesData();
+      dump($all_routes_map_data_array);
       $all_routes_map_data_array = array_map(function($route) {
         $val = $route['Route']['MapInfo']['Shapes'][0] ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
         return [
@@ -198,6 +199,7 @@ class RoutesPage extends ControllerBase {
           'RouteName' => $route['Route']['RouteInfo']['route_long_name'],
         ];
       }, $all_routes_map_data_array);
+      dump($all_routes_map_data_array);exit();
       $alerts = $this->getAllAlerts();
       return [
         '#theme' => 'routes_new_page',

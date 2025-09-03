@@ -16,8 +16,7 @@
 			var infoWindow = new google.maps.InfoWindow();
 			var shapesData = drupalSettings.it_route_trip_tools.all_routes_map_data_array;
 			$.each(shapesData[0], function(shapeDataKey, shape) {
-				var shapeData = '';
-				shapeData = shape.Shapes;
+				var shapeData = shape.Shapes;
 				var color = shape.Color;
 				var routeName = shape.RouteName;
 					plotBusRoute(map, shapeData, color, routeName, infoWindow);
