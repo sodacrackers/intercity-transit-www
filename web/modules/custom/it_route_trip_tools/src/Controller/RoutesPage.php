@@ -233,7 +233,8 @@ class RoutesPage extends ControllerBase {
 
       $routes_map_weekdays = [
         '#theme' => 'routes_map',
-        '#route_data' => $route_data_weekdays
+        '#route_data' => $route_data_weekdays,
+        '#day' => $date,
       ];
       $routes_table_weekdays = [
         '#theme' => 'routes_table',

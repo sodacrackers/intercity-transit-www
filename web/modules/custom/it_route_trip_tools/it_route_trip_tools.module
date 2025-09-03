@@ -61,6 +61,7 @@ function it_route_trip_tools_theme($existing, $type, $theme, $path) {
 		'routes_map' => [
 			'variables' => array (
 				'route_data' => array(),
+        'day' => NULL,
 			),
 			'template' => 'components/routes-map'
 		],
@@ -639,15 +640,10 @@ function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
 
 
 function it_route_trip_tools_build_route_title($routeId) {
-  // ICTSD-129
-  return [];
-  $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
-  foreach ($routes as $route) {
-    if ($route[0] == $routeId) {
-      return $route[3];
-    }
-  }
-  return '';
+  $routes = it_route_trip_tools_pics_get_route_data($routeId);
+  $date = \Drupal::request()->query->get('date');
+  $date = empty($date) ? date('Y-m-d') : $date;
+  return $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] . ' (' . $date . ')';
 }
 
 function it_route_trip_tools_build_stop_title($stopId) {
