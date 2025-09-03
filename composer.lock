@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce171864263612cfecbdb8fbaa78e51b",
+    "content-hash": "c1c582f7378cdce2f1535c267dc4016a",
     "packages": [
         {
             "name": "algolia/places",
@@ -76,6 +76,15 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.3.0"
             },
             "time": "2025-03-13T08:50:04+00:00"
+        },
+        {
+            "name": "briancherne/jquery.hover-intent",
+            "version": "1.10.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://github.com/briancherne/jquery-hoverIntent/archive/refs/tags/v1.10.2.tar.gz"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -1495,6 +1504,16 @@
                 }
             ],
             "time": "2024-02-05T11:35:39+00:00"
+        },
+        {
+            "name": "douglascrockford/json2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/douglascrockford/JSON-js",
+                "reference": "master"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "drupal-ckeditor-libraries-group/fakeobjects",
@@ -11495,6 +11514,15 @@
             "time": "2024-10-10T12:33:01+00:00"
         },
         {
+            "name": "malsup/jquery.cycle",
+            "version": "3.0.3-a",
+            "dist": {
+                "type": "tar",
+                "url": "https://github.com/malsup/cycle/archive/refs/tags/3.0.3-a.tar.gz"
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "masterminds/html5",
             "version": "2.9.0",
             "source": {
@@ -16428,6 +16456,16 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "tobia/jquery.pause",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tobia/Pause",
+                "reference": "master"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "twig/twig",
@@ -22096,6 +22134,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "douglascrockford/json2": 20,
         "drupal/adminimal_admin_toolbar": 20,
         "drupal/auto_entitylabel": 20,
         "drupal/conditional_fields": 15,
@@ -22114,7 +22153,9 @@
         "drupal/smart_date": 10,
         "drupal/tamper": 15,
         "drupal/webform_views": 15,
-        "pantheon-upstreams/upstream-configuration": 20
+        "malsup/jquery.cycle": 15,
+        "pantheon-upstreams/upstream-configuration": 20,
+        "tobia/jquery.pause": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

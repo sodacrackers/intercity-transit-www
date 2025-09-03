@@ -5,6 +5,56 @@
     "license": "MIT",
     "repositories": [
         {
+            "type": "package",
+            "package": {
+            "name": "malsup/jquery.cycle",
+            "version": "3.0.3-a",
+            "type":"drupal-library",
+            "dist": {
+                "url": "https://github.com/malsup/cycle/archive/refs/tags/3.0.3-a.tar.gz",
+                "type": "tar"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "douglascrockford/json2",
+            "version": "dev-master",
+            "type":"drupal-library",
+            "source": {
+                "url": "https://github.com/douglascrockford/JSON-js",
+                "type": "git",
+                "reference": "master"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "tobia/jquery.pause",
+            "version": "dev-master",
+            "type":"drupal-library",
+            "source": {
+                "url": "https://github.com/tobia/Pause",
+                "type": "git",
+                "reference": "master"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "briancherne/jquery.hover-intent",
+            "version": "1.10.2",
+            "type":"drupal-library",
+            "dist": {
+                "url": "https://github.com/briancherne/jquery-hoverIntent/archive/refs/tags/v1.10.2.tar.gz",
+                "type": "tar"
+            }
+            }
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
@@ -530,7 +580,11 @@
         "svg-pan-zoom/svg-pan-zoom": "*",
         "tabby/tabby": "*",
         "tippyjs/tippyjs": "*",
-        "fontawesome/fontawesome": "*"
+        "fontawesome/fontawesome": "*",
+        "briancherne/jquery.hover-intent": "^1.10",
+        "douglascrockford/json2": "dev-master",
+        "malsup/jquery.cycle": "^3.0@alpha",
+        "tobia/jquery.pause": "dev-master"
     },
     "require-dev": {
         "drupal/core-dev": "^10"
