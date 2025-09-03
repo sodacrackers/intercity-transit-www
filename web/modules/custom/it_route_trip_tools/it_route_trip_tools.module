@@ -952,3 +952,129 @@ function it_route_trip_tools_preprocess_html(&$vars) {
         //$vars['#attached']['library'][] = 'it_route_trip_tools/trip-planner-front-page';
     endif;
 }
+
+function it_route_trip_tools_pics_get_routes() {
+  // https://pics.intercitytransit.com/api/calendar_dates
+  $cid = 'calendar_dates_routes';
+  if ($cache = \Drupal::cache()->get($cid)) {
+    return $cache->data;
+  }
+  $client = \Drupal::httpClient();
+  try {
+    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
+    $data = Json::decode($response->getBody()->getContents());
+    $routes = $data['routes'] ?? [];
+    // Cache for 24 hours.
+    \Drupal::cache()->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    return $routes;
+  } catch (\Exception $e) {
+    \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
+    return [];
+  }
+}
+function it_route_trip_tools_pics_get_dates() {
+  // https://pics.intercitytransit.com/api/calendar_dates
+  $cid = 'calendar_dates_dates';
+  if ($cache = \Drupal::cache()->get($cid)) {
+    return $cache->data;
+  }
+  $client = \Drupal::httpClient();
+  try {
+    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
+    $data = Json::decode($response->getBody()->getContents());
+    $dates = $data['dates'] ?? [];
+    // Cache for 24 hours.
+    \Drupal::cache()->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    return $dates;
+  } catch (\Exception $e) {
+    \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
+    return [];
+  }
+}
+
+/**
+ * Get GTFS-Realtime alerts entities from the API.
+ * Similar to it_route_trip_tools_pics_get_dates but for GTFS-Realtime alerts.
+ *
+ * @return array
+ *   The entities array from the GTFS-Realtime alerts API.
+ */
+function it_route_trip_tools_pics_get_alerts() {
+  // Cache ID for the alerts entities
+  $cid = 'gtfs_realtime_alerts_entities';
+  
+  // Check if cached data exists
+  if ($cache = \Drupal::cache()->get($cid)) {
+    return $cache->data;
+  }
+  
+  // Create HTTP client
+  $client = \Drupal::httpClient();
+  
+  try {
+    // Fetch data from the GTFS-Realtime alerts API
+    $response = $client->get('https://its.rideralerts.com/InfoPoint/GTFS-Realtime.ashx', [
+      'query' => [
+        'Type' => 'Alert',
+        'debug' => 'true',
+      ],
+    ]);
+    
+    // Decode the JSON response
+    $data = Json::decode($response->getBody()->getContents());
+    
+    // Extract the Entities attribute
+    $entities = $data['Entities'] ?? [];
+    
+    // Cache for 5 minutes (alerts should be more frequently updated than calendar dates)
+    \Drupal::cache()->set($cid, $entities, \Drupal::time()->getRequestTime() + 60 * 5);
+    
+    return $entities;
+  } 
+  catch (\Exception $e) {
+    // Log any errors
+    \Drupal::logger('it_route_trip_tools')->error('Failed to fetch GTFS-Realtime alerts: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+    return [];
+  }
+}
+
+function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direction_id = 0) {
+  // https://pics.intercitytransit.com/api/calendar_dates
+  $date = empty($date) ? date('Y-m-d') : $date;
+  $cid = 'route_data:' . $date;
+  if ($cache = \Drupal::cache()->get($cid)) {
+    return $cache->data;
+  }
+  $client = \Drupal::httpClient();
+  $dates = it_route_trip_tools_pics_get_dates();
+  $date_info = $dates[$date] ?? [];
+  $schedule_id = $date_info['schedule_id'] ?? '101';
+  $service_ids = $date_info['service_ids'] ?? [10];
+  try {
+    $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.date('Y-m-d').'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id);
+    $data = Json::decode($response->getBody()->getContents());
+    $routes_data = $data['status'] == 'success' ? $data['data'] : [];
+    // Cache for 24 hours.
+    \Drupal::cache()->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    return $routes_data;
+  } catch (\Exception $e) {
+    \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
+    return [];
+  }
+}
+
+function it_route_trip_tools_pics_get_all_routes_data() {
+  $routes = it_route_trip_tools_pics_get_routes();
+  $routes = [
+    12 => $routes['12'],
+    13 => $routes['13'],
+    14 => $routes['14'],
+  ];
+  foreach ($routes as $id => $route) {
+    $route_data = it_route_trip_tools_pics_get_route_data($id);
+    $all_routes_data[$route['route_short_name']] = $route_data;
+  }
+  return $all_routes_data;
+}
