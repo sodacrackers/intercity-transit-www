@@ -145,9 +145,9 @@
 
       once('input-name-dayoftravel-date', 'input[name="dayoftravel-date"]').forEach(function (element) {
         const url = new URL(window.location.href);
-        const currentDefaultDate = url.searchParams.get('date') ?? new Date();
+        const currentDefaultDate = url.searchParams.has('date') ? new Date(url.searchParams.get('date')) : new Date();
         $(element).datepicker({
-          dateFormat: 'yy-mm-dd',
+          dateFormat: 'mm/dd/yy',
           defaultDate: currentDefaultDate,
           beforeShowDay: function (date) {
             const availableDays = drupalSettings.it_route_trip_tools.available_days;
@@ -161,7 +161,11 @@
           onSelect: function (dateText, inst) {
             // Handle the date selection
             const url = new URL(window.location.href);
-            url.searchParams.set('date', dateText);
+            const dateParts = dateText.split('/');
+            const month = dateParts[0];
+            const day = dateParts[1];
+            const year = dateParts[2];
+            url.searchParams.set('date', year + '-' + month + '-' + day);
             window.location.href = url.toString();
           }
         });

@@ -167,7 +167,7 @@ class RoutesPage extends ControllerBase {
         return [
           'Shapes' => $val,
           'Color' => '#FFFFFF',
-          'RouteName' => $route['Route']['RouteInfo']['route_long_name'],
+          'RouteName' => isset($route['Route']['RouteInfo']['route_long_name']) ? $route['Route']['RouteInfo']['route_long_name'] : '',
         ];
       }, $all_routes_map_data_array);
       $alerts = $this->getAllAlerts();
@@ -203,10 +203,11 @@ class RoutesPage extends ControllerBase {
         $route->setDefault('_title', $new_title);
       }
 
+      [$year, $month, $day] = explode('-', $date);
       $routes_map_weekdays = [
         '#theme' => 'routes_map',
         '#route_data' => $route_data_weekdays,
-        '#day' => $date,
+        '#day' => $month . '/' . $day . '/' . $year,
       ];
       $routes_table_weekdays = [
         '#theme' => 'routes_table',
