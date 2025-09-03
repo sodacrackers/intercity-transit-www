@@ -283,24 +283,24 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   margin: 0 0 15px 0;
   text-align: right;
 }
-#route-table, #route-table-weekend {
+#route-table {
   margin-top: 10px;
   padding: 0;
 }
-#route-table tr.bold td, #route-table-weekend tr.bold td {
+#route-table tr.bold td {
   font-weight: bold;
 }
-#route-table tr td, #route-table-weekend tr td {
+#route-table tr td {
   min-width: 90px;
 }
-#route-table .table-controls, #route-table-weekend .table-controls {
+#route-table .table-controls {
   margin-bottom: 20px;
 }
-#route-table .table-controls .btn-primary.active, #route-table-weekend .table-controls .btn-primary.active {
+#route-table .table-controls .btn-primary.active {
   background: #003087;
   color: #fff;
 }
-#route-table .table-controls .btn-primary.active:hover, #route-table-weekend .table-controls .btn-primary.active:hover {
+#route-table .table-controls .btn-primary.active:hover {
   background-color: #424d51;
 }
 #route-map {
@@ -316,23 +316,17 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
     width: 95%;
   }
 }
-#route-map .map-frame #route-map-frame-inbound-weekend,
 #route-map .map-frame #route-map-frame-inbound,
-#route-map .map-frame #route-map-frame-outbound-weekend,
 #route-map .map-frame #route-map-frame-outbound {
   min-height: 400px;
 }
-#route-map .map-frame #route-map-frame-inbound-weekend h3,
 #route-map .map-frame #route-map-frame-inbound h3,
-#route-map .map-frame #route-map-frame-outbound-weekend h3,
 #route-map .map-frame #route-map-frame-outbound h3 {
   font-size: 18px;
   line-height: 19px;
   margin-top: 0;
 }
-#route-map .map-frame #route-map-frame-inbound-weekend p,
 #route-map .map-frame #route-map-frame-inbound p,
-#route-map .map-frame #route-map-frame-outbound-weekend p,
 #route-map .map-frame #route-map-frame-outbound p {
   font-size: 14px;
   font-weight: 400;
@@ -396,15 +390,11 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 .table-navigation-buttons .right-table-button[disabled]:hover {
   display: none;
 }
-#inbound-weekends-large-screen-route-table,
-#outbound-weekends-large-screen-route-table,
 #inbound-large-screen-route-table,
 #outbound-large-screen-route-table {
   margin-top: 0;
   clear: both;
 }
-#inbound-weekends-large-screen-route-table table.table,
-#outbound-weekends-large-screen-route-table table.table,
 #inbound-large-screen-route-table table.table,
 #outbound-large-screen-route-table table.table {
   width: auto !important;
@@ -417,15 +407,11 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
       */
 }
 #inbound-large-screen-route-table table.table thead tr th,
-#outbound-large-screen-route-table table.table thead tr th,
-#inbound-weekends-large-screen-route-table table.table thead tr th,
-#outbound-weekends-large-screen-route-table table.table thead tr th {
+#outbound-large-screen-route-table table.table thead tr th {
   text-align: center;
 }
 #inbound-large-screen-route-table table.table thead tr th h2,
-#outbound-large-screen-route-table table.table thead tr th h2,
-#inbound-weekends-large-screen-route-table table.table thead tr th h2,
-#outbound-weekends-large-screen-route-table table.table thead tr th h2 {
+#outbound-large-screen-route-table table.table thead tr th h2 {
   font-size: 1.8rem;
   color: #fff;
   font-weight: 700;
@@ -436,83 +422,32 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
 }
 @media screen and (max-width: 991px) {
   #inbound-large-screen-route-table table.table thead tr th h2,
-  #outbound-large-screen-route-table table.table thead tr th h2,
-  #inbound-weekends-large-screen-route-table table.table thead tr th h2,
-  #outbound-weekends-large-screen-route-table table.table thead tr th h2 {
+  #outbound-large-screen-route-table table.table thead tr th h2 {
     width: 100px;
   }
 }
 #inbound-large-screen-route-table table.table thead tr th.rotate,
-#outbound-large-screen-route-table table.table thead tr th.rotate,
-#inbound-weekends-large-screen-route-table table.table thead tr th.rotate,
-#outbound-weekends-large-screen-route-table table.table thead tr th.rotate {
+#outbound-large-screen-route-table table.table thead tr th.rotate {
   height: 100px;
   margin-bottom: 20px;
   border-left: 0;
   border-right: 0;
 }
 #inbound-large-screen-route-table table.table thead tr th.rotate > div,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div,
-#inbound-weekends-large-screen-route-table table.table thead tr th.rotate > div,
-#outbound-weekends-large-screen-route-table table.table thead tr th.rotate > div {
+#outbound-large-screen-route-table table.table thead tr th.rotate > div {
   transform: translate(35px, -5px) rotate(315deg);
   width: 100px;
   margin-bottom: 20px;
 }
 #inbound-large-screen-route-table table.table thead tr th.rotate > div > span,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div > span,
-#inbound-weekends-large-screen-route-table table.table thead tr th.rotate > div > span,
-#outbound-weekends-large-screen-route-table table.table thead tr th.rotate > div > span {
+#outbound-large-screen-route-table table.table thead tr th.rotate > div > span {
   padding: 0;
 }
 #inbound-large-screen-route-table table.table tbody td,
-#outbound-large-screen-route-table table.table tbody td,
-#inbound-weekends-large-screen-route-table table.table tbody td,
-#outbound-weekends-large-screen-route-table table.table tbody td {
+#outbound-large-screen-route-table table.table tbody td {
   text-align: right;
 }
-/*#inbound-large-screen-route-table table.table tbody tr th,*/
-/*#outbound-large-screen-route-table table.table tbody tr th {*/
-/*  !*border-left: 35px solid #80D80E;*!*/
-/*  padding-left: 35px;*/
-/*}*/
-/*#inbound-large-screen-route-table table.table tbody tr.timepoint th:before,*/
-/*#outbound-large-screen-route-table table.table tbody tr.timepoint th:before {*/
-/*  content: '\f219';*/
-/*  font-family: "Font Awesome 5 Pro";*/
-/*  color: #fff;*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  font-weight: 700;*/
-/*  font-size: 1.5rem;*/
-/*  margin-top: -7px;*/
-/*  padding-top: 5px;*/
-/*  padding-left: 2px;*/
-/*  background-color: #80D80E;*/
-/*  background-size: cover;*/
-/*  height: 103%;*/
-/*  margin-left: -2px;*/
-/*  padding-left: 4px;*/
-/*  width: 21px;*/
-/*}*/
-/*#inbound-large-screen-route-table table.table tbody tr.non-timepoint th:before,*/
-/*#outbound-large-screen-route-table table.table tbody tr.non-timepoint th:before {*/
-/*  content: '\f111';*/
-/*  font-family: "Font Awesome 5 Pro";*/
-/*  color: #fff;*/
-/*  position: absolute;*/
-/*  left: 0;*/
-/*  font-weight: 700;*/
-/*  font-size: 1.1rem;*/
-/*  margin-top: -7px;*/
-/*  padding-top: 9px;*/
-/*  background-color: #80D80E;*/
-/*  background-size: cover;*/
-/*  height: 103%;*/
-/*  margin-left: -2px;*/
-/*  padding-left: 5px;*/
-/*  width: 21px;*/
-/*}*/
+
 #all-routes-container {
   margin-top: 40px;
 }
@@ -759,15 +694,11 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   content: attr(data-checked);
 }
 #outbound-large-screen-route-table table,
-#inbound-large-screen-route-table table
-#outbound-weekends-large-screen-route-table table,
-#inbound-weekends-large-screen-route-table table {
+#inbound-large-screen-route-table table {
   width: 100%;
 }
 #outbound-large-screen-route-table table thead tr th:first-child,
-#inbound-large-screen-route-table table thead tr th:first-child,
-#outbound-weekends-large-screen-route-table table thead tr th:first-child,
-#inbound-weekends-large-screen-route-table table thead tr th:first-child {
+#inbound-large-screen-route-table table thead tr th:first-child {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -777,22 +708,16 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   position: relative;
 }
 #outbound-large-screen-route-table table tbody tr:nth-of-type(odd),
-#inbound-large-screen-route-table table tbody tr:nth-of-type(odd),
-#outbound-weekends-large-screen-route-table table tbody tr:nth-of-type(odd),
-#inbound-weekends-large-screen-route-table table tbody tr:nth-of-type(odd) {
+#inbound-large-screen-route-table table tbody tr:nth-of-type(odd) {
   background-color: inherit;
 }
 #outbound-large-screen-route-table table tbody tr:hover,
-#inbound-large-screen-route-table table tbody tr:hover,
-#outbound-weekends-large-screen-route-table table tbody tr:hover,
-#inbound-weekends-large-screen-route-table table tbody tr:hover {
+#inbound-large-screen-route-table table tbody tr:hover {
   background: #909090;
   color: #fff;
 }
 #outbound-large-screen-route-table table tbody tr th,
-#inbound-large-screen-route-table table tbody tr th,
-#outbound-weekends-large-screen-route-table table tbody tr th,
-#inbound-weekends-large-screen-route-table table tbody tr th {
+#inbound-large-screen-route-table table tbody tr th {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -802,15 +727,11 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   position: relative;
 }
 #outbound-large-screen-route-table table tbody tr td,
-#inbound-large-screen-route-table table tbody tr td,
-#outbound-weekends-large-screen-route-table table tbody tr td,
-#inbound-weekends-large-screen-route-table table tbody tr td {
+#inbound-large-screen-route-table table tbody tr td {
   position: relative;
 }
 #outbound-large-screen-route-table table tbody tr td:hover:after,
-#inbound-large-screen-route-table table tbody tr td:hover:after,
-#outbound-weekends-large-screen-route-table table tbody tr td:hover:after,
-#inbound-weekends-large-screen-route-table table tbody tr td:hover:after {
+#inbound-large-screen-route-table table tbody tr td:hover:after {
   content: "";
   position: absolute;
   background: #dedede !important;
@@ -879,7 +800,7 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   background: #000;
 }
 @media only screen and (max-width: 991px) {
-  #route-table, #route-table-weekend {
+  #route-table {
     margin-top: 0;
   }
 }

@@ -66,54 +66,6 @@
         });
       });
 
-      once('inbound-weekends-forward', '.inbound-weekends-forward').forEach(function (element) {
-        $(element).on('touch, click', function () {
-          event.preventDefault();
-          var table = $('.inbound-weekends-large-screen-route-table table');
-          var leftPos = $(table).scrollLeft();
-          $(table).animate({
-            scrollLeft: leftPos + 400
-          }, 400);
-          $('.inbound-weekends-back').attr('disabled', false);
-        });
-      });
-
-      once('inbound-weekends-back', '.inbound-weekends-back').forEach(function (element) {
-        $(element).on('touch, click', function () {
-          event.preventDefault();
-          var table = $('.inbound-weekends-large-screen-route-table table');
-          var leftPos = $(table).scrollLeft();
-          $(table).animate({
-            scrollLeft: leftPos - 400
-          }, 400);
-          $('.inbound-weekends-forward').attr('disabled', false);
-        });
-      });
-
-      once('outbound-weekends-forward', '.outbound-weekends-forward').forEach(function (element) {
-        $(element).on('touch, click', function () {
-          event.preventDefault();
-          var table = $('.outbound-weekends-large-screen-route-table table');
-          var leftPos = $(table).scrollLeft();
-          $(table).animate({
-            scrollLeft: leftPos + 400
-          }, 400);
-          $('.outbound-weekends-back').attr('disabled', false);
-        });
-      });
-
-      once('outbound-weekends-back', '.outbound-weekends-back').forEach(function (element) {
-        $(element).on('touch, click', function () {
-          event.preventDefault();
-          var table = $('.outbound-weekends-large-screen-route-table table');
-          var leftPos = $(table).scrollLeft();
-          $(table).animate({
-            scrollLeft: leftPos - 400
-          }, 400);
-          $('.outbound-weekends-forward').attr('disabled', false);
-        });
-      });
-
       $('#edit-routes--2').change(function () {
         var route = $('#edit-routes--2').val();
         var cur_action = $('form#routes-form--2').prop('action');
@@ -141,8 +93,6 @@
           $('input#stop').toggleClass('timepoints-hide');
           $('#outbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
           $('#inbound-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-          $('#outbound-weekends-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
-          $('#inbound-weekends-large-screen-route-table table').find('.hide-stop').toggleClass('hidden');
         });
       });
 
@@ -317,69 +267,12 @@
             initMap_outbound();
             $(this).addClass('already-opened');
           }
-          $('.outbound-weekends-panel').each(function () {
-            let currentTitle = $('.outbound-weekends-route-map-toggle').html();
-            $('.outbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#outbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_outbound_weekends();
-              $(this).addClass('already-opened');
-            }
-          });
           $('.inbound-panel').each(function () {
             let currentTitle = $('.inbound-route-map-toggle').html();
             $('.inbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
             $('#inbound-map-body').toggleClass('hide').toggleClass('show');
             if (!$(this).hasClass('already-opened')) {
               initMap_inbound();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.inbound-weekends-panel').each(function () {
-            let currentTitle = $('.inbound-weekends-route-map-toggle').html();
-            $('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_inbound_weekends();
-              $(this).addClass('already-opened');
-            }
-          });
-        });
-      });
-
-      once('outbound-weekends-panel', '.outbound-weekends-panel').forEach(function (element) {
-        $(element).on('click', function () {
-          let currentTitle = $('.outbound-weekends-route-map-toggle').html();
-          $('.outbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-          $('#outbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-          if (!$(this).hasClass('already-opened')) {
-            initMap_outbound_weekends();
-            $(this).addClass('already-opened');
-          }
-          $('.outbound-panel').each(function () {
-            let currentTitle = $('.outbound-route-map-toggle').html();
-            $('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#outbound-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_outbound();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.inbound-panel').each(function () {
-            let currentTitle = $('.inbound-route-map-toggle').html();
-            $('.inbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#inbound-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_inbound();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.inbound-weekends-panel').each(function () {
-            let currentTitle = $('.inbound-weekends-route-map-toggle').html();
-            $('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_inbound_weekends();
               $(this).addClass('already-opened');
             }
           });
@@ -404,71 +297,12 @@
               $(this).addClass('already-opened');
             }
           });
-          $('.outbound-weekends-panel').each(function () {
-            let currentTitle = $('.outbound-weekends-route-map-toggle').html();
-            $('.outbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#outbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_outbound_weekends();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.inbound-weekends-panel').each(function () {
-            let currentTitle = $('.inbound-weekends-route-map-toggle').html();
-            $('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_inbound_weekends();
-              $(this).addClass('already-opened');
-            }
-          });
-        });
-      });
-
-      once('inbound-weekends-panel', '.inbound-weekends-panel').forEach(function (element) {
-        $(element).on('click', function () {
-          let currentTitle = $('.inbound-weekends-route-map-toggle').html();
-          $('.inbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-          $('#inbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-          if (!$(this).hasClass('already-opened')) {
-            initMap_inbound_weekends();
-            $(this).addClass('already-opened');
-          }
-          $('.outbound-panel').each(function () {
-            let currentTitle = $('.outbound-route-map-toggle').html();
-            $('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#outbound-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_outbound();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.outbound-weekends-panel').each(function () {
-            let currentTitle = $('.outbound-weekends-route-map-toggle').html();
-            $('.outbound-weekends-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#outbound-weekends-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_outbound_weekends();
-              $(this).addClass('already-opened');
-            }
-          });
-          $('.inbound-panel').each(function () {
-            let currentTitle = $('.inbound-route-map-toggle').html();
-            $('.inbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
-            $('#inbound-map-body').toggleClass('hide').toggleClass('show');
-            if (!$(this).hasClass('already-opened')) {
-              initMap_inbound();
-              $(this).addClass('already-opened');
-            }
-          });
         });
       });
 
       once('bindclick', '.panel-title .glyphicon').forEach(function (element) {
         $(element).on('click', function (event) {
-          $(event.target).closest('.outbound-weekend-panel').find('a[data-toggle]').click();
           $(event.target).closest('.outbound-panel').find('a[data-toggle]').click();
-          $(event.target).closest('.inbound-weekend-panel').find('a[data-toggle]').click();
           $(event.target).closest('.inbound-panel').find('a[data-toggle]').click();
         });
       });
