@@ -98,6 +98,26 @@ class RoutesPage extends ControllerBase {
     return array_merge($alerts_with_end, $alerts_with_no_end);
 
   }
+  public static function getRouteAlerts($route_id) {
+    $alerts = self::loadAlertsByRoute($route_id);
+    return array_map(function ($item) {
+      return [
+        'id' => $item->id(),
+        'title' => $item->label(),
+        'url' => $item->toUrl()->toString(),
+        'severity' => $item->get('field_severity')->value,
+        'description' => $item->get('body')->getValue()[0],
+        'affected_routes' => array_map(function ($routes) {
+          return $routes->label();
+        }, $item->get('field_affected_routes_new_')->referencedEntities()),
+        'start_date' => $item->get('field_start_date')->value,
+        'end_date' => $item->get('field_end_date')->value,
+        'end_until_further_notice' => $item->get('field_end_date_until_further_not')->value,
+        'detour_map' => empty($item->get('field_image')->entity) ? NULL : $item->get('field_image')->entity->createFileUrl(),
+        'live_nid' => $item->get('field_live_nid')->value,
+      ];
+    }, $alerts);
+  }
 
   public static function loadAllAlerts() {
       // Load the node storage service.
@@ -156,7 +176,9 @@ class RoutesPage extends ControllerBase {
   }
 
   public function BuildPage($routeId = NULL) {
-
+    /*Need to grab the Routes form*/
+    $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
+    $routes_path = $config->get('route_page_path');
     $routes_options = it_route_trip_tools_pics_get_routes();
     $routes_options = array_map(function ($route) {
       return [
@@ -165,10 +187,6 @@ class RoutesPage extends ControllerBase {
         'alerts_content' => RoutesPage::loadAlertsByRoute($route['route_short_name']),
       ];
     }, $routes_options);
-
-    /*Need to grab the Routes form*/
-    $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
-    $routes_path = $config->get('route_page_path');
 
     if (empty($routeId) || $routeId === 'all') {
       $all_routes_map_data_array = $this->getAllRoutesData();
@@ -200,15 +218,14 @@ class RoutesPage extends ControllerBase {
     }
 
     if ($routeId != 'all') {
+      $date = \Drupal::request()->query->get('date');
+      $date = empty($date) ? date('Y-m-d') : $date;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
-      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, 2);
-      $route_data_weekend = it_route_trip_tools_get_route_table_map_data($routeId, 3);
+      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, $date);
+      dump($route_data_weekdays);
       $request = \Drupal::request();
       if (empty($route_data_weekdays)) {
         throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
-      }
-      if ($route_data_weekend['bounding']['min']['lat'] == 999 && $route_data_weekend['bounding']['max']['lat'] == -999) {
-        $route_data_weekend['bounding'] = $route_data_weekdays['bounding'];
       }
       if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
         $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];
@@ -217,23 +234,11 @@ class RoutesPage extends ControllerBase {
 
       $routes_map_weekdays = [
         '#theme' => 'routes_map',
-        '#route_data' => $route_data_weekdays,
-        '#days' => 'weekdays',
-      ];
-      $routes_map_weekend = [
-        '#theme' => 'routes_map',
-        '#route_data' => $route_data_weekend,
-        '#days' => 'weekends',
+        '#route_data' => $route_data_weekdays
       ];
       $routes_table_weekdays = [
         '#theme' => 'routes_table',
-        '#route_data' => $route_data_weekdays,
-        '#valid_for' => 'weekdays',
-      ];
-      $routes_table_weekend = [
-        '#theme' => 'routes_table',
-        '#route_data' => $route_data_weekend,
-        '#valid_for' => 'weekends',
+        '#route_data' => $route_data_weekdays
       ];
       $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
         'bundle' => 'route_pdfs',
@@ -247,11 +252,8 @@ class RoutesPage extends ControllerBase {
         '#route_short_name' => $route_data_weekdays['short_name'],
         '#routes_options' => $routes_options,
         '#routes_map_weekdays' => $routes_map_weekdays,
-        '#routes_map_weekend' => $routes_map_weekend,
         '#routes_table_weekdays' => $routes_table_weekdays,
-        '#routes_table_weekend' => $routes_table_weekend,
         '#route_data_weekdays' => $route_data_weekdays,
-        '#route_data_weekend' => $route_data_weekend,
         '#all_routes_map_data' => 1,
         '#download_url' => $download_url,
         '#attached' => [

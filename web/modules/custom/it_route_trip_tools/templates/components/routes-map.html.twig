@@ -5,7 +5,7 @@
 	<script>
     function buildMaps() {
 		{% for dir, stop_ids in route_data.stop_markers %}
-		initMap_{{ dir }}_{{ days }}();
+		initMap_{{ dir }}();
 		{% endfor %}
 	}
 	</script>
@@ -18,13 +18,13 @@
 		  east: {{ route_data.bounding.max.lng }},
 		};
 {% for dir, stop_ids in route_data.stop_markers %}
-		var {{ dir }}_{{ days }}_markers = {};
-		function initMap_{{ dir }}_{{ days }}() {
-			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}-{{ days }}"), {
+		var {{ dir }}_markers = {};
+		function initMap_{{ dir }}() {
+			const map = new google.maps.Map(document.getElementById("route-map-frame-{{ dir }}"), {
 		   	center: {lat:{{ route_data.center.lat }}, lng:{{ route_data.center.lng }}},
 		    mapTypeId: "{{ route_data.map_type }}",
 			});
-			{{dir}}{{ days }}MapBoundary(map);
+			{{dir}}MapBoundary(map);
 			var start = {
 		    path: 'M -4 -2, h 8, v 4, h -8, Z',
 		    strokeColor: '#fff',
@@ -59,7 +59,7 @@
       const events = ['mousedown', 'mousemove', 'mouseover', 'mouseout', 'mouseup',
       'mousewheel', 'DOMMouseScroll', 'touchstart', 'touchend', 'touchmove',
       'dblclick', 'contextmenu', 'click'];
-      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}-{{ days }}").addEventListener(event, (e) => {
+      events.forEach((event) => document.getElementById("route-map-frame-{{ dir }}").addEventListener(event, (e) => {
         e.preventDefault();
         e.stopPropagation();
       }))
@@ -70,38 +70,24 @@
       var id_min = 9999999;
       var count_min = -1;
 	{% for stop_id, stop_dataset in stop_ids %}
-	    var stop_id = '{{ stop_id|split('-')[0] }}';
-	    var stop_id_int = parseInt(stop_id);
-		var stop_sequence = parseInt('{{ stop_id|split('-')[1] }}');
+	    var stop_id = {{ stop_id }};
 		var stop_count = {{ stop_dataset.stop_times|length }};
 		{% set times_array = [] %}
-		{% set sorted_times = stop_dataset.stop_times|sort %}
+		{% set sorted_times = stop_dataset.stop_times %}
 		{% for time in sorted_times %}
 		    {% if time != '' %}
-		        {% set times_array = times_array|merge([time]) %}
+		        {% set times_array = times_array|merge([time['departure_time']]) %}
 		    {% endif %}
 		{% endfor %}
 
-		 stop_marker = {{ dir }}_{{ days }}_markers[stop_id] ?? {
+		 stop_marker = {{ dir }}_markers[stop_id] ?? {
 		    map: map,
-		    lat: {{ stop_dataset.stop_data.stopLat }},
-		    lng: {{ stop_dataset.stop_data.stopLon }},
-		    title: '{{ stop_dataset.stop_data.stopId }} - {{ stop_dataset.stop_data.stopName }}',
-		    times: [],
-			stop_sequence: [stop_sequence],
-			stop_id: stop_id_int,
+		    lat: {{ stop_dataset.stop_lat }},
+		    lng: {{ stop_dataset.stop_lon }},
+		    title: '{{ stop_dataset.stop_id }} - {{ stop_dataset.stop_name }}',
+		    times: {{ times_array|json_encode|raw }},
+			stop_id: stop_id,
 	  	};
-		stop_marker.stop_sequence.push(stop_sequence);
-		sequence_max = Math.max(sequence_max, stop_sequence);
-		if (sequence_max == stop_sequence && count_max < stop_count) {
-			count_max = stop_count;
-			id_max = stop_id_int;
-		}
-		sequence_min = Math.min(sequence_min, stop_sequence);
-		if (sequence_min == stop_sequence && count_min < stop_count) {
-			count_min = stop_count;
-			id_min = stop_id_int;
-		}
 		{% if loop.first %}
 			stop_marker.icon = start;
 			{% set start_end_check = 1 %}
@@ -127,20 +113,16 @@
 				color: '#fff'
 			},
 		{% endif %}
-		stop_marker.times.push.apply(stop_marker.times, {{ times_array|json_encode|raw }});
-		stop_marker.times = stop_marker.times.sort(function(a, b) {
-			return new Date('1970-01-01 ' + a) - new Date('1970-01-01 ' + b);
-		});
-	  	{{ dir }}_{{ days }}_markers[stop_id] = stop_marker;
+	  	{{ dir }}_markers[stop_id] = stop_marker;
 	{% endfor %}
 	  	//Create and open InfoWindow.
   		var infoWindow = new google.maps.InfoWindow();
-		var markers_array = Object.values({{ dir }}_{{ days }}_markers);
+		var markers_array = Object.values({{ dir }}_markers);
   		for (var i = 0; i < markers_array.length; i++) {
 	      var data = markers_array[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
 		  var times = data.times.map(function(time) {
-			var timeParts = time.split(':');
+			var timeParts = time.split('T')[1].split(':');
 			var hours = parseInt(timeParts[0]);
 			var minutes = timeParts[1];
 			var period = hours >= 12 ? 'p.m.' : 'a.m.';
@@ -152,8 +134,8 @@
           position: markerLatLng,
           map: data.map,
           title: data.title,
-          icon: data.stop_sequence.includes(sequence_max) && data.stop_id == id_max ? end : data.stop_sequence.includes(sequence_min) && data.stop_id == id_min ? start : data.icon,
-          label: data.stop_sequence.includes(sequence_max) && data.stop_id == id_max ? {text: 'End', fontWeight: 'bold', color: '#fff'} : data.stop_sequence.includes(sequence_min) && data.stop_id == id_min ? { text: 'Start', fontWeight: 'bold', color: '#fff'} : data.label,
+          icon: i == markers_array.length - 1 ? end : i == 0 ? start : data.icon,
+          label: i == markers_array.length - 1 ? {text: 'End', fontWeight: 'bold', color: '#fff'} : i == 0 ? { text: 'Start', fontWeight: 'bold', color: '#fff'} : data.label,
 	      });
     		//Attach click event to the marker.
         (function (marker, data) {
@@ -165,56 +147,52 @@
         })(marker, data);
       }
       {% if dir == 'inbound' %}
-				{% for key,inbound_shapes in route_data.inbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ days }}_{{ key }} = [
-						{% for inbound_shape in inbound_shapes %}
-						{lat: {{ inbound_shape.lat }}, lng: {{ inbound_shape.lng }}},
-						{% endfor %}
+				{% for key,inbound_shape in route_data.inbound_shapes %}
+					const routePathCoordinates_{{ dir }}_{{ key }} = [
+						{lat: {{ inbound_shape.shape_pt_lat }}, lng: {{ inbound_shape.shape_pt_lon }}},
 					];
-					const routePath_{{ dir }}_{{ days }}_{{ key }}_stroker = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+					const routePath_{{ dir }}_{{ key }}_stroker = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#003087',
 				    strokeOpacity: 1,
 				    strokeWeight: 7,
 					});
-					routePath_{{ dir }}_{{ days }}_{{ key }}_stroker.setMap(map);
-					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+					routePath_{{ dir }}_{{ key }}_stroker.setMap(map);
+					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#FEE134',
 				    strokeOpacity: 1,
 				    strokeWeight: 4,
 					});
-					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
+					routePath_{{ dir }}_{{ key }}.setMap(map);
 				{% endfor %}
 			{% else %}
-				{% for key,outbound_shapes in route_data.outbound_shapes %}
-					const routePathCoordinates_{{ dir }}_{{ days }}_{{ key }} = [
-						{% for outbound_shape in outbound_shapes %}
-						{lat: {{ outbound_shape.lat }}, lng: {{ outbound_shape.lng }}},
-						{% endfor %}
+				{% for key,outbound_shape in route_data.outbound_shapes %}
+					const routePathCoordinates_{{ dir }}_{{ key }} = [
+						{lat: {{ outbound_shape.shape_pt_lat }}, lng: {{ outbound_shape.shape_pt_lon }}},
 					];
-					const routePath_{{ dir }}_{{ days }}_{{ key }}_stroker = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+					const routePath_{{ dir }}_{{ key }}_stroker = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#003087',
 				    strokeOpacity: 1,
 				    strokeWeight: 7,
 					});
-					routePath_{{ dir }}_{{ days }}_{{ key }}_stroker.setMap(map);
-					const routePath_{{ dir }}_{{ days }}_{{ key }} = new google.maps.Polyline({
-				    path: routePathCoordinates_{{ dir }}_{{ days }}_{{ key }},
+					routePath_{{ dir }}_{{ key }}_stroker.setMap(map);
+					const routePath_{{ dir }}_{{ key }} = new google.maps.Polyline({
+				    path: routePathCoordinates_{{ dir }}_{{ key }},
 				    geodesic: true,
 				    strokeColor: '#FEE134',
 				    strokeOpacity: 1,
 				    strokeWeight: 4,
 					});
-					routePath_{{ dir }}_{{ days }}_{{ key }}.setMap(map);
+					routePath_{{ dir }}_{{ key }}.setMap(map);
 				{% endfor %}
 			{% endif %}
 		}
-		function {{dir}}{{ days }}MapBoundary(map) {
+		function {{dir}}MapBoundary(map) {
 			var latlng = [
 				new google.maps.LatLng({{ route_data.bounding.min.lat }}, {{ route_data.bounding.min.lng }}),
 				new google.maps.LatLng({{ route_data.bounding.max.lat }}, {{ route_data.bounding.max.lng }}),
@@ -233,10 +211,10 @@
 	{% else %}
 		{% set dir_class = 'hide-dir hide' %}
 	{% endif %}
-	<div id="{{ dir }}-{{ days }}-map" class="maps {{ dir_class }}">
-  	<div class="panel-group" id="accordion-{{ dir }}-{{ days }}" role="tablist" aria-multiselectable="true">
-			<div class="panel panel-default {{ dir }}-{{ days }}-panel" style="border: none !important;">
-	    	<div class="panel-heading" role="tab" id="{{ dir }}-{{ days }}-map-heading">
+	<div id="{{ dir }}-map" class="maps {{ dir_class }}">
+  	<div class="panel-group" id="accordion-{{ dir }}" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-default {{ dir }}-panel" style="border: none !important;">
+	    	<div class="panel-heading" role="tab" id="{{ dir }}-map-heading">
       		<a id="map-title" class="panel-title" style="position: relative;" role="button" data-route-id="{{ route_data.short_name }}"
             onclick="querySelector('#map-chevron span').style.transform === 'rotate(180deg)' 
                         ? querySelector('#map-chevron span').style.transform = 'rotate(0deg)' 
@@ -244,14 +222,14 @@
 				    <span id="map-chevron" class="chevron-down" style="position: absolute; top: 0; left: 0; height: 100%; background-color: #003087; width: 53px; align-items: center; display: flex; justify-content: center; color: white; border-radius: 3px;">
               <span></span>
             </span>
-        		<h4 class="{{ dir }}-{{ days }}-route-map-toggle" style="margin-left: 50px">
+        		<h4 class="{{ dir }}-route-map-toggle" style="margin-left: 50px">
       	  		Open Route {{ route_data.short_name }} Map
 		        </h4>
       		</a>
 	    	</div>
-	    	<div id="{{ dir }}-{{ days }}-map-body" class="panel-collapse hide">
+	    	<div id="{{ dir }}-map-body" class="panel-collapse hide">
       		<div id="route-map" class=" panel-body">
-						<div tabindex="1" id="route-map-frame-{{ dir }}-{{ days }}"></div>
+						<div tabindex="1" id="route-map-frame-{{ dir }}"></div>
 					</div>
 	    	</div>
 			</div>
