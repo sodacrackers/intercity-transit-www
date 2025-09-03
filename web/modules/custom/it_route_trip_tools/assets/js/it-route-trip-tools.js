@@ -183,71 +183,33 @@
           $('.map-frame-' + choice + ' .maps-' + choice).removeClass('hidden').removeClass('show-dir').removeClass('hide-dir');
           $('.map-frame-' + opposite + ' .maps-' + opposite).addClass('hidden').addClass('show-dir').addClass('hide-dir');
           if (choice === 'inbound') {
-            if ($('input[name="dayoftravel"]:checked').val() === 'weekdays-info') {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').removeClass('hide');
-            }
-            else {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').removeClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
+            $('#route-map #outbound-map').addClass('hide');
+            $('#route-map #inbound-map').removeClass('hide');
           }
           else {
-            if ($('input[name="dayoftravel"]:checked').val() === 'weekdays-info') {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').removeClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
-            else {
-              $('#route-map-weekend #outbound-weekends-map').removeClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
+            $('#route-map #outbound-map').removeClass('hide');
+            $('#route-map #inbound-map').addClass('hide');
           }
         });
       });
 
-      once('input-name-dayoftravel', 'input[name="dayoftravel"]').forEach(function (element) {
-        $(element).click(function () {
-          const choice = $(this).val();
-          const opposite = choice === 'weekdays-info' ? 'weekend-info' : 'weekdays-info';
-          $('.' + choice).removeClass('hide');
-          $('.' + opposite).addClass('hide');
-          if (choice === 'weekdays-info') {
-            if ($('input[name="direction"]:checked').val() === 'inbound') {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').removeClass('hide');
-            }
-            else {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').removeClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
-          }
-          else {
-            if ($('input[name="direction"]:checked').val() === 'inbound') {
-              $('#route-map-weekend #outbound-weekends-map').addClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').removeClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
-            else {
-              $('#route-map-weekend #outbound-weekends-map').removeClass('hide');
-              $('#route-map-weekend #inbound-weekends-map').addClass('hide');
-              $('#route-map #outbound-map').addClass('hide');
-              $('#route-map #inbound-map').addClass('hide');
-            }
+      once('input-name-dayoftravel-date', 'input[name="dayoftravel-date"]').forEach(function (element) {
+        const url = new URL(window.location.href);
+        const currentDefaultDate = url.searchParams.get('date') ?? new Date();
+        $(element).datepicker({
+          dateFormat: 'yy-mm-dd',
+          defaultDate: currentDefaultDate,
+          // beforeShowDay: function (date) {
+          //   return true;
+          // },
+          onSelect: function (dateText, inst) {
+            // Handle the date selection
+            const url = new URL(window.location.href);
+            url.searchParams.set('date', dateText);
+            window.location.href = url.toString();
           }
         });
+        $(element).datepicker('setDate', currentDefaultDate);
       });
 
       once('btn-stops-toggle', '.btn-stops-toggle').forEach(function (element) {

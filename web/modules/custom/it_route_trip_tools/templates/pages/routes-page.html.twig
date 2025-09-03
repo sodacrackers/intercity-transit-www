@@ -40,7 +40,7 @@
                             <select id="route-change" class="btn btn-default input-width-80">
                                 <option value="">- Select Route -</option>
                                 {% for key, options in routes_options %}
-                                    <option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.name }}</option>
+                                    <option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.id }} - {{ options.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -78,25 +78,21 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="customize-dropdown">
                                     <ul>
-                                        {% for dir, dir_data in route_data_weekdays.times_alt %}
-                                            {% for stop_id, stop_data in dir_data.stops %}
-                                                {% for timepoint, stop_names in stop_data %}
-                                                    {% for stop_name, stop_times in stop_names %}
-                                                        <li class="customize-view-{{ dir }} {{ dir == 'inbound' ? 'hidden' : '' }}">
-                                                            <div class="dropdown-item">
-                                                                <div class="form-check">
-                                                                    <input name="show_stop" class="form-check-input"
-                                                                           type="checkbox"
-                                                                           value="{{ stop_data.stop_id }}"
-                                                                           id="checkstop{{ stop_data.stop_id }}"/>
-                                                                    <label class="form-check-label"
-                                                                           onclick="event.stopPropagation();"
-                                                                           for="checkstop{{ stop_data.stop_id }}">{{ stop_name }}</label>
-                                                                </div>
+                                        {% for dir, dir_data in route_data_weekdays.stop_markers %}
+                                                {% for stop_id, stop_data in dir_data %}
+                                                    <li class="customize-view-{{ dir }} {{ dir == 'inbound' ? 'hidden' : '' }}">
+                                                        <div class="dropdown-item">
+                                                            <div class="form-check">
+                                                                <input name="show_stop" class="form-check-input"
+                                                                        type="checkbox"
+                                                                        value="{{ stop_data.stop_id }}"
+                                                                        id="checkstop{{ stop_data.stop_id }}"/>
+                                                                <label class="form-check-label"
+                                                                        onclick="event.stopPropagation();"
+                                                                        for="checkstop{{ stop_data.stop_id }}">{{ stop_data.stop_name }}</label>
                                                             </div>
-                                                        </li>
-                                                    {% endfor %}
-                                                {% endfor %}
+                                                        </div>
+                                                    </li>
                                             {% endfor %}
                                         {% endfor %}
                                     </ul>
@@ -111,15 +107,8 @@
                                 Day of Travel
                             </h5>
                             <div class="form-radios">
-                                <div class="form-radio">
-                                    <input class="form-check-input" type="radio" value="weekdays-info" id="weekdays"
-                                           name="dayoftravel" checked="checked"/>
-                                    <label class="form-check-label" for="weekdays">Monday - Friday</label>
-                                </div>
-                                <div class="form-radio">
-                                    <input class="form-check-input" type="radio" value="weekend-info" id="weekend"
-                                           name="dayoftravel"/>
-                                    <label class="form-check-label" for="weekends">Saturday - Sunday</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="dayoftravel-date" name="dayoftravel-date"/>
                                 </div>
                             </div>
                         </div>

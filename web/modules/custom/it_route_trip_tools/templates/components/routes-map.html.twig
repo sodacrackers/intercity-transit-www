@@ -1,6 +1,7 @@
 {% set module_path = _self|split('\/templates') %}
 {{ attach_library('it_route_trip_tools/maps-autocomplete') }}
 {{ attach_library('it_route_trip_tools/initmapautocomplete-routes-stops') }}
+{{ attach_library('jquery_ui_datepicker/datepicker') }}
 <div class="map-frame">
 	<script>
     function buildMaps() {
