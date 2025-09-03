@@ -1,7 +1,6 @@
 <?php
 namespace Drupal\it_route_trip_tools\Controller;
 
-use Drupal\ict_gtfs\Controller\BusData;
 use Drupal\ict_gtfs\Gtfs;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\media\Entity\Media;
@@ -70,17 +69,34 @@ class RoutesPage extends ControllerBase {
     });
   }
 
-  private function customizeOptions($options) {
-    $new_options = [];
-    foreach ($options as $route_id => $route_name) {
-      $alerts = BusData::loadAlertsByRoute($route_id);
-      $new_options[$route_id] = [
-        'name' => $route_name,
-        'alerts' => count($alerts),
-        'alerts_content' => $alerts,
-      ];
-    }
-    return $new_options;
+  public static function loadAlertsByRoute($route_id) {
+    // Load the node storage service.
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    // Load all published nodes of type "alert".
+    $query = $node_storage->getQuery()
+      ->accessCheck()
+      ->condition('type', 'rider_alerts')
+      ->condition('field_affected_routes_new_.entity.name', $route_id)
+      ->condition('field_start_date', date('Y-m-d'), '<')
+      ->condition('field_end_date', date('Y-m-d'), '>')
+      ->condition('status', 1);
+    $nids = $query->execute();
+    // Load the node entities.
+    $alerts_with_end = $node_storage->loadMultiple($nids);
+    // Load all published nodes of type "alert".
+    $query = $node_storage->getQuery()
+      ->condition('type', 'rider_alerts')
+      ->accessCheck()
+      ->condition('field_affected_routes_new_.entity.name', $route_id)
+      ->condition('field_start_date', date('Y-m-d'), '<')
+      ->notExists('field_end_date')
+      ->condition('field_end_date_until_further_not', TRUE)
+      ->condition('status', 1);
+    $nids = $query->execute();
+    // Load the node entities.
+    $alerts_with_no_end = $node_storage->loadMultiple($nids);
+    return array_merge($alerts_with_end, $alerts_with_no_end);
+
   }
 
   public static function loadAllAlerts() {
@@ -135,58 +151,20 @@ class RoutesPage extends ControllerBase {
   }
 
   public function getAllRoutesData() {
-    $routes = $this->gtfs->getStaticData('routes');
-    $routes = array_filter($routes);
-    $headers = array_shift($routes);
-    $routes_id_index = array_search('route_id', $headers);
-    $routes_color_index = array_search('route_color', $headers);
-    $shapes = $this->gtfs->getStaticData('shapes');
-    $headers = array_shift($shapes);
-    $shape_index = array_search('shape_id', $headers);
-    $shape_pt_lat_index = array_search('shape_pt_lat', $headers);
-    $shape_pt_lon_index = array_search('shape_pt_lon', $headers);
-    $trips = $this->gtfs->getStaticData('trips');
-    $headers = array_shift($trips);
-    $route_id_index = array_search('route_id', $headers);
-    $shape_id_index = array_search('shape_id', $headers);
-    $res = [];
-    foreach ($routes as $route) {
-      $route_id = $route[$routes_id_index];
-      if (empty($route_id)) {
-        continue;
-      }
-      $res[$route_id] = [
-        "RouteName" => $route_id,
-        "RouteDescription" => "RouteDescription",
-        "Color" => '#' . ($route[$routes_color_index] ?? 'FFF'),
-        "Shapes" => []
-      ];
-      $trips_in_route = array_filter($trips, function ($item) use ($route_id, $route_id_index) {
-        return $item[$route_id_index] == $route_id;
-      });
-      foreach ($trips_in_route as $trip_in_route) {
-        $shape_id = $trip_in_route[$shape_id_index] ?? NULL;
-        $shape_items_in_trip = array_filter($shapes, function($item) use ($shape_index, $shape_id) {
-          return $item[$shape_index] == $shape_id;
-        });
-        $res[$route_id]['Shapes'][] = [
-          "shapeId" => $shape_id,
-          "shapeData" => array_values(array_map(function ($item) use ($shape_pt_lat_index, $shape_pt_lon_index) {
-            return isset($item[$shape_pt_lat_index]) && isset($item[$shape_pt_lon_index]) ? [
-              'lat' => (float) $item[$shape_pt_lat_index],
-              'lon' => (float) $item[$shape_pt_lon_index],
-            ] : [];
-          }, $shape_items_in_trip)),
-        ];
-      }
-    }
-    return array_values($res);
+    $routes = it_route_trip_tools_pics_get_all_routes_data();
+    return $routes;
   }
 
   public function BuildPage($routeId = NULL) {
 
-    $routes_options = it_route_trip_tools_build_routes_options(TRUE);
-    $routes_options = $this->customizeOptions($routes_options);
+    $routes_options = it_route_trip_tools_pics_get_routes();
+    $routes_options = array_map(function ($route) {
+      return [
+        'id' => $route['route_short_name'],
+        'name' => $route['route_long_name'],
+        'alerts_content' => RoutesPage::loadAlertsByRoute($route['route_short_name']),
+      ];
+    }, $routes_options);
 
     /*Need to grab the Routes form*/
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
@@ -194,6 +172,14 @@ class RoutesPage extends ControllerBase {
 
     if (empty($routeId) || $routeId === 'all') {
       $all_routes_map_data_array = $this->getAllRoutesData();
+      $all_routes_map_data_array = array_map(function($route) {
+        $val = $route['Route']['MapInfo']['Shapes'][0] ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
+        return [
+          'Shapes' => $val,
+          'Color' => '#FFFFFF',
+          'RouteName' => $route['Route']['RouteInfo']['route_long_name'],
+        ];
+      }, $all_routes_map_data_array);
       $alerts = $this->getAllAlerts();
       return [
         '#theme' => 'routes_new_page',

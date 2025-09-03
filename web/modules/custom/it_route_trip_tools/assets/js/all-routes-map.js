@@ -17,7 +17,7 @@
 			var shapesData = drupalSettings.it_route_trip_tools.all_routes_map_data_array;
 			$.each(shapesData[0], function(shapeDataKey, shape) {
 				var shapeData = '';
-				shapeData = shape.Shapes[0].shapeData;
+				shapeData = shape.Shapes;
 				var color = shape.Color;
 				var routeName = shape.RouteName;
 					plotBusRoute(map, shapeData, color, routeName, infoWindow);
@@ -48,10 +48,8 @@ function plotBusRoute(map, shapeData, color, routeName, infoWindow) {
 	}
 	for (var index = 0; index < shapeData.length; index++) {
 		shapePath[index] = {
-			//lat: shapeData[index].shape_pt_lat,
-			//lng: shapeData[index].shape_pt_lon
-			lat: shapeData[index].lat,
-			lng: shapeData[index].lon
+			lat: shapeData[index].shape_pt_lat,
+			lng: shapeData[index].shape_pt_lon
 		};
 	}
 	const routePath = new google.maps.Polyline({
