@@ -19,7 +19,7 @@
                     defer>
             </script>
             {% if route_data_weekdays %}
-            <div id="route-map-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="route-map-container">
                 <div id="route-map" class="weekdays-info">
                     {{ routes_map_weekdays }}
                 </div>
@@ -78,7 +78,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="customize-dropdown">
                                     <ul>
-                                        {% for dir, dir_data in route_data_weekdays.stop_markers %}
+                                        {% for dir, dir_data in route_data_weekdays.time_tables %}
                                                 {% for stop_id, stop_data in dir_data %}
                                                     <li class="customize-view-{{ dir }} {{ dir == 'inbound' ? 'hidden' : '' }}">
                                                         <div class="dropdown-item">
@@ -108,7 +108,7 @@
                             </h5>
                             <div class="form-radios">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="dayoftravel-date" name="dayoftravel-date"/>
+                                    <input type="text" class="form-control input-width-80" id="dayoftravel-date" name="dayoftravel-date"/>
                                 </div>
                             </div>
                         </div>

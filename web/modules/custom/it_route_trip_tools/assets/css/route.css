@@ -139,6 +139,25 @@ li.nav-item.active  a.nav-link {
   border-left-color: rgb(204, 204, 204);
 }
 
+#filters .form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 14px 16px;
+  font-size: 14px !important;
+  background-color: white;
+  background-image: url("/modules/custom/it_route_trip_tools/assets/images/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  border-color: #ccc;
+  width: 80%;
+  border-top-color: rgb(204, 204, 204);
+  border-right-color: rgb(204, 204, 204);
+  border-bottom-color: rgb(204, 204, 204);
+  border-left-color: rgb(204, 204, 204);
+  height: 50px;
+}
+
 #filters .dropdown-toggle:after {
   display: none !important;
 }
@@ -1015,4 +1034,10 @@ header.navbar.navbar-default {
   font-size: 14px !important;
   font-weight: 400 !important;
   line-height: 20px !important;
+}
+
+h4.outbound-route-map-toggle,
+h4.inbound-route-map-toggle {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

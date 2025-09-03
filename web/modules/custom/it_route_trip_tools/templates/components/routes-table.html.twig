@@ -62,7 +62,7 @@
         </div>
     {% endfor %}
 </div>
-{# <div class="mobile-lists-container hide-on-desktop hide-on-mobile">
+<div class="mobile-lists-container hide-on-desktop hide-on-mobile">
     <div class="btn-group btn-stops-toggle" data-toggle="buttons">
         <label class="btn btn-primary active">
             <input type="radio" name="display_stops_options" value="allstops" checked="checked">All stops
@@ -71,35 +71,31 @@
             <input type="radio" name="display_stops_options" value="timepoint">Timepoints
         </label>
     </div>
-    {% for dir, dir_data in route_data.times_alt %}
+    {% for dir, dir_data in route_data.time_tables %}
         {% if dir != 'inbound' %}
             {% set dir_class = 'show-dir' %}
         {% else %}
             {% set dir_class = 'hide-dir hidden' %}
         {% endif %}
         <div id="{{ dir }}-lists row" class="{{ dir_class }} dir-lists dir-lists-{{ dir }}">
-            {% for stop_id, stop_data in dir_data.stops %}
-                {% for timepoint, stop_names in stop_data %}
-                    {% for stop_name, stop_times in stop_names %}
-                        <div class="col-xs-12 col-sm-12 col-lg-12 lists-list-item {{ timepoint }}"
-                             data-stop-id="{{ stop_id }}">
-                            <div class="lists-list-item-title">
-                                {{ stop_name }}
-                                {% if timepoint == 'timepoint' %}
-                                    <span class="lists-list-item-timepoint">Timepoint</span>
-                                {% endif %}
-                            </div>
-                            <div class="lists-list-item-content">
-                                {% for stop_time in stop_times %}
-                                    {% set formatted_stop_time = stop_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
-                                    <span
-                                    style="{{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</span>{{ loop.last == false ? ',' }}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
+            {% for stop_id, stop_data in dir_data %}
+                <div class="col-xs-12 col-sm-12 col-lg-12 lists-list-item {{ stop_data.timepoint ? 'timepoint' : 'non-timepoint' }}"
+                        data-stop-id="{{ stop_id }}">
+                    <div class="lists-list-item-title">
+                        {{ stop_data.stop_name }}
+                        {% if stop_data.timepoint %}
+                            <span class="lists-list-item-timepoint">Timepoint</span>
+                        {% endif %}
+                    </div>
+                    <div class="lists-list-item-content">
+                        {% for stop_time in stop_data.trips %}
+                            {% set formatted_stop_time = stop_time.departure_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
+                            <span
+                            style="{{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</span>{{ loop.last == false ? ',' }}
+                        {% endfor %}
+                    </div>
+                </div>
             {% endfor %}
         </div>
     {% endfor %}
-</div> #}
+</div>
