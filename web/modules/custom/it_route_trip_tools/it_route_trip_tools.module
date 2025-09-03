@@ -536,6 +536,8 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
   $shapes_outbound = reset($outbound_data['Route']['MapInfo']['Shapes'][1]);
   $stop_markers_inbound = $inbound_data['Route']['MapInfo']['Stops'][0];
   $stop_markers_outbound = $outbound_data['Route']['MapInfo']['Stops'][1];
+  $time_tables_inbound = $inbound_data['Route']['StopTimesTables'][0];
+  $time_tables_outbound = $outbound_data['Route']['StopTimesTables'][1];
   // $trips_inbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 1, $serv);
   // $trips_outbound = \Drupal::service('ict.gtfs')->getTripsByRouteAndDirection($routeId, 0, $serv);
   // $active_config = \Drupal::service('ict.gtfs')->getActiveConfiguration();
@@ -564,6 +566,10 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
     'stop_markers' => [
       'inbound' => $stop_markers_inbound,
       'outbound' => $stop_markers_outbound,
+    ],
+    'time_tables' => [
+      'inbound' => $time_tables_inbound,
+      'outbound' => $time_tables_outbound,
     ],
   ];
 
@@ -704,7 +710,7 @@ function it_route_trip_tools_pics_get_routes() {
   $client = \Drupal::httpClient();
   try {
     $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
-    $data = Json::decode($response->getBody()->getContents());
+    $data = json_decode($response->getBody()->getContents(), TRUE);
     $routes = $data['routes'] ?? [];
     // Cache for 24 hours.
     \Drupal::cache()->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
@@ -723,7 +729,7 @@ function it_route_trip_tools_pics_get_dates() {
   $client = \Drupal::httpClient();
   try {
     $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
-    $data = Json::decode($response->getBody()->getContents());
+    $data = json_decode($response->getBody()->getContents(), TRUE);
     $dates = $data['dates'] ?? [];
     // Cache for 24 hours.
     \Drupal::cache()->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
