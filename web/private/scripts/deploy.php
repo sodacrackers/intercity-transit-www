@@ -2,12 +2,8 @@
 // Import all config changes.
 echo "Running deploy routine...\n";
 passthru('drush -y deploy');
-echo "Import of configuration complete.\n";
+echo "Deploy complete.\n";
+echo "Warming caches...\n";
+passthru('drush php:eval "it_route_trip_tools_pics_get_all_routes_data();"');
 //Clear all cache
-echo "Rebuilding sitemap.\n";
-passthru('drush xmlsitemap:rebuild');
-echo "Rebuilding cache complete.\n";
-echo "Warming queues.\n";
-passthru('drush warmer:enqueue');
-passthru('drush queue-run warmer');
 echo "Queues warmed.\n";
