@@ -866,7 +866,7 @@ span.map-toggle {
 }
 
 div.container.nav-outer-wrapper {
-  margin: 0 !important;
+  margin: 0 auto !important;
   max-width: 100% !important;
 }
 
