@@ -73,7 +73,9 @@ class StopsPage extends ControllerBase {
         $stop_lon = $stop_result['stopLon'];
       endif;
     else:
-      throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+      return [
+        '#markup' => $this->t('Please select a Stop ID and a date to view details.'),
+      ];
     endif;
     $build = [
       '#theme' => 'stops_page',

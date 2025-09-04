@@ -223,7 +223,9 @@ class RoutesPage extends ControllerBase {
       $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, $date);
       $request = \Drupal::request();
       if (empty($route_data_weekdays)) {
-        throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
+        $current_path = \Drupal::service('path.current')->getPath();
+        $url = \Drupal\Core\Url::fromUserInput($current_path)->toString();
+        return new \Symfony\Component\HttpFoundation\RedirectResponse($url);
       }
       if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
         $new_title = $route_data_weekdays['short_name'] . ' - ' . $route_data_weekdays['long_name'];

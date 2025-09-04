@@ -113,6 +113,18 @@ class AdminForm extends ConfigFormBase {
       '#description' => 'The full path for the trip planner page is: <strong><a href="' . $config->get('trip_planner_page_path') . '">' . $config->get('trip_planner_page_path') . '</a></strong>',
       '#title' => $this->t('Trip Planner Page Parent'),
     ];
+    $routes = it_route_trip_tools_pics_get_routes_raw();
+    $routes_options = [];
+    foreach ($routes as $key => $value) {
+      $routes_options[$key] = $value['route_short_name'] . ' - ' . $value['route_long_name'];
+    }
+    if ($routes) {
+      $form['disable_routes'] = [
+        '#type' => 'checkboxes',
+        '#options' => $routes_options,
+        '#default_value' => $config->get('disable_routes') ?: [],
+      ];
+    }
     $form['actions'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
@@ -184,6 +196,7 @@ class AdminForm extends ConfigFormBase {
     $trip_planner_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$trip_planner_nid);
     $trip_planner_page_title_clean = preg_replace('/[^a-zA-Z0-9\s]/', '', strtolower($trip_planner_page_title));
     $trip_planner_page_title_clean =  preg_replace('!\s+!', '-', $trip_planner_page_title_clean);
+    $disable_routes = array_filter($form_state->getValue('disable_routes'));
 
     $config->set('route_page_title', $route_page_title);
     $config->set('route_page_title_clean', $route_page_title_clean);
@@ -199,6 +212,8 @@ class AdminForm extends ConfigFormBase {
     $config->set('trip_planner_page_title_clean', $trip_planner_page_title_clean);
     $config->set('trip_planner_page_path', $trip_planner_alias . '/' . $trip_planner_page_title_clean);
     $config->set('trip_planner_page_parent', $trip_planner_page_parent);
+
+    $config->set('disable_routes', $disable_routes);
 
     $config->save();
   }
