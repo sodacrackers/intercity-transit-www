@@ -66,10 +66,12 @@
         });
       });
 
-      once('service-option-datepicker', '#edit-service-option--2, #edit-service-option', context).forEach(function (element) {
+      once('service-option-datepicker', '#edit-service-option--2, #edit-service-option, #edit-stop-date', context).forEach(function (element) {
+        const url = new URL(window.location.href);
+        const currentDefaultDate = url.searchParams.has('date') ? new Date(url.searchParams.get('date')) : new Date();
         $(element).datepicker({
           dateFormat: 'mm/dd/yy',
-          defaultDate: new Date(),
+          defaultDate: currentDefaultDate,
           beforeShowDay: function (date) {
             const availableDays = drupalSettings.it_route_trip_tools.available_days;
             const thisDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
@@ -80,6 +82,7 @@
             }
           },
         });
+        $(element).datepicker('setDate', currentDefaultDate);
       });
 
       $('#edit-routes--2,#edit-service-option--2').change(function () {
@@ -104,10 +107,16 @@
         $('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route + (service_option ? '?date=' + service_option : ''));
       });
 
-      once('select-edit-stop', 'select#edit-stop').forEach(function (element) {
+      once('select-edit-stop', 'select#edit-stop, input#edit-stop-date').forEach(function (element) {
         $(element).change(function () {
           var route = $('#edit-stop').val();
-          $('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
+          var date = $('#edit-stop-date').val();
+          var dateParts = date.split('/');
+          var month = dateParts[0];
+          var day = dateParts[1];
+          var year = dateParts[2];
+          date = year + '-' + month + '-' + day;
+          $('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route + (date ? '?date=' + date : ''));
         });
       });
 

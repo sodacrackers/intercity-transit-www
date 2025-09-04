@@ -32,14 +32,12 @@
 		                </th>
 					</thead>
 					<tbody class="collapse" id="collapse-{{ route_id }}-{{ schedule_id }}">
-						{% for times in schedule_times %}
-							{% for time in times %}
-							<tr>
-								<td>
-									{{ time.departureTime.date|timeonly }}
-								</td>
-							</tr>
-							{% endfor %}
+						{% for time in schedule_times %}
+						<tr>
+							<td>
+								{{ time }}
+							</td>
+						</tr>
 						{% endfor %}
 					</tbody>
 				</table>

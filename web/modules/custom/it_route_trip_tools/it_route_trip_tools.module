@@ -245,33 +245,73 @@ function it_route_trip_tools_get_center($boundaries) {
   ];
 }
 
-function it_route_trip_tools_get_stop_options() {
-  // ICTSD-129
-  return [];
-  $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
-  $headers = array_shift($stops);
-  if (empty($headers)) {
-    return [];
+function it_route_trip_tools_get_stop_options($full = FALSE, $date = NULL) {
+  $date = empty($date) ? date('Y-m-d') : $date;
+  $routes_data = it_route_trip_tools_pics_get_all_routes_data($date);
+  $stop_options = ['' => t('Select a stop')];
+  foreach ($routes_data as $stop_data) {
+    if (isset($stop_data['Route']['MapInfo']['Stops'][0]) && !empty($stop_data['Route']['MapInfo']['Stops'][0])) {
+      foreach ($stop_data['Route']['MapInfo']['Stops'][0] as $stop) {
+        if ($full) {
+          $stop_options[(int) $stop['stop_id']] = isset($stop_options[(int) $stop['stop_id']]) ? $stop_options[(int) $stop['stop_id']] : $stop;
+          $stop_options[(int) $stop['stop_id']]['routes'] = isset($stop_options[(int) $stop['stop_id']]['routes']) ? $stop_options[(int) $stop['stop_id']]['routes'] : [];
+          $stop_options[(int) $stop['stop_id']]['routes'][$stop_data['Route']['RouteInfo']['route_id']] = $stop_data['Route'];
+        } else {
+          $stop_options[(int) $stop['stop_id']] = $stop['stop_id'] . ' - ' . $stop['stop_name'];
+        }
+      }
+    }
   }
-  $id_index = array_search('stop_id', $headers);
-  $name_index = array_search('stop_name', $headers);
-  $lat_index = array_search('stop_lat', $headers);
-  $lon_index = array_search('stop_lon', $headers);
-  $organized_stops = array_map(function ($item) use ($id_index, $name_index, $lat_index, $lon_index){
-    return [
-      'stop_id' => empty($item[$id_index]) ? '' : $item[$id_index],
-      'stop_name' => empty($item[$name_index]) ? '' : $item[$name_index],
-      'stop_lat' => empty($item[$lat_index]) ? '' : $item[$lat_index],
-      'stop_lon' => empty($item[$lon_index]) ? '' : $item[$lon_index],
-    ];
-  }, $stops);
-  usort($organized_stops, function ($a, $b) {
-    return (int) $a['stop_id'] - (int) $b['stop_id'];
-  });
-  return $organized_stops;
+  return $stop_options;
 }
 
-function it_route_trip_tools_get_stop_details($stop_id) {
+function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
+  $date = empty($date) ? date('Y-m-d') : $date;
+  $stops = it_route_trip_tools_get_stop_options(TRUE, $date);
+  if (!in_array($stop_id, array_keys($stops))) {
+    return [];
+  }
+  $stop = $stops[$stop_id];
+  $route_ids = [];
+  foreach ($stop['routes'] as $route_id => $route) {
+    $shape = reset($route['MapInfo']['Shapes'][0]);
+    $route_ids[$route['RouteInfo']['route_id']] = [
+      "routeShortName" => $route['RouteInfo']['route_short_name'],
+      "routeLongName" => $route['RouteInfo']['route_long_name'],
+      "schedule" => [
+        0 => isset($route['MapInfo']['Stops'][INBOUND_DIRECTION][$stop_id]) ? [
+          'scheduleId' => '1.0',
+          'stopTimes' => array_map(function ($item) {
+            return date('H:i a', strtotime($item['departure_time']));
+          }, $route['MapInfo']['Stops'][INBOUND_DIRECTION][$stop_id]['stop_times'] ?? []),
+        ] : [],
+        1 => isset($route['MapInfo']['Stops'][OUTBOUND_DIRECTION][$stop_id]) ? [
+          'scheduleId' => '2.0',
+          'stopTimes' => array_map(function ($item) {
+            return date('H:i a', strtotime($item['departure_time']));
+          }, $route['MapInfo']['Stops'][OUTBOUND_DIRECTION][$stop_id]['stop_times'] ?? []),
+        ] : [],
+      ],
+      "shape" => [
+        "shapeId" => array_keys($route['MapInfo']['Shapes'][0])[0] ?? '',
+        "shapeData" => array_map(function ($item) {
+          return [
+            "shape_pt_sequence" => $item['shape_pt_sequence'],
+            "shape_pt_lat" => $item['shape_pt_lat'],
+            "shape_pt_lon" => $item['shape_pt_lon'],
+          ];
+        }, $shape),
+      ],
+    ];
+  }
+  return [
+    "stopId" => $stop_id,
+    "stopName" => $stop['stop_name'],
+    "stopLat" => $stop['stop_lat'],
+    "stopLon" => $stop['stop_lon'],
+    "timepoint" => $stop['timepoint'],
+    "routes" => $route_ids,
+  ];
   // Get the stop by ID.
   // ICTSD-129
   return [];
@@ -440,12 +480,8 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
       'outbound' => $time_tables_outbound,
     ],
   ];
-  dump($data);
-
   return $data;
-
 }
-
 
 /*
 	Not used at the moment

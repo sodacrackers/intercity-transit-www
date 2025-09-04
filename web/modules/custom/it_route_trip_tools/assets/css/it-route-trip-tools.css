@@ -71,6 +71,7 @@ html body #block-routeandtripformsblock {
 }
 html body #block-routeandtripformsblock .nav-tabs {
   border-bottom: none;
+  margin-bottom: 0;
 }
 html body #block-routeandtripformsblock .nav-tabs li {
   padding-bottom: 0;
