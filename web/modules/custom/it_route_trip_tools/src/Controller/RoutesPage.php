@@ -147,6 +147,33 @@ class RoutesPage extends ControllerBase {
     return it_route_trip_tools_pics_get_all_routes_data($date);
   }
 
+  public static function getRouteColor($route_id) {
+    $mapping = [
+      '12' => '#65A30D',
+      '13' => '#2563EB',
+      '14' => '#CA8A04',
+      '21' => '#0C4A6E',
+      '41' => '#4C1D95',
+      '42' => '#BE123C',
+      '45' => '#059669',
+      '47' => '#1E40AF',
+      '48' => '#525252',
+      '60' => '#9333EA',
+      '64' => '#0D9488',
+      '65' => '#334155',
+      '66' => '#DC2626',
+      '67' => '#D97706',
+      '68' => '#F43F5E',
+      '94' => '#EA580C',
+      'ONE' => '#0C4A6E',
+      '600' => '#7E22CE',
+      '610' => '#0EA5E9',
+      '62A' => '#E11D48',
+      '62B' => '#0284C7',
+    ];
+    return $mapping[$route_id] ?? '#000000';
+  }
+
   public function BuildPage($routeId = NULL) {
     /*Need to grab the Routes form*/
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
@@ -166,7 +193,7 @@ class RoutesPage extends ControllerBase {
         $val = isset($route['Route']['MapInfo']['Shapes'][0]) ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
         return [
           'Shapes' => $val,
-          'Color' => '#FFFFFF',
+          'Color' => RoutesPage::getRouteColor($route['Route']['RouteInfo']['route_short_name']),
           'RouteName' => isset($route['Route']['RouteInfo']['route_long_name']) ? $route['Route']['RouteInfo']['route_long_name'] : '',
         ];
       }, $all_routes_map_data_array);
