@@ -221,6 +221,8 @@
 
       once('input-name-display_stops_options', 'input[name="display_stops_options"]').forEach(function (element) {
         $(element).change(function () {
+          $('input[name="show_stop"]').prop('checked', false);
+          $('#applyRoutesFilter').click();
           const show_rows = $(this).val();
           if (show_rows === 'allstops') {
             $('tr.non-timepoint').show();

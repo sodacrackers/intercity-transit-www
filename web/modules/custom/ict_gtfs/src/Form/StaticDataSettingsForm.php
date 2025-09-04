@@ -129,16 +129,6 @@ class StaticDataSettingsForm extends ConfigFormBase {
       ],
     ];
 
-    $routes = it_route_trip_tools_build_routes_options();
-    if ($routes) {
-      $form['disable_routes'] = [
-        '#type' => 'checkboxes',
-        '#title' => $this->t('Disable routes'),
-        '#options' => $routes,
-        '#default_value' => $config->get('disable_routes') ?: [],
-      ];
-    }
-
     $form['#attached']['library'][] = 'ict_gtfs/ict_custom_backend';
     return $form;
   }

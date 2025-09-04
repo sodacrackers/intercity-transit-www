@@ -199,25 +199,6 @@ function it_route_trip_tools_theme_registry_alter(&$theme_registry) {
 }
 
 
-function it_route_trip_get_stop_markers($stop_times) {
-  $res = [];
-  foreach ($stop_times as $stop_time) {
-    $res[$stop_time['stop_id'].'-'.$stop_time['stop_sequence']]['stop_data'] = [
-      'stopSequence' => $stop_time['stop_sequence'],
-      'stopId' => $stop_time['stop_id'],
-      'stopName' => $stop_time['name'],
-      'stopLat' => $stop_time['lat'],
-      'stopLon' => $stop_time['lon'],
-      'timepoint' => $stop_time['timepoint']
-    ];
-    $res[$stop_time['stop_id'].'-'.$stop_time['stop_sequence']]['stop_times'][] = $stop_time['arrival_time'];
-  }
-  uasort($res, function ($a, $b) {
-    return $a['stop_data']['stopSequence'] != $b['stop_data']['stopSequence'] ? (int) $a['stop_data']['stopSequence'] - (int) $b['stop_data']['stopSequence'] : (int) $a['stop_data']['stopId'] - (int) $b['stop_data']['stopId'];
-  });
-  return $res;
-}
-
 function it_route_trip_tools_get_min($shapes, $key) {
   $val = 999;
   foreach ($shapes as $coord) {
@@ -312,114 +293,6 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
     "timepoint" => $stop['timepoint'],
     "routes" => $route_ids,
   ];
-  // Get the stop by ID.
-  // ICTSD-129
-  return [];
-  $shapes = \Drupal::service('ict.gtfs')->getStaticData('shapes');
-  $headers = array_shift($shapes);
-  $shape_index = array_search('shape_id', $headers);
-  $shape_pt_sequence_index = array_search('shape_pt_sequence', $headers);
-  $shape_pt_lat_index = array_search('shape_pt_lat', $headers);
-  $shape_pt_lon_index = array_search('shape_pt_lon', $headers);
-  $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
-  $headers = array_shift($stops);
-  $id_index = array_search('stop_id', $headers);
-  $name_index = array_search('stop_name', $headers);
-  $lat_index = array_search('stop_lat', $headers);
-  $lon_index = array_search('stop_lon', $headers);
-  $is_timepoint = NULL;
-  $stop = array_reduce($stops, function ($carry, $item) use ($stop_id, $id_index) {
-    return $item[$id_index] === $stop_id ? $item : $carry;
-  });
-  // Get the stop times by the loaded stop, and collect trip ids.
-  $stop_times = \Drupal::service('ict.gtfs')->getStaticData('stop_times');
-  $headers = array_shift($stop_times);
-  $stop_id_index = array_search('stop_id', $headers);
-  $stop_trip_id_index = array_search('trip_id', $headers);
-  $timepoint_index = array_search('timepoint', $headers);
-  $arrival_time_index = array_search('arrival_time', $headers);
-  $trip_ids = [];
-  $filtered_stop_times = array_filter($stop_times, function ($item) use ($stop_id_index, $stop_id) {
-    return isset($item[$stop_id_index]) && $item[$stop_id_index] == $stop_id;
-  });
-  // Filter trip ids and use them to collect routes.
-  foreach ($filtered_stop_times as $filtered_stop_time) {
-    $trip_ids[$filtered_stop_time[$stop_trip_id_index]] = $filtered_stop_time;
-    if ($filtered_stop_time[$timepoint_index] === '1') {
-      $is_timepoint = TRUE;
-    }
-  }
-  $trips = \Drupal::service('ict.gtfs')->getStaticData('trips');
-  $headers = array_shift($trips);
-  $trip_id_index = array_search('trip_id', $headers);
-  $route_id_index = array_search('route_id', $headers);
-  $service_type_index = array_search('service_id', $headers);
-  $shape_id_index = array_search('shape_id', $headers);
-  $route_ids = [];
-  $filtered_trips = array_filter($trips, function ($item) use ($trip_ids, $trip_id_index) {
-    return isset($item[$trip_id_index]) && array_key_exists($item[$trip_id_index], $trip_ids);
-  });
-  $all_routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
-  $headers = array_shift($all_routes);
-  $all_routes_id_index = array_search('route_id', $headers);
-  $all_routes_long_name_index = array_search('route_long_name', $headers);
-  foreach ($filtered_trips as $filtered_trip) {
-    $route_id = $filtered_trip[$route_id_index];
-    $trip_id = $filtered_trip[$trip_id_index];
-    $shape_id = $filtered_trip[$shape_id_index];
-    if (!isset($route_ids[$route_id])) {
-      $actual_route = array_reduce($all_routes, function ($carry, $item) use ($route_id, $all_routes_id_index) {
-        return $item[$all_routes_id_index] == $route_id ? $item : $carry;
-      });
-      $first_shape_items = array_filter($shapes, function ($item) use ($shape_id, $shape_index) {
-        return $item[$shape_index] == $shape_id;
-      });
-      $route_ids[$route_id] = [
-        "routeShortName" => $route_id,
-        "routeLongName" => $actual_route[$all_routes_long_name_index],
-        "schedule" => [
-          0 => [
-            'scheduleId' => '1.0',
-            'stopTimes' => [],
-          ],
-          1 => [
-            'scheduleId' => '2.0',
-            'stopTimes' => [],
-          ],
-        ],
-        "shape" => [
-          "shapeId" => $shape_id,
-          "shapeData" => array_map(function ($item) use ($shape_pt_sequence_index, $shape_pt_lat_index, $shape_pt_lon_index) {
-            return [
-              "shape_pt_sequence" => (int) $item[$shape_pt_sequence_index],
-              "shape_pt_lat" => (float) $item[$shape_pt_lat_index],
-              "shape_pt_lon" => (float) $item[$shape_pt_lon_index],
-            ];
-          }, array_values($first_shape_items)),
-        ],
-      ];
-    }
-    $new_st = (int) $filtered_trip[$service_type_index] - 2;
-    $one_stop_time = array_filter($filtered_stop_times, function ($item) use ($stop_trip_id_index, $trip_id) {
-      return $item[$stop_trip_id_index] == $trip_id;
-    });
-    $route_ids[$route_id]['schedule'][$new_st]['stopTimes'][] = [
-      "departureTime" => [
-        "date" => date('Y-m-d') . " " .  reset($one_stop_time)[$arrival_time_index] . ".000000",
-        "timezone_type" => 3,
-        "timezone" => "America/Los_Angeles",
-      ]
-    ];
-  }
-  ksort($route_ids);
-  return [
-    "stopId" => $stop_id,
-    "stopName" => $stop[$name_index],
-    "stopLat" => (float) $stop[$lat_index],
-    "stopLon" => (float) $stop[$lon_index],
-    "timepoint" => $is_timepoint,
-    "routes" => array_values($route_ids),
-  ];
 }
 
 /*
@@ -503,62 +376,11 @@ function it_route_trip_tools_get_stop_data($stopId) {
     return $stops;
 }
 
-/*
-	Build the select list for the routes form.
-*/
-function it_route_trip_tools_build_routes_options($filter_disabled = FALSE) {
-  // ICTSD-129
-  return [];
-  $routes = \Drupal::service('ict.gtfs')->getStaticData('routes');
-  $headers = array_shift($routes);
-  if (empty($headers)) {
-    return [];
-  }
-  $id_index = array_search('route_id', $headers);
-  $name_index = array_search('route_long_name', $headers);
-  $short_name_index = array_search('route_short_name', $headers);
-  $sort_index = array_search('route_sort_order', $headers);
-  $res = [];
-  foreach ($routes as $id => $route) {
-    if (count($route) > 1) {
-      $sort_key = (int) $route[$sort_index];
-      $long_name = $route[$name_index];
-      $short_name = $route[$short_name_index];
-      $res[$sort_key][$route[$id_index]] = str_contains($long_name, '-') ? $long_name : $short_name . '-' . $long_name;
-    }
-  }
-  ksort($res);
-  $final = [];
-  foreach ($res as $sort => $route) {
-    $route_id = array_keys($route)[0];
-    $final[$route_id] = $route[$route_id];
-  }
-  if ($filter_disabled) {
-    $disabled_routes = \Drupal::config('ict_gtfs.settings')->get('disable_routes');
-    $disabled_routes = array_filter($disabled_routes ?: []);
-    $final = array_diff_key($final, $disabled_routes);
-  }
-  return $final;
-}
-
-
 function it_route_trip_tools_build_route_title($routeId, $date = NULL) {
   $routes = it_route_trip_tools_pics_get_route_data($routeId, $date);
   $date = \Drupal::request()->query->get('date');
   $date = empty($date) ? date('Y-m-d') : $date;
   return isset($routes['Route']) ? $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] . ' (' . $date . ')' : '';
-}
-
-function it_route_trip_tools_build_stop_title($stopId) {
-  // ICTSD-129
-  return [];
-  $stops = \Drupal::service('ict.gtfs')->getStaticData('stops');
-  foreach ($stops as $stop) {
-    if ($stop[0] == $stopId) {
-      return $stop[2];
-    }
-  }
-  return '';
 }
 
 function it_route_trip_tools_preprocess_html(&$vars) {
