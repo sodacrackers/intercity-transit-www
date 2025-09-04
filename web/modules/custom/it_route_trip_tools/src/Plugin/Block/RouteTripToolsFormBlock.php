@@ -67,7 +67,8 @@ class RouteTripToolsFormBlock extends BlockBase {
         'drupalSettings' => [
           'it_route_trip_tools' => [
             'routes_action_path' => $routes_path,
-            'stops_action_path' => $stops_path
+            'stops_action_path' => $stops_path,
+            'available_days' => it_route_trip_tools_pics_get_dates(),
           ]
         ]   
       ]

@@ -41,7 +41,7 @@ function plotStopsCluster(map, stops) {
 function plotBusRoute(map, shapeData, color, routeName, infoWindow) {
 	const shapePath = [];
 	var routeName = routeName;
-	var routesPath = drupalSettings.it_route_trip_tools.routes_path;	
+	var routesPath = drupalSettings.it_route_trip_tools.routes_path;
 	if (color == "#FFFFFF") {
 		var color = '#' + Math.floor(Math.random()*16777215).toString(16);
 	}

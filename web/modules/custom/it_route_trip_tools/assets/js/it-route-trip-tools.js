@@ -66,22 +66,47 @@
         });
       });
 
-      $('#edit-routes--2').change(function () {
-        var route = $('#edit-routes--2').val();
-        var cur_action = $('form#routes-form--2').prop('action');
-        $('form#routes-form--2').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
+      once('service-option-datepicker', '#edit-service-option--2, #edit-service-option', context).forEach(function (element) {
+        $(element).datepicker({
+          dateFormat: 'mm/dd/yy',
+          defaultDate: new Date(),
+          beforeShowDay: function (date) {
+            const availableDays = drupalSettings.it_route_trip_tools.available_days;
+            const thisDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+            if (availableDays.hasOwnProperty(thisDate)) {
+                return [true, "","Service"];
+            } else {
+                return [false,"","No Service"];
+            }
+          },
+        });
       });
 
-      $('#edit-routes').change(function () {
+      $('#edit-routes--2,#edit-service-option--2').change(function () {
+        var route = $('#edit-routes--2').val();
+        var service_option = $('#edit-service-option--2').val();
+        var dateParts = service_option.split('/');
+        var month = dateParts[0];
+        var day = dateParts[1];
+        var year = dateParts[2];
+        service_option = year + '-' + month + '-' + day;
+        $('form#routes-form--2').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route + (service_option ? '?date=' + service_option : ''));
+      });
+
+      $('#edit-routes,#edit-service-option').change(function () {
         var route = $('#edit-routes').val();
-        var cur_action = $('form#routes-form').prop('action');
-        $('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
+        var service_option = $('#edit-service-option').val();
+        var dateParts = service_option.split('/');
+        var month = dateParts[0];
+        var day = dateParts[1];
+        var year = dateParts[2];
+        service_option = year + '-' + month + '-' + day;
+        $('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route + (service_option ? '?date=' + service_option : ''));
       });
 
       once('select-edit-stop', 'select#edit-stop').forEach(function (element) {
         $(element).change(function () {
           var route = $('#edit-stop').val();
-          var cur_action = $('form#stops-form').prop('action');
           $('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
         });
       });
