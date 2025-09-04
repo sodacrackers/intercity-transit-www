@@ -90,6 +90,14 @@
 		{% else %}
 			stop_marker.icon = stop;
 		{% endif %}
+		{% if stop_id == route_data.first_stop[dir] %}
+			stop_marker.icon = start;
+			stop_marker.label = {text: 'Start', color: "white"};
+		{% endif %}
+		{% if stop_id == route_data.last_stop[dir] %}
+			stop_marker.icon = end;
+			stop_marker.label = {text: 'End', color: "white"};
+		{% endif %}
 
 	  	{{ dir }}_markers[stop_id] = stop_marker;
 	{% endfor %}

@@ -423,6 +423,14 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
     'outbound_shapes' => $shapes_outbound,
     'inbound_label' => $inbound_label,
     'outbound_label' => $outbound_label,
+    'first_stop' => [
+      'inbound' => reset($time_tables_inbound)['stop_id'] ?? '',
+      'outbound' => reset($time_tables_outbound)['stop_id'] ?? '',
+    ],
+    'last_stop' => [
+      'inbound' => end($time_tables_inbound)['stop_id'] ?? '',
+      'outbound' => end($time_tables_outbound)['stop_id'] ?? '',
+    ],
     'stop_markers' => [
       'inbound' => $stop_markers_inbound,
       'outbound' => $stop_markers_outbound,
@@ -432,6 +440,7 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
       'outbound' => $time_tables_outbound,
     ],
   ];
+  dump($data);
 
   return $data;
 
