@@ -22,7 +22,8 @@ class StopsPage extends ControllerBase {
     if ($stopId != 'all'):
       $request = \Drupal::request();
       if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)):
-        $title = it_route_trip_tools_build_stop_title($stopId);
+        $stop = it_route_trip_tools_get_stop_details($stopId);
+        $title = $stop['stopName'];
       endif;
     else:
       $config = $this->config('it_route_trip_tools.settings');
