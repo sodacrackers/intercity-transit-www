@@ -751,13 +751,13 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   float: left;
 }
 .stop-table th:after {
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   content: '\f078';
   float: right;
   font-weight: 400;
 }
 .stop-table th[aria-expanded="true"]:after {
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   content: '\f077';
   float: right;
   font-weight: 400;

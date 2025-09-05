@@ -182,7 +182,7 @@ html body .featured-link a {
 }
 html body .breadcrumb li + li:before {
   content: "\f054";
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
 }
 html body .breadcrumb a {
   text-decoration: none;
@@ -470,8 +470,8 @@ html body.path-frontpage .home-content-left-right .region-content-right .panel-g
 }
 html body.path-frontpage .home-content-left-right .region-content-left .panel-group .panel .panel-heading:before,
 html body.path-frontpage .home-content-left-right .region-content-right .panel-group .panel .panel-heading:before {
-  content: '\f078';
-  font-family: "Font Awesome 5 Pro";
+  content: '\f067';
+  font-family: "Font Awesome 5 Free";
   color: #005EB8;
   display: inline-block;
   vertical-align: top;
@@ -551,7 +551,7 @@ html body footer .region-footer-first section {
 }
 html body footer .region-footer-first section:before {
   content: '';
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 5 Free";
   color: #fff;
   position: absolute;
   top: 20px;
