@@ -2,8 +2,8 @@
 
 use Drupal\Component\Serialization\Json;
 
-CONST INBOUND_DIRECTION = 0;
-CONST OUTBOUND_DIRECTION = 1;
+CONST INBOUND_DIRECTION = 1;
+CONST OUTBOUND_DIRECTION = 0;
 
 /**
  * Implements hook_theme().
@@ -231,8 +231,8 @@ function it_route_trip_tools_get_stop_options($full = FALSE, $date = NULL) {
   $routes_data = it_route_trip_tools_pics_get_all_routes_data($date);
   $stop_options = ['' => t('Select a stop')];
   foreach ($routes_data as $stop_data) {
-    if (isset($stop_data['Route']['MapInfo']['Stops'][0]) && !empty($stop_data['Route']['MapInfo']['Stops'][0])) {
-      foreach ($stop_data['Route']['MapInfo']['Stops'][0] as $stop) {
+    if (isset($stop_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION]) && !empty($stop_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION])) {
+      foreach ($stop_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION] as $stop) {
         if ($full) {
           $stop_options[(int) $stop['stop_id']] = isset($stop_options[(int) $stop['stop_id']]) ? $stop_options[(int) $stop['stop_id']] : $stop;
           $stop_options[(int) $stop['stop_id']]['routes'] = isset($stop_options[(int) $stop['stop_id']]['routes']) ? $stop_options[(int) $stop['stop_id']]['routes'] : [];
@@ -255,7 +255,7 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
   $stop = $stops[$stop_id];
   $route_ids = [];
   foreach ($stop['routes'] as $route_id => $route) {
-    $shape = reset($route['MapInfo']['Shapes'][0]);
+    $shape = reset($route['MapInfo']['Shapes'][INBOUND_DIRECTION]);
     $route_ids[$route['RouteInfo']['route_id']] = [
       "routeShortName" => $route['RouteInfo']['route_short_name'],
       "routeLongName" => $route['RouteInfo']['route_long_name'],
@@ -274,7 +274,7 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
         ] : [],
       ],
       "shape" => [
-        "shapeId" => array_keys($route['MapInfo']['Shapes'][0])[0] ?? '',
+        "shapeId" => array_keys($route['MapInfo']['Shapes'][INBOUND_DIRECTION])[0] ?? '',
         "shapeData" => array_map(function ($item) {
           return [
             "shape_pt_sequence" => $item['shape_pt_sequence'],
