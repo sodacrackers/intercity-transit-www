@@ -51,7 +51,7 @@
                                 {{ stop_data.stop_name }}
                             </th>
                             {% for stop_time in stop_data.trips %}
-                                {% set formatted_stop_time = stop_time.departure_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) %}
+                                {% set formatted_stop_time = stop_time.departure_time != '' ? stop_time.departure_time|date('g:i a')|replace({' am': ' a.m.', ' pm': ' p.m.'}) : '' %}
                                 <td style="width: {{ (100/((stop_data.stop_times|length) + 4)) }}%; {{ ' p.m.' in formatted_stop_time ? 'font-weight:bold;' }}">{{ formatted_stop_time }}</td>
                             {% endfor %}
                         </tr>

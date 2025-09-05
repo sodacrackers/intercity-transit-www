@@ -263,13 +263,13 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
         0 => isset($route['MapInfo']['Stops'][INBOUND_DIRECTION][$stop_id]) ? [
           'scheduleId' => '1.0',
           'stopTimes' => array_map(function ($item) {
-            return date('H:i a', strtotime($item['departure_time']));
+            return isset($item['departure_time']) && !empty($item['departure_time']) ? date('H:i a', strtotime($item['departure_time'])) : '';
           }, $route['MapInfo']['Stops'][INBOUND_DIRECTION][$stop_id]['stop_times'] ?? []),
         ] : [],
         1 => isset($route['MapInfo']['Stops'][OUTBOUND_DIRECTION][$stop_id]) ? [
           'scheduleId' => '2.0',
           'stopTimes' => array_map(function ($item) {
-            return date('H:i a', strtotime($item['departure_time']));
+            return isset($item['departure_time']) && !empty($item['departure_time']) ? date('H:i a', strtotime($item['departure_time'])) : '';
           }, $route['MapInfo']['Stops'][OUTBOUND_DIRECTION][$stop_id]['stop_times'] ?? []),
         ] : [],
       ],
@@ -352,11 +352,40 @@ function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
       'outbound' => $stop_markers_outbound,
     ],
     'time_tables' => [
-      'inbound' => $time_tables_inbound,
-      'outbound' => $time_tables_outbound,
+      'inbound' => it_route_trip_tools_pics_fill_trips($time_tables_inbound),
+      'outbound' => it_route_trip_tools_pics_fill_trips($time_tables_outbound),
     ],
   ];
   return $data;
+}
+
+function it_route_trip_tools_pics_fill_trips($time_tables) {
+  $full_trip = [];
+  foreach ($time_tables as $stop) {
+    if (count($stop['trips']) > count($full_trip)) {
+      $sorted_trips = $stop['trips'];
+      uasort($sorted_trips, function($a, $b) {
+        return strtotime($a['departure_time']) - strtotime($b['departure_time']);
+      });
+      $full_trip = array_keys($sorted_trips);
+    }
+  }
+  $return_tables = [];
+  foreach ($time_tables as $id => $stop) {
+    $return_tables[$id] = $stop;
+    $return_tables[$id]['trips'] = [];
+    foreach ($full_trip as $trip) {
+      if (isset($stop['trips'][$trip])) {
+        $return_tables[$id]['trips'][$trip] = $stop['trips'][$trip];
+      } else {
+        $return_tables[$id]['trips'][$trip] = [
+          'departure_time' => '',
+        ];
+      }
+    }
+  }
+  return $return_tables;
+
 }
 
 function it_route_trip_tools_build_route_title($routeId, $date = NULL) {

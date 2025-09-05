@@ -108,6 +108,7 @@
 	      var data = markers_array[i];
 	      var markerLatLng = new google.maps.LatLng(data.lat, data.lng);
 		  var times = data.times.map(function(time) {
+			if (!time || time == '') return '';
 			var timeParts = time.split('T')[1].split(':');
 			var hours = parseInt(timeParts[0]);
 			var minutes = timeParts[1];
@@ -115,7 +116,7 @@
 			hours = hours % 12 || 12;
 			return hours + ':' + minutes + ' ' + period;
 		  });
-		  data.description = '<h3>' + data.title + '</h3><p>' + times.join(', ') + '</p>';
+		  data.description = '<h3>' + data.title + '</h3><p>' + times.filter((time) => time != '').join(', ') + '</p>';
 	      var marker = new google.maps.Marker({
           position: markerLatLng,
           map: data.map,
