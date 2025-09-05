@@ -26,3 +26,10 @@ button#locate {
 #dest-add-alert {
   margin: 20px 0 10px 0;
 }
+.routes-page-content-container .row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.routes-page-content-container .route-map-wrapper {
+  margin-bottom: 40px;
+}

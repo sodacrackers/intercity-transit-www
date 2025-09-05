@@ -29,6 +29,7 @@ block_classes_stored:
   - col-lg-3
   - col-md-3
   - walk-n-roll-calendar
+  - row
 enable_attributes: true
 enable_auto_complete: true
 qty_classes_per_block: 10

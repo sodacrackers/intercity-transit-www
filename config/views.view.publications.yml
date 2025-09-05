@@ -566,13 +566,13 @@ display:
           default_argument_options:
             argument: ''
           summary_options:
-            base_path: about-us/publications/by-topic
+            base_path: ''
             count: true
             override: false
             items_per_page: 25
           summary:
             sort_order: asc
-            number_of_records: 0
+            number_of_records: 1
             format: default_summary
           specify_validation: false
           validate:
