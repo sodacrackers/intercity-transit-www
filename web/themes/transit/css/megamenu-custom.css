@@ -9,12 +9,6 @@
     display: inline-block
 }
 
-.ico-arrow,
-.we-mega-menu-toolbar .we-mega-menu-btn-break-col:before,
-.we-mega-menu-toolbar .chosen-container-single .chosen-single div b {
-    background-image: url("../images/ico-arrow.png")
-}
-
 .ico-arrow-white,
 .we-mega-menu-toolbar .we-mega-menu-btn-break-col:after {
     width: .6875rem;
@@ -23,11 +17,6 @@
     background-position: center;
     background-repeat: no-repeat;
     display: inline-block
-}
-
-.ico-arrow-white,
-.we-mega-menu-toolbar .we-mega-menu-btn-break-col:after {
-    background-image: url("../images/ico-arrow-white.png")
 }
 
 /*.close {
@@ -675,7 +664,6 @@
 }
 
 .we-mega-menu-toolbar .chosen-container-single .chosen-single div b {
-    background-image: url("../images/ico-arrow.png") !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -877,16 +865,6 @@
         background-position: center;
         background-repeat: no-repeat;
         display: inline-block
-    }
-    .we-mega-menu-ul .dropdown-menu>a:before,
-    .we-mega-menu-ul .dropdown-menu>span:before {
-        background-image: url("../images/ico-arrow.png")
-    }
-    .we-mega-menu-ul .dropdown-menu>a:after,
-    .we-mega-menu-ul .dropdown-menu>span:after {
-        background-image: url("../images/ico-arrow-white.png");
-        filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0
     }
     .we-mega-menu-ul .dropdown-menu .dropdown-menu>a:after,
     .we-mega-menu-ul .dropdown-menu .dropdown-menu>span:after {

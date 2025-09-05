@@ -2180,6 +2180,10 @@ table.fc-list-table > tbody > tr > td {
     margin-top: -1px;
  }
 
+ #filter-stops button.close.ui-dialog-titlebar-close:after {
+    display: none !important;
+ }
+
 .fullcalendar-bottom-btn {
     margin-bottom: 20px;
 }
