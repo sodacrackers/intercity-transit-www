@@ -54,7 +54,7 @@
     font-size: 8px;
     color: white;
     line-height: 14px;
-    font-weight: 100
+    font-weight: 900;
 }
 
 .ajax-progress.ajax-progress-throbber {
@@ -803,7 +803,8 @@
         -moz-osx-font-smoothing: grayscale;
         font-size: 14px;
         color: #fff;
-        line-height: 18px
+        line-height: 18px;
+        font-weight: 900;
     }
     .navbar-we-mega-menu .flex-prev:hover,
     .navbar-we-mega-menu .flex-prev:focus,
@@ -2694,7 +2695,7 @@ nav[data-animation="Elastic"]:not(.admin) .we-mega-menu-ul .dropdown-menu:not(.c
         content: '\f107';
         display: inline-block;
         font-family: "Font Awesome 5 Free";
-        font-weight: 400;
+        font-weight: 900;
         font-size: inherit;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;

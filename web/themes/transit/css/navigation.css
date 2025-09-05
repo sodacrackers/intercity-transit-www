@@ -199,7 +199,7 @@ html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .regio
   content: '\f0dd';
   color: #003087;
   font-family: "Font Awesome 5 Free";
-  font-weight: 700;
+  font-weight: 900;
   font-size: 2.5rem;
 }
 @media screen and (max-width: 991px) {
@@ -278,7 +278,7 @@ html body .nav-outer-wrapper header.navbar .region-navigation-collapsible .regio
   color: #6CACE4;
   position: absolute;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 900;
   left: 43%;
   top: 50%;
 }

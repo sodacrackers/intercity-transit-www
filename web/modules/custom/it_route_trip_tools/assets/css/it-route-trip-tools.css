@@ -754,13 +754,13 @@ html body.path-plan-your-trip .main-container .row .region-highlighted {
   font-family: "Font Awesome 5 Free";
   content: '\f078';
   float: right;
-  font-weight: 400;
+  font-weight: 900;
 }
 .stop-table th[aria-expanded="true"]:after {
   font-family: "Font Awesome 5 Free";
   content: '\f077';
   float: right;
-  font-weight: 400;
+  font-weight: 900;
 }
 .carousel {
   margin-top: 30px;

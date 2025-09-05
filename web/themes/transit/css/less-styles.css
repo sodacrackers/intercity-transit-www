@@ -183,6 +183,7 @@ html body .featured-link a {
 html body .breadcrumb li + li:before {
   content: "\f054";
   font-family: "Font Awesome 5 Free";
+  font-weight: 900;
 }
 html body .breadcrumb a {
   text-decoration: none;
@@ -475,6 +476,7 @@ html body.path-frontpage .home-content-left-right .region-content-right .panel-g
   color: #005EB8;
   display: inline-block;
   vertical-align: top;
+  font-weight: 900;
 }
 html body.path-frontpage .home-content-left-right .region-content-left .panel-group .panel .panel-heading .panel-title,
 html body.path-frontpage .home-content-left-right .region-content-right .panel-group .panel .panel-heading .panel-title {
@@ -556,7 +558,7 @@ html body footer .region-footer-first section:before {
   position: absolute;
   top: 20px;
   left: 0;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 30px;
   border-right: solid 1px #6CACE4;
   padding-right: 10px;

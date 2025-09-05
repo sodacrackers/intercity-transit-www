@@ -2,7 +2,6 @@
     namespace Drupal\it_route_trip_tools\Routing;
 
     use Symfony\Component\Routing\Route;
-    use Symfony\Component\Routing\RouteCollection;
 
     class ItRouteTripToolsRoutes {
         public function RoutesPageRouting() {
