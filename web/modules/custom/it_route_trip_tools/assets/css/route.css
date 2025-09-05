@@ -487,8 +487,7 @@ label.form-check-label {
   color: #003087;
 }
 
-.region-header-mid .breadcrumb li:first-child,
-.region-header-mid .breadcrumb li:last-child {
+.region-header-mid .breadcrumb li:first-child {
   display: none;
 }
 
