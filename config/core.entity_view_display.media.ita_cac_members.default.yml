@@ -1,0 +1,59 @@
+uuid: 490af1db-8a51-496b-a14a-9701075b7bc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.ita_cac_members.field_additional_text
+    - field.field.media.ita_cac_members.field_ita_or_cac_
+    - field.field.media.ita_cac_members.field_media_image
+    - field.field.media.ita_cac_members.field_title
+    - image.style.large
+    - media.type.ita_cac_members
+  module:
+    - image
+id: media.ita_cac_members.default
+targetEntityType: media
+bundle: ita_cac_members
+mode: default
+content:
+  field_additional_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_ita_or_cac_:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

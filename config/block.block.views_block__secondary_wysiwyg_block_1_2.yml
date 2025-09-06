@@ -1,0 +1,30 @@
+uuid: 5c53b719-8949-43cf-a219-c348ec35f647
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.secondary_wysiwyg
+  module:
+    - system
+    - views
+  theme:
+    - transit
+id: views_block__secondary_wysiwyg_block_1_2
+theme: transit
+region: sidebar_second
+weight: 0
+provider: null
+plugin: 'views_block:secondary_wysiwyg-block_1'
+settings:
+  id: 'views_block:secondary_wysiwyg-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /stormwater-improvements-amtrak-and-lacey-transit-center

@@ -16,8 +16,7 @@
 			var infoWindow = new google.maps.InfoWindow();
 			var shapesData = drupalSettings.it_route_trip_tools.all_routes_map_data_array;
 			$.each(shapesData[0], function(shapeDataKey, shape) {
-				var shapeData = '';
-				shapeData = shape.Shapes[0].shapeData;
+				var shapeData = shape.Shapes;
 				var color = shape.Color;
 				var routeName = shape.RouteName;
 					plotBusRoute(map, shapeData, color, routeName, infoWindow);
@@ -42,16 +41,14 @@ function plotStopsCluster(map, stops) {
 function plotBusRoute(map, shapeData, color, routeName, infoWindow) {
 	const shapePath = [];
 	var routeName = routeName;
-	var routesPath = drupalSettings.it_route_trip_tools.routes_path;	
+	var routesPath = drupalSettings.it_route_trip_tools.routes_path;
 	if (color == "#FFFFFF") {
 		var color = '#' + Math.floor(Math.random()*16777215).toString(16);
 	}
 	for (var index = 0; index < shapeData.length; index++) {
 		shapePath[index] = {
-			//lat: shapeData[index].shape_pt_lat,
-			//lng: shapeData[index].shape_pt_lon
-			lat: shapeData[index].lat,
-			lng: shapeData[index].lon
+			lat: shapeData[index].shape_pt_lat,
+			lng: shapeData[index].shape_pt_lon
 		};
 	}
 	const routePath = new google.maps.Polyline({

@@ -1,0 +1,15 @@
+uuid: fe52590f-4383-4bef-afe5-f3d87954b098
+langcode: en
+status: true
+dependencies: {  }
+name: 120_x_160
+label: '120 x 160'
+effects:
+  8fe89c57-5342-4fe2-8f69-1e0924ba2b4f:
+    uuid: 8fe89c57-5342-4fe2-8f69-1e0924ba2b4f
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 120
+      height: 160
+      anchor: center-center

@@ -16,7 +16,7 @@
                 <select id="route-change">
                     <option value="">- Select Route -</option>
                     {% for key, value in routes_options %}
-                        <option value="{{ key }}">{{ value }}</option>
+                        <option value="{{ key }}">{{ value.route_short_name }} - {{ value.route_long_name }}</option>
                     {% endfor %}
                 </select>
             </div>

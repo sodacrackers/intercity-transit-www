@@ -47,30 +47,18 @@ class AdminForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('it_route_trip_tools.settings');
-    if ($config->get('route_page_parent') != ''): 
+    if ($config->get('route_page_parent') != ''):
       $route_page_node = \Drupal\node\Entity\Node::load($config->get('route_page_parent'));
-      if($route_page_node):
-        $route_nid = $route_page_node->id();
-        $route_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$route_nid);
-      endif;
     else:
       $route_page_node = '';
     endif;
     if ($config->get('stops_page_parent')):
       $stops_page_node = \Drupal\node\Entity\Node::load($config->get('stops_page_parent'));
-      if($stops_page_node):
-        $stops_nid = $stops_page_node->id();
-        $stops_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$stops_nid);
-      endif;
     else:
       $stops_page_node = '';
     endif;
     if ($config->get('trip_planner_page_parent') != ''):
       $trip_planner_page_node = \Drupal\node\Entity\Node::load($config->get('trip_planner_page_parent'));
-      if($trip_planner_page_node):
-        $trip_nid = $trip_planner_page_node->id();
-        $trip_planner_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$trip_nid);
-      endif;
     else:
       $trip_planner_page_node = '';
     endif;
@@ -109,42 +97,6 @@ class AdminForm extends ConfigFormBase {
       '#description' => 'The full path for the Stops page is: <strong><a href="' . $config->get('stops_page_path') . '">' . $config->get('stops_page_path') . '</a></strong>',
       '#title' => $this->t('Stops Page Parent'),
     ];
-    $form['it_route_trip_tools_route_stops_api_base'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('route_stops_api_base'),
-      '#description' => 'Just the domain and protocol. Like, https://api.domain',
-      '#title' => $this->t('Route and Stop API Base'),
-    ];
-    $form['it_route_trip_tools_route_options_request'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('route_options_request'),
-      '#description' => 'The request for the route options API. Like route-options.php',
-      '#title' => $this->t('Route Options Request'),
-    ];
-    $form['it_route_trip_tools_route_search_request'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('route_search_request'),
-      '#description' => 'The request for the route search API. Like route-search.php',
-      '#title' => $this->t('Route Search Request'),
-    ];
-    $form['it_route_trip_tools_route_shapes_request'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('route_shapes_request'),
-      '#description' => 'The request for the route shapes API. Like route-search.php',
-      '#title' => $this->t('Route Shapes Request'),
-    ];
-    $form['it_route_trip_tools_stops_options_request'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('stops_options_request'),
-      '#description' => 'The options request for the stops API. Like stop-options-search.php',
-      '#title' => $this->t('Stops Request'),
-    ];
-    $form['it_route_trip_tools_stops_request'] = [
-      '#type' => 'textfield',
-      '#default_value' => $config->get('stops_request'),
-      '#description' => 'The search request for the stops API. Like stop-search.php',
-      '#title' => $this->t('Stops Request'),
-    ];
     $form['it_route_trip_tools_trip_planner_page_title'] = [
       '#type' => 'textfield',
       '#description' => $trip_planner_page_title_desc,
@@ -161,6 +113,18 @@ class AdminForm extends ConfigFormBase {
       '#description' => 'The full path for the trip planner page is: <strong><a href="' . $config->get('trip_planner_page_path') . '">' . $config->get('trip_planner_page_path') . '</a></strong>',
       '#title' => $this->t('Trip Planner Page Parent'),
     ];
+    $routes = it_route_trip_tools_pics_get_routes_raw();
+    $routes_options = [];
+    foreach ($routes as $key => $value) {
+      $routes_options[$key] = $value['route_short_name'] . ' - ' . $value['route_long_name'];
+    }
+    if ($routes) {
+      $form['disable_routes'] = [
+        '#type' => 'checkboxes',
+        '#options' => $routes_options,
+        '#default_value' => $config->get('disable_routes') ?: [],
+      ];
+    }
     $form['actions'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
@@ -232,13 +196,7 @@ class AdminForm extends ConfigFormBase {
     $trip_planner_alias = \Drupal::service('path_alias.manager')->getAliasByPath('/node/'.$trip_planner_nid);
     $trip_planner_page_title_clean = preg_replace('/[^a-zA-Z0-9\s]/', '', strtolower($trip_planner_page_title));
     $trip_planner_page_title_clean =  preg_replace('!\s+!', '-', $trip_planner_page_title_clean);
-
-    $route_stops_api_base = $form_state->getValue('it_route_trip_tools_route_stops_api_base');
-    $route_options_request = $form_state->getValue('it_route_trip_tools_route_options_request');
-    $route_search_request = $form_state->getValue('it_route_trip_tools_route_search_request');
-    $route_shapes_request = $form_state->getValue('it_route_trip_tools_route_shapes_request');
-    $stops_request = $form_state->getValue('it_route_trip_tools_stops_request');
-    $stops_options_request = $form_state->getValue('it_route_trip_tools_stops_options_request');
+    $disable_routes = array_filter($form_state->getValue('disable_routes'));
 
     $config->set('route_page_title', $route_page_title);
     $config->set('route_page_title_clean', $route_page_title_clean);
@@ -255,12 +213,7 @@ class AdminForm extends ConfigFormBase {
     $config->set('trip_planner_page_path', $trip_planner_alias . '/' . $trip_planner_page_title_clean);
     $config->set('trip_planner_page_parent', $trip_planner_page_parent);
 
-    $config->set('route_stops_api_base', $route_stops_api_base);
-    $config->set('route_options_request', $route_options_request);
-    $config->set('route_search_request', $route_search_request);
-    $config->set('route_shapes_request', $route_shapes_request);
-    $config->set('stops_request', $stops_request);
-    $config->set('stops_options_request', $stops_options_request);
+    $config->set('disable_routes', $disable_routes);
 
     $config->save();
   }

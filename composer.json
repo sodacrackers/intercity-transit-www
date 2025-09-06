@@ -5,6 +5,68 @@
     "license": "MIT",
     "repositories": [
         {
+        "type": "package",
+        "package": {
+            "name": "jackmoore/colorbox",
+            "version": "1.6.4",
+            "type": "drupal-library",
+            "dist": {
+            "url": "https://github.com/jackmoore/colorbox/archive/1.6.4.zip",
+            "type": "zip"
+            }
+        }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "malsup/jquery.cycle",
+            "version": "3.0.3-a",
+            "type":"drupal-library",
+            "dist": {
+                "url": "https://github.com/malsup/cycle/archive/refs/tags/3.0.3-a.tar.gz",
+                "type": "tar"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "douglascrockford/json2",
+            "version": "dev-master",
+            "type":"drupal-library",
+            "source": {
+                "url": "https://github.com/douglascrockford/JSON-js",
+                "type": "git",
+                "reference": "master"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "tobia/jquery.pause",
+            "version": "dev-master",
+            "type":"drupal-library",
+            "source": {
+                "url": "https://github.com/tobia/Pause",
+                "type": "git",
+                "reference": "master"
+            }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+            "name": "briancherne/jquery.hover-intent",
+            "version": "1.10.2",
+            "type":"drupal-library",
+            "dist": {
+                "url": "https://github.com/briancherne/jquery-hoverIntent/archive/refs/tags/v1.10.2.tar.gz",
+                "type": "tar"
+            }
+            }
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
@@ -400,8 +462,8 @@
         "drupal/anchor_link": "^2.5",
         "drupal/auto_entitylabel": "^3.0-dev",
         "drupal/better_search": "^2.0",
-        "drupal/blazy": "^2",
-        "drupal/block_class": "^2.0",
+        "drupal/blazy": "^3",
+        "drupal/block_class": "^4",
         "drupal/bootstrap": "^3.26",
         "drupal/bootstrap_layouts": "^5.2",
         "drupal/captcha": "^2",
@@ -445,7 +507,7 @@
         "drupal/menu_block": "^1.5",
         "drupal/menu_block_title": "^1.1",
         "drupal/menu_link_weight": "^2.0@alpha",
-        "drupal/metatag": "^1.11",
+        "drupal/metatag": "^2",
         "drupal/module_filter": "^4.1",
         "drupal/paragraphs": "^1.11",
         "drupal/pathauto": "^1.6",
@@ -458,12 +520,12 @@
         "drupal/search_api": "^1.2",
         "drupal/search_api_attachments": "^9.0",
         "drupal/search_api_page": "^1.0-beta2",
-        "drupal/search_api_pantheon": "^8.0@beta",
+        "drupal/search_api_pantheon": "^8",
         "drupal/search_api_solr": "^4.2",
         "drupal/sidr": "5.x-dev",
         "drupal/simplify": "^2.1",
-        "drupal/slick": "^2",
-        "drupal/slick_views": "^2",
+        "drupal/slick": "^3",
+        "drupal/slick_views": "^3",
         "drupal/smtp": "^1.0-beta6",
         "drupal/tamper": "^1.0@alpha",
         "drupal/time_field": "^2.0",
@@ -488,16 +550,12 @@
         "drupal/workbench_moderation": "^1.5",
         "drush-ops/behat-drush-endpoint": "^9.3",
         "drush/drush": "^12",
-        "gtfs/realtime-php": "^1.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "pantheon-systems/drupal-integrations": "^9",
         "pantheon-systems/quicksilver-pushback": "^2",
         "pantheon-upstreams/upstream-configuration": "dev-main",
         "php": ">=7.0.8",
         "rvtraveller/qs-composer-installer": "^1.1",
-        "watech-web/ahoy-d8": "^1.0",
-        "watech-web/chosen": "^1.0",
-        "watech-web/db_custom_tools": "^2",
         "drupal/adaptivetheme": "^5.1",
         "drupal/google_tag": "^1.6",
         "google/protobuf": "3.22.0 as 3.10.0",
@@ -534,7 +592,12 @@
         "svg-pan-zoom/svg-pan-zoom": "*",
         "tabby/tabby": "*",
         "tippyjs/tippyjs": "*",
-        "fontawesome/fontawesome": "*"
+        "fontawesome/fontawesome": "*",
+        "briancherne/jquery.hover-intent": "^1.10",
+        "douglascrockford/json2": "dev-master",
+        "malsup/jquery.cycle": "^3.0@alpha",
+        "tobia/jquery.pause": "dev-master",
+        "jackmoore/colorbox": "^1.6"
     },
     "require-dev": {
         "drupal/core-dev": "^10"
@@ -575,9 +638,6 @@
         "patches": {
             "drupal/we_megamenu": {
                 "Fixing duplicate column issue, https://www.drupal.org/project/we_megamenu/issues/2988381": "https://www.drupal.org/files/issues/2021-09-07/2988381-10.patch"
-            },
-            "gtfs/realtime-php": {
-                "#1 Bump google/protobuf from 3.10.0 to 3.15.0": "https://patch-diff.githubusercontent.com/raw/sebastianknopf/gtfs-realtime-php/pull/1.patch"
             }
         },
         "composer-exit-on-patch-failure": false,

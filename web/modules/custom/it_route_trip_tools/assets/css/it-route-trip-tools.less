@@ -458,10 +458,8 @@ html {
   }
 }
 
-#inbound-weekdays-large-screen-route-table,
-#outbound-weekdays-large-screen-route-table,
-#inbound-weekends-large-screen-route-table,
-#outbound-weekends-large-screen-route-table {
+#inbound-large-screen-route-table,
+#outbound-large-screen-route-table {
   margin-top: 0;
   clear: both;
   table {
@@ -545,11 +543,11 @@ html {
             th {
               &:before {
                 content: '\f219';
-                font-family: "Font Awesome 5 Pro";
+                font-family: "Font Awesome 5 Free";
                 color: #fff;
                 position: absolute;
                 left: 0;
-                font-weight: 700;
+                font-weight: 900;
                 font-size: 1.5rem;
                 margin-top: -7px;
                 padding-top: 5px;
@@ -568,11 +566,11 @@ html {
             th {
               &:before {
                 content: '\f111';
-                font-family: "Font Awesome 5 Pro";
+                font-family: "Font Awesome 5 Free";
                 color: #fff;
                 position: absolute;
                 left: 0;
-                font-weight: 700;
+                font-weight: 900;
                 font-size: 1.1rem;
                 margin-top: -7px;
                 padding-top: 9px;
@@ -715,10 +713,8 @@ html {
 }
 
 //New table border on left and sticky first col
-#outbound-weekdays-large-screen-route-table,
-#inbound-weekdays-large-screen-route-table,
-#outbound-weekends-large-screen-route-table,
-#inbound-weekends-large-screen-route-table {
+#outbound-large-screen-route-table,
+#inbound-large-screen-route-table 
   table {
     width: 100%;
 
@@ -790,17 +786,17 @@ html {
   float: left;
   th {
     &:after {
-      font-family: "Font Awesome 5 Pro";
+      font-family: "Font Awesome 5 Free";
       content: '\f078';
       float: right;
-      font-weight: 400;
+      font-weight: 900;
     }
     &[aria-expanded="true"] {
       &:after {
-        font-family: "Font Awesome 5 Pro";
+        font-family: "Font Awesome 5 Free";
         content: '\f077';
         float: right;
-        font-weight: 400;
+        font-weight: 900;
       }
     }
   }

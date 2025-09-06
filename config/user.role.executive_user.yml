@@ -6,6 +6,7 @@ dependencies:
     - filter.format.iframe
     - filter.format.rich_text
     - media.type.document
+    - media.type.ita_cac_members
     - node.type.blog_page
     - node.type.calendar_event
     - node.type.interagency_agreement
@@ -25,21 +26,26 @@ permissions:
   - 'create calendar_event content'
   - 'create document media'
   - 'create interagency_agreement content'
+  - 'create ita_cac_members media'
   - 'create news content'
   - 'delete any blog_page content'
   - 'delete any interagency_agreement content'
+  - 'delete any ita_cac_members media'
   - 'delete interagency_agreement revisions'
   - 'delete own document media'
   - 'delete own files'
   - 'delete own interagency_agreement content'
+  - 'delete own ita_cac_members media'
   - 'edit any blog_page content'
   - 'edit any calendar_event content'
   - 'edit any interagency_agreement content'
+  - 'edit any ita_cac_members media'
   - 'edit any news content'
   - 'edit own blog_page content'
   - 'edit own calendar_event content'
   - 'edit own document media'
   - 'edit own interagency_agreement content'
+  - 'edit own ita_cac_members media'
   - 'edit own news content'
   - 'revert calendar_event revisions'
   - 'revert interagency_agreement revisions'

@@ -1,6 +1,6 @@
 {{ attach_library('it_route_trip_tools/route') }}
 <div class="container">
-    <ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
+    {# <ul class="nav nav-tabs" id="myTab" role="tablist" aria-owns="schedule-tab realtime-tab">
         <li class="nav-item active">
             <a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule"
                aria-selected="true"><span class="route-id">Route {{ route_short_name }}</span> Schedule</a>
@@ -10,7 +10,7 @@
                aria-controls="real-time" aria-selected="false"><span
                         class="route-id">Route {{ route_short_name }}</span> Real-Time <span class="hide-mobile">Departures</span></a>
         </li>
-    </ul>
+    </ul> #}
     <div class="tab-content" id="myTabContent">
         <div id="schedule">
             <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -19,15 +19,10 @@
                     defer>
             </script>
             {% if route_data_weekdays %}
-            <div id="route-map" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div id="route-map-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+            <div id="route-map-container">
+                <div id="route-map" class="weekdays-info">
                     {{ routes_map_weekdays }}
                 </div>
-                {% if routes_map_weekend %}
-                    <div id="route-map-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
-                        {{ routes_map_weekend }}
-                    </div>
-                {% endif %}
             </div>
             <div id="route-info-header">
                 <div id="filters" class="col-xs-12 col-sm-12 col-lg-12 accordion">
@@ -45,7 +40,7 @@
                             <select id="route-change" class="btn btn-default input-width-80">
                                 <option value="">- Select Route -</option>
                                 {% for key, options in routes_options %}
-                                    <option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.name }}</option>
+                                    <option value="{{ key }}" {{ key == route_id ? 'selected="selected"' }}>{{ options.id }} - {{ options.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -83,25 +78,21 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="customize-dropdown">
                                     <ul>
-                                        {% for dir, dir_data in route_data_weekdays.times_alt %}
-                                            {% for stop_id, stop_data in dir_data.stops %}
-                                                {% for timepoint, stop_names in stop_data %}
-                                                    {% for stop_name, stop_times in stop_names %}
-                                                        <li class="customize-view-{{ dir }} {{ dir == 'inbound' ? 'hidden' : '' }}">
-                                                            <div class="dropdown-item">
-                                                                <div class="form-check">
-                                                                    <input name="show_stop" class="form-check-input"
-                                                                           type="checkbox"
-                                                                           value="{{ stop_data.stop_id }}"
-                                                                           id="checkstop{{ stop_data.stop_id }}"/>
-                                                                    <label class="form-check-label"
-                                                                           onclick="event.stopPropagation();"
-                                                                           for="checkstop{{ stop_data.stop_id }}">{{ stop_name }}</label>
-                                                                </div>
+                                        {% for dir, dir_data in route_data_weekdays.time_tables %}
+                                                {% for stop_id, stop_data in dir_data %}
+                                                    <li class="customize-view-{{ dir }} {{ dir == 'inbound' ? 'hidden' : '' }}">
+                                                        <div class="dropdown-item">
+                                                            <div class="form-check">
+                                                                <input name="show_stop" class="form-check-input"
+                                                                        type="checkbox"
+                                                                        value="{{ stop_data.stop_id }}"
+                                                                        id="checkstop{{ stop_data.stop_id }}"/>
+                                                                <label class="form-check-label"
+                                                                        onclick="event.stopPropagation();"
+                                                                        for="checkstop{{ stop_data.stop_id }}">{{ stop_data.stop_name }}</label>
                                                             </div>
-                                                        </li>
-                                                    {% endfor %}
-                                                {% endfor %}
+                                                        </div>
+                                                    </li>
                                             {% endfor %}
                                         {% endfor %}
                                     </ul>
@@ -116,15 +107,8 @@
                                 Day of Travel
                             </h5>
                             <div class="form-radios">
-                                <div class="form-radio">
-                                    <input class="form-check-input" type="radio" value="weekdays-info" id="weekdays"
-                                           name="dayoftravel" checked="checked"/>
-                                    <label class="form-check-label" for="weekdays">Monday - Friday</label>
-                                </div>
-                                <div class="form-radio">
-                                    <input class="form-check-input" type="radio" value="weekend-info" id="weekend"
-                                           name="dayoftravel"/>
-                                    <label class="form-check-label" for="weekends">Saturday - Sunday</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-width-80" id="dayoftravel-date" name="dayoftravel-date"/>
                                 </div>
                             </div>
                         </div>
@@ -136,12 +120,12 @@
                                 <div class="form-radio">
                                     <input class="form-check-input" type="radio" value="outbound" id="outbound"
                                            name="direction" checked="checked"/>
-                                    <label class="form-check-label" for="outbound">Outbound</label>
+                                    <label class="form-check-label" for="outbound">{{ route_data_weekdays.outbound_label }}</label>
                                 </div>
                                 <div class="form-radio">
                                     <input class="form-check-input" type="radio" value="inbound" id="inbound"
                                            name="direction"/>
-                                    <label class="form-check-label" for="inbound">Inbound</label>
+                                    <label class="form-check-label" for="inbound">{{ route_data_weekdays.inbound_label }}</label>
                                 </div>
                             </div>
                         </div>
@@ -150,11 +134,8 @@
                                 class="download-icon"></span><span>Download Schedule<span></a>
                 </div>
             </div>
-            <div id="route-table-weekdays" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+            <div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
                 {{ routes_table_weekdays }}
-            </div>
-            <div id="route-table-weekend" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekend-info hide">
-                {{ routes_table_weekend }}
             </div>
 
         </div>
@@ -171,8 +152,8 @@
             {% endif %}
         {% endif %}
     </div>
-    <div id="real-time-container">
+    {# <div id="real-time-container">
         {{ drupal_block('ict_routes_react_app_block') }}
-    </div>
+    </div> #}
 </div>
 </div>

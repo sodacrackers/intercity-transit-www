@@ -60,7 +60,7 @@
 /web/core/
 /web/modules/contrib/
 /web/themes/contrib/
-/web/profiles/contrib/
+/web/profiles
 /web/libraries/
 /web/private/scripts/quicksilver
 

@@ -192,7 +192,7 @@ class Theme {
     $this->theme = $theme;
     $this->themeHandler = $theme_handler;
     $this->themes = $this->themeHandler->listInfo();
-    $this->info = isset($this->themes[$this->name]->info) ? $this->themes[$this->name]->info : [];
+    $this->info = $this->themes[$this->name]->info ?? [];
     $this->bootstrap = $this->subthemeOf('bootstrap');
 
     // Only install the theme if it's Bootstrap based and there are no schemas
@@ -425,7 +425,7 @@ class Theme {
   public function getCdnProvider() {
     $provider = $this->getSetting('cdn_provider');
     $providers = $this->getCdnProviders();
-    return isset($providers[$provider]) ? $providers[$provider] : ProviderManager::broken();
+    return $providers[$provider] ?? ProviderManager::broken();
   }
 
   /**
@@ -464,7 +464,7 @@ class Theme {
    */
   public function getInfo($property = NULL) {
     if (isset($property)) {
-      return isset($this->info[$property]) ? $this->info[$property] : NULL;
+      return $this->info[$property] ?? NULL;
     }
     return $this->info;
   }
@@ -575,7 +575,7 @@ class Theme {
 
     // Return a specific setting plugin.
     if (isset($name)) {
-      return isset($this->settings[$name]) ? $this->settings[$name] : NULL;
+      return $this->settings[$name] ?? NULL;
     }
 
     // Return all setting plugins.

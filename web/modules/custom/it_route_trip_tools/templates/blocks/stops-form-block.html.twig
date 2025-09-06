@@ -4,18 +4,20 @@
 		<label for="edit-stop" class="control-label js-form-required form-required">Select a Stop</label>
 		<select required name="edit-stop" id="edit-stop" class="form-control chosen-select" data-placeholder="Select a stop">
 		{% if stop_options %}
-			{% for stop_item in stop_options %}
-				<option value="{{ stop_item.stop_id }}"
+			{% for stop_key, stop_name in stop_options %}
+				<option value="{{ stop_key }}"
 				{% if stops_path in url|render|render %}
-					{% if stop_id == stop_item.stop_id %}
+					{% if stop_id == stop_key %}
 						selected
 					{% endif %}
 				{% endif %}>
-					{{ stop_item.stop_id }} - {{ stop_item.stop_name }}
+					{{ stop_name }}
 				</option>
 			{% endfor %}
 		{% endif %}
 		</select>
+		<label for="edit-stop" class="control-label js-form-required form-required">Date</label>
+		<input required name="edit-stop-date" id="edit-stop-date" class="form-control" data-placeholder="Select a date">
 		<button data-drupal-selector="edit-find-stop-button" class="button js-form-submit form-submit btn-default btn" type="submit" id="find-stop" name="op" value="View Stop">View Stop</button>
 	</form>
 </div>

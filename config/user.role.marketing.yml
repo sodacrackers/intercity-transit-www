@@ -8,6 +8,7 @@ dependencies:
     - filter.format.iframe
     - filter.format.rich_text
     - filter.format.text_and_bullets
+    - media.type.ita_cac_members
     - node.type.blog_page
     - node.type.bus_stop_page
     - node.type.calendar_event
@@ -68,6 +69,7 @@ permissions:
   - 'create bus_route_scheduler scheduled updates'
   - 'create calendar_event content'
   - 'create interagency_agreement content'
+  - 'create ita_cac_members media'
   - 'create jobs content'
   - 'create multiple_node_embargo scheduled updates'
   - 'create news content'
@@ -92,6 +94,7 @@ permissions:
   - 'delete any bus_stop_page content'
   - 'delete any calendar_event content'
   - 'delete any interagency_agreement content'
+  - 'delete any ita_cac_members media'
   - 'delete any jobs content'
   - 'delete any media'
   - 'delete any multiple_node_embargo scheduled updates'
@@ -117,6 +120,7 @@ permissions:
   - 'delete own calendar_event content'
   - 'delete own files'
   - 'delete own interagency_agreement content'
+  - 'delete own ita_cac_members media'
   - 'delete own jobs content'
   - 'delete own multiple_node_embargo scheduled updates'
   - 'delete own news content'
@@ -148,6 +152,7 @@ permissions:
   - 'edit any bus_stop_page content'
   - 'edit any calendar_event content'
   - 'edit any interagency_agreement content'
+  - 'edit any ita_cac_members media'
   - 'edit any jobs content'
   - 'edit any multiple_node_embargo scheduled updates'
   - 'edit any news content'
@@ -167,6 +172,7 @@ permissions:
   - 'edit own bus_stop_page content'
   - 'edit own calendar_event content'
   - 'edit own interagency_agreement content'
+  - 'edit own ita_cac_members media'
   - 'edit own jobs content'
   - 'edit own multiple_node_embargo scheduled updates'
   - 'edit own news content'

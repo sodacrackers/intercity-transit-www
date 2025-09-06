@@ -9,12 +9,6 @@
     display: inline-block
 }
 
-.ico-arrow,
-.we-mega-menu-toolbar .we-mega-menu-btn-break-col:before,
-.we-mega-menu-toolbar .chosen-container-single .chosen-single div b {
-    background-image: url("../images/ico-arrow.png")
-}
-
 .ico-arrow-white,
 .we-mega-menu-toolbar .we-mega-menu-btn-break-col:after {
     width: .6875rem;
@@ -23,11 +17,6 @@
     background-position: center;
     background-repeat: no-repeat;
     display: inline-block
-}
-
-.ico-arrow-white,
-.we-mega-menu-toolbar .we-mega-menu-btn-break-col:after {
-    background-image: url("../images/ico-arrow-white.png")
 }
 
 /*.close {
@@ -57,7 +46,7 @@
 .icon-remove:before {
     content: "\f00d";
     display: inline-block;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 5 Free";
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -65,7 +54,7 @@
     font-size: 8px;
     color: white;
     line-height: 14px;
-    font-weight: 100
+    font-weight: 900;
 }
 
 .ajax-progress.ajax-progress-throbber {
@@ -675,7 +664,6 @@
 }
 
 .we-mega-menu-toolbar .chosen-container-single .chosen-single div b {
-    background-image: url("../images/ico-arrow.png") !important;
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
@@ -808,14 +796,15 @@
     .navbar-we-mega-menu .flex-next:before {
         content: '';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
+        font-family: "Font Awesome 5 Free";
         font-size: inherit;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-size: 14px;
         color: #fff;
-        line-height: 18px
+        line-height: 18px;
+        font-weight: 900;
     }
     .navbar-we-mega-menu .flex-prev:hover,
     .navbar-we-mega-menu .flex-prev:focus,
@@ -877,16 +866,6 @@
         background-position: center;
         background-repeat: no-repeat;
         display: inline-block
-    }
-    .we-mega-menu-ul .dropdown-menu>a:before,
-    .we-mega-menu-ul .dropdown-menu>span:before {
-        background-image: url("../images/ico-arrow.png")
-    }
-    .we-mega-menu-ul .dropdown-menu>a:after,
-    .we-mega-menu-ul .dropdown-menu>span:after {
-        background-image: url("../images/ico-arrow-white.png");
-        filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-        opacity: 0
     }
     .we-mega-menu-ul .dropdown-menu .dropdown-menu>a:after,
     .we-mega-menu-ul .dropdown-menu .dropdown-menu>span:after {
@@ -2715,8 +2694,8 @@ nav[data-animation="Elastic"]:not(.admin) .we-mega-menu-ul .dropdown-menu:not(.c
     .navbar-we-mega-menu.navbar .dropdown-menu>.we-megamenu-nolink:after {
         content: '\f107';
         display: inline-block;
-        font-family: "Font Awesome 5 Pro";
-        font-weight: 400;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
         font-size: inherit;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;

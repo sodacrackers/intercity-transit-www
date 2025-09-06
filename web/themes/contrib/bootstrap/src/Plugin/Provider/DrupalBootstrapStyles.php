@@ -32,7 +32,7 @@ class DrupalBootstrapStyles extends JsDelivr {
    */
   protected function getLatestVersion() {
     $json = $this->request('https://data.jsdelivr.com/v1/package/npm/@unicorn-fail/drupal-bootstrap-styles', ['ttl' => static::TTL_ONE_WEEK])->getData();
-    return isset($json['tags']['latest']) ? $json['tags']['latest'] : static::KNOWN_FALL_BACK_VERSION;
+    return $json['tags']['latest'] ?? static::KNOWN_FALL_BACK_VERSION;
   }
 
   /**
@@ -62,12 +62,12 @@ class DrupalBootstrapStyles extends JsDelivr {
   /**
    * {@inheritdoc}
    */
-  protected function parseAssets(array $data, $library, $version, CdnAssets $assets = NULL) {
+  protected function parseAssets(array $data, $library, $version, ?CdnAssets $assets = NULL) {
     if (!isset($assets)) {
       $assets = new CdnAssets();
     }
 
-    $files = array_filter(isset($data['files']) ? $data['files'] : [], function ($file) use ($library, $version) {
+    $files = array_filter($data['files'] ?? [], function ($file) use ($library, $version) {
       if (isset($file['name'])) {
         if (str_contains($file['name'], '/dist/' . $version . '/' . Bootstrap::PROJECT_BRANCH . '/')) {
           return FALSE;
@@ -92,7 +92,7 @@ class DrupalBootstrapStyles extends JsDelivr {
    */
   protected function parseVersions(array $data = []) {
     $versions = [];
-    $files = isset($data['files']) ? $data['files'] : [];
+    $files = $data['files'] ?? [];
     foreach ($files as $file) {
       if (preg_match("`^/?dist/(\d+\.\d+\.\d+)/(\d\.x-\d\.x)/drupal-bootstrap-?([\w]+)?(\.min)?\.css$`", $file['name'], $matches)) {
         $version = $matches[1];

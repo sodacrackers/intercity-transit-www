@@ -1,0 +1,20 @@
+uuid: 1e6f1d45-d6f3-496a-b7f4-05afc9397449
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - taxonomy
+id: media.field_ita_or_cac_
+field_name: field_ita_or_cac_
+entity_type: media
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

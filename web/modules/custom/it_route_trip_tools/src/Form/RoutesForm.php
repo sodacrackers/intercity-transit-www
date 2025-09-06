@@ -2,11 +2,6 @@
 
 namespace Drupal\it_route_trip_tools\Form;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\CssCommand;
-use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\Core\Ajax\InvokeCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -45,44 +40,36 @@ class RoutesForm extends FormBase {
     //Grab the config data
     $config = \Drupal::service('config.factory')->getEditable('it_route_trip_tools.settings');
     $page_path = $config->get('route_page_path');
-    $base_uri = $config->get('route_api_base');
-    $route_options_request = $config->get('route_options_request');
 
-    $routes_options = it_route_trip_tools_build_routes_options(TRUE);
-    $cur_dir = dirname($_SERVER['REQUEST_URI']);
-    $selected_route = basename($_SERVER['REQUEST_URI']);
-    if (\Drupal::request()->request->get('service_option')):
-    $serv = \Drupal::request()->request->get('service_option');
-    else:
-      $serv = '1';
-    endif;
-    
-    if ($cur_dir == $page_path):
-      $form['routes'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Route'),
-        '#required' => TRUE,
-        '#options' => $routes_options,
-        '#default_value' => $selected_route
-      ];
-    else:
-      $form['routes'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Route'),
-        '#required' => TRUE,
-        '#options' => $routes_options
-      ];
-    endif;
-    $form['service_option'] = [
+    $routes_options = it_route_trip_tools_pics_get_routes();
+
+    $routes_options_select = [];
+    foreach ($routes_options as $key => $row) {
+      $routes_options_select[$key] = $row['route_short_name'] . ' - ' . $row['route_long_name'];
+    }
+
+    $form['routes'] = [
       '#type' => 'select',
-      '#title' => $this->t('Service Option'),
+      '#title' => $this->t('Route'),
       '#required' => TRUE,
-      '#options' => [
-        '1' => $this->t('Monday - Friday'),
-        '2' => $this->t('Weekend'),
-      ],
-      '#default_value' => $serv
+      '#options' => $routes_options_select,
+
     ];
+    $form['service_option'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Date'),
+      '#required' => TRUE,
+    ];
+
+    $current_path = \Drupal::service('path.current')->getPath();
+    $cur_dir = dirname($current_path);
+    $selected_route = basename($current_path);
+    if (\Drupal::request()->request->get('service_option')) {
+      $form['service_option']['#default_value'] = \Drupal::request()->request->get('date');
+    }
+    if ($cur_dir == $page_path) {
+      $form['routes']['#default_value'] = $selected_route;
+    }
     $form['actions']['find_route_button'] = [
       '#type' => 'submit',
       '#value' => $this->t('View Route'),
