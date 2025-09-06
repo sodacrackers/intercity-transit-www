@@ -37,3 +37,10 @@
 /* A (16px)	5.24px */
 /* B (18px)	4.72px */
 /* A (16px)	4.19px */
+ul.nav-tabs {
+    margin-bottom: 0 !important;
+}
+
+#views-bootstrap-home-featured-tasks-block-1 .row-1 {
+  padding-top: 10px;
+}

@@ -8,8 +8,8 @@ smtp_port: '587'
 smtp_protocol: tls
 smtp_autotls: true
 smtp_timeout: 30
-smtp_username: AKIAUMLO6YFPR3VSC6AH
-smtp_password: BLdlhSZcJ9ProtyHfIEM9QrhgfukB8y4mJ/6oYLrWj3Q
+smtp_username: AKIAUMLO6YFPZX6SY7UP
+smtp_password: BBDYhE1NqKrAN0mvQchOZGVXYr+dLXbJeJ00CE6DMuCs
 smtp_from: noreply@intercitytransit.com
 smtp_fromname: 'Intercity Transit'
 smtp_client_hostname: ''

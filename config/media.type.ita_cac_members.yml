@@ -1,0 +1,13 @@
+uuid: cd594539-7ad1-46e2-827c-46385fe00af3
+langcode: en
+status: true
+dependencies: {  }
+id: ita_cac_members
+label: 'ITA/CAC Members'
+description: 'photos, names and job titles for ITA & CAC members'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map: {  }
