@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the IT Route Trip Tools module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function it_route_trip_tools_schema() {
+  $schema['it_route_trip_tools_cache'] = [
+    'description' => 'Stores cached transit data that persists through cache clears.',
+    'fields' => [
+      'cid' => [
+        'description' => 'Primary Key: Unique cache ID.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'data' => [
+        'description' => 'Serialized cache data.',
+        'type' => 'blob',
+        'not null' => FALSE,
+        'size' => 'big',
+      ],
+      'expire' => [
+        'description' => 'A Unix timestamp indicating when the cache entry should expire, or 0 for never.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'created' => [
+        'description' => 'A Unix timestamp indicating when the cache entry was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'tags' => [
+        'description' => 'Space-separated list of cache tags for this entry.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+      ],
+    ],
+    'primary key' => ['cid'],
+    'indexes' => [
+      'expire' => ['expire'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Create the it_route_trip_tools_cache table.
+ */
+function it_route_trip_tools_update_9001() {
+  $schema = it_route_trip_tools_schema();
+  \Drupal::database()->schema()->createTable('it_route_trip_tools_cache', $schema['it_route_trip_tools_cache']);
+}

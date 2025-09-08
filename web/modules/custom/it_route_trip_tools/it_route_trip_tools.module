@@ -405,16 +405,19 @@ function it_route_trip_tools_preprocess_html(&$vars) {
 function it_route_trip_tools_pics_get_routes_raw() {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_routes';
-  if ($cache = \Drupal::cache()->get($cid)) {
-    return $cache->data;
+  $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
+  
+  if ($cache = $cache_service->get($cid)) {
+    return $cache;
   }
+  
   $client = \Drupal::httpClient();
   try {
     $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $routes = $data['routes'] ?? [];
     // Cache for 24 hours.
-    \Drupal::cache()->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
     return $routes;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
@@ -434,16 +437,19 @@ function it_route_trip_tools_pics_get_routes() {
 function it_route_trip_tools_pics_get_dates() {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_dates';
-  if ($cache = \Drupal::cache()->get($cid)) {
-    return $cache->data;
+  $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
+  
+  if ($cache = $cache_service->get($cid)) {
+    return $cache;
   }
+  
   $client = \Drupal::httpClient();
   try {
     $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $dates = $data['dates'] ?? [];
     // Cache for 24 hours.
-    \Drupal::cache()->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
     return $dates;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
@@ -461,10 +467,11 @@ function it_route_trip_tools_pics_get_dates() {
 function it_route_trip_tools_pics_get_alerts() {
   // Cache ID for the alerts entities
   $cid = 'gtfs_realtime_alerts_entities';
+  $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
   
   // Check if cached data exists
-  if ($cache = \Drupal::cache()->get($cid)) {
-    return $cache->data;
+  if ($cache = $cache_service->get($cid)) {
+    return $cache;
   }
   
   // Create HTTP client
@@ -486,7 +493,7 @@ function it_route_trip_tools_pics_get_alerts() {
     $entities = $data['Entities'] ?? [];
     
     // Cache for 5 minutes (alerts should be more frequently updated than calendar dates)
-    \Drupal::cache()->set($cid, $entities, \Drupal::time()->getRequestTime() + 60 * 5);
+    $cache_service->set($cid, $entities, \Drupal::time()->getRequestTime() + 60 * 5);
     
     return $entities;
   } 
@@ -502,10 +509,13 @@ function it_route_trip_tools_pics_get_alerts() {
 function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, $direction_id = 0) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $date = empty($date) ? date('Y-m-d') : $date;
-  $cid = 'route_data:' . $date . ':' . $route_id;
-  if ($cache = \Drupal::cache()->get($cid)) {
-    return $cache->data;
+  $cid = 'route_data:' . $date . ':' . $route_id . ':' . $direction_id;
+  $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
+  
+  if ($cache = $cache_service->get($cid)) {
+    return $cache;
   }
+  
   $client = \Drupal::httpClient();
   $dates = it_route_trip_tools_pics_get_dates();
   $date_info = $dates[$date] ?? [];
@@ -516,7 +526,7 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
     $data = Json::decode($response->getBody()->getContents());
     $routes_data = isset($data['status']) && $data['status'] == 'success' ? $data['data'] : [];
     // Cache for 24 hours.
-    \Drupal::cache()->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
     return $routes_data;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());

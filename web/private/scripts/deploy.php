@@ -3,7 +3,7 @@
 echo "Running deploy routine...\n";
 passthru('drush -y deploy');
 echo "Deploy complete.\n";
-echo "Warming caches...\n";
-passthru('drush php:eval "it_route_trip_tools_pics_get_all_routes_data();"');
+echo "Warming routes caches...\n";
+passthru('drush transit:cache-refresh');
 //Clear all cache
-echo "Queues warmed.\n";
+echo "Routes caches warmed.\n";

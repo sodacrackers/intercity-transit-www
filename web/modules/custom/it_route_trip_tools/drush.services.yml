@@ -1,0 +1,6 @@
+services:
+  it_route_trip_tools.commands:
+    class: Drupal\it_route_trip_tools\Commands\TransitDataCacheCommands
+    arguments: ['@it_route_trip_tools.transit_data_cache']
+    tags:
+      - { name: drush.command }

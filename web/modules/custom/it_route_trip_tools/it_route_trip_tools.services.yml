@@ -7,3 +7,6 @@ services:
     class: Drupal\it_route_trip_tools\EventSubscriber\ItRouteTripToolsRouteSubscriber
     tags:
       - { name: event_subscriber }
+  it_route_trip_tools.transit_data_cache:
+    class: Drupal\it_route_trip_tools\TransitDataCache
+    arguments: ['@database', '@datetime.time', '@logger.factory']
