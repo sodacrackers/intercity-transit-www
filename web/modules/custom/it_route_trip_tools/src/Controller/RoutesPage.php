@@ -225,6 +225,12 @@ class RoutesPage extends ControllerBase {
       if (empty($route_data_weekdays)) {
         $current_path = \Drupal::service('path.current')->getPath();
         $url = \Drupal\Core\Url::fromUserInput($current_path)->toString();
+        // Prevent redirect loop: if already on this URL, show error markup.
+        if ($url === \Drupal::request()->getRequestUri()) {
+          return [
+            '#markup' => $this->t('Failed to load data.'),
+          ];
+        }
         return new \Symfony\Component\HttpFoundation\RedirectResponse($url);
       }
       if ($route = $request->attributes->get(\Drupal\Core\Routing\RouteObjectInterface::ROUTE_OBJECT)) {
