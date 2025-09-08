@@ -45,8 +45,17 @@ include __DIR__ . "/settings.pantheon.php";
  * If there is a local settings file, then include it
  */
 $local_settings = __DIR__ . "/settings.local.php";
+$local_hosts = ['ict-pantheon.ddev.site', 'intercitytransit.lndo.site'];
 if (file_exists($local_settings)) {
-  include $local_settings;
+  if (in_array($_SERVER['HTTP_HOST'], $local_hosts)) {
+    include $local_settings;
+  }
+  elseif (getenv('LANDO') == 'ON') {
+    include $local_settings;
+  }
+  elseif (getenv('IS_DDEV_PROJECT') == 'true') {
+    include $local_settings;
+  }
 }
 
 /**
