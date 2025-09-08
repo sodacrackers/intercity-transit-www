@@ -68,7 +68,7 @@ class TransitDataCacheCommands extends DrushCommands {
     $this->logger()->info('Transit data cache cleared. Fetching fresh data...');
     
     // Trigger cache rebuild by calling the functions
-    $routes = it_route_trip_tools_pics_get_routes();
+    $routes = it_route_trip_tools_pics_get_all_routes_data();
     $dates = it_route_trip_tools_pics_get_dates();
 
     $this->logger()->success(dt('Transit data cache refreshed. Cached @routes routes and @dates dates.', [
