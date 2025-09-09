@@ -221,6 +221,12 @@ class RoutesPage extends ControllerBase {
       $date = empty($date) ? date('Y-m-d') : $date;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
       $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, $date);
+      $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+        'bundle' => 'route_pdfs',
+        'name' => $routeId,
+      ]);
+      $media = reset($medias);
+      $download_url = $media instanceof MediaInterface ? $media->get('field_document')->entity->createFileUrl() : '';
       $request = \Drupal::request();
       if (empty($route_data_weekdays)) {
         $current_path = \Drupal::service('path.current')->getPath();
@@ -228,7 +234,9 @@ class RoutesPage extends ControllerBase {
         // Prevent redirect loop: if already on this URL, show error markup.
         if ($url === \Drupal::request()->getRequestUri()) {
           return [
-            '#markup' => $this->t('Failed to load data.'),
+            '#markup' => $this->t('Failed to load data for route <em>@route</em>. Please reload or download the schedule.', ['@route' => $routeId]) . (empty($download_url) ? '' : '<a id="download-link" class="btn btn-save" href="' . $download_url . '" target="_blank"><span
+                                class="download-icon"></span><span>Download Schedule<span></a>'),
+            '#cache' => ['max-age' => 0],
           ];
         }
         return new \Symfony\Component\HttpFoundation\RedirectResponse($url);
@@ -248,12 +256,6 @@ class RoutesPage extends ControllerBase {
         '#theme' => 'routes_table',
         '#route_data' => $route_data_weekdays
       ];
-      $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
-        'bundle' => 'route_pdfs',
-        'name' => $routeId,
-      ]);
-      $media = reset($medias);
-      $download_url = $media instanceof MediaInterface ? $media->get('field_document')->entity->createFileUrl() : '';
       return [
         '#theme' => 'routes_page',
         '#route_id' => $routeId,

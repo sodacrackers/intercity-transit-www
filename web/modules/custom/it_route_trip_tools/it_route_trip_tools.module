@@ -417,7 +417,7 @@ function it_route_trip_tools_pics_get_routes_raw() {
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $routes = $data['routes'] ?? [];
     // Cache for 24 hours.
-    $cache_service->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $routes, \Drupal::time()->getRequestTime() + 60 * 60 * 24 * 365);
     return $routes;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
@@ -449,59 +449,10 @@ function it_route_trip_tools_pics_get_dates() {
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $dates = $data['dates'] ?? [];
     // Cache for 24 hours.
-    $cache_service->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $dates, \Drupal::time()->getRequestTime() + 60 * 60 * 24 * 365);
     return $dates;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());
-    return [];
-  }
-}
-
-/**
- * Get GTFS-Realtime alerts entities from the API.
- * Similar to it_route_trip_tools_pics_get_dates but for GTFS-Realtime alerts.
- *
- * @return array
- *   The entities array from the GTFS-Realtime alerts API.
- */
-function it_route_trip_tools_pics_get_alerts() {
-  // Cache ID for the alerts entities
-  $cid = 'gtfs_realtime_alerts_entities';
-  $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-  
-  // Check if cached data exists
-  if ($cache = $cache_service->get($cid)) {
-    return $cache;
-  }
-  
-  // Create HTTP client
-  $client = \Drupal::httpClient();
-  
-  try {
-    // Fetch data from the GTFS-Realtime alerts API
-    $response = $client->get('https://its.rideralerts.com/InfoPoint/GTFS-Realtime.ashx', [
-      'query' => [
-        'Type' => 'Alert',
-        'debug' => 'true',
-      ],
-    ]);
-    
-    // Decode the JSON response
-    $data = json_decode($response->getBody()->getContents(), TRUE);
-
-    // Extract the Entities attribute
-    $entities = $data['Entities'] ?? [];
-    
-    // Cache for 5 minutes (alerts should be more frequently updated than calendar dates)
-    $cache_service->set($cid, $entities, \Drupal::time()->getRequestTime() + 60 * 5);
-    
-    return $entities;
-  } 
-  catch (\Exception $e) {
-    // Log any errors
-    \Drupal::logger('it_route_trip_tools')->error('Failed to fetch GTFS-Realtime alerts: @message', [
-      '@message' => $e->getMessage(),
-    ]);
     return [];
   }
 }
@@ -526,7 +477,7 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
     $data = Json::decode($response->getBody()->getContents());
     $routes_data = isset($data['status']) && $data['status'] == 'success' ? $data['data'] : [];
     // Cache for 24 hours.
-    $cache_service->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24);
+    $cache_service->set($cid, $routes_data, \Drupal::time()->getRequestTime() + 60 * 60 * 24 * 365);
     return $routes_data;
   } catch (\Exception $e) {
     \Drupal::logger('it_route_trip_tools')->error($e->getMessage());

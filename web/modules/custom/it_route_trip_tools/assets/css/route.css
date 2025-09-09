@@ -391,42 +391,6 @@ label.form-check-label {
   }
 }
 
-#download-link, #reset-link {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  padding: 14px 5px !important;
-  height: 46px;
-
-  background: #FFFFFF;
-
-  border: 1px solid #003087;
-  border-radius: 4px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 135%;
-
-  text-align: center;
-
-  color: #003087;
-}
-#download-link:hover, #download-link:active, #reset-link:hover, #reset-link:active {
-  color: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  background: #003087;
-}
-#download-link .download-icon {
-  height: 25px;
-  width: 25px;
-  background: url("/modules/custom/it_route_trip_tools/assets/images/pdf.svg");
-}
-#download-link:hover .download-icon, #download-link:active .download-icon {
-  background: url("/modules/custom/it_route_trip_tools/assets/images/pdf-alt.svg");
-}
-#download-link span {
-  display: inline-block;
-}
 #filter-route {
   display: block;
 }
