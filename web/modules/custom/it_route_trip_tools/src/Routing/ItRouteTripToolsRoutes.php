@@ -17,6 +17,9 @@
               ),
                 array(
                     '_permission'  => 'access content',
+              ),
+                array(
+                    'no_cache' => TRUE,
               )
             );
             return $route_routing;

@@ -236,7 +236,17 @@ class RoutesPage extends ControllerBase {
           return [
             '#markup' => $this->t('Failed to load data for route <em>@route</em>. Please reload or download the schedule.', ['@route' => $routeId]) . (empty($download_url) ? '' : '<a id="download-link" class="btn btn-save" href="' . $download_url . '" target="_blank"><span
                                 class="download-icon"></span><span>Download Schedule<span></a>'),
-            '#cache' => ['max-age' => 0],
+            '#cache' => [
+              'max-age' => 0,
+              'contexts' => ['url.query_args'],
+            ],
+            '#attached' => [
+              'http_header' => [
+                ['Cache-Control', 'no-cache, no-store, must-revalidate'],
+                ['Pragma', 'no-cache'],
+                ['Expires', '0'],
+              ],
+            ],
           ];
         }
         return new \Symfony\Component\HttpFoundation\RedirectResponse($url);
