@@ -134,7 +134,7 @@
                                 class="download-icon"></span><span>Download Schedule<span></a>
                 </div>
             </div>
-            <div id="route-table" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 weekdays-info">
+            <div id="route-table" class="weekdays-info">
                 {{ routes_table_weekdays }}
             </div>
 
@@ -144,7 +144,7 @@
             {% if all_routes_map_data %}
                 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-                <div id="all-routes-container" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div id="all-routes-container">
                     <div id="all-routes-map"></div>
                 </div>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqUxJwPyuHfnatPYCrCwLKjsAi5r7iRPI&location=47.044408,-122.901711&radius=2&strictbounds&libraries=places"

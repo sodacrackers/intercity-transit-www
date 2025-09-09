@@ -565,9 +565,6 @@ html body .breadcrumb li:first-child + li:before {
     padding-left: 0;
   }
 
-  .main-container {
-    height: 20px;
-  }
   #download-link {
     display: none;
   }
@@ -935,7 +932,7 @@ header.navbar.navbar-default {
   left: -25px;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 667px) {
   .alerts {
     display: none !important;
   }
@@ -962,4 +959,9 @@ h4.outbound-route-map-toggle,
 h4.inbound-route-map-toggle {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+body.path-plan-your-trip > div.dialog-off-canvas-main-canvas > div.main-container.js-quickedit-main-content > div > div {
+  justify-content: center;
+  padding-top: 10px
 }

@@ -2182,6 +2182,9 @@ table.fc-list-table > tbody > tr > td {
     vertical-align: top;
     margin-top: -1px;
  }
+ .modal-content .ui-dialog-titlebar-close:after {
+    display: none;
+ }
 
  #filter-stops button.close.ui-dialog-titlebar-close:after {
     display: none !important;
