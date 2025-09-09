@@ -68,7 +68,18 @@
 
       once('service-option-datepicker', '#edit-service-option--2, #edit-service-option, #edit-stop-date', context).forEach(function (element) {
         const url = new URL(window.location.href);
-        const currentDefaultDate = url.searchParams.has('date') ? new Date(url.searchParams.get('date')) : new Date();
+        const currentDefaultDate = url.searchParams.has('date')
+          ? (() => {
+              const dateStr = url.searchParams.get('date');
+              // Expecting format YYYY-MM-DD
+              const parts = dateStr.split('-');
+              if (parts.length === 3) {
+                // Month is 0-based in JS Date
+                return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+              }
+              return new Date();
+            })()
+          : new Date();
         $(element).datepicker({
           dateFormat: 'mm/dd/yy',
           defaultDate: currentDefaultDate,
@@ -179,7 +190,18 @@
 
       once('input-name-dayoftravel-date', 'input[name="dayoftravel-date"]').forEach(function (element) {
         const url = new URL(window.location.href);
-        const currentDefaultDate = url.searchParams.has('date') ? new Date(url.searchParams.get('date')) : new Date();
+        const currentDefaultDate = url.searchParams.has('date')
+          ? (() => {
+              const dateStr = url.searchParams.get('date');
+              // Expecting format YYYY-MM-DD
+              const parts = dateStr.split('-');
+              if (parts.length === 3) {
+                // Month is 0-based in JS Date
+                return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+              }
+              return new Date();
+            })()
+          : new Date();
         $(element).datepicker({
           dateFormat: 'mm/dd/yy',
           defaultDate: currentDefaultDate,
