@@ -63,10 +63,6 @@ class TransitDataCacheCommands extends DrushCommands {
    *   Clear cache and fetch fresh data from APIs.
    */
   public function refreshCache() {
-    // Clear all cache first
-    $this->transitDataCache->deleteAll();
-    $this->logger()->info('Transit data cache cleared. Fetching fresh data...');
-    
     // Trigger cache rebuild by calling the functions
     $routes = it_route_trip_tools_pics_get_all_routes_data();
     $dates = it_route_trip_tools_pics_get_dates();
