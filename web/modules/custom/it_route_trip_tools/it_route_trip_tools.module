@@ -413,7 +413,9 @@ function it_route_trip_tools_pics_get_routes_raw() {
   
   $client = \Drupal::httpClient();
   try {
-    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
+    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates', [
+      'timeout' => 15,
+    ]);
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $routes = $data['routes'] ?? [];
     // Cache for 24 hours.
@@ -445,7 +447,9 @@ function it_route_trip_tools_pics_get_dates() {
   
   $client = \Drupal::httpClient();
   try {
-    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates');
+    $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates', [
+      'timeout' => 15,
+    ]);
     $data = json_decode($response->getBody()->getContents(), TRUE);
     $dates = $data['dates'] ?? [];
     // Cache for 24 hours.
@@ -473,7 +477,9 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
   $schedule_id = $date_info['schedule_id'] ?? '101';
   $service_ids = $date_info['service_ids'] ?? [10];
   try {
-    $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.$date.'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id);
+    $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.$date.'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id, [
+      'timeout' => 15,
+    ]);
     $data = Json::decode($response->getBody()->getContents());
     $routes_data = isset($data['status']) && $data['status'] == 'success' ? $data['data'] : [];
     // Cache for 24 hours.
