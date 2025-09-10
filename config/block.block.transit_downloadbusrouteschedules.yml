@@ -1,0 +1,31 @@
+uuid: cc2f4570-b14a-4d00-9b8d-35e7fa7abda7
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2ff1ac99-f0ea-411e-9d68-990762de766b'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - transit
+id: transit_downloadbusrouteschedules
+theme: transit
+region: content
+weight: 0
+provider: null
+plugin: 'block_content:2ff1ac99-f0ea-411e-9d68-990762de766b'
+settings:
+  id: 'block_content:2ff1ac99-f0ea-411e-9d68-990762de766b'
+  label: 'Download Bus Route Schedules'
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/plan-your-trip/routes*'

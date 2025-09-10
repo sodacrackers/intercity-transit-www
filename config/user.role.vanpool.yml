@@ -7,7 +7,6 @@ dependencies:
     - filter.format.rich_text
     - node.type.vanpool
   module:
-    - file
     - filter
     - media
     - node
@@ -20,7 +19,6 @@ permissions:
   - 'access content'
   - 'create vanpool content'
   - 'delete any vanpool content'
-  - 'delete own files'
   - 'delete own vanpool content'
   - 'edit any vanpool content'
   - 'edit own vanpool content'

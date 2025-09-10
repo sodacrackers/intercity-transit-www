@@ -187,11 +187,11 @@ display:
     display_plugin: block
     position: 1
     display_options:
-      filters: {  }
       display_description: 'A list of new users'
       display_extenders: {  }
       block_description: "Who's new"
       block_category: User
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

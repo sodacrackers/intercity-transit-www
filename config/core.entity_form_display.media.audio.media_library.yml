@@ -1,3 +1,4 @@
+uuid: 49fb4e32-ded6-4e90-9ba5-6458e90ee265
 langcode: en
 status: true
 dependencies:
@@ -14,7 +15,6 @@ hidden:
   created: true
   field_media_audio_file: true
   langcode: true
-  moderation_state: true
   name: true
   path: true
   status: true

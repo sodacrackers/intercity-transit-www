@@ -1,3 +1,4 @@
+uuid: 7503a00f-5d9e-4050-953c-f3de61954662
 langcode: en
 status: true
 dependencies:
@@ -17,8 +18,8 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -26,7 +27,15 @@ content:
     region: content
 hidden:
   created: true
+  field_description: true
+  field_document: true
+  field_document_size: true
   field_media_document: true
+  field_media_in_library: true
+  field_mime_type: true
+  field_publication_type: true
+  field_publication_year: true
   langcode: true
   name: true
+  search_api_excerpt: true
   uid: true

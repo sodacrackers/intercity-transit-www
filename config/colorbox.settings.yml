@@ -1,6 +1,5 @@
 _core:
   default_config_hash: pGLVIx7btzLB_RbaJGrS9lLls2p8GixZdvheuN7QcjU
-langcode: en
 custom:
   style: default
   activate: 1

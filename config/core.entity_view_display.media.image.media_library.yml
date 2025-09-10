@@ -1,3 +1,4 @@
+uuid: 53a2722e-8954-4198-9747-712bc36c21b5
 langcode: en
 status: true
 dependencies:
@@ -17,8 +18,8 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: medium
       image_link: ''
+      image_style: medium
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -27,6 +28,10 @@ content:
 hidden:
   created: true
   field_media_image: true
+  field_media_in_library: true
+  field_section: true
+  image: true
   langcode: true
   name: true
+  search_api_excerpt: true
   uid: true

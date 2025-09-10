@@ -8,7 +8,7 @@ dependencies:
 _core:
   default_config_hash: msYnighLW1IbiBfyQbwbQwb2cU-5LECiFryt60k0Nfk
 id: block_content
-label: 'Content blocks'
+label: 'Custom block library'
 module: views
 description: 'Find and manage custom blocks.'
 tag: default
@@ -301,7 +301,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access block library'
+          perm: 'administer blocks'
       cache:
         type: tag
         options: {  }
@@ -533,15 +533,14 @@ display:
     display_options:
       filters: {  }
       display_extenders: {  }
-      path: admin/content/block
+      path: admin/structure/block/block-content
       menu:
         type: tab
-        title: Blocks
-        description: 'Create and edit block content.'
+        title: 'Custom block library'
+        description: ''
         weight: 0
-        expanded: false
         menu_name: admin
-        parent: system.admin_content
+        parent: block.admin_display
         context: '0'
     cache_metadata:
       max-age: -1

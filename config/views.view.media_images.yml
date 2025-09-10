@@ -9,6 +9,9 @@ dependencies:
     - media.type.image
     - taxonomy.vocabulary.tags
     - user.role.authenticated
+  content:
+    - 'taxonomy_term:tags:81b5c7ad-2b7e-4cd7-a788-d208d2b217db'
+    - 'taxonomy_term:tags:cb707ae2-e954-4eb9-a2dc-bc2af8943afc'
   module:
     - blazy
     - colorbox
@@ -152,6 +155,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - user.roles
       tags: {  }
   block_1:
@@ -199,6 +203,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - user.roles
       tags: {  }
   block_2:
@@ -325,6 +330,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - user.roles
       tags: {  }
   page_1:
@@ -367,6 +373,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - user.roles
       tags: {  }
   page_2:
@@ -486,6 +493,7 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
+        - user
         - user.roles
       tags: {  }
   page_3:

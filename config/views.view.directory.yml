@@ -13,6 +13,12 @@ dependencies:
     - image.style.medium
     - node.type.directory_item
     - taxonomy.vocabulary.org_chart
+  content:
+    - 'taxonomy_term:org_chart:32cfa707-a6c7-4364-a3d2-61d888f3c04b'
+    - 'taxonomy_term:org_chart:353c7b0c-7b33-445f-85e0-55d5ee96ff64'
+    - 'taxonomy_term:org_chart:753a3d24-cfc0-4d83-8e65-c2a8d3dbf163'
+    - 'taxonomy_term:org_chart:a580d792-1b76-4412-89f6-fa695277308b'
+    - 'taxonomy_term:org_chart:b0b08139-66c5-49b0-be91-e8ce35f63685'
   module:
     - colorbox
     - image
@@ -1227,6 +1233,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1341,6 +1348,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

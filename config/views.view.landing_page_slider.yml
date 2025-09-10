@@ -13,6 +13,8 @@ dependencies:
     - node.type.news
     - node.type.page
     - taxonomy.vocabulary.site_sections
+  content:
+    - 'taxonomy_term:site_sections:4c8275e3-eed8-4426-b4f9-93218b8205b7'
   module:
     - image
     - node
@@ -1011,6 +1013,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

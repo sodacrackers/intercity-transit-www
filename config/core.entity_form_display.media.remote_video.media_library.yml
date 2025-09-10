@@ -1,3 +1,4 @@
+uuid: 435b8f55-469c-4bae-a6a0-f3c5936358c6
 langcode: en
 status: true
 dependencies:
@@ -14,7 +15,6 @@ hidden:
   created: true
   field_media_oembed_video: true
   langcode: true
-  moderation_state: true
   name: true
   path: true
   status: true

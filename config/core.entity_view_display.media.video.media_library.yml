@@ -1,3 +1,4 @@
+uuid: e248c369-16d2-4889-8d2f-5515b12fcd5b
 langcode: en
 status: true
 dependencies:
@@ -17,8 +18,8 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: ''
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -26,7 +27,10 @@ content:
     region: content
 hidden:
   created: true
+  field_media_in_library: true
+  field_media_video_embed_field: true
   field_media_video_file: true
   langcode: true
   name: true
+  search_api_excerpt: true
   uid: true

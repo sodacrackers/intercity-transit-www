@@ -13,7 +13,7 @@ third_party_settings:
 id: sitebranding_2
 theme: transit
 region: header_top
-weight: -50
+weight: -41
 provider: null
 plugin: system_branding_block
 settings:

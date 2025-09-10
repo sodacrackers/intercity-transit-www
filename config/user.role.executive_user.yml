@@ -12,7 +12,6 @@ dependencies:
     - node.type.interagency_agreement
     - node.type.news
   module:
-    - file
     - filter
     - media
     - node
@@ -33,7 +32,6 @@ permissions:
   - 'delete any ita_cac_members media'
   - 'delete interagency_agreement revisions'
   - 'delete own document media'
-  - 'delete own files'
   - 'delete own interagency_agreement content'
   - 'delete own ita_cac_members media'
   - 'edit any blog_page content'

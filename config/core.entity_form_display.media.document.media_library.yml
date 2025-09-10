@@ -1,3 +1,4 @@
+uuid: 01ab3d42-b8ef-4a80-8180-2e464f5e2863
 langcode: en
 status: true
 dependencies:
@@ -12,9 +13,15 @@ mode: media_library
 content: {  }
 hidden:
   created: true
+  field_description: true
+  field_document: true
+  field_document_size: true
   field_media_document: true
+  field_media_in_library: true
+  field_mime_type: true
+  field_publication_type: true
+  field_publication_year: true
   langcode: true
-  moderation_state: true
   name: true
   path: true
   status: true

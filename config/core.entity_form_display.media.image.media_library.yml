@@ -1,3 +1,4 @@
+uuid: 70fe533e-a505-45f4-95f3-980080d3e0a6
 langcode: en
 status: true
 dependencies:
@@ -14,17 +15,19 @@ bundle: image
 mode: media_library
 content:
   field_media_image:
+    type: image_image
+    weight: 0
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
-    weight: 0
-    region: content
 hidden:
   created: true
+  field_media_in_library: true
+  field_section: true
+  image: true
   langcode: true
-  moderation_state: true
   name: true
   path: true
   status: true

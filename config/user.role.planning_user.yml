@@ -11,7 +11,6 @@ dependencies:
     - node.type.route
   module:
     - feeds
-    - file
     - filter
     - media
     - node
@@ -31,7 +30,6 @@ permissions:
   - 'delete bus_stop_page revisions'
   - 'delete own bus_stop_page content'
   - 'delete own bus_stop_photo media'
-  - 'delete own files'
   - 'delete own stops_data feeds'
   - 'delete stops_data feeds'
   - 'edit any bus_stop_page content'

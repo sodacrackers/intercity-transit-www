@@ -1,3 +1,4 @@
+uuid: 411f5904-13b9-4737-90a7-1e5cdfc47ff8
 langcode: en
 status: true
 dependencies:
@@ -12,9 +13,10 @@ mode: media_library
 content: {  }
 hidden:
   created: true
+  field_media_in_library: true
+  field_media_video_embed_field: true
   field_media_video_file: true
   langcode: true
-  moderation_state: true
   name: true
   path: true
   status: true

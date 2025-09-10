@@ -172,9 +172,9 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      filters: {  }
       display_extenders: {  }
       path: redirects-master
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

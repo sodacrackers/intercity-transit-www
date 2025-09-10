@@ -49,6 +49,15 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_live_nid:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_location:
     type: string
     label: inline
