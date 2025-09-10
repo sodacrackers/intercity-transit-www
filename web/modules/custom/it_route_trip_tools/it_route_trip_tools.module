@@ -300,10 +300,10 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
 	The data built here is used for the map and table for a returned route.
 
 */
-function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
+function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL, $cache_only = FALSE) {
   $date = empty($date) ? date('Y-m-d') : $date;
-  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION, TRUE);
-  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION, TRUE);
+  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION, $cache_only);
+  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION, $cache_only);
   if (empty($inbound_data) || empty($outbound_data)) {
     return [];
   }

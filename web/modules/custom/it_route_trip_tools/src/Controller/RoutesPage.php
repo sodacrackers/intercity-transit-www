@@ -218,9 +218,10 @@ class RoutesPage extends ControllerBase {
 
     if ($routeId != 'all') {
       $date = \Drupal::request()->query->get('date');
+      $cache_only = empty($date); // If we have any other day than today, we accept it may not be in cache.
       $date = empty($date) ? date('Y-m-d') : $date;
       /*Grab the route data by route ID using it_route_trip_tools_get_route_data, which is in the module file*/
-      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, $date);
+      $route_data_weekdays = it_route_trip_tools_get_route_table_map_data($routeId, $date, $cache_only);
       $medias = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
         'bundle' => 'route_pdfs',
         'name' => $routeId,
