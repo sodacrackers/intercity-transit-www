@@ -144,7 +144,7 @@ class RoutesPage extends ControllerBase {
   }
 
   public function getAllRoutesData($date = NULL) {
-    return it_route_trip_tools_pics_get_all_routes_data($date);
+    return it_route_trip_tools_pics_get_all_routes_data($date, 0, TRUE);
   }
 
   public static function getRouteColor($route_id) {

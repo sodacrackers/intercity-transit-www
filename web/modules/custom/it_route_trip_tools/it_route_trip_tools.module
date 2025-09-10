@@ -228,7 +228,7 @@ function it_route_trip_tools_get_center($boundaries) {
 
 function it_route_trip_tools_get_stop_options($full = FALSE, $date = NULL) {
   $date = empty($date) ? date('Y-m-d') : $date;
-  $routes_data = it_route_trip_tools_pics_get_all_routes_data($date);
+  $routes_data = it_route_trip_tools_pics_get_all_routes_data($date, 0, TRUE);
   $stop_options = ['' => t('Select a stop')];
   foreach ($routes_data as $stop_data) {
     if (isset($stop_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION]) && !empty($stop_data['Route']['MapInfo']['Stops'][INBOUND_DIRECTION])) {
@@ -302,8 +302,8 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL) {
   $date = empty($date) ? date('Y-m-d') : $date;
-  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION);
-  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION);
+  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION, TRUE);
+  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION, TRUE);
   if (empty($inbound_data) || empty($outbound_data)) {
     return [];
   }
@@ -389,20 +389,13 @@ function it_route_trip_tools_pics_fill_trips($time_tables) {
 }
 
 function it_route_trip_tools_build_route_title($routeId, $date = NULL) {
-  $routes = it_route_trip_tools_pics_get_route_data($routeId, $date);
+  $routes = it_route_trip_tools_pics_get_route_data($routeId, $date, 0, TRUE);
   $date = \Drupal::request()->query->get('date');
   $date = empty($date) ? date('Y-m-d') : $date;
   return isset($routes['Route']) ? $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] : '';
 }
 
-function it_route_trip_tools_preprocess_html(&$vars) {
-	//$vars['#attached']['library'][] = 'it_route_trip_tools/trip-planner';
-    if (\Drupal::service('path.matcher')->isFrontPage()):
-        //$vars['#attached']['library'][] = 'it_route_trip_tools/trip-planner-front-page';
-    endif;
-}
-
-function it_route_trip_tools_pics_get_routes_raw() {
+function it_route_trip_tools_pics_get_routes_raw($cache_only = TRUE) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_routes';
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
@@ -410,7 +403,10 @@ function it_route_trip_tools_pics_get_routes_raw() {
   if ($cache = $cache_service->get($cid)) {
     return $cache;
   }
-  
+  if ($cache_only) {
+    return [];
+  }
+
   $client = \Drupal::httpClient();
   try {
     $response = $client->get('https://pics.intercitytransit.com/api/calendar_dates', [
@@ -436,13 +432,16 @@ function it_route_trip_tools_pics_get_routes() {
   return $routes;
 }
 
-function it_route_trip_tools_pics_get_dates() {
+function it_route_trip_tools_pics_get_dates($cache_only = TRUE) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_dates';
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-  
+
   if ($cache = $cache_service->get($cid)) {
     return $cache;
+  }
+  if ($cache_only) {
+    return [];
   }
   
   $client = \Drupal::httpClient();
@@ -461,16 +460,19 @@ function it_route_trip_tools_pics_get_dates() {
   }
 }
 
-function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, $direction_id = 0) {
+function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, $direction_id = 0, $cache_only = TRUE) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $date = empty($date) ? date('Y-m-d') : $date;
   $cid = 'route_data:' . $date . ':' . $route_id . ':' . $direction_id;
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-  
+
   if ($cache = $cache_service->get($cid)) {
     return $cache;
   }
-  
+  if ($cache_only) {
+    return [];
+  }
+
   $client = \Drupal::httpClient();
   $dates = it_route_trip_tools_pics_get_dates();
   $date_info = $dates[$date] ?? [];
@@ -491,8 +493,8 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
   }
 }
 
-function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direction_id = 0) {
-  $routes = it_route_trip_tools_pics_get_route_data_by_id($route_id, $date, $direction_id);
+function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direction_id = 0, $cache_only = TRUE) {
+  $routes = it_route_trip_tools_pics_get_route_data_by_id($route_id, $date, $direction_id, $cache_only);
   $disable_routes = array_keys(\Drupal::config('it_route_trip_tools.settings')->get('disable_routes') ?: []);
   if (in_array((int) $route_id, $disable_routes)) {
     return [];
@@ -500,7 +502,7 @@ function it_route_trip_tools_pics_get_route_data($route_id, $date = NULL, $direc
   return $routes;
 }
 
-function it_route_trip_tools_pics_get_all_routes_data($date = NULL) {
+function it_route_trip_tools_pics_get_all_routes_data($date = NULL, $direction_id = 0, $cache_only = TRUE) {
   $routes = it_route_trip_tools_pics_get_routes();
   $disable_routes = array_keys(\Drupal::config('it_route_trip_tools.settings')->get('disable_routes') ?: []);
 
@@ -509,7 +511,7 @@ function it_route_trip_tools_pics_get_all_routes_data($date = NULL) {
     if (in_array((int) $id, $disable_routes)) {
       continue;
     }
-    $route_data = it_route_trip_tools_pics_get_route_data($id, $date);
+    $route_data = it_route_trip_tools_pics_get_route_data($id, $date, $direction_id, $cache_only);
     $all_routes_data[$route['route_short_name']] = $route_data;
   }
   return $all_routes_data;
