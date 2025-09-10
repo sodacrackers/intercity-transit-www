@@ -466,19 +466,31 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
   $cid = 'route_data:' . $date . ':' . $route_id . ':' . $direction_id;
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
 
-  if ($cache = $cache_service->get($cid)) {
+  if ($cache = $cache_service->get($cid) && !empty($cache)) {
     return $cache;
+  }
+  $dates = it_route_trip_tools_pics_get_dates();
+  $date_info = $dates[$date] ?? [];
+  $schedule_id = $date_info['schedule_id'] ?? '101';
+  $service_ids = $date_info['service_ids'] ?? [10];
+  $dates_with_save_schedule_and_service = array_filter($dates, function ($item) use ($schedule_id, $service_ids) {
+    return isset($item['schedule_id']) && $item['schedule_id'] == $schedule_id && isset($item['service_ids']) && $item['service_ids'] == $service_ids;
+  });
+  $search_dates = array_keys($dates_with_save_schedule_and_service);
+  foreach ($search_dates as $d) {
+    $cid_search = 'route_data:' . $d . ':' . $route_id . ':' . $direction_id;
+    if ($cache = $cache_service->get($cid_search) && !empty($cache)) {
+      // Cache found for a date with the same schedule and service ids.
+      $cache_service->set($cid, $cache, \Drupal::time()->getRequestTime() + 60 * 60 * 24 * 365);
+      return $cache;
+    }
   }
   if ($cache_only) {
     return [];
   }
 
-  $client = \Drupal::httpClient();
-  $dates = it_route_trip_tools_pics_get_dates();
-  $date_info = $dates[$date] ?? [];
-  $schedule_id = $date_info['schedule_id'] ?? '101';
-  $service_ids = $date_info['service_ids'] ?? [10];
   try {
+    $client = \Drupal::httpClient();
     $response = $client->get('https://pics.intercitytransit.com/api/stop_times?date='.$date.'&route_id='.$route_id.'&schedule_id='.$schedule_id.'&service_ids%5B%5D='.implode(',', $service_ids).'&direction_id='.$direction_id, [
       'timeout' => 15,
     ]);
