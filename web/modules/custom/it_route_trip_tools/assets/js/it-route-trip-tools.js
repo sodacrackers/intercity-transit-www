@@ -99,36 +99,18 @@
 
       $('#edit-routes--2,#edit-service-option--2').change(function () {
         var route = $('#edit-routes--2').val();
-        var service_option = $('#edit-service-option--2').val();
-        var dateParts = service_option.split('/');
-        var month = dateParts[0];
-        var day = dateParts[1];
-        var year = dateParts[2];
-        service_option = year + '-' + month + '-' + day;
-        $('form#routes-form--2').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route + (service_option ? '?date=' + service_option : ''));
+        $('form#routes-form--2').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
       });
 
       $('#edit-routes,#edit-service-option').change(function () {
         var route = $('#edit-routes').val();
-        var service_option = $('#edit-service-option').val();
-        var dateParts = service_option.split('/');
-        var month = dateParts[0];
-        var day = dateParts[1];
-        var year = dateParts[2];
-        service_option = year + '-' + month + '-' + day;
-        $('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route + (service_option ? '?date=' + service_option : ''));
+        $('form#routes-form').attr('action', settings.it_route_trip_tools.routes_action_path + '/' + route);
       });
 
       once('select-edit-stop', 'select#edit-stop, input#edit-stop-date').forEach(function (element) {
         $(element).change(function () {
           var route = $('#edit-stop').val();
-          var date = $('#edit-stop-date').val();
-          var dateParts = date.split('/');
-          var month = dateParts[0];
-          var day = dateParts[1];
-          var year = dateParts[2];
-          date = year + '-' + month + '-' + day;
-          $('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route + (date ? '?date=' + date : ''));
+          $('form#stops-form').attr('action', settings.it_route_trip_tools.stops_action_path + '/' + route);
         });
       });
 

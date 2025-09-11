@@ -55,18 +55,10 @@ class RoutesForm extends FormBase {
       '#options' => $routes_options_select,
 
     ];
-    $form['service_option'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Date'),
-      '#required' => TRUE,
-    ];
 
     $current_path = \Drupal::service('path.current')->getPath();
     $cur_dir = dirname($current_path);
     $selected_route = basename($current_path);
-    if (\Drupal::request()->request->get('service_option')) {
-      $form['service_option']['#default_value'] = \Drupal::request()->request->get('date');
-    }
     if ($cur_dir == $page_path) {
       $form['routes']['#default_value'] = $selected_route;
     }
