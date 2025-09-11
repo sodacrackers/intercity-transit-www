@@ -398,8 +398,8 @@ function it_route_trip_tools_pics_get_routes_raw($cache_only = TRUE) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_routes';
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-  
-  if ($cache = $cache_service->get($cid)) {
+  $cache = $cache_service->get($cid);
+  if (!empty($cache)) {
     return $cache;
   }
   if ($cache_only) {
@@ -435,8 +435,8 @@ function it_route_trip_tools_pics_get_dates($cache_only = TRUE) {
   // https://pics.intercitytransit.com/api/calendar_dates
   $cid = 'calendar_dates_dates';
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-
-  if ($cache = $cache_service->get($cid)) {
+  $cache = $cache_service->get($cid);
+  if (!empty($cache)) {
     return $cache;
   }
   if ($cache_only) {
