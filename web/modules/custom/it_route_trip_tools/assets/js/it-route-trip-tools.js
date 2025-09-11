@@ -2,6 +2,7 @@
   'use strict';
   Drupal.behaviors.it_route_trip_tools = {
     attach(context, settings) {
+      var is_resetting = false;
       if ($('#outbound-tables').length) {
         var outbound_width = $('#outbound-tables').width();
         var outbound_table_width = $('#outbound-tables table thead').width();
@@ -143,24 +144,31 @@
 
       once('button-direction', 'button#direction').forEach(function (element) {
         $(element).click(function () {
+          is_resetting = true;
+          $('input[name="show_stop"]').prop('checked', false);
+          $('#applyRoutesFilter').click();
+          is_resetting = false;
           $('button#direction').toggleClass('inbound');
           $('button#direction').toggleClass('outbound');
           $('.dir-heading').toggleClass('hidden');
           $('.dir-tables').toggleClass('hidden');
           $('.map-frame .maps').toggleClass('hidden').toggleClass('show-dir').toggleClass('hide-dir');
-          if ($('#outbound-tables').length) {
-            var outbound_width = $('#outbound-tables').width();
-            var outbound_table_width = $('#outbound-tables table thead').width();
-          }
-          if ($('#inbound-tables').length) {
-            var inbound_width = $('#inbound-tables').width();
-            var inbound_table_width = $('#inbound-tables table theah').width();
-          }
         });
       });
 
       once('input-name-direction', 'input[name="direction"]').forEach(function (element) {
         $(element).click(function () {
+          is_resetting = true;
+          $('input[name="show_stop"]').prop('checked', false);
+          $('#applyRoutesFilter').click();
+          is_resetting = false;
+          if (!$('input[name="display_stops_options"][value="allstops"]').is(':checked')) {
+            
+            $('input[name="display_stops_options"][value="allstops"]').prop('checked', true);
+            $('input[name="display_stops_options"][value="timepoint"]').prop('checked', true);
+            $('input[name="display_stops_options"][value="allstops"]').parent().addClass('active focus btn-default').removeClass('btn-primary');
+            $('input[name="display_stops_options"][value="timepoint"]').parent().removeClass('active focus btn-default').addClass('btn-primary');
+          }
           const choice = $(this).val();
           const opposite = choice === 'inbound' ? 'outbound' : 'inbound';
           $('button#direction').addClass(choice);
@@ -243,8 +251,10 @@
 
       once('input-name-display_stops_options', 'input[name="display_stops_options"]').forEach(function (element) {
         $(element).change(function () {
+          is_resetting = true;
           $('input[name="show_stop"]').prop('checked', false);
           $('#applyRoutesFilter').click();
+          is_resetting = false;
           const show_rows = $(this).val();
           if (show_rows === 'allstops') {
             $('tr.non-timepoint').show();
@@ -259,6 +269,18 @@
 
       once('applyRoutesFilter', '#applyRoutesFilter').forEach(function (element) {
         $(element).click(function () {
+          if (!is_resetting) {
+            is_resetting = true;
+            console.log($('input[name="display_stops_options"][value="allstops"]').is(':checked'));
+            if (!$('input[name="display_stops_options"][value="allstops"]').is(':checked')) {
+              
+              $('input[name="display_stops_options"][value="allstops"]').prop('checked', true);
+              $('input[name="display_stops_options"][value="timepoint"]').prop('checked', true);
+              $('input[name="display_stops_options"][value="allstops"]').parent().addClass('active focus btn-default').removeClass('btn-primary');
+              $('input[name="display_stops_options"][value="timepoint"]').parent().removeClass('active focus btn-default').addClass('btn-primary');
+            }
+            is_resetting = false;
+          }
           let stopList = '';
           const searchIDs = $('input[name="show_stop"]:checked').map(function () {
             const check_val = $(this).val();
