@@ -302,8 +302,7 @@ function it_route_trip_tools_get_stop_details($stop_id, $date = NULL) {
 */
 function it_route_trip_tools_get_route_table_map_data($routeId, $date = NULL, $cache_only = FALSE) {
   $date = empty($date) ? date('Y-m-d') : $date;
-  $inbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, INBOUND_DIRECTION, $cache_only);
-  $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION, $cache_only);
+  $inbound_data = $outbound_data = it_route_trip_tools_pics_get_route_data($routeId, $date, OUTBOUND_DIRECTION, $cache_only);
   if (empty($inbound_data) || empty($outbound_data)) {
     return [];
   }
@@ -389,10 +388,10 @@ function it_route_trip_tools_pics_fill_trips($time_tables) {
 }
 
 function it_route_trip_tools_build_route_title($routeId, $date = NULL) {
-  $routes = it_route_trip_tools_pics_get_route_data($routeId, $date, 0, TRUE);
-  $date = \Drupal::request()->query->get('date');
-  $date = empty($date) ? date('Y-m-d') : $date;
-  return isset($routes['Route']) ? $routes['Route']['RouteInfo']['route_short_name'] . ' - ' . $routes['Route']['RouteInfo']['route_long_name'] : '';
+  //$routes = it_route_trip_tools_pics_get_route_data($routeId, $date, 0, TRUE);
+  $routes = it_route_trip_tools_pics_get_routes_raw(TRUE);
+  $route = isset($routes[$routeId]) ? $routes[$routeId] : [];
+  return isset($route) ? $route['route_short_name'] . ' - ' . $route['route_long_name'] : '';
 }
 
 function it_route_trip_tools_pics_get_routes_raw($cache_only = TRUE) {
@@ -465,8 +464,8 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
   $date = empty($date) ? date('Y-m-d') : $date;
   $cid = 'route_data:' . $date . ':' . $route_id . ':' . $direction_id;
   $cache_service = \Drupal::service('it_route_trip_tools.transit_data_cache');
-
-  if ($cache = $cache_service->get($cid) && !empty($cache)) {
+  $cache = $cache_service->get($cid);
+  if (!empty($cache)) {
     return $cache;
   }
   $dates = it_route_trip_tools_pics_get_dates();

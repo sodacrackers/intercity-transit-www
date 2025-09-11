@@ -137,7 +137,7 @@
                 "version": "1.8.7",
                 "type": "drupal-library",
                 "extra": {
-                    "installer-name": "jquery.chosen"
+                    "installer-name": "chosen"
                 },
                 "dist": {
                     "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip",
@@ -650,6 +650,7 @@
         "classmap": ["upstream-configuration/scripts/ComposerScripts.php"]
     },
     "scripts": {
+        "post-install-cmd": ["ln -sF ./jquery.chosen ./web/libraries/chosen || true"],
         "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
         "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"]
     },
