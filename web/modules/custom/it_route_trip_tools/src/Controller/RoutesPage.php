@@ -235,7 +235,7 @@ class RoutesPage extends ControllerBase {
         // Prevent redirect loop: if already on this URL, show error markup.
         if ($url === \Drupal::request()->getRequestUri()) {
           return [
-            '#markup' => $this->t('Failed to load data for route <em>@route</em>. Please reload or download the schedule.', ['@route' => $routeId]) . (empty($download_url) ? '' : '<a id="download-link" class="btn btn-save" href="' . $download_url . '" target="_blank"><span
+            '#markup' => $this->t('Failed to load data for the given route. Please try again later or download a <a href="/plan-your-trip/routes/scheduledownloads">printable schedule now.</a>', ['@route' => $routeId]) . (empty($download_url) ? '' : '<a id="download-link" class="btn btn-save" href="' . $download_url . '" target="_blank"><span
                                 class="download-icon"></span><span>Download Schedule<span></a>'),
             '#cache' => [
               'max-age' => 0,
