@@ -424,10 +424,40 @@ function it_route_trip_tools_pics_get_routes_raw($cache_only = TRUE) {
 
 function it_route_trip_tools_pics_get_routes() {
   $routes = it_route_trip_tools_pics_get_routes_raw();
-  $disable_routes = array_keys(\Drupal::config('it_route_trip_tools.settings')->get('disable_routes') ?: []);
+  $config = \Drupal::config('it_route_trip_tools.settings');
+  $disable_routes = array_keys($config->get('disable_routes') ?: []);
+  $route_order = $config->get('route_order') ?: [];
+  
+  // Remove disabled routes
   foreach ($disable_routes as $route_id) {
     unset($routes[$route_id]);
   }
+  
+  // Apply sorting if route_order is configured
+  if (!empty($route_order)) {
+    // Sort by weight
+    asort($route_order);
+    
+    // Create sorted array
+    $sorted_routes = [];
+    
+    // First add routes in the saved order
+    foreach ($route_order as $route_id => $weight) {
+      if (isset($routes[$route_id])) {
+        $sorted_routes[$route_id] = $routes[$route_id];
+      }
+    }
+    
+    // Then add any remaining routes that aren't in the saved order
+    foreach ($routes as $route_id => $route) {
+      if (!isset($sorted_routes[$route_id])) {
+        $sorted_routes[$route_id] = $route;
+      }
+    }
+    
+    return $sorted_routes;
+  }
+  
   return $routes;
 }
 
