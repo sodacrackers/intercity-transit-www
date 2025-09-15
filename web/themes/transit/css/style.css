@@ -2244,3 +2244,6 @@ table.fc-list-table > tbody > tr > td {
 #download-link span {
   display: inline-block;
 }
+#ui-datepicker-div {
+    z-index: 100 !important;
+}
