@@ -9,6 +9,7 @@
 /web/sites/*/services*.yml
 !/web/sites/*/services.pantheon.*.yml
 !/web/sites/*/services.yml
+/web/sites/development.services.yml
 
 # Ignore paths that contain user-generated content.
 /web/sites/*/files
