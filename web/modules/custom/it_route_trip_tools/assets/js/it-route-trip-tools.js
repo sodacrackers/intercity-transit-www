@@ -21,6 +21,27 @@
         }
       }
 
+      // Helper function to check scroll boundaries and update button states
+      function updateScrollButtonStates(table, backButton, forwardButton) {
+        var scrollLeft = $(table).scrollLeft();
+        var scrollWidth = $(table).get(0).scrollWidth;
+        var clientWidth = $(table).get(0).clientWidth;
+        
+        // Check if at the beginning
+        if (scrollLeft <= 0) {
+          $(backButton).attr('disabled', true);
+        } else {
+          $(backButton).attr('disabled', false);
+        }
+        
+        // Check if at the end (with small tolerance for rounding)
+        if (scrollLeft + clientWidth >= scrollWidth - 1) {
+          $(forwardButton).attr('disabled', true);
+        } else {
+          $(forwardButton).attr('disabled', false);
+        }
+      }
+
       once('inbound-forward', '.inbound-forward').forEach(function (element) {
         $(element).on('touch, click', function () {
           event.preventDefault();
@@ -28,8 +49,10 @@
           var leftPos = $(table).scrollLeft();
           $(table).animate({
             scrollLeft: leftPos + 400
-          }, 400);
-          $('.inbound-back').attr('disabled', false);
+          }, 400, function() {
+            // Update button states after animation completes
+            updateScrollButtonStates(table, '.inbound-back', '.inbound-forward');
+          });
         });
       });
       once('inbound-back', '.inbound-back').forEach(function (element) {
@@ -39,8 +62,10 @@
           var leftPos = $(table).scrollLeft();
           $(table).animate({
             scrollLeft: leftPos - 400
-          }, 400);
-          $('.inbound-forward').attr('disabled', false);
+          }, 400, function() {
+            // Update button states after animation completes
+            updateScrollButtonStates(table, '.inbound-back', '.inbound-forward');
+          });
         });
       });
       once('outbound-forward', '.outbound-forward').forEach(function (element) {
@@ -50,8 +75,10 @@
           var leftPos = $(table).scrollLeft();
           $(table).animate({
             scrollLeft: leftPos + 400
-          }, 400);
-          $('.outbound-back').attr('disabled', false);
+          }, 400, function() {
+            // Update button states after animation completes
+            updateScrollButtonStates(table, '.outbound-back', '.outbound-forward');
+          });
         });
       });
 
@@ -62,8 +89,10 @@
           var leftPos = $(table).scrollLeft();
           $(table).animate({
             scrollLeft: leftPos - 400
-          }, 400);
-          $('.outbound-forward').attr('disabled', false);
+          }, 400, function() {
+            // Update button states after animation completes
+            updateScrollButtonStates(table, '.outbound-back', '.outbound-forward');
+          });
         });
       });
 
@@ -335,6 +364,8 @@
           let currentTitle = $('.outbound-route-map-toggle').html();
           $('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
           $('#outbound-map-body').toggleClass('hide').toggleClass('show');
+          const otherChevron = document.querySelector('#map-title-inbound #map-chevron span');
+          otherChevron.style.transform === 'rotate(180deg)' ? otherChevron.style.transform = 'rotate(0deg)' : otherChevron.style.transform = 'rotate(180deg)';
           if (!$(this).hasClass('already-opened')) {
             initMap_outbound();
             $(this).addClass('already-opened');
@@ -356,6 +387,8 @@
           let currentTitle = $('.inbound-route-map-toggle').html();
           $('.inbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
           $('#inbound-map-body').toggleClass('hide').toggleClass('show');
+          const otherChevron = document.querySelector('#map-title-outbound #map-chevron span');
+          otherChevron.style.transform === 'rotate(180deg)' ? otherChevron.style.transform = 'rotate(0deg)' : otherChevron.style.transform = 'rotate(180deg)';
           if (!$(this).hasClass('already-opened')) {
             initMap_inbound();
             $(this).addClass('already-opened');

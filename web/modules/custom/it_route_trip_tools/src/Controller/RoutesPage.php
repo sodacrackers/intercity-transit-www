@@ -247,6 +247,9 @@ class RoutesPage extends ControllerBase {
                 ['Pragma', 'no-cache'],
                 ['Expires', '0'],
               ],
+              'library' => [
+                'it_route_trip_tools/route',
+              ],
             ],
           ];
         }

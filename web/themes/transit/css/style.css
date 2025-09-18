@@ -2247,3 +2247,7 @@ table.fc-list-table > tbody > tr > td {
 #ui-datepicker-div {
     z-index: 100 !important;
 }
+
+.btn[disabled] {
+    cursor: unset !important;
+}
