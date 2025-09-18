@@ -335,6 +335,8 @@
           let currentTitle = $('.outbound-route-map-toggle').html();
           $('.outbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
           $('#outbound-map-body').toggleClass('hide').toggleClass('show');
+          const otherChevron = document.querySelector('#map-title-inbound #map-chevron span');
+          otherChevron.style.transform === 'rotate(180deg)' ? otherChevron.style.transform = 'rotate(0deg)' : otherChevron.style.transform = 'rotate(180deg)';
           if (!$(this).hasClass('already-opened')) {
             initMap_outbound();
             $(this).addClass('already-opened');
@@ -356,6 +358,8 @@
           let currentTitle = $('.inbound-route-map-toggle').html();
           $('.inbound-route-map-toggle').html(currentTitle.includes('Open') ? currentTitle.replace('Open', 'Close') : currentTitle.replace('Close', 'Open'));
           $('#inbound-map-body').toggleClass('hide').toggleClass('show');
+          const otherChevron = document.querySelector('#map-title-outbound #map-chevron span');
+          otherChevron.style.transform === 'rotate(180deg)' ? otherChevron.style.transform = 'rotate(0deg)' : otherChevron.style.transform = 'rotate(180deg)';
           if (!$(this).hasClass('already-opened')) {
             initMap_inbound();
             $(this).addClass('already-opened');

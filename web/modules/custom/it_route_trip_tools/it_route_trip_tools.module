@@ -508,7 +508,8 @@ function it_route_trip_tools_pics_get_route_data_by_id($route_id, $date = NULL, 
   $search_dates = array_keys($dates_with_save_schedule_and_service);
   foreach ($search_dates as $d) {
     $cid_search = 'route_data:' . $d . ':' . $route_id . ':' . $direction_id;
-    if ($cache = $cache_service->get($cid_search) && !empty($cache)) {
+    $cache = $cache_service->get($cid_search);
+    if (!empty($cache)) {
       // Cache found for a date with the same schedule and service ids.
       $cache_service->set($cid, $cache, \Drupal::time()->getRequestTime() + 60 * 60 * 24 * 365);
       return $cache;
