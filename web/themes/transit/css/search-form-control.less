@@ -1,53 +1,68 @@
 @import "global.less";
 .search-form-block-control {
-	@media @min992 {
-		&.desktop-show {
-			button {
-				&.search-toggle {
-					display: none;
-				}
-			}
-			#search-form {
-				display: block;
-				div {
-					display: block;
-				}
-			}
-		}
-		&.desktop-hide {
-			//CSS for hiding the form on desktop
-		}
-	}
-	@media @max991 {
-		&.mobile-show {
-			//CSS for showing the form on mobile
-		}
-		&.mobile-hide {
-			position: relative;
-			clear: both;
-			display: block;
-			button {
-				&.search-toggle {
-					display: block;
-				}
-			}
-			position: relative;
-			.collapse {
-				display: none;
-				clear: both;
-				&.in {
-					display: block;
-				}
-			}
-			form {
-				.glyphicon-search {
-					&:before {
-						font-family: 'Font Awesome 5 Free';
-						content: '\f061';
-						font-weight: 900;
-					}
-				}
-			}
-		}
-	}	
+    @media @min992 {
+        &.desktop-show {
+            button {
+                &.search-toggle {
+                    display: none;
+                }
+            }
+            #search-form {
+                display: block;
+                div {
+                    display: block;
+                }
+                // Added styles for desktop-show at min-width: 992px
+                padding: 0 !important;
+                float: right !important;
+                width: 100%;
+                .card {
+                    padding: 0;
+                }
+            }
+        }
+        &.desktop-hide {
+            //CSS for hiding the form on desktop
+        }
+    }
+    @media @max991 {
+        &.mobile-show {
+            //CSS for showing the form on mobile
+        }
+        &.mobile-hide {
+            position: relative;
+            clear: both;
+            display: block;
+            button {
+                &.search-toggle {
+                    display: block;
+                }
+            }
+            position: relative;
+            .collapse {
+                display: none;
+                clear: both;
+                &.in {
+                    display: block;
+                }
+            }
+            form {
+                .glyphicon-search {
+                    &:before {
+                        font-family: 'Font Awesome 5 Free';
+                        content: '\f061';
+                        font-weight: 900;
+                    }
+                }
+            }
+        }
+    }
+    // Added styles for max-width: 1199px
+    @media (max-width: 1199px) {
+        #search-form {
+            div {
+                max-width: calc(100% - 5px);
+            }
+        }
+    }
 }
