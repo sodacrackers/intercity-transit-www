@@ -1,0 +1,43 @@
+uuid: 9fd3acff-8878-429f-844b-dbc1b7c4f0b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - disclosure_menu
+    - menu_block_title
+  theme:
+    - transit
+third_party_settings:
+  menu_block_title:
+    modify_title: false
+id: transit_mainnavigation
+theme: transit
+region: navigation
+weight: 0
+provider: null
+plugin: 'disclosure_menu:main'
+settings:
+  id: 'disclosure_menu:main'
+  label: 'Main navigation'
+  label_display: visible
+  provider: disclosure_menu
+  level: '1'
+  depth: '0'
+  expand_all_items: 1
+  submenu_disclosure_levels: '-1'
+  disclosure_button_include_chevron: '1'
+  disclosure_button_include_label: '0'
+  disclosure_button_label: 'More [menu-link:title] pages'
+  menu_disclosure: '0'
+  menu_disclosure_button_include_label: '1'
+  menu_disclosure_button_label: 'Open [menu:name]'
+  include_default_js: '1'
+  include_hover_js: '1'
+  resolve_hover_click: only_open
+  hover_show_delay: '150'
+  hover_hide_delay: '250'
+  include_css: horizontal
+visibility: {  }

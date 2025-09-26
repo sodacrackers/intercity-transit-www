@@ -1,8 +1,0 @@
-uuid: eb8e2535-531e-4e32-a624-9780222c16bb
-langcode: en
-status: true
-dependencies: {  }
-id: responsive-main-menu
-label: 'Responsive Main Menu'
-description: ''
-locked: false

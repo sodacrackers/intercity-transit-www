@@ -313,9 +313,9 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Pace Car Pledge Count'
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

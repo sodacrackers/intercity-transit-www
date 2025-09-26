@@ -6,8 +6,6 @@ dependencies:
     - field.storage.node.body
     - node.type.blog_page
     - taxonomy.vocabulary.tags
-  content:
-    - 'taxonomy_term:tags:6dce3800-1cfa-4615-8be8-5b1fdead9c5a'
   module:
     - node
     - taxonomy
@@ -323,7 +321,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -342,7 +339,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

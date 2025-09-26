@@ -9,7 +9,7 @@ dependencies:
 id: sidrtriggerbuttonblock
 theme: transit
 region: header_top
-weight: 0
+weight: -48
 provider: null
 plugin: sidr_trigger
 settings:

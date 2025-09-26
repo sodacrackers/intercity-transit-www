@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42eda1c6c9f0474b5121dc8e0f1ad474",
+    "content-hash": "08dd20fdf622ca1ce5391fab1cc214e4",
     "packages": [
         {
             "name": "algolia/places",
@@ -1548,6 +1548,82 @@
                 "source": "https://github.com/ckeditor/ckeditor4/tree/master/plugins/fakeobjects"
             },
             "time": "2023-02-08T14:53:49+00:00"
+        },
+        {
+            "name": "drupal/accessible_menu",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/accessible_menu.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/accessible_menu-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "5c1dee3a9d3bda854ab04da5cc165e1badd93e9e"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+                "drupal/coder": "^8.3",
+                "phpcompatibility/php-compatibility": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1753901214",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "phpcs": [
+                    "phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install --ignore=vendor/*,bin/* ."
+                ],
+                "phpcbf": [
+                    "phpcbf --standard=Drupal,DrupalPractice --extensions=php,module,inc,install --ignore=vendor/*,bin/* ."
+                ],
+                "phpcompatibility": [
+                    "phpcs --standard=PHPCompatibility --extensions=php,module,inc,install --ignore=vendor/*,bin/* -p --runtime-set testVersion 8.2- ."
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nick Milton",
+                    "homepage": "https://www.drupal.org/user/3545354",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Drupal module that provides a JavaScript library to help you effortlessly create WCAG-compliant menus in the DOM.",
+            "homepage": "https://www.drupal.org/project/accessible_menu",
+            "keywords": [
+                "a11y",
+                "accessibility",
+                "accessible",
+                "aria",
+                "disclosure menu",
+                "drupal",
+                "menu",
+                "menubar",
+                "nav",
+                "navigation",
+                "treeview",
+                "wai-aria"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/accessible_menu.git",
+                "issues": "https://www.drupal.org/project/issues/accessible_menu?categories=All"
+            }
         },
         {
             "name": "drupal/adaptivetheme",
@@ -3405,6 +3481,65 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
+            }
+        },
+        {
+            "name": "drupal/disclosure_menu",
+            "version": "2.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/disclosure_menu.git",
+                "reference": "2.1.8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/disclosure_menu-2.1.8.zip",
+                "reference": "2.1.8",
+                "shasum": "0fec2fad954e5bfb6de1773fe44cf80d7ed03b77"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11",
+                "drupal/token": "^1.1",
+                "drupal/twig_tweak": "^3.2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.8",
+                    "datestamp": "1736196062",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Huskins (jayhuskins)",
+                    "homepage": "https://www.drupal.org/u/jayhuskins",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "jayhuskins",
+                    "homepage": "https://www.drupal.org/user/3619432"
+                },
+                {
+                    "name": "sonfd",
+                    "homepage": "https://www.drupal.org/user/2844573"
+                }
+            ],
+            "description": "Allows Drupal menus to be displayed as a dropdown menu with disclosure buttons.",
+            "homepage": "http://drupal.org/project/disclosure_menu",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://git.drupalcode.org/project/disclosure_menu",
+                "issues": "http://drupal.org/project/issues/disclosure_menu"
             }
         },
         {

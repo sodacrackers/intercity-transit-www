@@ -178,6 +178,7 @@ display:
         type: none
         options:
           offset: 0
+      filters: {  }
       style:
         type: entity_reference
         options:
@@ -185,7 +186,6 @@ display:
             title: title
       display_description: ''
       display_extenders: {  }
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

@@ -187,9 +187,9 @@ display:
           entity_field: cid
           plugin_id: field
           order: DESC
-          exposed: false
           expose:
             field_identifier: cid
+          exposed: false
       filters:
         status:
           id: status
@@ -259,12 +259,12 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       block_description: 'Recent comments'
       block_category: 'Lists (Views)'
       allow:
         items_per_page: true
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

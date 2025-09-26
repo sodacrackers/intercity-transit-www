@@ -597,7 +597,9 @@
         "douglascrockford/json2": "dev-master",
         "malsup/jquery.cycle": "^3.0@alpha",
         "tobia/jquery.pause": "dev-master",
-        "jackmoore/colorbox": "^1.6"
+        "jackmoore/colorbox": "^1.6",
+        "drupal/accessible_menu": "^1.0",
+        "drupal/disclosure_menu": "^2.1"
     },
     "require-dev": {
         "drupal/core-dev": "^10"

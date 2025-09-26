@@ -190,9 +190,14 @@ solr_configs:
             -
               name: buildOnStartup
               VALUE: 'false'
+            -
+              name: indexPath
+              VALUE: ./und
 text_files:
-  stopwords: ''
-  protwords: ''
+  stopwords: |
+
+  protwords: |
+
   accents: |
     # À => A
     "\u00C0" => "A"
