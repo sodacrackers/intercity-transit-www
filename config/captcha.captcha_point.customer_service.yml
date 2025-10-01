@@ -3,5 +3,5 @@ langcode: en
 status: true
 dependencies: {  }
 formId: customer_service
-captchaType: recaptcha/reCAPTCHA
+captchaType: default
 label: customer_service

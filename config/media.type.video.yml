@@ -4,6 +4,16 @@ status: true
 dependencies:
   module:
     - video_embed_media
+    - workbench_moderation
+third_party_settings:
+  workbench_moderation:
+    enabled: 0
+    allowed_moderation_states:
+      - published
+      - archived
+      - draft
+      - needs_review
+    default_moderation_state: draft
 _core:
   default_config_hash: 3hNqO7qzA7TZBI6yW4M1MoBiuva0RKHbsvClx0RTatc
 id: video

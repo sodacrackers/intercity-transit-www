@@ -9,14 +9,9 @@ dependencies:
     - taxonomy.vocabulary.accordian_block
     - taxonomy.vocabulary.tags
   content:
-    - 'taxonomy_term:accordian_block:b6981f41-f529-49e7-9174-069017e57ec7'
-    - 'taxonomy_term:tags:075368cf-1c4d-41c8-8a45-3ba7b4d83aea'
-    - 'taxonomy_term:tags:11253489-ac05-4759-842a-15f942280865'
-    - 'taxonomy_term:tags:81b5c7ad-2b7e-4cd7-a788-d208d2b217db'
-    - 'taxonomy_term:tags:bf52a891-bab3-4e38-a46e-75e27b2f1850'
-    - 'taxonomy_term:tags:db1dd7e1-596e-42a1-bb98-0bc736b55dbf'
+    - 'taxonomy_term:agencies:26c74631-c19b-42ad-b6c0-5bd09f38f510'
+    - 'taxonomy_term:calendar_event_type:24fb903a-0c21-469f-a6fe-ec89aea7a1a2'
     - 'taxonomy_term:tags:ef0067bb-7678-48d7-8cbd-997d9dbae9e0'
-    - 'taxonomy_term:tags:fbb3781c-ee18-4070-8775-3b107413e8ea'
   module:
     - node
     - smart_date
@@ -397,7 +392,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -616,7 +610,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
@@ -650,7 +643,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -865,7 +857,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1018,7 +1009,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1096,7 +1086,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 321
+            - 9223372036854775807
           group: 1
           exposed: false
           expose:
@@ -1171,7 +1161,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1248,7 +1237,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 325
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1320,7 +1309,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1397,7 +1385,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 329
+            - 0
           group: 1
           exposed: false
           expose:
@@ -1470,7 +1458,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1547,7 +1534,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 334
+            - 76
           group: 1
           exposed: false
           expose:
@@ -1619,7 +1606,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1696,7 +1682,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 348
+            348: 348
           group: 1
           exposed: false
           expose:
@@ -1728,7 +1714,7 @@ display:
             group_items: {  }
           reduce_duplicates: false
           vid: tags
-          type: textfield
+          type: select
           hierarchy: false
           limit: true
           error_message: true
@@ -1768,7 +1754,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -1933,7 +1918,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2071,7 +2055,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -2083,6 +2066,7 @@ display:
     position: 8
     display_options:
       title: 'OTC North Site Construction Accordian'
+      filters: {  }
       defaults:
         title: false
       display_extenders: {  }
@@ -2092,7 +2076,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

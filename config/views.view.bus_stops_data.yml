@@ -1693,6 +1693,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
+      filters: {  }
       style:
         type: default
         options:
@@ -2217,6 +2218,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+      filters: {  }
       defaults:
         fields: false
       display_extenders: {  }

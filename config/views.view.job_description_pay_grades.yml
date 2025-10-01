@@ -5080,6 +5080,7 @@ display:
           offset: 0
           items_per_page: 1
       sorts: {  }
+      filters: {  }
       style:
         type: default
         options:
@@ -5100,7 +5101,6 @@ display:
         sorts: false
       display_extenders: {  }
       path: employment/rates
-      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

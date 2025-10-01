@@ -28,11 +28,16 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  search_api_excerpt:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
 hidden:
   created: true
   field_media_in_library: true
   field_section: true
+  langcode: true
   name: true
-  search_api_excerpt: true
   thumbnail: true
   uid: true

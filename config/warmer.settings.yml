@@ -1,6 +1,15 @@
 _core:
   default_config_hash: wLhhL58IKPWkAbhxcI6gpCna7d431Q7kM0y-Om92BUQ
 warmers:
+  sitemap:
+    id: sitemap
+    frequency: 300
+    batchSize: 50
+    minPriority: 0.0
+    sitemaps: {  }
+    headers: {  }
+    verify: true
+    maxConcurrentRequests: 10
   cdn:
     id: cdn
     frequency: 300
@@ -27,15 +36,6 @@ warmers:
       - /plan-your-trip/routes/1
     headers: {  }
     verify: false
-    maxConcurrentRequests: 10
-  sitemap:
-    id: sitemap
-    frequency: 300
-    batchSize: 50
-    minPriority: 0.0
-    sitemaps: {  }
-    headers: {  }
-    verify: true
     maxConcurrentRequests: 10
   entity:
     id: entity

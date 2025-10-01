@@ -20,5 +20,8 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_providers: {  }
+  allowed_providers:
+    youtube_playlist: '0'
+    youtube: '0'
+    vimeo: '0'
 field_type: video_embed_field

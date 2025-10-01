@@ -1,0 +1,30 @@
+uuid: 82e4f7a2-ec1f-459c-8046-c4a9ebc53416
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.zip_file.field_media_generic
+    - field.field.media.zip_file.field_zip_file
+    - media.type.zip_file
+id: media.zip_file.media_library
+targetEntityType: media
+bundle: zip_file
+mode: media_library
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_media_generic: true
+  field_zip_file: true
+  langcode: true
+  path: true
+  status: true
+  uid: true

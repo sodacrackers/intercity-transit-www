@@ -560,7 +560,7 @@
         "drupal/google_tag": "^1.6",
         "google/protobuf": "3.22.0 as 3.10.0",
         "drupal/config_ignore": "^3.3",
-        "drupal/cacheexclude": "^2.0",
+        "drupal/cacheexclude": "^2.1",
         "drupal/redis": "^1.7",
         "drupal/config_filter": "^2.6",
         "drupal/quickedit": "^1.0",

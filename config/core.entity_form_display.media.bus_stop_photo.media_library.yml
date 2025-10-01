@@ -1,0 +1,35 @@
+uuid: 19d70531-2dcc-4f2c-9bf7-4a9fe1586835
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.bus_stop_photo.field_bus_stop_no
+    - field.field.media.bus_stop_photo.field_bus_stop_photo_status
+    - field.field.media.bus_stop_photo.image
+    - image.style.thumbnail
+    - media.type.bus_stop_photo
+  module:
+    - image
+id: media.bus_stop_photo.media_library
+targetEntityType: media
+bundle: bus_stop_photo
+mode: media_library
+content:
+  image:
+    type: image_image
+    weight: -50
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_bus_stop_no: true
+  field_bus_stop_photo_status: true
+  langcode: true
+  name: true
+  path: true
+  status: true
+  uid: true

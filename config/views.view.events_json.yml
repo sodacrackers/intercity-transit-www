@@ -555,6 +555,7 @@ display:
         type: none
         options:
           offset: 0
+      filters: {  }
       style:
         type: serializer
         options:

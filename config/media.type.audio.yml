@@ -1,0 +1,14 @@
+uuid: 800639fd-db2d-4b21-97ba-03dab96f255d
+langcode: en
+status: true
+dependencies: {  }
+id: audio
+label: Audio
+description: 'A locally hosted audio file.'
+source: audio_file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_audio_file
+field_map:
+  name: name

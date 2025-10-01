@@ -1,0 +1,36 @@
+uuid: ed7d8399-3790-43a8-8f80-ec716f7db55b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.route_pdfs.field_document
+    - field.field.media.route_pdfs.field_map
+    - image.style.medium
+    - media.type.route_pdfs
+  module:
+    - image
+id: media.route_pdfs.media_library
+targetEntityType: media
+bundle: route_pdfs
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_document: true
+  field_map: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  uid: true
