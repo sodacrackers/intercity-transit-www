@@ -31,7 +31,7 @@ content:
   search_api_excerpt:
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 2
     region: content
 hidden:
   created: true
