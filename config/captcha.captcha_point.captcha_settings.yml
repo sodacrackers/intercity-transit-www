@@ -3,5 +3,5 @@ langcode: en
 status: true
 dependencies: {  }
 formId: captcha_settings
-captchaType: captcha/Math
+captchaType: default
 label: captcha_settings

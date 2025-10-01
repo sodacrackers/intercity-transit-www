@@ -1,5 +1,6 @@
 _core:
   default_config_hash: fP57Sd8RjnZMVH3p_R-Yt0tC8j7Z-BuzGMIp6pmrHAI
+langcode: en
 smtp_on: false
 smtp_host: email-smtp.us-west-2.amazonaws.com
 smtp_hostbackup: ''
@@ -7,8 +8,8 @@ smtp_port: '587'
 smtp_protocol: tls
 smtp_autotls: true
 smtp_timeout: 30
-smtp_username: AKIAUMLO6YFPZX6SY7UP
-smtp_password: BBDYhE1NqKrAN0mvQchOZGVXYr+dLXbJeJ00CE6DMuCs
+smtp_username: AKIAUMLO6YFP4IS6URGK
+smtp_password: BF6vJWqqM7YAahnGV+xBFz+ROMTbEwTP6NREwoXRfgHd
 smtp_from: noreply@intercitytransit.com
 smtp_fromname: 'Intercity Transit'
 smtp_client_hostname: ''

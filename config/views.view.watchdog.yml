@@ -385,15 +385,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        link:
-          id: link
+        location:
+          id: location
           table: watchdog
-          field: link
+          field: location
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: dblog_operations
-          label: Operations
+          plugin_id: standard
+          label: Location
           exclude: false
           alter:
             alter_text: false
@@ -434,8 +434,58 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+        message_1:
+          id: message_1
+          table: watchdog
+          field: message
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: dblog_message
+          label: Message
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 600
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          replace_variables: true
       pager:
-        type: mini
+        type: full
         options:
           offset: 0
           pagination_heading_level: h4
@@ -445,6 +495,8 @@ display:
           tags:
             next: ››
             previous: ‹‹
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -453,6 +505,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       exposed_form:
         type: basic
         options:
@@ -482,20 +535,7 @@ display:
           empty: true
           content: 'No log messages available.'
           tokenize: false
-      sorts:
-        wid:
-          id: wid
-          table: watchdog
-          field: wid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: wid
-          exposed: false
+      sorts: {  }
       arguments: {  }
       filters:
         type:
@@ -580,6 +620,57 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        message:
+          id: message
+          table: watchdog
+          field: message
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: message_op
+            label: Message
+            description: ''
+            use_operator: false
+            operator: message_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: message
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              it_staff_baseline: '0'
+              marketing: '0'
+              vanpool: '0'
+              procurement_user: '0'
+              executive_user: '0'
+              planning_user: '0'
+              youth_outreach_user: '0'
+              essential_trip_request_manager: '0'
+              human_resources: '0'
+              calendar_editor: '0'
+            placeholder: Contains...
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
@@ -599,24 +690,25 @@ display:
             message: message
             name: name
             link: link
-          default: wid
+            location: location
+            referer: referer
+            message_1: message_1
+          default: timestamp
           info:
             nothing:
-              sortable: false
-              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: priority-medium
             wid:
-              sortable: false
+              sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: priority-low
             severity:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -637,7 +729,7 @@ display:
               empty_column: false
               responsive: priority-low
             message:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -655,8 +747,29 @@ display:
               separator: ''
               empty_column: false
               responsive: priority-low
+            location:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            referer:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            message_1:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           override: true
-          sticky: false
+          sticky: true
           summary: ''
           empty_table: false
           caption: ''
@@ -682,7 +795,17 @@ display:
           plugin_id: standard
           required: false
       css_class: admin-dblog
-      header: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: true
+          content: 'Displaying @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:

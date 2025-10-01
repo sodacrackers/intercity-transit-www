@@ -510,11 +510,11 @@ display:
           maxTime: '23:59:59'
           bundle_type: walk_n_roll_event
           classes: walk-n-roll-calendar
-          fetchGoogleHolidays: 0
+          fetchGoogleHolidays: false
           googleHolidaysSettings:
             googleCalendarAPIKey: ''
             googleCalendarGroup: ''
-            renderGoogleHolidaysAsBackground: 0
+            renderGoogleHolidaysAsBackground: false
           color_taxonomies:
             350: '#3c8711'
             349: '#003087'
@@ -554,6 +554,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      filters: {  }
       display_extenders: {  }
       path: services/walknroll/calendar
     cache_metadata:

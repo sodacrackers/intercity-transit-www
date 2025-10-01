@@ -1,11 +1,11 @@
 _core:
   default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
 module:
+  auto_entitylabel: -100
   admin_toolbar: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
   adminimal_admin_toolbar: 0
-  auto_entitylabel: 0
   automated_cron: 0
   better_search: 0
   blazy: 0
@@ -14,6 +14,7 @@ module:
   block_content: 0
   bootstrap_layouts: 0
   breakpoint: 0
+  cacheexclude: 0
   captcha: 0
   ckeditor: 0
   ckeditor5: 0
@@ -21,6 +22,8 @@ module:
   comment: 0
   conditional_fields: 0
   config: 0
+  config_filter: 0
+  config_ignore: 0
   contact: 0
   contact_block: 0
   contextual: 0
@@ -56,8 +59,6 @@ module:
   google_tag: 0
   help: 0
   history: 0
-  ict_gtfs: 0
-  ict_routes_react_app: 0
   image: 0
   imce: 0
   inline_entity_form: 0
@@ -67,6 +68,7 @@ module:
   jquery_ui_autocomplete: 0
   jquery_ui_datepicker: 0
   jquery_ui_menu: 0
+  language: 0
   layout_discovery: 0
   link: 0
   mailsystem: 0
@@ -87,12 +89,14 @@ module:
   paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
+  phpass: 0
   profile_switcher: 0
   quickedit: 0
   rdf: 0
   recaptcha: 0
   redirect: 0
   redirect_404: 0
+  redis: 0
   responsive_image: 0
   rest: 0
   saml_sp: 0
@@ -138,6 +142,9 @@ module:
   views_slideshow_cycle: 0
   views_templates: 0
   views_ui: 0
+  warmer: 0
+  warmer_cdn: 0
+  warmer_entity: 0
   we_megamenu: 0
   webform: 0
   webform_jqueryui_datepicker: 0

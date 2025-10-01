@@ -16,3 +16,5 @@ route_search_request: routeData4.php
 route_shapes_request: shapes2.php
 stops_request: stopdata.php
 stops_options_request: stops.php
+disable_routes:
+  620: '620'

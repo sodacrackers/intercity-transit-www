@@ -1,0 +1,7 @@
+uuid: 2a482471-9646-4dec-a5b6-b97d6784418d
+langcode: en
+status: true
+dependencies: {  }
+formId: webform_submission_discrimination_complaint_form_add_form
+captchaType: recaptcha/reCAPTCHA
+label: webform_submission_discrimination_complaint_form_add_form

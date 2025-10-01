@@ -5,7 +5,6 @@ dependencies:
   config:
     - system.menu.main
   module:
-    - menu_block_title
     - system
     - user
   theme:
