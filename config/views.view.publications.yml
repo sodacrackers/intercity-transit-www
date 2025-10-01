@@ -9,6 +9,8 @@ dependencies:
     - field.storage.media.field_publication_year
     - media.type.document
     - taxonomy.vocabulary.publication_types
+  content:
+    - 'taxonomy_term:publication_types:252bd49f-52c2-4108-bac4-6749d6387120'
   module:
     - datetime
     - file
@@ -1528,7 +1530,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: not
           value:
-            - 0
+            332: 332
           group: 1
           exposed: false
           expose:
@@ -4059,7 +4061,6 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
-      filters: {  }
       style:
         type: views_bootstrap_list_group
         options:
@@ -4858,7 +4859,6 @@ display:
           break_phrase: false
           add_table: false
           require_value: false
-      filters: {  }
       style:
         type: views_bootstrap_table
         options:

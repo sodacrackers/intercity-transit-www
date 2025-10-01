@@ -7,7 +7,6 @@ dependencies:
     - node.type.blog_page
     - node.type.procurement_bid_or_proposal
   module:
-    - file
     - filter
     - node
 id: procurement_user
@@ -20,7 +19,6 @@ permissions:
   - 'delete any blog_page content'
   - 'delete blog_page revisions'
   - 'delete own blog_page content'
-  - 'delete own files'
   - 'edit any blog_page content'
   - 'edit any procurement_bid_or_proposal content'
   - 'edit own blog_page content'

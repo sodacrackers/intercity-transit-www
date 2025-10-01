@@ -12,4 +12,6 @@ queue_thumbnail_downloads: false
 new_revision: false
 source_configuration:
   source_field: field_document
-field_map: {  }
+field_map:
+  mime: field_document
+  size: field_mime_type

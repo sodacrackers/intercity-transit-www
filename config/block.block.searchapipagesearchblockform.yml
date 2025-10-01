@@ -11,11 +11,11 @@ dependencies:
     - transit
 third_party_settings:
   block_class:
-    classes: 'col-lg-5 col-md-5 col-sm-6 col-xs-5'
+    classes: 'col-lg-4 col-md-4 col-sm-5 col-xs-5'
 id: searchapipagesearchblockform
 theme: transit
 region: header_top
-weight: -49
+weight: -40
 provider: null
 plugin: search_api_page_form_block
 settings:

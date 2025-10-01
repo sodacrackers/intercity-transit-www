@@ -18,6 +18,7 @@ elements: |-
     '#display_on': both
     '#text': |
       <p>Please complete the form below to request a copy of schedules for email or postal mail delivery.</p>
+      
     '#format': rich_text
   flexbox1:
     '#type': webform_flexbox
@@ -44,17 +45,6 @@ elements: |-
     '#title': 'Delivery Address Details'
     '#title_display': invisible
     '#align_items': center
-    mailing_address:
-      '#type': webform_address
-      '#title': 'Mailing Address'
-      '#states':
-        visible:
-          ':input[name="delivery_method"]':
-            value: 'Postal Mail'
-        required:
-          ':input[name="delivery_method"]':
-            value: 'Postal Mail'
-      '#country__access': false
     email_address:
       '#type': email
       '#title': 'Email Address'
@@ -66,6 +56,17 @@ elements: |-
         required:
           ':input[name="delivery_method"]':
             value: Email
+    mailing_address:
+      '#type': webform_address
+      '#title': 'Mailing Address'
+      '#states':
+        visible:
+          ':input[name="delivery_method"]':
+            value: 'Postal Mail'
+        required:
+          ':input[name="delivery_method"]':
+            value: 'Postal Mail'
+      '#country__access': false
   routes:
     '#type': checkboxes
     '#title': Routes
@@ -74,7 +75,6 @@ elements: |-
       'Route 13': 'Route 13: East Tumwater'
       'Route 21': 'Route 21: N Bethel/N Central'
       'Route 41': 'Route 41: The Evergreen State College'
-      'Route 42': 'Route 42: Family Court'
       'Route 45': 'Route 45: Conger/Capital Mall'
       'Route 47': 'Route 47: Capital Medical Center'
       'Route 48': 'Route 48: Capital Mall/TESC'
@@ -82,13 +82,13 @@ elements: |-
       'Route 62A': 'Route 62A: Martin Way/NE Lacey'
       'Route 62B': 'Route 62B: Martin Way/The Meadows'
       'Route 64': 'Route 64: College St/Amtrak'
-      'Route 65': 'Route 65: Hawks Prairie'
       'Route 66': 'Route 66: Ruddell Road'
       'Route 67': 'Route 67: Tri Lake'
       'Route 68': 'Route 68: Yelm Highway/Capital Mall'
       'Route 94': 'Route 94: Boulevard Rd./Yelm'
-      'Route 600': 'Route 600: Olympia/SR 512 P&R '
-      'Route 610': 'Route 610 -- Olympia/SR 512 P&R '
+      'Route 620': 'Route 620: Olympia/SR 512 P&R Express'
+      'Route 42': 'Route 42: Family Court'
+      'Route 65': 'Route 65: Hawks Prairie'
     '#options_display': two_columns
 css: ''
 javascript: ''

@@ -9,7 +9,7 @@ dependencies:
 id: breadcrumbs
 theme: transit
 region: header_mid
-weight: -48
+weight: -44
 provider: null
 plugin: system_breadcrumb_block
 settings:

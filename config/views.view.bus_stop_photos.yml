@@ -10,6 +10,8 @@ dependencies:
     - user.role.administrator
     - user.role.marketing
     - user.role.planning_user
+  content:
+    - 'taxonomy_term:bus_stop_photos:04a95a82-6eaf-459e-836f-c9be4a02d0e0'
   module:
     - blazy
     - colorbox
@@ -259,7 +261,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 48363136
+            322: 322
           group: 1
           exposed: false
           expose:
@@ -469,7 +471,6 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-      filters: {  }
       defaults:
         fields: false
         arguments: false
@@ -616,7 +617,6 @@ display:
             administrator: administrator
             marketing: marketing
             planning_user: planning_user
-      filters: {  }
       style:
         type: default
         options:
@@ -759,7 +759,6 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-      filters: {  }
       defaults:
         fields: false
         arguments: false
@@ -1029,7 +1028,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 48363136
+            322: 322
           group: 1
           exposed: false
           expose:

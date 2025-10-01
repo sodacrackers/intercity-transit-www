@@ -2286,10 +2286,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_1 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_1 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_1:
           id: views_conditional_field_1
           table: views_conditional
@@ -2343,10 +2343,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_2 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_2 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_2:
           id: views_conditional_field_2
           table: views_conditional
@@ -2400,10 +2400,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_3 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_3 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_3:
           id: views_conditional_field_3
           table: views_conditional
@@ -2457,10 +2457,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_4 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_4 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_4:
           id: views_conditional_field_4
           table: views_conditional
@@ -2514,10 +2514,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_5 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_5 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_5:
           id: views_conditional_field_5
           table: views_conditional
@@ -2571,10 +2571,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_6 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_6 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_6:
           id: views_conditional_field_6
           table: views_conditional
@@ -2628,10 +2628,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_7 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_7 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_7:
           id: views_conditional_field_7
           table: views_conditional
@@ -2685,10 +2685,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_8 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_8 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_8:
           id: views_conditional_field_8
           table: views_conditional
@@ -2742,10 +2742,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_9 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_9 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_9:
           id: views_conditional_field_9
           table: views_conditional
@@ -2799,10 +2799,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_10 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_10 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_10:
           id: views_conditional_field_10
           table: views_conditional
@@ -2856,10 +2856,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_11 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_11 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_11:
           id: views_conditional_field_11
           table: views_conditional
@@ -2913,10 +2913,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_12 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_12 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_12:
           id: views_conditional_field_12
           table: views_conditional
@@ -2970,10 +2970,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_13 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_13 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_13:
           id: views_conditional_field_13
           table: views_conditional
@@ -3027,10 +3027,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_14 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_14 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
         views_conditional_field_14:
           id: views_conditional_field_14
           table: views_conditional
@@ -3084,10 +3084,10 @@ display:
           condition: eq
           equalto: Non-Exempt
           then: '{{ field_hourly_rate_step_15 }}'
-          then_translate: true
+          then_translate: 1
           or: '{{ field_annual_rate_step_15 }}'
-          or_translate: true
-          strip_tags: false
+          or_translate: 1
+          strip_tags: 0
       pager:
         type: some
         options:
@@ -3770,9 +3770,9 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      filters: {  }
       display_extenders: {  }
       path: employment/job-descriptions-2022-8-15
+      filters: {  }
     cache_metadata:
       max-age: -1
       contexts:

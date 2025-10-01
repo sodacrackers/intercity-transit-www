@@ -11,6 +11,9 @@ dependencies:
     - field.storage.node.field_location
     - node.type.calendar_event
     - taxonomy.vocabulary.calendar_event_type
+  content:
+    - 'taxonomy_term:calendar_event_type:0ae71619-a329-4acd-84fd-7ea85de93f4b'
+    - 'taxonomy_term:calendar_event_type:9e90eb1d-807f-482e-ac60-f93db0399fb1'
   module:
     - blazy
     - datetime
@@ -758,7 +761,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9223372036854775807
+            - 74
           group: 1
           exposed: false
           expose:
@@ -1573,7 +1576,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0
+            - 73
           group: 1
           exposed: false
           expose:
@@ -2385,7 +2388,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0
+            - 73
           group: 1
           exposed: false
           expose:
@@ -2912,7 +2915,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0
+            - 73
           group: 1
           exposed: false
           expose:
@@ -3371,7 +3374,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9223372036854775807
+            - 74
           group: 1
           exposed: false
           expose:
@@ -4033,7 +4036,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 9223372036854775807
+            - 74
           group: 1
           exposed: false
           expose:
@@ -4663,7 +4666,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            - 0
+            - 73
           group: 1
           exposed: false
           expose:

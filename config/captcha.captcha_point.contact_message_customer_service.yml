@@ -5,5 +5,5 @@ dependencies: {  }
 _core:
   default_config_hash: MbTbUeeaumH8DjENUwT0-8uW9UuxyNHbF6jbKCLhYkk
 formId: contact_message_customer_service
-captchaType: default
+captchaType: recaptcha/reCAPTCHA
 label: contact-message-customer-service-form

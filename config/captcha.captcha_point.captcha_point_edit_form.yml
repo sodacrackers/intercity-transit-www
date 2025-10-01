@@ -3,5 +3,5 @@ langcode: en
 status: true
 dependencies: {  }
 formId: captcha_point_edit_form
-captchaType: default
+captchaType: recaptcha/reCAPTCHA
 label: captcha_point_edit_form

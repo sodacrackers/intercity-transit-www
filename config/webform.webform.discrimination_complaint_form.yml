@@ -168,7 +168,7 @@ elements: |-
       '#required': true
     disc_complaint_form_driver_desc:
       '#type': textarea
-      '#title': "If you don't know the answers to the information above, please provide a description of the driver so we can identify the employee"
+      '#title': 'If you don''t know the answers to the information above, please provide a description of the driver so we can identify the employee'
   disc_complaint_form_section4:
     '#type': webform_section
     '#title': 'Section 4'

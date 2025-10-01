@@ -3,10 +3,10 @@ _core:
 site_key: 6LebYholAAAAAOG5Tq1ZJdGi6XJSFzC3eOnxoEQp
 secret_key: 6LebYholAAAAAEmDygV8AvZRpHuFf1LCIl485i_o
 verify_hostname: false
-use_globally: true
+use_globally: false
 widget:
   theme: light
   type: image
   size: ''
-  noscript: false
   tabindex: 0
+  noscript: false

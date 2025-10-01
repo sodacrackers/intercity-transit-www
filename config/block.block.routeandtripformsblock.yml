@@ -27,4 +27,4 @@ visibility:
     id: request_path
     negate: false
     context_mapping: {  }
-    pages: "<front>\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/stops\r\n/plan-your-trip/stops/*"
+    pages: "<front>\r\n/plan-your-trip/trip-planner\r\n/plan-your-trip/routes\r\n/plan-your-trip/routes/*\r\n/plan-your-trip/stops\r\n/plan-your-trip/stops/*"

@@ -11,14 +11,12 @@ dependencies:
     - field.field.node.rider_alerts.field_end_date_until_further_not
     - field.field.node.rider_alerts.field_image
     - field.field.node.rider_alerts.field_live_nid
-    - field.field.node.rider_alerts.field_severity
     - field.field.node.rider_alerts.field_start_date
     - image.style.large
     - node.type.rider_alerts
   module:
     - colorbox
     - field_group
-    - options
     - text
     - user
 third_party_settings:
@@ -61,7 +59,7 @@ third_party_settings:
       label: Div
       parent_name: ''
       region: hidden
-      weight: 7
+      weight: 6
       format_type: html_element
       format_settings:
         classes: ''
@@ -79,7 +77,7 @@ third_party_settings:
       label: 'Align Center'
       parent_name: ''
       region: content
-      weight: 2
+      weight: 1
       format_type: html_element
       format_settings:
         classes: ''
@@ -100,28 +98,21 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_image:
     type: colorbox
     label: visually_hidden
     settings:
+      colorbox_node_style: large
+      colorbox_node_style_first: ''
       colorbox_image_style: ''
       colorbox_gallery: post
       colorbox_gallery_custom: ''
       colorbox_caption: auto
       colorbox_caption_custom: ''
-      colorbox_node_style: large
-      colorbox_node_style_first: ''
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_severity:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
     region: content
 hidden:
   feeds_item: true
@@ -131,6 +122,5 @@ hidden:
   field_end_date_until_further_not: true
   field_live_nid: true
   field_start_date: true
-  langcode: true
   links: true
   search_api_excerpt: true
