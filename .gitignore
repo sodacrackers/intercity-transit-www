@@ -9,6 +9,7 @@
 /web/sites/*/services*.yml
 !/web/sites/*/services.pantheon.*.yml
 !/web/sites/*/services.yml
+/web/sites/development.services.yml
 
 # Ignore paths that contain user-generated content.
 /web/sites/*/files
@@ -69,6 +70,8 @@
 # that core/assets/vendor and any other vendor directories within contrib or
 # custom module, theme, etc., are not ignored unless you purposely do so.
 /vendor/
+/**/node_modules/
+
 
 # Ignore other scaffold files
 #

@@ -2832,3 +2832,9 @@ nav[data-animation="Elastic"]:not(.admin) .we-mega-menu-ul .dropdown-menu:not(.c
         left: 0
     }
 }
+
+/* Hide old menu arrows */
+.we-mega-menu-ul>.we-mega-menu-li>a:before,
+.we-mega-menu-ul .dropdown-menu>a:before {
+  display: none !important;
+}

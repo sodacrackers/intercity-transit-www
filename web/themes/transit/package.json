@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build:css": "less-watch-compiler css css"
+  },
+  "devDependencies": {
+    "less": "^4.2.0",
+    "less-watch-compiler": "^1.16.0"
+  }
+}
