@@ -1,6 +1,10 @@
 <?php
+
 /**
- * Quicksilver wrapper: run Bash inside PHP so Pantheon shows output.
+ * @file
+ * Push Pantheon code to GitHub.
+ *
+ * Quicksilver wrapper: runs Bash inside PHP so Pantheon shows output.
  */
 
 $bash = <<<BASH
@@ -33,5 +37,5 @@ BASH;
 // Run bash and capture all output (stdout + stderr)
 $output = shell_exec("bash -s 2>&1 <<'EOS'\n$bash\nEOS");
 
-// Print so it appears in the Pantheon Workflow log
+// Print so it appears in the Pantheon Workflow log.
 print $output;
