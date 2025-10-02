@@ -19,10 +19,6 @@ endif;
  * Load services definition file.
  */
 $settings['container_yamls'][] = __DIR__ . '/services.yml';
-if (isset($_ENV['PANTHEON_ENVIRONMENT']) === FALSE) {
-  $settings['container_yamls'][] = __DIR__ . '/../development.services.yml';
-}
-
 
 /**
  * Include the Pantheon-specific settings file.
@@ -45,23 +41,6 @@ include __DIR__ . "/settings.pantheon.php";
 // $settings['skip_permissions_hardening'] = TRUE;
 
 /**
- * If there is a local settings file, then include it
- */
-$local_settings = __DIR__ . "/settings.local.php";
-$local_hosts = ['ict-pantheon.ddev.site', 'intercitytransit.lndo.site'];
-if (file_exists($local_settings)) {
-  if (in_array($_SERVER['HTTP_HOST'], $local_hosts)) {
-    include $local_settings;
-  }
-  elseif (getenv('LANDO') == 'ON') {
-    include $local_settings;
-  }
-  elseif (getenv('IS_DDEV_PROJECT') == 'true') {
-    include $local_settings;
-  }
-}
-
-/**
  * Place the config directory outside of the Drupal root.
  */
 $settings['config_sync_directory'] = dirname(DRUPAL_ROOT) . '/config';
@@ -77,8 +56,14 @@ if ((strpos($docuri, 'traveloptions/vanpoolandcarpool/currentvanpools/Pages/Vanp
 
 // Automatically generated include for settings managed by ddev.
 $ddev_settings = dirname(__FILE__) . '/settings.ddev.php';
-if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+if (!isset($_ENV['PANTHEON_ENVIRONMENT']) && getenv('IS_DDEV_PROJECT') == 'true') {
   require $ddev_settings;
+}
+
+// Include local development settings for Lando.
+$lando_settings = dirname(__FILE__) . '/settings.lando.php';
+if (!isset($_ENV['PANTHEON_ENVIRONMENT']) && getenv('LANDO') === 'ON') {
+  require $lando_settings;
 }
 
 ini_set('memory_limit', '1024M');
