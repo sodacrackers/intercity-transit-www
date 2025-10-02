@@ -18,10 +18,10 @@ cd "\$HOME/code"
 TOKEN=\$(cat \$HOME/files/private/prod-workflow-ict-github-token.txt)
 echo "Token preview: \${TOKEN:0:30}..."
 
-GITHUB_URL="https://${TOKEN}@github.com/Intercity-Transit/intercity-transit-www.git"
+GITHUB_URL="https://\${TOKEN}@github.com/Intercity-Transit/intercity-transit-www.git"
 
 echo "Pushing Pantheon 'master' branch to GitHub 'master' branch"
-git push "$GITHUB_URL" master:master --force 2>&1
+git push \${GITHUB_URL} master:master --force 2>&1
 
 echo "== Done =="
 BASH;
