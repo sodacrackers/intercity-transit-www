@@ -1,5 +1,4 @@
 global:
-  version: VERSION
   css:
     theme:
       assets/css/it-route-trip-tools.css: {}
@@ -17,7 +16,6 @@ all-routes-map:
   js:
     assets/js/all-routes-map.js: {}
 tables:
-  version: VERSION
   css:
     theme:
       //unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css: {tye: external}
@@ -90,6 +88,7 @@ route:
       assets/css/route.css: {}
   js:
     assets/js/route.js: {}
+    assets/js/realtime.js: {}
   dependencies:
     - core/jquery
     - core/drupal

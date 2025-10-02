@@ -26,14 +26,14 @@
         var scrollLeft = $(table).scrollLeft();
         var scrollWidth = $(table).get(0).scrollWidth;
         var clientWidth = $(table).get(0).clientWidth;
-        
+
         // Check if at the beginning
         if (scrollLeft <= 0) {
           $(backButton).attr('disabled', true);
         } else {
           $(backButton).attr('disabled', false);
         }
-        
+
         // Check if at the end (with small tolerance for rounding)
         if (scrollLeft + clientWidth >= scrollWidth - 1) {
           $(forwardButton).attr('disabled', true);
@@ -174,7 +174,7 @@
           $('#applyRoutesFilter').click();
           is_resetting = false;
           if (!$('input[name="display_stops_options"][value="allstops"]').is(':checked')) {
-            
+
             $('input[name="display_stops_options"][value="allstops"]').prop('checked', true);
             $('input[name="display_stops_options"][value="timepoint"]').prop('checked', true);
             $('input[name="display_stops_options"][value="allstops"]').parent().addClass('active focus btn-default').removeClass('btn-primary');
@@ -267,13 +267,13 @@
           $('#applyRoutesFilter').click();
           is_resetting = false;
           const show_rows = $(this).val();
-          if (show_rows === 'allstops') {
-            $('tr.non-timepoint').show();
-            $('.lists-list-item.not-timepoint').show();
-          }
-          else {
+          if (show_rows === 'timepoint') {
             $('tr.non-timepoint').hide();
             $('.lists-list-item.not-timepoint').hide();
+          }
+          else {
+            $('tr').show();
+            $('.lists-list-item').show();
           }
         });
       });
@@ -284,7 +284,7 @@
             is_resetting = true;
             console.log($('input[name="display_stops_options"][value="allstops"]').is(':checked'));
             if (!$('input[name="display_stops_options"][value="allstops"]').is(':checked')) {
-              
+
               $('input[name="display_stops_options"][value="allstops"]').prop('checked', true);
               $('input[name="display_stops_options"][value="timepoint"]').prop('checked', true);
               $('input[name="display_stops_options"][value="allstops"]').parent().addClass('active focus btn-default').removeClass('btn-primary');

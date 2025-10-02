@@ -308,7 +308,6 @@ label.form-check-label {
   color: rgba(13, 26, 41, 1);
   background-color: transparent;
   border: none;
-  outline: none;
   border-radius: 86.0282px;
   height: 34px;
   font-size: 14px !important;
@@ -322,7 +321,6 @@ label.form-check-label {
   color: #fff;
   background-color: #007B5F !important;
   border: none;
-  outline: none;
   border-radius: 86.0282px !important;
   height: 34px;
   box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.1);
@@ -736,7 +734,7 @@ html body .breadcrumb li:first-child + li:before {
 #alertsModal .modal-header .close:hover,
 #alertsModal .modal-header .close:active,
 #alertsModal .modal-header .close:focus {
-  outline: 0 !important;
+  // outline: 0 !important;
 }
 
 #alertsModal .modal-header .close:focus span {
