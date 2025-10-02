@@ -31,3 +31,6 @@ workflows:
       - type: webphp
         description: Notify slack
         script: private/scripts/notify_slack.php
+      - type: webphp
+        description: Mirror code to GitHub
+        script: private/scripts/github-push.sh
