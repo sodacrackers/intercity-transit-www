@@ -147,7 +147,7 @@ class RoutesPage extends ControllerBase {
     return it_route_trip_tools_pics_get_all_routes_data($date, 0, TRUE);
   }
 
-  public static function getRouteColor($route_id) {
+  public static function getRouteColor($route_id = NULL) {
     $mapping = [
       '12' => '#65A30D',
       '13' => '#2563EB',
@@ -193,7 +193,7 @@ class RoutesPage extends ControllerBase {
         $val = isset($route['Route']['MapInfo']['Shapes'][0]) ? reset($route['Route']['MapInfo']['Shapes'][0]) : [];
         return [
           'Shapes' => $val,
-          'Color' => RoutesPage::getRouteColor($route['Route']['RouteInfo']['route_short_name']),
+          'Color' => RoutesPage::getRouteColor($route['Route']['RouteInfo']['route_short_name'] ?? NULL),
           'RouteName' => isset($route['Route']['RouteInfo']['route_long_name']) ? $route['Route']['RouteInfo']['route_long_name'] : '',
         ];
       }, $all_routes_map_data_array);
