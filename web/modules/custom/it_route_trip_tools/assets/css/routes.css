@@ -283,7 +283,7 @@ span.map-toggle {
   width: 53px;
   background-color: #003087;
   color: white !important;
-} 
+}
 
 #all-routes-map {
   min-height: 600px;
@@ -447,3 +447,9 @@ html body .transit-header-top .search-block-form input#edit-keys {
   font-size: 21px;
   font-weight: 500;
 }
+
+#route-table td.realtime {
+  min-width: 250px;
+  font-size: 10px;
+}
+
