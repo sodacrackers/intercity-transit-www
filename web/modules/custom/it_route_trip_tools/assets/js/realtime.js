@@ -1,4 +1,7 @@
 import _ from "https://cdn.jsdelivr.net/npm/lodash-es@4.17.21/lodash.min.js";
+
+console.log("Lodash ES version:", _.VERSION);
+
 /**
  * Realtime Transit Data Display.
  *
@@ -97,6 +100,7 @@ function followRealtime() {
  * Fetches and refreshes realtime data for the route
  */
 function fetchRealtime() {
+  showSpinner();
   fetch(
     "https://its.rideralerts.com/InfoPoint/GTFS-Realtime.ashx?Type=TripUpdate&debug=true"
   )
@@ -104,9 +108,11 @@ function fetchRealtime() {
     .then((feed) => {
       currentFeedData = feed; // Store the feed data for helper functions
       updateRealtimeData();
+      hideSpinner();
     })
     .catch((err) => {
       clearRealtimeData();
+      hideSpinner();
       console.error("Realtime fetch failed", err);
     });
 }
@@ -115,89 +121,90 @@ function fetchRealtime() {
  * Updates elements with realtime delay information
  */
 function updateRealtimeData() {
-  // Find all realtime data divs for this route
   const realtimeElements = container.querySelectorAll(
-    `.realtime[data-route-id][data-stop-id]`
+    `.realtime[data-stop-id]`
   );
 
   for (const element of realtimeElements) {
-    const routeId = element.getAttribute("data-route-id");
-    if (!routeId) continue;
     const stopId = element.getAttribute("data-stop-id");
     if (!stopId) continue;
 
-    // Get the delay for this stop using the helper function
-    const upcoming = getStopTimes(routeId, stopId);
+    const upcoming = getStopTimes(stopId);
+    if (!upcoming || upcoming.length === 0) {
+      element.innerHTML = "No arrivals available";
+      continue;
+    }
 
-    upcoming.forEach((r) => {
-      let delay = formatDelayTime(r.delayMinutes);
-      let isLate = r.delayMinutes < 0;
-      if (isLate) {
-        delay = `<span class="text-danger">${delay}</span>`;
-      }
-      element.innerHTML = `Bus ${r.bus} at ${r.arrivalTime} (${delay})<br>`;
+    // Group by route so we can show "Route X:" header
+    const grouped = _.groupBy(upcoming, "routeId");
+
+    let html = "";
+    _.forEach(grouped, (arrivals, route) => {
+      html += `<div class="route" data-route-id="${route}">
+      <strong>Route ${route}:</strong>`;
+      arrivals.forEach((r) => {
+        const delay = () => {
+          if (r.delay < 0) return { text: `early`, class: `label-success` };
+          if (r.delay > 0) return { text: `running late`, class: `label-danger` };
+          return { text: `on time`, class: `label-default` };
+        };
+        html += `<div>Bus ${r.bus}
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>${r.departureTime}
+        <span class="small label ${delay().class}">${delay().text}</span></div>`;
+      });
+      html += `</div>`;
     });
+
+    element.innerHTML = html;
   }
 }
 
 /**
  * Gets upcoming stop times for a specific route and stop from the feed data
- * @param {string} routeId - The route ID
  * @param {string} stopId - The stop ID
  * @returns {Array|null} Array of upcoming stop times or null if no data
  */
-function getStopTimes(routeId, stopId) {
-  console.log(_.VERSION); // "4.17.21"
-  console.log(_.get({}, "x")); // u
+function getStopTimes(stopId) {
   if (!currentFeedData) return null;
 
-  // Get entities for this route
-  const routeEntities = _.filter(
-    currentFeedData.Entities,
-    (e) => String(e.TripUpdate?.Trip?.RouteId) === String(routeId)
-  );
-
-  // Flatten stops for this stopId
-  const stopMatches = _.chain(routeEntities)
+  return _.chain(currentFeedData.Entities)
     .map((e) => {
       const vehicle = _.get(e, "TripUpdate.Vehicle.Label", "Unknown");
+      const tripRouteId = _.get(e, "TripUpdate.Trip.RouteId", "??");
 
-      const stopUpdates = _.filter(
-        e.TripUpdate?.StopTimeUpdates || [],
-        (s) => String(s.StopId) === String(stopId)
-      );
+      return _.map(e.TripUpdate?.StopTimeUpdates || [], (s) => {
+        if (String(s.StopId) !== String(stopId)) return null;
 
-      return _.map(stopUpdates, (s) => ({
-        bus: vehicle,
-        arrivalTime: s.Arrival?.Time
-          ? new Date(s.Arrival.Time * 1000).toLocaleTimeString()
-          : "N/A",
-        delayMinutes: s.Arrival?.Delay || 0,
-      }));
+        return {
+          bus: vehicle,
+          routeId: tripRouteId,
+          departureTime: s.Departure?.Time
+            ? new Date(s.Departure.Time * 1000).toLocaleTimeString()
+            : "N/A",
+          delay: s.Departure?.Delay ?? null,
+        };
+      });
     })
     .flatten()
+    .compact()
+    .orderBy("departureTime")
     .value();
-
-  return stopMatches;
 }
 
 /**
- * Formats delay time in seconds to human-readable format
- * @param {number|null} seconds - Delay in seconds
- * @returns {string} Formatted delay string
+ * Shows a loading spinner on the page
  */
-function formatDelayTime(seconds) {
-  if (seconds === null) {
-    return "—";
-  }
+function showSpinner() {
+  const spinners = container.querySelectorAll(".realtime-loading-spinner");
+  if (!spinners.length) return;
+  spinners.forEach((spinner) => spinner.classList.remove("hidden"));
+}
 
-  const delayMinutes = Math.round(seconds / 60);
-
-  if (delayMinutes === 0) {
-    return "On time";
-  } else if (delayMinutes > 0) {
-    return `+${delayMinutes} min early`;
-  } else {
-    return `${delayMinutes} min late`;
-  }
+/**
+ * Hides the loading spinner
+ */
+function hideSpinner() {
+  const spinners = container.querySelectorAll(".realtime-loading-spinner");
+  if (!spinners.length) return;
+  spinners.forEach((spinner) => spinner.classList.add("hidden"));
 }

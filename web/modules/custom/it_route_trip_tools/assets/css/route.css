@@ -967,3 +967,14 @@ body.path-plan-your-trip > div.dialog-off-canvas-main-canvas > div.main-containe
   justify-content: center;
   padding-top: 10px
 }
+
+#route-table td.realtime, #route-table td.realtime blockquote {
+  text-align: left;
+  min-width: 250px;
+  font-size: 10px;
+  background-color: #f8f8f8;
+  color: #000 !important;
+}
+
+@keyframes realtimespinner { to { transform: rotate(360deg); } }
+#route-table .realtime-loading-spinner .glyphicon.spinning { animation: realtimespinner 1s infinite linear; }
