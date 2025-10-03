@@ -1,31 +1,43 @@
 /**
- * @file
- * Realtime route data integration for Intercity Transit.
+ * Realtime Transit Data Display.
  *
- * Fetches realtime JSON data from the GTFS-Realtime feed and appends
- * it to the route's timetable to show live trip updates and delays.
+ * This script listens for a click to "Realtime" button on a route page. When clicked,
+ * we fetch realtime data from the API, then update each .realtime div with
+ * the latest arrival/ departure time, delay, and vehicle info.
+ *
+ * Basic flow:
+ * 1. Click "Realtime" button
+ * 2. followRealtime() to auto-refresh every 30 seconds
+ * 3. updateRealtimeData() to update each .realtime div
+ * 4. clearRealtimeData() to stop refrteshing and clear data
+ *
+ * @author Intercity Transit
+ * @version 1.0
  */
 
 (function () {
   "use strict";
 
   // Store the feed data for helper functions to access
-  let cachedFeedData = null;
+  let currentFeedData = null;
   let refreshInterval = null;
+  let container = null;
+  let routeId = null;
 
   Drupal.behaviors.route_realtime = {
     attach(context, settings) {
-      const table = context.querySelector("#route-table table.timetable");
-      const routeId = table?.getAttribute("data-route-id");
-      if (!routeId || !table) return;
+      // Find the container with timetables
+      container = context.querySelector("#schedule");
+      if (!container) return;
 
-      // Attach to labels, not inputs
+      // Attach button handler to labels, not inputs
       const labels = once(
         "display-stops-options-labels",
         ".btn-group.btn-stops-toggle label",
         context
       );
 
+      // Show realtime if selected
       for (const label of labels) {
         label.addEventListener("click", () => {
           const input = label.querySelector(
@@ -34,9 +46,9 @@
           if (!input) return;
 
           if (input.value === "realtime") {
-            followRealtime(routeId, table);
+            followRealtime();
           } else {
-            clearRealtimeData(table);
+            clearRealtimeData();
           }
         });
       }
@@ -44,78 +56,83 @@
   };
 
   /**
-   * Fetches and refreshes realtime data for the route
-   * @param {string} routeId - The route ID
-   * @param {HTMLElement} table - The timetable element
+   * Clears all realtime data from elements and stops the refresh timer
    */
-  function fetchRealtime(routeId, table) {
-    fetch(
-      "https://its.rideralerts.com/InfoPoint/GTFS-Realtime.ashx?Type=TripUpdate&debug=true"
-    )
-      .then((res) => res.json())
-      .then((feed) => {
-        cachedFeedData = feed; // Cache the feed data for helper functions
-        updateTable(feed, routeId, table);
-      })
-      .catch((err) => console.error("Realtime fetch failed", err));
-  }
-
-  /**
-   * Clears all realtime data from the table and stops the refresh timer
-   * @param {HTMLElement} table - The timetable element
-   */
-  function clearRealtimeData(table) {
-    // Clear all realtime cells
-    const realtimeCells = table.querySelectorAll("td.realtime");
-    realtimeCells.forEach((cell) => {
-      cell.textContent = "";
-    });
+  function clearRealtimeData() {
+    currentFeedData = null;
 
     // Stop the refresh timer
     if (refreshInterval) {
       clearInterval(refreshInterval);
       refreshInterval = null;
     }
+
+    // Clear all realtime elements
+    if (!container) return;
+    const elements = container.querySelectorAll(
+      ".realtime[data-route-id][data-stop-id]"
+    );
+    elements.forEach((element) => {
+      element.textContent = "";
+    });
   }
 
   /**
    * Sets up automatic realtime data refresh every 30 seconds
-   * @param {string} routeId - The route ID
-   * @param {HTMLElement} table - The timetable element
    */
-  function followRealtime(routeId, table) {
+  function followRealtime() {
     // Clear any existing interval
     if (refreshInterval) {
       clearInterval(refreshInterval);
     }
 
     // Run once right away
-    fetchRealtime(routeId, table);
+    fetchRealtime();
 
-    // Then set up auto-refresh every 30 seconds
+    // Then auto-refresh every 30 seconds
     refreshInterval = setInterval(() => {
-      fetchRealtime(routeId, table);
+      fetchRealtime();
     }, 30000);
   }
 
   /**
-   * Updates the timetable with realtime delay information
-   * @param {Object} feed - The GTFS-Realtime feed data
-   * @param {string} routeId - The route ID to filter trips
-   * @param {HTMLElement} table - The timetable element
+   * Fetches and refreshes realtime data for the route
    */
-  function updateTable(feed, routeId, table) {
-    // Loop over each stop row in the timetable
-    for (const row of table.querySelectorAll("tr")) {
-      const stopId = row.getAttribute("data-stop-id");
-      const realtimeCell = row.querySelector("td.realtime");
-      if (!stopId || !realtimeCell) continue;
+  function fetchRealtime() {
+    fetch(
+      "https://its.rideralerts.com/InfoPoint/GTFS-Realtime.ashx?Type=TripUpdate&debug=true"
+    )
+      .then((res) => res.json())
+      .then((feed) => {
+        currentFeedData = feed; // Store the feed data for helper functions
+        updateRealtimeData();
+      })
+      .catch((err) => {
+        clearRealtimeData();
+        console.error("Realtime fetch failed", err);
+      });
+  }
+
+  /**
+   * Updates elements with realtime delay information
+   */
+  function updateRealtimeData() {
+    // Find all realtime data divs for this route
+    const realtimeElements = container.querySelectorAll(
+      `.realtime[data-route-id][data-stop-id]`
+    );
+
+    for (const element of realtimeElements) {
+      const routeId = element.getAttribute("data-route-id");
+      if (!routeId) continue;
+      const stopId = element.getAttribute("data-stop-id");
+      if (!stopId) continue;
 
       // Get the delay for this stop using the helper function
       const delaySeconds = getStopDelayTime(routeId, stopId);
 
       // Format and display the delay using the helper function
-      realtimeCell.textContent = formatDelayTime(delaySeconds);
+      element.textContent = formatDelayTime(delaySeconds);
     }
   }
 
@@ -126,10 +143,10 @@
    * @returns {number|null} Delay in seconds, or null if no delay data found
    */
   function getStopDelayTime(routeId, stopId) {
-    if (!cachedFeedData) return null;
+    if (!currentFeedData) return null;
 
     // Keep only trips that match this route
-    const tripUpdates = cachedFeedData.Entities.filter(
+    const tripUpdates = currentFeedData.Entities.filter(
       (e) => e.TripUpdate?.Trip?.RouteId === routeId
     );
 
