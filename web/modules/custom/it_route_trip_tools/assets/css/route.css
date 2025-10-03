@@ -223,8 +223,8 @@ label.form-check-label {
   border: none;
 }
 
-#inbound-large-screen-route-table table.table tbody tr td:nth-child(1), #outbound-large-screen-route-table table.table tbody tr td:nth-child(1),
-#inbound-large-screen-route-table table.table tbody tr th, #outbound-large-screen-route-table table.table tbody tr th {
+#inbound-large-screen-route-table td:nth-child(1), #outbound-large-screen-route-table td:nth-child(1),
+#inbound-large-screen-route-table th, #outbound-large-screen-route-table th {
   background: #F0F5FA !important;
   height: 78px;
   min-width: 200px;
@@ -244,10 +244,10 @@ label.form-check-label {
   border-spacing: 0 !important;
 }
 
-#inbound-large-screen-route-table table.table tbody tr.timepoint td:nth-child(1):before,
-#outbound-large-screen-route-table table.table tbody tr.timepoint td:nth-child(1):before,
-#inbound-large-screen-route-table table.table tbody tr.timepoint th:before,
-#outbound-large-screen-route-table table.table tbody tr.timepoint th:before {
+#inbound-large-screen-route-table tr.timepoint td:nth-child(1):before,
+#outbound-large-screen-route-table tr.timepoint td:nth-child(1):before,
+#inbound-large-screen-route-table tr.timepoint th:before,
+#outbound-large-screen-route-table tr.timepoint th:before {
   content: '';
   color: #fff;
   position: absolute;
@@ -261,20 +261,20 @@ label.form-check-label {
   top: 0;
 }
 
-#inbound-large-screen-route-table table.table tbody tr td:nth-child(1),
-#outbound-large-screen-route-table table.table tbody tr td:nth-child(1),
-#inbound-large-screen-route-table table.table tbody tr th,
-#outbound-large-screen-route-table table.table tbody tr th {
+#inbound-large-screen-route-table td:nth-child(1),
+#outbound-large-screen-route-table td:nth-child(1),
+#inbound-large-screen-route-table th,
+#outbound-large-screen-route-table th {
   text-align: left !important;
   vertical-align: middle !important;
   padding-left: 30px !important;
   /*border: 1px solid #D1D2D6;*/
 }
 
-#inbound-large-screen-route-table table.table tbody tr td,
-#outbound-large-screen-route-table table.table tbody tr td {
-  text-align: center !important;
-  vertical-align: middle !important;
+#inbound-large-screen-route-table td,
+#outbound-large-screen-route-table td {
+  text-align: center;
+  vertical-align: middle;
   border-top: 1px solid #D1D2D6;
   border-right: 1px solid #D1D2D6;
   border-bottom: 0;
@@ -412,7 +412,7 @@ label.form-check-label {
   .mobile-lists-container .btn-stops-toggle {
     margin-bottom: 16px;
   }
-  #inbound-large-screen-route-table table.table tbody tr td, #outbound-large-screen-route-table table.table tbody tr td{
+  #inbound-large-screen-route-table td, #outbound-large-screen-route-table td{
     min-width: 53px;
     max-width: 53px;
   }

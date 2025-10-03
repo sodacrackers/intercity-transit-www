@@ -294,7 +294,7 @@ html body #routes-media h2 {
 #route-table-weekdays tr.bold td, #route-table-weekend tr.bold td {
   font-weight: bold;
 }
-#route-table-weekdays tr td, #route-table-weekend tr td, #route-table tr td {
+#route-table-weekdays td, #route-table-weekend td, #route-table td {
   min-width: 90px;
 }
 #route-table-weekdays .table-controls, #route-table-weekend .table-controls {
@@ -410,12 +410,12 @@ html body #routes-media h2 {
       height: 90vh;
       */
 }
-#inbound-large-screen-route-table table.table thead tr th,
-#outbound-large-screen-route-table table.table thead tr th {
+#inbound-large-screen-route-table th,
+#outbound-large-screen-route-table th {
   text-align: center;
 }
-#inbound-large-screen-route-table table.table thead tr th h2,
-#outbound-large-screen-route-table table.table thead tr th h2 {
+#inbound-large-screen-route-table th h2,
+#outbound-large-screen-route-table th h2 {
   font-size: 1.8rem;
   color: #fff;
   font-weight: 700;
@@ -425,30 +425,30 @@ html body #routes-media h2 {
   width: 200px;
 }
 @media screen and (max-width: 991px) {
-  #inbound-large-screen-route-table table.table thead tr th h2,
-  #outbound-large-screen-route-table table.table thead tr th h2 {
+  #inbound-large-screen-route-table th h2,
+  #outbound-large-screen-route-table th h2 {
     width: 100px;
   }
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate,
-#outbound-large-screen-route-table table.table thead tr th.rotate {
+#inbound-large-screen-route-table th.rotate,
+#outbound-large-screen-route-table th.rotate {
   height: 100px;
   margin-bottom: 20px;
   border-left: 0;
   border-right: 0;
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate > div,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div {
+#inbound-large-screen-route-table th.rotate > div,
+#outbound-large-screen-route-table th.rotate > div {
   transform: translate(35px, -5px) rotate(315deg);
   width: 100px;
   margin-bottom: 20px;
 }
-#inbound-large-screen-route-table table.table thead tr th.rotate > div > span,
-#outbound-large-screen-route-table table.table thead tr th.rotate > div > span {
+#inbound-large-screen-route-table th.rotate > div > span,
+#outbound-large-screen-route-table th.rotate > div > span {
   padding: 0;
 }
-#inbound-large-screen-route-table table.table tbody td,
-#outbound-large-screen-route-table table.table tbody td {
+#inbound-large-screen-route-table td,
+#outbound-large-screen-route-table td {
   text-align: right;
 }
 
@@ -701,8 +701,8 @@ html body #routes-media h2 {
 #inbound-large-screen-route-table table {
   width: 100%;
 }
-#outbound-large-screen-route-table table thead tr th:first-child,
-#inbound-large-screen-route-table table thead tr th:first-child {
+#outbound-large-screen-route-table table thead th:first-child,
+#inbound-large-screen-route-table table thead th:first-child {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -711,17 +711,17 @@ html body #routes-media h2 {
   color: #fff;
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr:nth-of-type(odd),
-#inbound-large-screen-route-table table tbody tr:nth-of-type(odd) {
+#outbound-large-screen-route-table tr:nth-of-type(odd),
+#inbound-large-screen-route-table tr:nth-of-type(odd) {
   background-color: inherit;
 }
-#outbound-large-screen-route-table table tbody tr:hover,
-#inbound-large-screen-route-table table tbody tr:hover {
+#outbound-large-screen-route-table tr:hover,
+#inbound-large-screen-route-table tr:hover {
   background: #909090;
   color: #fff;
 }
-#outbound-large-screen-route-table table tbody tr th,
-#inbound-large-screen-route-table table tbody tr th {
+#outbound-large-screen-route-table th,
+#inbound-large-screen-route-table th {
   position: sticky !important;
   width: 20%;
   left: 0;
@@ -730,12 +730,12 @@ html body #routes-media h2 {
   color: #fff;
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr td,
-#inbound-large-screen-route-table table tbody tr td {
+#outbound-large-screen-route-table td,
+#inbound-large-screen-route-table td {
   position: relative;
 }
-#outbound-large-screen-route-table table tbody tr td:hover:after,
-#inbound-large-screen-route-table table tbody tr td:hover:after {
+#outbound-large-screen-route-table td:hover:after,
+#inbound-large-screen-route-table td:hover:after {
   content: "";
   position: absolute;
   background: #dedede !important;
